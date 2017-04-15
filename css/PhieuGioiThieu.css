@@ -1,0 +1,66 @@
+﻿body {
+	background-color:#fff;
+}
+/*PhieuGioiThieu*/
+.KhungIn
+{
+	width:800px;
+	height:1200px !important;
+	display:table;
+	/*border:solid 5px #808080;*/
+	padding:5px;
+
+    font-family:'Times New Roman';
+    font-size:22px;
+    text-align:justify;
+}
+
+.TieuDePhieu
+{
+    margin-top:20px;
+	font-size:28px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.KinhGui
+{
+    margin-top:10px;
+    margin-bottom:30px;
+    margin-left:80px;
+	font-size:20px;
+}
+
+.txtr{
+    text-align:right;
+    padding-right:10px;
+}
+
+.pl20{
+    padding-left:20px;
+}
+
+table{
+    width:100%;
+}
+
+.txtcenter{
+    text-align:center;
+    width:50%;
+    font-size:20px;
+}
+
+p{
+    text-indent:40px;
+    margin-bottom:5px;
+}
+
+.LoiCamOn{
+    margin-left:70px;
+    margin-bottom:30px;
+}
+
+.LuuYNhom{
+    margin-left:10px;
+    font-size:18px;
+}

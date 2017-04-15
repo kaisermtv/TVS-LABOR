@@ -1,0 +1,104 @@
+﻿body {
+	background-color:#fff;
+}
+/*PhieuTuVan*/
+.KhungIn
+{
+	width:800px;
+	height:1200px !important;
+	display:table;
+	/*border:solid 5px #808080;*/
+	padding:5px;
+
+    font-family:'Times New Roman';
+    font-size:20px;
+    text-align:justify;
+}
+.ChuBinhThuong{
+	margin-bottom:6px;
+}
+.TieuDe1
+{
+	font-size:14px;
+	font-style:italic;
+}
+
+.ChiMuc{
+    margin-top:20px;
+}
+
+.ChiMuc1{
+
+}
+
+.HoNgu1
+{
+    margin-top:15px;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+}
+.HoNgu2
+{
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+}
+.TieuDePhieu
+{
+    margin-top:20px;
+	font-size:30px;
+	font-weight:bold;
+	text-align:center;
+}
+
+.KinhGui
+{
+    margin-top:10px;
+    margin-bottom:30px;
+	font-size:20px;
+	text-align:center;
+}
+
+.HoVaTen{
+	
+}
+
+.SoCMND
+{
+}
+
+.SoCMND-NgayCap
+{
+}
+
+.SoCMND-NoiCap
+{
+}
+
+.SoBHXHD
+{
+}
+
+.NoiThuongTru
+{
+}
+
+.table1{
+    /*width: 100%;*/
+    border: 0px;
+
+}
+
+.table1 tr{
+    padding-right:10px;
+}
+
+.txtr{
+    text-align:right;
+    padding-right:10px;
+}
+
+.pl20{
+    padding-left:20px;
+}

@@ -1,0 +1,195 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TVS LABOR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../css/Adminstyle.css" rel="stylesheet" type="text/css"/>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel='stylesheet' type='text/css' />
+    <!-- Graph CSS -->
+    <link href="../css/font-awesome.css" rel="stylesheet" />
+    <!-- jQuery -->
+    <!-- lined-icons -->
+    <link href="../css/icon-font.min.css" rel="stylesheet" type='text/css' />
+    <!-- //lined-icons -->
+    <!-- chart -->
+    <script src="../js/Chart.js"></script>
+    <!-- //chart -->
+    <!--animate-->
+    <link href="../css/animate.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="../js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+    <!----webfonts--->
+    <link href='../css/fonts-googleapis.css' rel='stylesheet' type='text/css' />
+    <!---//webfonts--->
+    <!-- Meters graphs -->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <!-- Placed js at the end of the document so the pages load faster -->
+
+    <!-- DateTime Picker -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../Content/bootstrap.min.css" />
+    <link href="../Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-2.1.1.min.js"></script>
+    <script src="../Scripts/moment-with-locales.js"></script>
+    <script src="../Scripts/bootstrap-datetimepicker.js"></script>
+    <!-- -->
+
+</head>
+<body class="sticky-header left-side-collapsed" onload="initMap()">
+    <form id="form1" runat="server">
+         <asp:ScriptManager runat="server">
+        </asp:ScriptManager>
+        <section>
+            <!-- left side start-->
+            <div class="left-side sticky-left-side">
+
+                <!--logo and iconic logo start-->
+                <div class="logo">
+                    <h1><a href="../Admin/default.aspx">TVS <span>Admin</span></a></h1>
+                </div>
+                <div class="logo-icon text-center">
+                    <a href="../admin/default.aspx"><i class="lnr lnr-home"></i></a>
+                </div>
+
+                <!--logo and iconic logo end-->
+                <div class="left-side-inner">
+                    <!--sidebar nav start-->
+                    <ul class="nav nav-pills nav-stacked custom-nav">
+                        <li class="menu-list">
+                            <a href="#"><i class="lnr lnr-cog"></i>
+                                <span>Hệ thống</span></a>
+                            <ul class="sub-menu-list">
+                                <li><a href="../Admin/AboutUs.aspx">Thông tin đơn vị</a></li>
+                                <li><a href="../Admin/GroupAccount.aspx">Nhóm tài khoản</a></li>
+                                <li><a href="../Admin/Account.aspx">Tài khoản người dùng</a></li>
+                                <li><a href="../Admin/Config.aspx">Cấu hình hệ thống</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>Tiếp nhận hồ sơ</span></a>
+                            <ul class="sub-menu-list">
+                                <li><a href="../Labor/NguoiLaoDong.aspx">Người lao động</a></li>
+                                <li><a href="../Labor/TuVan.aspx">Hồ sơ tư vấn</a></li>
+                                <li><a href="../Labor/DoanhNghiep.aspx">Doanh nghiệp</a></li>
+                                <li><a href="../Labor/TuyenDung.aspx">Tin tuyển dụng</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i><span style ="width:180px!important;">Quản lý công việc</span></a>
+                            <ul class="sub-menu-list">
+                                <li style ="width:180px!important;"><a href="../Labor/DangKyViecLam.aspx">Hồ sơ đăng ký tìm việc</a></li>
+                                <li style ="width:180px!important;"><a href="../Labor/TuVanXuatKhau.aspx">Hồ sơ xuất khẩu, du học</a></li>
+                                <li style ="width:180px!important;"><a href="../Labor/DaoTaoNghe.aspx">Hồ sơ đào tạo nghề</a></li>
+                                <li style ="width:180px!important;"><a href="../Labor/BaoHiemThatNghiep.aspx">Hồ sơ BHTN</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Danh mục</span></a>
+                            <ul class="sub-menu-list">
+                                <li><a href="../Category/Provincer.aspx">Tỉnh, thành</a> </li>
+                                <li><a href="../Category/District.aspx">Quận, huyện</a> </li>
+                                <li><a href="../Category/Ward.aspx">Phường, xã</a> </li>
+                                <li><a href="../Category/Mucluong.aspx">Mức lương</a> </li>
+                                <li><a href="../Category/DoTuoi.aspx">Độ tuổi</a> </li>
+                                <li><a href="../Category/TrinhDoChuyenMon.aspx">Trình độ chuyên môn</a> </li>
+                                <li><a href="../Category/TrinhDoPhoThong.aspx">Trình độ phổ thông</a> </li>
+                                <li><a href="../Category/TinHoc.aspx">Trình độ tin học</a> </li>
+                                <li><a href="../Category/NgoaiNgu.aspx">Trình độ ngoại ngữ</a> </li>
+                                <li><a href="../Category/ListCategory.aspx">Danh mục khác ...</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--sidebar nav end-->
+                </div>
+            </div>
+            <!-- left side end-->
+
+            <!-- main content start-->
+            <div class="main-content main-content2 main-content2copy">
+                <!-- header-starts -->
+                <div class="header-section">
+
+                    <!--toggle button start-->
+                    <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+                    <!--toggle button end-->
+
+                    <!--notification menu start -->
+                    <div class="profile_details_left">
+                        <div style="margin-top: 10px; font-weight:bold;">
+                            TVS LABOR - <% Response.Write(strHtmlTitle); %>
+                        </div>
+                    </div>
+                    <div class="menu-right">
+                        <div class="user-panel-top">
+                            <div class="profile_details">
+                                <ul>
+                                    <li class="dropdown profile_details_drop">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <div class="profile_img">
+                                                <span style="background: url(images/tvs.jpg) no-repeat center"></span>
+                                                <div class="user-name">
+                                                    <p style="width: 100px;">
+                                                        <% Response.Write(Session["ACCOUNT"].ToString()); %><br />
+                                                        <span style="width: 100px;"><% Response.Write(Session["FULLNAME"].ToString()); %></span>
+                                                    </p>
+                                                </div>
+                                                <i class="lnr lnr-chevron-down"></i>
+                                                <i class="lnr lnr-chevron-up"></i>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu drp-mnu">
+                                            <li><a href="#"><i class="fa fa-cog"></i>Cài đặt</a> </li>
+                                            <li><a href="../Admin/Profile.aspx"><i class="fa fa-user"></i>Cấu hình</a> </li>
+                                            <li><a href="../logout.aspx"><i class="fa fa-sign-out"></i>Thoát</a> </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="social_icons">
+                                <%-- <div class="col-md-4 social_icons-left">
+                                    <a href="#" class="yui"><i class="fa fa-facebook i1"></i><span>300<sup>+</sup> Likes</span></a>
+                                </div>
+                                <div class="col-md-4 social_icons-left pinterest">
+                                    <a href="#"><i class="fa fa-google-plus i1"></i><span>500<sup>+</sup> Shares</span></a>
+                                </div>
+                                <div class="col-md-4 social_icons-left twi">
+                                    <a href="#"><i class="fa fa-twitter i1"></i><span>500<sup>+</sup> Tweets</span></a>
+                                </div>--%>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!--notification menu end -->
+                </div>
+                <!-- //header-ends -->
+
+                <div id="page-wrapper">
+                    <div class="graphs">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+            <!--footer section start-->
+          <%--  <footer style ="height:30px !important; line-height:6px;">
+                <p>&copy 2016 TVS Admin Panel</p>
+            </footer>--%>
+            <!--footer section end-->
+        </section>
+        <script src="../js/jquery.nicescroll.js"></script>
+        <script src="../js/scripts.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <%--<script src="../js/bootstrap.min.js"></script>--%>
+    </form>
+</body>
+</html>
