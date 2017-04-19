@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuyenDungEdit.aspx.cs" Inherits="Admin_TuyenDungEdit" %>
 
+<%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <script type="text/javascript">
         $(function () {
@@ -66,7 +67,7 @@
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ngành nghề:</td>
             <td style="width: 20%;">
-                <asp:DropDownList ID="ddlIDNganhNghe" runat="server" CssClass="form-control" Style="width: 100%;">
+                <asp:DropDownList ID="ddlIDNganhNghe" Enabled="false" runat="server" CssClass="form-control" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -77,14 +78,26 @@
         </tr>
 
         <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Chức vụ:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí:</td>
             <td style="width: 12%;">
-                <asp:DropDownList ID="ddlIDChucVu" runat="server" CssClass="form-control" Style="width: 100%;">
+                <asp:DropDownList ID="ddlIdVitri" runat="server" CssClass="form-control" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
-            <td style="width: 8%; text-align: right; padding-right: 5px;">Số lượng:</td>
+            <td style="width: 8%; text-align: right; padding-right: 5px;">Chức vụ:</td>
             <td style="width: 40%;">
-                <asp:TextBox ID="txtSoLuongTuyenDung" runat="server" CssClass="form-control"></asp:TextBox>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:45%">
+                            <asp:DropDownList ID="ddlIDChucVu" runat="server" CssClass="form-control" Style="width: 100%;">
+                            </asp:DropDownList>
+                        </td>
+                        <td style="width:15%;padding-right:5px;text-align:right">Số lượng: </td>
+                        <td>
+                            <asp:TextBox ID="txtSoLuongTuyenDung" runat="server" CssClass="form-control"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+                
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nhóm ngành:</td>
             <td style="width: 20%;">
@@ -146,7 +159,8 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung:</td>
             <td style="width: 90%;" colspan="5">
-                <asp:TextBox ID="txtNoiDungKhac" runat="server" TextMode="MultiLine" CssClass="form-control" style="resize: vertical;"></asp:TextBox>
+                <CKEditor:CKEditorControl ID="txtNoiDungKhac" CssClass="form-control" runat="server" Height="210" Width="100%" style="resize: vertical;" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
+                <%--<asp:TextBox ID="txtNoiDungKhac" runat="server" TextMode="MultiLine" CssClass="form-control" style="resize: vertical;"></asp:TextBox>--%>
             </td>
         </tr>
 
@@ -198,11 +212,11 @@
                         </td>
                         <td style="width: 33%;">
                             <asp:DropDownList ID="ddlThoiGianLamViec" runat="server" CssClass="form-control" Style="width: 100%;">
+                                <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
                                 <asp:ListItem Value="1"> Hành chính </asp:ListItem>
                                 <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
                                 <asp:ListItem Value="3"> Theo ca </asp:ListItem>
                                 <asp:ListItem Value="4"> Toàn thời gian </asp:ListItem>
-                                <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -271,7 +285,8 @@
                 <td>
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label></td>
                 <td style="text-align: right; padding-right: 65px;">
-                    <a href="/Labor/TuyenDungEdit.aspx" class="btn btn-default">Thêm mới</a>
+                    <a href="/Labor/DoanhNghiepEdit.aspx?id=<%=txtIDDonVi.Value %>" class="btn btn-danger">Thông tin doanh nghiệp</a>
+                    <a href="/Labor/TuyenDungEdit.aspx?did=<%=txtIDDonVi.Value %>&n=<%= HttpUtility.UrlEncode(txtTenDonVi.Text) %>" class="btn btn-default">Thêm mới</a>
                     <a href="/Labor/TuyenDung.aspx" class="btn btn-default">Thoát</a>
                 </td>
             </tr>

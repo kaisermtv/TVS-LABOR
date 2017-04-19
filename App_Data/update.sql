@@ -36,3 +36,13 @@ ADD ThoiGianLamViec int
 
 ALTER TABLE [dbo].[TblLoaiHinh]
 ADD Note NVARCHAR(512)
+
+CREATE TABLE [dbo].[tblViTri](
+	[ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	NameVitri NVARCHAR(256) NULL,
+	[Note] NVARCHAR(500) NULL,
+	[State] [bit] NOT NULL DEFAULT ((1)),
+)
+
+ALTER TABLE [dbo].[TblTuyenDung]
+ADD IdViTri int

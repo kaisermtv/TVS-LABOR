@@ -23,6 +23,8 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
     private Mucluong objMucluong = new Mucluong();
     private DataTable objTable = new DataTable();
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
+
+    private String nganhnghebuf = "0";
     #endregion
 
     #region method Page_Load
@@ -66,64 +68,96 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            this.txtIDDonVi.Value = this.IdDonVi.ToString();
-            this.txtTenDonVi.Text = this.tenDonVi;
+            DoanhNghiep objDoanhNghiep = new DoanhNghiep();
+
+            DataTable objdata = objDoanhNghiep.getDataById(this.IdDonVi);
+            if (objdata.Rows.Count > 0)
+            {
+                this.txtIDDonVi.Value = objdata.Rows[0]["IDDonVi"].ToString();
+                this.txtTenDonVi.Text = objdata.Rows[0]["TenDonVi"].ToString();
+                nganhnghebuf = objdata.Rows[0]["IDNganhNghe"].ToString();
+            }
+
+            
         }
         this.txtIDTuyenDung.Value = this.itemId.ToString();
 
         if (!Page.IsPostBack)
         {
+            if (Session["TuyenDungMessage"] != null)
+            {
+                this.lblMsg.Text = Session["TuyenDungMessage"].ToString();
+                Session["TuyenDungMessage"] = null;
+            } 
+
             this.ddlNhomNganh.DataSource = this.objNhomNganh.getDataCategoryToCombobox();
             this.ddlNhomNganh.DataTextField = "NameNhomNganh";
             this.ddlNhomNganh.DataValueField = "IdNhomNganh";
             this.ddlNhomNganh.DataBind();
+            this.ddlNhomNganh.SelectedValue = "0";
 
             this.ddlIDTinh.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlIDTinh.DataTextField = "Name";
             this.ddlIDTinh.DataValueField = "Id";
             this.ddlIDTinh.DataBind();
+            this.ddlIDTinh.SelectedValue = "0";
+
+            ViTri objViTri = new ViTri();
+            this.ddlIdVitri.DataSource = objViTri.getDataCategoryToCombobox();
+            this.ddlIdVitri.DataTextField = "NameViTri";
+            this.ddlIdVitri.DataValueField = "ID";
+            this.ddlIdVitri.DataBind();
+            this.ddlIdVitri.SelectedValue = "0";
 
             this.ddlIDChucVu.DataSource = this.objChucVu.getDataCategoryToCombobox();
             this.ddlIDChucVu.DataTextField = "NameChucVu";
             this.ddlIDChucVu.DataValueField = "IDChucVu";
             this.ddlIDChucVu.DataBind();
+            this.ddlIDChucVu.SelectedValue = "0";
 
             this.ddlIDNganhNghe.DataSource = this.objBusiness.getDataCategoryToCombobox();
             this.ddlIDNganhNghe.DataTextField = "Name";
             this.ddlIDNganhNghe.DataValueField = "Id";
             this.ddlIDNganhNghe.DataBind();
+            this.ddlIDNganhNghe.SelectedValue = nganhnghebuf;
 
             this.ddlIDDoTuoi.DataSource = this.objDoTuoi.getDataCategoryToCombobox();
             this.ddlIDDoTuoi.DataTextField = "NameDoTuoi";
             this.ddlIDDoTuoi.DataValueField = "IDDoTuoi";
             this.ddlIDDoTuoi.DataBind();
+            this.ddlIDDoTuoi.SelectedValue = "0";
 
-            this.ddlIDGioiTinh.DataSource = this.objGioiTinh.getDataCategoryToCombobox();
+            this.ddlIDGioiTinh.DataSource = this.objGioiTinh.getDataCategoryToCombobox("Nam/nữ");
             this.ddlIDGioiTinh.DataTextField = "NameGioiTinh";
             this.ddlIDGioiTinh.DataValueField = "IDGioiTinh";
             this.ddlIDGioiTinh.DataBind();
+            this.ddlIDGioiTinh.SelectedValue = "0";
 
             this.ddlIDTrinhDoChuyenMon.DataSource = this.objTrinhDoChuyenMon.getDataCategoryToCombobox();
             this.ddlIDTrinhDoChuyenMon.DataTextField = "NameTrinhDoChuyenMon";
             this.ddlIDTrinhDoChuyenMon.DataValueField = "IDTrinhDoChuyenMon";
             this.ddlIDTrinhDoChuyenMon.DataBind();
+            this.ddlIDTrinhDoChuyenMon.SelectedValue = "0";
 
             this.ddlIDMucLuong.DataSource = this.objMucluong.getDataCategoryToCombobox();
             this.ddlIDMucLuong.DataTextField = "NameMucLuong";
             this.ddlIDMucLuong.DataValueField = "IDMucLuong";
             this.ddlIDMucLuong.DataBind();
+            this.ddlIDMucLuong.SelectedValue = "0";
 
             NgoaiNgu objNgoaiNgu = new NgoaiNgu();
             this.ddlyeuCauNgoaiNgu.DataSource =objNgoaiNgu.getDataCategoryToCombobox();
             this.ddlyeuCauNgoaiNgu.DataTextField = "NameNgoaiNgu";
             this.ddlyeuCauNgoaiNgu.DataValueField = "IDNgoaiNgu";
             this.ddlyeuCauNgoaiNgu.DataBind();
+            this.ddlyeuCauNgoaiNgu.SelectedValue = "0";
 
             TinHoc objTinHoc = new TinHoc();
             this.ddlyeuCauTinHoc.DataSource = objTinHoc.getDataCategoryToCombobox();
             this.ddlyeuCauTinHoc.DataTextField = "NameTinHoc";
             this.ddlyeuCauTinHoc.DataValueField = "IDTinHoc";
             this.ddlyeuCauTinHoc.DataBind();
+            this.ddlyeuCauTinHoc.SelectedValue = "0";
         }
         if (!Page.IsPostBack && this.itemId > 0)
         {
@@ -135,6 +169,8 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
                 this.txtTenDonVi.Text = this.objTable.Rows[0]["TenDonVi"].ToString();
                 this.ddlNhomNganh.SelectedValue = this.objTable.Rows[0]["IDNhomNghanh"].ToString();
                 this.ddlIDChucVu.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
+
+                this.ddlIdVitri.SelectedValue = this.objTable.Rows[0]["IdViTri"].ToString();
 
                 this.txtSoLuongTuyenDung.Text = this.objTable.Rows[0]["SoLuongTuyenDung"].ToString();
                 this.ddlIDNganhNghe.SelectedValue = this.objTable.Rows[0]["IDNganhNghe"].ToString();
@@ -190,17 +226,17 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
 
         if (this.txtIDDonVi.Value.Trim() == "")
         {
-            this.lblMsg.Text = "Bạn chưa nhập mã của đơn vị tuyển dụng";
+            this.lblMsg.Text = "Bạn cần chọn đơn vị tuyển dụng";
             this.txtIDDonVi.Focus();
             return;
         }
 
-        if (this.txtTenDonVi.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập tên của đơn vị tuyển dụng";
-            this.txtTenDonVi.Focus();
-            return;
-        }
+        //if (this.txtTenDonVi.Text.Trim() == "")
+        //{
+        //    this.lblMsg.Text = "Bạn chưa nhập tên của đơn vị tuyển dụng 34" + this.txtIDDonVi.Value ;
+        //    this.txtTenDonVi.Focus();
+        //    return;
+        //}
 
         if (this.txtSoLuongTuyenDung.Text.Trim() == "")
         {
@@ -209,12 +245,12 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
             return;
         }
 
-        if (this.txtMoTa.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nội dung mô tả tuyển dụng";
-            this.txtMoTa.Focus();
-            return;
-        }
+        //if (this.txtMoTa.Text.Trim() == "")
+        //{
+        //    this.lblMsg.Text = "Bạn chưa nội dung mô tả tuyển dụng";
+        //    this.txtMoTa.Focus();
+        //    return;
+        //} 
 
         if (this.txtNgayBatDau.Value.Trim() == "")
         {
@@ -248,15 +284,16 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
 
         try
         {
-            if (this.objTuyenDung.setData(ref this.itemId, int.Parse(this.txtIDDonVi.Value.ToString()), int.Parse(this.ddlNhomNganh.SelectedValue.ToString()), int.Parse(this.ddlIDChucVu.SelectedValue.ToString()),
+            if (this.objTuyenDung.setData(ref this.itemId, int.Parse(this.txtIDDonVi.Value.ToString()), int.Parse(this.ddlNhomNganh.SelectedValue.ToString()), int.Parse(this.ddlIdVitri.SelectedValue.ToString()), int.Parse(this.ddlIDChucVu.SelectedValue.ToString()),
             int.Parse(this.ddlIDNganhNghe.SelectedValue.ToString()), int.Parse(this.txtSoLuongTuyenDung.Text), int.Parse(this.ddlIDDoTuoi.SelectedValue.ToString()), int.Parse(this.ddlIDGioiTinh.SelectedValue.ToString()),
             int.Parse(ddlIDTrinhDoChuyenMon.SelectedValue.ToString()), this.txtUuTien.Text, this.txtNoiDungKhac.Text, this.txtMoTa.Text, int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), this.txtDiaDiem.Text, int.Parse(this.ddlIDTinh.SelectedValue.ToString()), this.ckbNuocNgoai.Checked, this.txtQuyenLoi.Text,
             TVSSystem.CVDate(this.txtNgayBatDau.Value.ToString()), TVSSystem.CVDate(this.txtNgayKetThuc.Value.ToString()), this.ckbState.Checked, int.Parse(ddlyeuCauTinHoc.SelectedValue), int.Parse(ddlyeuCauNgoaiNgu.SelectedValue), txtNamKinhNghiem.Text, int.Parse(ddlThoiGianLamViec.SelectedValue)) == 1)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
-                this.lblMessage.Text = "Bạn chưa nhập tên của đơn vị tuyển dụng";
+                //ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowPopup();", true);
+                //this.lblMessage.Text = "Bạn chưa nhập tên của đơn vị tuyển dụng";
+                Session["TuyenDungMessage"] = "Lưu thông tin thành công";
 
-                //Response.Redirect("TuyenDungEdit.aspx?id=" + this.itemId);
+                Response.Redirect("TuyenDungEdit.aspx?id=" + this.itemId);
             }
             else
             {

@@ -56,7 +56,7 @@
                                 <%# Eval("TT") %>
                             </td>
                             <td class="DataListTableTdItemJustify" style="width: 52%;">
-                                <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>');"><%# Eval("TenDonVi") %></a>
+                                <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>',<%# Eval("IDNganhNghe") %>);"><%# Eval("TenDonVi") %></a>
                             </td>
                             <td class="DataListTableTdItemJustify" style="width: 32%;">
                                 <%# Eval("DiaChi") %>
@@ -83,13 +83,17 @@
 
         </div>
         <script type="text/javascript">
-            function SetName(value1, value2) {
+            function SetName(value1, value2,value3) {
                 if (window.opener != null && !window.opener.closed) {
                     var txtNameId = window.opener.document.getElementById("MainContent_txtIDDonVi");
                     txtNameId.value = value1;
 
                     var txtName = window.opener.document.getElementById("MainContent_txtTenDonVi");
                     txtName.value = value2;
+
+                    var ddlNganhnghe = window.opener.document.getElementById("MainContent_ddlIDNganhNghe");
+                    ddlNganhnghe.value = value3;
+                    //ddlNganhnghe.getElementsByTagName('option')[value3].selected = 'selected';
                 }
                 window.close();
             }

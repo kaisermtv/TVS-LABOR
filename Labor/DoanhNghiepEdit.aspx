@@ -150,6 +150,12 @@
             <td style="width: 90%;" colspan="5">
                 <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                 <asp:Button ID="btnCancel" runat="server" Text="Thoát" CssClass="btn btn-default" OnClick="btnCancel_Click" />
+
+                <% if(itemId != 0){ %>
+                <a href="/Labor/DoanhNghiepEdit.aspx" style="float:right;margin-left:10px" class="btn btn-default">Thêm mới</a>
+                <asp:Button ID="btnRedirect" runat="server" style="float:right"  Text="Đăng tuyển dụng" CssClass="btn btn-danger" OnClick="btnRedirect_Click" />
+                <% } %>
+
             </td>
         </tr>
 

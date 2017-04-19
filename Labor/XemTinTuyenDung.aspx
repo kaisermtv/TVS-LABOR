@@ -17,6 +17,13 @@
     <!-- jQuery -->
     <!-- lined-icons -->
     <link rel="stylesheet" href="../css/icon-font.min.css" type='text/css' />
+
+    <style>
+        .DataListTable td{
+            padding-top:5px;
+            padding-bottom:5px;
+        }
+    </style>
 </head>
 <body style="margin: 0px !important;">
     <form id="form1" runat="server">
@@ -41,51 +48,37 @@
 
         <div style="margin-top: -20px;">
             <div style="width: 100%;">
-                <table class="DataListTableHeader" border="0">
-                    <tr style="height: 40px;">
-                        <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
-                        </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 32%;">Tên doanh nghiệp
-                        </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 28%;">Mô tả
-                        </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Vị trí
-                        </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 17%;">Mức lương
-                        </td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">Số lượng
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            <asp:DataList ID="dtlTuyenDung" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
-                Width="100%">
-                <ItemTemplate>
-                    <table class="DataListTable" border="0">
-                        <tr style="height: 40px;">
-                            <td class="DataListTableTdItemTT" style="width: 3%;">
-                                <%# Eval("TT") %>
+                <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
+                    <HeaderTemplate>
+                        <table class="DataListTable" border="0">
+                            <tr style="height: 40px;" class="DataListTableHeader">
+                                <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
+                                <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày bắt đầu</td>
+                                <td class="DataListTableHeaderTdItemJustify" style="width: 28%;">Tên doanh nghiệp</td>
+                                <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Vị trí tuyển</td>
+                                <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">Số lượng</td>
+                                <td class="DataListTableHeaderTdItemJustify" style="width: 17%;">Mức lương</td>
+                                <td class="DataListTableHeaderTdItemJustify">Địa điểm làm việc</td>
+                            </tr>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td class="DataListTableTdItemTT"><%# this.index++ %></td>
+                            <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
+                            <td class="DataListTableTdItemJustify">
+                                <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
                             </td>
-                            <td class="DataListTableTdItemJustify" style="width: 32%;">
-                                <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IDChucVu") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameChucVu") %>');"><%# Eval("TenDonVi") %></a>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 28%;">
-                                <%# Eval("Mota") %>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 12%;">
-                                <%# Eval("NameChucVu") %>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 17%;">
-                                <%# Eval("NameMucLuong") %>
-                            </td>
-                            <td class="DataListTableTdItemCenter" style="width: 8%;">
-                                <%# Eval("SoLuongTuyenDung") %>
-                            </td>
+                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %></td>
+                            <td class="DataListTableTdItemJustify"><%# Eval("SoLuongTuyenDung") %></td>
+                            <td class="DataListTableTdItemJustify"><%# Eval("NameMucLuong") %></td>
+                            <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
                         </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:DataList>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; height: 26px;"
                 id="tblABC" runat="server">
                 <tr>

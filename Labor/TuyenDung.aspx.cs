@@ -18,6 +18,8 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
     public int itemId = 0, IdDonVi = 0;
     public string tenDonVi = "";
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
+
+    public int index = 1;
     #endregion
 
     #region method Page_Load
@@ -77,7 +79,7 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
     #region getData()
     private void getData()
     {
-        this.objTable = this.objTuyenDung.getData(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), this.tenDonVi);
+        this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), this.tenDonVi);
         cpTuyenDung.MaxPages = 1000;
         cpTuyenDung.PageSize = 10;
         cpTuyenDung.DataSource = this.objTable.DefaultView;
@@ -92,6 +94,8 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
         {
             this.tblABC.Visible = true;
         }
+
+        index = 1;
     }
     #endregion
 

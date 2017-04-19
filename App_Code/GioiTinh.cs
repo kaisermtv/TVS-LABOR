@@ -13,7 +13,7 @@ public class GioiTinh
     #endregion
 
     #region method getDataCategoryToCombobox
-    public DataTable getDataCategoryToCombobox()
+    public DataTable getDataCategoryToCombobox(String kc = "Không chọn")
     {
         DataTable objTable = new DataTable();
         try
@@ -29,7 +29,9 @@ public class GioiTinh
             sqlCon.Close();
             sqlCon.Dispose();
             objTable = ds.Tables[0];
-            objTable.Rows.Add(0, "Không chọn");
+
+            if (kc != null && kc != "")
+                objTable.Rows.Add(0, kc);
         }
         catch
         {

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-public class TuyenDung
+public class TuyenDung :DataClass
 {
     #region method TuyenDung
     public TuyenDung()
@@ -14,7 +14,7 @@ public class TuyenDung
     #endregion
 
     #region method setData
-    public int setData(ref int IDTuyenDung, int IDDonVi, int IDNhomNghanh, int IDChucVu, int IDNganhNghe, int SoLuongTuyenDung, int IDDoTuoi, int IDGioiTinh, int IDTrinhDoChuyenMon, string UuTien, string NoiDungKhac, string MoTa, int IDMucLuong, string DiaDiem, int IDTinh, bool NuocNgoai, string QuyenLoi, DateTime NgayBatDau, DateTime NgayKetThuc, bool State, int YCTinHoc, int YCNgoaiNgu, String NamKinhNghiem, int ThoiGianLamviec)
+    public int setData(ref int IDTuyenDung, int IDDonVi, int IDNhomNghanh,int IDViTri ,int IDChucVu, int IDNganhNghe, int SoLuongTuyenDung, int IDDoTuoi, int IDGioiTinh, int IDTrinhDoChuyenMon, string UuTien, string NoiDungKhac, string MoTa, int IDMucLuong, string DiaDiem, int IDTinh, bool NuocNgoai, string QuyenLoi, DateTime NgayBatDau, DateTime NgayKetThuc, bool State, int YCTinHoc, int YCNgoaiNgu, String NamKinhNghiem, int ThoiGianLamviec)
     {
         int tmpValue = 0;
 
@@ -23,8 +23,8 @@ public class TuyenDung
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblTuyenDung WHERE IDTuyenDung = @IDTuyenDung) ";
-            sqlQuery += "BEGIN INSERT INTO TblTuyenDung(MaTuyenDung,IDDonVi,IDNhomNghanh,IDChucVu,IDNganhNghe,SoLuongTuyenDung,IDDoTuoi,IDGioiTinh,IDTrinhDoChuyenMon,UuTien,NoiDungKhac,MoTa,IDMucLuong,DiaDiem,IDTinh,NuocNgoai,QuyenLoi,NgayBatDau,NgayKetThuc,State,YCNgoaiNgu,YCTinHoc,NamKinhNghiem,ThoiGianLamViec) OUTPUT INSERTED.IDTuyenDung VALUES(@MaTuyenDung,@IDDonVi,@IDNhomNghanh,@IDChucVu,@IDNganhNghe,@SoLuongTuyenDung,@IDDoTuoi,@IDGioiTinh,@IDTrinhDoChuyenMon,@UuTien,@NoiDungKhac,@MoTa,@IDMucLuong,@DiaDiem,@IDTinh,@NuocNgoai,@QuyenLoi,@NgayBatDau,@NgayKetThuc,@State,@YCNgoaiNgu,@YCTinHoc,@NamKinhNghiem,@ThoiGianLamViec) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblTuyenDung SET IDDonVi = @IDDonVi, IDNhomNghanh = @IDNhomNghanh, IDChucVu = @IDChucVu,IDNganhNghe = @IDNganhNghe,SoLuongTuyenDung = @SoLuongTuyenDung,IDDoTuoi = @IDDoTuoi,IDGioiTinh = @IDGioiTinh,IDTrinhDoChuyenMon = @IDTrinhDoChuyenMon,UuTien = @UuTien,NoiDungKhac = @NoiDungKhac,MoTa = @MoTa,IDMucLuong = @IDMucLuong,DiaDiem = @DiaDiem, IDTinh = @IDTinh, NuocNgoai = @NuocNgoai,QuyenLoi = @QuyenLoi,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,State = @State,YCNgoaiNgu = @YCNgoaiNgu,YCTinHoc = @YCTinHoc,NamKinhNghiem = @NamKinhNghiem,ThoiGianLamViec = @ThoiGianLamViec OUTPUT INSERTED.IDTuyenDung WHERE IDTuyenDung = @IDTuyenDung END ";
+            sqlQuery += "BEGIN INSERT INTO TblTuyenDung(MaTuyenDung,IDDonVi,IDNhomNghanh,IdViTri,IDChucVu,IDNganhNghe,SoLuongTuyenDung,IDDoTuoi,IDGioiTinh,IDTrinhDoChuyenMon,UuTien,NoiDungKhac,MoTa,IDMucLuong,DiaDiem,IDTinh,NuocNgoai,QuyenLoi,NgayBatDau,NgayKetThuc,State,YCNgoaiNgu,YCTinHoc,NamKinhNghiem,ThoiGianLamViec) OUTPUT INSERTED.IDTuyenDung VALUES(@MaTuyenDung,@IDDonVi,@IDNhomNghanh,@IdViTri,@IDChucVu,@IDNganhNghe,@SoLuongTuyenDung,@IDDoTuoi,@IDGioiTinh,@IDTrinhDoChuyenMon,@UuTien,@NoiDungKhac,@MoTa,@IDMucLuong,@DiaDiem,@IDTinh,@NuocNgoai,@QuyenLoi,@NgayBatDau,@NgayKetThuc,@State,@YCNgoaiNgu,@YCTinHoc,@NamKinhNghiem,@ThoiGianLamViec) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblTuyenDung SET IDDonVi = @IDDonVi, IDNhomNghanh = @IDNhomNghanh,IdViTri = @IdViTri, IDChucVu = @IDChucVu,IDNganhNghe = @IDNganhNghe,SoLuongTuyenDung = @SoLuongTuyenDung,IDDoTuoi = @IDDoTuoi,IDGioiTinh = @IDGioiTinh,IDTrinhDoChuyenMon = @IDTrinhDoChuyenMon,UuTien = @UuTien,NoiDungKhac = @NoiDungKhac,MoTa = @MoTa,IDMucLuong = @IDMucLuong,DiaDiem = @DiaDiem, IDTinh = @IDTinh, NuocNgoai = @NuocNgoai,QuyenLoi = @QuyenLoi,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,State = @State,YCNgoaiNgu = @YCNgoaiNgu,YCTinHoc = @YCTinHoc,NamKinhNghiem = @NamKinhNghiem,ThoiGianLamViec = @ThoiGianLamViec OUTPUT INSERTED.IDTuyenDung WHERE IDTuyenDung = @IDTuyenDung END ";
             
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -44,6 +44,7 @@ public class TuyenDung
             Cmd.Parameters.Add("IDDonVi", SqlDbType.Int).Value = IDDonVi;
             Cmd.Parameters.Add("IDNhomNghanh", SqlDbType.Int).Value = IDNhomNghanh;
             Cmd.Parameters.Add("IDChucVu", SqlDbType.Int).Value = IDChucVu;
+            Cmd.Parameters.Add("IdViTri", SqlDbType.Int).Value = IDViTri;
 
             Cmd.Parameters.Add("IDNganhNghe", SqlDbType.Int).Value = IDNganhNghe;
             Cmd.Parameters.Add("SoLuongTuyenDung", SqlDbType.Int).Value = SoLuongTuyenDung;
@@ -114,6 +115,59 @@ public class TuyenDung
         }
         catch
         {
+        }
+    }
+    #endregion
+
+    #region Method getList
+    public DataTable getList(string searchKey = "", int IdViTri = 0, int IdMucLuong = 0, string TenDonVi = "")
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem FROM TblTuyenDung AS A";
+            Cmd.CommandText += " INNER JOIN TblDoanhNghiep AS B ON A.IDDonVi = B.IDDonVi";
+            Cmd.CommandText += " LEFT JOIN tblViTri AS V ON A.IdViTri = V.ID";
+            Cmd.CommandText += " LEFT JOIN TblMucLuong AS L ON A.IDMucLuong = L.IDMucLuong";
+            Cmd.CommandText += " WHERE ISNULL(A.State,0) = 1";
+
+            if(searchKey != null && searchKey != "")
+            {
+                Cmd.CommandText += " AND UPPER(RTRIM(LTRIM(A.MoTa))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+                Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
+            }
+
+            if (IdViTri > 0)
+            {
+                Cmd.CommandText += "  AND A.IdViTri = @IdViTri";
+                Cmd.Parameters.Add("IdViTri", SqlDbType.Int).Value = IdViTri;
+            }
+
+            if (IdMucLuong > 0)
+            {
+                Cmd.CommandText += "  AND A.IDMucLuong = @IDMucLuong";
+                Cmd.Parameters.Add("IDMucLuong", SqlDbType.Int).Value = IdMucLuong;
+            }
+
+            if (TenDonVi != null && TenDonVi != "")
+            {
+                Cmd.CommandText += "  AND B.TenDonVi = @TenDonVi";
+                Cmd.Parameters.Add("TenDonVi", SqlDbType.NVarChar).Value = TenDonVi;
+            }
+
+            Cmd.CommandText += " ORDER BY A.ThuTuUuTien DESC, A.IDTuyenDung DESC";
+
+
+            DataTable ret = this.findAll(Cmd);
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
         }
     }
     #endregion

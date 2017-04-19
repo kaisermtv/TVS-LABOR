@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_NgoaiNguDel : System.Web.UI.Page
+public partial class Category_NhomNganhDel : System.Web.UI.Page
 {
     #region declare objects
     private Account objAccount = new Account();
-    private NgoaiNgu objNgoaiNgu = new NgoaiNgu();
+    private NhomNganh objNhomNganh = new NhomNganh();
     private int itemId = 0;
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
     #endregion
@@ -33,21 +33,21 @@ public partial class Admin_NgoaiNguDel : System.Web.UI.Page
         {
             this.itemId = 0;
         }
-    } 
+    }
     #endregion
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.objNgoaiNgu.delData(this.itemId);
-        Response.Redirect("NgoaiNgu.aspx");
+        this.objNhomNganh.delData(this.itemId);
+        Response.Redirect("NhomNganh.aspx");
     }
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("NgoaiNgu.aspx");
+        Response.Redirect("NhomNganh.aspx");
     }
     #endregion
 }

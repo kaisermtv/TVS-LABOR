@@ -39,6 +39,12 @@
                     <td class ="CategoryItem"><a href ="LoaiHinhDoanhNghiep.aspx">Loại hình doanh nghiệp</a></td>
                 </tr>
             </tbody>
+            <tbody>
+                <tr>
+                    <td class ="CategoryItem"><a href ="NhomNganh.aspx">Nhóm ngành</a></td>
+                    <td class ="CategoryItem"><a href ="ViTri.aspx">Vị trí</a></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </asp:Content>

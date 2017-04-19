@@ -43,7 +43,8 @@
     <script src="../Scripts/moment-with-locales.js"></script>
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
     <!-- -->
-
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body class="sticky-header left-side-collapsed" onload="initMap()">
     <form id="form1" runat="server">

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
 {
     #region declare objects
-    private int itemId = 0;
+    public int itemId = 0;
     private Account objAccount = new Account();
     private DoanhNghiep objDoanhNghiep = new DoanhNghiep();
     private LoaiHinh objLoaiHinh = new LoaiHinh();
@@ -214,4 +214,8 @@ public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
         this.ddlIDHuyen.DataBind();
     }
     #endregion
+    protected void btnRedirect_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TuyenDungEdit.aspx?did=" + itemId + "&n=" + HttpUtility.UrlEncode(this.txtTenDonVi.Text));
+    }
 }
