@@ -3,9 +3,9 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
-        .DataListTable td{
-            padding-top:5px;
-            padding-bottom:5px;
+        .DataListTable td {
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
     </style>
 </asp:Content>
@@ -16,11 +16,11 @@
                 <input type="text" id="txtSearch" placeholder="Nhập nội dung cần tìm kiếm" runat="server" class="form-control" />
             </td>
             <td style="width: 180px;">
-                <asp:DropDownList ID="ddlIDChucVu" CssClass = "form-control" runat="server" Style="width: 100%;">
+                <asp:DropDownList ID="ddlIDChucVu" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
             <td style="width: 180px;">
-                <asp:DropDownList ID="ddlIDMucLuong" CssClass = "form-control" runat="server" Style="width: 100%;">
+                <asp:DropDownList ID="ddlIDMucLuong" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
             <td style="width: 40px !important; text-align: center;">
@@ -50,13 +50,19 @@
                     <td class="DataListTableTdItemTT"><%# this.index++ %></td>
                     <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                     <td class="DataListTableTdItemJustify">
-                        <%# Eval("TenDonVi") %><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>')" class="badge"><%# Eval("CountItem") %></div>
+                        <%# Eval("TenDonVi") %>
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("SoLuongTuyenDung") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("NameMucLuong") %></td>
+                    <td class="DataListTableTdItemRight">
+                        <%# Eval("SoLuongTuyenDung") %>
+                        &nbsp;<a href="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div>
+                        </a>
+                    </td>
+                    <td class="DataListTableTdItemJustify">
+                        <%# Eval("NameMucLuong") %>
+                    </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
-                <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
                     <td class="DataListTableTdItemCenter" style="width: 6%;">
                         <a href="TuyenDungEdit.aspx?id=<%# Eval("IDTuyenDung") %>">
                             <img src="../Images/Edit.png" alt=""></a>
@@ -72,7 +78,7 @@
             </FooterTemplate>
         </asp:Repeater>
     </div>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
         id="tblABC" runat="server">
         <tr>
             <td style="padding-left: 6px;">
@@ -87,25 +93,30 @@
     <br />
     <a href="TuyenDungEdit.aspx?did=<%Response.Write(this.IdDonVi.ToString()); %>&n=<%Response.Write(this.tenDonVi.ToString()); %>">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
-    
+
     <script type="text/javascript">
-    function XemTinTuyenDung(value) {
+        function XemTinTuyenDung(value, count) {
 
-            var w = 1000;
-            var h = 620;
+            if (count == 0) {
+                return;
+            }
+            else {
+                var w = 1000;
+                var h = 620;
 
-            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 
-            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-            var top = ((height / 2) - (h / 2)) + dualScreenTop;
-            var newWindow = window.open("XemDangKyViecLam.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("XemDangKyViecLam.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
-            if (window.focus) {
-                newWindow.focus();
+                if (window.focus) {
+                    newWindow.focus();
+                }
             }
         }
     </script>

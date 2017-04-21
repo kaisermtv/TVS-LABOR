@@ -116,7 +116,7 @@ public class ViTri : DataClass
         {
             SqlCommand Cmd = this.getSQLConnect();
 
-            Cmd.CommandText = "SELECT ID, NameViTri FROM tblViTri";
+            Cmd.CommandText = "SELECT ID, NameViTri FROM tblViTri WHERE ISNULL(State,0) = 1";
 
             DataTable ret = this.findAll(Cmd);
 

@@ -59,6 +59,7 @@
                                 <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">Số lượng</td>
                                 <td class="DataListTableHeaderTdItemJustify" style="width: 17%;">Mức lương</td>
                                 <td class="DataListTableHeaderTdItemJustify">Địa điểm làm việc</td>
+                                <td>::</td>
                             </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -69,9 +70,15 @@
                                 <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
                             </td>
                             <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %></td>
-                            <td class="DataListTableTdItemJustify"><%# Eval("SoLuongTuyenDung") %></td>
+                            <td class="DataListTableTdItemCenter">
+                                <%# Eval("SoLuongTuyenDung") %>
+                                &nbsp;<a href ="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div></a>
+                            </td>
                             <td class="DataListTableTdItemJustify"><%# Eval("NameMucLuong") %></td>
                             <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
+                            <td>
+                                123
+                            </td>
                         </tr>
                     </ItemTemplate>
                     <FooterTemplate>
@@ -105,6 +112,7 @@
             <input type="hidden" id="txtIDDonVi" runat="server" />
             <input type="hidden" id="txtIDChucVu" runat="server" />
         </div>
+
         <script type="text/javascript">
             function ItemSelect(IDTuyenDung, IDDonVi, IDChucVu, TenDonVi, NameChucVu) {
 
@@ -123,7 +131,33 @@
                 var txtNameChucVu = document.getElementById("txtNameChucVu");
                 txtNameChucVu.value = NameChucVu;
             }
-        </script>
+
+            function XemTinTuyenDung(value, count) {
+
+                if (count == 0) {
+                    return;
+                }
+                else {
+                    var w = 1000;
+                    var h = 620;
+
+                    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                    var newWindow = window.open("XemDangKyViecLam.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                    if (window.focus) {
+                        newWindow.focus();
+                    }
+                }
+            }
+    </script>
+
     </form>
 </body>
 </html>

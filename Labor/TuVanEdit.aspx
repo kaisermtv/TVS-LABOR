@@ -72,7 +72,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 28%;">
-                            <asp:TextBox ID="txtMa" runat="server" CssClass="form-control" onKeyDown="submitButton(event)" Style ="background-color:aqua;"></asp:TextBox>
+                            <asp:TextBox ID="txtMa" runat="server" CssClass="form-control" onKeyDown="submitButton(event)" Style="background-color: aqua;"></asp:TextBox>
                         </td>
                         <td style="width: 40px; padding-left: 5px;">
                             <asp:Button ID="btnGetInformation" runat="server" Text="..." OnClick="btnGetInformation_Click" />
@@ -107,7 +107,7 @@
             <td style="width: 10%;">
                 <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
-            
+
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày cấp:</td>
             <td style="width: 20%;">
                 <div class='input-group date' id='datetimepicker2' style="margin-left: 0px; width: 100% !important; float: right;">
@@ -188,7 +188,8 @@
                         <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
 
-                    <td rowspan="2"><asp:Button ID="Button3" runat="server" Text="|" Style="height:75px;margin-left:3px" CssClass="btn btn-primary" OnClick="Button3_Click" /></td>
+                    <td rowspan="2">
+                        <asp:Button ID="Button3" runat="server" Text="|" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="Button3_Click" /></td>
                 </tr>
 
                 <tr style="height: 40px;">
@@ -405,11 +406,12 @@
     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
         <table border="0" style="width: 100%; margin-top: -8px;">
             <tr>
-                <td style="width: 550px; padding-left: 15px;">
+                <td style="width: 700px; padding-left: 15px;">
                     <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                    <button class="btn btn-success" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
                     <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
                     <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
+                    <button class="btn btn-danger" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
+                    <button id="btnPrint" runat="server" class="btn btn-primary" onclick="InPhieuGioiThieu()">Phiếu giới thiệu</button>
                 </td>
                 <td>
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -526,21 +528,52 @@
             }
         }
 
+        function InPhieuGioiThieu() {
+
+            var IDNldTuVan = document.getElementById("MainContent_txtIDNldTuVan").value;
+
+            if (IDNldTuVan != 0) {
+
+                var w = 1000;
+                var h = 1600;
+
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("PrintPhieuGioiThieu.aspx?id=" + IDNldTuVan, "IN PHIẾU GIỚI THIỆU", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
+                }
+            }
+        }
+
         function XemTinTuyenDung(value) {
 
             var IDNldTuVan = document.getElementById("MainContent_txtIDNldTuVan").value;
-            var w = 1000;
-            var h = 620;
+            var vitri = document.getElementById("MainContent_txtViTriCongViec").value;
+            var mucluong = document.getElementById("MainContent_txtMucLuongThapNhat").value;
+            var dieukien = document.getElementById("MainContent_txtDieuKienLamViec").value;
+            var diadiem = document.getElementById("MainContent_txtDiaDiemLamViec").value;
+
+
+            var w = screen.width;
+            var h = screen.height;
 
             var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
             var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 
-            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+            var width = w;//window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = h;//window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-            var top = ((height / 2) - (h / 2)) + dualScreenTop;
-            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            var left = ((width / 2) - (w / 2));// + dualScreenLeft;
+            var top = ((height / 2) - (h / 2));// + dualScreenTop;
+            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
             if (window.focus) {
                 newWindow.focus();

@@ -13,15 +13,15 @@ public class Mucluong
     #endregion
 
     #region method setData
-    public int setData(int IDMucluong, string CodeMucluong, string NameMucluong, string Note, bool State)
+    public int setData(int IDMucluong, string CodeMucluong, string NameMucluong, double MinValue, double MaxValue, string Note, bool State)
     {
         int tmpValue = 0;
         try
         {
             string sqlQuery = "";
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblMucluong WHERE IDMucluong = @IDMucluong) ";
-            sqlQuery += "BEGIN INSERT INTO TblMucluong(CodeMucluong,NameMucluong,Note,State) VALUES(@CodeMucluong,@NameMucluong,@Note,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblMucluong SET CodeMucluong = @CodeMucluong, NameMucluong = @NameMucluong, Note = @Note, State = @State WHERE IDMucluong = @IDMucluong END";
+            sqlQuery += "BEGIN INSERT INTO TblMucluong(CodeMucluong,NameMucluong,MinValue,MaxValue,Note,State) VALUES(@CodeMucluong,@NameMucluong,@MinValue,@MaxValue,@Note,@State) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblMucluong SET CodeMucluong = @CodeMucluong, NameMucluong = @NameMucluong, MinValue = @MinValue, MaxValue = @MaxValue, Note = @Note, State = @State WHERE IDMucluong = @IDMucluong END";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
@@ -29,6 +29,8 @@ public class Mucluong
             Cmd.Parameters.Add("IDMucluong", SqlDbType.Int).Value = IDMucluong;
             Cmd.Parameters.Add("CodeMucluong", SqlDbType.NVarChar).Value = CodeMucluong;
             Cmd.Parameters.Add("NameMucluong", SqlDbType.NVarChar).Value = NameMucluong;
+            Cmd.Parameters.Add("MinValue", SqlDbType.Float).Value = MinValue;
+            Cmd.Parameters.Add("MaxValue", SqlDbType.Float).Value = MaxValue;
             Cmd.Parameters.Add("Note", SqlDbType.NVarChar).Value = Note;
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
             Cmd.ExecuteNonQuery();

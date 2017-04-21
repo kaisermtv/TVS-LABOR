@@ -42,6 +42,8 @@ public partial class Admin_MucLuongEdit : System.Web.UI.Page
             {
                 this.txtCodeMucluong.Text = this.objTable.Rows[0]["CodeMucluong"].ToString();
                 this.txtNameMucluong.Text = this.objTable.Rows[0]["NameMucluong"].ToString();
+                this.txtMinValue.Text = this.objTable.Rows[0]["MinValue"].ToString();
+                this.txtMaxValue.Text = this.objTable.Rows[0]["MaxValue"].ToString();
                 this.txtNote.Text = this.objTable.Rows[0]["Note"].ToString();
                 this.ckbState.Checked = bool.Parse(this.objTable.Rows[0]["State"].ToString());
             }
@@ -79,7 +81,45 @@ public partial class Admin_MucLuongEdit : System.Web.UI.Page
             return;
         }
 
-        if (this.objMucluong.setData(this.itemId, this.txtCodeMucluong.Text, this.txtNameMucluong.Text, this.txtNote.Text,this.ckbState.Checked) == 1)
+        if (this.txtMinValue.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập mức lương thấp nhất";
+            this.txtMinValue.Focus();
+            return;
+        }
+
+        double tmpMinValue = 0;
+        try
+        {
+            tmpMinValue = double.Parse(this.txtMinValue.Text);
+        }
+        catch
+        {
+            this.lblMsg.Text = "Bạn chưa nhập mức lương thấp nhất";
+            this.txtMinValue.Focus();
+            return;
+        }
+
+        if (this.txtMaxValue.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập mức lương cao nhất";
+            this.txtMaxValue.Focus();
+            return;
+        }
+
+        double tmpMaxValue = 0;
+        try
+        {
+            tmpMaxValue = double.Parse(this.txtMaxValue.Text);
+        }
+        catch
+        {
+            this.lblMsg.Text = "Bạn chưa nhập mức lương cao nhất";
+            this.txtMaxValue.Focus();
+            return;
+        }
+
+        if (this.objMucluong.setData(this.itemId, this.txtCodeMucluong.Text, this.txtNameMucluong.Text, tmpMinValue, tmpMaxValue, this.txtNote.Text,this.ckbState.Checked) == 1)
         {
             Response.Redirect("Mucluong.aspx");
         }
