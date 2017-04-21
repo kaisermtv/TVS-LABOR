@@ -45,13 +45,13 @@ public partial class Labor_TuVan : System.Web.UI.Page
     private void getData()
     {
         this.objTable = this.objNguoiLaoDong.getDataTblNldTuVan1(this.txtSearch.Value.ToString(), this.hoVaTen);
-        cpTuVanViecLam.MaxPages = 1000;
-        cpTuVanViecLam.PageSize = 10;
+        cpTuVanViecLam.MaxPages = 2000;
+        cpTuVanViecLam.PageSize = 50;
         cpTuVanViecLam.DataSource = this.objTable.DefaultView;
         cpTuVanViecLam.BindToControl = dtlTuVanViecLam;
         dtlTuVanViecLam.DataSource = cpTuVanViecLam.DataSourcePaged;
         dtlTuVanViecLam.DataBind();
-        if (this.objTable.Rows.Count < 10)
+        if (this.objTable.Rows.Count < 50)
         {
             this.tblABC.Visible = false;
         }

@@ -1,11 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVan.aspx.cs" Inherits="Labor_TuVan" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+
+    <script src="../js/TvsScript.js"></script>
     <table class="table" style="margin-top: -20px;">
         <tr>
             <td>
-                <input type="text" id="txtSearch" placeholder="Nhập tên, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
+                <input type="text" id="txtSearch"  placeholder="Nhập tên, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
             </td>
             <td style="width: 40px !important; text-align: center;">
                 <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left: -15px;" OnClick="btnSearch_Click" />
@@ -41,7 +44,7 @@
             <table class="DataListTable" border="0">
                 <tr style="height: 40px;">
                     <td class="DataListTableTdItemJustify" style="width: 18%;">
-                        <%# Eval("HoVaTen") %>
+                     <span class="name"> <%# Eval("HoVaTen") %></span>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("BHXH") %>
@@ -73,6 +76,9 @@
             </table>
         </ItemTemplate>
     </asp:DataList>
+    <hr />
+  <small>  Bắt đầu phân trang khi nội dung vượt quá 50 dòng</small>
+    <br />
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; background-color: #fbf4f4; height: 26px;"
         id="tblABC" runat="server">
         <tr>
@@ -88,5 +94,26 @@
     <br />
     <a href="TuVanEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+
+
+
+    <script>
+        $(function () {
+            /* QUICK SEARCH - Tìm nhanh */
+
+            $('#MainContent_dtlTuVanViecLam').searchable({
+                searchField: '#MainContent_txtSearch',
+                selector: 'tr',
+                childSelector: 'td',
+                show: function (elem) {
+                    elem.slideDown(100);
+                },
+                hide: function (elem) {
+                    elem.slideUp(100);
+                }
+            })
+        });
+</script>
+
 </asp:Content>
 
