@@ -1145,7 +1145,7 @@ public class NguoiLaoDong
     #endregion
 
     #region method getDataNldDangKy
-    public DataTable getDataNldDangKyByState(int State)
+    public DataTable getDataNldDangKyByState(int State, string NgayBatDau, string NgayKetThuc)
     {
         string sqlQuery = "";
         if (State != 3)
@@ -1158,7 +1158,11 @@ public class NguoiLaoDong
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameMucluong FROM TblMucLuong WHERE IDMucluong = TblNldDangKy.IDMucluong) AS NameMucluong, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblNldDangKy.IDChucVu) AS NameChucVu, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDangKy.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNldDangKy, TblNguoiLaoDong WHERE TblNldDangKy.IDNguoiLaoDong = TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + " ORDER BY TblNldDangKy.NgayDangKy DESC";
+
+            Cmd.Parameters.Add("objDate1", SqlDbType.DateTime).Value = TVSSystem.CVDate(NgayBatDau);
+            Cmd.Parameters.Add("objDate2", SqlDbType.DateTime).Value = TVSSystem.CVDate(NgayKetThuc);
+
+            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameMucluong FROM TblMucLuong WHERE IDMucluong = TblNldDangKy.IDMucluong) AS NameMucluong, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblNldDangKy.IDChucVu) AS NameChucVu, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDangKy.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNldDangKy, TblNguoiLaoDong WHERE TblNldDangKy.IDNguoiLaoDong = TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + " AND NgayDangKy BETWEEN @objDate1 AND @objDate2 ORDER BY TblNldDangKy.NgayDangKy DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
