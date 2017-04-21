@@ -22,6 +22,22 @@
     </div>
      <div class="AdminItem">
         <div class="AdminLeftItem">
+            &nbsp;&nbsp;Mức lương 1:
+        </div>
+        <div class="AdminRightItem">
+            <asp:TextBox ID="txtMinValue" runat="server" class="AdminTextControl"></asp:TextBox>
+        </div>
+    </div>
+     <div class="AdminItem">
+        <div class="AdminLeftItem">
+            &nbsp;&nbsp;Mức lương 2
+        </div>
+        <div class="AdminRightItem">
+            <asp:TextBox ID="txtMaxValue" runat="server" class="AdminTextControl"></asp:TextBox>
+        </div>
+    </div>
+     <div class="AdminItem">
+        <div class="AdminLeftItem">
             &nbsp;&nbsp;Ghi chú:
         </div>
         <div class="AdminRightItem">

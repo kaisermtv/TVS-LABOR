@@ -31,7 +31,6 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         
-
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");

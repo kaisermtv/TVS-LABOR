@@ -119,12 +119,12 @@
                 <div class="header-section">
 
                     <!--toggle button start-->
-                    <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+                   <%-- <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>--%>
                     <!--toggle button end-->
 
                     <!--notification menu start -->
                     <div class="profile_details_left">
-                        <div style="margin-top: 10px; font-weight:bold;">
+                        <div style="margin-top: 10px; font-weight:bold; padding-left:30px;">
                             TVS LABOR - <% Response.Write(strHtmlTitle); %>
                         </div>
                     </div>

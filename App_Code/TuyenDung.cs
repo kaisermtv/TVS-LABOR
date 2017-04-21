@@ -120,10 +120,36 @@ public class TuyenDung :DataClass
     #endregion
 
     #region Method getList
-    public DataTable getList(string searchKey = "", int IdViTri = 0, int IdMucLuong = 0, string TenDonVi = "")
+    public DataTable getList(string searchKey = "", int IdViTri = 0, int IdMucLuong = 0, string TenDonVi = "", string sVitri = "", string sMucLuong = "", string sDiaDiem = "")
     {
         try
         {
+            string sqlQueryViTri = "", sqlQueryMucLuong = "", sqlQueryDiaDiem = "";
+            
+            if (sVitri != "")
+            {
+                sqlQueryViTri = " AND A.IdViTri IN (SELECT Id FROM tblViTri WHERE UPPER(NameVitri) LIKE N'%" + sVitri.ToUpper() + "%')";
+            }
+
+            if (sMucLuong != "")
+            {
+                double tmpMucLuong = 0;
+                try
+                {
+                    tmpMucLuong = double.Parse(sMucLuong);
+                }
+                catch
+                {
+                    tmpMucLuong = 0;
+                }
+                sqlQueryMucLuong = " AND A.IDMucLuong IN (SELECT IDMucluong FROM TblMucLuong WHERE " + tmpMucLuong + " BETWEEN MinValue AND MaxValue)";
+            }
+
+            if (sDiaDiem.Trim() != "")
+            {
+                sqlQueryDiaDiem = " AND UPPER(A.DiaDiem) LIKE N'%"+sDiaDiem.ToUpper()+"%'";
+            }
+
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem FROM TblTuyenDung AS A";
             Cmd.CommandText += " INNER JOIN TblDoanhNghiep AS B ON A.IDDonVi = B.IDDonVi";
@@ -154,6 +180,12 @@ public class TuyenDung :DataClass
                 Cmd.CommandText += "  AND B.TenDonVi = @TenDonVi";
                 Cmd.Parameters.Add("TenDonVi", SqlDbType.NVarChar).Value = TenDonVi;
             }
+
+            Cmd.CommandText += sqlQueryViTri;
+
+            Cmd.CommandText += sqlQueryMucLuong;
+
+            Cmd.CommandText += sqlQueryDiaDiem;
 
             Cmd.CommandText += " ORDER BY A.ThuTuUuTien DESC, A.IDTuyenDung DESC";
 

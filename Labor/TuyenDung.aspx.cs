@@ -81,12 +81,12 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
     {
         this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), this.tenDonVi);
         cpTuyenDung.MaxPages = 1000;
-        cpTuyenDung.PageSize = 10;
+        cpTuyenDung.PageSize = 12;
         cpTuyenDung.DataSource = this.objTable.DefaultView;
         cpTuyenDung.BindToControl = dtlTuyenDung;
         dtlTuyenDung.DataSource = cpTuyenDung.DataSourcePaged;
         dtlTuyenDung.DataBind();
-        if (this.objTable.Rows.Count < 10)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

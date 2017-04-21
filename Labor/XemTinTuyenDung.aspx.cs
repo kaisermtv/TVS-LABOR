@@ -18,8 +18,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     private SearchConfig objSearchConfig = new SearchConfig();
     private int IDNldTuVan = 0;
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
-
     public int index = 1;
+    public string sVitri = "", sMucluong = "", sDieukien = "", sDiadiem = "";
     #endregion
 
     #region method Page_Load
@@ -29,10 +29,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-        //if (!this.objAccount.checkForFunction(Session["ACCOUNT"].ToString(), 3, ref View, ref Add, ref Edit, ref Del, ref Orther))
-        //{
-        //    Response.Redirect("NoPermission.aspx");
-        //}
+
+        #region Lay bien truy van
         try
         {
             this.IDNldTuVan = int.Parse(Request.QueryString["IDNldTuVan"].ToString());
@@ -41,6 +39,40 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             this.IDNldTuVan = 0;
         }
+        try
+        {
+            this.sVitri = Request.QueryString["vitri"].ToString();
+        }
+        catch
+        {
+            this.sVitri = "";
+        }
+        try
+        {
+            this.sMucluong = Request.QueryString["mucluong"].ToString();
+        }
+        catch
+        {
+            this.sMucluong = "";
+        }
+        try
+        {
+            this.sDieukien = Request.QueryString["dieukien"].ToString();
+        }
+        catch
+        {
+            this.sDieukien = "";
+        }
+        try
+        {
+            this.sDiadiem = Request.QueryString["diadiem"].ToString();
+        }
+        catch
+        {
+            this.sDiadiem = "";
+        }
+        #endregion
+
         if (!Page.IsPostBack)
         {
             this.ddlIDChucVu.DataSource = this.objChucVu.getDataCategoryToCombobox();
@@ -66,14 +98,14 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     #region getData()
     private void getData()
     {
-        this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()),"");
+        this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()),"", this.sVitri, this.sMucluong, this.sDiadiem);
         cpTuyenDung.MaxPages = 1000;
-        cpTuyenDung.PageSize = 10;
+        cpTuyenDung.PageSize = 11;
         cpTuyenDung.DataSource = this.objTable.DefaultView;
         cpTuyenDung.BindToControl = dtlTuyenDung;
         dtlTuyenDung.DataSource = cpTuyenDung.DataSourcePaged;
         dtlTuyenDung.DataBind();
-        if (this.objTable.Rows.Count < 10)
+        if (this.objTable.Rows.Count < 11)
         {
             this.tblABC.Visible = false;
         }
@@ -89,7 +121,23 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     #region method btnSearch_Click
     protected void btnSearch_Click(object sender, ImageClickEventArgs e)
     {
-        this.getData();
+        this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()), "", "", "", "");
+        cpTuyenDung.MaxPages = 1000;
+        cpTuyenDung.PageSize = 11;
+        cpTuyenDung.DataSource = this.objTable.DefaultView;
+        cpTuyenDung.BindToControl = dtlTuyenDung;
+        dtlTuyenDung.DataSource = cpTuyenDung.DataSourcePaged;
+        dtlTuyenDung.DataBind();
+        if (this.objTable.Rows.Count < 11)
+        {
+            this.tblABC.Visible = false;
+        }
+        else
+        {
+            this.tblABC.Visible = true;
+        }
+
+        index = 1;
 
         #region Luu gia tri tim kiem vao bang cau hinh
         this.objSearchConfig.setData(Session["ACCOUNT"].ToString(), "TblDoanhNghiep", "TenDonVi", this.txtSearch.Value.Trim());
