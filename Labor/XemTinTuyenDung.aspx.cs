@@ -11,7 +11,7 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     #region declare objects
     private DataTable objTable = new DataTable();
     private Account objAccount = new Account();
-    private ChucVu objChucVu = new ChucVu();
+    private ViTri objViTri = new ViTri();
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     private Mucluong objMucluong = new Mucluong();
     private TuyenDung objTuyenDung = new TuyenDung();
@@ -75,9 +75,9 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            this.ddlIDChucVu.DataSource = this.objChucVu.getDataCategoryToCombobox();
-            this.ddlIDChucVu.DataTextField = "NameChucVu";
-            this.ddlIDChucVu.DataValueField = "IDChucVu";
+            this.ddlIDChucVu.DataSource = this.objViTri.getDataCategoryToCombobox();
+            this.ddlIDChucVu.DataTextField = "NameViTri";
+            this.ddlIDChucVu.DataValueField = "ID";
             this.ddlIDChucVu.DataBind();
 
             this.ddlIDChucVu.SelectedValue = "0";

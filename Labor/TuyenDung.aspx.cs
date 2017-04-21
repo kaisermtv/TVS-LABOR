@@ -12,7 +12,7 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
     private DataTable objTable = new DataTable();
     private Account objAccount = new Account();
     private TuyenDung objTuyenDung = new TuyenDung();
-    private ChucVu objChucVu = new ChucVu();
+    private ViTri objViTri = new ViTri();
     private Mucluong objMucluong = new Mucluong();
     private SearchConfig objSearchConfig = new SearchConfig();
     public int itemId = 0, IdDonVi = 0;
@@ -57,9 +57,9 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            this.ddlIDChucVu.DataSource = this.objChucVu.getDataCategoryToCombobox();
-            this.ddlIDChucVu.DataTextField = "NameChucVu";
-            this.ddlIDChucVu.DataValueField = "IDChucVu";
+            this.ddlIDChucVu.DataSource = this.objViTri.getDataCategoryToCombobox();
+            this.ddlIDChucVu.DataTextField = "NameViTri";
+            this.ddlIDChucVu.DataValueField = "ID";
             this.ddlIDChucVu.DataBind();
             this.ddlIDChucVu.SelectedValue = "0";
 
