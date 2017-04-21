@@ -13,7 +13,6 @@
                 format: 'DD/MM/YYYY'
             });
         });
-
         function submitButton(event) {
             if (event.which == 13) {
                 $('#btnGetInformation').trigger('click');
@@ -75,6 +74,7 @@
                             <asp:TextBox ID="txtMa" runat="server" CssClass="form-control" onKeyDown="submitButton(event)" Style="background-color: aqua;"></asp:TextBox>
                         </td>
                         <td style="width: 40px; padding-left: 5px;">
+
                             <asp:Button ID="btnGetInformation" runat="server" Text="..." OnClick="btnGetInformation_Click" />
                         </td>
                         <td style="text-align: right; width: 110px; padding-right: 5px;">Họ và tên:</td>
