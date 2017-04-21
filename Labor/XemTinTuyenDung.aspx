@@ -68,9 +68,9 @@
                             <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                             <td class="DataListTableTdItemJustify">
                                 <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
-                                &nbsp;<a href ="#"><img src ="../Images/View.png" style ="margin-top:-3px;"></a>
+                                &nbsp;<a href ="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src ="../Images/View.png" style ="margin-top:-3px;"></a>
                             </td>
-                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href ="#"><img src ="../Images/View.png" style ="margin-top:-3px;"></a></td>
+                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href ="#"><img onclick="XemThongTinTuyenDung('<%# Eval("IdTuyenDung") %>')" src ="../Images/View.png" style ="margin-top:-3px;"></a></td>
                             <td class="DataListTableTdItemCenter">
                                 <%# Eval("SoLuongTuyenDung") %>
                                 &nbsp;<a href ="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div></a>
@@ -157,6 +157,45 @@
                     }
                 }
             }
+
+                function XemDoanhNghiep(value) {
+                        var w = 1000;
+                        var h = 620;
+
+                        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                        var newWindow = window.open("DoanhNghiepView.aspx?id=" + value, "THÔNG TIN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                        
+                        if (window.focus) {
+                            newWindow.focus();
+                        }
+                }
+
+                function XemThongTinTuyenDung(value) {
+                    var w = 1000;
+                    var h = 620;
+
+                    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                    var newWindow = window.open("TuyenDungView.aspx?id=" + value, "THÔNG TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                    if (window.focus) {
+                        newWindow.focus();
+                    }
+                }
+
     </script>
 
     </form>

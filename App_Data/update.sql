@@ -46,3 +46,9 @@ CREATE TABLE [dbo].[tblViTri](
 
 ALTER TABLE [dbo].[TblTuyenDung]
 ADD IdViTri int
+
+ALTER TABLE [dbo].[TblMucLuong]
+ADD MinValue FLOAT DEFAULT(0)
+
+ALTER TABLE [dbo].[TblMucLuong]
+ADD MaxValue FLOAT DEFAULT(0)

@@ -158,11 +158,11 @@ public class DoanhNghiep
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT P.*,B.Name AS NganhNgheName,L.NameLoaiHinh FROM TblDoanhNghiep AS P ";
+            Cmd.CommandText = "SELECT P.*,B.Name AS NganhNgheName,L.NameLoaiHinh,D.Name AS NameHuyen,Pl.Name AS NameTinh FROM TblDoanhNghiep AS P ";
             Cmd.CommandText += " LEFT JOIN TblBusiness AS B ON P.IDNganhNghe = B.Id";
             Cmd.CommandText += " LEFT JOIN TblLoaiHinh AS L ON P.IdLoaiHinh = L.IdLoaiHinh";
-            Cmd.CommandText += " LEFT JOIN TblDistrict AS D ON P.IDHuyen = L.Id";
-            Cmd.CommandText += " LEFT JOIN TblLoaiHinh AS L ON P.IDTinh = L.IdLoaiHinh";
+            Cmd.CommandText += " LEFT JOIN TblDistrict AS D ON P.IDHuyen = D.Id";
+            Cmd.CommandText += " LEFT JOIN TblProvincer AS Pl ON P.IDTinh = Pl.Id";
 
             Cmd.CommandText += " WHERE P.IDDonVi = @IDDonVi";
             Cmd.Parameters.Add("IDDonVi", SqlDbType.Int).Value = IDDoanhNghiep;
