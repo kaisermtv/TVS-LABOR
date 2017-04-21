@@ -13,7 +13,6 @@
                 format: 'DD/MM/YYYY'
             });
         });
-
         function submitButton(event) {
             if (event.which == 13) {
                 $('#btnGetInformation').trigger('click');
