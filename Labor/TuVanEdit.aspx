@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+     <!-- Đặt ở đây không phải master - vì bị đè -->
+    <script src="../Scripts/select2.min.js"></script>
+	<link href="../css/select2.min.css" rel="stylesheet" />
+
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({
@@ -35,6 +39,7 @@
                 color: #000;
             }
     </style>
+
     <table border="0" style="margin-top: -20px;">
         <tr style="height: 40px;">
             <td style="width: 90%;" colspan="7">
@@ -364,8 +369,16 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
             <td style="width: 90%;" colspan="6">
-                <asp:TextBox ID="txtViTriCongViec" runat="server" CssClass="form-control"></asp:TextBox>
-            </td>
+
+                <asp:TextBox ID="txtViTriCongViec" Visible ="true" runat="server" Height="0" Width="0" BorderWidth="0" ></asp:TextBox>
+                    <!---Tự động hoàn tất -->
+                    <select class="js-example-basic-multiple" id="ddlQickSelect"  multiple="multiple"   style="width:100%" >
+                         <%foreach(string i in lv_Vitri) {%>
+                         <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                         <%} %>
+                        </select>
+                  
+               </td>
         </tr>
 
         <tr style="height: 40px;">
@@ -407,7 +420,7 @@
         <table border="0" style="width: 100%; margin-top: -8px;">
             <tr>
                 <td style="width: 700px; padding-left: 15px;">
-                    <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnSave" runat="server"   Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                     <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
                     <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
                     <button class="btn btn-danger" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
@@ -581,6 +594,30 @@
         }
 
     </script>
-
+    <script>
+          function getValue() { // lấy nội dung vào txtVitriCongviec
+              var x = document.getElementsByClassName("select2-selection__choice");
+              var i;
+              var str = '';
+              for (i = 0; i < x.length; i++) {
+                  str += x[i].textContent;
+              }
+              return str;
+          }
+          function load()      // load dử liệu vào textbox
+          {
+              document.getElementById('MainContent_txtViTriCongViec').value = getValue();
+          }
+                </script>
+                    <script type="text/javascript">
+                        $(".js-example-basic-multiple").select2();
+                  </script>
+                    <script type="text/javascript" language="javascript">
+                        $(document).ready(function () {
+                            $('#<%= btnSave.ClientID %>').click(function (e) {
+                                load();     // gọi đến sự kiện lưu lại
+                            });
+                        });
+                </script>
 </asp:Content>
 

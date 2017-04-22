@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>TVS LABOR</title>
+
+     
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../css/Adminstyle.css" rel="stylesheet" type="text/css"/>
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -42,7 +45,9 @@
     <script src="../Scripts/jquery-2.1.1.min.js"></script>
     <script src="../Scripts/moment-with-locales.js"></script>
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
-    <!-- -->
+
+
+  
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>

@@ -21,6 +21,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     private TrinhDoPhoThong objTrinhDoPhoThong = new TrinhDoPhoThong();
     private TinHoc objTinHoc = new TinHoc();
 
+    
     private Provincer objProvincer = new Provincer();
     private District objDistrict = new District();
     private Ward objWard = new Ward();
@@ -29,6 +30,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     private DataTable objTableNldTuVan = new DataTable();
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
     public string strBtnViecLamTrongNuoc = "", strBtnViecLamNgoai = "";
+
+    public List<string> lv_Vitri = new List<string>();
     #endregion
 
     #region method Page_Load
@@ -39,10 +42,18 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             Response.Redirect("../Login.aspx");
         }
         Session["TITLE"] = "TƯ VẤN NGƯỜI LAO ĐỘNG";
-        //if (!this.objAccount.checkForFunction(Session["ACCOUNT"].ToString(), 3, ref View, ref Add, ref Edit, ref Del, ref Orther))
-        //{
-        //    Response.Redirect("NoPermission.aspx");
-        //}
+
+        try
+        {
+           foreach(DataRow row in new ViTri().getList().Rows)
+           {
+               lv_Vitri.Add(row["NameVitri"].ToString());
+           }
+        }
+        catch
+        {
+        }
+
         try
         {
             this.IDNldTuVan = int.Parse(Request["id"].ToString());
@@ -192,6 +203,22 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
                 this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
+                /* Load defaut selected mode */
+                try
+                {
+                    string selectedValue = "$('#ddlQickSelect').val([";
+                    foreach(string s in this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString().Split(';'))
+                    {
+                         selectedValue +=  "'" + s+ "'"+ ',';
+                    }
+                    selectedValue = selectedValue.Substring(0, selectedValue.Length - 1);
+                    selectedValue += "]).trigger('change');";
+                    Page.ClientScript.RegisterStartupScript(GetType(), "haha" , selectedValue, true);
+                    }
+                catch { }
+
+              
+             
                 if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
                 this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
@@ -391,9 +418,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             int.Parse(this.ddlTrinhDoPhoThong.SelectedValue.ToString()), int.Parse(this.ddlNgoaiNgu.SelectedValue.ToString()), int.Parse(this.ddlTinHoc.SelectedValue.ToString()), this.txtTrinhDoDaoTao.Text, this.txtTrinhDoKyNangNghe.Text, this.txtKhaNangNoiTroi.Text,
             this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue)) == 1)
         {
-
             #region Luu thong tin vao phieu tu van
-            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text, tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString());
+            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length-1), tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString());
             #endregion
 
             #region Luu thong tin vao phieu dang ky viec lam
