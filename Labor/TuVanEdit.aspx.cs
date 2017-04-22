@@ -202,7 +202,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ckbTuVanHocNghe.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanHocNghe"].ToString());
                 this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
-                this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
+             //   this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                 /* Load defaut selected mode */
                 try
                 {
@@ -216,9 +216,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                     Page.ClientScript.RegisterStartupScript(GetType(), "haha" , selectedValue, true);
                     }
                 catch { }
-
-              
-             
                 if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
                 this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
