@@ -67,19 +67,25 @@
             <table>
                 <tr>
                     <td class="txtcenter">
-                        <b>NGƯỜI LAO ĐỘNG</b><br />
+                        <b>NGƯỜI LAO ĐỘNG</b>
+                    </td>
+                    <td class="txtcenter">
+                        <b>CÁN BỘ TƯ VẤN - GTVL</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="txtcenter">
                         <small>(Ký ghi rõ họ tên)</small>
                     </td>
-                    <td class="txtcenter"><br />
-                        <b>KT. GIÁM ĐỐC</b><br />
-                        <b>PHÓ GIÁM ĐỐC</b>
+                    <td class="txtcenter">
+                        <small>(Ký ghi rõ họ tên)</small>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td class="txtcenter">
                         <br /><br /><br /><br />
-                        <b>Trần Quốc Tuấn</b>
+                        <b></b>
                     </td>
                 </tr>
             </table>
