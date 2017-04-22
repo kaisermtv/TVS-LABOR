@@ -77,7 +77,7 @@
         </ItemTemplate>
     </asp:DataList>
     <hr />
-  <small>  Bắt đầu phân trang khi nội dung vượt quá 50 dòng</small>
+  <small>  Bắt đầu phân trang khi nội dung vượt quá 50 dòng - Tìm kiếm nhanh chỉ nằm trong trang này </small>
     <br />
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; background-color: #fbf4f4; height: 26px;"
         id="tblABC" runat="server">
@@ -94,7 +94,6 @@
     <br />
     <a href="TuVanEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
-
 
 
     <script>
