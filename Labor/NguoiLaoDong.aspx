@@ -89,5 +89,24 @@
     <a href="NguoiLaoDongEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
 
+
+     <script src="../js/TvsScript.js"></script>         <!--chứa qick search-->
+     <script>
+         $(function () {
+             /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
+             $('#MainContent_dtlNguoiLaoDong').searchable({       // lấy thẻ chứa ngoài cùng
+                 searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                 selector: 'tr',                               // từng dòng là các thẻ <tr>
+                 childSelector: 'td',                          // tìm tất cả các thẻ td
+                 show: function (elem) {
+                     elem.slideDown(100);                     // 100ms
+                 },
+                 hide: function (elem) {
+                     elem.slideUp(100);                       // cuộn lên     
+                 }
+             })
+         });
+    </script>
+
 </asp:Content>
 
