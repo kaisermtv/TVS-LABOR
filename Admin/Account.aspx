@@ -11,7 +11,6 @@
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -8px;" OnClick="btnSearch_Click" />
         </div>
     </div>
-
     <div style="width: 100%;">
         <table class="DataListTableHeader" border ="0">
             <tr style ="height:40px;">
@@ -82,5 +81,23 @@
     <br />
     <a href="EditAccount.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+
+     <script src="../js/TvsScript.js"></script>         <!--chứa qick search-->
+     <script>
+         $(function () {
+             /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
+             $('#MainContent_dtlAccount').searchable({       // lấy thẻ chứa ngoài cùng
+                 searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                 selector: 'tr',                               // từng dòng là các thẻ <tr>
+                 childSelector: 'td',                          // tìm tất cả các thẻ td
+                 show: function (elem) {
+                     elem.slideDown(100);                     // 100ms
+                 },
+                 hide: function (elem) {
+                     elem.slideUp(100);                       // cuộn lên     
+                 }
+             })
+         });
+    </script>
 </asp:Content>
 
