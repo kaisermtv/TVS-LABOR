@@ -3,6 +3,8 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+
+
     <table class="table" border ="0" style ="margin-top:-20px;">
         <tr>
             <td>
@@ -82,5 +84,25 @@
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
     <a href="ListCategory.aspx">
         <input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
+
+
+
+     <script src="../js/TvsScript.js"></script>         <!--chứa qick search-->
+     <script>
+         $(function () {
+             /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
+             $('#MainContent_dtlNganhNghe').searchable({       // lấy thẻ chứa ngoài cùng
+                 searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                 selector: 'tr',                               // từng dòng là các thẻ <tr>
+                 childSelector: 'td',                          // tìm tất cả các thẻ td
+                 show: function (elem) {
+                     elem.slideDown(100);                     // 100ms
+                 },
+                 hide: function (elem) {
+                     elem.slideUp(100);                       // cuộn lên     
+                 }
+             })
+         });
+    </script>
 </asp:Content>
 
