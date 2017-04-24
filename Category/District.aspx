@@ -2,7 +2,7 @@
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-
+   <script src="../js/TvsScript.js"></script><!--chứa qick search-->
    <div style="width: 100%; height: 35px; line-height: 35px; margin-bottom: 10px;">
         <div class="AdminLeftItem">
             QUẬN, HUYỆN
@@ -45,7 +45,7 @@
                         <%# Eval("Code") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 56%;">
-                        <%# Eval("Name") %>
+                 <span class="name">       <%# Eval("Name") %></span>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("CountItem") %>
@@ -80,5 +80,23 @@
     <br />
     <a href="DistrictEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+
+       <script>
+           $(function () {
+               /* QUICK SEARCH - Tìm nhanh */
+               $('#MainContent_dtlDistrict').searchable({       // lấy thẻ chứa ngoài cùng
+                   searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                   selector: 'tr',                               // từng dòng là các thẻ <tr>
+                   childSelector: 'td',                          // tìm tất cả các thẻ td
+                   show: function (elem) {
+                       elem.slideDown(100);                     // 100ms
+                   },
+                   hide: function (elem) {
+                       elem.slideUp(100);                       // cuộn lên     
+                   }
+               })
+           });
+    </script>
+
 </asp:Content>
 
