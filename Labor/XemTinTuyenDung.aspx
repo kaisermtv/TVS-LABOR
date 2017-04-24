@@ -54,7 +54,7 @@
             </tr>
         </table>
 
-        <div style="margin-top: -30px;">
+        <div id="MainContent_dtlTuyenDung" style="margin-top: -30px;">
             <div style="width: 100%; padding: 15px;">
                 <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
                     <HeaderTemplate>
@@ -126,8 +126,26 @@
 
             </footer>
         </div>
-
-        <script type="text/javascript">
+        <script src="../js/jquery-1.10.2.min.js"></script>      <!---Sử dụng jqerry để lấy tìm kiếm ---->
+        <script  src="../js/TvsScript.js"></script>         <!--chứa qick search-->
+          <script>
+              $(function () {
+                  /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
+                  $('#MainContent_dtlTuyenDung').searchable({       // lấy thẻ chứa ngoài cùng
+                      searchField: '#txtSearch',        // lấy sự kiện tại txtSearch
+                      selector: 'tr',                               // từng dòng là các thẻ <tr>
+                      childSelector: 'td',                          // tìm tất cả các thẻ td
+                      show: function (elem) {
+                          elem.slideDown(100);                     // 100ms
+                      },
+                      hide: function (elem) {
+                          elem.slideUp(100);                       // cuộn lên     
+                      }
+                  })
+              });
+          </script>
+    
+          <script type="text/javascript">
             function ItemSelect(IDTuyenDung, IDDonVi, IDChucVu, TenDonVi, NameChucVu) {
 
                 var txtIDTuyenDung = document.getElementById("txtIDTuyenDung");
@@ -209,6 +227,9 @@
                 }
             }
         </script>
+
+
+      
 
     </form>
 </body>
