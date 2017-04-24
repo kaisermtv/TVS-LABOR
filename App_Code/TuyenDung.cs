@@ -131,14 +131,25 @@ public class TuyenDung :DataClass
             
             if (sVitri != "")
             {
-                string[] strVitri = sVitri.Split('x');
+                string[] strVitri = sVitri.Split(';');
                 if (strVitri.Length > 0)
                 {
                     for (int i = 0; i < strVitri.Length; i++)
                     {
-                        if (strVitri[i].Trim() != "x")
+                        if (strVitri[i].Trim() != ";")
                         {
-                            sqlQueryViTri = " AND A.IdViTri IN (SELECT Id FROM tblViTri WHERE UPPER(NameVitri) LIKE N'%" + sVitri.ToUpper() + "%')";
+                            if (i == 0)
+                            {
+                                sqlQueryViTri = " AND (A.IdViTri IN (SELECT Id FROM tblViTri WHERE UPPER(NameVitri) LIKE N'%" + strVitri[i].ToUpper() + "%')";
+                            }
+                            else
+                            {
+                                sqlQueryViTri += " OR (A.IdViTri IN (SELECT Id FROM tblViTri WHERE UPPER(NameVitri) LIKE N'%" + strVitri[i].ToUpper() + "%'))";
+                            }
+                            if (i == strVitri.Length-1)
+                            {
+                                sqlQueryViTri += ")";
+                            }
                         }
                     }
                 }
