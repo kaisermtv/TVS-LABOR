@@ -26,7 +26,7 @@
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
     <!-- -->
 </head>
-<body style="margin: 0px !important; height: 500px !important;">
+<body style="margin: 0px !important; height: 500px !important; padding:10px;">
      <script type="text/javascript">
          $(function () {
              $('#datetimepicker1').datetimepicker({

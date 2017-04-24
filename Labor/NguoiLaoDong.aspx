@@ -63,11 +63,9 @@
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("StateName") %>
                     </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                    <td class="DataListTableTdItemCenter" style="width: 6%;">
                         <a href="NguoiLaoDongEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>">
-                            <img src="../Images/Edit.png" alt=""></a>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                            <img src="../Images/Edit.png" alt=""></a>&nbsp;
                         <a href="NguoiLaoDongDel.aspx?id=<%# Eval("IDNguoiLaoDong") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>
@@ -75,7 +73,7 @@
             </table>
         </ItemTemplate>
     </asp:DataList>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
         id="tblABC" runat="server">
         <tr>
             <td style="padding-left: 6px;">

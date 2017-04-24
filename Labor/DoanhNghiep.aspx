@@ -45,7 +45,7 @@
                         <%# Eval("MaDonVi") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 36%;">
-                        <%# Eval("TenDonVi") %>&nbsp;<div class="badge"><a href ="TuyenDung.aspx?did=<%# Eval("IDDonVi") %>&n=<%# Eval("TenDonVi") %>"><%# Eval("CountItem") %></a></div>
+                        <%# Eval("TenDonVi") %>&nbsp;<div class="badge"><a href="TuyenDung.aspx?did=<%# Eval("IDDonVi") %>&n=<%# Eval("TenDonVi") %>"><%# Eval("CountItem") %></a></div>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 30%;">
                         <%# Eval("Diachi") %>
@@ -53,11 +53,9 @@
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("StateName") %>
                     </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                    <td class="DataListTableTdItemCenter" style="width: 6%;">
                         <a href="DoanhNghiepEdit.aspx?id=<%# Eval("IDDonVi") %>">
-                            <img src="../Images/Edit.png" alt=""></a>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                            <img src="../Images/Edit.png" alt=""></a>&nbsp;
                         <a href="DoanhNghiepDel.aspx?id=<%# Eval("IDDonVi") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>

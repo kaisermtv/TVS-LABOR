@@ -8,8 +8,8 @@
             QUẬN, HUYỆN
         </div>
         <div class="AdminRightItem">
-            <asp:DropDownList ID="ddlProvincer" AutoPostBack="true" runat="server" Style="width: 29.5%; height: 28px; line-height: 28px; margin-top: 3px;" OnSelectedIndexChanged="ddlProvincer_SelectedIndexChanged"></asp:DropDownList>
-            <asp:TextBox ID="txtSearch" runat="server" Style="width: 35% !important; height: 28px; line-height: 28px;"></asp:TextBox>
+            <asp:DropDownList ID="ddlProvincer" runat="server" CssClass ="form-control" Style="width: 29.5%; float:left; margin-right:10px;" OnSelectedIndexChanged="ddlProvincer_SelectedIndexChanged"></asp:DropDownList>
+            <asp:TextBox ID="txtSearch" runat="server" CssClass ="form-control" Style="width: 35% !important; float:left;"></asp:TextBox>&nbsp;
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -8px;" OnClick="btnSearch_Click" />
         </div>
     </div>
@@ -37,7 +37,7 @@
         Width="100%">
         <ItemTemplate>
             <table class="DataListTable" border="0">
-                <tr style="height: 40px;">
+                <tr style="height: 36px;">
                     <td class="DataListTableTdItemTT" style="width: 3%;">
                         <%# Eval("TT") %>
                     </td>
@@ -65,7 +65,7 @@
             </table>
         </ItemTemplate>
     </asp:DataList>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
         id="tblABC" runat="server">
         <tr>
             <td style="padding-left: 6px;">

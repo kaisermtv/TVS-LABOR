@@ -42,12 +42,12 @@ public partial class Admin_TrinhDoPhoThong : System.Web.UI.Page
     {
         this.objTable = this.objTrinhDoPhoThong.getData(this.txtSearch.Text);
         cpTrinhDoPhoThong.MaxPages = 1000;
-        cpTrinhDoPhoThong.PageSize = 15;
+        cpTrinhDoPhoThong.PageSize = 12;
         cpTrinhDoPhoThong.DataSource = this.objTable.DefaultView;
         cpTrinhDoPhoThong.BindToControl = dtlTrinhDoPhoThong;
         dtlTrinhDoPhoThong.DataSource = cpTrinhDoPhoThong.DataSourcePaged;
         dtlTrinhDoPhoThong.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

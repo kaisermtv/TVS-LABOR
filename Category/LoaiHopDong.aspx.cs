@@ -42,12 +42,12 @@ public partial class Admin_LoaiHopDong : System.Web.UI.Page
     {
         this.objTable = this.objLoaiHopDong.getData(this.txtSearch.Text);
         cpLoaiHopDong.MaxPages = 1000;
-        cpLoaiHopDong.PageSize = 15;
+        cpLoaiHopDong.PageSize = 12;
         cpLoaiHopDong.DataSource = this.objTable.DefaultView;
         cpLoaiHopDong.BindToControl = dtlLoaiHopDong;
         dtlLoaiHopDong.DataSource = cpLoaiHopDong.DataSourcePaged;
         dtlLoaiHopDong.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

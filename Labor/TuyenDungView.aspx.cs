@@ -163,14 +163,24 @@ public partial class Labor_TuyenDungView : System.Web.UI.Page
                 this.txtIDDonVi.Value = this.objTable.Rows[0]["IDDonVi"].ToString();
                 this.txtTenDonVi.Text = this.objTable.Rows[0]["TenDonVi"].ToString();
                 this.ddlNhomNganh.SelectedValue = this.objTable.Rows[0]["IDNhomNghanh"].ToString();
+                this.lblNhomNganh.Text = this.ddlNhomNganh.SelectedItem.Text;
+
                 this.ddlIDChucVu.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
+                this.lblIDChucVu.Text = this.ddlIDChucVu.SelectedItem.Text;
 
                 this.ddlIdVitri.SelectedValue = this.objTable.Rows[0]["IdViTri"].ToString();
+                this.lblIdVitri.Text = this.ddlIdVitri.SelectedItem.Text;
 
                 this.txtSoLuongTuyenDung.Text = this.objTable.Rows[0]["SoLuongTuyenDung"].ToString();
                 this.ddlIDNganhNghe.SelectedValue = this.objTable.Rows[0]["IDNganhNghe"].ToString();
+                this.lblIDNganhNghe.Text = this.ddlIDNganhNghe.SelectedItem.Text;
+
                 this.ddlIDDoTuoi.SelectedValue = this.objTable.Rows[0]["IDDoTuoi"].ToString();
+                this.lblIDDoTuoi.Text = this.ddlIDDoTuoi.SelectedItem.Text;
+
                 this.ddlIDGioiTinh.SelectedValue = this.objTable.Rows[0]["IDGioiTinh"].ToString();
+                this.lblIDGioiTinh.Text = this.ddlIDGioiTinh.SelectedItem.Text;
+
                 this.txtUuTien.Text = this.objTable.Rows[0]["UuTien"].ToString();
 
                 this.ddlIDTrinhDoChuyenMon.SelectedValue = this.objTable.Rows[0]["IDTrinhDoChuyenMon"].ToString();
@@ -178,7 +188,8 @@ public partial class Labor_TuyenDungView : System.Web.UI.Page
                 this.txtMoTa.Text = this.objTable.Rows[0]["MoTa"].ToString();
                 this.txtDiaDiem.Text = this.objTable.Rows[0]["DiaDiem"].ToString();
                 this.ddlIDMucLuong.SelectedValue = this.objTable.Rows[0]["IDMucLuong"].ToString();
-
+                this.lblIDMucLuong.Text = this.ddlIDMucLuong.SelectedItem.Text;
+ 
                 this.ckbNuocNgoai.Checked = bool.Parse(this.objTable.Rows[0]["NuocNgoai"].ToString());
                 this.txtQuyenLoi.Text = this.objTable.Rows[0]["QuyenLoi"].ToString();
                 this.txtNgayBatDau.Value = DateTime.Parse(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString("dd/MM/yyyy");
@@ -187,9 +198,14 @@ public partial class Labor_TuyenDungView : System.Web.UI.Page
 
 
                 this.ddlyeuCauNgoaiNgu.SelectedValue = this.objTable.Rows[0]["YCNgoaiNgu"].ToString();
+                this.lblyeuCauNgoaiNgu.Text = this.ddlyeuCauNgoaiNgu.SelectedItem.Text;
+
                 this.ddlyeuCauTinHoc.SelectedValue = this.objTable.Rows[0]["YCTinHoc"].ToString();
+                this.lblyeuCauTinHoc.Text = this.ddlyeuCauTinHoc.SelectedItem.Text;
+
                 this.txtNamKinhNghiem.Text = this.objTable.Rows[0]["NamKinhNghiem"].ToString();
                 this.ddlThoiGianLamViec.SelectedValue = this.objTable.Rows[0]["ThoiGianLamViec"].ToString();
+                this.lblThoiGianLamViec.Text = this.ddlThoiGianLamViec.SelectedItem.Text;
             }
         }
 

@@ -382,7 +382,7 @@ public class NguoiLaoDong
     #region Qua trinh dao tao TblNldQuaTrinhDaoTao
 
     #region method setDataNldQuaTrinhDaoTao
-    public int setDataNldQuaTrinhDaoTao(int IDNldQuaTrinhDaoTao, int IDNguoiLaoDong, string Donvi, int IDTrinhdochuyenmon, DateTime NgayBatDau, DateTime NgayKetThuc)
+    public int setDataNldQuaTrinhDaoTao(int IDNldQuaTrinhDaoTao, int IDNguoiLaoDong, string Donvi, int IDTrinhdochuyenmon, int IdNhomNganh, int IDDTNganhNghe)
     {
         int tmpValue = 0;
 
@@ -391,8 +391,8 @@ public class NguoiLaoDong
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldQuaTrinhDaoTao WHERE IDNldQuaTrinhDaoTao = @IDNldQuaTrinhDaoTao AND IDNguoiLaoDong = @IDNguoiLaoDong) ";
-            sqlQuery += "BEGIN INSERT INTO TblNldQuaTrinhDaoTao(IDNguoiLaoDong,Donvi,IDTrinhdochuyenmon,NgayBatDau,NgayKetThuc) VALUES(@IDNguoiLaoDong,@Donvi,@IDTrinhdochuyenmon,@NgayBatDau,@NgayKetThuc) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblNldQuaTrinhDaoTao SET Donvi = @Donvi, IDTrinhdochuyenmon = @IDTrinhdochuyenmon, NgayBatDau = @NgayBatDau, NgayKetThuc = @NgayKetThuc WHERE IDNldQuaTrinhDaoTao = @IDNldQuaTrinhDaoTao  AND IDNguoiLaoDong = @IDNguoiLaoDong END ";
+            sqlQuery += "BEGIN INSERT INTO TblNldQuaTrinhDaoTao(IDNguoiLaoDong,Donvi,IDTrinhdochuyenmon,IdNhomNganh,IDDTNganhNghe) VALUES(@IDNguoiLaoDong,@Donvi,@IDTrinhdochuyenmon,@IdNhomNganh,@IDDTNganhNghe) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldQuaTrinhDaoTao SET Donvi = @Donvi, IDTrinhdochuyenmon = @IDTrinhdochuyenmon, IdNhomNganh = @IdNhomNganh, IDDTNganhNghe = @IDDTNganhNghe WHERE IDNldQuaTrinhDaoTao = @IDNldQuaTrinhDaoTao  AND IDNguoiLaoDong = @IDNguoiLaoDong END ";
 
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -404,8 +404,8 @@ public class NguoiLaoDong
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
             Cmd.Parameters.Add("Donvi", SqlDbType.NVarChar).Value = Donvi;
             Cmd.Parameters.Add("IDTrinhdochuyenmon", SqlDbType.Int).Value = IDTrinhdochuyenmon;
-            Cmd.Parameters.Add("NgayBatDau", SqlDbType.DateTime).Value = NgayBatDau;
-            Cmd.Parameters.Add("NgayKetThuc", SqlDbType.DateTime).Value = NgayKetThuc;
+            Cmd.Parameters.Add("IdNhomNganh", SqlDbType.Int).Value = IdNhomNganh;
+            Cmd.Parameters.Add("IDDTNganhNghe", SqlDbType.Int).Value = IDDTNganhNghe;
 
             Cmd.ExecuteNonQuery();
 
@@ -431,7 +431,7 @@ public class NguoiLaoDong
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
-            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameTrinhdoChuyenMon FROM TblTrinhDoChuyenMon WHERE IDTrinhDoChuyenMon = TblNldQuaTrinhDaoTao.IDTrinhdochuyenmon) AS NameTrinhdoChuyenMon FROM TblNldQuaTrinhDaoTao WHERE IDNguoiLaoDong = @IDNguoiLaoDong";
+            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameTrinhdoChuyenMon FROM TblTrinhDoChuyenMon WHERE IDTrinhDoChuyenMon = A.IDTrinhdochuyenmon) AS NameTrinhdoChuyenMon, (SELECT NameDTNganhNghe FROM TblDTNganhNghe WHERE IDDTNganhNghe = A.IDDTNganhNghe) AS NameDTNganhNghe FROM TblNldQuaTrinhDaoTao A WHERE A.IDNguoiLaoDong = @IDNguoiLaoDong";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

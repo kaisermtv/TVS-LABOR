@@ -42,12 +42,12 @@ public partial class Admin_HinhThucTuyenDung : System.Web.UI.Page
     {
         this.objTable = this.objHinhThucTuyenDung.getData(this.txtSearch.Text);
         cpHinhThucTuyenDung.MaxPages = 1000;
-        cpHinhThucTuyenDung.PageSize = 15;
+        cpHinhThucTuyenDung.PageSize = 12;
         cpHinhThucTuyenDung.DataSource = this.objTable.DefaultView;
         cpHinhThucTuyenDung.BindToControl = dtlHinhThucTuyenDung;
         dtlHinhThucTuyenDung.DataSource = cpHinhThucTuyenDung.DataSourcePaged;
         dtlHinhThucTuyenDung.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

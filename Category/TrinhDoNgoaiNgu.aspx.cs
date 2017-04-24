@@ -24,11 +24,8 @@ public partial class Category_TrinhDoNgoaiNgu : System.Web.UI.Page
         TrinhDoNgoaiNgu objTrinhDongoaiNgu = new TrinhDoNgoaiNgu();
         DataTable objData = objTrinhDongoaiNgu.getList();
 
-        //dtlAccount.DataSource = objData.DefaultView;
-        //dtlAccount.DataBind();
-
         cpData.MaxPages = 1000;
-        cpData.PageSize = 15;
+        cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
         cpData.BindToControl = dtlData;
         dtlData.DataSource = cpData.DataSourcePaged;

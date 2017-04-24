@@ -33,6 +33,9 @@ public partial class Category_NhomNganh : System.Web.UI.Page
             this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "TblNhomNganh", "NameNhomNganh");
             this.getData();
         }
+
+        Session["TITLE"] = "NHÓM NGÀNH";
+
         this.txtSearch.Focus();
     }
     #endregion
@@ -42,12 +45,12 @@ public partial class Category_NhomNganh : System.Web.UI.Page
     {
         this.objTable = this.objNhomNganh.getData(this.txtSearch.Text);
         cpNgoaiNgu.MaxPages = 1000;
-        cpNgoaiNgu.PageSize = 15;
+        cpNgoaiNgu.PageSize = 12;
         cpNgoaiNgu.DataSource = this.objTable.DefaultView;
         cpNgoaiNgu.BindToControl = dtlNgoaiNgu;
         dtlNgoaiNgu.DataSource = cpNgoaiNgu.DataSourcePaged;
         dtlNgoaiNgu.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

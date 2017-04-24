@@ -42,12 +42,12 @@ public partial class Admin_CanBo : System.Web.UI.Page
     {
         this.objTable = this.objCanBo.getData(this.txtSearch.Text);
         cpCanBo.MaxPages = 1000;
-        cpCanBo.PageSize = 15;
+        cpCanBo.PageSize = 12;
         cpCanBo.DataSource = this.objTable.DefaultView;
         cpCanBo.BindToControl = dtlCanBo;
         dtlCanBo.DataSource = cpCanBo.DataSourcePaged;
         dtlCanBo.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

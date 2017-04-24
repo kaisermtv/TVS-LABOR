@@ -43,12 +43,12 @@ public partial class Admin_NguoiLaoDong : System.Web.UI.Page
     {
         this.objTable = this.objNguoiLaoDong.getData(this.txtSearch.Value);
         cpNguoiLaoDong.MaxPages = 1000;
-        cpNguoiLaoDong.PageSize = 15;
+        cpNguoiLaoDong.PageSize = 10;
         cpNguoiLaoDong.DataSource = this.objTable.DefaultView;
         cpNguoiLaoDong.BindToControl = dtlNguoiLaoDong;
         dtlNguoiLaoDong.DataSource = cpNguoiLaoDong.DataSourcePaged;
         dtlNguoiLaoDong.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 10)
         {
             this.tblABC.Visible = false;
         }

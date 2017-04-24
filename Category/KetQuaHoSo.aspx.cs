@@ -42,12 +42,12 @@ public partial class Admin_KetQuaHoSo : System.Web.UI.Page
     {
         this.objTable = this.objKetQuaHoSo.getData(this.txtSearch.Text);
         cpKetQuaHoSo.MaxPages = 1000;
-        cpKetQuaHoSo.PageSize = 15;
+        cpKetQuaHoSo.PageSize = 12;
         cpKetQuaHoSo.DataSource = this.objTable.DefaultView;
         cpKetQuaHoSo.BindToControl = dtlKetQuaHoSo;
         dtlKetQuaHoSo.DataSource = cpKetQuaHoSo.DataSourcePaged;
         dtlKetQuaHoSo.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

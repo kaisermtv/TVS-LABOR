@@ -42,12 +42,12 @@ public partial class Admin_Business : System.Web.UI.Page
     {
         this.objTable = this.objBusiness.getData(this.txtSearch.Text);
         cpBusiness.MaxPages = 1000;
-        cpBusiness.PageSize = 15;
+        cpBusiness.PageSize = 12;
         cpBusiness.DataSource = this.objTable.DefaultView;
         cpBusiness.BindToControl = dtlBusiness;
         dtlBusiness.DataSource = cpBusiness.DataSourcePaged;
         dtlBusiness.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

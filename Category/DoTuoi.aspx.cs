@@ -42,12 +42,12 @@ public partial class Admin_DoTuoi : System.Web.UI.Page
     {
         this.objTable = this.objDoTuoi.getData(this.txtSearch.Text);
         cpDoTuoi.MaxPages = 1000;
-        cpDoTuoi.PageSize = 15;
+        cpDoTuoi.PageSize = 12;
         cpDoTuoi.DataSource = this.objTable.DefaultView;
         cpDoTuoi.BindToControl = dtlDoTuoi;
         dtlDoTuoi.DataSource = cpDoTuoi.DataSourcePaged;
         dtlDoTuoi.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

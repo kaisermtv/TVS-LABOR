@@ -78,19 +78,19 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
 
                     if (this.objTableNldDaoTao.Rows.Count > 0)
                     {
-                        NLDQuaTrinhDaoTao_CN1 = this.objTableNldDaoTao.Rows[0]["DonVi"].ToString();
+                        NLDQuaTrinhDaoTao_CN1 = this.objTableNldDaoTao.Rows[0]["NameDTNganhNghe"].ToString();
                         NLDQuaTrinhDaoTao_CM1 = this.objTableNldDaoTao.Rows[0]["NameTrinhdoChuyenMon"].ToString();
                     }
 
                     if (this.objTableNldDaoTao.Rows.Count > 1)
                     {
-                        NLDQuaTrinhDaoTao_CN2 = this.objTableNldDaoTao.Rows[1]["DonVi"].ToString();
+                        NLDQuaTrinhDaoTao_CN2 = this.objTableNldDaoTao.Rows[1]["NameDTNganhNghe"].ToString();
                         NLDQuaTrinhDaoTao_CM2 = this.objTableNldDaoTao.Rows[1]["NameTrinhdoChuyenMon"].ToString();
                     }
 
                     if (this.objTableNldDaoTao.Rows.Count > 2)
                     {
-                        NLDQuaTrinhDaoTao_CN3 = this.objTableNldDaoTao.Rows[2]["DonVi"].ToString();
+                        NLDQuaTrinhDaoTao_CN3 = this.objTableNldDaoTao.Rows[2]["NameDTNganhNghe"].ToString();
                         NLDQuaTrinhDaoTao_CM3 = this.objTableNldDaoTao.Rows[2]["NameTrinhdoChuyenMon"].ToString();
                     }
 

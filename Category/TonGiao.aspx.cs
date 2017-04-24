@@ -42,12 +42,12 @@ public partial class Admin_TonGiao : System.Web.UI.Page
     {
         this.objTable = this.objTonGiao.getData(this.txtSearch.Text);
         cpTonGiao.MaxPages = 1000;
-        cpTonGiao.PageSize = 15;
+        cpTonGiao.PageSize = 12;
         cpTonGiao.DataSource = this.objTable.DefaultView;
         cpTonGiao.BindToControl = dtlTonGiao;
         dtlTonGiao.DataSource = cpTonGiao.DataSourcePaged;
         dtlTonGiao.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

@@ -47,12 +47,12 @@ public partial class Admin_District : System.Web.UI.Page
     {
         this.objTable = this.objDistrict.getData(int.Parse(this.ddlProvincer.SelectedValue.ToString()), this.txtSearch.Text);
         cpDistrict.MaxPages = 1000;
-        cpDistrict.PageSize = 15;
+        cpDistrict.PageSize = 12;
         cpDistrict.DataSource = this.objTable.DefaultView;
         cpDistrict.BindToControl = dtlDistrict;
         dtlDistrict.DataSource = cpDistrict.DataSourcePaged;
         dtlDistrict.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

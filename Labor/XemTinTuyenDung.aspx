@@ -19,11 +19,19 @@
     <link rel="stylesheet" href="../css/icon-font.min.css" type='text/css' />
 
     <style>
-        .DataListTable td{
-            padding-top:5px;
-            padding-bottom:5px;
+        .DataListTable td {
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
     </style>
+
+    <script>
+        $(document).keydown(function (e) {
+            if (e.keyCode == 27) {
+                window.close();
+            }
+        });
+    </script>
 </head>
 <body style="margin: 0px !important;">
     <form id="form1" runat="server">
@@ -46,8 +54,8 @@
             </tr>
         </table>
 
-        <div style="margin-top: -20px;">
-            <div style="width: 100%;">
+        <div style="margin-top: -30px;">
+            <div style="width: 100%; padding: 15px;">
                 <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
                     <HeaderTemplate>
                         <table class="DataListTable" border="0">
@@ -59,7 +67,6 @@
                                 <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">Số lượng</td>
                                 <td class="DataListTableHeaderTdItemJustify" style="width: 17%;">Mức lương</td>
                                 <td class="DataListTableHeaderTdItemJustify">Địa điểm làm việc</td>
-                                <td>::</td>
                             </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -68,18 +75,16 @@
                             <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                             <td class="DataListTableTdItemJustify">
                                 <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
-                                &nbsp;<a href ="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src ="../Images/View.png" style ="margin-top:-3px;"></a>
+                                &nbsp;<a href="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src="../Images/View.png" style="margin-top: -3px;"></a>
                             </td>
-                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href ="#"><img onclick="XemThongTinTuyenDung('<%# Eval("IdTuyenDung") %>')" src ="../Images/View.png" style ="margin-top:-3px;"></a></td>
-                            <td class="DataListTableTdItemCenter">
+                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href="#"><img onclick="XemThongTinTuyenDung('<%# Eval("IdTuyenDung") %>')" src="../Images/View.png" style="margin-top: -3px;"></a></td>
+                            <td class="DataListTableTdItemRight" style ="padding-right:15px!important;">
                                 <%# Eval("SoLuongTuyenDung") %>
-                                &nbsp;<a href ="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div></a>
+                                &nbsp;<a href="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div>
+                                </a>
                             </td>
                             <td class="DataListTableTdItemJustify"><%# Eval("NameMucLuong") %></td>
                             <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
-                            <td>
-                                123
-                            </td>
                         </tr>
                     </ItemTemplate>
                     <FooterTemplate>
@@ -87,31 +92,39 @@
                     </FooterTemplate>
                 </asp:Repeater>
             </div>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; height: 26px;"
-                id="tblABC" runat="server">
-                <tr>
-                    <td style="padding-left: 6px;">
-                        <cc1:CollectionPager ID="cpTuyenDung" runat="server" BackText="" FirstText="Đầu"
-                            ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
-                            ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                            PageNumbersSeparator="&nbsp;">
-                        </cc1:CollectionPager>
-                    </td>
-                </tr>
-            </table>
+
+            <div style="width: 100%; padding: 10px; margin-top: -20px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; height: 26px;"
+                    id="tblABC" runat="server">
+                    <tr>
+                        <td style="padding-left: 6px;">
+                            <cc1:CollectionPager ID="cpTuyenDung" runat="server" BackText="" FirstText="Đầu"
+                                ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
+                                ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
+                                PageNumbersSeparator="&nbsp;">
+                            </cc1:CollectionPager>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click chuột vào tên doanh nghiệp để chọn nhu cầu tuyển dụng của doanh nghiệp đó cho người lao động
             <br />
-            <input type="hidden" id="txtIDTuyenDung" class="form-control" runat="server" />
-            <input type="text" id="txtTenDonVi" class="form-control" runat="server" style="width: 72%; float: left; margin-left:15px; margin-right:10px;" />
-            <input type="text" id="txtNameChucVu" class="form-control" runat="server" style="width: 24%; margin-left: 10px!important; margin-right:15px;" />
-            <br />
-            <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" CssClass="btn btn-primary" Style="margin-left: 15px; margin-top: -10px;" OnClick="btnSave_Click" OnClientClick="javascript:window.close();" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <footer style="height: 105px !important; margin-bottom: 0px; width: 100%; text-align: justify; background-color: #f0f0f0;">
+
+                <input type="hidden" id="txtIDTuyenDung" class="form-control" runat="server" />
+                <input type="text" id="txtTenDonVi" class="form-control" runat="server" style="width: 72%; float: left; margin-left: 15px; margin-right: 10px;" />
+                <input type="text" id="txtNameChucVu" class="form-control" runat="server" style="width: 24%; margin-left: 10px!important; margin-right: 15px;" />
+                <br />
+                <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" CssClass="btn btn-primary" Style="margin-left: 15px; margin-top: -10px;" OnClick="btnSave_Click" OnClientClick="javascript:window.close();" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-            <input type="hidden" id="txtIDDonVi" runat="server" />
-            <input type="hidden" id="txtIDChucVu" runat="server" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <input type="hidden" id="txtIDDonVi" runat="server" />
+                <input type="hidden" id="txtIDChucVu" runat="server" />
+
+            </footer>
         </div>
 
         <script type="text/javascript">
@@ -139,8 +152,8 @@
                     return;
                 }
                 else {
-                    var w = 1000;
-                    var h = 620;
+                    var w = screen.width;
+                    var h = screen.height;
 
                     var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
                     var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
@@ -158,45 +171,44 @@
                 }
             }
 
-                function XemDoanhNghiep(value) {
-                        var w = 1000;
-                        var h = 620;
+            function XemDoanhNghiep(value) {
+                var w = screen.width;
+                var h = screen.height;
 
-                        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-                        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 
-                        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-                        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-                        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-                        var top = ((height / 2) - (h / 2)) + dualScreenTop;
-                        var newWindow = window.open("DoanhNghiepView.aspx?id=" + value, "THÔNG TIN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-                        
-                        if (window.focus) {
-                            newWindow.focus();
-                        }
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("DoanhNghiepView.aspx?id=" + value, "THÔNG TIN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
                 }
+            }
 
-                function XemThongTinTuyenDung(value) {
-                    var w = 1000;
-                    var h = 620;
+            function XemThongTinTuyenDung(value) {
+                var w = screen.width;
+                var h = screen.height;
 
-                    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-                    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 
-                    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-                    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-                    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-                    var top = ((height / 2) - (h / 2)) + dualScreenTop;
-                    var newWindow = window.open("TuyenDungView.aspx?id=" + value, "THÔNG TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("TuyenDungView.aspx?id=" + value, "THÔNG TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left + ',toolbar=0,location=0, directories=0, status=0,location=no,menubar=0');
 
-                    if (window.focus) {
-                        newWindow.focus();
-                    }
+                if (window.focus) {
+                    newWindow.focus();
                 }
-
-    </script>
+            }
+        </script>
 
     </form>
 </body>

@@ -9,11 +9,11 @@
             LOẠI HÌNH
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtSearch" runat="server" Style="width: 35% !important; height: 28px; line-height: 28px;"></asp:TextBox>
+            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" Style="width: 35% !important; float: left;"></asp:TextBox>&nbsp;
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -8px;" OnClick="btnSearch_Click" />
         </div>
     </div>
-    
+
     <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
         <HeaderTemplate>
             <table class="DataListTable">

@@ -8,7 +8,7 @@
     <table class="table" style="margin-top: -20px;">
         <tr>
             <td>
-                <input type="text" id="txtSearch"  placeholder="Nhập tên, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
+                <input type="text" id="txtSearch" placeholder="Nhập tên, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
             </td>
             <td style="width: 40px !important; text-align: center;">
                 <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left: -15px;" OnClick="btnSearch_Click" />
@@ -44,7 +44,7 @@
             <table class="DataListTable" border="0">
                 <tr style="height: 40px;">
                     <td class="DataListTableTdItemJustify" style="width: 18%;">
-                     <span class="name"> <%# Eval("HoVaTen") %></span>
+                        <span class="name"><%# Eval("HoVaTen") %></span>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("BHXH") %>
@@ -68,7 +68,7 @@
                         <a href="TuVanEdit.aspx?id=<%# Eval("IDNldTuVan") %>&idNld=<%# Eval("IDNguoiLaoDong") %>">
                             <img src="../Images/Edit.png" alt=""></a>
                     </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                    <td class="DataListTableTdItemCenter" style="width: 3%; padding-right: 8px;">
                         <a href="TuVanDel.aspx?id=<%# Eval("IDNldTuVan") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>
@@ -76,10 +76,7 @@
             </table>
         </ItemTemplate>
     </asp:DataList>
-    <hr />
-  <small>  Bắt đầu phân trang khi nội dung vượt quá 50 dòng - Tìm kiếm nhanh chỉ nằm trong trang này </small>
-    <br />
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; background-color: #fbf4f4; height: 26px;"
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
         id="tblABC" runat="server">
         <tr>
             <td style="padding-left: 6px;">
@@ -94,7 +91,6 @@
     <br />
     <a href="TuVanEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
-
 
     <script>
         $(function () {
@@ -112,7 +108,7 @@
                 }
             })
         });
-</script>
+    </script>
 
 </asp:Content>
 

@@ -33,7 +33,6 @@ public partial class Labor_DoanhNghiepView : System.Web.UI.Page
         DataTable objdata = objDoanhNghiep.getDataViewById(itemId);
         if (objdata.Rows.Count > 0)
         {
-            this.txtMaDonVi.Text = objdata.Rows[0]["MaDonVi"].ToString();
             this.txtTenDonVi.Text = objdata.Rows[0]["TenDonVi"].ToString();
             this.ddlIDNganhNghe.Text = objdata.Rows[0]["NganhNgheName"].ToString();
             this.ddlIdLoaiHinh.Text = objdata.Rows[0]["NameLoaiHinh"].ToString();

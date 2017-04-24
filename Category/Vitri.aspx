@@ -4,17 +4,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
         <HeaderTemplate>
-            <table class="DataListTable">
+            <table class="DataListTable" style ="height:40px;">
                 <tr class="DataListTableHeader">
                     <th class="DataListTableHeaderTdItemTT" style="width: 4%;">TT</th>
                     <th class="DataListTableHeaderTdItemJustify">Tên vị trí</th>
                     <th class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái</th>
-                    <th class="DataListTableHeaderTdItemCenter" style="width: 3%;">Sửa</th>
-                    <th class="DataListTableHeaderTdItemCenter" style="width: 3%;">Xóa</th>
+                    <th class="DataListTableHeaderTdItemCenter" style="width: 6%;">Sửa | Xóa</th>
                 </tr>
         </HeaderTemplate>
         <ItemTemplate>
-            <tr>
+            <tr style="height: 36px;">
                 <td class="DataListTableTdItemTT"><%# this.index++ %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("NameViTri") %></td>
                 <%--<td class="DataListTableTdItemJustify"><%# Eval("ACCT_EMAIL") %></td>--%>
@@ -22,8 +21,7 @@
                 <td class="DataListTableTdItemCenter">
                     <a href="ViTriEdit.aspx?id=<%# Eval("ID") %>">
                         <img src="/Images/Edit.png" alt=""></a>
-                </td>
-                <td class="DataListTableTdItemCenter">
+                    &nbsp;
                     <a href="ViTriDel.aspx?id=<%# Eval("ID") %>">
                         <img src="/Images/delete.png" alt=""></a>
                 </td>

@@ -6,12 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_Provincer : System.Web.UI.Page
+public partial class Admin_NganhNghe : System.Web.UI.Page
 {
     #region declare objects
     private DataTable objTable = new DataTable();
     private Account objAccount = new Account();
-    private Provincer objProvincer = new Provincer();
+    private NganhNghe objNganhNghe = new NganhNghe();
     private SearchConfig objSearchConfig = new SearchConfig();
     private int currPage = 0;
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
@@ -30,23 +30,24 @@ public partial class Admin_Provincer : System.Web.UI.Page
         //}
         if (!Page.IsPostBack)
         {
-            this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "tblProvincer", "Name");
+            this.txtSearch.Value = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "TblTuVan", "NameTuVan");
             this.getData();
         }
-    } 
+        this.txtSearch.Focus();
+    }
     #endregion
 
     #region getData()
     private void getData()
     {
-        this.objTable = this.objProvincer.getData(this.txtSearch.Text);
-        cpProvincer.MaxPages = 1000;
-        cpProvincer.PageSize = 12;
-        cpProvincer.DataSource = this.objTable.DefaultView;
-        cpProvincer.BindToControl = dtlProvincer;
-        dtlProvincer.DataSource = cpProvincer.DataSourcePaged;
-        dtlProvincer.DataBind();
-        if (this.objTable.Rows.Count < 12)
+        this.objTable = this.objNganhNghe.getData(this.txtSearch.Value);
+        cpNganhNghe.MaxPages = 1000;
+        cpNganhNghe.PageSize = 15;
+        cpNganhNghe.DataSource = this.objTable.DefaultView;
+        cpNganhNghe.BindToControl = dtlNganhNghe;
+        dtlNganhNghe.DataSource = cpNganhNghe.DataSourcePaged;
+        dtlNganhNghe.DataBind();
+        if (this.objTable.Rows.Count < 9)
         {
             this.tblABC.Visible = false;
         }
@@ -63,7 +64,7 @@ public partial class Admin_Provincer : System.Web.UI.Page
         this.getData();
 
         #region Luu gia tri tim kiem vao bang cau hinh
-        this.objSearchConfig.setData(Session["ACCOUNT"].ToString(), "tblProvincer", "Name", this.txtSearch.Text.Trim());
+        this.objSearchConfig.setData(Session["ACCOUNT"].ToString(), "TblDTNganhNghe", "NameDTNganhNghe", this.txtSearch.Value.Trim());
         #endregion
     }
     #endregion

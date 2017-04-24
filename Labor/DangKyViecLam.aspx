@@ -3,18 +3,18 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-     <script type="text/javascript">
-         $(function () {
-             $('#datetimepicker1').datetimepicker({
-                 format: 'DD/MM/YYYY'
-             });
-         });
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
 
-         $(function () {
-             $('#datetimepicker2').datetimepicker({
-                 format: 'DD/MM/YYYY'
-             });
-         });
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
 
     </script>
     <table class="table" style="margin-top: -20px;">
@@ -22,7 +22,7 @@
             <td>
                 <input type="text" id="txtSearch" placeholder="Nhập mã hoặc tên doanh nghiệp để tìm kiếm" runat="server" class="form-control" />
             </td>
-            <td style ="width:180px;">
+            <td style="width: 180px;">
                 <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control" id="txtNgayBatDau" runat="server" />
                     <span class="input-group-addon">
@@ -36,7 +36,7 @@
                     });
                 </script>
             </td>
-            <td style ="width:180px;">
+            <td style="width: 180px;">
                 <div class='input-group date' id='datetimepicker2' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control" id="txtNgayKetThuc" runat="server" />
                     <span class="input-group-addon">
@@ -71,7 +71,7 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Người lao động
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 20%;">Tên công việc
+                <td class="DataListTableHeaderTdItemJustify" style="width: 19%;">Tên công việc
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Vị trí
                 </td>
@@ -81,7 +81,7 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Trạng thái
                 </td>
-                <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;
+                <td class="DataListTableHeaderTdItemCenter" style="width: 7%;">&nbsp;
                 </td>
             </tr>
         </table>
@@ -98,7 +98,7 @@
                     <td class="DataListTableTdItemJustify" style="width: 15%;">
                         <%# Eval("HoVaTen") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 20%;">
+                    <td class="DataListTableTdItemJustify" style="width: 19%;">
                         <%# Eval("TenCongViec") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 15%;">
@@ -113,11 +113,9 @@
                     <td class="DataListTableTdItemJustify" style="width: 12%;">
                         <%# Eval("NameState") %>
                     </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                    <td class="DataListTableTdItemCenter" style="width: 7%;">
                         <a href="DangKyViecLamEdit.aspx?id=<%# Eval("IDNldDangKy") %>">
-                            <img src="../Images/Edit.png" alt=""></a>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                            <img src="../Images/Edit.png" alt=""></a>&nbsp;
                         <a href="DangKyViecLamDel.aspx?id=<%# Eval("IDNldDangKy") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>

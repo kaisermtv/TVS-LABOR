@@ -25,8 +25,10 @@
         }
     </style>
 </head>
-<body style="padding: 10px; padding-left: 20px; padding-right: 20px; background-color: #fff;">
+<body style="padding: 10px; padding-left: 20px; padding-right: 20px; background-color: #fff!important; height: 100%!important; min-height: 100%!important; max-height: 100%!important;">
     <form id="form1" runat="server">
+        <h3 style="text-align: center;">THÔNG TIN CHI TIẾT VỀ TIN TUYỂN DỤNG</h3>
+        <hr />
         <table border="0">
             <tr style="height: 40px;">
                 <td colspan="6">
@@ -45,7 +47,8 @@
                 </td>
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Ngành nghề:</td>
                 <td style="width: 20%;">
-                    <asp:DropDownList ID="ddlIDNganhNghe" Enabled="false" runat="server" Style="width: 100%; border:none; background-color:#fff;">
+                    <asp:Label ID="lblIDNganhNghe" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                    <asp:DropDownList ID="ddlIDNganhNghe" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -58,7 +61,8 @@
             <tr style="height: 40px;">
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí:</td>
                 <td style="width: 12%;">
-                    <asp:DropDownList ID="ddlIdVitri" runat="server" Enabled="false" Style="width: 100%; border:none; background-color:#fff;">
+                    <asp:Label ID="lblIdVitri" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                    <asp:DropDownList ID="ddlIdVitri" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                     </asp:DropDownList>
                 </td>
                 <td style="width: 8%; text-align: right; padding-right: 5px;">Chức vụ:</td>
@@ -66,7 +70,8 @@
                     <table style="width: 100%">
                         <tr>
                             <td style="width: 45%">
-                                <asp:DropDownList ID="ddlIDChucVu" runat="server" Enabled="false" Style="width: 100%; border:none; background-color:#fff;">
+                                <asp:Label ID="lblIDChucVu" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                                <asp:DropDownList ID="ddlIDChucVu" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 25%; padding-right: 5px; text-align: right">Số lượng: </td>
@@ -79,7 +84,8 @@
                 </td>
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Nhóm ngành:</td>
                 <td style="width: 20%;">
-                    <asp:DropDownList ID="ddlNhomNganh" runat="server" Enabled ="false" Style="width: 100%; border:none; background-color:#fff;">
+                    <asp:Label ID="lblNhomNganh" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                    <asp:DropDownList ID="ddlNhomNganh" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                         <asp:ListItem Value="0"> Không chọn </asp:ListItem>
                     </asp:DropDownList>
                 </td>
@@ -88,12 +94,14 @@
             <tr style="height: 40px;">
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Giới tính:</td>
                 <td style="width: 12%;">
-                    <asp:DropDownList ID="ddlIDGioiTinh" runat="server" Enabled="false" Style="width: 100%; border:none; background-color:#fff;">
+                    <asp:Label ID="lblIDGioiTinh" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                    <asp:DropDownList ID="ddlIDGioiTinh" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                     </asp:DropDownList>
                 </td>
                 <td style="width: 8%; text-align: right; padding-right: 5px;">Độ tuổi:</td>
                 <td style="width: 40%;">
-                    <asp:DropDownList ID="ddlIDDoTuoi" runat="server" Enabled="false" Style="width: 100%; border:none; background-color:#fff;">
+                    <asp:Label ID="lblIDDoTuoi" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                    <asp:DropDownList ID="ddlIDDoTuoi" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                     </asp:DropDownList>
                 </td>
                 <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
@@ -104,7 +112,8 @@
             <tr style="height: 40px;">
                 <td style="width: 10%; text-align: right; padding-right: 5px;">TĐ Chuyên môn:</td>
                 <td style="width: 12%;">
-                    <asp:DropDownList ID="ddlIDTrinhDoChuyenMon" Enabled="false" runat="server" Style="width: 100%; border:none; background-color:#fff;">
+                    <asp:Label ID="lblIDTrinhDoChuyenMon" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                    <asp:DropDownList ID="ddlIDTrinhDoChuyenMon" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                     </asp:DropDownList>
                 </td>
                 <td style="width: 8%; text-align: right; padding-right: 5px;">Ngoại ngữ:</td>
@@ -112,13 +121,15 @@
                     <table style="width: 90%;">
                         <tr>
                             <td style="width: 33%;">
-                                <asp:DropDownList ID="ddlyeuCauNgoaiNgu" Enabled="false" runat="server" Style="width: 100%; border:none; background-color:#fff;">
+                                <asp:Label ID="lblyeuCauNgoaiNgu" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                                <asp:DropDownList ID="ddlyeuCauNgoaiNgu" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 45%; text-align: right; padding-right: 10px">Tin Học:
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlyeuCauTinHoc" Enabled ="false" runat="server" Style="width: 100%; border:none; background-color:#fff;">
+                                <asp:Label ID="lblyeuCauTinHoc" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                                <asp:DropDownList ID="ddlyeuCauTinHoc" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -127,7 +138,7 @@
                 </td>
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Kinh nghiệm:</td>
                 <td style="width: 20%;">
-                    <asp:Label ID="txtNamKinhNghiem" runat="server" ReadOnly ="true"></asp:Label>
+                    <asp:Label ID="txtNamKinhNghiem" runat="server" ReadOnly="true"></asp:Label>
                 </td>
 
             </tr>
@@ -179,13 +190,15 @@
                     <table style="width: 90%;">
                         <tr>
                             <td style="width: 33%;">
-                                <asp:DropDownList ID="ddlIDMucLuong" Enabled ="false" runat="server" Style="width: 100%; border:none; background-color:#fff;">
+                                <asp:Label ID="lblIDMucLuong" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                                <asp:DropDownList ID="ddlIDMucLuong" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 33%; text-align: right; padding-right: 10px">Thời gian làm việc:
                             </td>
                             <td style="width: 33%;">
-                                <asp:DropDownList ID="ddlThoiGianLamViec" Enabled ="false" runat="server" Style="width: 100%; border:none; background-color:#fff;">
+                                <asp:Label ID="lblThoiGianLamViec" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                                <asp:DropDownList ID="ddlThoiGianLamViec" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
                                     <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
                                     <asp:ListItem Value="1"> Hành chính </asp:ListItem>
                                     <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
@@ -197,7 +210,7 @@
                     </table>
                 </td>
                 <td style="width: 20%;">
-                    <asp:CheckBox ID="ckbNuocNgoai" runat="server" Style="font-weight: normal;" Enabled ="false" />&nbsp;&nbsp;Làm việc ở nước ngoài
+                    <asp:CheckBox ID="ckbNuocNgoai" runat="server" Style="font-weight: normal;" Enabled="false" />&nbsp;&nbsp;Làm việc ở nước ngoài
                 </td>
             </tr>
 
@@ -205,7 +218,7 @@
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày bắt đầu:</td>
                 <td style="width: 12%;">
                     <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
-                        <input type='text' id="txtNgayBatDau" runat="server" style ="border:none;" />
+                        <input type='text' id="txtNgayBatDau" runat="server" style="border: none;" />
                     </div>
 
                     <script type="text/javascript">
@@ -217,7 +230,7 @@
                 <td style="width: 8%; text-align: right; padding-right: 5px;">Kết thúc:</td>
                 <td style="width: 40%;">
                     <div class='input-group date' id='datetimepicker2' style="margin-left: 0px; width: 160px !important;">
-                        <input type='text' id="txtNgayKetThuc" runat="server" style ="border:none;" />
+                        <input type='text' id="txtNgayKetThuc" runat="server" style="border: none;" />
                     </div>
 
                     <script type="text/javascript">
@@ -229,7 +242,7 @@
                 </td>
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Trạng thái:</td>
                 <td style="width: 20%;">
-                    <asp:CheckBox ID="ckbState" Checked="true" runat="server" Style="font-weight: normal;" Enabled ="false" />&nbsp;&nbsp;Kích hoạt
+                    <asp:CheckBox ID="ckbState" Checked="true" runat="server" Style="font-weight: normal;" Enabled="false" />&nbsp;&nbsp;Kích hoạt
                 </td>
             </tr>
 

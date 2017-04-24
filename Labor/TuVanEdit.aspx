@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-     <!-- Đặt ở đây không phải master - vì bị đè -->
+    <!-- Đặt ở đây không phải master - vì bị đè -->
     <script src="../Scripts/select2.min.js"></script>
-	<link href="../css/select2.min.css" rel="stylesheet" />
+    <link href="../css/select2.min.css" rel="stylesheet" />
 
     <script type="text/javascript">
         $(function () {
@@ -194,7 +194,7 @@
                     </td>
 
                     <td rowspan="2">
-                        <asp:Button ID="Button3" runat="server" Text="|" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="Button3_Click" /></td>
+                        <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
                 </tr>
 
                 <tr style="height: 40px;">
@@ -288,7 +288,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 10%; text-align: right; padding-right: 5px;">Trình độ đào tạo:</td>
-                        <td style="width: 34%;">
+                        <td style="width: 32.8%;">
                             <asp:TextBox ID="txtTrinhDoDaoTao" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                         <td style="text-align: right; width: 110px; padding-right: 5px;">Kỹ năng nghề:</td>
@@ -305,7 +305,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <td style="width: 10%; text-align: right; padding-right: 5px;">Khả năng nổi trội:</td>
-                        <td style="width: 34%;">
+                        <td style="width: 32.8%;">
                             <asp:TextBox ID="txtKhaNangNoiTroi" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                         <td style="width: 110px; text-align: right; padding-right: 5px;">Mức lương TN:</td>
@@ -370,15 +370,16 @@
             <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
             <td style="width: 90%;" colspan="6">
 
-                <asp:TextBox ID="txtViTriCongViec" Visible ="true" runat="server" Height="0" Width="0" BorderWidth="0" ></asp:TextBox>
-                    <!---Tự động hoàn tất -->
-                    <select class="js-example-basic-multiple" id="ddlQickSelect"  multiple="multiple"   style="width:100%" >
-                         <%foreach(string i in lv_Vitri) {%>
-                         <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
-                         <%} %>
-                        </select>
-                  
-               </td>
+                <asp:TextBox ID="txtViTriCongViec" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0"></asp:TextBox>
+                <!---Tự động hoàn tất -->
+                <select class="js-example-basic-multiple" id="ddlQickSelect" multiple="multiple" style="width: 100%">
+                    <%foreach (string i in lv_Vitri)
+                      {%>
+                    <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                    <%} %>
+                </select>
+
+            </td>
         </tr>
 
         <tr style="height: 40px;">
@@ -420,7 +421,7 @@
         <table border="0" style="width: 100%; margin-top: -8px;">
             <tr>
                 <td style="width: 700px; padding-left: 15px;">
-                    <asp:Button ID="btnSave" runat="server"   Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                     <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
                     <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
                     <button class="btn btn-danger" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
@@ -430,8 +431,8 @@
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </td>
                 <td style="width: 390px;">
-                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung(1)" id="Button1" runat="server"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
-                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung()" id="Button2" runat="server"><% Response.Write(this.strBtnViecLamNgoai); %></button>
+                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')" id="Button1" runat="server"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
+                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('1')" id="Button2" runat="server"><% Response.Write(this.strBtnViecLamNgoai); %></button>
                 </td>
             </tr>
         </table>
@@ -447,7 +448,7 @@
 
             if (IdNguoiLaoDong != 0) {
 
-                var w = 1000;
+                var w = 1100;
                 var h = 600;
 
                 var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
@@ -472,7 +473,7 @@
 
             if (IdNguoiLaoDong != 0) {
 
-                var w = 1000;
+                var w = 1100;
                 var h = 600;
 
                 var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
@@ -573,8 +574,6 @@
             var mucluong = document.getElementById("MainContent_txtMucLuongThapNhat").value;
             var dieukien = document.getElementById("MainContent_txtDieuKienLamViec").value;
             var diadiem = document.getElementById("MainContent_txtDiaDiemLamViec").value;
-
-
             var w = screen.width;
             var h = screen.height;
 
@@ -586,7 +585,7 @@
 
             var left = ((width / 2) - (w / 2));// + dualScreenLeft;
             var top = ((height / 2) - (h / 2));// + dualScreenTop;
-            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem+"&nuocngoai="+value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
             if (window.focus) {
                 newWindow.focus();
@@ -595,29 +594,29 @@
 
     </script>
     <script>
-          function getValue() { // lấy nội dung vào txtVitriCongviec
-              var x = document.getElementsByClassName("select2-selection__choice");
-              var i;
-              var str = '';
-              for (i = 0; i < x.length; i++) {
-                  str += x[i].textContent;
-              }
-              return str;
-          }
-          function load()      // load dử liệu vào textbox
-          {
-              document.getElementById('MainContent_txtViTriCongViec').value = getValue();
-          }
-                </script>
-                    <script type="text/javascript">
-                        $(".js-example-basic-multiple").select2();
-                  </script>
-                    <script type="text/javascript" language="javascript">
-                        $(document).ready(function () {
-                            $('#<%= btnSave.ClientID %>').click(function (e) {
+        function getValue() { // lấy nội dung vào txtVitriCongviec
+            var x = document.getElementsByClassName("select2-selection__choice");
+            var i;
+            var str = '';
+            for (i = 0; i < x.length; i++) {
+                str += x[i].textContent;
+            }
+            return str;
+        }
+        function load()      // load dử liệu vào textbox
+        {
+            document.getElementById('MainContent_txtViTriCongViec').value = getValue();
+        }
+    </script>
+    <script type="text/javascript">
+        $(".js-example-basic-multiple").select2();
+    </script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            $('#<%= btnSave.ClientID %>').click(function (e) {
                                 load();     // gọi đến sự kiện lưu lại
                             });
                         });
-                </script>
+    </script>
 </asp:Content>
 

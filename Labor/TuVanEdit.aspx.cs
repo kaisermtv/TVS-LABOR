@@ -202,7 +202,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ckbTuVanHocNghe.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanHocNghe"].ToString());
                 this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
-             //   this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
+                this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                 /* Load defaut selected mode */
                 try
                 {
@@ -350,18 +350,12 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
         if (this.txtChieuCao.Text.Trim() == "")
         {
-            //this.lblMsg.Text = "Bạn chưa nhập chiều cao của người lao động";
             this.txtChieuCao.Text = "0";
-            //this.txtChieuCao.Focus();
-            //return;
         }
 
         if (this.txtCanNang.Text.Trim() == "")
         {
-           // this.lblMsg.Text = "Bạn chưa nhập cân nặng của người lao động";
             this.txtCanNang.Text = "0";
-            //this.txtCanNang.Focus();
-            //return;
         }
 
         if (this.txtNgayCapCMND.Value.Trim() == "")
@@ -374,10 +368,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
         if (this.txtMucLuongTN.Text.Trim() == "")
         {
-            //this.lblMsg.Text = "Bạn chưa nhập mức lương thất nghiệp gần nhất";
-            //this.txtMucLuongTN.Focus();
-            //return;
-
             this.txtMucLuongTN.Text = "0";
         }
 
@@ -388,9 +378,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         }
         catch
         {
-            //this.lblMsg.Text = "Bạn chưa nhập mức lương thất nghiệp gần nhất";
-            //this.txtMucLuongTN.Focus();
-            //return;
         }
 
         if (this.txtMucLuongThapNhat.Text.Trim() == "")
@@ -405,9 +392,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         }
         catch
         {
-            //this.lblMsg.Text = "Bạn chưa nhập mức lương thất nghiệp gần nhất";
-            //this.txtMucLuongTN.Focus();
-            //return;
         }
 
         if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, this.txtHoVaTen.Text, TVSSystem.CVDate(this.txtNgaySinh.Value.ToString().Trim()), this.txtCMND.Text, this.txtNoiCap.Text, TVSSystem.CVDate(this.txtNgayCapCMND.Value.ToString().Trim()),
@@ -543,7 +527,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         ddlXa_DC.Focus();
     } 
     #endregion
-    protected void Button3_Click(object sender, EventArgs e)
+
+    #region method btnCopy_Click
+    protected void btnCopy_Click(object sender, EventArgs e)
     {
         ddlTinh_DC.SelectedValue = ddlTinh_TT.SelectedValue;
 
@@ -562,5 +548,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         txtXom_DC.Text = txtXom_TT.Text;
 
         txtSucKhoe.Focus();
-    }
+    } 
+    #endregion
 }

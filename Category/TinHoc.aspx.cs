@@ -42,12 +42,12 @@ public partial class Admin_TinHoc : System.Web.UI.Page
     {
         this.objTable = this.objTinHoc.getData(this.txtSearch.Text);
         cpTinHoc.MaxPages = 1000;
-        cpTinHoc.PageSize = 15;
+        cpTinHoc.PageSize = 12;
         cpTinHoc.DataSource = this.objTable.DefaultView;
         cpTinHoc.BindToControl = dtlTinHoc;
         dtlTinHoc.DataSource = cpTinHoc.DataSourcePaged;
         dtlTinHoc.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

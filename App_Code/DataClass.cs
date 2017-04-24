@@ -18,6 +18,8 @@ public class DataClass
     #endregion
 
     #region method SQLConnect
+
+    #region method getSQLConnect
     protected SqlCommand getSQLConnect()
     {
         try
@@ -42,8 +44,10 @@ public class DataClass
         {
             throw ex;
         }
-    }
+    } 
+    #endregion
 
+    #region method SQLClose
     protected void SQLClose()
     {
         if (this.sqlCon != null)
@@ -62,8 +66,10 @@ public class DataClass
             }
 
         }
-    }
+    } 
+    #endregion
 
+    #region method findFirst
     protected DataRow findFirst(SqlCommand Cmd)
     {
         SqlDataAdapter da = new SqlDataAdapter();
@@ -79,8 +85,10 @@ public class DataClass
         {
             return null;
         }
-    }
+    } 
+    #endregion
 
+    #region method findAll
     protected DataTable findAll(SqlCommand Cmd)
     {
         SqlDataAdapter da = new SqlDataAdapter();
@@ -89,6 +97,8 @@ public class DataClass
         da.Fill(ds);
 
         return ds.Tables[0];
-    }
+    } 
+    #endregion
+
     #endregion
 }

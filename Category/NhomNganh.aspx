@@ -8,21 +8,21 @@
             Nhóm ngành
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtSearch" runat="server" Style="width: 35% !important; height: 28px; line-height: 28px;"></asp:TextBox>
+            <asp:TextBox ID="txtSearch" runat="server" CssClass ="form-control" Style="width: 35% !important; float:left;"></asp:TextBox>&nbsp;
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -8px;" OnClick="btnSearch_Click" />
         </div>
     </div>
 
     <div style="width: 100%;">
-        <table class="DataListTableHeader" border ="0">
-            <tr style ="height:40px;">
+        <table class="DataListTableHeader" border="0">
+            <tr style="height: 40px;">
                 <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Mã số
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 36%;">Tên nhóm ngành
+                <td class="DataListTableHeaderTdItemJustify">Tên nhóm ngành
                 </td>
-                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái
+                <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái
                 </td>
                 <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;
                 </td>
@@ -34,24 +34,23 @@
         Width="100%">
         <ItemTemplate>
             <table class="DataListTable" border="0">
-                <tr style ="height:40px;">
+                <tr style="height: 36px;">
                     <td class="DataListTableTdItemTT" style="width: 3%;">
                         <%# Eval("TT") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 15%;">
                         <%# Eval("CodeNhomNganh") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 36%;">
+                    <td class="DataListTableTdItemJustify">
                         <%# Eval("NameNhomNganh") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("StateName") %>
                     </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                    <td class="DataListTableTdItemCenter" style="width: 6%;">
                         <a href="NhomNganhEdit.aspx?id=<%# Eval("IDNhomNganh") %>">
                             <img src="../Images/Edit.png" alt=""></a>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                        &nbsp;
                         <a href="NhomNganhDel.aspx?id=<%# Eval("IDNhomNganh") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>

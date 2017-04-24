@@ -13,6 +13,8 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
     private Account objAccount = new Account();
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     private TrinhDoChuyenMon objTrinhDoChuyenMon = new TrinhDoChuyenMon();
+    private NhomNganh objNhomNganh = new NhomNganh();
+    private NganhNghe objNganhNghe = new NganhNghe();
     private SearchConfig objSearchConfig = new SearchConfig();
     private int IDNldQuaTrinhDaoTao = 0, IDNguoiLaoDong = 0;
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
@@ -25,10 +27,7 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-        //if (!this.objAccount.checkForFunction(Session["ACCOUNT"].ToString(), 3, ref View, ref Add, ref Edit, ref Del, ref Orther))
-        //{
-        //    Response.Redirect("NoPermission.aspx");
-        //}
+        
         try
         {
             this.IDNldQuaTrinhDaoTao = int.Parse(Request.QueryString["idDT"].ToString());
@@ -47,6 +46,12 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
+            this.ddlNhomNganh.DataSource = this.objNhomNganh.getDataCategoryToCombobox();
+            this.ddlNhomNganh.DataTextField = "NameNhomNganh";
+            this.ddlNhomNganh.DataValueField = "IdNhomNganh";
+            this.ddlNhomNganh.DataBind();
+            this.ddlNhomNganh.SelectedValue = "0";
+
             this.ddlTrinhDoChuyenMon.DataSource = this.objTrinhDoChuyenMon.getDataCategoryToCombobox();
             this.ddlTrinhDoChuyenMon.DataTextField = "NameTrinhDoChuyenMon";
             this.ddlTrinhDoChuyenMon.DataValueField = "IDTrinhDoChuyenMon";
@@ -55,15 +60,19 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
             this.objTable = this.objNguoiLaoDong.getDataNldQuaTrinhDaoTaoById(this.IDNldQuaTrinhDaoTao);
             if (this.objTable.Rows.Count > 0)
             {
-                this.txtDonVi.Text = this.objTable.Rows[0]["DonVi"].ToString();
+                this.ddlNhomNganh.SelectedValue = this.objTable.Rows[0]["IdNhomNganh"].ToString();
+                
+                this.ddlNganhNghe.DataSource = this.objNganhNghe.getDataCategoryToCombobox(this.ddlNhomNganh.SelectedValue.ToString());
+                this.ddlNganhNghe.DataTextField = "NameDTNganhNghe";
+                this.ddlNganhNghe.DataValueField = "IDDTNganhNghe";
+                this.ddlNganhNghe.DataBind();
+
+                this.ddlNganhNghe.SelectedValue = this.objTable.Rows[0]["IDDTNganhNghe"].ToString();
+
                 this.ddlTrinhDoChuyenMon.SelectedValue = this.objTable.Rows[0]["IDTrinhdochuyenmon"].ToString();
-                this.txtNgayBatDau.Value = DateTime.Parse(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString("dd/MM/yyyy");
-                this.txtNgayKetThuc.Value = DateTime.Parse(this.objTable.Rows[0]["NgayKetThuc"].ToString()).ToString("dd/MM/yyyy");
             }
             
             this.getData();
-
-            this.txtDonVi.Focus();
         }
     }
     #endregion
@@ -96,30 +105,19 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
         {
             this.lblMsg.Text = "";
 
-            if (this.txtDonVi.Text == "")
+            if (this.ddlNhomNganh.SelectedValue == "0")
             {
-                this.lblMsg.Text = "Bạn chưa nhập tên đơn vị";
-                this.txtDonVi.Focus();
+                this.lblMsg.Text = "Bạn chưa chọn ngành nghề cho người lao động!";
                 return;
             }
 
-            if (this.txtNgayBatDau.Value.Trim() == "")
+            if (this.ddlNganhNghe.SelectedValue == "0")
             {
-                this.lblMsg.Text = "Bạn chưa nhập ngày bắt đầu đào tạo";
-                this.txtNgayBatDau.Value = DateTime.Now.ToString();
-                this.txtNgayBatDau.Focus();
+                this.lblMsg.Text = "Bạn chưa chọn ngành nghề cho người lao động!";
                 return;
             }
 
-            if (this.txtNgayKetThuc.Value.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập ngày kết thúc đào tạo";
-                this.txtNgayKetThuc.Value = DateTime.Now.ToString();
-                this.txtNgayKetThuc.Focus();
-                return;
-            }
-
-            if (this.objNguoiLaoDong.setDataNldQuaTrinhDaoTao(this.IDNldQuaTrinhDaoTao, this.IDNguoiLaoDong, this.txtDonVi.Text, int.Parse(this.ddlTrinhDoChuyenMon.SelectedValue.ToString()), TVSSystem.CVDate(this.txtNgayBatDau.Value.Trim()), TVSSystem.CVDate(this.txtNgayKetThuc.Value.Trim())) == 1)
+            if (this.objNguoiLaoDong.setDataNldQuaTrinhDaoTao(this.IDNldQuaTrinhDaoTao, this.IDNguoiLaoDong, "", int.Parse(this.ddlTrinhDoChuyenMon.SelectedValue.ToString()), int.Parse(this.ddlNhomNganh.SelectedValue.ToString()), int.Parse(this.ddlNganhNghe.SelectedValue.ToString())) == 1)
             {
                 this.getData();
             }
@@ -143,5 +141,16 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
         this.objNguoiLaoDong.delDataNldQuaTrinhDaoTao(this.IDNldQuaTrinhDaoTao);
         this.getData();
     } 
+    #endregion
+
+    #region method ddlNhomNganh_SelectedIndexChanged
+    protected void ddlNhomNganh_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        this.ddlNganhNghe.DataSource = this.objNganhNghe.getDataCategoryToCombobox(this.ddlNhomNganh.SelectedValue.ToString());
+        this.ddlNganhNghe.DataTextField = "NameDTNganhNghe";
+        this.ddlNganhNghe.DataValueField = "IDDTNganhNghe";
+        this.ddlNganhNghe.DataBind();
+        this.ddlNganhNghe.SelectedValue = "0";
+    }
     #endregion
 }

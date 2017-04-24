@@ -1,26 +1,27 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="LinhVuc.aspx.cs" Inherits="Admin_LinhVuc" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="NganhNghe.aspx.cs" Inherits="Admin_NganhNghe" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div style="width: 100%; height: 35px; line-height: 35px; margin-bottom: 10px;">
-        <div class="AdminLeftItem">
-            LĨNH VỰC
-        </div>
-        <div class="AdminRightItem">
-            <asp:TextBox ID="txtSearch" runat="server" CssClass ="form-control" Style="width: 35% !important; float:left;"></asp:TextBox>&nbsp;
-            <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -8px;" OnClick="btnSearch_Click" />
-        </div>
-    </div>
+    <table class="table" border ="0" style ="margin-top:-20px;">
+        <tr>
+            <td>
+                <input type="text" id="txtSearch" placeholder="Nhập mã hoặc tên ngành nghề để tìm kiếm" runat="server" class="form-control" />
+            </td>
+            <td style="width: 40px !important; text-align: center;">
+                <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left: -15px;" OnClick="btnSearch_Click" />
+            </td>
+        </tr>
+    </table>
 
-    <div style="width: 100%;">
+    <div style="width: 100%; margin-top:-20px;">
         <table class="DataListTableHeader" border ="0">
             <tr style ="height:40px;">
                 <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Mã số
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 36%;">Tên lĩnh vực
+                <td class="DataListTableHeaderTdItemJustify" style="width: 36%;">Tên ngành nghề
                 </td>
                  <td class="DataListTableHeaderTdItemJustify" style="width: 30%;">Ghi chú
                 </td>
@@ -32,7 +33,7 @@
         </table>
     </div>
 
-    <asp:DataList ID="dtlLinhVuc" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
+    <asp:DataList ID="dtlNganhNghe" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
         Width="100%">
         <ItemTemplate>
             <table class="DataListTable" border="0">
@@ -41,10 +42,10 @@
                         <%# Eval("TT") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 15%;">
-                        <%# Eval("CodeLinhVuc") %>
+                        <%# Eval("CodeDTNganhNghe") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 36%;">
-                        <%# Eval("NameLinhVuc") %>
+                        <%# Eval("NameDTNganhNghe") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 30%;">
                         <%# Eval("Note") %>
@@ -53,22 +54,22 @@
                         <%# Eval("StateName") %>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 3%;">
-                        <a href="LinhVucEdit.aspx?id=<%# Eval("IDLinhVuc") %>">
+                        <a href="NganhNgheEdit.aspx?id=<%# Eval("IDDTNganhNghe") %>">
                             <img src="../Images/Edit.png" alt=""></a>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 3%;">
-                        <a href="LinhVucDel.aspx?id=<%# Eval("IDLinhVuc") %>">
+                        <a href="NganhNgheDel.aspx?id=<%# Eval("IDDTNganhNghe") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>
                 </tr>
             </table>
         </ItemTemplate>
     </asp:DataList>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
         id="tblABC" runat="server">
         <tr>
             <td style="padding-left: 6px;">
-                <cc1:CollectionPager ID="cpLinhVuc" runat="server" BackText="" FirstText="Đầu"
+                <cc1:CollectionPager ID="cpNganhNghe" runat="server" BackText="" FirstText="Đầu"
                     ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                     ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
                     PageNumbersSeparator="&nbsp;">
@@ -77,9 +78,9 @@
         </tr>
     </table>
     <br />
-    <a href="LinhVucEdit.aspx">
+    <a href="TuVanEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
-     <a href="ListCategory.aspx">
+    <a href="ListCategory.aspx">
         <input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
 </asp:Content>
 

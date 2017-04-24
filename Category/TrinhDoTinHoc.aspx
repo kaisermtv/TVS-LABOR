@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
         <HeaderTemplate>
-            <table class="DataListTable">
+            <table class="DataListTable" style="height: 40px;">
                 <tr class="DataListTableHeader">
                     <th class="DataListTableHeaderTdItemTT" style="width: 4%;">TT</th>
                     <th class="DataListTableHeaderTdItemJustify">Tên trình độ</th>
@@ -17,7 +17,7 @@
                 </tr>
         </HeaderTemplate>
         <ItemTemplate>
-            <tr>
+            <tr style="height: 36px;">
                 <td class="DataListTableTdItemTT"><%# this.index++ %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("NameTrinhDo") %></td>
                 <%--<td class="DataListTableTdItemJustify"><%# Eval("ACCT_EMAIL") %></td>--%>

@@ -24,11 +24,8 @@ public partial class Category_Vitri : System.Web.UI.Page
         ViTri objViTri = new ViTri();
         DataTable objData = objViTri.getList();
 
-        //dtlAccount.DataSource = objData.DefaultView;
-        //dtlAccount.DataBind();
-
         cpData.MaxPages = 1000;
-        cpData.PageSize = 15;
+        cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
         cpData.BindToControl = dtlData;
         dtlData.DataSource = cpData.DataSourcePaged;

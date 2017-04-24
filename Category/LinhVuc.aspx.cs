@@ -42,12 +42,12 @@ public partial class Admin_LinhVuc : System.Web.UI.Page
     {
         this.objTable = this.objLinhVuc.getData(this.txtSearch.Text);
         cpLinhVuc.MaxPages = 1000;
-        cpLinhVuc.PageSize = 15;
+        cpLinhVuc.PageSize = 12;
         cpLinhVuc.DataSource = this.objTable.DefaultView;
         cpLinhVuc.BindToControl = dtlLinhVuc;
         dtlLinhVuc.DataSource = cpLinhVuc.DataSourcePaged;
         dtlLinhVuc.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

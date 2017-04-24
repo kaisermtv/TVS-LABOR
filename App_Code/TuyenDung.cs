@@ -14,7 +14,7 @@ public class TuyenDung :DataClass
     #endregion
 
     #region method setData
-    public int setData(ref int IDTuyenDung, int IDDonVi, int IDNhomNghanh,int IDViTri ,int IDChucVu, int IDNganhNghe, int SoLuongTuyenDung, int IDDoTuoi, int IDGioiTinh, int IDTrinhDoChuyenMon, string UuTien, string NoiDungKhac, string MoTa, int IDMucLuong, string DiaDiem, int IDTinh, bool NuocNgoai, string QuyenLoi, DateTime NgayBatDau, DateTime NgayKetThuc, bool State, int YCTinHoc, int YCNgoaiNgu, String NamKinhNghiem, int ThoiGianLamviec)
+    public int setData(ref int IDTuyenDung, int IDDonVi, int IDNhomNghanh, int IDViTri, int IDChucVu, int IDNganhNghe, int SoLuongTuyenDung, int IDDoTuoi, int IDGioiTinh, int IDTrinhDoChuyenMon, string UuTien, string NoiDungKhac, string MoTa, int IDMucLuong, string DiaDiem, int IDTinh, bool NuocNgoai, string QuyenLoi, DateTime NgayBatDau, DateTime NgayKetThuc, bool State, int YCTinHoc, int YCNgoaiNgu, String NamKinhNghiem, int ThoiGianLamviec, int IdTrinhDoTinHoc, int IdTrinhDoNgoaiNgu)
     {
         int tmpValue = 0;
 
@@ -23,8 +23,8 @@ public class TuyenDung :DataClass
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblTuyenDung WHERE IDTuyenDung = @IDTuyenDung) ";
-            sqlQuery += "BEGIN INSERT INTO TblTuyenDung(MaTuyenDung,IDDonVi,IDNhomNghanh,IdViTri,IDChucVu,IDNganhNghe,SoLuongTuyenDung,IDDoTuoi,IDGioiTinh,IDTrinhDoChuyenMon,UuTien,NoiDungKhac,MoTa,IDMucLuong,DiaDiem,IDTinh,NuocNgoai,QuyenLoi,NgayBatDau,NgayKetThuc,State,YCNgoaiNgu,YCTinHoc,NamKinhNghiem,ThoiGianLamViec) OUTPUT INSERTED.IDTuyenDung VALUES(@MaTuyenDung,@IDDonVi,@IDNhomNghanh,@IdViTri,@IDChucVu,@IDNganhNghe,@SoLuongTuyenDung,@IDDoTuoi,@IDGioiTinh,@IDTrinhDoChuyenMon,@UuTien,@NoiDungKhac,@MoTa,@IDMucLuong,@DiaDiem,@IDTinh,@NuocNgoai,@QuyenLoi,@NgayBatDau,@NgayKetThuc,@State,@YCNgoaiNgu,@YCTinHoc,@NamKinhNghiem,@ThoiGianLamViec) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblTuyenDung SET IDDonVi = @IDDonVi, IDNhomNghanh = @IDNhomNghanh,IdViTri = @IdViTri, IDChucVu = @IDChucVu,IDNganhNghe = @IDNganhNghe,SoLuongTuyenDung = @SoLuongTuyenDung,IDDoTuoi = @IDDoTuoi,IDGioiTinh = @IDGioiTinh,IDTrinhDoChuyenMon = @IDTrinhDoChuyenMon,UuTien = @UuTien,NoiDungKhac = @NoiDungKhac,MoTa = @MoTa,IDMucLuong = @IDMucLuong,DiaDiem = @DiaDiem, IDTinh = @IDTinh, NuocNgoai = @NuocNgoai,QuyenLoi = @QuyenLoi,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,State = @State,YCNgoaiNgu = @YCNgoaiNgu,YCTinHoc = @YCTinHoc,NamKinhNghiem = @NamKinhNghiem,ThoiGianLamViec = @ThoiGianLamViec OUTPUT INSERTED.IDTuyenDung WHERE IDTuyenDung = @IDTuyenDung END ";
+            sqlQuery += "BEGIN INSERT INTO TblTuyenDung(MaTuyenDung,IDDonVi,IDNhomNghanh,IdViTri,IDChucVu,IDNganhNghe,SoLuongTuyenDung,IDDoTuoi,IDGioiTinh,IDTrinhDoChuyenMon,UuTien,NoiDungKhac,MoTa,IDMucLuong,DiaDiem,IDTinh,NuocNgoai,QuyenLoi,NgayBatDau,NgayKetThuc,State,YCNgoaiNgu,YCTinHoc,NamKinhNghiem,ThoiGianLamViec,IdTrinhDoTinHoc,IdTrinhDoNgoaiNgu) OUTPUT INSERTED.IDTuyenDung VALUES(@MaTuyenDung,@IDDonVi,@IDNhomNghanh,@IdViTri,@IDChucVu,@IDNganhNghe,@SoLuongTuyenDung,@IDDoTuoi,@IDGioiTinh,@IDTrinhDoChuyenMon,@UuTien,@NoiDungKhac,@MoTa,@IDMucLuong,@DiaDiem,@IDTinh,@NuocNgoai,@QuyenLoi,@NgayBatDau,@NgayKetThuc,@State,@YCNgoaiNgu,@YCTinHoc,@NamKinhNghiem,@ThoiGianLamViec,@IdTrinhDoTinHoc,@IdTrinhDoNgoaiNgu) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblTuyenDung SET IDDonVi = @IDDonVi, IDNhomNghanh = @IDNhomNghanh,IdViTri = @IdViTri, IDChucVu = @IDChucVu,IDNganhNghe = @IDNganhNghe,SoLuongTuyenDung = @SoLuongTuyenDung,IDDoTuoi = @IDDoTuoi,IDGioiTinh = @IDGioiTinh,IDTrinhDoChuyenMon = @IDTrinhDoChuyenMon,UuTien = @UuTien,NoiDungKhac = @NoiDungKhac,MoTa = @MoTa,IDMucLuong = @IDMucLuong,DiaDiem = @DiaDiem, IDTinh = @IDTinh, NuocNgoai = @NuocNgoai,QuyenLoi = @QuyenLoi,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,State = @State,YCNgoaiNgu = @YCNgoaiNgu,YCTinHoc = @YCTinHoc,NamKinhNghiem = @NamKinhNghiem,ThoiGianLamViec = @ThoiGianLamViec, IdTrinhDoTinHoc = @IdTrinhDoTinHoc, IdTrinhDoNgoaiNgu = @IdTrinhDoNgoaiNgu OUTPUT INSERTED.IDTuyenDung WHERE IDTuyenDung = @IDTuyenDung END ";
             
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -68,7 +68,10 @@ public class TuyenDung :DataClass
             Cmd.Parameters.Add("YCTinHoc", SqlDbType.Int).Value = YCTinHoc;
             Cmd.Parameters.Add("NamKinhNghiem", SqlDbType.NVarChar).Value = NamKinhNghiem;
             Cmd.Parameters.Add("ThoiGianLamViec", SqlDbType.Int).Value = ThoiGianLamviec;
-            
+
+            Cmd.Parameters.Add("IdTrinhDoTinHoc", SqlDbType.Int).Value = IdTrinhDoTinHoc;
+            Cmd.Parameters.Add("IdTrinhDoNgoaiNgu", SqlDbType.Int).Value = IdTrinhDoNgoaiNgu;
+
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
 
             IDTuyenDung = (int)Cmd.ExecuteScalar();
@@ -120,15 +123,25 @@ public class TuyenDung :DataClass
     #endregion
 
     #region Method getList
-    public DataTable getList(string searchKey = "", int IdViTri = 0, int IdMucLuong = 0, string TenDonVi = "", string sVitri = "", string sMucLuong = "", string sDiaDiem = "")
+    public DataTable getList(string searchKey = "", int IdViTri = 0, int IdMucLuong = 0, string TenDonVi = "", string sVitri = "", string sMucLuong = "", string sDiaDiem = "", string NuocNgoai = "")
     {
         try
         {
-            string sqlQueryViTri = "", sqlQueryMucLuong = "", sqlQueryDiaDiem = "";
+            string sqlQueryViTri = "", sqlQueryMucLuong = "", sqlQueryDiaDiem = "", sqlQueryNuocNgoai = "";
             
             if (sVitri != "")
             {
-                sqlQueryViTri = " AND A.IdViTri IN (SELECT Id FROM tblViTri WHERE UPPER(NameVitri) LIKE N'%" + sVitri.ToUpper() + "%')";
+                string[] strVitri = sVitri.Split('x');
+                if (strVitri.Length > 0)
+                {
+                    for (int i = 0; i < strVitri.Length; i++)
+                    {
+                        if (strVitri[i].Trim() != "x")
+                        {
+                            sqlQueryViTri = " AND A.IdViTri IN (SELECT Id FROM tblViTri WHERE UPPER(NameVitri) LIKE N'%" + sVitri.ToUpper() + "%')";
+                        }
+                    }
+                }
             }
 
             if (sMucLuong != "")
@@ -148,6 +161,18 @@ public class TuyenDung :DataClass
             if (sDiaDiem.Trim() != "")
             {
                 sqlQueryDiaDiem = " AND UPPER(A.DiaDiem) LIKE N'%"+sDiaDiem.ToUpper()+"%'";
+            }
+
+            if (NuocNgoai != "")//"" Tat ca, 1 Nuoc ngoai, 0 Trong nuoc
+            {
+                if (NuocNgoai == "1")
+                {
+                    sqlQueryNuocNgoai = " AND ISNULL(A.NuocNgoai,0) = 1";
+                }
+                else if (NuocNgoai == "0")
+                {
+                    sqlQueryNuocNgoai = " AND ISNULL(A.NuocNgoai,0) = 0";
+                }
             }
 
             SqlCommand Cmd = this.getSQLConnect();
@@ -186,6 +211,8 @@ public class TuyenDung :DataClass
             Cmd.CommandText += sqlQueryMucLuong;
 
             Cmd.CommandText += sqlQueryDiaDiem;
+
+            Cmd.CommandText += sqlQueryNuocNgoai;
 
             Cmd.CommandText += " ORDER BY A.ThuTuUuTien DESC, A.IDTuyenDung DESC";
 

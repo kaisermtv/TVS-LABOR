@@ -42,12 +42,12 @@ public partial class Admin_TuVan : System.Web.UI.Page
     {
         this.objTable = this.objTuVan.getData(this.txtSearch.Text);
         cpTuVan.MaxPages = 1000;
-        cpTuVan.PageSize = 15;
+        cpTuVan.PageSize = 12;
         cpTuVan.DataSource = this.objTable.DefaultView;
         cpTuVan.BindToControl = dtlTuVan;
         dtlTuVan.DataSource = cpTuVan.DataSourcePaged;
         dtlTuVan.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }

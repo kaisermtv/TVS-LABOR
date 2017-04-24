@@ -28,7 +28,7 @@
     <!-- -->
 
 </head>
-<body style="margin: 0px !important; height: 500px !important;">
+<body style="margin: 0px !important; height: 500px !important; padding:10px;">
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({
@@ -49,57 +49,31 @@
                 <tr style="height: 40px;">
                     <td class="DataListTableHeaderTdItemTT" style="width: 4%;">#
                     </td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 40%;">Chuyên ngành
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 30%;">Nhóm ngành
                     </td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Trình độ chuyên môn
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 31%;">Ngành nghề
                     </td>
-                    <td class="DataListTableHeaderTdItemCenter" style="width: 15%;">Ngày bắt đầu
-                    </td>
-                    <td class="DataListTableHeaderTdItemCenter" style="width: 15%;">Ngày kết thúc
+                    <td class="DataListTableHeaderTdItemCenter" style="width: 35%;">Trình độ chuyên môn
                     </td>
                 </tr>
                 <tr style="height: 40px;">
                     <td class="DataListTableHeaderTdItemTT" style="width: 4%;"></td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 40%;">
-                        <asp:TextBox ID="txtDonVi" runat="server" class="AdminTextControl"></asp:TextBox>
-                    </td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">
-                        <asp:DropDownList ID="ddlTrinhDoChuyenMon" AutoPostBack="true" runat="server" Style="width: 100%; height: 30px; line-height: 30px;">
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 30%;">
+                        <asp:DropDownList ID="ddlNhomNganh" AutoPostBack="true" runat="server" CssClass="form-control" Style="width: 100%; float: left;" OnSelectedIndexChanged="ddlNhomNganh_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
-                    <td class="DataListTableHeaderTdItemCenter" style="width: 15%;">
-                        <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 95% !important; float: right;">
-                            <input type='text' class="form-control" id="txtNgayBatDau" runat="server" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-
-                        <script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker1').datetimepicker();
-                            });
-                        </script>
+                    <td class="DataListTableHeaderTdItemCenter" style="width: 31%;">
+                        <asp:DropDownList ID="ddlNganhNghe" runat="server" CssClass="form-control" Style="width: 100%; float: left;">
+                        </asp:DropDownList>
                     </td>
-                    <td class="DataListTableHeaderTdItemCenter" style="width: 15%;">
-                        <div class='input-group date' id='datetimepicker2' style="margin-left: 0px; width: 95% !important; float: right;">
-                            <input type='text' class="form-control" id="txtNgayKetThuc" runat="server" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-
-                        <script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker2').datetimepicker();
-                            });
-                        </script>
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 35%;">
+                        <asp:DropDownList ID="ddlTrinhDoChuyenMon" runat="server" CssClass="form-control" Style="width: 100%;">
+                        </asp:DropDownList>
                     </td>
                 </tr>
-
                 <tr style="height: 44px;">
                     <td></td>
-                    <td colspan="3" style="padding-left: 10px; padding-bottom: 8px;">
+                    <td colspan="2" style="padding-left: 10px; padding-bottom: 8px;">
                         <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                         <asp:Button ID="btnAdd" runat="server" Text="Thêm mới" CssClass="btn btn-success" OnClick="btnAdd_Click" />
                         &nbsp;&nbsp;
@@ -108,10 +82,9 @@
                     <td style="text-align: right; padding-bottom: 8px;">
                         <asp:Button ID="btnDel" runat="server" Text="Xóa mục" CssClass="btn btn-primary" OnClick="btnDel_Click" /></td>
                 </tr>
-
             </table>
         </div>
-
+        <br />
         <asp:DataList ID="dtlNldQuaTrinhDaoTao" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
             Width="100%">
             <ItemTemplate>
@@ -120,17 +93,11 @@
                         <td class="DataListTableTdItemTT" style="width: 4%;">
                             <%# Eval("TT") %>
                         </td>
-                        <td class="DataListTableTdItemJustify" style="width: 40%;">
-                            <a href = "?id=<%# Eval("IDNguoiLaoDong") %>&idDT=<%# Eval("IDNldQuaTrinhDaoTao") %>"><%# Eval("Donvi") %>
+                        <td class="DataListTableTdItemJustify" style="width: 61%;">
+                            <a href="?id=<%# Eval("IDNguoiLaoDong") %>&idDT=<%# Eval("IDNldQuaTrinhDaoTao") %>"><%# Eval("NameDTNganhNghe") %>
                         </td>
-                        <td class="DataListTableTdItemJustify" style="width: 21%;">
+                        <td class="DataListTableTdItemJustify" style="width: 35%;">
                             <%# Eval("NameTrinhdoChuyenMon") %>
-                        </td>
-                        <td class="DataListTableTdItemCenter" style="width: 15%;">
-                            <%# Eval("NgayBatDau","{0:dd/MM/yyyy}") %>
-                        </td>
-                        <td class="DataListTableTdItemCenter" style="width: 15%;">
-                            <%# Eval("NgayKetThuc","{0:dd/MM/yyyy}") %>
                         </td>
                     </tr>
                 </table>

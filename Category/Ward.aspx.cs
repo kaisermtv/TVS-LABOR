@@ -95,12 +95,12 @@ public partial class Admin_Ward : System.Web.UI.Page
     {
         this.objTable = this.objWard.getData(int.Parse(this.ddlProvincer.SelectedValue.ToString()), int.Parse(this.ddlDistrict.SelectedValue.ToString()), this.txtSearch.Text);
         cpWard.MaxPages = 1000;
-        cpWard.PageSize = 15;
+        cpWard.PageSize = 12;
         cpWard.DataSource = this.objTable.DefaultView;
         cpWard.BindToControl = dtlWard;
         dtlWard.DataSource = cpWard.DataSourcePaged;
         dtlWard.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 12)
         {
             this.tblABC.Visible = false;
         }
