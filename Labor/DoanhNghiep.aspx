@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+       <script src="../js/TvsScript.js"></script>
     <table class="table" border="0" style="margin-top: -20px;">
         <tr>
             <td>
@@ -45,8 +46,11 @@
                         <%# Eval("MaDonVi") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 36%;">
-                        <%# Eval("TenDonVi") %>&nbsp;<div class="badge"><a href="TuyenDung.aspx?did=<%# Eval("IDDonVi") %>&n=<%# Eval("TenDonVi") %>"><%# Eval("CountItem") %></a></div>
-                    </td>
+                  <span class="name">      <%# Eval("TenDonVi") %>&nbsp;
+                        <div class="badge">
+                            <a href="TuyenDung.aspx?did=<%# Eval("IDDonVi") %>&n=<%# Eval("TenDonVi") %>"><%# Eval("CountItem") %></a></div>
+                   </span>
+                       </td>
                     <td class="DataListTableTdItemJustify" style="width: 30%;">
                         <%# Eval("Diachi") %>
                     </td>
@@ -78,6 +82,24 @@
     <br />
     <a href="DoanhNghiepEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+
+     <script>
+         $(function () {
+             /* QUICK SEARCH - Tìm nhanh */
+
+             $('#MainContent_dtlDoanhNghiep').searchable({       // lấy thẻ chứa ngoài cùng
+                 searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                 selector: 'tr',                               // từng dòng là các thẻ <tr>
+                 childSelector: 'td',                          // tìm tất cả các thẻ td
+                 show: function (elem) {
+                     elem.slideDown(100);                     // 100ms
+                 },
+                 hide: function (elem) {
+                     elem.slideUp(100);                       // cuộn lên     
+                 }
+             })
+         });
+    </script>
 
 </asp:Content>
 

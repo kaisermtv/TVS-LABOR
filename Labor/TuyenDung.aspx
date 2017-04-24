@@ -8,12 +8,13 @@
             padding-bottom: 5px;
         }
     </style>
+   <script src="../js/TvsScript.js"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table class="table" style="margin-top: -20px;">
         <tr>
             <td>
-                <input type="text" id="txtSearch" placeholder="Nhập nội dung cần tìm kiếm" runat="server" class="form-control" />
+                <input type="text" id="txtSearch" placeholder="Nhập từ khóa bất kỳ ... " runat="server" class="form-control" />
             </td>
             <td style="width: 180px;">
                 <asp:DropDownList ID="ddlIDChucVu" CssClass="form-control" runat="server" Style="width: 100%;">
@@ -29,7 +30,7 @@
         </tr>
     </table>
 
-    <div style="width: 100%; margin-top: -20px;">
+    <div id="MainContent_dtlTuyenDung" style="width: 100%; margin-top: -20px;">     <!--Đặt id cho thẻ div để tìm kiếm trong trang-->
         <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
             <HeaderTemplate>
                 <table class="DataListTable" border="0">
@@ -45,14 +46,17 @@
                         <td class="DataListTableHeaderTdItemCenter" style="width: 9%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
-            <ItemTemplate>
+            <ItemTemplate >
                 <tr>
                     <td class="DataListTableTdItemTT"><%# this.index++ %></td>
                     <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# Eval("TenDonVi") %>
                     </td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %></td>
+                    <td class="DataListTableTdItemJustify  ">
+                           <span class="name"> <%# Eval("NameVitri") %>
+                               </span>
+                        </td>
                     <td class="DataListTableTdItemRight">
                         <%# Eval("SoLuongTuyenDung") %>
                         &nbsp;<a href="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div>
@@ -120,5 +124,23 @@
             }
         }
     </script>
+    <script>
+          $(function () {
+              /* QUICK SEARCH - Tìm nhanh */
+
+              $('#MainContent_dtlTuyenDung').searchable({       // lấy thẻ chứa ngoài cùng
+                  searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                  selector: 'tr',                               // từng dòng là các thẻ <tr>
+                  childSelector: 'td',                          // tìm tất cả các thẻ td
+                  show: function (elem) {               
+                      elem.slideDown(100);                     // 100ms
+                  },    
+                  hide: function (elem) {
+                      elem.slideUp(100);                       // cuộn lên     
+                  }
+              })
+          });
+    </script>
+
 </asp:Content>
 
