@@ -156,11 +156,7 @@ public class DanToc
             sqlCon.Close();
             sqlCon.Dispose();
             objTable = ds.Tables[0];
-         
-            foreach(DataRow row in objTable.Rows)
-            {
-                row["NameDanToc"] = (row["NameDanToc"].ToString().ToLower().Contains("dân tộc") ? row["NameDanToc"].ToString().ToUpper().Replace("DÂN TỘC","  ") : row["NameDanToc"]);
-            }
+            
             objTable.Rows.Add(0, "Không Chọn");
 
         }

@@ -60,29 +60,29 @@ public partial class Labor_PrintThongBaoKetQua : System.Web.UI.Page
                          this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
                      }
 
-                     DataTable objNldKetQua = new DataTable();
-                     objNldKetQua = this.objNguoiLaoDong.getDataNldKetQuaByIDNldGioiThieuId(this.IDNldGioiThieu);
-                     if (objNldKetQua.Rows.Count > 0)
-                     {
-                         if (objNldKetQua.Rows[0]["TrungTuyen"].ToString() == "True")
-                         {
-                             this.ckbTrungTuyen.Checked = true;
-                             this.ckbKhongTrungTuyen.Checked = false;
+                     //DataTable objNldKetQua = new DataTable();
+                     //objNldKetQua = this.objNguoiLaoDong.getDataNldKetQuaByIDNldGioiThieuId(this.IDNldGioiThieu);
+                     //if (objNldKetQua.Rows.Count > 0)
+                     //{
+                     //    if (objNldKetQua.Rows[0]["TrungTuyen"].ToString() == "True")
+                     //    {
+                     //        this.ckbTrungTuyen.Checked = true;
+                     //        this.ckbKhongTrungTuyen.Checked = false;
 
-                             this.NldKq_ViTriLamViec = this.objChucVu.getDataById(int.Parse(objNldKetQua.Rows[0]["IDChucVu"].ToString())).Rows[0]["NameChucVu"].ToString();
-                             if (objNldKetQua.Rows[0]["NgayNhanViec"].ToString() != "")
-                             {
-                                 this.NldKq_NgayDuKienNhanViec = DateTime.Parse(objNldKetQua.Rows[0]["NgayNhanViec"].ToString()).ToString("dd/MM/yyyy");
-                             }
-                             this.NldKq_ThoiGianThuViec = objNldKetQua.Rows[0]["ThoiGianThuViec"].ToString();
-                         }
-                         else
-                         {
-                             this.ckbTrungTuyen.Checked = false;
-                             this.ckbKhongTrungTuyen.Checked = true;
-                             this.NldKq_LyDoKhongTrungTuyen = objNldKetQua.Rows[0]["LyDoKhongTrungTuyen"].ToString();
-                         }
-                     }
+                     //        this.NldKq_ViTriLamViec = this.objChucVu.getDataById(int.Parse(objNldKetQua.Rows[0]["IDChucVu"].ToString())).Rows[0]["NameChucVu"].ToString();
+                     //        if (objNldKetQua.Rows[0]["NgayNhanViec"].ToString() != "")
+                     //        {
+                     //            this.NldKq_NgayDuKienNhanViec = DateTime.Parse(objNldKetQua.Rows[0]["NgayNhanViec"].ToString()).ToString("dd/MM/yyyy");
+                     //        }
+                     //        this.NldKq_ThoiGianThuViec = objNldKetQua.Rows[0]["ThoiGianThuViec"].ToString();
+                     //    }
+                     //    else
+                     //    {
+                     //        this.ckbTrungTuyen.Checked = false;
+                     //        this.ckbKhongTrungTuyen.Checked = true;
+                     //        this.NldKq_LyDoKhongTrungTuyen = objNldKetQua.Rows[0]["LyDoKhongTrungTuyen"].ToString();
+                     //    }
+                     //}
                  }
              }
         }

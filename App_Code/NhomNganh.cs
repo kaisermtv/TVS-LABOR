@@ -162,8 +162,8 @@ public class NhomNganh
         {
             string sqlQuery = "";
             sqlQuery = "IF NOT EXISTS (SELECT * FROM tblNhomNganh WHERE IDNhomNganh = @IDNhomNganh) ";
-            sqlQuery += "BEGIN INSERT INTO tblNhomNganh(CodeNhomNganh,NameNhomNganh,State) VALUES(@CodeNhomNganh,@NameNhomNganh,@Note,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblNhomNganh SET CodeNhomNganh = @CodeNhomNganh, NameNhomNganh = @NameNhomNganh, State = @State WHERE IDNhomNganh = @IDNhomNganh END";
+            sqlQuery += " BEGIN INSERT INTO tblNhomNganh(CodeNhomNganh,NameNhomNganh,State) VALUES(@CodeNhomNganh,@NameNhomNganh,@State) END ";
+            sqlQuery += " ELSE BEGIN UPDATE tblNhomNganh SET CodeNhomNganh = @CodeNhomNganh, NameNhomNganh = @NameNhomNganh, State = @State WHERE IDNhomNganh = @IDNhomNganh END";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();

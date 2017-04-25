@@ -110,7 +110,7 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Số CMND:</td>
             <td style="width: 10%;">
-                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control" MaxLength="9"></asp:TextBox>
             </td>
 
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày cấp:</td>
@@ -138,7 +138,7 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Số sổ BHXH:</td>
             <td style="width: 10%;">
-                <asp:TextBox ID="txtBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBHXH" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Điện thoại:</td>
             <td style="width: 40%;">
@@ -428,12 +428,14 @@
     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
         <table border="0" style="width: 100%; margin-top: -8px;">
             <tr>
-                <td style="width: 700px; padding-left: 15px;">
+                <td style="width: 800px; padding-left: 15px;">
                     <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                     <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
                     <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
                     <button class="btn btn-danger" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
                     <button id="btnPrint" runat="server" class="btn btn-primary" onclick="InPhieuGioiThieu()">Phiếu giới thiệu</button>
+
+                    <button class="btn btn-primary" type="button" onclick="InPhieuKetQua()"  id="btnPhieuKetQua" runat="server">Phiếu kết quả</button>
                 </td>
                 <td>
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -568,6 +570,31 @@
                 var left = ((width / 2) - (w / 2)) + dualScreenLeft;
                 var top = ((height / 2) - (h / 2)) + dualScreenTop;
                 var newWindow = window.open("PrintPhieuGioiThieu.aspx?id=" + IDNldTuVan, "IN PHIẾU GIỚI THIỆU", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
+                }
+            }
+        }
+
+        function InPhieuKetQua() {
+
+            var IDNldTuVan = document.getElementById("MainContent_txtIDNldTuVan").value;
+
+            if (IDNldTuVan != 0) {
+
+                var w = 1000;
+                var h = 1600;
+
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("PrintThongBaoKetQua.aspx?id=" + IDNldTuVan, "IN PHIẾU KẾT QUẢ", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
                 if (window.focus) {
                     newWindow.focus();

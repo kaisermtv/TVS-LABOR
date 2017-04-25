@@ -341,9 +341,23 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
+        if (this.txtCMND.Text.Trim().Length != 9)
+        {
+            this.lblMsg.Text = "Bạn nhập số CMND không chính xác";
+            this.txtCMND.Focus();
+            return;
+        }
+
         if (this.txtDienThoai.Text.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập số điện thoại của người lao động";
+            this.txtDienThoai.Focus();
+            return;
+        }
+
+        if(txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
+        {
+            this.lblMsg.Text = "Bạn nhập số BHXH không chính xác";
             this.txtDienThoai.Focus();
             return;
         }
