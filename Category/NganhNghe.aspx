@@ -80,7 +80,7 @@
         </tr>
     </table>
     <br />
-    <a href="TuVanEdit.aspx">
+    <a href="NganhNgheEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
     <a href="ListCategory.aspx">
         <input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
