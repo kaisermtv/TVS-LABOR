@@ -134,10 +134,10 @@
                             <%# Eval("NameChucVu") %>
                         </td>
                         <td class="DataListTableTdItemCenter" style="width: 17%;">
-                            <%# Eval("NgayBatDau") %>
+                            <%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %>
                         </td>
                         <td class="DataListTableTdItemCenter" style="width: 17%;">
-                            <%# Eval("NgayKetThuc") %>
+                            <%# ((DateTime)Eval("NgayKetThuc")).ToString("dd/MM/yyyy") %>
                         </td>
                     </tr>
                 </table>
