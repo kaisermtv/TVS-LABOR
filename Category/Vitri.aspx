@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="Vitri.aspx.cs" Inherits="Category_Vitri" %>
-
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
         <HeaderTemplate>
@@ -36,7 +36,26 @@
         ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
         PageNumbersSeparator="&nbsp;">
     </cc1:CollectionPager>
-
     <br />
     <a href="ViTriEdit.aspx" class="btn btn-primary">Thêm mới</a>
+
+
+     <script src="../js/TvsScript.js"></script>
+     <script>
+         $(function () {
+             /* QUICK SEARCH - Tìm nhanh */
+
+             $('#MainContent_dtlTuVanViecLam').searchable({
+                 searchField: '#MainContent_txtSearch',
+                 selector: 'tr',
+                 childSelector: 'td',
+                 show: function (elem) {
+                     elem.slideDown(100);
+                 },
+                 hide: function (elem) {
+                     elem.slideUp(100);
+                 }
+             })
+         });
+    </script>
 </asp:Content>

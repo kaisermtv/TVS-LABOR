@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="AdminHeaderItem">
-        THÔNG TIN LƯƠNG
+        THÔNG TIN VỀ MỨC LƯƠNG
     </div>
     <div class="AdminItem">
         <div class="AdminLeftItem">

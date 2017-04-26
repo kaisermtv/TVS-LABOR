@@ -47,8 +47,8 @@
             var c, d, e, f, g, h, i, j;                                                                         // 
             if (0 === a.trim(b).length) return this.$searchElems.css("display", ""), void this.updateStriping();            //  nếu nội dung giống y hệt  thì gọi tới thuộc tính display
             for (d = this.$searchElems.length, c = this.matcherFunc(b), i = 0; d > i; i++) {                                // ??? 
-                for (h = a(this.$searchElems[i]), e = h.find(this.settings.childSelector), f = e.length, g = !0, j = 0; f > j; j++)
-                    if (c(a(e[j]).text())) {
+                for (h = a(this.$searchElems[i]), e = h.find(this.settings.childSelector), f = e.length, g = !0, j = 0; f > j; j++)     
+                    if (c(a(e[j]).text())) {                                                
                         g = !1;
                         break
                     }
