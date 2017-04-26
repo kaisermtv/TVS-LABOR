@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">XÓA NGÀNH NGHỀ</h3>
+        </div>
         <div style="text-align: center; font-weight: bold;">
             <br /><br />
             Bạn có chắc chắn muốn xóa mục được chọn không?
