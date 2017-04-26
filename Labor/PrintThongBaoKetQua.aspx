@@ -21,7 +21,7 @@
                     </td>
                     <td class="txtcenter" style="width:55%">
                         <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br />
-                        <b>Độc lập - Tự do - Hạnh phúc</b>
+                        <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
                     </td>
                 </tr>
                 <tr>
