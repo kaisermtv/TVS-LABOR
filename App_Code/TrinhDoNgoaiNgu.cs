@@ -10,6 +10,29 @@ using System.Web;
 /// </summary>
 public class TrinhDoNgoaiNgu : DataClass
 {
+    #region getNameById
+    public String getNameById(int id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT NameTrinhDo FROM tblTrinhDoNgoaiNgu WHERE ID = @ID";
+            Cmd.Parameters.Add("ID", SqlDbType.Int).Value = id;
+
+            String ret = (String)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
+
     #region method getItem
     public DataRow getItem(int id)
     {

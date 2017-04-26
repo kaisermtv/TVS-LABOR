@@ -71,39 +71,46 @@
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tìm kiếm:
             </td>
-            <td style="width: 40%;">
+            <td style="width: 40%;" colspan="4">
 
                 <table style="width: 100%;">
                     <tr>
-                        <td style="width: 28%;">
+                        <td style="width: 200px;">
                             <asp:TextBox ID="txtMa" runat="server" CssClass="form-control" onKeyDown="submitButton(event)" Style="background-color: aqua;"></asp:TextBox>
                         </td>
                         <td style="width: 40px; padding-left: 5px;">
 
                             <asp:Button ID="btnGetInformation" runat="server" Text="..." OnClick="btnGetInformation_Click" />
                         </td>
-                        <td style="text-align: right; width: 110px; padding-right: 5px;">Họ và tên:</td>
-                        <td>
+                        <td style="text-align: right; width: 90px; padding-right: 5px;">Họ và tên:</td>
+                        <td style="width:150px">
                             <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control"></asp:TextBox>
+                        </td>
+                        <td style="text-align:right;padding-right: 5px;">Giới tính: </td>
+                        <td>
+                            <asp:DropDownList ID="ddlGioiTinh" CssClass="form-control" runat="server" Style="width: 100%;">
+                                <asp:ListItem Value="1">Nam</asp:ListItem>
+                                <asp:ListItem Value="0">Nữ</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td style="text-align:right;padding-right: 5px;">Ngày sinh :</td>
+                        <td style="width:150px">
+                            <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
+                                <input type='text' class="form-control" id="txtNgaySinh" runat="server" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker1').datetimepicker();
+                                });
+                            </script>
                         </td>
                     </tr>
                 </table>
 
-            </td>
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày sinh:</td>
-            <td style="width: 20%;" colspan="2">
-                <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control" id="txtNgaySinh" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker1').datetimepicker();
-                    });
-                </script>
             </td>
         </tr>
 

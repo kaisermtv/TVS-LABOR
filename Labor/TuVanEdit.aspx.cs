@@ -202,6 +202,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ckbTuVanHocNghe.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanHocNghe"].ToString());
                 this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
+
                 this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                 /* Load defaut selected mode */
                 try
@@ -230,6 +231,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 //this.txtMa.Text = this.objTable.Rows[0]["Ma"].ToString();
                 this.txtHoVaTen.Text = this.objTable.Rows[0]["HoVaTen"].ToString();
                 this.txtNgaySinh.Value = DateTime.Parse(this.objTable.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
+
+                this.ddlGioiTinh.SelectedValue = this.objTable.Rows[0]["IDGioiTinh"].ToString();
 
                 this.txtDienThoai.Text = this.objTable.Rows[0]["DienThoai"].ToString();
                 this.txtEmail.Text = this.objTable.Rows[0]["Email"].ToString();
@@ -407,11 +410,20 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         catch
         {
         }
+        
+        int GioiTinhb = 0;
+        try
+        {
+            GioiTinhb = int.Parse(ddlGioiTinh.SelectedValue);
+        }
+        catch
+        {
+        }
 
         if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, this.txtHoVaTen.Text, TVSSystem.CVDate(this.txtNgaySinh.Value.ToString().Trim()), this.txtCMND.Text, this.txtNoiCap.Text, TVSSystem.CVDate(this.txtNgayCapCMND.Value.ToString().Trim()),
             this.txtBHXH.Text, this.txtDienThoai.Text, this.txtEmail.Text, int.Parse(this.ddlDanToc.SelectedValue.ToString()), int.Parse(this.ddlTonGiao.SelectedValue.ToString()), this.txtSucKhoe.Text, double.Parse(this.txtChieuCao.Text), int.Parse(this.txtCanNang.Text),
             int.Parse(this.ddlTrinhDoPhoThong.SelectedValue.ToString()), int.Parse(this.ddlNgoaiNgu.SelectedValue.ToString()), int.Parse(this.ddlTinHoc.SelectedValue.ToString()), this.txtTrinhDoDaoTao.Text, this.txtTrinhDoKyNangNghe.Text, this.txtKhaNangNoiTroi.Text,
-            this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue)) == 1)
+            this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
         {
             #region Luu thong tin vao phieu tu van
             String buf = "";

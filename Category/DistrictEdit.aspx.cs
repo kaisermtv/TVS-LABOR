@@ -15,6 +15,8 @@ public partial class Admin_DistrictEdit : System.Web.UI.Page
     private Provincer objProvincer = new Provincer();
     private DataTable objTable = new DataTable();
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
+
+    private int tinhThanh = 0;
     #endregion
 
     #region method Page_Load
@@ -36,12 +38,29 @@ public partial class Admin_DistrictEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
-        if (!Page.IsPostBack && this.itemId > 0)
+
+        try
+        {
+            this.tinhThanh = int.Parse(Request["tt"].ToString());
+        }
+        catch
+        {
+            this.tinhThanh = 0;
+        }
+
+        if(!Page.IsPostBack)
         {
             this.ddlProvincer.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlProvincer.DataTextField = "Name";
             this.ddlProvincer.DataValueField = "Id";
             this.ddlProvincer.DataBind();
+
+            ddlProvincer.SelectedValue = tinhThanh.ToString();
+        }
+
+        if (!Page.IsPostBack && this.itemId > 0)
+        {
+            
 
             this.objTable = this.objDistrict.getDataById(this.itemId);
             if (this.objTable.Rows.Count > 0)

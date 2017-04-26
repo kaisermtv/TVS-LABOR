@@ -24,8 +24,8 @@
                 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
             </div>
 
-            <div class="HoNgu2">
-                Độc lập - Tự do - Hạnh phúc
+            <div class="HoNgu2" >
+                <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
             </div>
 
             <div class="TieuDePhieu">
@@ -120,7 +120,7 @@
                     <tr>
                         <td class="HoVaTen">Ngoại ngữ: <%Response.Write(this.NLDNgoaiNgu); %>
                         </td>
-                        <td class="HoVaTen" style="width: 450px;">Trình độ: 
+                        <td class="HoVaTen" style="width: 450px;">Trình độ: <%= trinhDongoaiNgu %>
                         </td>
                     </tr>
                 </table>
@@ -131,7 +131,7 @@
                     <tr>
                         <td class="HoVaTen">Tin học: <%Response.Write(this.NLDTinHoc); %>
                         </td>
-                        <td class="HoVaTen" style="width: 450px;">Trình độ: 
+                        <td class="HoVaTen" style="width: 450px;">Trình độ: <%= trinhDoTinHoc %>
                         </td>
                     </tr>
                 </table>
@@ -226,9 +226,9 @@
                         <td class="ChuBinhThuong" style="width: 45px; text-align: center;">
                             <b>Số TT</b>
                         </td>
-                        <td class="ChuBinhThuong" style="text-align: center;"><b>Tên đơn vị đã làm việc</b>
+                        <td class="ChuBinhThuong" style="text-align: center;width: 350px;"><b>Tên đơn vị đã làm việc</b>
                         </td>
-                        <td class="ChuBinhThuong" style="width: 300px; text-align: center;"><b>Thời gian làm việc</b><br />(Từ ngày…/…/….đến ngày. ../…/…)
+                        <td class="ChuBinhThuong" style="width: 200px; text-align: center;"><b>Thời gian làm việc</b><br />(Từ ngày - đến ngày)
                         </td>
                          <td class="ChuBinhThuong" style="text-align: center; width:250px;"><b>Vị trí công việc đã làm</b>
                         </td>
@@ -362,7 +362,7 @@
             <div>
                 <table style="width: 100%;" border="0">
                     <tr>
-                        <td class="HoVaTen">
+                        <td class="HoVaTen" style="width:50%">
                             
                         </td>
                         <td class="HoVaTen" style="width: 250px;text-align:center;">

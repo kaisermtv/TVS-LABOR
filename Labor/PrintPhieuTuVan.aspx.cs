@@ -27,6 +27,7 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
     public string NLDViTriCongViec = "", NLDMucLuongThapNhat = "", NLDDieuKienLamViec = "", NLDDiaDiemLamViec = "", NLDNoiDungKhac = "", NLDNgayTuVan = "";
     public string NLDQuaTrinhDaoTao_CN1 = "", NLDQuaTrinhDaoTao_CM1 = "", NLDQuaTrinhDaoTao_CN2 = "", NLDQuaTrinhDaoTao_CM2 = "", NLDQuaTrinhDaoTao_CN3 = "", NLDQuaTrinhDaoTao_CM3 = "";
     public string NLDQuaTrinhCongTac_DV1 = "", NLDQuaTrinhCongTac_TG1 = "", NLDQuaTrinhCongTac_VT1 = "", NLDQuaTrinhCongTac_DV2 = "", NLDQuaTrinhCongTac_TG2 = "", NLDQuaTrinhCongTac_VT2 = "", NLDQuaTrinhCongTac_DV3 = "", NLDQuaTrinhCongTac_TG3 = "", NLDQuaTrinhCongTac_VT3 = "";
+    public String trinhDoTinHoc = "", trinhDongoaiNgu = "";
     #endregion
 
     #region method Page_Load
@@ -63,8 +64,8 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                     this.NLDEmail = this.objTableNguoiLaoDong.Rows[0]["Email"].ToString();
                     this.NLDDanToc = this.objDanToc.getDataNameById(int.Parse(this.objTableNguoiLaoDong.Rows[0]["IDDanToc"].ToString()));
                     this.NLDTonGiao = this.objTonGiao.getDataNameById(int.Parse(this.objTableNguoiLaoDong.Rows[0]["IDTonGiao"].ToString()));
-                    this.NLDNoiThuongTru = this.objTableNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString();
-                    this.NLDDiaChi = this.objTableNguoiLaoDong.Rows[0]["DiaChi"].ToString();
+                    this.NLDNoiThuongTru = this.objTableNguoiLaoDong.Rows[0]["Xom_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Xa_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Huyen_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Tinh_TT"].ToString();
+                    this.NLDDiaChi = this.objTableNguoiLaoDong.Rows[0]["Xom_DC"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Xa_DC"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Huyen_DC"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Tinh_DC"].ToString();
                     this.NLDSucKhoe = this.objTableNguoiLaoDong.Rows[0]["SucKhoe"].ToString();
                     this.NLDChieuCao = this.objTableNguoiLaoDong.Rows[0]["ChieuCao"].ToString();
                     this.NLDCanNang = this.objTableNguoiLaoDong.Rows[0]["CanNang"].ToString();
@@ -73,6 +74,12 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                     this.NLDTinHoc = this.objTinHoc.getDataNameById(int.Parse(this.objTableNguoiLaoDong.Rows[0]["IDTinHoc"].ToString()));
                     this.NLDTrinhDoKyNangNghe = this.objTableNguoiLaoDong.Rows[0]["TrinhDoKyNangNghe"].ToString();
                     this.NLDKhaNangNoiTroi = this.objTableNguoiLaoDong.Rows[0]["KhaNangNoiTroi"].ToString();
+
+                    TrinhDoTinHoc objTDTinHoc = new TrinhDoTinHoc();
+                    trinhDoTinHoc = objTDTinHoc.getNameById((int)this.objTableNguoiLaoDong.Rows[0]["IdTrinhDoTinHoc"]);
+                    TrinhDoNgoaiNgu objTDNgoaiNgu = new TrinhDoNgoaiNgu();
+                    trinhDongoaiNgu = objTDNgoaiNgu.getNameById((int)this.objTableNguoiLaoDong.Rows[0]["IdTrinhDoNgoaiNgu"]);
+
 
                     this.objTableNldDaoTao = this.objNguoiLaoDong.getDataNldQuaTrinhDaoTao(int.Parse(this.objTableNldTuVan.Rows[0]["IDNguoiLaoDong"].ToString()));
 
