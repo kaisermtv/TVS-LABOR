@@ -117,7 +117,7 @@
                 <br />
                 <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" CssClass="btn btn-primary" Style="margin-left: 15px; margin-top: -10px;" OnClick="btnSave_Click" OnClientClick="javascript:window.close();" />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" CssClass="btn btn-primary" Style="margin-left: 15px; margin-top: -10px; margin-bottom:10px;" OnClick="btnSave_Click" OnClientClick="javascript:window.close();" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
                     </ContentTemplate>
                 </asp:UpdatePanel>
