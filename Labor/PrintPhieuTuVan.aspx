@@ -1,15 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintPhieuTuVan.aspx.cs" Inherits="Labor_PrintPhieuTuVan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintPhieuTuVan.aspx.cs" Inherits="Labor_PrintBanDangKyTuVanTimViecLam" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>IN PHIẾU TƯ VẤN</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BẢN ĐĂNG KÝ TƯ VẤN TÌM VIỆC LÀM ( Dành cho người lao động )</title>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <!-- Custom CSS -->
     <link href="../css/PrintPhieuTuVan.css" rel="stylesheet" />
+
 </head>
 <body style="margin: 0px !important; height: 500px !important;">
     <form id="form1" runat="server">

@@ -536,6 +536,9 @@
 
         function InPhieuTuVan() {
 
+            // kiểm tra xem có là lao động tự do hay không ??
+            var NLDKieu = document.getElementById('MainContent_ddlIdLoaiLaoDong').value;
+            
             var IDNldTuVan = document.getElementById("MainContent_txtIDNldTuVan").value;
 
             if (IDNldTuVan != 0) {
@@ -551,13 +554,22 @@
 
                 var left = ((width / 2) - (w / 2)) + dualScreenLeft;
                 var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                if (NLDKieu == "0") {
+                    // Kieu Lao Động Tự Do
+                    var newWindow = window.open("PrintBanDangKyTuVanTimViecLam.aspx?id=" + IDNldTuVan, "IN PHIẾU TƯ VẤN", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                    return;
+                }
+                else{
                 var newWindow = window.open("PrintPhieuTuVan.aspx?id=" + IDNldTuVan, "IN PHIẾU TƯ VẤN", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-
+                }
+              
                 if (window.focus) {
                     newWindow.focus();
                 }
             }
         }
+       
+   
 
         function InPhieuGioiThieu() {
 

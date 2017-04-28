@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_PrintBanDangKyTuVanTimViecLam : System.Web.UI.Page
+public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
 {
     #region declare objects
     private DataTable objTableNguoiLaoDong = new DataTable();
@@ -141,7 +141,7 @@ public partial class Labor_PrintBanDangKyTuVanTimViecLam : System.Web.UI.Page
                 this.NLDViTriCongViec = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0")
                 {
-                    this.NLDMucLuongThapNhat = String.Format("{0:0,0}", double.Parse(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString())) + " đ";
+                    this.NLDMucLuongThapNhat = String.Format("{0:0,0}", double.Parse(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString()))+" đ";
                 }
                 this.NLDDieuKienLamViec = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.NLDDiaDiemLamViec = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();

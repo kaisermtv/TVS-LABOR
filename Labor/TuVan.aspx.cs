@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SiteUtils;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -59,6 +61,7 @@ public partial class Labor_TuVan : System.Web.UI.Page
         {
             this.tblABC.Visible = true;
         }
+      
     }
     #endregion
 
@@ -68,4 +71,7 @@ public partial class Labor_TuVan : System.Web.UI.Page
         this.getData();
     }
     #endregion
+
+  
+
 }
