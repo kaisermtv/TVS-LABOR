@@ -46,10 +46,9 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                  this.NLDBHXH = this.objTableNguoiLaoDong.Rows[0]["BHXH"].ToString();
                  this.NLDDienThoai = this.objTableNguoiLaoDong.Rows[0]["DienThoai"].ToString();
                  this.NLDEmail = this.objTableNguoiLaoDong.Rows[0]["Email"].ToString();
-                 this.NLDNoiThuongTru = this.objTableNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString();
+                 this.NLDNoiThuongTru = this.objTableNguoiLaoDong.Rows[0]["Xom_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Xa_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Huyen_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Tinh_TT"].ToString();
                  this.NLDTrinhDoPhoThong = this.objTrinhDoPhoThong.getDataNameById(int.Parse(this.objTableNguoiLaoDong.Rows[0]["IDTrinhDoPhoThong"].ToString()));
                  this.NLDTrinhDoKyNangNghe = this.objTableNguoiLaoDong.Rows[0]["TrinhDoKyNangNghe"].ToString();
-                 this.NLDViTriCongViec = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
 
                  int IDNldDangKy = 0;
 
@@ -62,6 +61,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                      this.DVTenDonVi = objNldGioiThieu.Rows[0]["TenDonVi"].ToString();
                      this.DVDiaChi = objNldGioiThieu.Rows[0]["DiaChi"].ToString();
                      this.DVDienThoai = objNldGioiThieu.Rows[0]["DienThoaiDonVi"].ToString();
+                     //this.NLDViTriCongViec = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                      if (objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString() != "")
                      {
                          this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");

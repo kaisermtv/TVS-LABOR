@@ -25,6 +25,7 @@
             <div class="HoNgu2" >
                 <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
             </div>
+            <br />
             <div class="HoNgu1" style="">
                 <small style="float:right ;border:solid 1px black; margin-right:-20px; padding:7.5px;">Mã số (TTDVVL) : 27 | Mã số (TVL) : TD17- ..................</small>
             </div>
@@ -32,24 +33,19 @@
             <div class="TieuDePhieu">
              BẢN ĐĂNG KÝ TƯ VẤN TÌM VIỆC LÀM
               <br />
-                <i style="font-size:18px">(Dành cho người lao động)</i>
+                <i style="font-size:20px">(Dành cho người lao động)</i>
             </div>
 
-
+            <br />
             <div class ="ChuBinhThuong">
                 <table style="width: 100%;" border="0">
                     <tr>
                         <td class="HoVaTen " style="width:80%"> 1. Họ và tên: <b><% Response.Write(this.NLDHoten); %></b>
                         </td>
-                            <td class="txtr">Nam </td>
+                            <td class="txtr">Giới tính: </td>
                          <td>
-                            <asp:CheckBox ID="CheckBox1" runat="server" />
+                            <%= NLDGioiTinh %>
                         </td>
-                        <td class="txtr pl20">Nữ </td>
-                         <td>
-                            <asp:CheckBox ID="CheckBox2" runat="server" />
-                        </td>
-                       
                     </tr>
                 </table>
             </div>

@@ -27,7 +27,7 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
     public string NLDViTriCongViec = "", NLDMucLuongThapNhat = "", NLDDieuKienLamViec = "", NLDDiaDiemLamViec = "", NLDNoiDungKhac = "", NLDNgayTuVan = "";
     public string NLDQuaTrinhDaoTao_CN1 = "", NLDQuaTrinhDaoTao_CM1 = "", NLDQuaTrinhDaoTao_CN2 = "", NLDQuaTrinhDaoTao_CM2 = "", NLDQuaTrinhDaoTao_CN3 = "", NLDQuaTrinhDaoTao_CM3 = "";
     public string NLDQuaTrinhCongTac_DV1 = "", NLDQuaTrinhCongTac_TG1 = "", NLDQuaTrinhCongTac_VT1 = "", NLDQuaTrinhCongTac_DV2 = "", NLDQuaTrinhCongTac_TG2 = "", NLDQuaTrinhCongTac_VT2 = "", NLDQuaTrinhCongTac_DV3 = "", NLDQuaTrinhCongTac_TG3 = "", NLDQuaTrinhCongTac_VT3 = "";
-    public String trinhDoTinHoc = "", trinhDongoaiNgu = "";
+    public String trinhDoTinHoc = "", trinhDongoaiNgu = "", NLDGioiTinh = "";
     #endregion
 
     #region method Page_Load
@@ -54,6 +54,8 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                 this.objTableNguoiLaoDong = this.objNguoiLaoDong.getDataById(int.Parse(this.objTableNldTuVan.Rows[0]["IDNguoiLaoDong"].ToString()));
                 if (this.objTableNguoiLaoDong.Rows.Count > 0)
                 {
+                    this.NLDGioiTinh = this.objTableNguoiLaoDong.Rows[0]["IDGioiTinh"].ToString().Replace("0", "Nữ").Replace("1", "Nam");
+
                     this.NLDHoten = this.objTableNguoiLaoDong.Rows[0]["HoVaTen"].ToString();
                     this.NLDNgaySinh = DateTime.Parse(this.objTableNguoiLaoDong.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
                     this.NLDCMND = this.objTableNguoiLaoDong.Rows[0]["CMND"].ToString();
