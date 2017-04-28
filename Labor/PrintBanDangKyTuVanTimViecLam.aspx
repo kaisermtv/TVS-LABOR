@@ -25,8 +25,8 @@
             <div class="HoNgu2" >
                 <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
             </div>
-            <div class="HoNgu1"  >
-                <small style="float:right">Mã số (TTDVVL) : 27 | Mã số (TVL) : TD17- ..................</small>
+            <div class="HoNgu1" style="">
+                <small style="float:right ;border:solid 1px black; margin-right:-20px; padding:7.5px;">Mã số (TTDVVL) : 27 | Mã số (TVL) : TD17- ..................</small>
             </div>
             <br />
             <div class="TieuDePhieu">
@@ -61,7 +61,7 @@
             <div class="ChuBinhThuong">
                 <table style="width: 100%;" border="0">
                     <tr>
-                        <td class="HoVaTen">Dân tộc: <%Response.Write(this.NLDDanToc); %>
+                        <td class="HoVaTen">3 .Dân tộc: <%Response.Write(this.NLDDanToc); %>
                         </td>
                         <td class="HoVaTen" style="width: 450px;">Tôn giáo: <%Response.Write(this.NLDTonGiao); %>
                         </td>
@@ -71,7 +71,7 @@
 
 
             <div class="ChuBinhThuong">
-               3. Số chứng minh nhân dân / Hộ chiếu : <% Response.Write(this.NLDCMND); %>
+               4. Số chứng minh nhân dân / Hộ chiếu : <% Response.Write(this.NLDCMND); %>
             </div>
 
             <div class="ChuBinhThuong">
@@ -88,7 +88,7 @@
               <div class ="ChuBinhThuong">
                 <table style="width: 100%;" border="0">
                     <tr>
-                        <td class="HoVaTen " style="width:30%">4. Tình trạng hôn nhân :
+                        <td class="HoVaTen " style="width:30%">5. Tình trạng hôn nhân :
                         </td>
                             <td>Độc thân </td>
                          <td style="float:left; align-items:center ">
@@ -106,21 +106,21 @@
             </div>
 
         <div class="ChuBinhThuong">
-               5. Nơi đăng ký hộ khẩu thường trú : <%Response.Write(this.NLDNoiThuongTru); %>
+               6. Nơi đăng ký hộ khẩu thường trú : <%Response.Write(this.NLDNoiThuongTru); %>
             </div>
             <div class="ChuBinhThuong">
-             6. Địa chỉ liên hệ : <%Response.Write(this.NLDDiaChi); %>
+             7. Địa chỉ liên hệ : <%Response.Write(this.NLDDiaChi); %>
             </div>
 
 
              <div class="ChuBinhThuong">
                 <table style="width: 100%;" border="0">
                     <tr>
-                        <td class="HoVaTen">7. Điện thoại liên lạc : <% Response.Write(this.NLDDienThoai); %>
+                        <td class="HoVaTen">8. Điện thoại liên lạc : <% Response.Write(this.NLDDienThoai); %>
                         </td>
                     </tr>
                     <tr>
-                        <td class="HoVaTen">8. Email : <% Response.Write(this.NLDEmail); %>
+                        <td class="HoVaTen"> Email : <% Response.Write(this.NLDEmail); %>
                         </td>
                     </tr>
                 </table>
@@ -171,12 +171,12 @@
                 10. Trình độ kỹ thuật cao nhất : <%Response.Write(this.NLDKhaNangNoiTroi); %>
             </div>
             <div class="ChuBinhThuong">
-               11. Trình độ kỹ năng nghề <i>(nếu có)</i> : <%Response.Write(this.NLDTrinhDoKyNangNghe); %>
+               11. Bậc trình độ kỹ năng nghề  <i>(nếu có)</i> : <%Response.Write(this.NLDTrinhDoKyNangNghe); %>
             </div>
             <div class="ChuBinhThuong">
                 <table style="width: 100%;" border="0">
                     <tr>
-                        <td class="HoVaTen">Ngoại ngữ: <%Response.Write(this.NLDNgoaiNgu); %>
+                        <td class="HoVaTen"> 12. Ngoại ngữ: <%Response.Write(this.NLDNgoaiNgu); %>
                         </td>
                         <td class="HoVaTen" style="width: 450px;">Trình độ: <%= trinhDongoaiNgu %>
                         </td>
@@ -188,17 +188,17 @@
                     <tr>
                         <td class="HoVaTen">Tin học: <%Response.Write(this.NLDTinHoc); %>
                         </td>
-                        <td class="HoVaTen" style="width: 450px;">Trình độ: <%= trinhDoTinHoc %>
+                        <td class="HoVaTen" style="width: 450px;">13. Trình độ: <%= trinhDoTinHoc %>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="ChuBinhThuong">
-               12. Các chứng chỉ khác nếu có : <%Response.Write(this.NLDNoiDungKhac); %>
+               14. Các chứng chỉ khác nếu có : <%Response.Write(this.NLDNoiDungKhac); %>
             </div>
 
              <div class="ChuBinhThuong">
-               13. Khả năng, sở trường   <% Response.Write(this.NLDKhaNangNoiTroi); %>
+               15. Khả năng, sở trường :  <% Response.Write(this.NLDKhaNangNoiTroi); %>
             </div>
              <div class="ChuBinhThuong">
               <i> ..................................................... ............................................................... </i> 
@@ -216,8 +216,8 @@
                 ....................................................... ..............................................................
             </div>
             
-             <div class="ChiMuc">
-                <b>I. THÔNG TIN VỀ  QUÁ TRÌNH LÀM VIỆC</b>
+             <div class="ChuBinhThuong">
+                <b>16. Quá trình làm việc :</b>
             </div>
 
             <div class="ChuBinhThuong">
@@ -228,9 +228,9 @@
                         </td>
                         <td class="ChuBinhThuong" style="text-align: center;width: 350px;"><b>Tên đơn vị đã làm việc</b>
                         </td>
-                        <td class="ChuBinhThuong" style="width: 200px; text-align: center;"><b>Thời gian làm việc</b><br />(Từ ngày - đến ngày)
+                        <td class="ChuBinhThuong" style="width: 200px; text-align: center;"><b>Thời gian làm việc</b><br />(Từ tháng năm - đến tháng năm)
                         </td>
-                         <td class="ChuBinhThuong" style="text-align: center; width:250px;"><b>Vị trí công việc đã làm</b>
+                         <td class="ChuBinhThuong" style="text-align: center; width:250px;"><b>Vị trí việc làm</b>
                         </td>
                     </tr>
 
@@ -307,31 +307,45 @@
                 </table>
             </div>
 
-               <%-- <div class="ChuBinhThuong">
-                Trình độ đào tạo: 
+            <div class="ChuBinhThuong">
+                 Đã liên hệ tìm việc làm ở đơn vị nào (từ lần thất nghiệp gần nhất đến nay): <%Response.Write(this.NLDDNDaLienHe); %>
+                 <div class="ChuBinhThuong">
+                ....................................................... ..............................................................
+            </div>
+            </div>
+ 
+         
+            <div class="ChiMuc1">
+                 <b>18. Công việc / vị trí việc làm đăng ký</b>
             </div>
 
-            <div class="ChuBinhThuong">
+
+                <div class="ChuBinhThuong">
                 <table style="width: 100%;" border="1">
-                    <tr style ="height:40px;">
+                   <tr style ="height:40px;">
                         <td class="ChuBinhThuong" style="width: 45px; text-align: center;">
                             <b>Số TT</b>
                         </td>
-                        <td class="ChuBinhThuong" style="text-align: center;"><b>Chuyên ngành đào tạo</b>
+                        <td class="ChuBinhThuong" style="text-align: center;width: 350px;"><b>.\.</b>
                         </td>
-                        <td class="ChuBinhThuong" style="width: 400px; text-align: center;"><b>Trình độ đào tạo (2)</b>
+                        <td class="ChuBinhThuong" style="width: 200px; text-align: center;"><b>Vị trí số 1</b>
+                        </td>
+                         <td class="ChuBinhThuong" style="text-align: center; width:250px;"><b>Vị trí số 2</b>
                         </td>
                     </tr>
 
-                     <tr style ="height:60px;">
+                    <tr style ="height:60px;">
                         <td class="ChuBinhThuong" style="width: 45px; text-align: center;">
                             1
                         </td>
                         <td class="ChuBinhThuong" style ="padding-left:20px;">
-                            <% Response.Write(this.NLDQuaTrinhDaoTao_CN1); %>
+                           Tên công việc/Vị trí việc làm
                         </td>
-                        <td class="ChuBinhThuong" style="width: 400px; padding-left:20px;">
-                            <% Response.Write(this.NLDQuaTrinhDaoTao_CM1); %>
+                        <td class="ChuBinhThuong" style="width: 300px; text-align:center;">
+                           <%Response.Write(this.NLDViTriCongViec); %>
+                        </td>
+                         <td class="ChuBinhThuong" style="width: 300px; padding-left:20px;">
+                            <%Response.Write(this.NLDViTriCongViec); %>
                         </td>
                     </tr>
 
@@ -340,10 +354,13 @@
                             2
                         </td>
                         <td class="ChuBinhThuong" style ="padding-left:20px;">
-                            <% Response.Write(this.NLDQuaTrinhDaoTao_CN2); %>
+                           Địa điểm
                         </td>
-                        <td class="ChuBinhThuong" style="width: 400px; padding-left:20px;">
-                            <% Response.Write(this.NLDQuaTrinhDaoTao_CM2); %>
+                        <td class="ChuBinhThuong" style="width: 300px; text-align:center;">
+                           <%Response.Write(this.NLDDiaDiemLamViec); %>
+                        </td>
+                         <td class="ChuBinhThuong" style="width: 200px; padding-left:20px;">
+                           <%Response.Write(this.NLDDiaDiemLamViec); %>
                         </td>
                     </tr>
 
@@ -351,120 +368,38 @@
                         <td class="ChuBinhThuong" style="width: 45px; text-align: center;">
                             3
                         </td>
-                       <td class="ChuBinhThuong" style ="padding-left:20px;">
-                            <% Response.Write(this.NLDQuaTrinhDaoTao_CN3); %>
+                        <td class="ChuBinhThuong" style ="padding-left:20px;">
+                    Mức lương
                         </td>
-                        <td class="ChuBinhThuong" style="width: 400px; padding-left:20px;">
-                            <% Response.Write(this.NLDQuaTrinhDaoTao_CM3); %>
+                        <td class="ChuBinhThuong" style="wid    th: 300px; text-align:center;">
+                           <%Response.Write(this.NLDMucLuongThapNhat); %>
+                        </td>
+                         <td class="ChuBinhThuong" style="width: 200px; padding-left:20px;">
+                            <%Response.Write(this.NLDMucLuongThapNhat); %>
+                        </td>
+                    </tr>
+                    <tr style ="height:60px;">
+                        <td class="ChuBinhThuong" style="width: 45px; text-align: center;">
+                            3
+                        </td>
+                        <td class="ChuBinhThuong" style ="padding-left:20px;">
+                   Yêu cầu khác
+                        </td>
+                        <td class="ChuBinhThuong" style="wid    th: 300px; text-align:center;">
+                           <%Response.Write(this.NLDNoiDungKhac); %>
+                        </td>
+                         <td class="ChuBinhThuong" style="width: 200px; padding-left:20px;">
+                           <%Response.Write(this.NLDNoiDungKhac); %>
                         </td>
                     </tr>
 
                 </table>
-            </div>--%>
-
-         
-
-               <%--            <div class="ChuBinhThuong">
-                Khả năng nổi trội của bản thân
             </div>
+                
 
-            <div class="ChuBinhThuong">
-                <% Response.Write(this.NLDKhaNangNoiTroi); %>
-            </div>
 
-            <div class="ChuBinhThuong">
-                .......................................
-            </div>
-
-            <div class="ChuBinhThuong">
-                .......................................
-            </div>
-
-            <div class="ChuBinhThuong">
-                .......................................
-            </div>
-  --%>
            
-
-               <%-- <div class="ChuBinhThuong">
-                Mức lương (trước lần thất nghiệp gần nhất): <% Response.Write(this.NLDMucLuongTN); %>
-            </div>
-
-            <div class="ChuBinhThuong">
-                Lý do thất nghiệp gần nhất: <% Response.Write(this.NLDLyDoTN); %>
-            </div>
-
-            <div class="ChiMuc">
-                <b>II. TÌNH TRẠNG TÌM KIẾM VIỆC LÀM HIỆN NAY</b>
-            </div>--%>
-
-            <div class="ChuBinhThuong">
-                 Đã liên hệ tìm việc làm ở đơn vị nào (từ lần thất nghiệp gần nhất đến nay): <%Response.Write(this.NLDDNDaLienHe); %>
-                 <div class="ChuBinhThuong">
-                ....................................................... ..............................................................
-            </div>
-            </div>
- 
-            <div class="ChiMuc">
-                <b>18 . Công việc / Vị trí việc làm đăng ký</b>
-            </div>
-
-            <div class="ChiMuc1">
-                 <b>1. Tư vấn</b>
-            </div>
-
-            <div class="ChuBinhThuong">
-                <table class="table1">
-                    <tr style ="height:30px;">
-                        <td class="txtr">Chính sách, pháp luật về lao động việc làm </td>
-                        <td>
-                            <asp:CheckBox ID="ckbTuVanPhapLuat" runat="server" />
-                        </td>
-                        <td class="txtr pl20">Việc làm </td>
-                        <td>
-                            <asp:CheckBox ID="ckbTuVanViecLam" runat="server" />
-                        </td>
-                    </tr>
-                     <tr style ="height:30px;">
-                        <td class="txtr">Bảo hiểm thất nghiệp </td>
-                         <td>
-                            <asp:CheckBox ID="ckbTuVanBHTN" runat="server" />
-                        </td>
-                        <td class="txtr pl20">Khác </td>
-                         <td>
-                            <asp:CheckBox ID="ckbTuVanKhac" runat="server" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="ChiMuc1">
-                 <b>2. Giới thiệu việc làm</b>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 Vị trí công việc: <%Response.Write(this.NLDViTriCongViec); %>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 Mức lương thấp nhất: <%Response.Write(this.NLDMucLuongThapNhat); %>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 Điều kiện làm việc: <%Response.Write(this.NLDDieuKienLamViec); %>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 Địa điểm làm việc: <%Response.Write(this.NLDDiaDiemLamViec); %>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 Khác: <%Response.Write(this.NLDNoiDungKhac); %>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 Loại hình đơn vị: Nhà nước <asp:CheckBox ID="CheckBox5" runat="server" />; Ngoài nhà nước <asp:CheckBox ID="CheckBox6" runat="server" />;Có vốn đầu tư nước ngoài <asp:CheckBox ID="CheckBox7" runat="server" />
-            </div>
+            
             <br />
             <div>
                 <table style="width: 100%;" border="0">
@@ -481,7 +416,7 @@
                             
                         </td>
                         <td class="HoVaTen" style="width: 250px;text-align:center;">
-                            <b>Người đề nghị</b>
+                            <b>Người đăng ký</b>
                         </td>
                     </tr>
                     <tr>
@@ -495,17 +430,7 @@
                 </table>
             </div>
             <br /><br /><br />
-            <div class="ChuBinhThuong">
-                 <b>Ghi chú:</b>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 <i>(1) Ghi rõ số nhà, đường phố, tổ, thôn, xóm, làng, ấp, bản, buôn, phum, sóc.</i>
-            </div>
-
-            <div class="ChuBinhThuong">
-                 <i>(2) Công nhân kỹ thuật không có chứng chỉ nghề, chứng chỉ nghề ngắn hạn dưới 03 tháng, sơ cấp từ 03 tháng đến dưới 12 tháng, trung cấp, cao đẳng, đại học trở lên.</i>
-            </div>
+          
 
         </div>
 

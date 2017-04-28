@@ -133,10 +133,10 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                 this.NLDLyDoTN = this.objTableNldTuVan.Rows[0]["LyDoTN"].ToString();
                 this.NLDDNDaLienHe = this.objTableNldTuVan.Rows[0]["DNDaLienHe"].ToString();
 
-                this.ckbTuVanPhapLuat.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanPhapLuat"].ToString());
-                this.ckbTuVanViecLam.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanViecLam"].ToString());
-                this.ckbTuVanBHTN.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanBHTN"].ToString());
-                this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
+               // this.ckbTuVanPhapLuat.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanPhapLuat"].ToString());
+               // this.ckbTuVanViecLam.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanViecLam"].ToString());
+               // this.ckbTuVanBHTN.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanBHTN"].ToString());
+                //this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
                 this.NLDViTriCongViec = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0")
