@@ -11,7 +11,6 @@
                 format: 'DD/MM/YYYY'
             });
         });
-
         $(function () {
             $('#datetimepicker2').datetimepicker({
                 format: 'DD/MM/YYYY'
@@ -231,7 +230,6 @@
                         <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
                 </tr>
-
             </ContentTemplate>
         </asp:UpdatePanel>
 
@@ -429,8 +427,71 @@
             <td style="width: 90%;" colspan="6">&nbsp;
             </td>
         </tr>
-
     </table>
+
+
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <a class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      Giới thiệu việc làm bổ sung <i> ( nhấp vào để đóng ) </i> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </a>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+       
+          <table>
+
+            <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
+            <td style="width: 90%;" colspan="6">
+
+                 <asp:TextBox ID="txtViTriCongViec2" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0"></asp:TextBox>
+                <!---Tự động hoàn tất -->
+               <select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
+                       <%foreach (string i in lv_Vitri)
+                      {%>
+                    <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                    <%} %>
+                 </select>
+            </td>
+        </tr>
+              
+           <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Mức lương thấp nhất:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtMucLuongThapNhat2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Điều kiện làm việc:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtDieuKienLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Địa điểm làm việc:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtDiaDiemLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtNoiDungKhac2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+        <tr style="height: 20px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
+            <td style="width: 90%;" colspan="6">&nbsp;
+            </td>
+        </tr>
+         </table> 
+           </div>
+    </div>
+  </div>
 
     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
         <table border="0" style="width: 100%; margin-top: -8px;">
@@ -568,8 +629,6 @@
                 }
             }
         }
-       
-   
 
         function InPhieuGioiThieu() {
 
@@ -664,6 +723,8 @@
     </script>
     <script type="text/javascript">
         $(".js-example-basic-multiple").select2();
+        $(".js-example-basic-multiple2").select2();
+       
     </script>
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
