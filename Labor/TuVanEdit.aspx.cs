@@ -204,22 +204,48 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
 
                 this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
+               
+                if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
+                this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
+                this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
+
+                this.txtViTriCongViec2.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec2"].ToString();
+                if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
+                this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
+                this.txtDiaDiemLamViec2.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec2"].ToString();
+
+
+                // nội dung khác của vị trí 2 sẻ ko hoạt động
+                this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
+
+                this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
+
                 /* Load defaut selected mode */
                 try
                 {
                     string selectedValue = "$('#ddlQickSelect').val([";
-                    foreach(string s in this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString().Split(';'))
+                    foreach (string s in this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString().Split(';'))
                     {
-                         selectedValue +=  "'" + s+ "'"+ ',';
+                        selectedValue += "'" + s + "'" + ',';
                     }
                     selectedValue = selectedValue.Substring(0, selectedValue.Length - 1);
                     selectedValue += "]).trigger('change');";
-                    Page.ClientScript.RegisterStartupScript(GetType(), "haha" , selectedValue, true);
+                    Page.ClientScript.RegisterStartupScript(GetType(), "haha", selectedValue, true);
+                    // 
+                    try
+                    {
+                        string selectedValue2 = "$('#ddlQickSelect2').val([";
+                        foreach (string s2 in this.objTableNldTuVan.Rows[0]["ViTriCongViec2"].ToString().Split(';'))
+                        {
+                            selectedValue2 += "'" + s2 + "'" + ',';
+                        }
+                        selectedValue2 = selectedValue2.Substring(0, selectedValue2.Length - 1);
+                        selectedValue2 += "]).trigger('change');";
+                        Page.ClientScript.RegisterStartupScript(GetType(), "hehe", selectedValue2, true);
                     }
+                    catch { }
+                }
                 catch { }
-                if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
-                this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
-                this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
 
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
                 this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
@@ -343,6 +369,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
+        if (IDNguoiLaoDong == 0)
+        {
         int ret = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim());
         if(ret != 0)
         {
@@ -352,6 +380,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.lblMsg.Text = "Người lao động đã tồn tại";
             return;
         }
+            }
 
         if (txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
         {
@@ -360,9 +389,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
-        if(txtBHXH.Text.Trim() != "")
+        if (txtBHXH.Text.Trim() != "" && IDNguoiLaoDong == 0)
         {
-            ret = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim());
+           int ret = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim());
             if (ret != 0)
             {
                 this.txtMa.Text = this.txtBHXH.Text.Trim();
