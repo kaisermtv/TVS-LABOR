@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">XÓA DANH MỤC CÁN BỘ</h3>
+            <h3 class="panel-title">XÓA CÁN BỘ</h3>
         </div>
         <br />
         <br />

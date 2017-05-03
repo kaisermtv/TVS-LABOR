@@ -18,11 +18,11 @@
                 <tr>
                     <td class="txtcenter" style="width:45%">
                         SỞ LAO ĐỘNG - TBXH NGHỆ AN<br />
-                        <b>TRUNG TÂM DỊCH VỤ VIỆC LÀM</b>
+                        <b>TRUN<b style="border-bottom:1px solid">G TÂM DỊCH VỤ VIỆ</b>C LÀM</b>
                     </td>
                     <td class="txtcenter" style="width:55%">
                         <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br />
-                        <b>Độc lập - Tự do - Hạnh phúc</b>
+                        <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
                     </td>
                 </tr>
                 <tr>
@@ -37,7 +37,7 @@
 
             <table class="KinhGui">
                 <tr>
-                    <td><b>Kính gửi:</b></td>
+                    <td style="width:15%"><b>Kính gửi:</b></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -57,12 +57,12 @@
             <p>Số sổ BHXH: <% Response.Write(this.NLDBHXH); %>; Điện thoại: <% Response.Write(this.NLDDienThoai); %>; Email: <% Response.Write(this.NLDEmail); %></p>
             <p>Nơi thường trú: <% Response.Write(this.NLDNoiThuongTru); %></p>
             <p>Trình độ giáo dục phổ thông: <% Response.Write(this.NLDTrinhDoPhoThong); %>; Trình độ CMKT/Tay nghề: <% Response.Write(this.NLDTrinhDoPhoThong); %></p>
-            <p>Công việc trước khi thất nghiệp: Lái xe; Kinh nghiệm làm việc: 3 năm</p>
+            <p>Công việc trước khi thất nghiệp: </p>
             <p>Vị trí công việc dự tuyển: <% Response.Write(this.NLDViTriCongViec); %></p>
             <p>Phiếu có giá trị đến ngày: 23/03/2017</p>
-            <p>Kính đề nghị Quý đơn vị phối hợp thông báo kết quả dự tuyển cho Trung tâm để tổng hợp theo dõi tình trạng việc làm của người lao động.</p>
+            <p>Kính đề nghị Quý đơn vị phối hợp thông báo kết quả dự tuyển cho Trung tâm để tổng hợp theo dõi tình trạng việc làm của người lao động./.</p>
 
-            <div class="LoiCamOn"><b>Cảm ơn sự quan tâm phối hợp của Quý Công ty./.</b></div>
+            <div class="LoiCamOn">Cảm ơn sự quan tâm phối hợp của Quý Công ty!</div>
 
             <table>
                 <tr>
@@ -95,7 +95,7 @@
                     <b><u>Lưu ý:</u></b>
                 </div>
                 <b>
-                <small style="margin-left:40px;">- Theo nghị định số 28/2015/NĐ-CP ngày 12/03/2015 của chính phủ quy định tại điểm đ - Khoản 1 - Điều 21 - Mục 3 - Chương IV "Sau 02 lần người lao động từ chối việc làm do trung tâm dịch vụ việc làm nơi đang hưởng trợ cấp thất nghiệp giới thiệu mà không có lý do chính đáng <u>thì sẽ bị chấm dứt hưởng trợ cấp thất nghiệp</u>".</small><br />
+                <small style="margin-left:40px;">- Theo nghị định số 28/2015/NĐ-CP ngày 12/03/2015 của Chính phủ quy định tại điểm đ - Khoản 1 - Điều 21 - Mục 3 - Chương IV "Sau 02 lần người lao động từ chối việc làm do Trung tâm dịch vụ việc làm nơi đang hưởng trợ cấp thất nghiệp giới thiệu mà không có lý do chính đáng <u>thì sẽ bị chấm dứt hưởng trợ cấp thất nghiệp</u>".</small><br />
                 <small style="margin-left:200px;">- Địa chỉ liên hệ: Phòng thông tin TTLĐ - Trung tâm dịch vụ việc làm Nghệ An</small><br />
                 <small style="margin-left:200px;">- Điện thoại: 0383 550 050, 0974232829 (A.Tuấn)</small>
                 </b>

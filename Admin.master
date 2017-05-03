@@ -53,9 +53,12 @@
 </head>
 <body class="sticky-header left-side-collapsed" onload="initMap()">
     <form id="form1" runat="server">
-         <asp:ScriptManager runat="server">
+         <asp:ScriptManager ID="ScriptManagerAdmin" runat="server" EnablePartialRendering="true"  EnablePageMethods="true">
+          
+               
         </asp:ScriptManager>
-        <section>
+          
+              <section>
             <!-- left side start-->
             <div class="left-side sticky-left-side">
 

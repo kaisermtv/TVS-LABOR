@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="AdminHeaderItem">
-        HÌNH THỨC TUYỂN DỤNG
+     THÊM SỬA HÌNH THỨC TUYỂN DỤNG
     </div>
     <div class="AdminItem">
         <div class="AdminLeftItem">

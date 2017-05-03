@@ -54,12 +54,12 @@ public partial class Category_NhomNganhEdit : System.Web.UI.Page
     {
         this.lblMsg.Text = "";
 
-        if (this.txtCodeNgoaiNgu.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập mã nhóm ngành";
-            this.txtCodeNgoaiNgu.Focus();
-            return;
-        }
+        //if (this.txtCodeNgoaiNgu.Text.Trim() == "")
+        //{
+        //    this.lblMsg.Text = "Bạn chưa nhập mã nhóm ngành";
+        //    this.txtCodeNgoaiNgu.Focus();
+        //    return;
+        //}
 
         if (this.itemId == 0)
         {

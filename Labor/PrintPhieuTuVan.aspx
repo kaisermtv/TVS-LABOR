@@ -1,15 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintPhieuTuVan.aspx.cs" Inherits="Labor_PrintPhieuTuVan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintPhieuTuVan.aspx.cs" Inherits="Labor_PrintBanDangKyTuVanTimViecLam" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>IN PHIẾU TƯ VẤN</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BẢN ĐĂNG KÝ TƯ VẤN TÌM VIỆC LÀM ( Dành cho người lao động )</title>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <!-- Custom CSS -->
     <link href="../css/PrintPhieuTuVan.css" rel="stylesheet" />
+
 </head>
 <body style="margin: 0px !important; height: 500px !important;">
     <form id="form1" runat="server">
@@ -24,8 +27,8 @@
                 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
             </div>
 
-            <div class="HoNgu2">
-                Độc lập - Tự do - Hạnh phúc
+            <div class="HoNgu2" >
+                <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
             </div>
 
             <div class="TieuDePhieu">
@@ -120,7 +123,7 @@
                     <tr>
                         <td class="HoVaTen">Ngoại ngữ: <%Response.Write(this.NLDNgoaiNgu); %>
                         </td>
-                        <td class="HoVaTen" style="width: 450px;">Trình độ: 
+                        <td class="HoVaTen" style="width: 450px;">Trình độ: <%= trinhDongoaiNgu %>
                         </td>
                     </tr>
                 </table>
@@ -131,7 +134,7 @@
                     <tr>
                         <td class="HoVaTen">Tin học: <%Response.Write(this.NLDTinHoc); %>
                         </td>
-                        <td class="HoVaTen" style="width: 450px;">Trình độ: 
+                        <td class="HoVaTen" style="width: 450px;">Trình độ: <%= trinhDoTinHoc %>
                         </td>
                     </tr>
                 </table>
@@ -226,9 +229,9 @@
                         <td class="ChuBinhThuong" style="width: 45px; text-align: center;">
                             <b>Số TT</b>
                         </td>
-                        <td class="ChuBinhThuong" style="text-align: center;"><b>Tên đơn vị đã làm việc</b>
+                        <td class="ChuBinhThuong" style="text-align: center;width: 350px;"><b>Tên đơn vị đã làm việc</b>
                         </td>
-                        <td class="ChuBinhThuong" style="width: 300px; text-align: center;"><b>Thời gian làm việc</b><br />(Từ ngày…/…/….đến ngày. ../…/…)
+                        <td class="ChuBinhThuong" style="width: 200px; text-align: center;"><b>Thời gian làm việc</b><br />(Từ ngày - đến ngày)
                         </td>
                          <td class="ChuBinhThuong" style="text-align: center; width:250px;"><b>Vị trí công việc đã làm</b>
                         </td>
@@ -362,7 +365,7 @@
             <div>
                 <table style="width: 100%;" border="0">
                     <tr>
-                        <td class="HoVaTen">
+                        <td class="HoVaTen" style="width:50%">
                             
                         </td>
                         <td class="HoVaTen" style="width: 250px;text-align:center;">

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <div class="AdminHeaderItem">
-        NGÀNH NGHỀ KINH DOANH
+    THÊM , CHỈNH SỬA NGÀNH NGHỀ KINH DOANH
     </div>
     <div class="AdminItem">
         <div class="AdminLeftItem">

@@ -78,7 +78,7 @@
         </tr>
     </table>
     <br />
-    <a href="DistrictEdit.aspx">
+    <a href="DistrictEdit.aspx?tt=<%= ddlProvincer.SelectedValue %>">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
 
        <script>

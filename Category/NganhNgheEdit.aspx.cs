@@ -36,13 +36,16 @@ public partial class Admin_NganhNgheEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
-        if (!Page.IsPostBack && this.itemId > 0)
+        if(!Page.IsPostBack)
         {
             this.ddlNhomNganh.DataSource = this.objNhomNganh.getDataCategoryToCombobox();
             this.ddlNhomNganh.DataTextField = "NameNhomNganh";
             this.ddlNhomNganh.DataValueField = "IDNhomNganh";
             this.ddlNhomNganh.DataBind();
+        }
 
+        if (!Page.IsPostBack && this.itemId > 0)
+        {
             this.objTable = this.objNganhNghe.getDataById(this.itemId);
             if (this.objTable.Rows.Count > 0)
             {

@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width: 100%; height: 35px; line-height: 35px; margin-bottom: 10px;">
         <div class="AdminLeftItem">
-            TĐ CHUYÊN MÔN
+            TRÌNH ĐỘ CHUYÊN MÔN
         </div>
         <div class="AdminRightItem">
              <asp:TextBox ID="txtSearch" runat="server" CssClass ="form-control" Style="width: 35% !important; float:left;"></asp:TextBox>&nbsp;

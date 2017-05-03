@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVan.aspx.cs" Inherits="Labor_TuVan" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 
     <script src="../js/TvsScript.js"></script>
+ 
+
+
     <table class="table" style="margin-top: -20px;">
         <tr>
             <td>
@@ -91,12 +93,11 @@
     <br />
     <a href="TuVanEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
-
     <script>
+      
         $(function () {
             /* QUICK SEARCH - Tìm nhanh */
-
-            $('#MainContent_dtlTuVanViecLam').searchable({
+           $('#MainContent_dtlTuVanViecLam').searchable({
                 searchField: '#MainContent_txtSearch',
                 selector: 'tr',
                 childSelector: 'td',
@@ -110,5 +111,7 @@
         });
     </script>
 
+ 
+    <div id="divResult"></div>
 </asp:Content>
 
