@@ -450,7 +450,7 @@
                <select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
                        <%foreach (string i in lv_Vitri)
                       {%>
-                    <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                    <option class="op1" value="<%=i.ToString() %>"><%=i.ToString() %></option>
                     <%} %>
                  </select>
             </td>
@@ -707,8 +707,8 @@
 
     </script>
     <script>
-        function getValue() { // lấy nội dung vào txtVitriCongviec
-            var x = document.getElementsByClassName("select2-selection__choice");
+        function getValue() {               // lấy nội dung vào txtVitriCongviec
+            var x = document.getElementsByClassName("select2-selection__rendered")[0].getElementsByClassName("select2-selection__choice");
             var i;
             var str = '';
             for (i = 0; i < x.length; i++) {
@@ -716,9 +716,20 @@
             }
             return str;
         }
+        function getValue2() {               // lấy nội dung vào txtVitriCongviec2 , tạm thời viết thế này đả
+            var x = document.getElementsByClassName("select2-selection__rendered")[1].getElementsByClassName("select2-selection__choice");
+            var i;
+            var str = '';
+            for (i = 0; i < x.length; i++) {
+                str += x[i].textContent;
+            }
+            return str;
+        }
+
         function load()      // load dử liệu vào textbox
         {
             document.getElementById('MainContent_txtViTriCongViec').value = getValue();
+            document.getElementById('MainContent_txtViTriCongViec2').value = getValue2();
         }
     </script>
     <script type="text/javascript">

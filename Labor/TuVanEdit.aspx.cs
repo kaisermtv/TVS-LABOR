@@ -209,10 +209,13 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
 
+                this.txtViTriCongViec2.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec2"].ToString();
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
                 this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
                 this.txtDiaDiemLamViec2.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec2"].ToString();
 
+
+                // nội dung khác của vị trí 2 sẻ ko hoạt động
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
 
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
