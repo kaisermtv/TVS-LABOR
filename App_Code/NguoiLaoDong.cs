@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-public class NguoiLaoDong
+public class NguoiLaoDong :DataClass
 {
     #region method NguoiLaoDong
     public NguoiLaoDong()
@@ -2027,6 +2027,52 @@ public class NguoiLaoDong
             
         }
         return tmpMaNLD;
+    }
+    #endregion
+
+    #region Method checkCMND()
+    public int checkCMND(String cmnd)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT IDNguoiLaoDong FROM TblNguoiLaoDong WHERE CMND = @CMND";
+            Cmd.Parameters.Add("CMND", SqlDbType.Int).Value = cmnd;
+
+            int ret = (int)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return 0;
+        }
+    }
+    #endregion
+
+    #region Method checkBHXH()
+    public int checkBHXH(String BHXH)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT IDNguoiLaoDong FROM TblNguoiLaoDong WHERE BHXH = @BHXH";
+            Cmd.Parameters.Add("BHXH", SqlDbType.Int).Value = BHXH;
+
+            int ret = (int)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return 0;
+        }
     }
     #endregion
 }

@@ -328,19 +328,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     {
         this.lblMsg.Text = "";
 
-        if (this.txtHoVaTen.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập tên của người lao động";
-            this.txtHoVaTen.Focus();
-            return;
-        }
-
-        if (this.txtNgaySinh.Value.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập ngày sinh của người lao động";
-            this.txtNgaySinh.Focus();
-            return;
-        }
 
         if (this.txtCMND.Text.Trim() == "")
         {
@@ -356,6 +343,51 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
+        int ret = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim());
+        if(ret != 0)
+        {
+            this.txtMa.Text = this.txtCMND.Text.Trim();
+            this.btnGetInformation_Click(sender, e);
+
+            this.lblMsg.Text = "Người lao động đã tồn tại";
+            return;
+        }
+
+        if (txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
+        {
+            this.lblMsg.Text = "Bạn nhập số BHXH không chính xác";
+            this.txtDienThoai.Focus();
+            return;
+        }
+
+        if(txtBHXH.Text.Trim() != "")
+        {
+            ret = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim());
+            if (ret != 0)
+            {
+                this.txtMa.Text = this.txtBHXH.Text.Trim();
+                this.btnGetInformation_Click(sender, e);
+
+                this.lblMsg.Text = "Mã BHXH đã tồn tại";
+                return;
+            }
+        }
+
+
+        if (this.txtHoVaTen.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập tên của người lao động";
+            this.txtHoVaTen.Focus();
+            return;
+        }
+
+        if (this.txtNgaySinh.Value.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập ngày sinh của người lao động";
+            this.txtNgaySinh.Focus();
+            return;
+        }
+
         if (this.txtDienThoai.Text.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập số điện thoại của người lao động";
@@ -363,12 +395,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
-        if(txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
-        {
-            this.lblMsg.Text = "Bạn nhập số BHXH không chính xác";
-            this.txtDienThoai.Focus();
-            return;
-        }
+        
 
         if (this.txtChieuCao.Text.Trim() == "")
         {
@@ -441,6 +468,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
             #region Luu thong tin vao phieu tu van
             this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1), tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtViTriCongViec2.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1), tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString());
+
             #endregion
 
             #region Luu thong tin vao phieu dang ky viec lam
