@@ -184,7 +184,7 @@ public partial class Labor_TuyenDungView : System.Web.UI.Page
                 this.txtUuTien.Text = this.objTable.Rows[0]["UuTien"].ToString();
 
                 this.ddlIDTrinhDoChuyenMon.SelectedValue = this.objTable.Rows[0]["IDTrinhDoChuyenMon"].ToString();
-                //this.txtNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
+                this.lblNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
                 this.txtMoTa.Text = this.objTable.Rows[0]["MoTa"].ToString();
                 this.txtDiaDiem.Text = this.objTable.Rows[0]["DiaDiem"].ToString();
                 this.ddlIDMucLuong.SelectedValue = this.objTable.Rows[0]["IDMucLuong"].ToString();

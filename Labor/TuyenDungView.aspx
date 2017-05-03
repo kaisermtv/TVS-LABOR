@@ -146,7 +146,7 @@
             <tr style="height: 40px;">
                 <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung:</td>
                 <td style="width: 90%;" colspan="5">
-                    <%--<asp:TextBox ID="txtNoiDungKhac" runat="server" TextMode="MultiLine" CssClass="form-control" style="resize: vertical;"></asp:TextBox>--%>
+                    <asp:Label ID="lblNoiDungKhac" runat="server"></asp:Label>
                 </td>
             </tr>
 

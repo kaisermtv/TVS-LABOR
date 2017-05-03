@@ -170,8 +170,8 @@
                     return;
                 }
                 else {
-                    var w = screen.width;
-                    var h = screen.height;
+                    var w = screen.availWidth;
+                    var h = screen.availHeight;
 
                     var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
                     var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
@@ -179,9 +179,9 @@
                     var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
                     var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-                    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-                    var top = ((height / 2) - (h / 2)) + dualScreenTop;
-                    var newWindow = window.open("XemDangKyViecLam.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                    var left = 1;//((width / 2) - (w / 2)) + dualScreenLeft;
+                    var top = 1;//((height / 2) - (h / 2)) + dualScreenTop;
+                    var newWindow = window.open("XemDangKyViecLam.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left+',screenX=1,screenY=1');
 
                     if (window.focus) {
                         newWindow.focus();
