@@ -220,6 +220,11 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
                 this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
+
+                if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
+                this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
+                this.txtDiaDiemLamViec2.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec2"].ToString();
+
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
 
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
@@ -447,12 +452,24 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
         }
 
+        float tmpMucLuongThapNhat2 = 0;
+        try
+        {
+            tmpMucLuongThapNhat2 = float.Parse(this.txtMucLuongThapNhat2.Text);
+        }
+        catch
+        {
+        }
+
         if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, this.txtHoVaTen.Text, TVSSystem.CVDate(this.txtNgaySinh.Value.ToString().Trim()), this.txtCMND.Text, this.txtNoiCap.Text, TVSSystem.CVDate(this.txtNgayCapCMND.Value.ToString().Trim()),
             this.txtBHXH.Text, this.txtDienThoai.Text, this.txtEmail.Text, int.Parse(this.ddlDanToc.SelectedValue.ToString()), int.Parse(this.ddlTonGiao.SelectedValue.ToString()), this.txtSucKhoe.Text, double.Parse(this.txtChieuCao.Text), int.Parse(this.txtCanNang.Text),
             int.Parse(this.ddlTrinhDoPhoThong.SelectedValue.ToString()), int.Parse(this.ddlNgoaiNgu.SelectedValue.ToString()), int.Parse(this.ddlTinHoc.SelectedValue.ToString()), this.txtTrinhDoDaoTao.Text, this.txtTrinhDoKyNangNghe.Text, this.txtKhaNangNoiTroi.Text,
             this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
         {
             #region Luu thong tin vao phieu tu van
+<<<<<<< HEAD
+            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1), tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtViTriCongViec2.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1), tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString());
+=======
             String buf = "";
 
             if(this.txtViTriCongViec.Text.Trim() != "")
@@ -461,6 +478,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             }
 
             this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", buf, tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString());
+>>>>>>> aa724b19b69dae8d3544b0857614059953fd5b6f
             #endregion
 
             #region Luu thong tin vao phieu dang ky viec lam
