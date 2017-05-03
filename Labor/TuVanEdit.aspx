@@ -11,7 +11,6 @@
                 format: 'DD/MM/YYYY'
             });
         });
-
         $(function () {
             $('#datetimepicker2').datetimepicker({
                 format: 'DD/MM/YYYY'
@@ -71,46 +70,53 @@
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tìm kiếm:
             </td>
-            <td style="width: 40%;">
+            <td style="width: 40%;" colspan="4">
 
                 <table style="width: 100%;">
                     <tr>
-                        <td style="width: 28%;">
+                        <td style="width: 200px;">
                             <asp:TextBox ID="txtMa" runat="server" CssClass="form-control" onKeyDown="submitButton(event)" Style="background-color: aqua;"></asp:TextBox>
                         </td>
                         <td style="width: 40px; padding-left: 5px;">
 
                             <asp:Button ID="btnGetInformation" runat="server" Text="..." OnClick="btnGetInformation_Click" />
                         </td>
-                        <td style="text-align: right; width: 110px; padding-right: 5px;">Họ và tên:</td>
-                        <td>
+                        <td style="text-align: right; width: 90px; padding-right: 5px;">Họ và tên:</td>
+                        <td style="width:150px">
                             <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control"></asp:TextBox>
+                        </td>
+                        <td style="text-align:right;padding-right: 5px;">Giới tính: </td>
+                        <td>
+                            <asp:DropDownList ID="ddlGioiTinh" CssClass="form-control" runat="server" Style="width: 100%;">
+                                <asp:ListItem Value="1">Nam</asp:ListItem>
+                                <asp:ListItem Value="0">Nữ</asp:ListItem>
+                            </asp:DropDownList>
+                        </td>
+                        <td style="text-align:right;padding-right: 5px;">Ngày sinh :</td>
+                        <td style="width:150px">
+                            <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
+                                <input type='text' class="form-control" id="txtNgaySinh" runat="server" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker1').datetimepicker();
+                                });
+                            </script>
                         </td>
                     </tr>
                 </table>
 
-            </td>
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày sinh:</td>
-            <td style="width: 20%;" colspan="2">
-                <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control" id="txtNgaySinh" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker1').datetimepicker();
-                    });
-                </script>
             </td>
         </tr>
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Số CMND:</td>
             <td style="width: 10%;">
-                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control" MaxLength="9"></asp:TextBox>
             </td>
 
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày cấp:</td>
@@ -138,7 +144,7 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Số sổ BHXH:</td>
             <td style="width: 10%;">
-                <asp:TextBox ID="txtBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBHXH" runat="server" CssClass="form-control" MaxLength="10"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Điện thoại:</td>
             <td style="width: 40%;">
@@ -224,7 +230,6 @@
                         <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
                 </tr>
-
             </ContentTemplate>
         </asp:UpdatePanel>
 
@@ -349,13 +354,21 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Đăng ký tư vấn: </td>
             <td style="width: 90%;" colspan="6">
-                <asp:CheckBox ID="ckbTuVanPhapLuat" runat="server" />&nbsp;Chính sách, pháp luật lao động&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="ckbTuVanViecLam" runat="server" />&nbsp;Việc làm trong nước&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="ckbTuVanBHTN" runat="server" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="ckbTuVanDuHoc" runat="server" />&nbsp;Du học&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="ckbTuVanXuatKhauLaoDong" runat="server" />&nbsp;Xuất khẩu lao động&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="ckbTuVanHocNghe" runat="server" />&nbsp;Học nghề&nbsp;&nbsp;&nbsp;
-                <asp:CheckBox ID="ckbTuVanKhac" runat="server" />&nbsp;Khác&nbsp;&nbsp;&nbsp;
+                <table>
+                    <tr>
+                        <td style="width:30px"></td>
+                        <td><asp:CheckBox ID="ckbTuVanPhapLuat" runat="server" />&nbsp;Chính sách, pháp luật lao động&nbsp;&nbsp;&nbsp;</td>
+                        <td><asp:CheckBox ID="ckbTuVanViecLam" runat="server" />&nbsp;Việc làm trong nước&nbsp;&nbsp;&nbsp;</td>
+                        <td><asp:CheckBox ID="ckbTuVanBHTN" runat="server" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><asp:CheckBox ID="ckbTuVanXuatKhauLaoDong" runat="server" />&nbsp;Xuất khẩu lao động&nbsp;&nbsp;&nbsp;</td>
+                        <td><asp:CheckBox ID="ckbTuVanDuHoc" runat="server" />&nbsp;Du học&nbsp;&nbsp;&nbsp;</td>
+                        <td><asp:CheckBox ID="ckbTuVanHocNghe" runat="server" />&nbsp;Học nghề&nbsp;&nbsp;&nbsp;</td>
+                        <td><asp:CheckBox ID="ckbTuVanKhac" runat="server" />&nbsp;Khác&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                </table>
                 
             </td>
         </tr>
@@ -414,18 +427,83 @@
             <td style="width: 90%;" colspan="6">&nbsp;
             </td>
         </tr>
-
     </table>
+
+
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <a class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      Giới thiệu việc làm bổ sung <i> ( nhấp vào để đóng ) </i> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </a>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+       
+          <table>
+
+            <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
+            <td style="width: 90%;" colspan="6">
+
+                 <asp:TextBox ID="txtViTriCongViec2" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0"></asp:TextBox>
+                <!---Tự động hoàn tất -->
+               <select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
+                       <%foreach (string i in lv_Vitri)
+                      {%>
+                    <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                    <%} %>
+                 </select>
+            </td>
+        </tr>
+              
+           <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Mức lương thấp nhất:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtMucLuongThapNhat2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Điều kiện làm việc:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtDieuKienLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Địa điểm làm việc:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtDiaDiemLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtNoiDungKhac2" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+        <tr style="height: 20px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
+            <td style="width: 90%;" colspan="6">&nbsp;
+            </td>
+        </tr>
+         </table> 
+           </div>
+    </div>
+  </div>
 
     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
         <table border="0" style="width: 100%; margin-top: -8px;">
             <tr>
-                <td style="width: 700px; padding-left: 15px;">
+                <td style="width: 800px; padding-left: 15px;">
                     <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                     <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
                     <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
                     <button class="btn btn-danger" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
                     <button id="btnPrint" runat="server" class="btn btn-primary" onclick="InPhieuGioiThieu()">Phiếu giới thiệu</button>
+
+                    <button class="btn btn-primary" type="button" onclick="InPhieuKetQua()"  id="btnPhieuKetQua" runat="server">Phiếu kết quả</button>
                 </td>
                 <td>
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -519,6 +597,9 @@
 
         function InPhieuTuVan() {
 
+            // kiểm tra xem có là lao động tự do hay không ??
+            var NLDKieu = document.getElementById('MainContent_ddlIdLoaiLaoDong').value;
+            
             var IDNldTuVan = document.getElementById("MainContent_txtIDNldTuVan").value;
 
             if (IDNldTuVan != 0) {
@@ -534,8 +615,15 @@
 
                 var left = ((width / 2) - (w / 2)) + dualScreenLeft;
                 var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                if (NLDKieu == "0") {
+                    // Kieu Lao Động Tự Do
+                    var newWindow = window.open("PrintBanDangKyTuVanTimViecLam.aspx?id=" + IDNldTuVan, "IN PHIẾU TƯ VẤN", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                    return;
+                }
+                else{
                 var newWindow = window.open("PrintPhieuTuVan.aspx?id=" + IDNldTuVan, "IN PHIẾU TƯ VẤN", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-
+                }
+              
                 if (window.focus) {
                     newWindow.focus();
                 }
@@ -560,6 +648,31 @@
                 var left = ((width / 2) - (w / 2)) + dualScreenLeft;
                 var top = ((height / 2) - (h / 2)) + dualScreenTop;
                 var newWindow = window.open("PrintPhieuGioiThieu.aspx?id=" + IDNldTuVan, "IN PHIẾU GIỚI THIỆU", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
+                }
+            }
+        }
+
+        function InPhieuKetQua() {
+
+            var IDNldTuVan = document.getElementById("MainContent_txtIDNldTuVan").value;
+
+            if (IDNldTuVan != 0) {
+
+                var w = 1000;
+                var h = 1600;
+
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("PrintThongBaoKetQua.aspx?id=" + IDNldTuVan, "IN PHIẾU KẾT QUẢ", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
                 if (window.focus) {
                     newWindow.focus();
@@ -610,6 +723,8 @@
     </script>
     <script type="text/javascript">
         $(".js-example-basic-multiple").select2();
+        $(".js-example-basic-multiple2").select2();
+       
     </script>
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
