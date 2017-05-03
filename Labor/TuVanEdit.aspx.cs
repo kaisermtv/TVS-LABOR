@@ -362,6 +362,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
+        if (IDNguoiLaoDong == 0)
+        {
         int ret = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim());
         if(ret != 0)
         {
@@ -371,6 +373,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.lblMsg.Text = "Người lao động đã tồn tại";
             return;
         }
+            }
 
         if (txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
         {
@@ -379,9 +382,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
-        if(txtBHXH.Text.Trim() != "")
+        if (txtBHXH.Text.Trim() != "" && IDNguoiLaoDong == 0)
         {
-            ret = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim());
+           int ret = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim());
             if (ret != 0)
             {
                 this.txtMa.Text = this.txtBHXH.Text.Trim();
