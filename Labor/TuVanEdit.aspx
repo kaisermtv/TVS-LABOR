@@ -290,15 +290,15 @@
 
         <tr style="height: 40px;">
             <td colspan="7">
-                <table style="width: 100%;">
+                <table style="width: 100%;" border ="0">
                     <tr>
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Trình độ đào tạo:</td>
-                        <td style="width: 32.8%;">
+                        <td style="width:9.5%; text-align: right; padding-right: 5px;">Trình độ đào tạo:</td>
+                        <td style="width: 32.5%;">
                             <asp:TextBox ID="txtTrinhDoDaoTao" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                         <td style="text-align: right; width: 110px; padding-right: 5px;">Kỹ năng nghề:</td>
                         <td>
-                            <asp:TextBox ID="txtTrinhDoKyNangNghe" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtTrinhDoKyNangNghe" runat="server" CssClass="form-control" Style ="width:100%;"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -309,8 +309,8 @@
             <td colspan="7">
                 <table style="width: 100%;">
                     <tr>
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Khả năng nổi trội:</td>
-                        <td style="width: 32.8%;">
+                        <td style="width: 9.5%; text-align: right; padding-right: 5px;">Khả năng nổi trội:</td>
+                        <td style="width: 32.5%;">
                             <asp:TextBox ID="txtKhaNangNoiTroi" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                         <td style="width: 110px; text-align: right; padding-right: 5px;">Mức lương TN:</td>
@@ -372,7 +372,7 @@
                         <td></td>
                         <td><asp:CheckBox ID="ckbTuVanXuatKhauLaoDong" runat="server" />&nbsp;Xuất khẩu lao động&nbsp;&nbsp;&nbsp;</td>
                         <td><asp:CheckBox ID="ckbTuVanDuHoc" runat="server" />&nbsp;Du học&nbsp;&nbsp;&nbsp;</td>
-                        <td><asp:CheckBox ID="ckbTuVanHocNghe" runat="server" />&nbsp;Học nghề&nbsp;&nbsp;&nbsp;</td>
+                        <td><asp:CheckBox ID="ckbTuVanHocNghe" runat="server" />&nbsp;Tư vấn đào tạo&nbsp;&nbsp;&nbsp;</td>
                         <td><asp:CheckBox ID="ckbTuVanKhac" runat="server" />&nbsp;Khác&nbsp;&nbsp;&nbsp;</td>
                     </tr>
                 </table>
@@ -505,19 +505,19 @@
             <tr>
                 <td style="width: 800px; padding-left: 15px;">
                     <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                    <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
-                    <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
-                    <button class="btn btn-danger" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
-                    <button id="btnPrint" runat="server" class="btn btn-primary" onclick="InPhieuGioiThieu()">Phiếu giới thiệu</button>
+                    <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">QT đào tạo</button>
+                    <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">QT công tác</button>
+                    <button class="btn btn-primary" type="button" style="width: 110px;" onclick="InPhieuTuVan()" id="btnInPhieu" runat="server">Phiếu tư vấn</button>
+                    <button id="btnPrint" type ="button" class="btn btn-primary" onclick="InPhieuGioiThieu()">Phiếu giới thiệu</button>
 
-                    <button class="btn btn-primary" type="button" onclick="InPhieuKetQua()"  id="btnPhieuKetQua" runat="server">Phiếu kết quả</button>
+                    <button class="btn btn-primary" type="button" onclick="InPhieuKetQua()"  id="btnPhieuKetQua">Phiếu kết quả</button>
                 </td>
                 <td>
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
                 </td>
                 <td style="width: 390px;">
-                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')" id="Button1" runat="server"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
-                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('1')" id="Button2" runat="server"><% Response.Write(this.strBtnViecLamNgoai); %></button>
+                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
+                    <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('1')"><% Response.Write(this.strBtnViecLamNgoai); %></button>
                 </td>
             </tr>
         </table>

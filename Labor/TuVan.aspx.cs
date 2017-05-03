@@ -71,7 +71,4 @@ public partial class Labor_TuVan : System.Web.UI.Page
         this.getData();
     }
     #endregion
-
-  
-
 }

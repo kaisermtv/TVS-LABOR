@@ -189,7 +189,7 @@ public class TuyenDung :DataClass
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem FROM TblTuyenDung AS A";
             Cmd.CommandText += " INNER JOIN TblDoanhNghiep AS B ON A.IDDonVi = B.IDDonVi";
-            Cmd.CommandText += " LEFT JOIN tblViTri AS V ON A.IdViTri = V.ID";
+            Cmd.CommandText += " LEFT JOIN tblViTri AS V ON A.IDChucVu = V.ID";
             Cmd.CommandText += " LEFT JOIN TblMucLuong AS L ON A.IDMucLuong = L.IDMucLuong";
             Cmd.CommandText += " WHERE ISNULL(A.State,0) = 1";
 
@@ -226,7 +226,6 @@ public class TuyenDung :DataClass
             Cmd.CommandText += sqlQueryNuocNgoai;
 
             Cmd.CommandText += " ORDER BY A.ThuTuUuTien DESC, A.IDTuyenDung DESC";
-
 
             DataTable ret = this.findAll(Cmd);
 

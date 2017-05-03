@@ -78,6 +78,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
             this.IDNldDangKy = 0;
         }
+
         #region Lay thong tin so luong tin tuyen dung
         this.strBtnViecLamTrongNuoc = "Việc trong nước [ "+this.objTuyenDung.getDataCount(false)+" ]";
         this.strBtnViecLamNgoai = "Việc ngoài nước [ " + this.objTuyenDung.getDataCount(true) + " ]";
@@ -202,7 +203,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ckbTuVanHocNghe.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanHocNghe"].ToString());
                 this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
-
                 this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
                
                 if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
@@ -213,7 +213,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
                 this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
                 this.txtDiaDiemLamViec2.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec2"].ToString();
-
 
                 // nội dung khác của vị trí 2 sẻ ko hoạt động
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();

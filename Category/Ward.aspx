@@ -18,13 +18,13 @@
             <tr style="height: 40px;">
                 <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
                 </td>
-                  <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Tỉnh, thành
+                  <td class="DataListTableHeaderTdItemJustify" style="width: 20%;">Tỉnh, thành
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 11%;">Quận, huyện
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Mã xã
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 50%;">Tên xã
+                <td class="DataListTableHeaderTdItemJustify" style="width: 40%;">Tên xã
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái
                 </td>
@@ -42,7 +42,7 @@
                     <td class="DataListTableTdItemTT" style="width: 3%;">
                         <%# Eval("TT") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 10%;">
+                    <td class="DataListTableTdItemJustify" style="width: 20%;">
                         <%# Eval("ProvincerName") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 11%;">
@@ -51,7 +51,7 @@
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("Code") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 50%;">
+                    <td class="DataListTableTdItemJustify" style="width: 40%;">
                         <%# Eval("Name") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">

@@ -13,7 +13,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
     private DataTable objTableNldTuVan = new DataTable();
     private TrinhDoPhoThong objTrinhDoPhoThong = new TrinhDoPhoThong();
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
-    public string NLDHoten = "", NLDNgaySinh = "", NLDGioiTinh = "", NLDCMND = "", NLDNgayCapCMND = "", NLNoiCap = "", NLDBHXH = "", NLDDienThoai = "", NLDEmail = "", NLDDanToc = "", NLDTonGiao = "", NLDMucLuongTN = "", NLDLyDoTN = "", NLDDNDaLienHe = "";
+    public string NLDHoten = "", NLDNgaySinh = "", NLDGioiTinh = "", NLDCMND = "", NLDNgayCapCMND = "", NLNoiCap = "", NLDBHXH = "", NLDDienThoai = "", NLDEmail = "", NLDDanToc = "", NLDTonGiao = "", NLDMucLuongTN = "", NLDLyDoTN = "", NLDDNDaLienHe = "", CongViecTruocThatNghiep = "";
     public string NLDNoiThuongTru = "", NLDTrinhDoPhoThong = "", NLDTrinhDoKyNangNghe = "", NLDViTriCongViec = "", DVTenDonVi = "", DVDiaChi = "", DVDienThoai = "", DVNgayGioiThieu = "";
 
     private int IDNldTuVan = 0;
@@ -49,6 +49,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                  this.NLDNoiThuongTru = this.objTableNguoiLaoDong.Rows[0]["Xom_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Xa_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Huyen_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Tinh_TT"].ToString();
                  this.NLDTrinhDoPhoThong = this.objTrinhDoPhoThong.getDataNameById(int.Parse(this.objTableNguoiLaoDong.Rows[0]["IDTrinhDoPhoThong"].ToString()));
                  this.NLDTrinhDoKyNangNghe = this.objTableNguoiLaoDong.Rows[0]["TrinhDoKyNangNghe"].ToString();
+                 this.CongViecTruocThatNghiep = this.objTableNldTuVan.Rows[0]["CongViecTruocThatNghiep"].ToString();
 
                  int IDNldDangKy = 0;
 
@@ -58,10 +59,25 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                  objNldGioiThieu = this.objNguoiLaoDong.getDataNldGioiThieuByNldDangKyId(IDNldDangKy);
                  if (objNldGioiThieu.Rows.Count > 0)
                  {
+                     DataTable objTableTuyenDung = new DataTable();
+                     TuyenDung objTuyenDung = new TuyenDung();
+                     objTableTuyenDung = objTuyenDung.getDataById(int.Parse(objNldGioiThieu.Rows[0]["IDTuyenDung"].ToString()));
+                     if (objTableTuyenDung.Rows.Count > 0)
+                     {
+
+                         ViTri objVitri = new ViTri();
+                         DataRow objRowVitri = objVitri.getItem(int.Parse(objTableTuyenDung.Rows[0]["IDChucVu"].ToString()));
+
+                         if (objRowVitri != null)
+                         {
+                             this.NLDViTriCongViec = objRowVitri["NameVitri"].ToString();
+                         }
+                     }
+
                      this.DVTenDonVi = objNldGioiThieu.Rows[0]["TenDonVi"].ToString();
                      this.DVDiaChi = objNldGioiThieu.Rows[0]["DiaChi"].ToString();
                      this.DVDienThoai = objNldGioiThieu.Rows[0]["DienThoaiDonVi"].ToString();
-                     //this.NLDViTriCongViec = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
+                     
                      if (objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString() != "")
                      {
                          this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
@@ -73,5 +89,4 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
         }
     } 
     #endregion
-
 }

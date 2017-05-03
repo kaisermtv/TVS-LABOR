@@ -823,6 +823,11 @@ public class NguoiLaoDong :DataClass
                     IDNldTuVan = int.Parse(Rd["IDNldTuVan"].ToString());
                 }
                 Rd.Close();
+
+                sqlQuery = "UPDATE TblNldTuVan SET LanTuVan = (ISNULL((SELECT COUNT(*) FROM TblNldTuVan WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IDNldTuVan < @IDNldTuVan1),0) + 1) WHERE IDNldTuVan = @IDNldTuVan1";
+                Cmd.Parameters.Add("IDNldTuVan1", SqlDbType.Int).Value = IDNldTuVan;
+                Cmd.CommandText = sqlQuery;
+                Cmd.ExecuteNonQuery();
             }
 
             sqlCon.Close();
@@ -1027,6 +1032,19 @@ public class NguoiLaoDong :DataClass
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("IDNldTuVan", SqlDbType.Int).Value = IDNldTuVan;
             Cmd.ExecuteNonQuery();
+
+            sqlQuery = "DELETE TblNldDangKy WHERE IDNldTuVan = @IDNldTuVan";
+            Cmd.CommandText = sqlQuery;
+            Cmd.ExecuteNonQuery();
+
+            sqlQuery = "DELETE TblNldDaoTao WHERE IDNldTuVan = @IDNldTuVan";
+            Cmd.CommandText = sqlQuery;
+            Cmd.ExecuteNonQuery();
+
+            sqlQuery = "DELETE TblNldXuatKhau WHERE IDNldTuVan = @IDNldTuVan";
+            Cmd.CommandText = sqlQuery;
+            Cmd.ExecuteNonQuery();
+
             sqlCon.Close();
             sqlCon.Dispose();
         }
@@ -1166,10 +1184,11 @@ public class NguoiLaoDong :DataClass
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.Parameters.Add("objDate1", SqlDbType.DateTime).Value = TVSSystem.CVDate(NgayBatDau);
-            Cmd.Parameters.Add("objDate2", SqlDbType.DateTime).Value = TVSSystem.CVDate(NgayKetThuc);
+            Cmd.Parameters.Add("objDate1", SqlDbType.DateTime).Value = TVSSystem.CVDateTime1(NgayBatDau);
+            Cmd.Parameters.Add("objDate2", SqlDbType.DateTime).Value = TVSSystem.CVDateTime2(NgayKetThuc);
 
             Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameMucluong FROM TblMucLuong WHERE IDMucluong = TblNldDangKy.IDMucluong) AS NameMucluong, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblNldDangKy.IDChucVu) AS NameChucVu, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDangKy.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNldDangKy, TblNguoiLaoDong WHERE TblNldDangKy.IDNguoiLaoDong = TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + " AND NgayDangKy BETWEEN @objDate1 AND @objDate2 ORDER BY TblNldDangKy.NgayDangKy DESC";
+
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

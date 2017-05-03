@@ -27,7 +27,7 @@
             </div>
             <br />
             <div class="HoNgu1" style="">
-                <small style="float:right ;border:solid 1px black; margin-right:-20px; padding:7.5px;">Mã số (TTDVVL) : 27 | Mã số (TVL) : TD17- ..................</small>
+                <small style="float:right ;border:solid 1px black; margin-right:-20px; padding:7.5px;">Mã số (TTDVVL) : 27 | Mã số (TVL) : TD17- .................. | Lần tư vấn : <% Response.Write(this.LanTuVan); %></small>
             </div>
             <br />
             <div class="TieuDePhieu">

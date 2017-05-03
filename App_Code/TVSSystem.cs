@@ -54,4 +54,34 @@ public class TVSSystem
 
     }
     #endregion
+
+    #region method CVDateTime1()
+    public static DateTime CVDateTime1(String dt)
+    {
+        try
+        {
+            return new DateTime(int.Parse(dt.Substring(6, 4)), int.Parse(dt.Substring(3, 2)), int.Parse(dt.Substring(0, 2)), 0,0,0);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+    #endregion
+
+    #region method CVDateTime2()
+    public static DateTime CVDateTime2(String dt)
+    {
+        try
+        {
+            return new DateTime(int.Parse(dt.Substring(6, 4)), int.Parse(dt.Substring(3, 2)), int.Parse(dt.Substring(0, 2)), 23,59, 59);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+    #endregion
 }
