@@ -25,9 +25,15 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
     public string NLDHoten = "", NLDNgaySinh = "", NLDCMND = "", NLDNgayCapCMND = "", NLNoiCap = "", NLDBHXH = "", NLDDienThoai = "", NLDEmail = "", NLDDanToc = "", NLDTonGiao = "", NLDMucLuongTN = "", NLDLyDoTN = "", NLDDNDaLienHe = "";
     public string NLDNoiThuongTru = "", NLDDiaChi = "", NLDSucKhoe = "", NLDChieuCao = "", NLDCanNang = "", NLDTrinhDoPhoThong = "", NLDNgoaiNgu = "", NLDTinHoc = "", NLDTrinhDoKyNangNghe = "", NLDKhaNangNoiTroi = "";
     public string NLDViTriCongViec = "", NLDMucLuongThapNhat = "", NLDDieuKienLamViec = "", NLDDiaDiemLamViec = "", NLDNoiDungKhac = "", NLDNgayTuVan = "";
+    public string NLDViTriCongViec2 = "", NLDMucLuongThapNhat2 = "", NLDDieuKienLamViec2 = "", NLDDiaDiemLamViec2 = "", NLDNoiDungKhac2 = "", NLDNgayTuVan2 = "";
     public string NLDQuaTrinhDaoTao_CN1 = "", NLDQuaTrinhDaoTao_CM1 = "", NLDQuaTrinhDaoTao_CN2 = "", NLDQuaTrinhDaoTao_CM2 = "", NLDQuaTrinhDaoTao_CN3 = "", NLDQuaTrinhDaoTao_CM3 = "";
     public string NLDQuaTrinhCongTac_DV1 = "", NLDQuaTrinhCongTac_TG1 = "", NLDQuaTrinhCongTac_VT1 = "", NLDQuaTrinhCongTac_DV2 = "", NLDQuaTrinhCongTac_TG2 = "", NLDQuaTrinhCongTac_VT2 = "", NLDQuaTrinhCongTac_DV3 = "", NLDQuaTrinhCongTac_TG3 = "", NLDQuaTrinhCongTac_VT3 = "";
+<<<<<<< HEAD
     public String trinhDoTinHoc = "", trinhDongoaiNgu = "", NLDGioiTinh = "", LanTuVan = "";
+=======
+    public String trinhDoTinHoc = "", trinhDongoaiNgu = "", NLDGioiTinh = "";
+
+>>>>>>> 4e84847e3d538c0518e2db3a735bfa48718e56eb
     #endregion
 
     #region method Page_Load
@@ -150,6 +156,17 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                 this.NLDDieuKienLamViec = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.NLDDiaDiemLamViec = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
                 this.NLDNoiDungKhac = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
+                // new 
+                this.NLDViTriCongViec2 = this.objTableNldTuVan.Rows[0]["ViTriCongViec2"].ToString();
+                if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0")
+                {
+                    this.NLDMucLuongThapNhat2 = String.Format("{0:0,0}", double.Parse(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString())) + " đ";
+                }
+                this.NLDDieuKienLamViec2 = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
+                this.NLDDiaDiemLamViec2 = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec2"].ToString();
+              //  this.NLDNoiDungKhac2 = this.objTableNldTuVan.Rows[0]["NoiDungKhac2"].ToString();
+
+
 
                 if (this.objTableNldTuVan.Rows[0]["NgayTuVan"].ToString() != "")
                 {

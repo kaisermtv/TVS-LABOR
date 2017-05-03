@@ -87,7 +87,7 @@ public class TrinhDoTinHoc : DataClass
             Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM tblTrinhDoTinHoc WHERE ID = @ID)";
             Cmd.CommandText += "BEGIN INSERT INTO tblTrinhDoTinHoc(NameTrinhDo,Note,State) OUTPUT INSERTED.ID VALUES(@Name,@Note,@State) END ";
             Cmd.CommandText += "ELSE BEGIN UPDATE tblTrinhDoTinHoc SET [NameTrinhDo] = @Name,Note = @Note, [State] = @State OUTPUT INSERTED.ID WHERE ID = @ID END";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+            Cmd.Parameters.Add("ID", SqlDbType.Int).Value = id;
             Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = name;
             Cmd.Parameters.Add("Note", SqlDbType.NVarChar).Value = note;
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = state;
