@@ -204,19 +204,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
 
                 this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
-                /* Load defaut selected mode */
-                try
-                {
-                    string selectedValue = "$('#ddlQickSelect').val([";
-                    foreach(string s in this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString().Split(';'))
-                    {
-                         selectedValue +=  "'" + s+ "'"+ ',';
-                    }
-                    selectedValue = selectedValue.Substring(0, selectedValue.Length - 1);
-                    selectedValue += "]).trigger('change');";
-                    Page.ClientScript.RegisterStartupScript(GetType(), "haha" , selectedValue, true);
-                    }
-                catch { }
+               
                 if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
                 this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
@@ -228,6 +216,34 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
 
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
+
+                /* Load defaut selected mode */
+                try
+                {
+                    string selectedValue = "$('#ddlQickSelect').val([";
+                    foreach (string s in this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString().Split(';'))
+                    {
+                        selectedValue += "'" + s + "'" + ',';
+                    }
+                    selectedValue = selectedValue.Substring(0, selectedValue.Length - 1);
+                    selectedValue += "]).trigger('change');";
+                    Page.ClientScript.RegisterStartupScript(GetType(), "haha", selectedValue, true);
+                    // 
+                    try
+                    {
+                        string selectedValue2 = "$('#ddlQickSelect2').val([";
+                        foreach (string s2 in this.objTableNldTuVan.Rows[0]["ViTriCongViec2"].ToString().Split(';'))
+                        {
+                            selectedValue2 += "'" + s2 + "'" + ',';
+                        }
+                        selectedValue2 = selectedValue2.Substring(0, selectedValue2.Length - 1);
+                        selectedValue2 += "]).trigger('change');";
+                        Page.ClientScript.RegisterStartupScript(GetType(), "hehe", selectedValue2, true);
+                    }
+                    catch { }
+                }
+                catch { }
+
             }
 
             this.objTable = this.objNguoiLaoDong.getDataById(this.IDNguoiLaoDong);
