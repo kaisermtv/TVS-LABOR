@@ -341,7 +341,7 @@
                            <%Response.Write(this.NLDViTriCongViec); %>
                         </td>
                          <td class="ChuBinhThuong" style="width: 300px; padding-left:20px;">
-                            <%Response.Write(this.NLDViTriCongViec); %>
+                            <%Response.Write(this.NLDViTriCongViec2); %>
                         </td>
                     </tr>
 
@@ -356,7 +356,7 @@
                            <%Response.Write(this.NLDDiaDiemLamViec); %>
                         </td>
                          <td class="ChuBinhThuong" style="width: 200px; padding-left:20px;">
-                           <%Response.Write(this.NLDDiaDiemLamViec); %>
+                           <%Response.Write(this.NLDDiaDiemLamViec2); %>
                         </td>
                     </tr>
 
@@ -371,7 +371,7 @@
                            <%Response.Write(this.NLDMucLuongThapNhat); %>
                         </td>
                          <td class="ChuBinhThuong" style="width: 200px; padding-left:20px;">
-                            <%Response.Write(this.NLDMucLuongThapNhat); %>
+                            <%Response.Write(this.NLDMucLuongThapNhat2); %>
                         </td>
                     </tr>
                     <tr style ="height:60px;">
@@ -381,11 +381,11 @@
                         <td class="ChuBinhThuong" style ="padding-left:20px;">
                    Yêu cầu khác
                         </td>
-                        <td class="ChuBinhThuong" style="wid    th: 300px; text-align:center;">
+                        <td class="ChuBinhThuong" style="width: 300px; text-align:center;">
                            <%Response.Write(this.NLDNoiDungKhac); %>
                         </td>
                          <td class="ChuBinhThuong" style="width: 200px; padding-left:20px;">
-                           <%Response.Write(this.NLDNoiDungKhac); %>
+                           <%Response.Write(this.NLDNoiDungKhac2); %>
                         </td>
                     </tr>
 
