@@ -224,7 +224,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
                 this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
                 this.txtDiaDiemLamViec2.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec2"].ToString();
-
+                this.txtCongViecTruocThatNghiep.Text = this.objTableNldTuVan.Rows[0]["CongViecTruocThatNghiep"].ToString();
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
 
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
@@ -395,8 +395,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             return;
         }
 
-        
-
         if (this.txtChieuCao.Text.Trim() == "")
         {
             this.txtChieuCao.Text = "0";
@@ -467,8 +465,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
         {
             #region Luu thong tin vao phieu tu van
-            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1), tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtViTriCongViec2.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1), tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString());
-
+            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1), tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtViTriCongViec2.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1), tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString(), this.txtCongViecTruocThatNghiep.Text);
             #endregion
 
             #region Luu thong tin vao phieu dang ky viec lam

@@ -326,6 +326,13 @@
             </td>
         </tr>
 
+         <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">CV trước TN:</td>
+            <td style="width: 90%;" colspan="6">
+                <asp:TextBox ID="txtCongViecTruocThatNghiep" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
         <tr style="height: 40px;">
             <td style="width: 90%;" colspan="7">
                 <b>II. TÌNH TRẠNG TÌM KIẾM VIỆC LÀM HIỆN NAY</b>

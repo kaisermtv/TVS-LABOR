@@ -60,7 +60,7 @@
         </tr>
 
         <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Tỉnh, thành phố *:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Tỉnh, thành phố:</td>
             <td style="width: 12%;">
                 <asp:DropDownList ID="ddlIDTinh" AutoPostBack="true" runat="server" CssClass ="form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlIDTinh_SelectedIndexChanged">
                 </asp:DropDownList>
@@ -95,11 +95,11 @@
         </tr>
 
         <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Người đại diện *:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Người đại diện:</td>
             <td style="width: 12%;">
                 <asp:TextBox ID="txtNguoiDaiDien" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
-            <td style="width: 8%; text-align: right; padding-right: 5px;">Điện thoại *:</td>
+            <td style="width: 8%; text-align: right; padding-right: 5px;">Điện thoại:</td>
             <td style="width: 40%;">
                 <asp:TextBox ID="txtDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
             </td>

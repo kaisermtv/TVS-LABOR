@@ -107,23 +107,6 @@ public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
     {
         this.lblMsg.Text = "";
 
-        //if (this.txtMaDonVi.Text.Trim() == "")
-        //{
-        //    this.lblMsg.Text = "Bạn chưa nhập mã số doanh nghiệp";
-        //    this.txtMaDonVi.Focus();
-        //    return;
-        //}
-
-        //if (this.itemId == 0)
-        //{
-        //    if (this.objDoanhNghiep.checkCode(this.txtMaDonVi.Text.Trim()))
-        //    {
-        //        this.lblMsg.Text = "Mã \"" + this.txtMaDonVi.Text + "\" đã được sử dụng, vui lòng chọn mã khác.";
-        //        this.txtMaDonVi.Focus();
-        //        return;
-        //    }
-        //}
-
         if (this.txtTenDonVi.Text.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập tên của đơn vị";
@@ -142,41 +125,6 @@ public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
         {
             this.lblMsg.Text = "Bạn chưa nhập địa chỉ của doanh nghiệp";
             this.txtDiaChi.Focus();
-            return;
-        }
-
-        if (this.ddlIDTinh.SelectedValue.ToString() == "0")
-        {
-            this.lblMsg.Text = "Bạn chưa chọn tỉnh thành của doanh nghiệp";
-            this.ddlIDTinh.Focus();
-            return;
-        }
-
-        //if (this.txtDienThoaiDonVi.Text.Trim() == "")
-        //{
-        //    this.lblMsg.Text = "Bạn chưa nhập số điện thoại của doanh nghiệp";
-        //    this.txtDienThoaiDonVi.Focus();
-        //    return;
-        //}
-
-        if (this.txtDienThoai.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập số điện thoại của người liên hệ";
-            this.txtDienThoai.Focus();
-            return;
-        }
-
-        if (this.txtNguoiDaiDien.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập tên người đại diện";
-            this.txtNguoiDaiDien.Focus();
-            return;
-        }
-
-        if (this.txtDienThoai.Text.Trim() == "")
-        {
-            this.lblMsg.Text = "Bạn chưa nhập số điện thoại của người đại diện";
-            this.txtDienThoai.Focus();
             return;
         }
 
@@ -214,8 +162,11 @@ public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
         this.ddlIDHuyen.DataBind();
     }
     #endregion
+
+    #region method btnRedirect_Click
     protected void btnRedirect_Click(object sender, EventArgs e)
     {
         Response.Redirect("TuyenDungEdit.aspx?did=" + itemId + "&n=" + HttpUtility.UrlEncode(this.txtTenDonVi.Text));
-    }
+    } 
+    #endregion
 }
