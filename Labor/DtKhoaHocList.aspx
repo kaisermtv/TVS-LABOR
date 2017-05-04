@@ -31,7 +31,7 @@
                         <img src="/Images/Edit.png" alt=""></a>
                 </td>
                 <td class="DataListTableTdItemCenter">
-                    <a href="DtKhoaHocEdit.aspx?id=<%# Eval("IdDtKhoaHoc") %>">
+                    <a href="DtKhoaHocDel.aspx?id=<%# Eval("IdDtKhoaHoc") %>">
                         <img src="/Images/delete.png" alt=""></a>
                 </td>
             </tr>
