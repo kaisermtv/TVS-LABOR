@@ -116,95 +116,56 @@
 
     </a>
 
-      <div class="table-responsive2">
+    <div class="table-responsive2">
         <table id="tableview" class="table table-bordered table-striped tableheader">
-                      <thead>
-                        <tr>
-                          <th style="width:50px; vertical-align:central" rowspan="3">STT</th>
-                          <th style="width:250px;"  rowspan="3">Họ Và Tên</th>
-                          <th style="width:250px;"  rowspan="3">Địa chỉ</th>
-                          <th style="width:50px;"  rowspan="3">Giới tính</th>
-                          <th style="width:120px;"  rowspan="3">SĐT</th>
-                          <th colspan="3">Nhu cầu lao động</th>
-                          <th style="width:250px;" rowspan="3">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
-                          <th style="width:120px;" rowspan="3">THỜI GIAN HỌC</th>
-                          <th style="width:100px;" rowspan="3">MỨC HỖ TRỢ CHO LĐ TN</th>
-                          <th style="width:380px;" rowspan="3">TRƯỜNG HỌC</th>
-                          <th style="width:80px;" rowspan="3">KHÓA HỌC</th>
-                          <th style="width:380px;" rowspan="3">ĐỊA CHỈ HỌC</th>
-                          <th style="width:250px;" rowspan="3">SĐT LIÊN HỆ</th>
-                        </tr>
-                          <tr>
-                              <th colspan="2">Học ngoại ngữ</th>
-                              <th rowspan="2">Học nghề TN</th>
-                          </tr>
-                          <tr>
-                              <th>Tiếng hàn</th>
-                              <th>Tiếng nhật</th>
-                          </tr>
-                      </thead>
-                        <tbody>
-                            <tr style="background:#EAEAEA;">
-                            <td style="width:50px;">1</td>
-                            <td style="width:250px;">PHẠM VĂN HIẾU .....</td>
-                            <td style="width:250px;">DIỄN CHÂU NGHỆ AN</td>
-                            <td style="width:50px;">Nam</td>
-                            <td style="width:120px;">09 6735 6524</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:250px;"> Lái xe B2</td>
-                            <td style="width:120px;">4 tháng</td>
-                            <td style="width:100px;"> 3.000.000 đ</td>
-                            <td style="width:380px;"> Công ty CP Xe khách , CĐ nghề Việt Đức</td>
-                            <td style="width:80px;">  </td>
-                            <td style="width:380px;"> Khối 2 , P Vinh Tân , TP Vinh  </td>
-                              <td style="width:250px;"> 02383 847 901</td>
-                          </tr>
-                        </tbody>
-                    </table>
-      <div class="tablebody">
-                      <table class=" table-bordered table-striped" >
-                        <tbody>
-                         <tr style="background:#EAEAEA;">
-                            <td style="width:50px;">1</td>
-                            <td style="width:250px;">PHẠM VĂN HIẾU .....</td>
-                            <td style="width:250px;">DIỄN CHÂU NGHỆ AN</td>
-                            <td style="width:50px;">Nam</td>
-                            <td style="width:120px;">09 6735 6524</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:250px;"> Lái xe B2</td>
-                            <td style="width:120px;">4 tháng</td>
-                            <td style="width:100px;"> 3.000.000 đ</td>
-                            <td style="width:380px;"> Công ty CP Xe khách , CĐ nghề Việt Đức</td>
-                            <td style="width:80px;">  </td>
-                            <td style="width:380px;"> Khối 2 , P Vinh Tân , TP Vinh  </td>
-                              <td style="width:250px;"> 02383 847 901</td>
-                          </tr>
-                         <tr style="background:#EAEAEA;">
-                            <td style="width:50px;">1</td>
-                            <td style="width:250px;">PHẠM VĂN HIẾU .....</td>
-                            <td style="width:250px;">DIỄN CHÂU NGHỆ AN</td>
-                            <td style="width:50px;">Nam</td>
-                            <td style="width:120px;">09 6735 6524</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:80px;">x</td>
-                            <td style="width:250px;"> Lái xe B2</td>
-                            <td style="width:120px;">4 tháng</td>
-                            <td style="width:100px;"> 3.000.000 đ</td>
-                            <td style="width:380px;"> Công ty CP Xe khách , CĐ nghề Việt Đức</td>
-                            <td style="width:80px;">  </td>
-                            <td style="width:380px;"> Khối 2 , P Vinh Tân , TP Vinh  </td>
-                              <td style="width:250px;"> 02383 847 901</td>
-                          </tr>
-                    </tbody>
-                    </table>
-                    </div>
+            <thead>
+                <tr>
+                    <th style="width: 50px; vertical-align: central" rowspan="3">STT</th>
+                    <th style="width: 250px;" rowspan="3">Họ Và Tên</th>
+                    <th style="width: 250px;" rowspan="3">Địa chỉ</th>
+                    <th style="width: 50px;" rowspan="3">Giới tính</th>
+                    <th style="width: 120px;" rowspan="3">SĐT</th>
+                    <th colspan="3">Nhu cầu lao động</th>
+                    <th style="width: 250px;" rowspan="3">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
+                    <th style="width: 120px;" rowspan="3">THỜI GIAN HỌC</th>
+                    <th style="width: 100px;" rowspan="3">MỨC HỖ TRỢ CHO LĐ TN</th>
+                    <th style="width: 380px;" rowspan="3">TRƯỜNG HỌC</th>
+                    <th style="width: 80px;" rowspan="3">KHÓA HỌC</th>
+                    <th style="width: 380px;" rowspan="3">ĐỊA CHỈ HỌC</th>
+                    <th style="width: 250px;" rowspan="3">SĐT LIÊN HỆ</th>
+                </tr>
+                <tr>
+                    <th colspan="2">Học ngoại ngữ</th>
+                    <th rowspan="2">Học nghề TN</th>
+                </tr>
+                <tr>
+                    <th>Tiếng hàn</th>
+                    <th>Tiếng nhật</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #EAEAEA;">
+                    <td style="width: 50px;">1</td>
+                    <td style="width: 250px;">PHẠM VĂN HIẾU .....</td>
+                    <td style="width: 250px;">DIỄN CHÂU NGHỆ AN</td>
+                    <td style="width: 50px;">Nam</td>
+                    <td style="width: 120px;">09 6735 6524</td>
+                    <td style="width: 80px;">x</td>
+                    <td style="width: 80px;">x</td>
+                    <td style="width: 80px;">x</td>
+                    <td style="width: 250px;">Lái xe B2</td>
+                    <td style="width: 120px;">4 tháng</td>
+                    <td style="width: 100px;">3.000.000 đ</td>
+                    <td style="width: 380px;">Công ty CP Xe khách , CĐ nghề Việt Đức</td>
+                    <td style="width: 80px;"></td>
+                    <td style="width: 380px;">Khối 2 , P Vinh Tân , TP Vinh  </td>
+                    <td style="width: 250px;">02383 847 901</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<style>
+    <style>
     .table-responsive2 {
 width:100%;
 margin-bottom:15px;
