@@ -24,7 +24,7 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-        Session["TITLE"] = "HỒ SƠ ĐÀO TẠO NGHỀ";
+        Session["TITLE"] = "HỌC NGOẠI NGỮ VÀ ĐÀO TẠO NGHỀ";
         if (!Page.IsPostBack)
         {
             this.getData();
