@@ -40,6 +40,16 @@
             width: 2565px;
             margin-bottom: 20px;
         }
+        .headcol {
+              position: absolute;
+              width: 5em;
+              left: 0;
+              top: auto;
+              border-top-width: 1px;
+              /*only relevant for first row*/
+              margin-top: -1px;
+              /*compensate for top border*/
+            }
     </style>
      <script src="../js/TvsScript.js"></script>
 </asp:Content>
@@ -96,7 +106,7 @@
                             <th>Tiếng nhật</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="results">
             </HeaderTemplate>
       
            <ItemTemplate >
@@ -104,7 +114,7 @@
                 <td class="DataListTableTdItemTT">
                   <span class="name">  <%# Eval("TT") %></span>
                 </td>
-                <td class="DataListTableTdItemJustify">
+                <td class="  " >
                     <%# Eval("HoVaTen") %>
                 </td>
                 <td>  <%# Eval("NgaySinh") %></td>
@@ -154,6 +164,7 @@
               }
           })
       });
+
     </script>
 </asp:Content>
 
