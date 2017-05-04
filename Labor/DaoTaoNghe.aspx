@@ -22,20 +22,35 @@
     <div style="width: 100%; margin-top:-20px;">
         <table class="DataListTableHeader" border="0">
             <tr style="height: 40px;">
-                <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
+                <td class="DataListTableHeaderTdItemTT" style="width: 3%;">STT
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Người lao động
+                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Họ & Tên
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 34%;">Đơn vị tuyển dụng
+                <td class="DataListTableHeaderTdItemJustify" style="width: 34%;">Ngày sinh
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Khóa học
+                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Địa chỉ
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày bắt đầu
+                <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Giới tính
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Trạng thái
+                <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">SĐT
                 </td>
-                <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;
+                <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">Nhu cầu của lao động
+                  <table>
+                      <tr>
+                        <td>Học ngoại ngữ 
+                            <tr>
+                                Tiếng Hàn
+                            </tr>
+                            <td>
+                                Tiếng Nhật
+                            </td>
+                        </td>
+                        <td>
+                            Học nghề TN
+                        </td>
+                    </tr>
                 </td>
+                </table>  
             </tr>
         </table>
     </div>
@@ -89,5 +104,122 @@
     <br />
     <a href="TuVanXuatKhauEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+
+      <div class="table-responsive2">
+        <table class="table table-bordered table-striped tableheader">
+                      <thead>
+                        <tr>
+                          <th style="width:50px;">STT</th>
+                          <th style="width:250px;">Họ Và Tên</th>
+                          <th style="width:250px;">Địa chỉ</th>
+                          <th style="width:50px;">Giới tính</th>
+                          <th style="width:120px;">SĐT</th>
+                            <th style="width:320px; border:solid 1px black;">
+                                <table>
+                                    <thead><tr style="width:100%; border:solid 1px black;"><th  style="width:100%; text-align:center">NHU CẦU CỦA LAO ĐỘNG</th></tr></thead>
+                                    <tbody>
+                                        <tr>
+                                            <th style="width:160px !important; border:solid 1px black;">
+                                                    <table>
+                                                            <thead> <tr style="width:100%"><th style="width:100%; border:solid 1px black;"> HỌC NGOẠI NGỮ</th></tr></thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                 <th style="width:50%; border:solid 1px black;">TIẾNG HÀN </th>
+                                                                 <th style="width:50%; border:solid 1px black;">TIẾNG NHẬT</th>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </th>
+                                              <th style="width:80px; border:solid 1px black;">HỌC NGHỀ TN</th>
+                                         </tr>
+                                    </tbody>
+                                </table>
+                            </th>
+                            
+                         
+                 
+                          <th style="width:250px;">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
+                          <th style="width:120px;">THỜI GIAN HỌC</th>
+                          <th style="width:100px;">MỨC HỖ TRỢ CHO LĐ TN</th>
+                          <th style="width:380px;">TRƯỜNG HỌC</th>
+                          <th style="width:80px;">KHÓA HỌC</th>
+                          <th style="width:380px;">ĐỊA CHỈ HỌC</th>
+                          <th style="width:250px;">SĐT LIÊN HỆ</th>
+                        </tr>
+                      </thead>
+                    </table>
+      <div class="tablebody">
+                      <table class=" table-bordered table-striped" >
+                        <tbody>
+                         <tr style="background:#EAEAEA;">
+                            <td style="width:50px;">1</td>
+                            <td style="width:250px;">PHẠM VĂN HIẾU .....</td>
+                            <td style="width:250px;">DIỄN CHÂU NGHỆ AN</td>
+                            <td style="width:50px;">Nam</td>
+                            <td style="width:120px;">09 6735 6524</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:250px;"> Lái xe B2</td>
+                            <td style="width:120px;">4 tháng</td>
+                            <td style="width:100px;"> 3.000.000 đ</td>
+                            <td style="width:380px;"> Công ty CP Xe khách , CĐ nghề Việt Đức</td>
+                            <td style="width:80px;">  </td>
+                            <td style="width:380px;"> Khối 2 , P Vinh Tân , TP Vinh  </td>
+                              <td style="width:250px;"> 02383 847 901</td>
+                          </tr>
+                         <tr style="background:#EAEAEA;">
+                            <td style="width:50px;">1</td>
+                            <td style="width:250px;">PHẠM VĂN HIẾU .....</td>
+                            <td style="width:250px;">DIỄN CHÂU NGHỆ AN</td>
+                            <td style="width:50px;">Nam</td>
+                            <td style="width:120px;">09 6735 6524</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:250px;"> Lái xe B2</td>
+                            <td style="width:120px;">4 tháng</td>
+                            <td style="width:100px;"> 3.000.000 đ</td>
+                            <td style="width:380px;"> Công ty CP Xe khách , CĐ nghề Việt Đức</td>
+                            <td style="width:80px;">  </td>
+                            <td style="width:380px;"> Khối 2 , P Vinh Tân , TP Vinh  </td>
+                              <td style="width:250px;"> 02383 847 901</td>
+                          </tr>
+                    </tbody>
+                    </table>
+                    </div>
+
+<style>
+    .table-responsive2 {
+width:100%;
+margin-bottom:15px;
+overflow-x:auto;
+overflow-y:hidden;
+-webkit-overflow-scrolling:touch;
+-ms-overflow-style:-ms-autohiding-scrollbar;
+border:1px solid #ddd
+}
+    .th{
+
+    }
+
+.table-responsive2 table {
+    table-layout: fixed;
+}
+.tableheader {
+    border:solid 1px black;
+	width: 2549px;
+	margin-bottom:0px;
+	
+}
+.tablebody {
+	height: 400px;
+	overflow-y: auto;
+	width: 2565px;
+	margin-bottom:20px;
+}
+
+</style>
+
 </asp:Content>
 
