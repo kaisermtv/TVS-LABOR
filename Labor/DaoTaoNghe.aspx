@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DaoTaoNghe.aspx.cs" Inherits="Labor_DaoTaoNghe" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
+    <style>
+        #tableview th{
+            vertical-align:inherit;
+        }
+    </style>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table class="table" style="margin-top: -20px;">
         <tr>
@@ -103,49 +112,36 @@
     </table>
     <br />
     <a href="TuVanXuatKhauEdit.aspx">
-        <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+        <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" />
+
+    </a>
 
       <div class="table-responsive2">
-        <table class="table table-bordered table-striped tableheader">
+        <table id="tableview" class="table table-bordered table-striped tableheader">
                       <thead>
                         <tr>
-                          <th style="width:50px;">STT</th>
-                          <th style="width:250px;">Họ Và Tên</th>
-                          <th style="width:250px;">Địa chỉ</th>
-                          <th style="width:50px;">Giới tính</th>
-                          <th style="width:120px;">SĐT</th>
-                            <th style="width:320px; border:solid 1px black;">
-                                <table>
-                                    <thead><tr style="width:100%; border:solid 1px black;"><th  style="width:100%; text-align:center">NHU CẦU CỦA LAO ĐỘNG</th></tr></thead>
-                                    <tbody>
-                                        <tr>
-                                            <th style="width:160px !important; border:solid 1px black;">
-                                                    <table>
-                                                            <thead> <tr style="width:100%"><th style="width:100%; border:solid 1px black;"> HỌC NGOẠI NGỮ</th></tr></thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                 <th style="width:50%; border:solid 1px black;">TIẾNG HÀN </th>
-                                                                 <th style="width:50%; border:solid 1px black;">TIẾNG NHẬT</th>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                            </th>
-                                              <th style="width:80px; border:solid 1px black;">HỌC NGHỀ TN</th>
-                                         </tr>
-                                    </tbody>
-                                </table>
-                            </th>
-                            
-                         
-                 
-                          <th style="width:250px;">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
-                          <th style="width:120px;">THỜI GIAN HỌC</th>
-                          <th style="width:100px;">MỨC HỖ TRỢ CHO LĐ TN</th>
-                          <th style="width:380px;">TRƯỜNG HỌC</th>
-                          <th style="width:80px;">KHÓA HỌC</th>
-                          <th style="width:380px;">ĐỊA CHỈ HỌC</th>
-                          <th style="width:250px;">SĐT LIÊN HỆ</th>
+                          <th style="width:50px; vertical-align:central" rowspan="3">STT</th>
+                          <th style="width:250px;"  rowspan="3">Họ Và Tên</th>
+                          <th style="width:250px;"  rowspan="3">Địa chỉ</th>
+                          <th style="width:50px;"  rowspan="3">Giới tính</th>
+                          <th style="width:120px;"  rowspan="3">SĐT</th>
+                          <th colspan="3">Nhu cầu lao động</th>
+                          <th style="width:250px;" rowspan="3">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
+                          <th style="width:120px;" rowspan="3">THỜI GIAN HỌC</th>
+                          <th style="width:100px;" rowspan="3">MỨC HỖ TRỢ CHO LĐ TN</th>
+                          <th style="width:380px;" rowspan="3">TRƯỜNG HỌC</th>
+                          <th style="width:80px;" rowspan="3">KHÓA HỌC</th>
+                          <th style="width:380px;" rowspan="3">ĐỊA CHỈ HỌC</th>
+                          <th style="width:250px;" rowspan="3">SĐT LIÊN HỆ</th>
                         </tr>
+                          <tr>
+                              <th colspan="2">Học ngoại ngữ</th>
+                              <th rowspan="2">Học nghề TN</th>
+                          </tr>
+                          <tr>
+                              <th>Tiếng hàn</th>
+                              <th>Tiếng nhật</th>
+                          </tr>
                       </thead>
                     </table>
       <div class="tablebody">
