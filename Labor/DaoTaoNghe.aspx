@@ -1,5 +1,49 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DaoTaoNghe.aspx.cs" Inherits="Labor_DaoTaoNghe" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
+    <style>
+        #tableview th {
+            vertical-align: inherit;
+            padding: 2px !important;
+        }
+        #tableview td {
+            padding:0px !important;
+        }
+
+        .table-responsive2 {
+            width: 100%;
+            margin-bottom: 5px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            border: 1px solid #ddd;
+        }
+
+        .th {
+        }
+
+        .table-responsive2 table {
+            table-layout: fixed;
+        }
+
+        .tableheader {
+            border: solid 1px black;
+            width: 2549px;
+            margin-bottom: 0px;
+        }
+
+        .tablebody {
+            height: 400px;
+            overflow-y: auto;
+            width: 2565px;
+            margin-bottom: 20px;
+        }
+    </style>
+     <script src="../js/TvsScript.js"></script>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table class="table" style="margin-top: -20px;">
         <tr>
@@ -19,72 +63,97 @@
             </td>
         </tr>
     </table>
-    <div style="width: 100%; margin-top:-20px;">
-        <table class="DataListTableHeader" border="0">
-            <tr style="height: 40px;">
-                <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
+       
+    <asp:Repeater ID="dtlTuVanXuatKhau" runat="server" EnableViewState="False">
+        <HeaderTemplate>
+            <div class="table-responsive2">
+                <table id="tableview" class="table table-bordered table-striped tableheader">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px; vertical-align: central" rowspan="3">STT</th>
+                            <th style="width: 200px;" rowspan="3">Họ Và Tên</th>
+                             <th style="width: 150px;" rowspan="3">Ngày Sinh</th>
+                            <th style="width: 250px;" rowspan="3">Địa chỉ</th>
+                            <th style="width: 50px;" rowspan="3">Giới tính</th>
+                            <th style="width: 120px;" rowspan="3">SĐT</th>
+                          <th style="width:320px; border:solid 1px black;" colspan="3">
+                              NHU CẦU CỦA LAO ĐỘNG
+                           </th>
+                            <th style="width: 250px;" rowspan="3">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
+                            <th style="width: 120px;" rowspan="3">THỜI GIAN HỌC</th>
+                            <th style="width: 100px;" rowspan="3">MỨC HỖ TRỢ CHO LĐ TN</th>
+                            <th style="width: 380px;" rowspan="3">TRƯỜNG HỌC</th>
+                            <th style="width: 80px;" rowspan="3">KHÓA HỌC</th>
+                            <th style="width: 380px;" rowspan="3">ĐỊA CHỈ HỌC</th>
+                            <th style="width: 250px;" rowspan="3">SĐT LIÊN HỆ</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Học ngoại ngữ</th>
+                            <th rowspan="2">Học nghề TN</th>
+                        </tr>
+                        <tr>
+                            <th>Tiếng hàn</th>
+                            <th>Tiếng nhật</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            </HeaderTemplate>
+      
+           <ItemTemplate >
+            <tr class="tableview" style="font-size:14px;" >
+                <td class="DataListTableTdItemTT">
+                  <span class="name">  <%# Eval("TT") %></span>
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Người lao động
+                <td class="DataListTableTdItemJustify">
+                    <%# Eval("HoVaTen") %>
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 34%;">Đơn vị tuyển dụng
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Khóa học
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày bắt đầu
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Trạng thái
-                </td>
-                <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;
-                </td>
+                <td>  <%# Eval("NgaySinh") %></td>
+                <td>  <%# Eval("DiaChi") %></td>
+                <td>  <%# Eval("IdGioiTinh") %></td>
+                <td>  <%# Eval("DienThoai") %></td>
+                <td>  <%# Eval("NameNgoaiNgu").ToString().ToUpper().Contains("HÀN") ? "x":"" %></td>
+                <td>  <%# Eval("NameNgoaiNgu").ToString().ToUpper().Contains("NHẬT") ? "x":"" %></td>
+                <td> x                  </td>
+                <td>  lái xe b2             </td>
+                <td> 4 tháng                    </td>
+                <td> 3.000.000 đ            </td>
+                <td> TTDVVL NA              </td>
+                <td>                        </td>
+                <td> Khối 2 , P Vinh Tân , Tp Vinh </td>
             </tr>
-        </table>
-    </div>
-    <asp:DataList ID="dtlTuVanXuatKhau" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
-        Width="100%">
-        <ItemTemplate>
-            <table class="DataListTable" border="0">
-                <tr style ="height:40px;">
-                    <td class="DataListTableTdItemTT" style="width: 3%;">
-                        <%# Eval("TT") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 15%;">
-                        <%# Eval("HoVaTen") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 34%;">
-                        <%# Eval("TenDonVi") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 21%;">
-                        <%# Eval("KhoaHoc") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 10%;">
-                        <%# Eval("NgayBatDau","{0:dd/MM/yyyy}") %>
-                    </td>
-                     <td class="DataListTableTdItemJustify" style="width: 12%;">
-                        <%# Eval("NameState") %>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
-                        <a href="DaoTaoNgheEdit.aspx?id=<%# Eval("IDNldDaoTao") %>">
-                            <img src="../Images/Edit.png" alt=""></a>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 3%;">
-                        <a href="DaoTaoNgheDel.aspx?id=<%# Eval("IDNldDaoTao") %>">
-                            <img src="../Images/delete.png" alt=""></a>
-                    </td>
-                </tr>
-            </table>
         </ItemTemplate>
-    </asp:DataList>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
-        id="tblABC" runat="server">
-        <tr>
-            <td style="padding-left: 6px;">
-                <cc1:CollectionPager ID="cpTuVanXuatKhau" runat="server" BackText="" FirstText="Đầu"
-                    ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
-                    ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                    PageNumbersSeparator="&nbsp;">
-                </cc1:CollectionPager>
-            </td>
-        </tr>
-    </table>
+        <FooterTemplate>
+
+            </tbody>
+                
+                </table>
+          <br />
+            </div>
+        </FooterTemplate>
+    </asp:Repeater>
+         
+    <cc1:CollectionPager ID="cpTuVanXuatKhau" runat="server" BackText="" FirstText="Đầu"
+        ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
+        ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
+        PageNumbersSeparator="&nbsp;">
+    </cc1:CollectionPager>
+
+
+  <script>
+      $(function () {
+          /* QUICK SEARCH - Tìm nhanh */
+          $('#tableview').searchable({
+              searchField: '#MainContent_txtSearch',
+            //  selector: 'td',
+              childSelector: 'td',
+              show: function (elem) {
+                  elem.slideDown(100);
+              },
+              hide: function (elem) {
+                  elem.slideUp(100);
+              }
+          })
+      });
+    </script>
 </asp:Content>
 

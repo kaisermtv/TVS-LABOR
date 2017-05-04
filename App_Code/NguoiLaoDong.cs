@@ -1941,8 +1941,14 @@ public class NguoiLaoDong :DataClass
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNguoiLaoDong, TblNldDaoTao WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong " + sqlQuery + sqlQueryState + " ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
-            SqlDataAdapter da = new SqlDataAdapter();
+            Cmd.CommandText = @"SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep 
+                                WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi ,
+                                 REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState 
+                                 FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao 
+                                 WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong
+                                    " + sqlQuery + sqlQueryState + @"
+                                 ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
+                                  SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -2111,7 +2117,7 @@ public class NguoiLaoDong :DataClass
         catch (Exception ex)
         {
             this.Message = ex.Message;
-            this.ErrorCode = ex.HResult;
+           // this.ErrorCode = ex.HResult;
             return 0;
         }
     }
