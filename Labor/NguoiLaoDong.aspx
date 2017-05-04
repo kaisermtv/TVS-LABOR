@@ -27,7 +27,7 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 11%;">Điện thoại
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 35%;">Ghi chú
+                <td class="DataListTableHeaderTdItemJustify" style="width: 35%;">Địa chỉ
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái
                 </td>

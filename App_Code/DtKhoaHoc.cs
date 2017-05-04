@@ -95,6 +95,33 @@ public class DtKhoaHoc : DataClass
     }
     #endregion
 
+    #region method getDataCount
+    public int getDataCount()
+    {
+        int tmpCount = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT COUNT(*) AS CountItem FROM TblDtKhoaHoc WHERE ISNULL(State,0) = 1";
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpCount = int.Parse(Rd["CountItem"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpCount;
+    }
+    #endregion
+
     #region setData(int id, String name,bool state)
     public int setData(int id, String code, String NameKhoaHoc, String ThoiGianHoc, float MucHoTro, int IDDtDonvi, int LoaiKhoaHoc, bool state)
     {

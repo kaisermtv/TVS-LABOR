@@ -1831,7 +1831,7 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region method setNldDaoTaoData
-    public int setNldDaoTaoData(int IDNldDaoTao, int IDNguoiLaoDong, int IdDtKhoaHoc, string DiaChiHoc, string DTLienHe, DateTime NgayBatDau, DateTime NgayKetThuc, string SoQDHTN, string SoQDHN, int State)
+    public int setNldDaoTaoData(int IDNldDaoTao, int IDNguoiLaoDong, int IdDtKhoaHoc, string TruongHoc, string DiaChiHoc, string KhoaHoc, string DTLienHe, DateTime NgayBatDau, DateTime NgayKetThuc, string SoQDHTN, string SoQDHN, int State)
     {
         int tmpValue = 0;
 
@@ -1840,8 +1840,8 @@ public class NguoiLaoDong :DataClass
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldDaoTao WHERE IDNldDaoTao = @IDNldDaoTao)";
-            sqlQuery += "BEGIN INSERT INTO TblNldDaoTao (IDNguoiLaoDong,IdDtKhoaHoc,DiaChiHoc,DTLienHe,NgayBatDau,NgayKetThuc,SoQDHTN,SoQDHN,State) VALUES(@IDNguoiLaoDong,@IdDtKhoaHoc,@DiaChiHoc,@DTLienHe,@NgayBatDau,@NgayKetThuc,@SoQDHTN,@SoQDHN,@State)  END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblNldDaoTao SET IDNguoiLaoDong = @IDNguoiLaoDong,IdDtKhoaHoc = @IdDtKhoaHoc,DiaChiHoc = @DiaChiHoc,DTLienHe = @DTLienHe,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,SoQDHTN = @SoQDHTN,SoQDHN = @SoQDHN,State = @State END";
+            sqlQuery += "BEGIN INSERT INTO TblNldDaoTao (IDNguoiLaoDong,IdDtKhoaHoc,TruongHoc,DiaChiHoc,DTLienHe,KhoaHoc,NgayBatDau,NgayKetThuc,SoQDHTN,SoQDHN,State) VALUES(@IDNguoiLaoDong,@IdDtKhoaHoc,@TruongHoc,@DiaChiHoc,@DTLienHe,@KhoaHoc,@NgayBatDau,@NgayKetThuc,@SoQDHTN,@SoQDHN,@State)  END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldDaoTao SET IDNguoiLaoDong = @IDNguoiLaoDong, IdDtKhoaHoc = @IdDtKhoaHoc, TruongHoc = @TruongHoc, DiaChiHoc = @DiaChiHoc, DTLienHe = @DTLienHe, KhoaHoc = @KhoaHoc, NgayBatDau = @NgayBatDau, NgayKetThuc = @NgayKetThuc, SoQDHTN = @SoQDHTN, SoQDHN = @SoQDHN, State = @State END";
 
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -1852,8 +1852,10 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("IDNldDaoTao", SqlDbType.Int).Value = IDNldDaoTao;
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
             Cmd.Parameters.Add("IdDtKhoaHoc", SqlDbType.Int).Value = IdDtKhoaHoc;
+            Cmd.Parameters.Add("TruongHoc", SqlDbType.NVarChar).Value = TruongHoc;
             Cmd.Parameters.Add("DiaChiHoc", SqlDbType.NVarChar).Value = DiaChiHoc;
             Cmd.Parameters.Add("DTLienHe", SqlDbType.NVarChar).Value = DTLienHe;
+            Cmd.Parameters.Add("KhoaHoc", SqlDbType.NVarChar).Value = KhoaHoc;
             Cmd.Parameters.Add("NgayBatDau", SqlDbType.DateTime).Value = NgayBatDau;
             Cmd.Parameters.Add("NgayKetThuc", SqlDbType.DateTime).Value = NgayKetThuc;
             Cmd.Parameters.Add("SoQDHTN", SqlDbType.NVarChar).Value = SoQDHTN;
@@ -1969,7 +1971,7 @@ public class NguoiLaoDong :DataClass
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TblNldDaoTao.*, dbo.TblNguoiLaoDong.HoVaTen, dbo.TblNguoiLaoDong.NgaySinh, TblNguoiLaoDong.IDGioiTinh, TblNguoiLaoDong.DiaChi, TblNguoiLaoDong.DienThoai FROM TblNldDaoTao LEFT JOIN TblNguoiLaoDong ON TblNldDaoTao.IDNguoiLaoDong = TblNguoiLaoDong.IDNguoiLaoDong WHERE TblNldDaoTao.IDNldDaoTao = @IDNldDaoTao";
+            Cmd.CommandText = "SELECT TblNldDaoTao.*, dbo.TblNguoiLaoDong.HoVaTen, dbo.TblNguoiLaoDong.NgaySinh, TblNguoiLaoDong.IDGioiTinh, ((TblNguoiLaoDong.Xom_DC)+', '+(TblNguoiLaoDong.Xa_DC)+', '+(TblNguoiLaoDong.Huyen_DC)+', '+(TblNguoiLaoDong.Tinh_DC)) As DiaChi, TblNguoiLaoDong.DienThoai, TblDtKhoaHoc.NameKhoaHoc,TblDtKhoaHoc.ThoiGianHoc,TblDtKhoaHoc.MucHoTro AS MucHoTro1,TblDtKhoaHoc.LoaiKhoaHoc FROM TblNldDaoTao LEFT JOIN TblNguoiLaoDong ON TblNldDaoTao.IDNguoiLaoDong = TblNguoiLaoDong.IDNguoiLaoDong LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc WHERE TblNldDaoTao.IDNldDaoTao = @IDNldDaoTao";
             Cmd.Parameters.Add("IDNldDaoTao", SqlDbType.Int).Value = IDNldDaoTao;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;

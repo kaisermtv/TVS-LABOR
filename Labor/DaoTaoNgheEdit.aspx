@@ -80,7 +80,7 @@
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Trường học:</td>
             <td colspan="3">
-                <asp:TextBox ID="txtTenDonVi" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtTruongHoc" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Mức hỗ trợ:</td>
             <td style="width: 15%;">

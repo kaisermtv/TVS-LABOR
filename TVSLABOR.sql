@@ -12,3 +12,6 @@ ALTER TABLE dbo.TblNldTuVan ADD DieuKienLamViec2 nvarchar(250)
 ALTER TABLE dbo.TblNldTuVan ADD DiaDiemLamViec2 nvarchar(250)
 ALTER TABLE dbo.TblNldTuVan ADD CongViecTruocThatNghiep nvarchar(250)
 ALTER TABLE dbo.TblNldTuVan ADD LanTuVan int default(0)
+
+--04/05/2017
+ALTER TABLE dbo.TblNldDaoTao ADD TruongHoc nvarchar(500)
