@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
 {
     #region declare objects
-    private int IDNldDaoTao = 0;
+    private int IDNldDaoTao = 0, IDNguoiLaoDong = 0;
     private Account objAccount = new Account();
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
 
@@ -35,26 +35,15 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
             this.IDNldDaoTao = 0;
         }
 
-         if (!Page.IsPostBack)
-        {
-            this.ddlIDDTNganhNghe.DataSource = this.objNguoiLaoDong.getDataDTNganhNgheToCombobox();
-            this.ddlIDDTNganhNghe.DataTextField = "NameDTNganhNghe";
-            this.ddlIDDTNganhNghe.DataValueField = "IDDTNganhNghe";
-            this.ddlIDDTNganhNghe.DataBind();
-            this.ddlIDDTNganhNghe.SelectedValue = "0";
-
-            this.ddlIDDTMonHoc.DataSource = this.objNguoiLaoDong.getDataDTMonHocToCombobox();
-            this.ddlIDDTMonHoc.DataTextField = "NameDTMonHoc";
-            this.ddlIDDTMonHoc.DataValueField = "IDDTMonHoc";
-            this.ddlIDDTMonHoc.DataBind();
-            this.ddlIDDTMonHoc.SelectedValue = "0";
-        }
-
         if (!Page.IsPostBack)
         {
             this.objTable = this.objNguoiLaoDong.getDataNldDaoTaoById(this.IDNldDaoTao.ToString());
             if (this.objTable.Rows.Count > 0)
             {
+                this.IDNguoiLaoDong = int.Parse(this.objTable.Rows[0]["IDNguoiLaoDong"].ToString());
+
+                this.txtIDNguoiLaoDong.Value = this.IDNguoiLaoDong.ToString();
+
                 this.txtHoTen.Text = this.objTable.Rows[0]["HoVaTen"].ToString();
                 if (this.objTable.Rows[0]["NgaySinh"].ToString() != "")
                 {
@@ -71,8 +60,6 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
                 this.txtDiaChi.Text = this.objTable.Rows[0]["DiaChi"].ToString();
                 this.txtSoDienThoai.Text = this.objTable.Rows[0]["DienThoai"].ToString();
 
-                this.ddlIDDTNganhNghe.SelectedValue = this.objTable.Rows[0]["IDDTNganhNghe"].ToString();
-                this.ddlIDDTMonHoc.SelectedValue = this.objTable.Rows[0]["IDDTMonHoc"].ToString();
                 this.txtThoiGian.Text = this.objTable.Rows[0]["ThoiGian"].ToString();
 
                 this.txtMucHoTro.Text = this.objTable.Rows[0]["MucHoTro"].ToString();
@@ -158,7 +145,7 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
             return;
         }
 
-        if (this.objNguoiLaoDong.setNldDaoTaoData(this.IDNldDaoTao,int.Parse(this.ddlIDDTMonHoc.SelectedValue.ToString()),int.Parse(this.ddlIDDTNganhNghe.SelectedValue.ToString()),this.txtThoiGian.Text, tmpMucHoTro,0,this.txtKhoaHoc.Text,this.txtDiaChiHoc.Text,this.txtDTLienHe.Text,tmpNgayBatDau,tmpNgayKetThuc,this.txtSoQDHTN.Text, this.txtSoQDHN.Text, int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
+        if (this.objNguoiLaoDong.setNldDaoTaoData(this.IDNldDaoTao, int.Parse(this.txtIDNguoiLaoDong.Value), int.Parse(this.txtIdDtKhoaHoc.Value),this.txtDiaChiHoc.Text,this.txtDTLienHe.Text,tmpNgayBatDau,tmpNgayKetThuc,this.txtSoQDHTN.Text, this.txtSoQDHN.Text, int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
         {
             this.lblMsg.Text = "<span style = \"color:blue;\">Lưu dữ liệu thành công !</span>";
         }

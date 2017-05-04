@@ -28,12 +28,7 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
     public string NLDViTriCongViec2 = "", NLDMucLuongThapNhat2 = "", NLDDieuKienLamViec2 = "", NLDDiaDiemLamViec2 = "", NLDNoiDungKhac2 = "", NLDNgayTuVan2 = "";
     public string NLDQuaTrinhDaoTao_CN1 = "", NLDQuaTrinhDaoTao_CM1 = "", NLDQuaTrinhDaoTao_CN2 = "", NLDQuaTrinhDaoTao_CM2 = "", NLDQuaTrinhDaoTao_CN3 = "", NLDQuaTrinhDaoTao_CM3 = "";
     public string NLDQuaTrinhCongTac_DV1 = "", NLDQuaTrinhCongTac_TG1 = "", NLDQuaTrinhCongTac_VT1 = "", NLDQuaTrinhCongTac_DV2 = "", NLDQuaTrinhCongTac_TG2 = "", NLDQuaTrinhCongTac_VT2 = "", NLDQuaTrinhCongTac_DV3 = "", NLDQuaTrinhCongTac_TG3 = "", NLDQuaTrinhCongTac_VT3 = "";
-<<<<<<< HEAD
     public String trinhDoTinHoc = "", trinhDongoaiNgu = "", NLDGioiTinh = "", LanTuVan = "";
-=======
-    public String trinhDoTinHoc = "", trinhDongoaiNgu = "", NLDGioiTinh = "";
-
->>>>>>> 4e84847e3d538c0518e2db3a735bfa48718e56eb
     #endregion
 
     #region method Page_Load

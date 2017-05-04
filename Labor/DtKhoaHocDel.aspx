@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="DtKhoaHocDel.aspx.cs" Inherits="Category_DtKhoaHocDel" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="DtKhoaHocDel.aspx.cs" Inherits="Labor_DtKhoaHocDel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="panel panel-default">

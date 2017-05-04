@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Category_DtKhoaHocList : System.Web.UI.Page
+public partial class Labor_DtKhoaHocList : System.Web.UI.Page
 {
     #region declare
     public int index = 1;

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Category_DtKhoaHocDel : System.Web.UI.Page
+public partial class Labor_DtKhoaHocDel : System.Web.UI.Page
 {
     #region declare
     public int itemId = 0;

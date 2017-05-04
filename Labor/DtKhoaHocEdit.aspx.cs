@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Category_DtKhoaHocEdit : System.Web.UI.Page
+public partial class Labor_DtKhoaHocEdit : System.Web.UI.Page
 {
     #region declare objects
     private int itemId = 0;
@@ -39,13 +39,15 @@ public partial class Category_DtKhoaHocEdit : System.Web.UI.Page
                 txtNameKhoaHoc.Text = objData["NameKhoaHoc"].ToString();
                 txtThoiGianHoc.Text = objData["ThoiGianHoc"].ToString();
                 txtMucHoTro.Text = objData["MucHoTro"].ToString();
-
-
+                this.txtIDDonVi.Value = objData["IDDtDonvi"].ToString();
+                this.txtTenDonVi.Text = objData["TenDonVi"].ToString();
+                this.ddlLoaiKhoaHoc.SelectedValue = objData["LoaiKhoaHoc"].ToString(); 
                 this.ckbState.Checked = (bool)objData["State"];
             }
 
         }
         this.txtMaKhoaHoc.Focus();
+        Session["TITLE"] = "THÔNG TIN ĐÀO TẠO NGHỀ";
     }
     #endregion
 
@@ -71,11 +73,18 @@ public partial class Category_DtKhoaHocEdit : System.Web.UI.Page
         }
 
         int iddonvi = 0;
-        //try
-        //{
-        //    iddonvi = int.Parse();
-        //}
-        //catch { }
+
+        if (this.txtIDDonVi.Value == "" || this.txtIDDonVi.Value == "0")
+        {
+            this.lblMsg.Text = "Bạn chưa chọn đơn vị đào tạo";
+            return;
+        }
+
+        try
+        {
+            iddonvi = int.Parse(this.txtIDDonVi.Value.ToString());
+        }
+        catch { }
 
         int loaikh = 0;
         try

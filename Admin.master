@@ -90,7 +90,7 @@
                                 <li><a href="../Labor/TuVan.aspx">Hồ sơ tư vấn</a></li>
                                 <li><a href="../Labor/DoanhNghiep.aspx">Doanh nghiệp</a></li>
                                 <li><a href="../Labor/TuyenDung.aspx">Tin tuyển dụng</a></li>
-                                
+                                <li><a href="../Labor/DtKhoaHocList.aspx">Thông tin đào tạo nghề</a></li>
                             </ul>
                         </li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i><span style ="width:180px!important;">Quản lý công việc</span></a>

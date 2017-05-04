@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Admin.master" CodeFile="DtKhoaHocList.aspx.cs" Inherits="Category_DtKhoaHocList" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Admin.master" CodeFile="DtKhoaHocList.aspx.cs" Inherits="Labor_DtKhoaHocList" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
@@ -27,11 +27,11 @@
                 <td class="DataListTableTdItemJustify"><%# Eval("ThoiGianHoc") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
                 <td class="DataListTableTdItemCenter">
-                    <a href="DtKhoaHocEdit.aspx?id=<%# Eval("ID") %>">
+                    <a href="DtKhoaHocEdit.aspx?id=<%# Eval("IdDtKhoaHoc") %>">
                         <img src="/Images/Edit.png" alt=""></a>
                 </td>
                 <td class="DataListTableTdItemCenter">
-                    <a href="DtKhoaHocEdit.aspx?id=<%# Eval("ID") %>">
+                    <a href="DtKhoaHocEdit.aspx?id=<%# Eval("IdDtKhoaHoc") %>">
                         <img src="/Images/delete.png" alt=""></a>
                 </td>
             </tr>

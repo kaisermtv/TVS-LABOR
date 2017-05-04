@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChonDoanhNghiep.aspx.cs" Inherits="Labor_ChonDoanhNghiep" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChonDoanhNghiep1.aspx.cs" Inherits="Labor_ChonDoanhNghiep1" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <!DOCTYPE html>
@@ -37,9 +37,9 @@
                     <tr style="height: 40px;">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
                         </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 52%;">Tên doanh nghiệp
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 42%;">Tên doanh nghiệp
                         </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 32%;">Địa chỉ
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 42%;">Địa chỉ
                         </td>
                         <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">Trạng thái
                         </td>
@@ -55,10 +55,10 @@
                             <td class="DataListTableTdItemTT" style="width: 3%;">
                                 <%# Eval("TT") %>
                             </td>
-                            <td class="DataListTableTdItemJustify" style="width: 52%;">
-                                <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>',<%# Eval("IDNganhNghe") %>);"><%# Eval("TenDonVi") %></a>
+                            <td class="DataListTableTdItemJustify" style="width: 42%;">
+                                <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>');"><%# Eval("TenDonVi") %></a>
                             </td>
-                            <td class="DataListTableTdItemJustify" style="width: 32%;">
+                            <td class="DataListTableTdItemJustify" style="width: 42%;">
                                 <%# Eval("DiaChi") %>
                             </td>
                             <td class="DataListTableTdItemCenter" style="width: 13%;">
@@ -83,17 +83,13 @@
 
         </div>
         <script type="text/javascript">
-            function SetName(value1, value2,value3) {
+            function SetName(value1, value2) {
                 if (window.opener != null && !window.opener.closed) {
                     var txtNameId = window.opener.document.getElementById("MainContent_txtIDDonVi");
                     txtNameId.value = value1;
 
                     var txtName = window.opener.document.getElementById("MainContent_txtTenDonVi");
                     txtName.value = value2;
-
-                    var ddlNganhnghe = window.opener.document.getElementById("MainContent_ddlIDNganhNghe");
-                    ddlNganhnghe.value = value3;
-                    //ddlNganhnghe.getElementsByTagName('option')[value3].selected = 'selected';
                 }
                 window.close();
             }

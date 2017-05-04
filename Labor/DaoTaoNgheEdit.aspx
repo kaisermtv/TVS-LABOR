@@ -54,25 +54,26 @@
     <table border="0" style="width: 100%; margin-top: -20px;">
 
         <tr style="height: 40px;">
-            <td colspan="6">
+            <td colspan="5">
                 <b>II. THÔNG TIN ĐĂNG KÝ</b>
             </td>
+            <td style ="text-align:right;"><button type ="button" class ="btn btn-primary" onclick ="ChonKhoaHoc()">Chọn khóa học</button></td>
         </tr>
 
+        
+
         <tr style="height: 36px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Ngành học:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Loại hình:</td>
             <td style="width: 40%;">
-                <asp:DropDownList ID="ddlIDDTNganhNghe" runat="server" CssClass="form-control" Style="width: 100%;">
-                </asp:DropDownList>
+               <asp:TextBox ID="txtTenLoaiKhoaHoc" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Môn học:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Tên khóa học:</td>
             <td style="width: 15%;">
-                <asp:DropDownList ID="ddlIDDTMonHoc" runat="server" CssClass="form-control" Style="width: 100%;">
-                </asp:DropDownList>
+                <asp:TextBox ID="txtNameKhoaHoc" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Thời gian:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtThoiGian" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtThoiGian" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
 
@@ -83,7 +84,7 @@
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Mức hỗ trợ:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtMucHoTro" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtMucHoTro" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
 
@@ -188,5 +189,32 @@
             </td>
         </tr>
     </table>
+
+    <input type ="hidden" id="txtLoaiKhoaHoc" runat="server"/>
+    <input type ="hidden" id="txtIdDtKhoaHoc" runat="server"/>
+    <input type ="hidden" id="txtIDNguoiLaoDong" runat="server"/>
+
+      <script type="text/javascript">
+          function ChonKhoaHoc() {
+
+              var w = 1000;
+              var h = 600;
+
+              var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+              var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+              var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+              var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+              var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+              var top = ((height / 2) - (h / 2)) + dualScreenTop;
+              var newWindow = window.open("ChonKhoaHoc.aspx", "CHỌN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+              if (window.focus) {
+                  newWindow.focus();
+              }
+          }
+    </script>
+
 </asp:Content>
 

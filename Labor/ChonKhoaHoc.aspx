@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChonDoanhNghiep.aspx.cs" Inherits="Labor_ChonDoanhNghiep" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChonKhoaHoc.aspx.cs" Inherits="Labor_ChonKhoaHoc" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>CHỌN DOANH NGHIỆP</title>
+    <title>CHỌN KHÓA HỌC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../css/TVSStyle.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../css/Adminstyle.css" />
@@ -23,7 +23,7 @@
          <table class ="table">
             <tr>
                 <td>
-                    <input type ="text" id = "txtSearch" placeholder ="Nhập mã hoặc tên doanh nghiệp để tìm kiếm" runat ="server" class ="form-control" />
+                    <input type ="text" id = "txtSearch" placeholder ="Nhập tên khóa học để tìm kiếm" runat ="server" class ="form-control" />
                 </td>
                 <td style ="width:40px !important; text-align:center;">
                     <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left:-15px;" OnClick="btnSearch_Click" />
@@ -37,32 +37,32 @@
                     <tr style="height: 40px;">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
                         </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 52%;">Tên doanh nghiệp
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 42%;">Tên khóa học
                         </td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 32%;">Địa chỉ
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 42%;">Thời gian
                         </td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">Trạng thái
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">Mức hỗ trợ
                         </td>
                     </tr>
                 </table>
             </div>
 
-            <asp:DataList ID="dtlDoanhNghiep" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
+            <asp:DataList ID="dtlKhoaHoc" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
                 Width="100%">
                 <ItemTemplate>
                     <table class="DataListTable" border="0">
                         <tr style="height: 40px;">
                             <td class="DataListTableTdItemTT" style="width: 3%;">
-                                <%# Eval("TT") %>
+                               &nbsp;
                             </td>
-                            <td class="DataListTableTdItemJustify" style="width: 52%;">
-                                <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>',<%# Eval("IDNganhNghe") %>);"><%# Eval("TenDonVi") %></a>
+                            <td class="DataListTableTdItemJustify" style="width: 42%;">
+                                <a href="#" onclick="return SetName('<%# Eval("IdDtKhoaHoc") %>','<%# Eval("NameKhoaHoc") %>','<%# Eval("ThoiGianHoc") %>','<%# Eval("MucHoTro") %>','<%# Eval("LoaiKhoaHoc") %>');"><%# Eval("NameKhoaHoc") %></a>
                             </td>
-                            <td class="DataListTableTdItemJustify" style="width: 32%;">
-                                <%# Eval("DiaChi") %>
+                            <td class="DataListTableTdItemJustify" style="width: 42%;">
+                                <%# Eval("ThoiGianHoc") %>
                             </td>
                             <td class="DataListTableTdItemCenter" style="width: 13%;">
-                                <%# Eval("StateName") %>
+                                <%# Eval("MucHoTro") %>
                             </td>
                         </tr>
                     </table>
@@ -72,7 +72,7 @@
                 id="tblABC" runat="server">
                 <tr>
                     <td style="padding-left: 6px;">
-                        <cc1:CollectionPager ID="cpDoanhNghiep" runat="server" BackText="" FirstText="Đầu"
+                        <cc1:CollectionPager ID="cpKhoaHoc" runat="server" BackText="" FirstText="Đầu"
                             ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                             ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
                             PageNumbersSeparator="&nbsp;">
@@ -83,17 +83,31 @@
 
         </div>
         <script type="text/javascript">
-            function SetName(value1, value2,value3) {
+            function SetName(value1, value2, value3, value4, value5) {
                 if (window.opener != null && !window.opener.closed) {
-                    var txtNameId = window.opener.document.getElementById("MainContent_txtIDDonVi");
+                    var txtNameId = window.opener.document.getElementById("MainContent_txtIdDtKhoaHoc");
                     txtNameId.value = value1;
 
-                    var txtName = window.opener.document.getElementById("MainContent_txtTenDonVi");
+                    var txtName = window.opener.document.getElementById("MainContent_txtNameKhoaHoc");
                     txtName.value = value2;
 
-                    var ddlNganhnghe = window.opener.document.getElementById("MainContent_ddlIDNganhNghe");
-                    ddlNganhnghe.value = value3;
-                    //ddlNganhnghe.getElementsByTagName('option')[value3].selected = 'selected';
+                    var txtThoiGian = window.opener.document.getElementById("MainContent_txtThoiGian");
+                    txtThoiGian.value = value3;
+
+                    var txtMucHoTro = window.opener.document.getElementById("MainContent_txtMucHoTro");
+                    txtMucHoTro.value = value4;
+
+                    var txtLoaiKhoaHoc = window.opener.document.getElementById("MainContent_txtLoaiKhoaHoc");
+                    txtLoaiKhoaHoc.value = value5;
+
+                    var txtTenLoaiKhoaHoc = window.opener.document.getElementById("MainContent_txtTenLoaiKhoaHoc");
+
+                    if (value5 == "1") {
+                        txtTenLoaiKhoaHoc.value = "Học nghề";
+                    }
+                    else {
+                        txtTenLoaiKhoaHoc.value = "Học tiếng";
+                    }
                 }
                 window.close();
             }
