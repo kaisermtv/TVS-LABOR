@@ -73,7 +73,9 @@
                             <th style="width: 250px;" rowspan="3">Địa chỉ</th>
                             <th style="width: 50px;" rowspan="3">Giới tính</th>
                             <th style="width: 120px;" rowspan="3">SĐT</th>
-                            <th colspan="3">Nhu cầu lao động</th>
+                           <th style="width:320px; border:solid 1px black;" colspan="3">
+                              NHU CẦU CỦA LAO ĐỘNG
+                           </th>
                             <th style="width: 250px;" rowspan="3">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
                             <th style="width: 120px;" rowspan="3">THỜI GIAN HỌC</th>
                             <th style="width: 100px;" rowspan="3">MỨC HỖ TRỢ CHO LĐ TN</th>
