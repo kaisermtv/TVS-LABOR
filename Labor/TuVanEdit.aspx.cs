@@ -20,7 +20,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     private TuyenDung objTuyenDung = new TuyenDung();
     private TrinhDoPhoThong objTrinhDoPhoThong = new TrinhDoPhoThong();
     private TinHoc objTinHoc = new TinHoc();
-
+    private DtKhoaHoc objDTKhoaDaoTao = new DtKhoaHoc();
     
     private Provincer objProvincer = new Provincer();
     private District objDistrict = new District();
@@ -29,7 +29,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     private DataTable objTable = new DataTable();
     private DataTable objTableNldTuVan = new DataTable();
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
-    public string strBtnViecLamTrongNuoc = "", strBtnViecLamNgoai = "";
+    public string strBtnViecLamTrongNuoc = "", strBtnViecLamNgoai = "", strBtnDaoTaoNghe = "";
 
     public List<string> lv_Vitri = new List<string>();
     #endregion
@@ -82,6 +82,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         #region Lay thong tin so luong tin tuyen dung
         this.strBtnViecLamTrongNuoc = "Việc trong nước [ "+this.objTuyenDung.getDataCount(false)+" ]";
         this.strBtnViecLamNgoai = "Việc ngoài nước [ " + this.objTuyenDung.getDataCount(true) + " ]";
+        this.strBtnDaoTaoNghe = "Đào tạo nghề [ " + this.objDTKhoaDaoTao.getDataCount()+" ]";
         #endregion
 
         this.txtIDNldTuVan.Value = this.IDNldTuVan.ToString();

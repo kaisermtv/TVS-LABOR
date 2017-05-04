@@ -73,7 +73,7 @@
                             <th style="width: 250px;" rowspan="3">Địa chỉ</th>
                             <th style="width: 50px;" rowspan="3">Giới tính</th>
                             <th style="width: 120px;" rowspan="3">SĐT</th>
-                           <th style="width:320px; border:solid 1px black;" colspan="3">
+                          <th style="width:320px; border:solid 1px black;" colspan="3">
                               NHU CẦU CỦA LAO ĐỘNG
                            </th>
                             <th style="width: 250px;" rowspan="3">NGÀNH NGHỀ HỌC CHO LĐ TN</th>
@@ -118,18 +118,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <%--<td class="DataListTableTdItemJustify">
-                    <%# Eval("TenDonVi") %>
-                </td>
-                <td class="DataListTableTdItemJustify">
-                    <%# Eval("KhoaHoc") %>
-                </td>
-                <td class="DataListTableTdItemJustify">
-                    <%# Eval("NgayBatDau","{0:dd/MM/yyyy}") %>
-                </td>
-                <td class="DataListTableTdItemJustify">
-                    <%# Eval("NameState") %>
-                </td>--%>
+            
                 <td class="DataListTableTdItemCenter">
                     <a href="DaoTaoNgheEdit.aspx?id=<%# Eval("IDNldDaoTao") %>">
                         <img src="../Images/Edit.png" alt=""></a>
