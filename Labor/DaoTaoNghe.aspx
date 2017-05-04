@@ -143,6 +143,25 @@
                               <th>Tiếng nhật</th>
                           </tr>
                       </thead>
+                        <tbody>
+                            <tr style="background:#EAEAEA;">
+                            <td style="width:50px;">1</td>
+                            <td style="width:250px;">PHẠM VĂN HIẾU .....</td>
+                            <td style="width:250px;">DIỄN CHÂU NGHỆ AN</td>
+                            <td style="width:50px;">Nam</td>
+                            <td style="width:120px;">09 6735 6524</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:80px;">x</td>
+                            <td style="width:250px;"> Lái xe B2</td>
+                            <td style="width:120px;">4 tháng</td>
+                            <td style="width:100px;"> 3.000.000 đ</td>
+                            <td style="width:380px;"> Công ty CP Xe khách , CĐ nghề Việt Đức</td>
+                            <td style="width:80px;">  </td>
+                            <td style="width:380px;"> Khối 2 , P Vinh Tân , TP Vinh  </td>
+                              <td style="width:250px;"> 02383 847 901</td>
+                          </tr>
+                        </tbody>
                     </table>
       <div class="tablebody">
                       <table class=" table-bordered table-striped" >
