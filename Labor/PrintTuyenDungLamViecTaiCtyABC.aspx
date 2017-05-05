@@ -53,7 +53,6 @@
               <b>2.</b>  <b style="border-bottom:solid 1px;"> Vị trí - Điều kiện tuyển dụng</b><b>:</b> <br />
                 <b style="font-size:17px">- <asp:Label ID="txtSoLuongTuyenDung" runat="server" ReadOnly="true"/>  
                     <asp:Label ID="lblIdVitri" ReadOnly="true" runat="server" />
-                 
                 </b><br />
                 <b style="font-size:16px">Yêu cầu :</b>
                     <div style="margin-left:10%">
