@@ -713,7 +713,7 @@
 
             var left = ((width / 2) - (w / 2));// + dualScreenLeft;
             var top = ((height / 2) - (h / 2));// + dualScreenTop;
-            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem + "&nuocngoai=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + 0 + ', left=' + 0);
+            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem + "&nuocngoai=" + value, "TIN TUYỂN DỤNG", 'channelmode =1,scrollbars=yes, width=' + w + ', height=' + h + ', top=' + 0 + ', left=' + 0);
 
             if (window.focus) {
                 newWindow.focus();
