@@ -256,6 +256,10 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
             }
 
+        }
+
+        if (!Page.IsPostBack && this.IDNguoiLaoDong > 0)
+        {
             this.objTable = this.objNguoiLaoDong.getDataById(this.IDNguoiLaoDong);
             if (this.objTable.Rows.Count > 0)
             {
@@ -345,6 +349,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
             }
         }
+
         this.txtMa.Focus();
     }
     #endregion
@@ -371,16 +376,18 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
         if (IDNguoiLaoDong == 0)
         {
-        int ret = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim());
-        if(ret != 0)
-        {
-            this.txtMa.Text = this.txtCMND.Text.Trim();
-            this.btnGetInformation_Click(sender, e);
+            int ret = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim());
+            if (ret != 0)
+            {
 
-            this.lblMsg.Text = "Người lao động đã tồn tại";
-            return;
-        }
+                 Response.Redirect("TuVanEdit.aspx?idNld=" + ret);
+                //this.txtMa.Text = this.txtCMND.Text.Trim();
+                //this.btnGetInformation_Click(sender, e);
+
+                this.lblMsg.Text = "Người lao động đã tồn tại";
+                return;
             }
+        }
 
         if (txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
         {
@@ -494,7 +501,13 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
         {
             #region Luu thong tin vao phieu tu van
-            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", this.txtViTriCongViec.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1), tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, this.txtViTriCongViec2.Text.ToString().Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1), tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString(), this.txtCongViecTruocThatNghiep.Text);
+            string buf = this.txtViTriCongViec.Text.ToString();
+            if(buf != "") buf = buf.Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1);
+
+            string buf1 = this.txtViTriCongViec2.Text.ToString();
+            if (buf1 != "") buf1 = buf1.Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1);
+
+            this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", buf, tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, buf1, tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString(), this.txtCongViecTruocThatNghiep.Text);
             #endregion
 
             #region Luu thong tin vao phieu dang ky viec lam
@@ -549,26 +562,29 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             {
                 this.IDNguoiLaoDong = int.Parse(objTableNldThongTin.Rows[0]["IDNguoiLaoDong"].ToString());
 
-                this.txtMa.Text = objTableNldThongTin.Rows[0]["Ma"].ToString();
-                this.txtHoVaTen.Text = objTableNldThongTin.Rows[0]["HoVaTen"].ToString();
-                this.txtNgaySinh.Value = DateTime.Parse(objTableNldThongTin.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
+                Response.Redirect("TuVanEdit.aspx?idNld=" + IDNguoiLaoDong);
+                return;
 
-                this.txtDienThoai.Text = objTableNldThongTin.Rows[0]["DienThoai"].ToString();
-                this.txtEmail.Text = objTableNldThongTin.Rows[0]["Email"].ToString();
-                this.ddlDanToc.SelectedValue = objTableNldThongTin.Rows[0]["IDDanToc"].ToString();
-                this.ddlTonGiao.SelectedValue = objTableNldThongTin.Rows[0]["IDTonGiao"].ToString();
-                this.txtSucKhoe.Text = objTableNldThongTin.Rows[0]["SucKhoe"].ToString();
+                //this.txtMa.Text = objTableNldThongTin.Rows[0]["Ma"].ToString();
+                //this.txtHoVaTen.Text = objTableNldThongTin.Rows[0]["HoVaTen"].ToString();
+                //this.txtNgaySinh.Value = DateTime.Parse(objTableNldThongTin.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
 
-                this.txtChieuCao.Text = objTableNldThongTin.Rows[0]["ChieuCao"].ToString();
-                this.txtCanNang.Text = objTableNldThongTin.Rows[0]["CanNang"].ToString();
-                this.ddlNgoaiNgu.SelectedValue = objTableNldThongTin.Rows[0]["IDNgoaiNgu"].ToString();
-                this.ddlTrinhDoPhoThong.SelectedValue = objTableNldThongTin.Rows[0]["IDTrinhDoPhoThong"].ToString();
-                this.ddlTinHoc.SelectedValue = objTableNldThongTin.Rows[0]["IDTinHoc"].ToString();
+                //this.txtDienThoai.Text = objTableNldThongTin.Rows[0]["DienThoai"].ToString();
+                //this.txtEmail.Text = objTableNldThongTin.Rows[0]["Email"].ToString();
+                //this.ddlDanToc.SelectedValue = objTableNldThongTin.Rows[0]["IDDanToc"].ToString();
+                //this.ddlTonGiao.SelectedValue = objTableNldThongTin.Rows[0]["IDTonGiao"].ToString();
+                //this.txtSucKhoe.Text = objTableNldThongTin.Rows[0]["SucKhoe"].ToString();
 
-                this.txtCMND.Text = objTableNldThongTin.Rows[0]["CMND"].ToString();
-                this.txtNgayCapCMND.Value = DateTime.Parse(objTableNldThongTin.Rows[0]["NgayCapCMND"].ToString()).ToString("dd/MM/yyyy");
-                this.txtNoiCap.Text = objTableNldThongTin.Rows[0]["NoiCap"].ToString();
-                this.txtBHXH.Text = objTableNldThongTin.Rows[0]["BHXH"].ToString();
+                //this.txtChieuCao.Text = objTableNldThongTin.Rows[0]["ChieuCao"].ToString();
+                //this.txtCanNang.Text = objTableNldThongTin.Rows[0]["CanNang"].ToString();
+                //this.ddlNgoaiNgu.SelectedValue = objTableNldThongTin.Rows[0]["IDNgoaiNgu"].ToString();
+                //this.ddlTrinhDoPhoThong.SelectedValue = objTableNldThongTin.Rows[0]["IDTrinhDoPhoThong"].ToString();
+                //this.ddlTinHoc.SelectedValue = objTableNldThongTin.Rows[0]["IDTinHoc"].ToString();
+
+                //this.txtCMND.Text = objTableNldThongTin.Rows[0]["CMND"].ToString();
+                //this.txtNgayCapCMND.Value = DateTime.Parse(objTableNldThongTin.Rows[0]["NgayCapCMND"].ToString()).ToString("dd/MM/yyyy");
+                //this.txtNoiCap.Text = objTableNldThongTin.Rows[0]["NoiCap"].ToString();
+                //this.txtBHXH.Text = objTableNldThongTin.Rows[0]["BHXH"].ToString();
             }
         }
     }

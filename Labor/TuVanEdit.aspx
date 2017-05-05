@@ -702,8 +702,8 @@
             var mucluong = document.getElementById("MainContent_txtMucLuongThapNhat").value;
             var dieukien = document.getElementById("MainContent_txtDieuKienLamViec").value;
             var diadiem = document.getElementById("MainContent_txtDiaDiemLamViec").value;
-            var w = screen.width;
-            var h = screen.height;
+            var w = screen.width - 100;
+            var h = screen.height - 130;
 
             var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
             var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
@@ -713,7 +713,7 @@
 
             var left = ((width / 2) - (w / 2));// + dualScreenLeft;
             var top = ((height / 2) - (h / 2));// + dualScreenTop;
-            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem + "&nuocngoai=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem + "&nuocngoai=" + value, "TIN TUYỂN DỤNG", 'channelmode =1,scrollbars=yes, width=' + w + ', height=' + h + ', top=' + 0 + ', left=' + 0);
 
             if (window.focus) {
                 newWindow.focus();
