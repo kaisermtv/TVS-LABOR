@@ -15,7 +15,6 @@
     <form id="form1" runat="server">
         
         <div class="KhungIn">
-     
             <div class="TieuDe1">
                <%-- <b>Mẫu số 01:</b> Ban hành kèm theo Thông tư số 28/2015/TT-BLĐTBXH ngày 31 tháng 7 năm 2015 của Bộ Lao động Thương binh và Xã hội--%>
             </div>
