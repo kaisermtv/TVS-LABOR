@@ -70,7 +70,6 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
             DataTable objdata = objDoanhNghiep.getDataById(this.IdDonVi);
             if (objdata.Rows.Count > 0)
             {
-              //  this.txtIDDonVi.Value = objdata.Rows[0]["IDDonVi"].ToString();
                 this.txtTenDonVi.Text = objdata.Rows[0]["TenDonVi"].ToString();
                 nganhnghebuf = objdata.Rows[0]["IDNganhNghe"].ToString();
             }
@@ -90,12 +89,6 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
             this.ddlNhomNganh.DataValueField = "IdNhomNganh";
             this.ddlNhomNganh.DataBind();
             this.ddlNhomNganh.SelectedValue = "0";
-
-            //this.ddlIDTinh.DataSource = this.objProvincer.getDataCategoryToCombobox();
-            //this.ddlIDTinh.DataTextField = "Name";
-            //this.ddlIDTinh.DataValueField = "Id";
-            //this.ddlIDTinh.DataBind();
-            //this.ddlIDTinh.SelectedValue = "0";
 
             ViTri objViTri = new ViTri();
             this.ddlIdVitri.DataSource = objViTri.getDataCategoryToCombobox();
@@ -159,12 +152,9 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
             this.objTable = this.objTuyenDung.getDataById(this.itemId);
             if (this.objTable.Rows.Count > 0)
             {
-              //  this.txtMaTuyenDung.Text = this.objTable.Rows[0]["MaTuyenDung"].ToString();
-               // this.txtIDDonVi.Value = this.objTable.Rows[0]["IDDonVi"].ToString();
-                this.txtTenDonVi.Text = this.objTable.Rows[0]["TenDonVi"].ToString();
+                this.txtTenDonVi.Text = this.objTable.Rows[0]["TenDonVi"].ToString().ToUpper();
                 this.ddlNhomNganh.SelectedValue = this.objTable.Rows[0]["IDNhomNghanh"].ToString();
-                //this.lblNhomNganh.Text = this.ddlNhomNganh.SelectedItem.Text;
-
+          
                 this.ddlIDChucVu.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
                 this.lblIDChucVu.Text = this.ddlIDChucVu.SelectedItem.Text;
 
@@ -185,30 +175,20 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
 
                 this.ddlIDTrinhDoChuyenMon.SelectedValue = this.objTable.Rows[0]["IDTrinhDoChuyenMon"].ToString();
                 this.lblNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
-            //    this.txtMoTa.Text = this.objTable.Rows[0]["MoTa"].ToString();
-             //   this.txtDiaDiem.Text = this.objTable.Rows[0]["DiaDiem"].ToString();
+        
                 this.ddlIDMucLuong.SelectedValue = this.objTable.Rows[0]["IDMucLuong"].ToString();
                 this.lblIDMucLuong.Text = this.ddlIDMucLuong.SelectedItem.Text;
 
-                //this.ckbNuocNgoai.Checked = bool.Parse(this.objTable.Rows[0]["NuocNgoai"].ToString());
                 this.txtQuyenLoi.Text = this.objTable.Rows[0]["QuyenLoi"].ToString();
-               // this.txtNgayBatDau.Value = DateTime.Parse(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString("dd/MM/yyyy");
-               // this.txtNgayKetThuc.Value = DateTime.Parse(this.objTable.Rows[0]["NgayKetThuc"].ToString()).ToString("dd/MM/yyyy");
-               // this.ckbState.Checked = bool.Parse(this.objTable.Rows[0]["State"].ToString());
-
-
+           
                 this.ddlyeuCauNgoaiNgu.SelectedValue = this.objTable.Rows[0]["YCNgoaiNgu"].ToString();
                 this.lblyeuCauNgoaiNgu.Text = this.ddlyeuCauNgoaiNgu.SelectedItem.Text;
 
                 this.ddlyeuCauTinHoc.SelectedValue = this.objTable.Rows[0]["YCTinHoc"].ToString();
                 this.lblyeuCauTinHoc.Text = this.ddlyeuCauTinHoc.SelectedItem.Text;
 
-               // this.txtNamKinhNghiem.Text = this.objTable.Rows[0]["NamKinhNghiem"].ToString();
                 this.ddlThoiGianLamViec.SelectedValue = this.objTable.Rows[0]["ThoiGianLamViec"].ToString();
-               // this.lblThoiGianLamViec.Text = this.ddlThoiGianLamViec.SelectedItem.Text;
             }
         }
-
-     //   this.txtMaTuyenDung.Focus();
     }
 }

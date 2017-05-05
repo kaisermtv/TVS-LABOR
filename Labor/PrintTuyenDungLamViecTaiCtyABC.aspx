@@ -57,9 +57,9 @@
                 </b><br />
                 <b style="font-size:16px">Yêu cầu :</b>
                     <div style="margin-left:10%">
-                         <p>
+                       <p>
                            - <asp:Label ID="lblIDGioiTinh" ReadOnly="true" runat="server" /> ,tuổi từ <asp:Label ID="lblIDDoTuoi" ReadOnly="true" runat="server" />
-                        </p>
+                       </p>
                        <p>  - <asp:Label ID="lblIDChucVu" ReadOnly="true" runat="server" /></p>
                        <p>- Ngoại ngữ :  <asp:Label ID="lblyeuCauNgoaiNgu" ReadOnly="true" runat="server" /></p>
                        <p>- Tin học   <asp:Label ID="lblyeuCauTinHoc" ReadOnly="true" runat="server" /></p>
@@ -72,7 +72,7 @@
               <b>3.</b>  <b style="border-bottom:solid 1px;"> Quyền lợi </b><b>:</b> 
               <div style="margin-left:10%">
                        <p> <asp:Label ID="txtQuyenLoi" runat="server"/> ;</p>
-                       <p><b> -  <asp:Label ID="lblIDMucLuong" runat="server"/> /tháng</b></p>
+                       <p><b> -<asp:Label ID="lblIDMucLuong" runat="server"/> / tháng</b></p>
               </div>
           </div>
            <div class ="ChuBinhThuong">
@@ -83,6 +83,7 @@
             <b>&nbsp;</b>  <b style="border-bottom:solid 1px;">Chi tiết liên hệ</b><b>:</b> Phòng Thông tin TTLĐ — Trung tâm DVVL Nghệ An
               <div style="margin-left:30px">Điện thoại : 02383 550 050 — Email : <span style="border-bottom:solid 1px;">sanvieclamnghean@gmail.com</span> </div>
           </div>
+
         <!--- Các thẻ bị ẩn đi--->
           <asp:DropDownList ID="ddlIDNganhNghe" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
          <asp:DropDownList ID="ddlIdVitri" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
