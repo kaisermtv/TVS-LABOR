@@ -37,33 +37,45 @@
                     </div>
                      </div>
            <div class="clearfix"></div>
+
+
+         <!---Phần nội dung của phiếu --->
             <div class="TieuDePhieu" style="font-size:22px; width:60%;margin-left:20%;vertical-align:central">
-                             TUYỂN DỤNG LÀM VIỆC TẠI CÔNG TY CP XÂY DỰNG NAM VIỆT ÚC
+                 TUYỂN DỤNG LÀM VIỆC TẠI  <asp:Label ID="txtTenDonVi" runat="server" ReadOnly="true"></asp:Label>
             </div>
             <br />
 
             <div class ="ChuBinhThuong">
-              <b>1.</b>  <b style="border-bottom:solid 1px;"> Lĩnh vực hoạt động </b><b>:</b> Sản xuất bộ bả tường 
+              <b>1.</b>  <b style="border-bottom:solid 1px;"> Lĩnh vực hoạt động </b><b>:</b> 
+                <asp:Label ID="lblIDNganhNghe" ReadOnly="true" runat="server" />
             </div>
 
             <div class="ChuBinhThuong">
               <b>2.</b>  <b style="border-bottom:solid 1px;"> Vị trí - Điều kiện tuyển dụng</b><b>:</b> <br />
-                <b style="font-size:17px">- 04 Lao động phổ thông</b><br />
+                <b style="font-size:17px">- <asp:Label ID="txtSoLuongTuyenDung" runat="server" ReadOnly="true"/>  
+                    <asp:Label ID="lblIdVitri" ReadOnly="true" runat="server" />
+                 
+                </b><br />
                 <b style="font-size:16px">Yêu cầu :</b>
                     <div style="margin-left:10%">
-                       <p>- Nam , tuổi từ 18-40;</p>
-                       <p>- Sức khỏe tốt , chịu khó ;</p>
-                       <p>- Tốt nghiệp THCS trở lên;</p>
+                        
+                        <p>
+                           - <asp:Label ID="lblIDGioiTinh" ReadOnly="true" runat="server" /> ,tuổi từ <asp:Label ID="lblIDDoTuoi" ReadOnly="true" runat="server" />
+                        </p>
+                        <p>  - <asp:Label ID="lblIDChucVu" ReadOnly="true" runat="server" /></p>
+                       <p>- Ngoại ngữ :  <asp:Label ID="lblyeuCauNgoaiNgu" ReadOnly="true" runat="server" /></p>
+                       <p>- Tin học   <asp:Label ID="lblyeuCauTinHoc" ReadOnly="true" runat="server" /></p>
+                       <p> <asp:Label ID="lblNoiDungKhac" runat="server"/></p>
+                        <p>- Ưu tiên :<asp:Label ID="txtUuTien" runat="server"/></p>
                     </div>
              </div>
 
           <div class ="ChuBinhThuong">
               <b>3.</b>  <b style="border-bottom:solid 1px;"> Quyền lợi </b><b>:</b> 
               <div style="margin-left:10%">
-                       <p>+ Đươc tham gia đóng các loại BHXH , BHYT , BHTN theo quy định của nhà nước và Luật Lao Động ;</p>
-                       <p>+ Lao động được bao ăn trưa</p>
-                       <p>+ Tốt nghiệp THCS trở lên;</p>
-                  <p><b> - Tiền lương : 5,5 triệu đồng /tháng</b></p>
+                       <p> <asp:Label ID="txtQuyenLoi" runat="server"/> ;</p>
+                     
+                  <p><b> -  <asp:Label ID="lblIDMucLuong" runat="server"/> /tháng</b></p>
                 </div>
             </div>
 
@@ -77,11 +89,24 @@
               <div style="margin-left:30px">Điện thoại : 02383 550 050 — Email : <span style="border-bottom:solid 1px;">sanvieclamnghean@gmail.com</span> </div>
             </div>
                 
-        
-
-           
-        
-            
+        <!--- Các thẻ bị ẩn đi--->
+          <asp:DropDownList ID="ddlIDNganhNghe" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlIdVitri" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlIDChucVu" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlNhomNganh" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
+         <asp:DropDownList ID="ddlIDGioiTinh" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlIDDoTuoi" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlIDTrinhDoChuyenMon" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlyeuCauNgoaiNgu" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlyeuCauTinHoc" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>
+         <asp:DropDownList ID="ddlIDMucLuong" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;"/>    
+         <asp:DropDownList ID="ddlThoiGianLamViec" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
+                                    <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
+                                    <asp:ListItem Value="1"> Hành chính </asp:ListItem>
+                                    <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
+                                    <asp:ListItem Value="3"> Theo ca </asp:ListItem>
+                                    <asp:ListItem Value="4"> Toàn thời gian </asp:ListItem>
+         </asp:DropDownList>
 
         </div>
     </div>
