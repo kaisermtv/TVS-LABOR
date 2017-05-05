@@ -1,15 +1,21 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintTuyenDungLamViecTaiCtyABC.aspx.cs" Inherits="Labor_PrintTuyenDungLamViecTaiCtyABC" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintTuyenDungTaiDoanhNghiep.aspx.cs" Inherits="Labor_PrintTuyenDungTaiDoanhNghiep" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-   <title>TUYỂN DỤNG LÀM VIỆC TẠI CÔNG TY </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TUYỂN DỤNG LÀM VIỆC TẠI DOANH NGHIỆP </title>
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <!-- Custom CSS -->
     <link href="../css/PrintPhieuTuVan.css" rel="stylesheet" />
+    <style>
+        table, th, td {
+    border: 1px solid black;
+   
+}
+    </style>
 </head>
 <body>
     <form style="margin: 0px !important; height: 500px !important;" runat="server">
@@ -51,26 +57,47 @@
 
             <div class="ChuBinhThuong">
               <b>2.</b>  <b style="border-bottom:solid 1px;"> Vị trí - Điều kiện tuyển dụng</b><b>:</b> <br />
-                <b style="font-size:17px">- <asp:Label ID="txtSoLuongTuyenDung" runat="server" ReadOnly="true"/>  
-                    <asp:Label ID="lblIdVitri" ReadOnly="true" runat="server" />
-                </b><br />
-                <b style="font-size:16px">Yêu cầu :</b>
-                    <div style="margin-left:10%">
-                       <p>
-                           - <asp:Label ID="lblIDGioiTinh" ReadOnly="true" runat="server" /> ,tuổi từ <asp:Label ID="lblIDDoTuoi" ReadOnly="true" runat="server" />
-                       </p>
-                       <p>  - <asp:Label ID="lblIDChucVu" ReadOnly="true" runat="server" /></p>
-                       <p>- Ngoại ngữ :  <asp:Label ID="lblyeuCauNgoaiNgu" ReadOnly="true" runat="server" /></p>
-                       <p>- Tin học   <asp:Label ID="lblyeuCauTinHoc" ReadOnly="true" runat="server" /></p>
-                       <p> <asp:Label ID="lblNoiDungKhac" runat="server"/></p>
-                       <p>- Ưu tiên :<asp:Label ID="txtUuTien" runat="server"/></p>
-                    </div>
-             </div>
+             <!---Nội dung khác so với phiếu TuyendungtaiCtyAbc.aspx ---->
+                
+           <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
+            <HeaderTemplate>
+                <table class="DataListTable">
+                            <tr >
+                            <th style="width: 300px; text-align: center" rowspan="1">Vị trí</th>
+                            <th style="width: 30px;  text-align:center" rowspan="1">Số lượng (người)</th>
+                             <th style="width: 450px;text-align:center" rowspan="1">Yêu cầu</th>
+                         </tr>
+                    </thead>
+                    <tbody class="results">
+            </HeaderTemplate>
+            <ItemTemplate >
+                <tr>
+                    <td>
+                           <span class="name"> <%# Eval("NameVitri") %>
+                               </span>
+                        </td>
+                    <td style=" text-align: center;">
+                        <%# Eval("SoLuongTuyenDung") %>
+                    </td>
+                    <td class="DataListTableTdItemJustify">
+                        <%# Eval("NoiDungKhac") %>
+                    </td> 
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                           </tbody>
+                      </table>
+            </FooterTemplate>
+        </asp:Repeater>
+    </div>
+
+             <!----/--->
+          
 
           <div class ="ChuBinhThuong">
-              <b>3.</b>  <b style="border-bottom:solid 1px;"> Quyền lợi </b><b>:</b> 
+              <b>3.</b>  <b style="border-bottom:solid 1px;"> Quyền lợi,chế độ </b><b>:</b> 
               <div style="margin-left:10%">
-                       <p> <asp:Label ID="txtQuyenLoi" runat="server"/> ;</p>
+                       <p> <asp:Label ID="txtQuyenLoi" runat="server"/> </p>
                        <p><b> -<asp:Label ID="lblIDMucLuong" runat="server"/> / tháng</b></p>
               </div>
           </div>

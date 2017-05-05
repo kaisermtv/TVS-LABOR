@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
+public partial class Labor_PrintTuyenDungTaiDoanhNghiep : System.Web.UI.Page
 {
 
     #region declare objects
@@ -23,24 +23,21 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
     private ChucVu objChucVu = new ChucVu();
     private Mucluong objMucluong = new Mucluong();
     private DataTable objTable = new DataTable();
- 
+
 
     private String nganhnghebuf = "0";
     #endregion
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
         }
-
-        Session["TITLE"] = "THÔNG TIN TUYỂN DỤNG";
+      //  Session["TITLE"] = "THÔNG TIN TUYỂN DỤNG";
         try
         {
-            this.itemId = int.Parse(Request["id"].ToString());
+            this.itemId = int.Parse(Request["did"].ToString());
         }
         catch
         {
@@ -147,8 +144,9 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
             this.ddlyeuCauTinHoc.DataBind();
             this.ddlyeuCauTinHoc.SelectedValue = "0";
         }
-        if (!Page.IsPostBack && this.itemId > 0)
+        if (!Page.IsPostBack )
         {
+            getData();          /*------------------------------------*/
             this.objTable = this.objTuyenDung.getDataById(this.itemId);
             if (this.objTable.Rows.Count > 0)
             {
@@ -156,25 +154,16 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
                 this.ddlNhomNganh.SelectedValue = this.objTable.Rows[0]["IDNhomNghanh"].ToString();
           
                 this.ddlIDChucVu.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
-                this.lblIDChucVu.Text = this.ddlIDChucVu.SelectedItem.Text;
-
+      
                 this.ddlIdVitri.SelectedValue = this.objTable.Rows[0]["IdViTri"].ToString();
-                this.lblIdVitri.Text = this.ddlIdVitri.SelectedItem.Text;
 
-                this.txtSoLuongTuyenDung.Text = this.objTable.Rows[0]["SoLuongTuyenDung"].ToString();
                 this.ddlIDNganhNghe.SelectedValue = this.objTable.Rows[0]["IDNganhNghe"].ToString();
                 this.lblIDNganhNghe.Text = this.ddlIDNganhNghe.SelectedItem.Text;
 
                 this.ddlIDDoTuoi.SelectedValue = this.objTable.Rows[0]["IDDoTuoi"].ToString();
-                this.lblIDDoTuoi.Text = this.ddlIDDoTuoi.SelectedItem.Text;
-
                 this.ddlIDGioiTinh.SelectedValue = this.objTable.Rows[0]["IDGioiTinh"].ToString();
-                this.lblIDGioiTinh.Text = this.ddlIDGioiTinh.SelectedItem.Text;
-
-                this.txtUuTien.Text = this.objTable.Rows[0]["UuTien"].ToString();
 
                 this.ddlIDTrinhDoChuyenMon.SelectedValue = this.objTable.Rows[0]["IDTrinhDoChuyenMon"].ToString();
-                this.lblNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
         
                 this.ddlIDMucLuong.SelectedValue = this.objTable.Rows[0]["IDMucLuong"].ToString();
                 this.lblIDMucLuong.Text = this.ddlIDMucLuong.SelectedItem.Text;
@@ -182,13 +171,20 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
                 this.txtQuyenLoi.Text = this.objTable.Rows[0]["QuyenLoi"].ToString();
            
                 this.ddlyeuCauNgoaiNgu.SelectedValue = this.objTable.Rows[0]["YCNgoaiNgu"].ToString();
-                this.lblyeuCauNgoaiNgu.Text = this.ddlyeuCauNgoaiNgu.SelectedItem.Text;
-
                 this.ddlyeuCauTinHoc.SelectedValue = this.objTable.Rows[0]["YCTinHoc"].ToString();
-                this.lblyeuCauTinHoc.Text = this.ddlyeuCauTinHoc.SelectedItem.Text;
                 this.txtDiaDiem.Text = this.objTable.Rows[0]["DiaDiem"].ToString();
                 this.ddlThoiGianLamViec.SelectedValue = this.objTable.Rows[0]["ThoiGianLamViec"].ToString();
             }
         }
+     
     }
+    #region getData()
+    private void getData()
+    {
+        this.objTable = this.objTuyenDung.getList(" ", int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), this.tenDonVi);
+        dtlTuyenDung.DataSource = objTable.DefaultView;
+        dtlTuyenDung.DataBind();
+    
+    }
+    #endregion
 }
