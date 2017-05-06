@@ -136,7 +136,7 @@
             </td>
 
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi cấp:</td>
-            <td style="width: 40%;" colspan="2">
+            <td style="width: 40%;" colspan ="2">
                 <asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
@@ -151,7 +151,7 @@
                 <asp:TextBox ID="txtDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ email:</td>
-            <td style="width: 20%;" colspan="2">
+            <td style="width: 20%;" colspan ="2">
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
@@ -199,7 +199,7 @@
                         <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
 
-                    <td rowspan="2">
+                    <td rowspan="2" style ="text-align:right;">
                         <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
                 </tr>
 
@@ -253,7 +253,7 @@
                 </table>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">TĐ phổ thông:</td>
-            <td style="width: 20%;" colspan="2">
+            <td style="width: 20%;" colspan ="2">
                 <asp:DropDownList ID="ddlTrinhDoPhoThong" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
@@ -282,7 +282,7 @@
                 </table>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Trình độ:</td>
-            <td style="width: 20%;" colspan="2">
+            <td style="width: 20%;" colspan ="2">
                 <asp:DropDownList ID="ddlTrinhDoTinHoc" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
@@ -318,7 +318,7 @@
                             <asp:TextBox ID="txtMucLuongTN" runat="server" Text="0" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                         </td>
                         <td style="width: 75px; text-align: right; padding-right: 5px;">Lý do TN:</td>
-                        <td>
+                        <td colspan ="2">
                             <asp:TextBox ID="txtLyDoTN" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                     </tr>
@@ -361,9 +361,9 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Đăng ký tư vấn: </td>
             <td style="width: 90%;" colspan="6">
-                <table border="0">
+                <table border="0" style ="width:100%;">
+
                     <tr>
-                        <td style="width: 30px"></td>
                         <td>
                             <asp:CheckBox ID="ckbTuVanPhapLuat" runat="server" />&nbsp;Chính sách, pháp luật lao động&nbsp;&nbsp;&nbsp;</td>
                         <td>
@@ -371,13 +371,14 @@
                         <td>
                             <asp:CheckBox ID="ckbTuVanBHTN" runat="server" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;</td>
                         <td>&nbsp;</td>
+                        <td rowspan="2" style ="text-align:right;">
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('1')"><% Response.Write(this.strBtnViecLamNgoai); %></button>
                             <button class="btn btn-success" type="button" onclick="ChonKhoaHoc()"><% Response.Write(this.strBtnDaoTaoNghe); %></button>
                         </td>
                     </tr>
+
                     <tr>
-                        <td></td>
                         <td>
                             <asp:CheckBox ID="ckbTuVanXuatKhauLaoDong" runat="server" />&nbsp;Xuất khẩu lao động&nbsp;&nbsp;&nbsp;</td>
                         <td>
@@ -387,13 +388,13 @@
                         <td>
                             <asp:CheckBox ID="ckbTuVanKhac" runat="server" />&nbsp;Khác&nbsp;&nbsp;&nbsp;</td>
                     </tr>
-                </table>
 
+                </table>
             </td>
         </tr>
 
         <tr style="height: 40px;">
-            <td style="width: 90%;" colspan="7">
+            <td style="width: 90%;" colspan="6">
                 <b>2.Giới thiệu việc làm:</b>
             </td>
         </tr>
@@ -744,39 +745,9 @@
             }
         }
 
-    </script>
-    <script>
-        function getValue() {               // lấy nội dung vào txtVitriCongviec
-            var x = document.getElementsByClassName("select2-selection__rendered")[0].getElementsByClassName("select2-selection__choice");
-            var i;
-            var str = '';
-            for (i = 0; i < x.length; i++) {
-                str += x[i].textContent;
-            }
-            return str;
-        }
-        function getValue2() {               // lấy nội dung vào txtVitriCongviec2 , tạm thời viết thế này đả
-            var x = document.getElementsByClassName("select2-selection__rendered")[1].getElementsByClassName("select2-selection__choice");
-            var i;
-            var str = '';
-            for (i = 0; i < x.length; i++) {
-                str += x[i].textContent;
-            }
-            return str;
-        }
-
-        function load()      // load dử liệu vào textbox
-        {
-            document.getElementById('MainContent_txtViTriCongViec').value = getValue();
-            document.getElementById('MainContent_txtViTriCongViec2').value = getValue2();
-        }
-    </script>
-    <script type="text/javascript">
         $(".js-example-basic-multiple").select2();
         $(".js-example-basic-multiple2").select2();
 
-    </script>
-    <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             $('#<%= btnSave.ClientID %>').click(function (e) {
                 load();     // gọi đến sự kiện lưu lại
