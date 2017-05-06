@@ -67,20 +67,10 @@ public partial class Admin_DangKyViecLamEdit : System.Web.UI.Page
             this.ddlIDChucVu.DataValueField = "IDChucVu";
             this.ddlIDChucVu.DataBind();
 
-            this.ddlIDChucVuDK.DataSource = this.objChucVu.getDataCategoryToCombobox();
-            this.ddlIDChucVuDK.DataTextField = "NameChucVu";
-            this.ddlIDChucVuDK.DataValueField = "IDChucVu";
-            this.ddlIDChucVuDK.DataBind();
-
             this.ddlIDLoaiHopDong.DataSource = this.objLoaiHopDong.getDataCategoryToCombobox();
             this.ddlIDLoaiHopDong.DataTextField = "NameLoaiHopDong";
             this.ddlIDLoaiHopDong.DataValueField = "IDLoaiHopDong";
             this.ddlIDLoaiHopDong.DataBind();
-
-            this.ddlMucLuong.DataSource = this.objMucluong.getDataCategoryToCombobox();
-            this.ddlMucLuong.DataTextField = "NameMucLuong";
-            this.ddlMucLuong.DataValueField = "IdMucLuong";
-            this.ddlMucLuong.DataBind();
 
             this.ddlIDTinh.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlIDTinh.DataTextField = "Name";
@@ -108,14 +98,10 @@ public partial class Admin_DangKyViecLamEdit : System.Web.UI.Page
                 this.txtTenNguoiLaoDong.Text = this.objTable.Rows[0]["HoVaTen"].ToString();
                 this.txtNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
                 this.txtTenCongViec.Text = this.objTable.Rows[0]["TenCongViec"].ToString();
-                this.ddlIDChucVuDK.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
-
-                this.lblChucVu.Text = this.ddlIDChucVuDK.SelectedItem.Text;
 
                 this.txtNgayDangKy.Value = DateTime.Parse(this.objTable.Rows[0]["NgayDangKy"].ToString()).ToString();
-                this.ddlMucLuong.SelectedValue = this.objTable.Rows[0]["IDMucLuong"].ToString();
 
-                this.lblMucLuong.Text = this.ddlMucLuong.SelectedItem.Text;
+                this.lblMucLuong.Text = this.objTable.Rows[0]["MucLuongThapNhat"].ToString(); 
 
                 this.ddlIDTinh.SelectedValue = this.objTable.Rows[0]["IDTinh"].ToString();
 
@@ -140,7 +126,7 @@ public partial class Admin_DangKyViecLamEdit : System.Web.UI.Page
                     this.IDNldGioiThieu = int.Parse(this.objTableNldGioiThieu.Rows[0]["IDNldGioiThieu"].ToString());
                     this.txtIDChucVu.Value = this.objTableNldGioiThieu.Rows[0]["IDChucVu"].ToString();
                     this.txtIDDonVi.Value = this.objTableNldGioiThieu.Rows[0]["IDDonVi"].ToString();
-                    this.txtNameChucVu.Text = this.objTableNldGioiThieu.Rows[0]["NameChucVu"].ToString();
+                    this.txtNameChucVu.Text = this.objTableNldGioiThieu.Rows[0]["NameVitri"].ToString();
                     this.txtTenDonVi.Text = this.objTableNldGioiThieu.Rows[0]["TenDonVi"].ToString();
 
                     this.txtNgayGioiThieu.Value = DateTime.Parse(this.objTableNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString();
@@ -207,7 +193,7 @@ public partial class Admin_DangKyViecLamEdit : System.Web.UI.Page
             return;
         }
 
-        if (this.objNguoiLaoDong.setDataNldDangKy(ref this.itemId, int.Parse(this.txtIDNguoiLaoDong.Value.ToString()), this.txtTenCongViec.Text, int.Parse(this.ddlIDChucVuDK.SelectedValue.ToString()), int.Parse(this.ddlIDHuyen.SelectedValue.ToString()), int.Parse(this.ddlIDTinh.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()), this.ckbNuocNgoai.Checked, DateTime.Parse(this.txtNgayDangKy.Value.Trim()), this.txtNoiDungKhac.Text, Session["ACCOUNT"].ToString(), int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
+        if (this.objNguoiLaoDong.setDataNldDangKy(ref this.itemId, int.Parse(this.txtIDNguoiLaoDong.Value.ToString()), this.txtTenCongViec.Text, 0, int.Parse(this.ddlIDHuyen.SelectedValue.ToString()), int.Parse(this.ddlIDTinh.SelectedValue.ToString()), 0, this.ckbNuocNgoai.Checked, DateTime.Parse(this.txtNgayDangKy.Value.Trim()), this.txtNoiDungKhac.Text, Session["ACCOUNT"].ToString(), int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
         {
             if (this.txtIDChucVu.Value.Trim() != "" && this.txtIDDonVi.Value.Trim() != "")
             {

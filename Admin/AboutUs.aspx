@@ -1,74 +1,70 @@
 ﻿<%@ Page Title="ĐƠN VỊ SỬ DỤNG" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="AboutUs.aspx.cs" Inherits="Admin_AboutUs" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-    <div class="AdminHeaderItem">
-        THÔNG TIN ĐƠN VỊ
-    </div>
-
-    <div class="AdminItem">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Tên đơn vị:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtName" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Địa chỉ:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtAddress" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtAddress" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Điện thoại:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtPhone" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtPhone" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Địa chỉ Email:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtEmail" runat="server" Text="" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" Text="" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Hotline:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtHotline" runat="server" Text="" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtHotline" runat="server" Text="" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Lời chào:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtGreeting" runat="server" Text="" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtGreeting" runat="server" Text="" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             Câu hướng dẫn:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtGreeting1" runat="server" Text="" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtGreeting1" runat="server" Text="" class="form-control"></asp:TextBox>
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             &nbsp;&nbsp;
         </div>
@@ -77,7 +73,7 @@
         </div>
     </div>
 
-    <div class="AdminItem">
+    <div class="AdminItem" style="margin-top: 10px;">
         <div class="AdminLeftItem">
             &nbsp;&nbsp;
         </div>

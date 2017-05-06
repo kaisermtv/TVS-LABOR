@@ -2,9 +2,7 @@
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div class="AdminHeaderItem">
-        NHÓM TÀI KHOẢN
-    </div>
+    
     <div style="width: 100%;">
         <table class="DataListTableHeader">
             <tr style ="height:40px;">

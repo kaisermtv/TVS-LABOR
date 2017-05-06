@@ -50,7 +50,7 @@ public partial class Admin_TuVanDel : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CanBo.aspx");
+        Response.Redirect("Tuvan.aspx");
     }
     #endregion
 }

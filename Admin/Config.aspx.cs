@@ -9,6 +9,6 @@ public partial class Admin_Config : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session["TITLE"] = "CẤU HÌNH HỆ THỐNG";
     }
 }

@@ -69,6 +69,8 @@ public partial class Admin_EditAccount : System.Web.UI.Page
                 this.objAccount.delDataCategory(this.txtUserName.Text, this.cid);
             }
         }
+
+        Session["TITLE"] = "THÔNG TIN TÀI KHOẢN";
     }
     #endregion
 

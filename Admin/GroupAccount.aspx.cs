@@ -54,6 +54,9 @@ public partial class Admin_GroupAccount : System.Web.UI.Page
                 this.tblABC.Visible = true;
             }
         }
+
+        Session["TITLE"] = "NHÓM TÀI KHOẢN";
+
     }
     #endregion
 }

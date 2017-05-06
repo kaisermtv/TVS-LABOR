@@ -32,6 +32,8 @@ public partial class Admin_DelAccount : System.Web.UI.Page
         {
             this.itemId = 0;
         }
+
+        Session["TITLE"] = "XÓA TÀI KHOẢN";
     }
     #endregion
 

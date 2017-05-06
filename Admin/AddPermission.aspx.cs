@@ -58,13 +58,15 @@ public partial class Admin_AddPermission : System.Web.UI.Page
                 this.txtName.Text = this.objTable.Rows[0]["Name"].ToString();
             }
         }
+
+        Session["TITLE"] = "CẬP NHẬT QUYỀN CỦA NHÓM";
     }
     #endregion
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        if (this.GroupId > 0)
+        if (this.GroupId > 0 && this.ddlFunctionId.Items.Count > 0)
         {
             if (this.objAccount.setDataPermission(this.GroupId, int.Parse(this.ddlFunctionId.SelectedValue.ToString()), this.ckbView.Checked, this.ckbAdd.Checked, this.ckbEdit.Checked, this.ckbDel.Checked, this.ckbOther.Checked) == 1)
             {

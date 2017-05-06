@@ -2,15 +2,13 @@
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div class="AdminHeaderItem">
-        THÔNG TIN NHÓM TÀI KHOẢN
-    </div>
+   
     <div class="AdminItem">
         <div class="AdminLeftItem">
             &nbsp;&nbsp;Tên nhóm:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtName" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
@@ -86,7 +84,7 @@
             <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
             &nbsp;
             <a href="AddPermission.aspx?Gid=<%Response.Write(this.itemId.ToString()); %>">
-                <input type="button" class="btn btn-primary" value="Thêm quyền" style="width: 110px !important;" /></a>
+                <input type="button" class="btn btn-warning" value="Thêm quyền" style="width: 110px !important;" /></a>
             &nbsp;
             <asp:Button ID="btnCancel" runat="server" Text="Thoát" CssClass="btn btn-default" OnClick="btnCancel_Click" />
         </div>

@@ -126,7 +126,6 @@
                         }
                     }
                 }
-                //alert(appendString);
                 if (appendString != '')
                 {
                     XemTinTuyenDungLamViec(appendString);

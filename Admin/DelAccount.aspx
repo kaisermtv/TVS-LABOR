@@ -2,9 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">XÓA TÀI KHOẢN</h3>
-        </div>
         <br />
         <br />
         <div style="text-align: center; font-weight: bold;">

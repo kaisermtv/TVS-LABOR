@@ -42,6 +42,8 @@ public partial class Admin_Account : System.Web.UI.Page
             this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "tblAccount", "FullName");
             this.getData();
         }
+
+        Session["TITLE"] = "TÀI KHOẢN";
     }
     #endregion
 

@@ -60,25 +60,25 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
                 this.txtDiaChi.Text = this.objTable.Rows[0]["DiaChi"].ToString();
                 this.txtSoDienThoai.Text = this.objTable.Rows[0]["DienThoai"].ToString();
 
-                this.txtThoiGian.Text = this.objTable.Rows[0]["ThoiGian"].ToString();
-                this.txtTruongHoc.Text = this.objTable.Rows[0]["TruongHoc"].ToString();
-                this.txtDiaChiHoc.Text = this.objTable.Rows[0]["DiaChiHoc"].ToString();
-                this.txtKhoaHoc.Text = this.objTable.Rows[0]["KhoaHoc"].ToString();
-                this.txtDTLienHe.Text = this.objTable.Rows[0]["DTLienHe"].ToString();
+                this.txtThoiGian.Value = this.objTable.Rows[0]["ThoiGian"].ToString();
+                this.txtTruongHoc.Value = this.objTable.Rows[0]["TruongHoc"].ToString();
+                this.txtDiaChiHoc.Value = this.objTable.Rows[0]["DiaChiHoc"].ToString();
+                this.txtKhoaHoc.Value = this.objTable.Rows[0]["KhoaHoc"].ToString();
+                this.txtDTLienHe.Value = this.objTable.Rows[0]["DTLienHe"].ToString();
                 this.txtIdDtKhoaHoc.Value = this.objTable.Rows[0]["IdDtKhoaHoc"].ToString();
                 this.txtLoaiKhoaHoc.Value = this.objTable.Rows[0]["LoaiKhoaHoc"].ToString();
                 if (this.objTable.Rows[0]["LoaiKhoaHoc"].ToString() == "1")
                 {
-                    this.txtTenLoaiKhoaHoc.Text = "Học Nghề";
+                    this.txtTenLoaiKhoaHoc.Value = "Học Nghề";
                 }
                 else
                 {
-                    this.txtTenLoaiKhoaHoc.Text = "Học Tiếng";
+                    this.txtTenLoaiKhoaHoc.Value = "Học Tiếng";
                 }
-                this.txtNameKhoaHoc.Text = this.objTable.Rows[0]["NameKhoaHoc"].ToString();
+                this.txtNameKhoaHoc.Value = this.objTable.Rows[0]["NameKhoaHoc"].ToString();
 
-                this.txtThoiGian.Text = this.objTable.Rows[0]["ThoiGianHoc"].ToString();
-                this.txtMucHoTro.Text = this.objTable.Rows[0]["MucHoTro1"].ToString();
+                this.txtThoiGian.Value = this.objTable.Rows[0]["ThoiGianHoc"].ToString();
+                this.txtMucHoTro.Value = this.objTable.Rows[0]["MucHoTro1"].ToString();
 
                 this.txtSoQDHTN.Text = this.objTable.Rows[0]["SoQDHTN"].ToString();
 
@@ -104,7 +104,7 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
     {
         this.lblMsg.Text = "";
 
-        if (this.txtMucHoTro.Text == "")
+        if (this.txtMucHoTro.Value == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập mức hỗ trợ";
             this.txtMucHoTro.Focus();
@@ -113,7 +113,7 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
         float tmpMucHoTro = 0;
         try
         {
-            tmpMucHoTro = float.Parse(this.txtMucHoTro.Text);
+            tmpMucHoTro = float.Parse(this.txtMucHoTro.Value);
         }
         catch
         {
@@ -159,7 +159,7 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
             return;
         }
 
-        if (this.objNguoiLaoDong.setNldDaoTaoData(this.IDNldDaoTao, int.Parse(this.txtIDNguoiLaoDong.Value), int.Parse(this.txtIdDtKhoaHoc.Value), this.txtTruongHoc.Text, this.txtDiaChiHoc.Text,this.txtKhoaHoc.Text, this.txtDTLienHe.Text,tmpNgayBatDau,tmpNgayKetThuc,this.txtSoQDHTN.Text, this.txtSoQDHN.Text, int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
+        if (this.objNguoiLaoDong.setNldDaoTaoData(this.IDNldDaoTao, int.Parse(this.txtIDNguoiLaoDong.Value), int.Parse(this.txtIdDtKhoaHoc.Value), this.txtTruongHoc.Value, this.txtDiaChiHoc.Value, this.txtKhoaHoc.Value, this.txtDTLienHe.Value, tmpNgayBatDau, tmpNgayKetThuc, this.txtSoQDHTN.Text, this.txtSoQDHN.Text, int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
         {
             this.lblMsg.Text = "<span style = \"color:blue;\">Lưu dữ liệu thành công !</span>";
         }

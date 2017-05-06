@@ -61,14 +61,14 @@
     <table class="table" style="margin-top: -20px;">
         <tr>
             <td>
-                <input type="text" id="txtSearch" placeholder="Nhập mã hoặc tên doanh nghiệp để tìm kiếm" runat="server" class="form-control" />
+                <input type="text" id="txtSearch" placeholder="Nhập tên người lao động để tìm kiếm" runat="server" class="form-control" />
             </td>
             <td style="width: 180px;">
                 <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
-                    <asp:ListItem Value="0" Selected="True">Chưa xử lý</asp:ListItem>
+                    <asp:ListItem Value="0">Chưa xử lý</asp:ListItem>
                     <asp:ListItem Value="1">Đang xử lý</asp:ListItem>
                     <asp:ListItem Value="2">Đã xử lý</asp:ListItem>
-                    <asp:ListItem Value="3">Trạng thái</asp:ListItem>
+                    <asp:ListItem Value="3" Selected="True">Trạng thái</asp:ListItem>
                 </asp:DropDownList>
             </td>
             <td style="width: 40px !important; text-align: center;">
@@ -79,8 +79,8 @@
 
     <asp:Repeater ID="dtlTuVanXuatKhau" runat="server" EnableViewState="False">
         <HeaderTemplate>
-            <div class="table-responsive2" style="margin-top: -10px; background-color:#fff;">
-                <table id="tableview" class="table table-bordered table-striped tableheader" border="0" style ="background-color:#fff!important;">
+            <div class="table-responsive2" style="margin-top: -10px; background-color: #fff;">
+                <table id="tableview" class="table table-bordered table-striped tableheader" border="0" style="background-color: #fff!important;">
                     <thead>
                         <tr>
                             <th style="width: 40px; vertical-align: central; text-align: center;" rowspan="3">STT</th>
@@ -98,6 +98,7 @@
                             <th style="width: 80px; text-align: center; text-transform: uppercase;" rowspan="3">KHÓA HỌC</th>
                             <th style="width: 300px; text-align: center; text-transform: uppercase;" rowspan="3">ĐỊA CHỈ HỌC</th>
                             <th style="width: 120px; text-align: center; text-transform: uppercase;" rowspan="3">SĐT LIÊN HỆ</th>
+                            <th style="width: 40px; text-align: center; text-transform: uppercase;" rowspan="3">&nbsp;</th>
                         </tr>
                         <tr>
                             <th colspan="2" style="text-align: center; text-transform: uppercase;">Học ngoại ngữ</th>
@@ -113,26 +114,27 @@
 
         <ItemTemplate>
             <tr class="tableview" style="font-size: 15px; height: 30px;">
-                <td class="DataListTableTdItemTT" style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;">
+                <td class="DataListTableTdItemTT" style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;">
                     <span class="name"><%# Eval("TT") %></span>
                 </td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;">
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;">
                     <a href="DaoTaoNgheEdit.aspx?id=<%# Eval("IDNldDaoTao") %>"><%# Eval("HoVaTen") %>
                 </td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("NgaySinh","{0:dd/MM/yyyy}") %></td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("DiaChi") %></td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("IdGioiTinh").ToString().ToUpper().Contains("1") ? "Nam":"Nữ" %></td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("DienThoai") %></td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("NameKhoaHoc").ToString().ToUpper().Contains("HÀN") ? "x":"" %></td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("NameKhoaHoc").ToString().ToUpper().Contains("NHẬT") ? "x":"" %></td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("LoaiKhoaHoc").ToString().ToUpper().Contains("1") ? "x":"" %></td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("NameKhoaHoc") %></td>
-                <td style="vertical-align: middle; text-align: center;background-color:#fff!important;font-size: 15px;"><%# Eval("ThoiGianHoc1") %></td>
-                <td style="vertical-align: middle; text-align: right; padding-right: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("MucHoTro1","{0:0,0}") %></td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("TruongHoc") %></td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("KhoaHoc") %></td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("DiaChiHoc") %></td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important;background-color:#fff!important;font-size: 15px;"><%# Eval("DTLienHe") %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("NgaySinh","{0:dd/MM/yyyy}") %></td>
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("DiaChi") %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("IdGioiTinh").ToString().ToUpper().Contains("1") ? "Nam":"Nữ" %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("DienThoai") %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("NameKhoaHoc").ToString().ToUpper().Contains("HÀN") ? "x":"" %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("NameKhoaHoc").ToString().ToUpper().Contains("NHẬT") ? "x":"" %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("LoaiKhoaHoc").ToString().ToUpper().Contains("1") ? "x":"" %></td>
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("NameKhoaHoc") %></td>
+                <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("ThoiGianHoc1") %></td>
+                <td style="vertical-align: middle; text-align: right; padding-right: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("MucHoTro1","{0:0,0}") %></td>
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("TruongHoc") %></td>
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("KhoaHoc") %></td>
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("DiaChiHoc") %></td>
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;"><%# Eval("DTLienHe") %></td>
+                <td style ="width:40px!important; text-align:center; background-color:#fff!important; padding-top:3px!important;"><a href="DaoTaoNgheDel.aspx?id=<%# Eval("IDNldDaoTao") %>"><img src="/Images/delete.png" alt=""></a></td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>

@@ -63,6 +63,8 @@ public partial class Admin_EditGroupAccount : System.Web.UI.Page
                 this.tblABC.Visible = true;
             }
         }
+
+        Session["TITLE"] = "THÔNG TIN NHÓM TÀI KHOẢN";
     }
     #endregion
 

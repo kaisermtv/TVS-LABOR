@@ -63,41 +63,41 @@
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Loại hình:</td>
             <td style="width: 40%;">
-               <asp:TextBox ID="txtTenLoaiKhoaHoc" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
+               <input id="txtTenLoaiKhoaHoc" readonly = "true" style ="background-color:#fff;" runat="server" class="form-control"/>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tên khóa học:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtNameKhoaHoc" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtNameKhoaHoc" readonly = "true" style ="background-color:#fff;" runat="server" class="form-control"/>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Thời gian:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtThoiGian" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtThoiGian" readonly = "true" style ="background-color:#fff;" runat="server" class="form-control"/>
             </td>
         </tr>
 
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Trường học:</td>
             <td colspan="3">
-                <asp:TextBox ID="txtTruongHoc" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtTruongHoc" runat="server" class="form-control"/>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Mức hỗ trợ:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtMucHoTro" ReadOnly = "true" Style ="background-color:#fff;" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtMucHoTro" readonly = "true" style ="background-color:#fff;" runat="server" class="form-control"/>
             </td>
         </tr>
 
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ học:</td>
             <td>
-                <asp:TextBox ID="txtDiaChiHoc" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtDiaChiHoc" runat="server" class="form-control"/>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Khóa học:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtKhoaHoc" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtKhoaHoc" runat="server" class="form-control"/>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">ĐT liên hệ:</td>
             <td style="width: 15%;">
-                <asp:TextBox ID="txtDTLienHe" runat="server" CssClass="form-control"></asp:TextBox>
+                <input id="txtDTLienHe" runat="server" class="form-control"/>
             </td>
         </tr>
 

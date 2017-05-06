@@ -1187,7 +1187,9 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("objDate1", SqlDbType.DateTime).Value = TVSSystem.CVDateTime1(NgayBatDau);
             Cmd.Parameters.Add("objDate2", SqlDbType.DateTime).Value = TVSSystem.CVDateTime2(NgayKetThuc);
 
-            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameMucluong FROM TblMucLuong WHERE IDMucluong = TblNldDangKy.IDMucluong) AS NameMucluong, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblNldDangKy.IDChucVu) AS NameChucVu, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDangKy.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNldDangKy, TblNguoiLaoDong WHERE TblNldDangKy.IDNguoiLaoDong = TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + " AND NgayDangKy BETWEEN @objDate1 AND @objDate2 ORDER BY TblNldDangKy.NgayDangKy DESC";
+            //Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameMucluong FROM TblMucLuong WHERE IDMucluong = TblNldDangKy.IDMucluong) AS NameMucluong, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblNldDangKy.IDChucVu) AS NameChucVu, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDangKy.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNldDangKy, TblNguoiLaoDong WHERE TblNldDangKy.IDNguoiLaoDong = TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + " AND NgayDangKy BETWEEN @objDate1 AND @objDate2 ORDER BY TblNldDangKy.NgayDangKy DESC";
+
+            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT NameMucluong FROM TblMucLuong WHERE IDMucluong = TblNldDangKy.IDMucluong) AS NameMucluong, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblNldDangKy.IDChucVu) AS NameChucVu, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDangKy.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNldDangKy INNER JOIN TblNguoiLaoDong ON TblNldDangKy.IDNguoiLaoDong = TblNguoiLaoDong.IdNguoiLaoDong LEFT JOIN TblNldTuVan ON TblNldTuVan.IDNldTuVan = TblNldDangKy.IDNldTuVan WHERE 1 = 1 " + sqlQuery + " AND NgayDangKy BETWEEN @objDate1 AND @objDate2 ORDER BY TblNldDangKy.NgayDangKy DESC";
 
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -1249,7 +1251,7 @@ public class NguoiLaoDong :DataClass
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT *, (SELECT HoVaTen FROM TblNguoiLaoDong WHERE IDNguoiLaoDong = TblNldDangKy.IDNguoiLaoDong) AS HoVaTen FROM TblNldDangKy WHERE IDNldDangKy = @IDNldDangKy";
+            Cmd.CommandText = "SELECT *, (SELECT HoVaTen FROM TblNguoiLaoDong WHERE IDNguoiLaoDong = TblNldDangKy.IDNguoiLaoDong) AS HoVaTen FROM TblNldDangKy LEFT JOIN TblNldTuVan ON TblNldTuVan.IDNldTuVan = TblNldDangKy.IDNldTuVan WHERE IDNldDangKy = @IDNldDangKy";
             Cmd.Parameters.Add("IDNldDangKy", SqlDbType.Int).Value = IDNldDangKy;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -1513,7 +1515,7 @@ public class NguoiLaoDong :DataClass
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP 1 *, (SELECT NameChucVu FROM TblChucVu WHERE IdChucVu = TblNldGioiThieu.IdChucVu) AS NameChucVu FROM TblNldGioiThieu,TblDoanhNghiep WHERE TblNldGioiThieu.IDDonVi = TblDoanhNghiep.IDDonVi AND IDNldDangKy = @IDNldDangKy";
+            Cmd.CommandText = "SELECT TOP 1 *, (SELECT NameChucVu FROM TblChucVu WHERE IdChucVu = TblNldGioiThieu.IdChucVu) AS NameChucVu FROM TblNldGioiThieu INNER JOIN TblDoanhNghiep ON TblNldGioiThieu.IDDonVi = TblDoanhNghiep.IDDonVi LEFT JOIN TblViTri ON TblNldGioiThieu.IDChucVu = TblViTri.Id WHERE IDNldDangKy = @IDNldDangKy";
             Cmd.Parameters.Add("IDNldDangKy", SqlDbType.Int).Value = IDNldDangKy;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -2094,6 +2096,29 @@ public class NguoiLaoDong :DataClass
 
         }
         return objTable;
+    }
+    #endregion
+
+    #region method delNldDaoTaoData
+    public void delNldDaoTaoData(int IDNldDaoTao)
+    {
+        try
+        {
+            string sqlQuery = "";
+            sqlQuery = "DELETE TblNldDaoTao WHERE IDNldDaoTao = @IDNldDaoTao ";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("IDNldDaoTao", SqlDbType.Int).Value = IDNldDaoTao;
+            Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
     }
     #endregion
 

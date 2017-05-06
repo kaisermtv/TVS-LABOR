@@ -64,65 +64,59 @@
         </tr>
     </table>
 
-    <div style="width: 100%; margin-top: -20px;">
-        <table class="DataListTableHeader" border="0">
-            <tr style="height: 40px;">
-                <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Người lao động
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 19%;">Tên công việc
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Vị trí
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Mức lương
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Ngày đăng ký
-                </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Trạng thái
-                </td>
-                <td class="DataListTableHeaderTdItemCenter" style="width: 7%;">&nbsp;
-                </td>
-            </tr>
-        </table>
-    </div>
+    <table class="table" border="0" style ="margin-top:-20px;">
+        <tr style="height: 30px;">
+            <th style="width: 3%;padding-top: 5px!important; padding-bottom: 5px!important;">#
+            </th>
+            <th style="width: 15%;padding-top: 5px!important; padding-bottom: 5px!important;">Người lao động
+            </th>
+            <th style ="padding-top: 5px!important; padding-bottom: 5px!important;">Công việc đăng ký
+            </th>
+            <th style="width: 130px;padding-top: 5px!important; padding-bottom: 5px!important;">Lương thấp nhất
+            </th>
+            <th style="width: 105px;padding-top: 5px!important; padding-bottom: 5px!important;">Ngày đăng ký
+            </th>
+            <th style="width: 90px;padding-top: 5px!important; padding-bottom: 5px!important;">Trạng thái
+            </th>
+            <th style="width: 82px;padding-top: 5px!important; padding-bottom: 5px!important;">&nbsp;
+            </th>
+        </tr>
 
-    <asp:DataList ID="dtlDangKyViecLam" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
-        Width="100%">
-        <ItemTemplate>
-            <table class="DataListTable" border="0">
-                <tr style="height: 40px;">
-                    <td class="DataListTableTdItemTT" style="width: 3%;">
-                        <%# Eval("TT") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 15%;">
-                        <%# Eval("HoVaTen") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 19%;">
-                        <%# Eval("TenCongViec") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 15%;">
-                        <%# Eval("NameChucVu") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 15%;">
-                        <%# Eval("NameMucLuong") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 15%;">
-                        <%# Eval("NgayDangKy","{0:dd/MM/yyyy}") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="width: 12%;">
-                        <%# Eval("NameState") %>
-                    </td>
-                    <td class="DataListTableTdItemCenter" style="width: 7%;">
-                        <a href="DangKyViecLamEdit.aspx?id=<%# Eval("IDNldDangKy") %>">
-                            <img src="../Images/Edit.png" alt=""></a>&nbsp;
-                        <a href="DangKyViecLamDel.aspx?id=<%# Eval("IDNldDangKy") %>">
-                            <img src="../Images/delete.png" alt=""></a>
-                    </td>
-                </tr>
-            </table>
-        </ItemTemplate>
-    </asp:DataList>
+        <asp:Repeater ID="dtlDangKyViecLam" runat="server">
+            <ItemTemplate>
+                <tbody>
+                    <tr>
+                        <td style="padding-top: 5px!important; padding-bottom: 5px!important;">
+                            <%# Eval("TT") %>
+                        </td>
+                        <td style="padding-top: 5px!important; padding-bottom: 0px!important;">
+                            <%# Eval("HoVaTen") %>
+                        </td>
+                        <td style="padding-top: 5px!important; padding-bottom: 0px!important;">
+                            <%# Eval("ViTriCongViec") %>
+                        </td>
+                        <td style="padding-top: 5px!important; padding-bottom: 0px!important; text-align: right;">
+                            <%# Eval("MucLuongThapNhat","{0:0,0}") %>
+                        </td>
+                        <td style="padding-top: 5px!important; padding-bottom: 0px!important;">
+                            <%# Eval("NgayDangKy","{0:dd/MM/yyyy}") %>
+                        </td>
+                        <td style="padding-top: 5px!important; padding-bottom: 0px!important;">
+                            <%# Eval("NameState") %>
+                        </td>
+                        <td style="padding-top: 2px!important; padding-bottom: 0px!important; text-align:right; padding-right:0px!important;">
+                            <a href="DangKyViecLamEdit.aspx?id=<%# Eval("IDNldDangKy") %>">
+                                <img src="../Images/Edit.png" alt=""></a>
+                            <a href="DangKyViecLamDel.aspx?id=<%# Eval("IDNldDangKy") %>">
+                                <img src="../Images/delete.png" alt=""></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </ItemTemplate>
+        </asp:Repeater>
+
+    </table>
+
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
         id="tblABC" runat="server">
         <tr>
@@ -139,22 +133,23 @@
     <a href="DangKyViecLamEdit.aspx">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
 
-      <script src="../js/TvsScript.js"></script>         <!--chứa qick search-->
-     <script>
-         $(function () {
-             /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
-             $('#MainContent_dtlDangKyViecLam').searchable({       // lấy thẻ chứa ngoài cùng
-                 searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
-                 selector: 'tr',                               // từng dòng là các thẻ <tr>
-                 childSelector: 'td',                          // tìm tất cả các thẻ td
-                 show: function (elem) {
-                     elem.slideDown(100);                     // 100ms
-                 },
-                 hide: function (elem) {
-                     elem.slideUp(100);                       // cuộn lên     
-                 }
-             })
-         });
+    <script src="../js/TvsScript.js"></script>
+    <!--chứa qick search-->
+    <script>
+        $(function () {
+            /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
+            $('#MainContent_dtlDangKyViecLam').searchable({       // lấy thẻ chứa ngoài cùng
+                searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
+                selector: 'tr',                               // từng dòng là các thẻ <tr>
+                childSelector: 'td',                          // tìm tất cả các thẻ td
+                show: function (elem) {
+                    elem.slideDown(100);                     // 100ms
+                },
+                hide: function (elem) {
+                    elem.slideUp(100);                       // cuộn lên     
+                }
+            })
+        });
     </script>
 </asp:Content>
 

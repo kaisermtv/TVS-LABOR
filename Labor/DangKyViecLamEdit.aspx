@@ -49,11 +49,9 @@
                         <td style="width: 20%;">
                             <asp:Label ID="txtTenCongViec" runat="server" Style="width: 100%; float: left; height: 40px; line-height: 40px;"></asp:Label>
                         </td>
-                        <td style="width: 8%; text-align: right; padding-right: 5px;">Vị trí:</td>
+                        <td style="width: 8%; text-align: right; padding-right: 5px;">&nbsp;</td>
                         <td>
-                            <asp:Label ID="lblChucVu" runat="server" Style="width: 100%; float: left; height: 40px; line-height: 40px; margin-bottom: -18px;"></asp:Label>
-                            <asp:DropDownList ID="ddlIDChucVuDK" runat="server" Style="width: 50%; border: none; visibility: hidden;">
-                            </asp:DropDownList>
+                            &nbsp;
                         </td>
                         <td>&nbsp;
                         </td>
@@ -66,11 +64,9 @@
             <td colspan="6">
                 <table border="0" style="width: 100%;">
                     <tr>
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Mức lương:</td>
+                        <td style="width: 10%; text-align: right; padding-right: 5px;">Lương thấp nhất:</td>
                         <td style="width: 20%;">
-                            <asp:Label ID="lblMucLuong" runat="server" Style="width: 100%; float: left; height: 20px; line-height: 20px; margin-bottom: -38px!important;"></asp:Label>
-                            <asp:DropDownList ID="ddlMucLuong" AutoPostBack="true" runat="server" Style="width: 100%; visibility: hidden;">
-                            </asp:DropDownList>
+                            <asp:Label ID="lblMucLuong" runat="server" Style="width: 100%; float: left; height: 20px; line-height: 20px;"></asp:Label>
                         </td>
                         <td style="width: 8%; text-align: right; padding-right: 5px;">Tỉnh, TP:</td>
                         <td style="width: 20%;">

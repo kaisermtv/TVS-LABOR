@@ -2,15 +2,13 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div class="AdminHeaderItem">
-        THÔNG TIN TÀI KHOẢN
-    </div>
+    
     <div class="AdminItem">
         <div class="AdminLeftItem">
             &nbsp;&nbsp;Tài khoản:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtUserName" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtUserName" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
     
@@ -19,7 +17,7 @@
             &nbsp;&nbsp;Họ tên:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtFullName" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtFullName" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
@@ -28,7 +26,7 @@
             &nbsp;&nbsp;Địa chỉ email:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtEmail" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
@@ -37,7 +35,7 @@
             &nbsp;&nbsp;Mật khẩu:
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtPassWord" runat="server" class="AdminTextControl"></asp:TextBox>
+            <asp:TextBox ID="txtPassWord" runat="server" class="form-control"></asp:TextBox>
         </div>
     </div>
 
@@ -46,7 +44,7 @@
             &nbsp;&nbsp;Nhóm tài khoản:
         </div>
         <div class="AdminRightItem">
-            <asp:DropDownList ID="ddlGroupId" runat="server" Style="width: 100%; height: 26px; line-height: 26px; margin-top: 3px;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlGroupId" runat="server" CssClass ="form-control" Style="width: 100%;"></asp:DropDownList>
         </div>
     </div>
 
@@ -55,7 +53,7 @@
             &nbsp;&nbsp;Vai trò quản lý:
         </div>
         <div class="AdminRightItem" style ="display:table;">
-           <asp:DropDownList ID="ddlTypeId" runat="server" Style="width: 100%; height: 26px; line-height: 26px; margin-top: 3px;">
+           <asp:DropDownList ID="ddlTypeId" runat="server" CssClass ="form-control" Style="width: 100%;">
                <asp:ListItem Value ="0">Quản lý hệ thống</asp:ListItem>
                <asp:ListItem Value ="1">Quản lý công ty</asp:ListItem>
                <asp:ListItem Value ="2">Quản lý chi nhánh</asp:ListItem>

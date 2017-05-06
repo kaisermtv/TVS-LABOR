@@ -40,19 +40,26 @@ public partial class Admin_AboutUs : System.Web.UI.Page
                 this.txtGreeting1.Text = this.objTable.Rows[0]["Greeting1"].ToString();
             }
         }
+
+        Session["TITLE"] = "THÔNG TIN ĐƠN VỊ";
     } 
     #endregion
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        this.lblMsg.Text = "";
+
         if (this.txtName.Text == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập tên đơn vị";
             this.txtName.Focus();
             return;
         }
+
         this.objAboutUs.setData(1,this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtHotline.Text, this.txtGreeting.Text, this.txtGreeting1.Text);
+
+        this.lblMsg.Text = "<span style = \"color:blue;\">Cập nhật thông tin thành công!</style>";
     }
     #endregion
 
