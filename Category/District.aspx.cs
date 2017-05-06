@@ -35,10 +35,9 @@ public partial class Admin_District : System.Web.UI.Page
             this.ddlProvincer.DataTextField = "Name";
             this.ddlProvincer.DataValueField = "Id";
             this.ddlProvincer.DataBind();
-
+        }
             this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "tblDistrict", "Name");
             this.getData();
-        }
     }
     #endregion
 

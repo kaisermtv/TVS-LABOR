@@ -133,7 +133,7 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                     this.NLDMucLuongTN = String.Format("{0:0,0}", double.Parse(this.objTableNldTuVan.Rows[0]["MucLuongTN"].ToString())) + " đ";
                 }
 
-                this.LanTuVan = this.objTableNldTuVan.Rows[0]["LanTuVan"].ToString();
+               this.LanTuVan = this.objTableNldTuVan.Rows[0]["LanTuVan"].ToString();
 
                 this.NLDLyDoTN = this.objTableNldTuVan.Rows[0]["LyDoTN"].ToString();
                 this.NLDDNDaLienHe = this.objTableNldTuVan.Rows[0]["DNDaLienHe"].ToString();

@@ -28,11 +28,11 @@ public partial class Admin_Provincer : System.Web.UI.Page
         //{
         //    Response.Redirect("NoPermission.aspx");
         //}
-        if (!Page.IsPostBack)
-        {
+        //if (!Page.IsPostBack)
+        //{
             this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "tblProvincer", "Name");
             this.getData();
-        }
+        //}
     } 
     #endregion
 

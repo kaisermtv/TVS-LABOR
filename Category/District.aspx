@@ -2,7 +2,7 @@
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-   <script src="../js/TvsScript.js"></script><!--chứa qick search-->
+    <script src="../js/TvsScript.js"></script><!--chứa qick search-->
    <div style="width: 100%; height: 35px; line-height: 35px; margin-bottom: 10px;">
         <div class="AdminLeftItem">
             QUẬN, HUYỆN
@@ -72,7 +72,7 @@
                 <cc1:CollectionPager ID="cpDistrict" runat="server" BackText="" FirstText="Đầu"
                     ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                     ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                    PageNumbersSeparator="&nbsp;">
+                    PageNumbersSeparator="&nbsp;" PagingMode="PostBack">
                 </cc1:CollectionPager>
             </td>
         </tr>

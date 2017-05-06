@@ -498,7 +498,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             if(buf != "") buf = buf.Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1);
 
             string buf1 = this.txtViTriCongViec2.Text.ToString();
-            if (buf1 != "") buf1 = buf1.Replace('×', ';').Substring(1, this.txtViTriCongViec.Text.ToString().Length - 1);
+            if (buf1 != "") buf1 = buf1.Replace('×', ';').Substring(1, this.txtViTriCongViec2.Text.ToString().Length - 1);
 
             this.objNguoiLaoDong.setDataTblNldTuVan(ref this.IDNldTuVan, IDNguoiLaoDong, int.Parse(this.ddlIdLoaiLaoDong.SelectedValue.ToString()), 0, tmpMucLuongTN, this.txtLyDoTN.Text, this.txtDnDaLienHe.Text, this.ckbTuVanPhapLuat.Checked, this.ckbTuVanViecLam.Checked, this.ckbTuVanDuHoc.Checked, this.ckbTuVanHocNghe.Checked, this.ckbTuVanXuatKhauLaoDong.Checked, this.ckbTuVanBHTN.Checked, this.ckbTuVanKhac.Checked, "", buf, tmpMucLuongThapNhat, this.txtDieuKienLamViec.Text, this.txtDiaDiemLamViec.Text, buf1, tmpMucLuongThapNhat2, this.txtDieuKienLamViec2.Text, this.txtDiaDiemLamViec2.Text, this.txtNoiDungKhac.Text, DateTime.Now, Session["ACCOUNT"].ToString(), this.txtCongViecTruocThatNghiep.Text);
             #endregion

@@ -58,11 +58,10 @@ public partial class Admin_Ward : System.Web.UI.Page
                     Session["CURR_DISTRICT"] = this.ddlDistrict.SelectedValue;
                 }
             }
-
-            this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "tblWard", "Name");
-            this.getData();
         }
-    } 
+        this.txtSearch.Text = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "tblWard", "Name");
+        this.getData();
+    }
     #endregion
 
     #region method btnSearch_Click

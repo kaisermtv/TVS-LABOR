@@ -6,7 +6,7 @@
             TỈNH, THÀNH
         </div>
         <div class="AdminRightItem">
-            <asp:TextBox ID="txtSearch" runat="server" CssClass ="form-control" Style="width: 35% !important; float:left;"></asp:TextBox>&nbsp;
+            <asp:TextBox ID="txtSearch" runat="server" CssClass ="form-control" Style="width: 90% !important; float:left;"></asp:TextBox>&nbsp;
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -8px;" OnClick="btnSearch_Click" />
         </div>
     </div>
@@ -62,14 +62,14 @@
             </table>
         </ItemTemplate>
     </asp:DataList>
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; height: 26px;"
         id="tblABC" runat="server">
         <tr>
             <td style="padding-left: 6px;">
                 <cc1:CollectionPager ID="cpProvincer" runat="server" BackText="" FirstText="Đầu"
                     ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                     ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                    PageNumbersSeparator="&nbsp;">
+                    PageNumbersSeparator="&nbsp;" PagingMode="PostBack">
                 </cc1:CollectionPager>
             </td>
         </tr>

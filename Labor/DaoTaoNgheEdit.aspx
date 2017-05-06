@@ -60,8 +60,6 @@
             <td style ="text-align:right;"><button type ="button" class ="btn btn-primary" onclick ="ChonKhoaHoc()">Chọn khóa học</button></td>
         </tr>
 
-        
-
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Loại hình:</td>
             <td style="width: 40%;">
