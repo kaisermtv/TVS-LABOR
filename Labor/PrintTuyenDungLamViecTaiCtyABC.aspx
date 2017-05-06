@@ -10,6 +10,12 @@
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <!-- Custom CSS -->
     <link href="../css/PrintPhieuTuVan.css" rel="stylesheet" />
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <form style="margin: 0px !important;" runat="server">
@@ -51,20 +57,55 @@
             <div class="ChuBinhThuong">
                 <b>2.</b>  <b style="border-bottom: solid 1px;">Vị trí - Điều kiện tuyển dụng</b><b>:</b>
                 <br />
-                <b style="font-size: 17px">- <%= objData["SoLuongTuyenDung"].ToString() + " " + nameViTri %>
-                </b>
-                <br />
-                <b style="font-size: 16px">Yêu cầu :</b>
-                <div style="margin-left: 10%">
-                    <%= objData["MoTa"].ToString() %>
-                </div>
+
+                <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
+                    <HeaderTemplate>
+                        <% if(counti > 1){ %>
+                            <table class="DataListTable">
+                                <tr >
+                                    <th style="width: 300px; text-align: center" rowspan="1">Vị trí</th>
+                                    <th style="width: 30px;  text-align:center" rowspan="1">Số lượng (người)</th>
+                                     <th style="width: 450px;text-align:center" rowspan="1">Yêu cầu</th>
+                                 </tr>
+                        <% } %>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <% if(counti == 1){ %>
+                            <b style="font-size: 17px">- <%# Eval("SoLuongTuyenDung") %> <%# (Eval("NameVitri") != null)?Eval("NameVitri"):"nhân viên" %>
+                            </b>
+                            <br />
+                            <b style="font-size: 16px">Yêu cầu :</b>
+                            <div style="margin-left: 10%">
+                                <%# Eval("MoTa") %>
+                            </div>
+                        <% } else { %>
+                            <tr>
+                                <td>
+                                    <span class="name"><%# Eval("NameVitri") %></span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <%# Eval("SoLuongTuyenDung") %>
+                                </td>
+                                <td class="DataListTableTdItemJustify">
+                                    <%# Eval("MoTa") %>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <% if(counti > 1){ %>
+                            </table>
+                        <% } %>
+                    </FooterTemplate>
+                </asp:Repeater>
+
             </div>
 
             <div class="ChuBinhThuong">
                 <b>3.</b>  <b style="border-bottom: solid 1px;">Quyền lợi </b><b>:</b>
                 <div style="margin-left: 10%">
                     <p>
-                        <%= objData["QuyenLoi"].ToString() %>
+                        <%= quyenLoi %>
                     </p>
                     <p>
                         <b>- <%= nameMucLuong %> / tháng</b>
@@ -72,7 +113,7 @@
                 </div>
             </div>
             <div class="ChuBinhThuong">
-                <b>4.</b>  <b style="border-bottom: solid 1px;">Địa điểm làm việc </b><b>:</b> <%= objData["DiaDiem"] %>
+                <b>4.</b>  <b style="border-bottom: solid 1px;">Địa điểm làm việc </b><b>:</b> <%= diaDiem %>
             </div>
             <!--- dòng lưu ý cuối--->
             <div class="ChuBinhThuong">

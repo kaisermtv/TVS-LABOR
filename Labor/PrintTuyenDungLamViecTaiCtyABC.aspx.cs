@@ -10,8 +10,6 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
 {
 
     #region declare objects
-    public int itemId = 0, IdDonVi = 0;
-    public string tenDonVi = "";
     private Account objAccount = new Account();
     private TuyenDung objTuyenDung = new TuyenDung();
     private NhomNganh objNhomNganh = new NhomNganh();
@@ -21,14 +19,19 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
     private GioiTinh objGioiTinh = new GioiTinh();
     private TrinhDoChuyenMon objTrinhDoChuyenMon = new TrinhDoChuyenMon();
     private ChucVu objChucVu = new ChucVu();
-    private Mucluong objMucluong = new Mucluong();
     private DataTable objTable = new DataTable();
+    private ViTri objViTri = new ViTri();
 
-    public DataRow objData;
-    public String nameDoanhNghiep;
-    public String nameNganhNghe;
-    public String nameViTri;
-    public String nameMucLuong;
+    public int itemId = 0, IdDonVi = 0,counti = 0;
+    public int[] arrayItem;
+    public DataTable objData;
+    public String nameDoanhNghiep = "";
+    public String nameNganhNghe = "";
+    public String nameViTri = "";
+    public String nameMucLuong = "";
+    public String mota = "";
+    public String quyenLoi = "";
+    public String diaDiem = "";
     #endregion
 
 
@@ -43,31 +46,58 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
         Session["TITLE"] = "THÔNG TIN TUYỂN DỤNG";
         try
         {
-            this.itemId = int.Parse(Request["id"].ToString());
+            string[] abc = Request["id"].ToString().Split(',');
+
+
+            counti = abc.Length;
+            arrayItem = new int[counti];
+
+            for (int i = 0; i < counti; i++)
+            {
+                arrayItem[i] = int.Parse(abc[i]);
+            }
         }
         catch
         {
-            this.itemId = 0;
+            counti = 0;
         }
 
-        if (!Page.IsPostBack && itemId != 0)
+        if (!Page.IsPostBack && counti != 0)
         {
-            objData = objTuyenDung.getDataView(itemId);
-            if(objData != null)
+            objData = objTuyenDung.getDataView(arrayItem);
+            if (objData.Rows.Count > 0)
             {
                 DoanhNghiep objDoanhNghiep = new DoanhNghiep();
-                DataTable objDataDN = objDoanhNghiep.getDataViewById((int)objData["IDDonVi"]);
+                DataTable objDataDN = objDoanhNghiep.getDataViewById((int)objData.Rows[0]["IDDonVi"]);
                 if (objDataDN.Rows.Count > 0)
                 {
                     nameDoanhNghiep = objDataDN.Rows[0]["TenDonVi"].ToString().ToUpper();
                     nameNganhNghe = objDataDN.Rows[0]["NganhNgheName"].ToString();
                 }
 
-                ViTri objViTri = new ViTri();
-                nameViTri = objViTri.getNameViTriById((int)objData["IdViTri"]);
-
                 Mucluong objMucLuong = new Mucluong();
-                nameMucLuong = objMucluong.getNameMucLuongById((int)objData["IDMucLuong"]);
+                nameMucLuong = objMucLuong.getNameMucLuongById((int)objData.Rows[0]["IDMucLuong"]);
+
+                diaDiem = objData.Rows[0]["DiaDiem"].ToString();
+
+                dtlTuyenDung.DataSource = objData.DefaultView;
+                dtlTuyenDung.DataBind();
+
+                //nameViTri = objData.Rows[0]["SoLuongTuyenDung"].ToString() + " ";
+                //try
+                //{
+                //    nameViTri = objViTri.getNameViTriById((int)objData.Rows[0]["IdViTri"]);
+                //}
+                //catch
+                //{
+                //    nameViTri = " nhân viên";
+                //}
+
+                
+
+                //mota = objData.Rows[0]["MoTa"].ToString();
+                //quyenLoi = objData.Rows[0]["QuyenLoi"].ToString();
+                
             }
 
 

@@ -505,4 +505,36 @@ public class TuyenDung :DataClass
         }
     }
     #endregion
+
+    #region Method getDataView
+    public DataTable getDataView(int[] id)
+    {
+        try
+        {
+            String strid = "";
+ 
+            foreach(int item in id)
+            {
+                if (strid != "") strid += ",";
+                strid += item.ToString();
+            }
+
+            SqlCommand Cmd = this.getSQLConnect();
+
+            Cmd.CommandText = "SELECT P.*,V.NameVitri FROM TblTuyenDung AS P LEFT JOIN tblViTri AS V ON P.IdViTri = V.ID WHERE P.IDTuyenDung IN(" + strid + ") AND ISNULL(P.State,0) = 1 ORDER BY P.ThuTuUuTien DESC, P.IDTuyenDung DESC";
+
+
+            DataTable ret = this.findAll(Cmd);
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
 }
