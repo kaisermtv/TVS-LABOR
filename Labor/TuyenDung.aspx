@@ -67,7 +67,10 @@
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
-                    <td class="DataListTableTdItemCenter" style="width: 9%;">
+                    <td class="DataListTableTdItemCenter" style="width: 12%;">
+                         <a href="#" onclick="XemTinTuyenDungLamViec(<%# Eval("IDTuyenDung") %>)">
+                                <img src="../Images/Print.png" />
+                          </a>
                         <a href="TuyenDungEdit.aspx?id=<%# Eval("IDTuyenDung") %>">
                             <img src="../Images/Edit.png" alt=""></a>
                         <a href="TuyenDung.aspx?id=<%# Eval("IDTuyenDung") %>">
@@ -146,12 +149,32 @@
                 }
             }
         }
+
+        function XemTinTuyenDungLamViec(value) {
+            var w = 1000;
+            var h = 620;
+
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((height / 2) - (h / 2)) + dualScreenTop;
+
+            var newWindow = window.open("PrintTuyenDungLamViecTaiCtyABC.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
+                }
+        }
+
     </script>
 
     <script>
           $(function () {
               /* QUICK SEARCH - Tìm nhanh */
-
               $('#MainContent_dtlTuyenDung').searchable({       // lấy thẻ chứa ngoài cùng
                   searchField: '#MainContent_txtSearch',        // lấy sự kiện tại txtSearch
                   selector: 'tr',                               // từng dòng là các thẻ <tr>

@@ -187,7 +187,7 @@ public class TuyenDung :DataClass
             }
 
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem FROM TblTuyenDung AS A";
+            Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,A.NoiDungKhac,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem FROM TblTuyenDung AS A";
             Cmd.CommandText += " INNER JOIN TblDoanhNghiep AS B ON A.IDDonVi = B.IDDonVi";
             Cmd.CommandText += " LEFT JOIN tblViTri AS V ON A.IDChucVu = V.ID";
             Cmd.CommandText += " LEFT JOIN TblMucLuong AS L ON A.IDMucLuong = L.IDMucLuong";
