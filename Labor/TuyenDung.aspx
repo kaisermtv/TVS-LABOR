@@ -127,7 +127,10 @@
                     }
                 }
                 //alert(appendString);
-                XemTinTuyenDungLamViec(appendString);
+                if (appendString != '')
+                {
+                    XemTinTuyenDungLamViec(appendString);
+                }
             }
         }
 
