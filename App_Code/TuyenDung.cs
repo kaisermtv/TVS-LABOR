@@ -480,4 +480,29 @@ public class TuyenDung :DataClass
         return tmpMaTuyenDung;
     }
     #endregion
+
+    #region Method getDataView
+    public DataRow getDataView(int id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+
+            Cmd.CommandText = "SELECT * FROM TblTuyenDung WHERE IDTuyenDung = @IDTuyenDung AND ISNULL(State,0) = 1 ";
+
+            Cmd.Parameters.Add("IDTuyenDung", SqlDbType.Int).Value = id;
+
+            DataRow ret = this.findFirst(Cmd);
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
 }

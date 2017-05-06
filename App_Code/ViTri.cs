@@ -133,5 +133,26 @@ public class ViTri : DataClass
     }
     #endregion
 
-   
+    #region Method getNameViTriById
+    public string getNameViTriById(int id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT NameVitri FROM tblViTri WHERE ID = @ID";
+            Cmd.Parameters.Add("ID", SqlDbType.Int).Value = id;
+
+            string ret = (string)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
 }
