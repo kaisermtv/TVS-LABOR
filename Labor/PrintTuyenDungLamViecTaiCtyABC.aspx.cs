@@ -10,8 +10,6 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
 {
 
     #region declare objects
-    public int itemId = 0, IdDonVi = 0;
-    public string tenDonVi = "";
     private Account objAccount = new Account();
     private TuyenDung objTuyenDung = new TuyenDung();
     private NhomNganh objNhomNganh = new NhomNganh();
@@ -21,11 +19,19 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
     private GioiTinh objGioiTinh = new GioiTinh();
     private TrinhDoChuyenMon objTrinhDoChuyenMon = new TrinhDoChuyenMon();
     private ChucVu objChucVu = new ChucVu();
-    private Mucluong objMucluong = new Mucluong();
     private DataTable objTable = new DataTable();
- 
+    private ViTri objViTri = new ViTri();
 
-    private String nganhnghebuf = "0";
+    public int itemId = 0, IdDonVi = 0,counti = 0;
+    public int[] arrayItem;
+    public DataTable objData;
+    public String nameDoanhNghiep = "";
+    public String nameNganhNghe = "";
+    public String nameViTri = "";
+    public String nameMucLuong = "";
+    public String mota = "";
+    public String quyenLoi = "";
+    public String diaDiem = "";
     #endregion
 
 
@@ -40,155 +46,67 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
         Session["TITLE"] = "THÔNG TIN TUYỂN DỤNG";
         try
         {
-            this.itemId = int.Parse(Request["id"].ToString());
+            string[] abc = Request["id"].ToString().Split(',');
+
+
+            counti = abc.Length;
+            arrayItem = new int[counti];
+
+            for (int i = 0; i < counti; i++)
+            {
+                arrayItem[i] = int.Parse(abc[i]);
+            }
         }
         catch
         {
-            this.itemId = 0;
-        }
-        try
-        {
-            this.IdDonVi = int.Parse(Request.QueryString["did"].ToString());
-        }
-        catch
-        {
-            this.IdDonVi = 0;
-        }
-        try
-        {
-            this.tenDonVi = Request.QueryString["n"].ToString();
-        }
-        catch
-        {
-            this.tenDonVi = "";
+            counti = 0;
         }
 
-        if (!Page.IsPostBack)
+        if (!Page.IsPostBack && counti != 0)
         {
-            DoanhNghiep objDoanhNghiep = new DoanhNghiep();
-
-            DataTable objdata = objDoanhNghiep.getDataById(this.IdDonVi);
-            if (objdata.Rows.Count > 0)
+            objData = objTuyenDung.getDataView(arrayItem);
+            if (objData.Rows.Count > 0)
             {
-                this.txtTenDonVi.Text = objdata.Rows[0]["TenDonVi"].ToString();
-                nganhnghebuf = objdata.Rows[0]["IDNganhNghe"].ToString();
+                DoanhNghiep objDoanhNghiep = new DoanhNghiep();
+                DataTable objDataDN = objDoanhNghiep.getDataViewById((int)objData.Rows[0]["IDDonVi"]);
+                if (objDataDN.Rows.Count > 0)
+                {
+                    nameDoanhNghiep = objDataDN.Rows[0]["TenDonVi"].ToString().ToUpper();
+                    nameNganhNghe = objDataDN.Rows[0]["NganhNgheName"].ToString();
+                }
+
+                Mucluong objMucLuong = new Mucluong();
+                nameMucLuong = objMucLuong.getNameMucLuongById((int)objData.Rows[0]["IDMucLuong"]);
+
+                diaDiem = objData.Rows[0]["DiaDiem"].ToString();
+
+                dtlTuyenDung.DataSource = objData.DefaultView;
+                dtlTuyenDung.DataBind();
+
+                //nameViTri = objData.Rows[0]["SoLuongTuyenDung"].ToString() + " ";
+                //try
+                //{
+                //    nameViTri = objViTri.getNameViTriById((int)objData.Rows[0]["IdViTri"]);
+                //}
+                //catch
+                //{
+                //    nameViTri = " nhân viên";
+                //}
+
+                
+
+                //mota = objData.Rows[0]["MoTa"].ToString();
+                //quyenLoi = objData.Rows[0]["QuyenLoi"].ToString();
+                
             }
 
 
+
+
+
+
+
         }
 
-        if (!Page.IsPostBack)
-        {
-            if (Session["TuyenDungMessage"] != null)
-            {
-                Session["TuyenDungMessage"] = null;
-            }
-
-            this.ddlNhomNganh.DataSource = this.objNhomNganh.getDataCategoryToCombobox();
-            this.ddlNhomNganh.DataTextField = "NameNhomNganh";
-            this.ddlNhomNganh.DataValueField = "IdNhomNganh";
-            this.ddlNhomNganh.DataBind();
-            this.ddlNhomNganh.SelectedValue = "0";
-
-            ViTri objViTri = new ViTri();
-            this.ddlIdVitri.DataSource = objViTri.getDataCategoryToCombobox();
-            this.ddlIdVitri.DataTextField = "NameViTri";
-            this.ddlIdVitri.DataValueField = "ID";
-            this.ddlIdVitri.DataBind();
-            this.ddlIdVitri.SelectedValue = "0";
-
-            this.ddlIDChucVu.DataSource = this.objChucVu.getDataCategoryToCombobox();
-            this.ddlIDChucVu.DataTextField = "NameChucVu";
-            this.ddlIDChucVu.DataValueField = "IDChucVu";
-            this.ddlIDChucVu.DataBind();
-            this.ddlIDChucVu.SelectedValue = "0";
-
-            this.ddlIDNganhNghe.DataSource = this.objBusiness.getDataCategoryToCombobox();
-            this.ddlIDNganhNghe.DataTextField = "Name";
-            this.ddlIDNganhNghe.DataValueField = "Id";
-            this.ddlIDNganhNghe.DataBind();
-            this.ddlIDNganhNghe.SelectedValue = nganhnghebuf;
-
-            this.ddlIDDoTuoi.DataSource = this.objDoTuoi.getDataCategoryToCombobox();
-            this.ddlIDDoTuoi.DataTextField = "NameDoTuoi";
-            this.ddlIDDoTuoi.DataValueField = "IDDoTuoi";
-            this.ddlIDDoTuoi.DataBind();
-            this.ddlIDDoTuoi.SelectedValue = "0";
-
-            this.ddlIDGioiTinh.DataSource = this.objGioiTinh.getDataCategoryToCombobox("Nam/nữ");
-            this.ddlIDGioiTinh.DataTextField = "NameGioiTinh";
-            this.ddlIDGioiTinh.DataValueField = "IDGioiTinh";
-            this.ddlIDGioiTinh.DataBind();
-            this.ddlIDGioiTinh.SelectedValue = "0";
-
-            this.ddlIDTrinhDoChuyenMon.DataSource = this.objTrinhDoChuyenMon.getDataCategoryToCombobox();
-            this.ddlIDTrinhDoChuyenMon.DataTextField = "NameTrinhDoChuyenMon";
-            this.ddlIDTrinhDoChuyenMon.DataValueField = "IDTrinhDoChuyenMon";
-            this.ddlIDTrinhDoChuyenMon.DataBind();
-            this.ddlIDTrinhDoChuyenMon.SelectedValue = "0";
-
-            this.ddlIDMucLuong.DataSource = this.objMucluong.getDataCategoryToCombobox();
-            this.ddlIDMucLuong.DataTextField = "NameMucLuong";
-            this.ddlIDMucLuong.DataValueField = "IDMucLuong";
-            this.ddlIDMucLuong.DataBind();
-            this.ddlIDMucLuong.SelectedValue = "0";
-
-            NgoaiNgu objNgoaiNgu = new NgoaiNgu();
-            this.ddlyeuCauNgoaiNgu.DataSource = objNgoaiNgu.getDataCategoryToCombobox();
-            this.ddlyeuCauNgoaiNgu.DataTextField = "NameNgoaiNgu";
-            this.ddlyeuCauNgoaiNgu.DataValueField = "IDNgoaiNgu";
-            this.ddlyeuCauNgoaiNgu.DataBind();
-            this.ddlyeuCauNgoaiNgu.SelectedValue = "0";
-
-            TinHoc objTinHoc = new TinHoc();
-            this.ddlyeuCauTinHoc.DataSource = objTinHoc.getDataCategoryToCombobox();
-            this.ddlyeuCauTinHoc.DataTextField = "NameTinHoc";
-            this.ddlyeuCauTinHoc.DataValueField = "IDTinHoc";
-            this.ddlyeuCauTinHoc.DataBind();
-            this.ddlyeuCauTinHoc.SelectedValue = "0";
-        }
-        if (!Page.IsPostBack && this.itemId > 0)
-        {
-            this.objTable = this.objTuyenDung.getDataById(this.itemId);
-            if (this.objTable.Rows.Count > 0)
-            {
-                this.txtTenDonVi.Text = this.objTable.Rows[0]["TenDonVi"].ToString().ToUpper();
-                this.ddlNhomNganh.SelectedValue = this.objTable.Rows[0]["IDNhomNghanh"].ToString();
-          
-                this.ddlIDChucVu.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
-                this.lblIDChucVu.Text = this.ddlIDChucVu.SelectedItem.Text;
-
-                this.ddlIdVitri.SelectedValue = this.objTable.Rows[0]["IdViTri"].ToString();
-                this.lblIdVitri.Text = this.ddlIdVitri.SelectedItem.Text;
-
-                this.txtSoLuongTuyenDung.Text = this.objTable.Rows[0]["SoLuongTuyenDung"].ToString();
-                this.ddlIDNganhNghe.SelectedValue = this.objTable.Rows[0]["IDNganhNghe"].ToString();
-                this.lblIDNganhNghe.Text = this.ddlIDNganhNghe.SelectedItem.Text;
-
-                this.ddlIDDoTuoi.SelectedValue = this.objTable.Rows[0]["IDDoTuoi"].ToString();
-                this.lblIDDoTuoi.Text = this.ddlIDDoTuoi.SelectedItem.Text;
-
-                this.ddlIDGioiTinh.SelectedValue = this.objTable.Rows[0]["IDGioiTinh"].ToString();
-                this.lblIDGioiTinh.Text = this.ddlIDGioiTinh.SelectedItem.Text;
-
-                this.txtUuTien.Text = this.objTable.Rows[0]["UuTien"].ToString();
-
-                this.ddlIDTrinhDoChuyenMon.SelectedValue = this.objTable.Rows[0]["IDTrinhDoChuyenMon"].ToString();
-                this.lblNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
-        
-                this.ddlIDMucLuong.SelectedValue = this.objTable.Rows[0]["IDMucLuong"].ToString();
-                this.lblIDMucLuong.Text = this.ddlIDMucLuong.SelectedItem.Text;
-
-                this.txtQuyenLoi.Text = this.objTable.Rows[0]["QuyenLoi"].ToString();
-           
-                this.ddlyeuCauNgoaiNgu.SelectedValue = this.objTable.Rows[0]["YCNgoaiNgu"].ToString();
-                this.lblyeuCauNgoaiNgu.Text = this.ddlyeuCauNgoaiNgu.SelectedItem.Text;
-
-                this.ddlyeuCauTinHoc.SelectedValue = this.objTable.Rows[0]["YCTinHoc"].ToString();
-                this.lblyeuCauTinHoc.Text = this.ddlyeuCauTinHoc.SelectedItem.Text;
-                this.txtDiaDiem.Text = this.objTable.Rows[0]["DiaDiem"].ToString();
-                this.ddlThoiGianLamViec.SelectedValue = this.objTable.Rows[0]["ThoiGianLamViec"].ToString();
-            }
-        }
     }
 }

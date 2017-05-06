@@ -48,7 +48,13 @@
             </HeaderTemplate>
             <ItemTemplate >
                 <tr>
-                    <td class="DataListTableTdItemTT"><input type="checkbox" id ="ckb<% =index++ %>" value ="ckb<%# Eval("IDTuyenDung") %>" /></td>
+                    <td class="DataListTableTdItemTT">
+                        <% if(IdDonVi != 0){ %>
+                            <input type="checkbox" id ="ckb<% =index++ %>" value ="ckb<%# Eval("IDTuyenDung") %>" />
+                        <% } else { %>
+                            <%= index++ %>
+                        <% } %>
+                    </td>
                     <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# Eval("TenDonVi") %>
@@ -67,10 +73,7 @@
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
-                    <td class="DataListTableTdItemCenter" style="width: 12%;">
-                         <a href="#" onclick="XemTinTuyenDungLamViec(<%# Eval("IDTuyenDung") %>)">
-                                <img src="../Images/Print.png" />
-                          </a>
+                    <td class="DataListTableTdItemCenter">
                         <a href="TuyenDungEdit.aspx?id=<%# Eval("IDTuyenDung") %>">
                             <img src="../Images/Edit.png" alt=""></a>
                         <a href="TuyenDung.aspx?id=<%# Eval("IDTuyenDung") %>">
@@ -100,9 +103,9 @@
     <br />
     <a href="TuyenDungEdit.aspx?did=<%Response.Write(this.IdDonVi.ToString()); %>&n=<%Response.Write(this.tenDonVi.ToString()); %>">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
-    
-    <input type ="button" id ="btnPrintBill" name = "btnPrintBill" value ="In phiếu" class="btn btn-primary" onclick ="getAllCheckBoxControl()"/>
-
+    <% if(IdDonVi != 0){ %>
+        <input type ="button" id ="btnPrintBill" name = "btnPrintBill" value ="In phiếu" class="btn btn-primary" onclick ="getAllCheckBoxControl()"/>
+    <% } %>
     <input type ="hidden" runat ="server" id ="txtTotalIdTuyenDung" name ="txtTotalIdTuyenDung" />
     <input type ="hidden" runat ="server" id ="txtListIdTuyenDung" name ="txtListIdTuyenDung" />
 
@@ -117,11 +120,14 @@
                     if (document.getElementById('ckb' + i) != null) {
                         if (document.getElementById('ckb' + i).checked == true) {
                             //alert(document.getElementById('ckb' + i).value);
-                            appendString = appendString + document.getElementById('ckb' + i).value.replace("ckb","")+ "#";
+                            if (appendString != '') appendString += "&"
+
+                            appendString = appendString + "id=" + document.getElementById('ckb' + i).value.replace("ckb","");
                         }
                     }
                 }
-                alert(appendString);
+                //alert(appendString);
+                XemTinTuyenDungLamViec(appendString);
             }
         }
 
@@ -163,7 +169,7 @@
             var left = ((width / 2) - (w / 2)) + dualScreenLeft;
             var top = ((height / 2) - (h / 2)) + dualScreenTop;
 
-            var newWindow = window.open("PrintTuyenDungLamViecTaiCtyABC.aspx?id=" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            var newWindow = window.open("PrintTuyenDungLamViecTaiCtyABC.aspx?" + value, "TIN TUYỂN DỤNG", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
                 if (window.focus) {
                     newWindow.focus();
