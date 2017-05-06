@@ -28,8 +28,6 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
     public String nameDoanhNghiep;
     public String nameNganhNghe;
     public String nameViTri;
-
-    private String nganhnghebuf = "0";
     #endregion
 
 

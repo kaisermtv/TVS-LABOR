@@ -56,28 +56,7 @@
                 <br />
                 <b style="font-size: 16px">Yêu cầu :</b>
                 <div style="margin-left: 10%">
-                    <p>
-                        -
-                            <asp:Label ID="lblIDGioiTinh" ReadOnly="true" runat="server" />
-                        ,tuổi từ
-                            <asp:Label ID="lblIDDoTuoi" ReadOnly="true" runat="server" />
-                    </p>
-                    <p>
-                        -
-                            <asp:Label ID="lblIDChucVu" ReadOnly="true" runat="server" />
-                    </p>
-                    <p>
-                        - Ngoại ngữ : 
-                            <asp:Label ID="lblyeuCauNgoaiNgu" ReadOnly="true" runat="server" />
-                    </p>
-                    <p>
-                        - Tin học  
-                            <asp:Label ID="lblyeuCauTinHoc" ReadOnly="true" runat="server" />
-                    </p>
-                    <p>
-                        <asp:Label ID="lblNoiDungKhac" runat="server" />
-                    </p>
-                    <p>- Ưu tiên :<asp:Label ID="txtUuTien" runat="server" /></p>
+                    <%= objData["MoTa"].ToString() %>
                 </div>
             </div>
 
@@ -85,8 +64,7 @@
                 <b>3.</b>  <b style="border-bottom: solid 1px;">Quyền lợi </b><b>:</b>
                 <div style="margin-left: 10%">
                     <p>
-                        <asp:Label ID="txtQuyenLoi" runat="server" />
-                        ;
+                        <%= objData["QuyenLoi"].ToString() %>
                     </p>
                     <p>
                         <b>- <%= objData["IDMucLuong"].ToString().Replace("1","Hành chính").Replace("2","Bán thời gian").Replace("3","Theo ca").Replace("4","Toàn thời gian").Replace("5","Thỏa thuận") %> / tháng</b>
@@ -94,33 +72,13 @@
                 </div>
             </div>
             <div class="ChuBinhThuong">
-                <b>4.</b>  <b style="border-bottom: solid 1px;">Địa điểm làm việc </b><b>:</b> Tp Vinh , Nghệ An
+                <b>4.</b>  <b style="border-bottom: solid 1px;">Địa điểm làm việc </b><b>:</b> <%= objData["DiaDiem"] %>
             </div>
             <!--- dòng lưu ý cuối--->
             <div class="ChuBinhThuong">
                 <b>&nbsp;</b>  <b style="border-bottom: solid 1px;">Chi tiết liên hệ</b><b>:</b> Phòng Thông tin TTLĐ — Trung tâm DVVL Nghệ An
               <div style="margin-left: 30px">Điện thoại : 02383 550 050 — Email : <span style="border-bottom: solid 1px;">sanvieclamnghean@gmail.com</span> </div>
             </div>
-
-            <!--- Các thẻ bị ẩn đi--->
-            <asp:DropDownList ID="ddlIDNganhNghe" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlIdVitri" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlIDChucVu" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlNhomNganh" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlIDGioiTinh" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlIDDoTuoi" runat="server" Enabled="false" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlIDTrinhDoChuyenMon" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlyeuCauNgoaiNgu" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlyeuCauTinHoc" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlIDMucLuong" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;" />
-            <asp:DropDownList ID="ddlThoiGianLamViec" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
-                <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
-                <asp:ListItem Value="1"> Hành chính </asp:ListItem>
-                <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
-                <asp:ListItem Value="3"> Theo ca </asp:ListItem>
-                <asp:ListItem Value="4"> Toàn thời gian </asp:ListItem>
-            </asp:DropDownList>
-            <!---Hết--->
         </div>
     </form>
 </body>

@@ -145,7 +145,6 @@
                 if (window.focus) {
                     newWindow.focus();
                 }
-            
         }
 
     </script>

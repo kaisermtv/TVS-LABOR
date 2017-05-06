@@ -54,12 +54,15 @@
                     <td class="DataListTableTdItemJustify" style="width: 30%;">
                         <%# Eval("Diachi") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 10%;">
+                    <td class="DataListTableTdItemJustify" style="width: 6%;">
                         <%# Eval("StateName") %>
                     </td>
-                    <td class="DataListTableTdItemCenter" style="width: 6%;">
+                    <td class="DataListTableTdItemCenter" style="width: 12%;">
+                         <a href="#" onclick="XemTinTuyenDungTaiDoanhNghiep(<%# Eval("IDDonVi") %> ,'<%# Eval("TenDonVi") %>')">
+                                <img src="../Images/Print.png" />
+                          </a>
                         <a href="DoanhNghiepEdit.aspx?id=<%# Eval("IDDonVi") %>">
-                            <img src="../Images/Edit.png" alt=""></a>&nbsp;
+                            <img src="../Images/Edit.png" alt="" ></a>
                         <a href="DoanhNghiepDel.aspx?id=<%# Eval("IDDonVi") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>
@@ -99,6 +102,26 @@
                  }
              })
          });
+         function XemTinTuyenDungTaiDoanhNghiep(value_did,value_n) {
+             var w = 1000;
+             var h = 620;
+
+             var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+             var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+             var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+             var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+             var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+             var top = ((height / 2) - (h / 2)) + dualScreenTop;
+
+             var newWindow = window.open("PrintTuyenDungTaiDoanhNghiep.aspx?did=" + value_did + "&n=" + value_n, "Doanh nghiệp tuyển dụng", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+             if (window.focus) {
+                 newWindow.focus();
+             }
+
+         }
     </script>
 
 </asp:Content>
