@@ -1841,7 +1841,7 @@ public class NguoiLaoDong :DataClass
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldDaoTao WHERE IDNldDaoTao = @IDNldDaoTao)";
             sqlQuery += "BEGIN INSERT INTO TblNldDaoTao (IDNguoiLaoDong,IdDtKhoaHoc,TruongHoc,DiaChiHoc,DTLienHe,KhoaHoc,NgayBatDau,NgayKetThuc,SoQDHTN,SoQDHN,State) VALUES(@IDNguoiLaoDong,@IdDtKhoaHoc,@TruongHoc,@DiaChiHoc,@DTLienHe,@KhoaHoc,@NgayBatDau,@NgayKetThuc,@SoQDHTN,@SoQDHN,@State)  END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblNldDaoTao SET IDNguoiLaoDong = @IDNguoiLaoDong, IdDtKhoaHoc = @IdDtKhoaHoc, TruongHoc = @TruongHoc, DiaChiHoc = @DiaChiHoc, DTLienHe = @DTLienHe, KhoaHoc = @KhoaHoc, NgayBatDau = @NgayBatDau, NgayKetThuc = @NgayKetThuc, SoQDHTN = @SoQDHTN, SoQDHN = @SoQDHN, State = @State END";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldDaoTao SET IDNguoiLaoDong = @IDNguoiLaoDong, IdDtKhoaHoc = @IdDtKhoaHoc, TruongHoc = @TruongHoc, DiaChiHoc = @DiaChiHoc, DTLienHe = @DTLienHe, KhoaHoc = @KhoaHoc, NgayBatDau = @NgayBatDau, NgayKetThuc = @NgayKetThuc, SoQDHTN = @SoQDHTN, SoQDHN = @SoQDHN, State = @State WHERE IDNldDaoTao = @IDNldDaoTao END";
 
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -1860,6 +1860,47 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("NgayKetThuc", SqlDbType.DateTime).Value = NgayKetThuc;
             Cmd.Parameters.Add("SoQDHTN", SqlDbType.NVarChar).Value = SoQDHTN;
             Cmd.Parameters.Add("SoQDHN", SqlDbType.NVarChar).Value = SoQDHN;
+            Cmd.Parameters.Add("State", SqlDbType.Int).Value = State;
+            Cmd.ExecuteNonQuery();
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+            tmpValue = 1;
+        }
+        catch
+        {
+            tmpValue = 0;
+        }
+        return tmpValue;
+    }
+    #endregion
+
+    #region method setNldDaoTaoData
+    public int setNldDaoTaoData(int IDNldDaoTao, int IDNguoiLaoDong, int IdDtKhoaHoc, string TruongHoc, string DiaChiHoc, string KhoaHoc, string DTLienHe, int State)
+    {
+        int tmpValue = 0;
+
+        try
+        {
+            string sqlQuery = "";
+
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldDaoTao WHERE IDNldDaoTao = @IDNldDaoTao)";
+            sqlQuery += "BEGIN INSERT INTO TblNldDaoTao (IDNguoiLaoDong,IdDtKhoaHoc,TruongHoc,DiaChiHoc,DTLienHe,KhoaHoc,State) VALUES(@IDNguoiLaoDong,@IdDtKhoaHoc,@TruongHoc,@DiaChiHoc,@DTLienHe,@KhoaHoc,@State)  END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldDaoTao SET IDNguoiLaoDong = @IDNguoiLaoDong, IdDtKhoaHoc = @IdDtKhoaHoc, TruongHoc = @TruongHoc, DiaChiHoc = @DiaChiHoc, DTLienHe = @DTLienHe, KhoaHoc = @KhoaHoc, State = @State END";
+
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sqlQuery;
+
+            Cmd.Parameters.Add("IDNldDaoTao", SqlDbType.Int).Value = IDNldDaoTao;
+            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
+            Cmd.Parameters.Add("IdDtKhoaHoc", SqlDbType.Int).Value = IdDtKhoaHoc;
+            Cmd.Parameters.Add("TruongHoc", SqlDbType.NVarChar).Value = TruongHoc;
+            Cmd.Parameters.Add("DiaChiHoc", SqlDbType.NVarChar).Value = DiaChiHoc;
+            Cmd.Parameters.Add("DTLienHe", SqlDbType.NVarChar).Value = DTLienHe;
+            Cmd.Parameters.Add("KhoaHoc", SqlDbType.NVarChar).Value = KhoaHoc;
             Cmd.Parameters.Add("State", SqlDbType.Int).Value = State;
             Cmd.ExecuteNonQuery();
 
@@ -1941,14 +1982,21 @@ public class NguoiLaoDong :DataClass
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            Cmd.CommandText = @"SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep 
-                                WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi ,
-                                 REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState 
-                                 FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao 
-                                 WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong
-                                    " + sqlQuery + sqlQueryState + @"
-                                 ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
-                                  SqlDataAdapter da = new SqlDataAdapter();
+
+            string sqlQueryFull = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState ";
+            sqlQueryFull += ",TblDtKhoaHoc.MucHoTro AS MucHoTro1, TblDtKhoaHoc.ThoiGianHoc AS ThoiGianHoc1, TblDtKhoaHoc.NameKhoaHoc FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc ";
+            sqlQueryFull += " WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong " + sqlQuery + sqlQueryState + " ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
+
+            Cmd.CommandText = sqlQueryFull;
+
+//            Cmd.CommandText = @"SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep 
+//                                WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi ,
+//                                 REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState 
+//                                 FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao 
+//                                 WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong
+//                                    " + sqlQuery + sqlQueryState + @"
+//                                 ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
+            SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
             da.Fill(ds);

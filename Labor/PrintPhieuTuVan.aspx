@@ -30,7 +30,10 @@
             <div class="HoNgu2" >
                 <b style="border-bottom:1px solid">Độc lập - Tự do - Hạnh phúc</b>
             </div>
-
+            <div class="HoNgu1" style="">
+                <small style="float:right ;border:solid 1px black; margin-right:-20px; padding:7.5px;">Lần tư vấn : <% Response.Write(this.LanTuVan); %></small>
+            </div>
+            <br />
             <div class="TieuDePhieu">
                 PHIẾU TƯ VẤN, GIỚI THIỆU VIỆC LÀM 
             </div>

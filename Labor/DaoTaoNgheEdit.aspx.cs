@@ -131,7 +131,7 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
         DateTime tmpNgayBatDau;
         try
         {
-            tmpNgayBatDau = DateTime.Parse(this.txtNgayBatDau.Value);
+            tmpNgayBatDau = TVSSystem.CVDate(this.txtNgayBatDau.Value);
         }
         catch
         {
@@ -150,7 +150,7 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
         DateTime tmpNgayKetThuc;
         try
         {
-            tmpNgayKetThuc = DateTime.Parse(this.txtNgayKetThuc.Value);
+            tmpNgayKetThuc = TVSSystem.CVDate(this.txtNgayKetThuc.Value);
         }
         catch
         {

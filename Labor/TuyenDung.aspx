@@ -48,7 +48,7 @@
             </HeaderTemplate>
             <ItemTemplate >
                 <tr>
-                    <td class="DataListTableTdItemTT"><%# this.index++ %></td>
+                    <td class="DataListTableTdItemTT"><input type="checkbox" id ="ckb<% =index++ %>" value ="ckb<%# Eval("IDTuyenDung") %>" /></td>
                     <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# Eval("TenDonVi") %>
@@ -92,7 +92,7 @@
                 <cc1:CollectionPager ID="cpTuyenDung" runat="server" BackText="" FirstText="Đầu"
                     ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                     ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                    PageNumbersSeparator="&nbsp;">
+                    PageNumbersSeparator="&nbsp;" PagingMode="PostBack">
                 </cc1:CollectionPager>
             </td>
         </tr>
@@ -100,8 +100,31 @@
     <br />
     <a href="TuyenDungEdit.aspx?did=<%Response.Write(this.IdDonVi.ToString()); %>&n=<%Response.Write(this.tenDonVi.ToString()); %>">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+    
+    <input type ="button" id ="btnPrintBill" name = "btnPrintBill" value ="In phiếu" class="btn btn-primary" onclick ="getAllCheckBoxControl()"/>
+
+    <input type ="hidden" runat ="server" id ="txtTotalIdTuyenDung" name ="txtTotalIdTuyenDung" />
+    <input type ="hidden" runat ="server" id ="txtListIdTuyenDung" name ="txtListIdTuyenDung" />
 
     <script type="text/javascript">
+        function getAllCheckBoxControl()
+        {
+            var totalItem = document.getElementById("MainContent_txtTotalIdTuyenDung").value * 1;
+            var appendString = '';
+            if (totalItem > 0) {
+                for (i = 1; i <= totalItem; i++)
+                {
+                    if (document.getElementById('ckb' + i) != null) {
+                        if (document.getElementById('ckb' + i).checked == true) {
+                            //alert(document.getElementById('ckb' + i).value);
+                            appendString = appendString + document.getElementById('ckb' + i).value.replace("ckb","")+ "#";
+                        }
+                    }
+                }
+                alert(appendString);
+            }
+        }
+
         function XemTinTuyenDung(value, count) {
 
             if (count == 0) {
@@ -148,6 +171,7 @@
         }
 
     </script>
+
     <script>
           $(function () {
               /* QUICK SEARCH - Tìm nhanh */

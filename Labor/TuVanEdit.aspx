@@ -371,7 +371,6 @@
                         <td>
                             <asp:CheckBox ID="ckbTuVanBHTN" runat="server" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td rowspan="2" style ="padding-left:10px;">
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('1')"><% Response.Write(this.strBtnViecLamNgoai); %></button>
                             <button class="btn btn-success" type="button" onclick="ChonKhoaHoc()"><% Response.Write(this.strBtnDaoTaoNghe); %></button>
@@ -399,116 +398,115 @@
             </td>
         </tr>
 
-        <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
-            <td style="width: 90%;" colspan="6">
-
-                <asp:TextBox ID="txtViTriCongViec" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0"></asp:TextBox>
-                <!---Tự động hoàn tất -->
-                <select class="js-example-basic-multiple" id="ddlQickSelect" multiple="multiple" style="width: 100%">
-                    <%foreach (string i in lv_Vitri)
-                      {%>
-                    <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
-                    <%} %>
-                </select>
-
-            </td>
-        </tr>
-
-        <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Mức lương thấp nhất:</td>
-            <td style="width: 90%;" colspan="6">
-                <asp:TextBox ID="txtMucLuongThapNhat" runat="server" CssClass="form-control"></asp:TextBox>
-            </td>
-        </tr>
-
-        <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Điều kiện làm việc:</td>
-            <td style="width: 90%;" colspan="6">
-                <asp:TextBox ID="txtDieuKienLamViec" runat="server" CssClass="form-control"></asp:TextBox>
-            </td>
-        </tr>
-
-        <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Địa điểm làm việc:</td>
-            <td style="width: 90%;" colspan="6">
-                <asp:TextBox ID="txtDiaDiemLamViec" runat="server" CssClass="form-control"></asp:TextBox>
-            </td>
-        </tr>
-
-        <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
-            <td style="width: 90%;" colspan="6">
-                <asp:TextBox ID="txtNoiDungKhac" runat="server" CssClass="form-control"></asp:TextBox>
-            </td>
-        </tr>
-        <tr style="height: 20px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-            <td style="width: 90%;" colspan="6">&nbsp;
-            </td>
-        </tr>
     </table>
 
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Đề xuất thứ nhất</a></li>
+        <li><a data-toggle="tab" href="#menu1">Đề xuất thứ hai</a></li>
+    </ul>
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <a class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Giới thiệu việc làm bổ sung <i>( nhấp vào để đóng ) </i>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </a>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active" style="margin: 0px;">
+            <table border="0" style="width: 100%; margin-top: 10px;">
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtViTriCongViec" CssClass="form-control" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0" Style="margin-top: -10px; z-index: 10; visibility: hidden;"></asp:TextBox>
+                        <!---Tự động hoàn tất -->
+                        <select class="js-example-basic-multiple" id="ddlQickSelect" multiple="multiple" style="width: 100%">
+                            <%foreach (string i in lv_Vitri)
+                              {%>
+                            <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                            <%} %>
+                        </select>
+
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Lương thấp nhất:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtMucLuongThapNhat" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Điều kiện làm việc:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtDieuKienLamViec" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Địa điểm làm việc:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtDiaDiemLamViec" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
+
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtNoiDungKhac" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
+
+                <tr style="height: 20px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
+                    <td style="width: 90%;" colspan="6">&nbsp;
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
+        <div id="menu1" class="tab-pane fade">
+            <table border="0" style="width: 100%; margin-top: 10px;">
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtViTriCongViec2" CssClass="form-control" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0" Style="margin-top: -10px; z-index: 10; visibility: hidden;"></asp:TextBox>
+                        <!---Tự động hoàn tất -->
+                        <select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
+                            <%foreach (string i in lv_Vitri)
+                              {%>
+                            <option class="op1" value="<%=i.ToString() %>"><%=i.ToString() %></option>
+                            <%} %>
+                        </select>
+                    </td>
+                </tr>
 
-                <table>
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Lương thấp nhất:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtMucLuongThapNhat2" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
 
-                    <tr style="height: 40px;">
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
-                        <td style="width: 90%;" colspan="6">
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Điều kiện làm việc:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtDieuKienLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
 
-                            <asp:TextBox ID="txtViTriCongViec2" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0"></asp:TextBox>
-                            <!---Tự động hoàn tất -->
-                            <select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
-                                <%foreach (string i in lv_Vitri)
-                                  {%>
-                                <option class="op1" value="<%=i.ToString() %>"><%=i.ToString() %></option>
-                                <%} %>
-                            </select>
-                        </td>
-                    </tr>
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Địa điểm làm việc:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtDiaDiemLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
 
-                    <tr style="height: 40px;">
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Mức lương thấp nhất:</td>
-                        <td style="width: 90%;" colspan="6">
-                            <asp:TextBox ID="txtMucLuongThapNhat2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                    </tr>
-
-                    <tr style="height: 40px;">
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Điều kiện làm việc:</td>
-                        <td style="width: 90%;" colspan="6">
-                            <asp:TextBox ID="txtDieuKienLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                    </tr>
-
-                    <tr style="height: 40px;">
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Địa điểm làm việc:</td>
-                        <td style="width: 90%;" colspan="6">
-                            <asp:TextBox ID="txtDiaDiemLamViec2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                    </tr>
-
-                    <tr style="height: 40px;">
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
-                        <td style="width: 90%;" colspan="6">
-                            <asp:TextBox ID="txtNoiDungKhac2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr style="height: 20px;">
-                        <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-                        <td style="width: 90%;" colspan="6">&nbsp;
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <tr style="height: 40px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
+                    <td style="width: 90%;" colspan="6">
+                        <asp:TextBox ID="txtNoiDungKhac2" runat="server" CssClass="form-control"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr style="height: 20px;">
+                    <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
+                    <td style="width: 90%;" colspan="6">&nbsp;
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -711,11 +709,14 @@
             var width = w;//window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
             var height = h;//window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-            var left = ((width / 2) - (w / 2));// + dualScreenLeft;
-            var top = ((height / 2) - (h / 2));// + dualScreenTop;
+            var left = 0;//((width / 2) - (w / 2));// + dualScreenLeft;
+            var top = 0;//((height / 2) - (h / 2));// + dualScreenTop;
+
             var newWindow = window.open("XemTinTuyenDung.aspx?id=" + value + "&IDNldTuVan=" + IDNldTuVan + "&vitri=" + vitri + "&mucluong=" + mucluong + "&dieukien=" + dieukien + "&diadiem=" + diadiem + "&nuocngoai=" + value, "TIN TUYỂN DỤNG", 'channelmode =1,scrollbars=yes, width=' + w + ', height=' + h + ', top=' + 0 + ', left=' + 0);
 
             if (window.focus) {
+                newWindow.moveTo(0, 0);
+                newWindow.resizeTo(screen.width, screen.height);
                 newWindow.focus();
             }
         }
@@ -725,18 +726,21 @@
             var w = 1000;
             var h = 600;
 
-            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+            var IdNguoiLaoDong = document.getElementById("MainContent_txtIDNguoiLaoDong").value;
+            if (IdNguoiLaoDong != 0) {
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
 
-            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-            var top = ((height / 2) - (h / 2)) + dualScreenTop;
-            var newWindow = window.open("ChonKhoaHoc.aspx", "CHỌN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("ChonKhoaHoc1.aspx?IdNguoiLaoDong=" + IdNguoiLaoDong, "CHỌN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
-            if (window.focus) {
-                newWindow.focus();
+                if (window.focus) {
+                    newWindow.focus();
+                }
             }
         }
 

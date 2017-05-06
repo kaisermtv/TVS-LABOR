@@ -61,8 +61,8 @@
                             <td class="DataListTableTdItemJustify" style="width: 42%;">
                                 <%# Eval("ThoiGianHoc") %>
                             </td>
-                            <td class="DataListTableTdItemCenter" style="width: 13%;">
-                                <%# Eval("MucHoTro") %>
+                            <td class="DataListTableTdItemRight" style="width: 13%;">
+                                <%# Eval("MucHoTro","{0:0,0}") %>
                             </td>
                         </tr>
                     </table>

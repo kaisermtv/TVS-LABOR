@@ -43,12 +43,12 @@ public partial class Admin_DoanhNghiep : System.Web.UI.Page
     {
         this.objTable = this.objDoanhNghiep.getData(this.txtSearch.Value);
         cpDoanhNghiep.MaxPages = 1000;
-        cpDoanhNghiep.PageSize = 15;
+        cpDoanhNghiep.PageSize = 10;
         cpDoanhNghiep.DataSource = this.objTable.DefaultView;
         cpDoanhNghiep.BindToControl = dtlDoanhNghiep;
         dtlDoanhNghiep.DataSource = cpDoanhNghiep.DataSourcePaged;
         dtlDoanhNghiep.DataBind();
-        if (this.objTable.Rows.Count < 9)
+        if (this.objTable.Rows.Count < 10)
         {
             this.tblABC.Visible = false;
         }

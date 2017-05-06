@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections.Specialized;
 
 public partial class Admin_TuyenDung : System.Web.UI.Page
 {
@@ -72,6 +73,7 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
             this.txtSearch.Value = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "TblTuyenDung", "Mota");
             this.getData();
         }
+       
         this.txtSearch.Focus();
     }
     #endregion
@@ -94,7 +96,7 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
         {
             this.tblABC.Visible = true;
         }
-
+        this.txtTotalIdTuyenDung.Value = this.objTable.Rows.Count.ToString();
         index = 1;
     }
     #endregion
@@ -108,5 +110,46 @@ public partial class Admin_TuyenDung : System.Web.UI.Page
         this.objSearchConfig.setData(Session["ACCOUNT"].ToString(), "TblTuyenDung", "Mota", this.txtSearch.Value.Trim());
         #endregion
     }
+    #endregion
+
+    #region method btnPrintBill_Click
+    protected void btnPrintBill_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string ListIdTuyenDung = "";
+            NameValueCollection nvc = Request.Form;
+            int CustomerId = 0;
+            if (nvc.Count > 0)
+            {
+                foreach (string s in nvc)
+                    if (s.Contains("ckb"))
+                    {
+                        foreach (string v in nvc.GetValues(s))
+                        {
+                            try
+                            {
+                                CustomerId = int.Parse(s.Replace("ckb", "").Trim());
+                            }
+                            catch
+                            {
+
+                            }
+                            if (CustomerId > 0)
+                            {
+                                ListIdTuyenDung += CustomerId.ToString()+"#";
+                                CustomerId = 0;
+                            }
+                        }
+                    }
+            }
+            this.txtListIdTuyenDung.Value = ListIdTuyenDung;
+            this.txtSearch.Value = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "TblTuyenDung", "Mota");
+            this.getData();
+        }
+        catch
+        {
+        }
+    } 
     #endregion
 }
