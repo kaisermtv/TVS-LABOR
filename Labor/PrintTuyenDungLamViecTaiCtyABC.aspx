@@ -67,7 +67,7 @@
                         <%= objData["QuyenLoi"].ToString() %>
                     </p>
                     <p>
-                        <b>- <%= objData["IDMucLuong"].ToString().Replace("1","Hành chính").Replace("2","Bán thời gian").Replace("3","Theo ca").Replace("4","Toàn thời gian").Replace("5","Thỏa thuận") %> / tháng</b>
+                        <b>- <%= nameMucLuong %> / tháng</b>
                     </p>
                 </div>
             </div>
@@ -83,3 +83,5 @@
     </form>
 </body>
 </html>
+
+<%--objData["IDMucLuong"].ToString().Replace("1","Hành chính").Replace("2","Bán thời gian").Replace("3","Theo ca").Replace("4","Toàn thời gian").Replace("5","Thỏa thuận")--%>

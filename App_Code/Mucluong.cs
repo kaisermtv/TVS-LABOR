@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 
-public class Mucluong
+public class Mucluong :DataClass
 {
 	#region method Mucluong
     public Mucluong()
@@ -170,7 +170,7 @@ public class Mucluong
         try
         {
             string sqlQuery = "";
-            sqlQuery = "DELETE CodeMucluong WHERE IDMucluong = @IDMucluong ";
+            sqlQuery = "DELETE TblMucluong WHERE IDMucluong = @IDMucluong ";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
@@ -183,6 +183,29 @@ public class Mucluong
         catch
         {
 
+        }
+    }
+    #endregion
+
+    #region Method getNameMucLuongById
+    public string getNameMucLuongById(int id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT NameMucluong FROM TblMucluong WHERE IDMucluong = @ID";
+            Cmd.Parameters.Add("ID", SqlDbType.Int).Value = id;
+
+            string ret = (string)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
         }
     }
     #endregion

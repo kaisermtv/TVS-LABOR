@@ -28,6 +28,7 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
     public String nameDoanhNghiep;
     public String nameNganhNghe;
     public String nameViTri;
+    public String nameMucLuong;
     #endregion
 
 
@@ -65,7 +66,8 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
                 ViTri objViTri = new ViTri();
                 nameViTri = objViTri.getNameViTriById((int)objData["IdViTri"]);
 
-
+                Mucluong objMucLuong = new Mucluong();
+                nameMucLuong = objMucluong.getNameMucLuongById((int)objData["IDMucLuong"]);
             }
 
 
