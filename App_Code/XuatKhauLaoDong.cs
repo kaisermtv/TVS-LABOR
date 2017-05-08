@@ -248,4 +248,28 @@ public class XuatKhauLaoDong
         return objTable;
     }
     #endregion
+
+    #region method delNldXuatKhau
+    public void delNldXuatKhau(int IDNldXuatKhau)
+    {
+        try
+        {
+            string sqlQuery = "";
+            sqlQuery = "DELETE TblNldXuatKhau WHERE IDNldXuatKhau = @IDNldXuatKhau ";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("IDNldXuatKhau", SqlDbType.Int).Value = IDNldXuatKhau;
+            Cmd.ExecuteNonQuery();
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+    }
+    #endregion
 }

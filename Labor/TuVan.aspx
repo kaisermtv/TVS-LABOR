@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 
     <script src="../js/TvsScript.js"></script>
- 
+
 
 
     <table class="table" style="margin-top: -20px;">
@@ -91,13 +91,25 @@
         </tr>
     </table>
     <br />
-    <a href="TuVanEdit.aspx">
-        <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+    
+     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
+        <table border="0" style="width: 95%; margin-top: -8px;">
+            <tr>
+                <td style="width: 800px; padding-left: 15px;">
+                    <a href="TuVanEdit.aspx"><input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+                </td>
+                <td style ="text-align:right;">
+                    <a href="../Admin/Default.aspx"><input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
     <script>
-      
+
         $(function () {
             /* QUICK SEARCH - Tìm nhanh */
-           $('#MainContent_dtlTuVanViecLam').searchable({
+            $('#MainContent_dtlTuVanViecLam').searchable({
                 searchField: '#MainContent_txtSearch',
                 selector: 'tr',
                 childSelector: 'td',
@@ -111,7 +123,7 @@
         });
     </script>
 
- 
+
     <div id="divResult"></div>
 </asp:Content>
 

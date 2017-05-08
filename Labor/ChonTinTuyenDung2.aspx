@@ -32,7 +32,7 @@
         </table>
 
         <div style="margin-top: -20px;">
-            <div style="width: 100%;">
+            <div style="width: 100%; padding: 15px;">
                 <table class="DataListTableHeader" border="0">
                     <tr style="height: 40px;">
                         <td class="DataListTableHeaderTdItemJustify" style="width: 30%;">Tên doanh nghiệp
@@ -49,43 +49,44 @@
                 </table>
             </div>
 
-            <asp:DataList ID="dtlTuyenDung" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
-                Width="100%">
-                <ItemTemplate>
-                    <table class="DataListTable" border="0">
-                        <tr style="height: 40px;">
-                            <td class="DataListTableTdItemJustify" style="width: 30%;">
-                                <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>','<%# Eval("NguoiDaiDien") %>','<%# Eval("DiaChi") %>','<%# Eval("DienThoai") %>');"><%# Eval("TenDonVi") %></a>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 15%;">
-                                <%# Eval("NguoiDaiDien") %>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 20%;">
-                                <%# Eval("DiaChi") %>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 15%;">
-                                <%# Eval("DienThoai") %>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 20%;">
-                                <%# Eval("NameChucVu") %>
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:DataList>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
-                id="tblABC" runat="server">
-                <tr>
-                    <td style="padding-left: 6px;">
-                        <cc1:CollectionPager ID="cpTuyenDung" runat="server" BackText="" FirstText="Đầu"
-                            ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
-                            ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                            PageNumbersSeparator="&nbsp;">
-                        </cc1:CollectionPager>
-                    </td>
-                </tr>
-            </table>
-
+            <div style="width: 100%; padding: 15px; margin-top:-28px;">
+                <asp:DataList ID="dtlTuyenDung" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
+                    Width="100%">
+                    <ItemTemplate>
+                        <table class="DataListTable" border="0">
+                            <tr style="height: 40px;">
+                                <td class="DataListTableTdItemJustify" style="width: 30%;">
+                                    <a href="#" onclick="return SetName('<%# Eval("IDDonVi") %>','<%# Eval("TenDonVi") %>','<%# Eval("NguoiDaiDien") %>','<%# Eval("DiaChi") %>','<%# Eval("DienThoai") %>');"><%# Eval("TenDonVi") %></a>
+                                </td>
+                                <td class="DataListTableTdItemJustify" style="width: 15%;">
+                                    <%# Eval("NguoiDaiDien") %>
+                                </td>
+                                <td class="DataListTableTdItemJustify" style="width: 20%;">
+                                    <%# Eval("DiaChi") %>
+                                </td>
+                                <td class="DataListTableTdItemJustify" style="width: 15%;">
+                                    <%# Eval("DienThoai") %>
+                                </td>
+                                <td class="DataListTableTdItemJustify" style="width: 20%;">
+                                    <%# Eval("NameChucVu") %>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                </asp:DataList>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+                    id="tblABC" runat="server">
+                    <tr>
+                        <td style="padding-left: 6px;">
+                            <cc1:CollectionPager ID="cpTuyenDung" runat="server" BackText="" FirstText="Đầu"
+                                ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
+                                ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
+                                PageNumbersSeparator="&nbsp;">
+                            </cc1:CollectionPager>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <script type="text/javascript">
             function SetName(value1, value2, value3, value4, value5) {

@@ -100,12 +100,24 @@
             </td>
         </tr>
     </table>
-    <br />
-    <a href="TuyenDungEdit.aspx?did=<%Response.Write(this.IdDonVi.ToString()); %>&n=<%Response.Write(this.tenDonVi.ToString()); %>">
+
+     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
+        <table border="0" style="width: 95%; margin-top: -8px;">
+            <tr>
+                <td style="width: 800px; padding-left: 15px;">
+                   <a href="TuyenDungEdit.aspx?did=<%Response.Write(this.IdDonVi.ToString()); %>&n=<%Response.Write(this.tenDonVi.ToString()); %>">
         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
     <% if(IdDonVi != 0){ %>
         <input type ="button" id ="btnPrintBill" name = "btnPrintBill" value ="In phiếu" class="btn btn-primary" onclick ="getAllCheckBoxControl()"/>
     <% } %>
+                </td>
+                 <td style ="text-align:right;">
+                    <a href="../Admin/Default.aspx"><input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
+                </td>
+            </tr>
+        </table>
+    </footer>
+    
     <input type ="hidden" runat ="server" id ="txtTotalIdTuyenDung" name ="txtTotalIdTuyenDung" />
     <input type ="hidden" runat ="server" id ="txtListIdTuyenDung" name ="txtListIdTuyenDung" />
 
