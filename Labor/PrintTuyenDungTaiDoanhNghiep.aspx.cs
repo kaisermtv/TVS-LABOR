@@ -24,7 +24,6 @@ public partial class Labor_PrintTuyenDungTaiDoanhNghiep : System.Web.UI.Page
     private Mucluong objMucluong = new Mucluong();
     private DataTable objTable = new DataTable();
 
-
     private String nganhnghebuf = "0";
     #endregion
 
@@ -70,8 +69,6 @@ public partial class Labor_PrintTuyenDungTaiDoanhNghiep : System.Web.UI.Page
                 this.txtTenDonVi.Text = objdata.Rows[0]["TenDonVi"].ToString();
                 nganhnghebuf = objdata.Rows[0]["IDNganhNghe"].ToString();
             }
-
-
         }
 
         if (!Page.IsPostBack)

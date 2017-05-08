@@ -42,14 +42,7 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
         cpTuVanXuatKhau.BindToControl = dtlTuVanXuatKhau;
         dtlTuVanXuatKhau.DataSource = cpTuVanXuatKhau.DataSourcePaged;
         dtlTuVanXuatKhau.DataBind();
-        //if (this.objTable.Rows.Count < 9)
-        //{
-        //    this.tblABC.Visible = false;
-        //}
-        //else
-        //{
-        //    this.tblABC.Visible = true;
-        //}
+     
     }
     #endregion
 
