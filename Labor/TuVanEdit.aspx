@@ -745,12 +745,27 @@
             }
         }
 
+        function getValue(position) {               // lấy nội dung vào txtVitriCongviecs
+            var x = document.getElementsByClassName("select2-selection__rendered")[position].getElementsByClassName("select2-selection__choice");
+                     var i;
+                      var str = '';
+                      for (i = 0; i < x.length; i++) {
+                                str += x[i].textContent;
+                       }
+                        return str;
+                   }
+        function load()      // load dử liệu vào textbox
+                      {
+            document.getElementById('MainContent_txtViTriCongViec').value = getValue(0);
+            document.getElementById('MainContent_txtViTriCongViec2').value = getValue(1);
+                      }
+
         $(".js-example-basic-multiple").select2();
         $(".js-example-basic-multiple2").select2();
 
         $(document).ready(function () {
             $('#<%= btnSave.ClientID %>').click(function (e) {
-                load();     // gọi đến sự kiện lưu lại
+                load();                                      // gọi đến sự kiện lưu lại
             });
         });
     </script>
