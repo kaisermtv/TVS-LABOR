@@ -39,6 +39,8 @@
             }
     </style>
 
+    
+
     <table border="0" style="margin-top: -20px;">
         <tr style="height: 40px;">
             <td style="width: 90%;" colspan="7">
@@ -405,8 +407,11 @@
         <li class="active"><a data-toggle="tab" href="#home">Đề xuất thứ nhất</a></li>
         <li><a data-toggle="tab" href="#menu1">Đề xuất thứ hai</a></li>
     </ul>
+   
 
+  
     <div class="tab-content">
+         
         <div id="home" class="tab-pane fade in active" style="margin: 0px;">
             <table border="0" style="width: 100%; margin-top: 10px;">
                 <tr style="height: 40px;">
@@ -509,6 +514,7 @@
                 </tr>
             </table>
         </div>
+             
     </div>
 
     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
@@ -745,6 +751,20 @@
             }
         }
 
+        function setValue()
+        {
+            var x = document.getElementById('MainContent_txtViTriCongViec').value;
+            var y = document.getElementById('MainContent_txtViTriCongViec2').value;
+            if( x!='')
+            {
+                var item1 = x.split(';');       //mảng
+                var item2 = y.split(';');
+                $('#ddlQickSelect').val(item1).trigger('change');
+                $('#ddlQickSelect2').val(item2).trigger('change');
+            }
+        }
+        setValue();
+    
         function getValue(position) {               // lấy nội dung vào txtVitriCongviecs
             var x = document.getElementsByClassName("select2-selection__rendered")[position].getElementsByClassName("select2-selection__choice");
                      var i;
@@ -759,7 +779,6 @@
             document.getElementById('MainContent_txtViTriCongViec').value = getValue(0);
             document.getElementById('MainContent_txtViTriCongViec2').value = getValue(1);
                       }
-
         $(".js-example-basic-multiple").select2();
         $(".js-example-basic-multiple2").select2();
 
