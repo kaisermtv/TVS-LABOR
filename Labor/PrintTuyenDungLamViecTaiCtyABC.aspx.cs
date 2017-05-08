@@ -96,7 +96,7 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
                 
 
                 //mota = objData.Rows[0]["MoTa"].ToString();
-                //quyenLoi = objData.Rows[0]["QuyenLoi"].ToString();
+                quyenLoi = objData.Rows[0]["QuyenLoi"].ToString();
                 
             }
 
