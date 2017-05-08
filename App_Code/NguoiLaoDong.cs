@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
@@ -1991,13 +1992,6 @@ public class NguoiLaoDong :DataClass
 
             Cmd.CommandText = sqlQueryFull;
 
-//            Cmd.CommandText = @"SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep 
-//                                WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi ,
-//                                 REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState 
-//                                 FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao 
-//                                 WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong
-//                                    " + sqlQuery + sqlQueryState + @"
-//                                 ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -2010,9 +2004,9 @@ public class NguoiLaoDong :DataClass
             sqlCon.Dispose();
             objTable = ds.Tables[0];
         }
-        catch
+        catch(Exception e)
         {
-
+            Debug.WriteLine("[!!!] - getDataNldDaoTao  :" + e.GetBaseException());
         }
         return objTable;
     }

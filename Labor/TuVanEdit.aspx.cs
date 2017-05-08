@@ -31,6 +31,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
     public string strBtnViecLamTrongNuoc = "", strBtnViecLamNgoai = "", strBtnDaoTaoNghe = "";
 
+    public  string selectedValue = "  $('#ddlQickSelect').val([";
+    public  string selectedValue2 = "  $('#ddlQickSelect2').val([";
     public List<string> lv_Vitri = new List<string>();
     #endregion
 
@@ -205,7 +207,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ckbTuVanKhac.Checked = bool.Parse(this.objTableNldTuVan.Rows[0]["TuVanKhac"].ToString());
 
                 this.txtViTriCongViec.Text = this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString();
-               
                 if(this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString() != "0") this.txtMucLuongThapNhat.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat"].ToString();
                 this.txtDieuKienLamViec.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec"].ToString();
                 this.txtDiaDiemLamViec.Text = this.objTableNldTuVan.Rows[0]["DiaDiemLamViec"].ToString();
@@ -217,35 +218,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
                 // nội dung khác của vị trí 2 sẻ ko hoạt động
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
-
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
 
-                /* Load defaut selected mode */
-                try
-                {
-                    string selectedValue = "$('#ddlQickSelect').val([";
-                    foreach (string s in this.objTableNldTuVan.Rows[0]["ViTriCongViec"].ToString().Split(';'))
-                    {
-                        selectedValue += "'" + s + "'" + ',';
-                    }
-                    selectedValue = selectedValue.Substring(0, selectedValue.Length - 1);
-                    selectedValue += "]).trigger('change');";
-                    Page.ClientScript.RegisterStartupScript(GetType(), "haha", selectedValue, true);
-                    // 
-                    try
-                    {
-                        string selectedValue2 = "$('#ddlQickSelect2').val([";
-                        foreach (string s2 in this.objTableNldTuVan.Rows[0]["ViTriCongViec2"].ToString().Split(';'))
-                        {
-                            selectedValue2 += "'" + s2 + "'" + ',';
-                        }
-                        selectedValue2 = selectedValue2.Substring(0, selectedValue2.Length - 1);
-                        selectedValue2 += "]).trigger('change');";
-                        Page.ClientScript.RegisterStartupScript(GetType(), "hehe", selectedValue2, true);
-                    }
-                    catch { }
-                }
-                catch { }
+                
 
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
                 this.txtDieuKienLamViec2.Text = this.objTableNldTuVan.Rows[0]["DieuKienLamViec2"].ToString();
@@ -396,8 +371,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
             }
         }
-
+        
         this.txtMa.Focus();
+        
     }
     #endregion
 
@@ -428,8 +404,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             {
 
                  Response.Redirect("TuVanEdit.aspx?idNld=" + ret);
-                //this.txtMa.Text = this.txtCMND.Text.Trim();
-                //this.btnGetInformation_Click(sender, e);
 
                 this.lblMsg.Text = "Người lao động đã tồn tại";
                 return;
@@ -588,6 +562,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
             this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
         }
+
+       
     }
     #endregion
 
@@ -612,40 +588,24 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 Response.Redirect("TuVanEdit.aspx?idNld=" + IDNguoiLaoDong);
                 return;
 
-                //this.txtMa.Text = objTableNldThongTin.Rows[0]["Ma"].ToString();
-                //this.txtHoVaTen.Text = objTableNldThongTin.Rows[0]["HoVaTen"].ToString();
-                //this.txtNgaySinh.Value = DateTime.Parse(objTableNldThongTin.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
-
-                //this.txtDienThoai.Text = objTableNldThongTin.Rows[0]["DienThoai"].ToString();
-                //this.txtEmail.Text = objTableNldThongTin.Rows[0]["Email"].ToString();
-                //this.ddlDanToc.SelectedValue = objTableNldThongTin.Rows[0]["IDDanToc"].ToString();
-                //this.ddlTonGiao.SelectedValue = objTableNldThongTin.Rows[0]["IDTonGiao"].ToString();
-                //this.txtSucKhoe.Text = objTableNldThongTin.Rows[0]["SucKhoe"].ToString();
-
-                //this.txtChieuCao.Text = objTableNldThongTin.Rows[0]["ChieuCao"].ToString();
-                //this.txtCanNang.Text = objTableNldThongTin.Rows[0]["CanNang"].ToString();
-                //this.ddlNgoaiNgu.SelectedValue = objTableNldThongTin.Rows[0]["IDNgoaiNgu"].ToString();
-                //this.ddlTrinhDoPhoThong.SelectedValue = objTableNldThongTin.Rows[0]["IDTrinhDoPhoThong"].ToString();
-                //this.ddlTinHoc.SelectedValue = objTableNldThongTin.Rows[0]["IDTinHoc"].ToString();
-
-                //this.txtCMND.Text = objTableNldThongTin.Rows[0]["CMND"].ToString();
-                //this.txtNgayCapCMND.Value = DateTime.Parse(objTableNldThongTin.Rows[0]["NgayCapCMND"].ToString()).ToString("dd/MM/yyyy");
-                //this.txtNoiCap.Text = objTableNldThongTin.Rows[0]["NoiCap"].ToString();
-                //this.txtBHXH.Text = objTableNldThongTin.Rows[0]["BHXH"].ToString();
+           
             }
         }
+     
     }
     #endregion
 
     #region method ddlTinh_TT_SelectedIndexChanged
     protected void ddlTinh_TT_SelectedIndexChanged(object sender, EventArgs e)
     {
+        
         this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
         this.ddlHuyen_TT.DataTextField = "Name";
         this.ddlHuyen_TT.DataValueField = "Id";
         this.ddlHuyen_TT.DataBind();
-
+      
         ddlHuyen_TT.Focus();
+      
     }
     #endregion
 
