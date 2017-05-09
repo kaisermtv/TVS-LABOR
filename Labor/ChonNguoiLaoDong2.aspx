@@ -21,19 +21,19 @@
 <body style="margin: 0px !important; height: 500px !important;">
     <form id="form1" runat="server">
 
-        <table class ="table">
+        <table class="table">
             <tr>
                 <td>
-                    <input type ="text" id = "txtSearch" placeholder ="Nhập mã hoặc tên người lao động để tìm kiếm" runat ="server" class ="form-control" />
+                    <input type="text" id="txtSearch" placeholder="Nhập mã hoặc tên người lao động để tìm kiếm" runat="server" class="form-control" />
                 </td>
-                <td style ="width:40px !important; text-align:center;">
-                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left:-15px;" OnClick="btnSearch_Click" />
+                <td style="width: 40px !important; text-align: center;">
+                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left: -15px;" OnClick="btnSearch_Click" />
                 </td>
             </tr>
         </table>
-       
-        <div style ="margin-top:-20px;">
-            <div style="width: 100%;">
+
+        <div style="margin-top: -20px;">
+            <div style="width: 100%; padding: 15px;">
                 <table class="DataListTableHeader" border="0">
                     <tr style="height: 40px;">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#
@@ -48,40 +48,41 @@
                 </table>
             </div>
 
-            <asp:DataList ID="dtlNguoiLaoDong" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
-                Width="100%">
-                <ItemTemplate>
-                    <table class="DataListTable" border="0">
-                        <tr style="height: 40px;">
-                            <td class="DataListTableTdItemTT" style="width: 3%;">
-                                <%# Eval("TT") %>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 25%;">
-                                <a href="#" onclick="return SetName('<%# Eval("IDNguoiLaoDong") %>','<%# Eval("HoVaTen") %>','<%# Eval("NgaySinh","{0:dd/MM/yyyy}") %>','<%# Eval("IDGioiTinh") %>','<%# Eval("DiaChi") %>','<%# Eval("CMND") %>','<%# Eval("DienThoai") %>');"><%# Eval("HoVaTen") %></a>
-                            </td>
-                            <td class="DataListTableTdItemJustify" style="width: 59%;">
-                                <%# Eval("DiaChi") %>
-                            </td>
-                            <td class="DataListTableTdItemCenter" style="width: 13%;">
-                                <%# Eval("DienThoai") %>
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:DataList>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
-                id="tblABC" runat="server">
-                <tr>
-                    <td style="padding-left: 6px;">
-                        <cc1:CollectionPager ID="cpNguoiLaoDong" runat="server" BackText="" FirstText="Đầu"
-                            ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
-                            ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                            PageNumbersSeparator="&nbsp;">
-                        </cc1:CollectionPager>
-                    </td>
-                </tr>
-            </table>
-
+            <div style="width: 100%; padding: 15px; margin-top: -28px;">
+                <asp:DataList ID="dtlNguoiLaoDong" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"
+                    Width="100%">
+                    <ItemTemplate>
+                        <table class="DataListTable" border="0">
+                            <tr style="height: 40px;">
+                                <td class="DataListTableTdItemTT" style="width: 3%;">
+                                    <%# Eval("TT") %>
+                                </td>
+                                <td class="DataListTableTdItemJustify" style="width: 25%;">
+                                    <a href="#" onclick="return SetName('<%# Eval("IDNguoiLaoDong") %>','<%# Eval("HoVaTen") %>','<%# Eval("NgaySinh","{0:dd/MM/yyyy}") %>','<%# Eval("IDGioiTinh") %>','<%# Eval("DiaChi") %>','<%# Eval("CMND") %>','<%# Eval("DienThoai") %>');"><%# Eval("HoVaTen") %></a>
+                                </td>
+                                <td class="DataListTableTdItemJustify" style="width: 59%;">
+                                    <%# Eval("DiaChi") %>
+                                </td>
+                                <td class="DataListTableTdItemCenter" style="width: 13%;">
+                                    <%# Eval("DienThoai") %>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                </asp:DataList>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px; background-color: #fbf4f4; height: 26px;"
+                    id="tblABC" runat="server">
+                    <tr>
+                        <td style="padding-left: 6px;">
+                            <cc1:CollectionPager ID="cpNguoiLaoDong" runat="server" BackText="" FirstText="Đầu"
+                                ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
+                                ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
+                                PageNumbersSeparator="&nbsp;">
+                            </cc1:CollectionPager>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <script type="text/javascript">
             function SetName(value1, value2, value3, value4, value5, value6, value7) {
@@ -106,7 +107,7 @@
 
                     var txtNLDDienThoai = window.opener.document.getElementById("MainContent_txtNLDDienThoai");
                     txtNLDDienThoai.value = value7;
-                    
+
                 }
                 window.close();
             }

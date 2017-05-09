@@ -5,7 +5,7 @@
     <table class="table" border="0" style="padding: 8px; width: 1000px;">
         <tr>
             <td rowspan="2" style="width: 350px; height: 100%;" class = "Background">
-                <img src ="../images/Background.jpg" alt = ""/>
+                <img src ="../images/Background.jpg" alt = "" style ="width:350px!important;"/>
             </td>
             <td>
                 <div class = "Tuvan" style="width: 200px; height: 100px; background-color: #00a8ec;">

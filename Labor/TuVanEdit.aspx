@@ -138,7 +138,7 @@
             </td>
 
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi cấp:</td>
-            <td style="width: 40%;" colspan ="2">
+            <td style="width: 40%;" colspan="2">
                 <asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
@@ -153,7 +153,7 @@
                 <asp:TextBox ID="txtDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ email:</td>
-            <td style="width: 20%;" colspan ="2">
+            <td style="width: 20%;" colspan="2">
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
@@ -201,7 +201,7 @@
                         <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
 
-                    <td rowspan="2" style ="text-align:right;">
+                    <td rowspan="2" style="text-align: right;">
                         <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
                 </tr>
 
@@ -255,7 +255,7 @@
                 </table>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">TĐ phổ thông:</td>
-            <td style="width: 20%;" colspan ="2">
+            <td style="width: 20%;" colspan="2">
                 <asp:DropDownList ID="ddlTrinhDoPhoThong" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
@@ -284,7 +284,7 @@
                 </table>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Trình độ:</td>
-            <td style="width: 20%;" colspan ="2">
+            <td style="width: 20%;" colspan="2">
                 <asp:DropDownList ID="ddlTrinhDoTinHoc" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
@@ -320,7 +320,7 @@
                             <asp:TextBox ID="txtMucLuongTN" runat="server" Text="0" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
                         </td>
                         <td style="width: 75px; text-align: right; padding-right: 5px;">Lý do TN:</td>
-                        <td colspan ="2">
+                        <td colspan="2">
                             <asp:TextBox ID="txtLyDoTN" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                     </tr>
@@ -363,7 +363,7 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Đăng ký tư vấn: </td>
             <td style="width: 90%;" colspan="6">
-                <table border="0" style ="width:100%;">
+                <table border="0" style="width: 100%;">
 
                     <tr>
                         <td>
@@ -373,7 +373,7 @@
                         <td>
                             <asp:CheckBox ID="ckbTuVanBHTN" runat="server" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td rowspan="2" style ="text-align:right;">
+                        <td rowspan="2" style="text-align: right;">
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('1')"><% Response.Write(this.strBtnViecLamNgoai); %></button>
                             <button class="btn btn-success" type="button" onclick="ChonKhoaHoc()"><% Response.Write(this.strBtnDaoTaoNghe); %></button>

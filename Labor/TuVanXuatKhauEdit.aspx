@@ -69,13 +69,13 @@
             <td colspan="5">
                 <b>1. Thông tin đơn vị tuyển dụng</b>
             </td>
-            <td style ="color:blue; font-weight:bold;"><% Response.Write(this.strHtmlDuHoc); %></td>
+            <td style="color: blue; font-weight: bold;"><% Response.Write(this.strHtmlDuHoc); %></td>
         </tr>
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tên đơn vị:</td>
             <td style="width: 40%;">
                 <input type="hidden" name="" id="txtIDDonViTuyenDung" runat="server" />
-                <asp:TextBox ID="txtDonViTuyenDungName" runat="server" class="form-control" Style="width: 87% !important; float:left; margin-right:5px;"></asp:TextBox>
+                <asp:TextBox ID="txtDonViTuyenDungName" runat="server" class="form-control" Style="width: 87% !important; float: left; margin-right: 5px;"></asp:TextBox>
                 <button class="btn btn-primary" type="button" onclick="ChonTinTuyenDung2()" style="height: 34px !important; line-height: 14px !important;">Chọn</button>
             </td>
             <td style="width: 8%; text-align: right; padding-right: 5px;">Đại diện:</td>
@@ -117,7 +117,7 @@
                                 <td style="width: 10%; text-align: right; padding-right: 5px;">Họ tên:</td>
                                 <td style="width: 40%;">
                                     <input type="hidden" name="txtIDNldDangKy" id="txtIDNldDangKy" runat="server" />
-                                    <asp:TextBox ID="txtNameNldDangKy" runat="server" class="form-control" Style="width: 87% !important; float:left; margin-right:5px;"></asp:TextBox>
+                                    <asp:TextBox ID="txtNameNldDangKy" runat="server" class="form-control" Style="width: 87% !important; float: left; margin-right: 5px;"></asp:TextBox>
                                     <button class="btn btn-primary" type="button" onclick="ChonNguoiLaoDong()" style="height: 34px !important; line-height: 14px !important;">Chọn</button>
                                 </td>
                                 <td style="width: 8%; text-align: right; padding-right: 5px;">Ngày sinh:</td>
@@ -317,14 +317,14 @@
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Cán bộ tư vấn:</td>
             <td style="width: 14%;">
-                <asp:DropDownList ID="ddlIDCanbo" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass ="form-control">
+                <asp:DropDownList ID="ddlIDCanbo" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass="form-control">
                 </asp:DropDownList>
             </td>
         </tr>
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Kết quả tư vấn:</td>
             <td style="width: 40%;">
-                <asp:DropDownList ID="ddlIDKetQuaTuVan" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass ="form-control">
+                <asp:DropDownList ID="ddlIDKetQuaTuVan" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass="form-control">
                 </asp:DropDownList>
             </td>
             <td style="width: 8%; text-align: right; padding-right: 5px;">Ngày đặt cọc:</td>
@@ -351,12 +351,12 @@
             <td style="width: 10%; text-align: right; padding-right: 5px;">Đơn vị tiếp nhận:</td>
             <td style="width: 40%;">
                 <input type="hidden" name="txtIDDonVi" id="txtIDDonVi" runat="server" />
-                <asp:TextBox ID="txtIDDonViName" runat="server" class="form-control" Style="width: 87% !important; float:left; margin-right:5px;"></asp:TextBox>
+                <asp:TextBox ID="txtIDDonViName" runat="server" class="form-control" Style="width: 87% !important; float: left; margin-right: 5px;"></asp:TextBox>
                 <button class="btn btn-primary" type="button" onclick="SelectName()" style="height: 34px !important; line-height: 14px !important;">Chọn</button>
             </td>
             <td style="width: 8%; text-align: right; padding-right: 5px;">Học tiếng:</td>
             <td style="width: 18%;">
-                <asp:DropDownList ID="ddlIDDaoTaoMonHoc" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass ="form-control">
+                <asp:DropDownList ID="ddlIDDaoTaoMonHoc" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass="form-control">
                 </asp:DropDownList>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi học:</td>
@@ -472,7 +472,7 @@
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Kết quả:</td>
             <td style="width: 14%;">
-                <asp:DropDownList ID="ddlIDKetQuaHoSo" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass ="form-control">
+                <asp:DropDownList ID="ddlIDKetQuaHoSo" AutoPostBack="true" runat="server" Style="width: 100%;" CssClass="form-control">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -480,7 +480,7 @@
         <tr style="height: 60px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;"><b>Trạng thái:</b></td>
             <td style="width: 90%;" colspan="3">
-                <asp:DropDownList ID="ddlState" Font-Bold = "true" runat="server" CssClass="form-control" style = "width:18%;">
+                <asp:DropDownList ID="ddlState" Font-Bold="true" runat="server" CssClass="form-control" Style="width: 18%;">
                     <asp:ListItem Value="0" Selected="True">Chưa xử lý</asp:ListItem>
                     <asp:ListItem Value="1">Đang xử lý</asp:ListItem>
                     <asp:ListItem Value="2">Đã xử lý</asp:ListItem>
@@ -488,22 +488,24 @@
             </td>
         </tr>
 
-        <tr style="height: 20px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-            <td style="width: 90%;" colspan="3">
-                <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
-            </td>
-        </tr>
-
-        <tr style="height: 36px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-            <td style="width: 90%;" colspan="3">
-                <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
-                <asp:Button ID="btnCancel" runat="server" Text="Thoát" CssClass="btn btn-default" OnClick="btnCancel_Click" />
-            </td>
-        </tr>
-
     </table>
+
+    <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
+        <table border="0" style="width: 95%; margin-top: -8px;">
+            <tr>
+                <td style ="width:10%">&nbsp;</td>
+                <td style ="padding-left:15px;">
+                    <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                </td>
+                <td style="width: 300px; text-align: center;">
+                    <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
+                </td>
+                <td style ="text-align:right;">
+                    <asp:Button ID="btnCancel" runat="server" Text="Thoát" CssClass="btn btn-default" OnClick="btnCancel_Click" />
+                </td>
+            </tr>
+        </table>
+    </footer>
 
     <script type="text/javascript">
         function ChonNguoiLaoDong() {

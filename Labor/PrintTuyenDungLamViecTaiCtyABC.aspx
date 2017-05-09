@@ -34,11 +34,12 @@
                 <div style="float: left; width: 100px">
                     <img src="../Images/ttdichvuvieclamna.jpg" style="width: 100%" />
                 </div>
-                <div style="float: right; width: 100%; margin-left: -156px; text-align: center">
+                <div style="float: right; width: 95%; margin-left: -156px; text-align: center"><b>
                     Địa chỉ: Số 201, Đ Phong Định Cảng , P.Trường Thi,Tp. Vinh, Nghệ An<br />
                     <img src="../Images/phone.jpg" height="30" />Điện thoại : 02383 550 050 - Email: <i style="border-bottom: solid 1px black">sanvieclamnghean@gmail.com </i>
                     <br />
-                    Website : <i>vieclamnghean.vn- vlnghean.vieclamvietnam.gov.vn </i>
+                    Website : <i>vieclamnghean.vn- vlnghean.vieclamvietnam.gov.vn </i></b>
+                    <div style="border-bottom:4px double;width:480px;margin-left:138px"></div>
                 </div>
             </div>
 
@@ -80,10 +81,10 @@
                             </div>
                         <% } else { %>
                             <tr>
-                                <td>
+                                <td style="vertical-align:central">
                                     <span class="name"><%# Eval("NameVitri") %></span>
                                 </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;vertical-align:central">
                                     <%# Eval("SoLuongTuyenDung") %>
                                 </td>
                                 <td class="DataListTableTdItemJustify">
@@ -113,11 +114,11 @@
                 </div>
             </div>
             <div class="ChuBinhThuong">
-                <b>4.</b>  <b style="border-bottom: solid 1px;">Địa điểm làm việc </b><b>:</b> <%= diaDiem %>
+                <b>4.</b>  <b style="border-bottom: solid 1px;">Địa điểm làm việc </b><b>: <%= diaDiem %></b>
             </div>
             <!--- dòng lưu ý cuối--->
             <div class="ChuBinhThuong">
-                <b>&nbsp;</b>  <b style="border-bottom: solid 1px;">Chi tiết liên hệ</b><b>:</b> Phòng Thông tin TTLĐ — Trung tâm DVVL Nghệ An
+                <b>&nbsp;</b>  <b style="border-bottom: solid 1px;">Chi tiết liên hệ</b><b>: Phòng Thông tin TTLĐ — Trung tâm DVVL Nghệ An</b>
               <div style="margin-left: 30px">Điện thoại : 02383 550 050 — Email : <span style="border-bottom: solid 1px;">sanvieclamnghean@gmail.com</span> </div>
             </div>
         </div>

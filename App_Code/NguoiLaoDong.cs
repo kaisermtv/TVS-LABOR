@@ -255,7 +255,7 @@ public class NguoiLaoDong :DataClass
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(State AS varchar),'1',N'Kích hoạt'),'0',N'Đóng') AS StateName FROM TblNguoiLaoDong, TblNldDangKy WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDangKy.IDNguoiLaoDong " + sqlQuery;
+            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(TblNguoiLaoDong.State AS varchar),'1',N'Kích hoạt'),'0',N'Đóng') AS StateName FROM TblNguoiLaoDong, TblNldDangKy WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDangKy.IDNguoiLaoDong " + sqlQuery;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

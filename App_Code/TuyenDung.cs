@@ -333,7 +333,7 @@ public class TuyenDung :DataClass
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(TblTuyenDung.State AS varchar),'1',N'Kích hoạt'),'0',N'Đóng') AS StateName, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblTuyenDung.IDChucVu) AS NameChucVu FROM TblTuyenDung, TblDoanhNghiep WHERE TblTuyenDung.IDDonVi = TblDoanhNghiep.IDDonVi AND TblTuyenDung.State = 1 " + sqlQuery + " ORDER ThuTuUuTien DESC";
+            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(TblTuyenDung.State AS varchar),'1',N'Kích hoạt'),'0',N'Đóng') AS StateName, (SELECT NameChucVu FROM TblChucVu WHERE IDChucVu = TblTuyenDung.IDChucVu) AS NameChucVu FROM TblTuyenDung, TblDoanhNghiep WHERE TblTuyenDung.IDDonVi = TblDoanhNghiep.IDDonVi AND TblTuyenDung.State = 1 AND ISNULL(TblTuyenDung.NuocNgoai,0) = 1 " + sqlQuery + " ORDER BY ThuTuUuTien DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
