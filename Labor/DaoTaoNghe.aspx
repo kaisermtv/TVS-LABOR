@@ -77,14 +77,16 @@
         </tr>
     </table>
 
+  
+
     <asp:Repeater ID="dtlTuVanXuatKhau" runat="server" EnableViewState="False">
         <HeaderTemplate>
             <div class="table-responsive2" style="margin-top: -10px; background-color: #fff;">
                 <table id="tableview" class="table table-bordered table-striped tableheader" border="0" style="background-color: #fff!important;">
-                    <thead>
-                        <tr>
+                    <thead style="background-color:#DDE8EC">
+                        <tr >
                             <th style="width: 40px; vertical-align: central; text-align: center;" rowspan="3">STT</th>
-                            <th style="width: 150px; text-align: center; text-transform: uppercase;" rowspan="3">Họ Và Tên</th>
+                            <th style="width: 150px; text-align: center; text-transform: uppercase;" rowspan="3" >Họ Và Tên</th>
                             <th style="width: 80px; text-align: center; text-transform: uppercase;" rowspan="3">Ngày Sinh</th>
                             <th style="width: 150px; text-align: center; text-transform: uppercase;" rowspan="3">Địa chỉ</th>
                             <th style="width: 50px; text-align: center; text-transform: uppercase;" rowspan="3">Giới tính</th>
@@ -114,10 +116,10 @@
 
         <ItemTemplate>
             <tr class="tableview" style="font-size: 15px; height: 30px;">
-                <td class="DataListTableTdItemTT" style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;">
-                    <span class="name"><%# Eval("TT") %></span>
+                <td class="DataListTableTdItemTT" style="vertical-align: middle; text-align: center;  font-size: 15px;">
+                    <span  class ="name" style=" " ><%# Eval("TT") %></span>
                 </td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; background-color: #fff!important; font-size: 15px;">
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; width:150px;height:30px; font-size: 15px;position: absolute;background-color:whitesmoke;">
                     <a href="DaoTaoNgheEdit.aspx?id=<%# Eval("IDNldDaoTao") %>"><%# Eval("HoVaTen") %>
                 </td>
                 <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("NgaySinh","{0:dd/MM/yyyy}") %></td>
@@ -169,5 +171,8 @@
         });
 
     </script>
+
+  
+
 </asp:Content>
 

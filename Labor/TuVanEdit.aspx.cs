@@ -31,8 +31,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
     public string strBtnViecLamTrongNuoc = "", strBtnViecLamNgoai = "", strBtnDaoTaoNghe = "";
 
-    public  string selectedValue = "  $('#ddlQickSelect').val([";
-    public  string selectedValue2 = "  $('#ddlQickSelect2').val([";
     public List<string> lv_Vitri = new List<string>();
     #endregion
 
