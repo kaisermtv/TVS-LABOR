@@ -43,7 +43,7 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Mức lương</td>
                         <td class="DataListTableHeaderTdItemJustify">Địa điểm làm việc</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 8%;">Trạng thái</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 9%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 10%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate >
@@ -74,6 +74,7 @@
                     <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
                     <td class="DataListTableTdItemCenter">
+                        <a href="#" onclick="XemTinTuyenDungLamViec('id=<%# Eval("IDTuyenDung") %>')"><img src="../Images/Print.png" /></a>
                         <a href="TuyenDungEdit.aspx?id=<%# Eval("IDTuyenDung") %>">
                             <img src="../Images/Edit.png" alt=""></a>
                         <a href="TuyenDung.aspx?id=<%# Eval("IDTuyenDung") %>">
