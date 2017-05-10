@@ -77,7 +77,9 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
 
                      this.DVTenDonVi = objNldGioiThieu.Rows[0]["TenDonVi"].ToString();
                      this.DVDiaChi = objNldGioiThieu.Rows[0]["DiaChi"].ToString();
-                     this.DVDienThoai = objNldGioiThieu.Rows[0]["DienThoaiDonVi"].ToString();
+                     this.DVDienThoai = objNldGioiThieu.Rows[0]["DienThoaiDonVi"].ToString().Trim();
+
+                     if (DVDienThoai == null || DVDienThoai == "") DVDienThoai = "Phòng nhân sự";
                      
                      if (objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString() != "")
                      {

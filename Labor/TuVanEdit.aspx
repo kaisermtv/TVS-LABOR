@@ -723,7 +723,7 @@
 
             if (window.focus) {
                 newWindow.moveTo(0, 0);
-                newWindow.resizeTo(screen.width, screen.height);
+                //newWindow.resizeTo(screen.width, screen.height);
                 newWindow.focus();
             }
         }

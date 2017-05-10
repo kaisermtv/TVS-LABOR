@@ -47,12 +47,12 @@
             <p>Kết quả tuyển dụng cụ thể:</p>
             <br />
             <p><asp:CheckBox ID="ckbTrungTuyen" runat="server" /> Trúng tuyển</p>
-            <p>Vị trí việc làm: <% Response.Write(this.NldKq_ViTriLamViec); %></p>
-            <p>Ngày dự kiến nhận việc: <% Response.Write(this.NldKq_NgayDuKienNhanViec); %></p>
-            <p>Thời gian thử việc: <% Response.Write(this.NldKq_ThoiGianThuViec); %></p>
+            <p>Vị trí việc làm: <% Response.Write(this.NldKq_ViTriLamViec); %>...................................................................................................</p>
+            <p>Ngày dự kiến nhận việc: <% Response.Write(this.NldKq_NgayDuKienNhanViec); %>....................................................................................</p>
+            <p>Thời gian thử việc: <% Response.Write(this.NldKq_ThoiGianThuViec); %>.............................................................................................</p>
             <br />
             <p><asp:CheckBox ID="ckbKhongTrungTuyen" runat="server" /> Không trúng tuyển</p>
-            <p>Lý do: <% Response.Write(this.NldKq_LyDoKhongTrungTuyen); %>.</p>
+            <p>Lý do: <% Response.Write(this.NldKq_LyDoKhongTrungTuyen); %>........................................................................................................................</p>
             <p>....................................................................................................................................</p>
 
             <div class="LoiCamOn"><b>Cảm ơn sự quan tâm phối hợp của trung tâm dịch vụ và việc làm Nghệ An./.</b></div>

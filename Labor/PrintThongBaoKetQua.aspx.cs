@@ -57,7 +57,9 @@ public partial class Labor_PrintThongBaoKetQua : System.Web.UI.Page
                      this.DVTenDonVi = objNldGioiThieu.Rows[0]["TenDonVi"].ToString();
                      if (objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString() != "")
                      {
-                         this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
+                         //this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
+
+                         this.DVNgayGioiThieu = "Nghệ An, ngày &nbsp;&nbsp;&nbsp; tháng &nbsp;&nbsp;&nbsp; năm 201";
                      }
                      //
                      DataTable objTableTuyenDung = new DataTable();
