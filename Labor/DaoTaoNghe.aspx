@@ -77,8 +77,6 @@
         </tr>
     </table>
 
-  
-
     <asp:Repeater ID="dtlTuVanXuatKhau" runat="server" EnableViewState="False">
         <HeaderTemplate>
             <div class="table-responsive2" style="margin-top: -10px; background-color: #fff;">

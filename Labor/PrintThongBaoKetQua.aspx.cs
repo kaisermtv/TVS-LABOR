@@ -59,6 +59,21 @@ public partial class Labor_PrintThongBaoKetQua : System.Web.UI.Page
                      {
                          this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
                      }
+                     //
+                     DataTable objTableTuyenDung = new DataTable();
+                     TuyenDung objTuyenDung = new TuyenDung();
+                     objTableTuyenDung = objTuyenDung.getDataById(int.Parse(objNldGioiThieu.Rows[0]["IDTuyenDung"].ToString()));
+                     if (objTableTuyenDung.Rows.Count > 0)
+                     {
+
+                         ViTri objVitri = new ViTri();
+                         DataRow objRowVitri = objVitri.getItem(int.Parse(objTableTuyenDung.Rows[0]["IdViTri"].ToString()));
+
+                         if (objRowVitri != null)
+                         {
+                             this.NLDViTriCongViec = objRowVitri["NameVitri"].ToString();
+                         }
+                     }
 
                      //DataTable objNldKetQua = new DataTable();
                      //objNldKetQua = this.objNguoiLaoDong.getDataNldKetQuaByIDNldGioiThieuId(this.IDNldGioiThieu);

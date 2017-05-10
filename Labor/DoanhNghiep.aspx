@@ -61,6 +61,8 @@
                          
                         <a href="DoanhNghiepEdit.aspx?id=<%# Eval("IDDonVi") %>">
                             <img src="../Images/Edit.png" alt="" ></a>
+                          <a href="DoanhNghiepEdit.aspx?id=<%# Eval("IDDonVi") %>">
+                            <img src="../Images/top.png" alt="" title="Thiết lập ưu tiên nhất" style="margin-left: 5px; margin-right: 5px;"></a>
                         <a href="DoanhNghiepDel.aspx?id=<%# Eval("IDDonVi") %>">
                             <img src="../Images/delete.png" alt=""></a>
                     </td>
