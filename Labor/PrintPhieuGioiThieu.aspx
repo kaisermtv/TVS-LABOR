@@ -56,7 +56,7 @@
             <p>Số CMND: <% Response.Write(this.NLDCMND); %>; Ngày cấp: <% Response.Write(this.NLDNgayCapCMND); %>; Nơi cấp: <% Response.Write(this.NLNoiCap); %></p>
             <p>Số sổ BHXH: <% Response.Write(this.NLDBHXH); %>; Điện thoại: <% Response.Write(this.NLDDienThoai); %>; Email: <% Response.Write(this.NLDEmail); %></p>
             <p>Nơi thường trú: <% Response.Write(this.NLDNoiThuongTru); %></p>
-            <p>Trình độ giáo dục phổ thông: <% Response.Write(this.NLDTrinhDoPhoThong); %>; Trình độ CMKT/Tay nghề: <% Response.Write(this.NLDTrinhDoPhoThong); %></p>
+            <p>Trình độ giáo dục phổ thông: <% Response.Write(this.NLDTrinhDoPhoThong); %> ; Trình độ CMKT/Tay nghề: <% Response.Write(this.NLDTrinhDoTayNghe); %></p>
             <p>Công việc trước khi thất nghiệp: <% Response.Write(this.CongViecTruocThatNghiep); %></p> 
             <p>Vị trí công việc dự tuyển: <% Response.Write(this.NLDViTriCongViec); %></p>
             <p>Phiếu có giá trị đến ngày: 23/03/2017</p>

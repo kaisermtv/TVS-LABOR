@@ -14,7 +14,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
     private TrinhDoPhoThong objTrinhDoPhoThong = new TrinhDoPhoThong();
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public string NLDHoten = "", NLDNgaySinh = "", NLDGioiTinh = "", NLDCMND = "", NLDNgayCapCMND = "", NLNoiCap = "", NLDBHXH = "", NLDDienThoai = "", NLDEmail = "", NLDDanToc = "", NLDTonGiao = "", NLDMucLuongTN = "", NLDLyDoTN = "", NLDDNDaLienHe = "", CongViecTruocThatNghiep = "";
-    public string NLDNoiThuongTru = "", NLDTrinhDoPhoThong = "", NLDTrinhDoKyNangNghe = "", NLDViTriCongViec = "", DVTenDonVi = "", DVDiaChi = "", DVDienThoai = "", DVNgayGioiThieu = "";
+    public string NLDNoiThuongTru = "", NLDTrinhDoPhoThong = "",NLDTrinhDoTayNghe="", NLDTrinhDoKyNangNghe = "", NLDViTriCongViec = "", DVTenDonVi = "", DVDiaChi = "", DVDienThoai = "", DVNgayGioiThieu = "";
 
     private int IDNldTuVan = 0;
     #endregion
@@ -48,6 +48,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                  this.NLDEmail = this.objTableNguoiLaoDong.Rows[0]["Email"].ToString();
                  this.NLDNoiThuongTru = this.objTableNguoiLaoDong.Rows[0]["Xom_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Xa_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Huyen_TT"].ToString() + ", " + this.objTableNguoiLaoDong.Rows[0]["Tinh_TT"].ToString();
                  this.NLDTrinhDoPhoThong = this.objTrinhDoPhoThong.getDataNameById(int.Parse(this.objTableNguoiLaoDong.Rows[0]["IDTrinhDoPhoThong"].ToString()));
+                 this.NLDTrinhDoTayNghe = this.objTableNguoiLaoDong.Rows[0]["TrinhDoDaoTao"].ToString();
                  this.NLDTrinhDoKyNangNghe = this.objTableNguoiLaoDong.Rows[0]["TrinhDoKyNangNghe"].ToString();
                  this.CongViecTruocThatNghiep = this.objTableNldTuVan.Rows[0]["CongViecTruocThatNghiep"].ToString();
 
