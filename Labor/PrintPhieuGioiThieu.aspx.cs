@@ -67,7 +67,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                      {
 
                          ViTri objVitri = new ViTri();
-                         DataRow objRowVitri = objVitri.getItem(int.Parse(objTableTuyenDung.Rows[0]["IDChucVu"].ToString()));
+                         DataRow objRowVitri = objVitri.getItem(int.Parse(objTableTuyenDung.Rows[0]["IdViTri"].ToString()));
 
                          if (objRowVitri != null)
                          {

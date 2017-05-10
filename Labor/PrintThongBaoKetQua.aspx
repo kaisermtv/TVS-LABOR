@@ -42,7 +42,8 @@
             <p>Ông/bà: <b><% Response.Write(this.NLDHoten); %></b>; Sinh ngày: <% Response.Write(this.NLDNgaySinh); %>; Giới tính: <% Response.Write(this.NLDGioiTinh); %></p>
             <p>Số CMND: <% Response.Write(this.NLDCMND); %>; Ngày cấp: <% Response.Write(this.NLDNgayCapCMND); %>; Nơi cấp: <% Response.Write(this.NLNoiCap); %></p>
             <p>Nơi thường trú: Long Thành, Yên Thành, Nghệ An</p>
-            <p>Sau khi được trung tâm DVVL Nghệ An tư vấn các chế độ, chính sách về lao động việc làm, giới thiệu lao động đến liên hệ, dự tuyển vào vị trí: <b><% Response.Write(this.NLDViTriCongViec); %></b></p>
+            <p>Sau khi được trung tâm DVVL Nghệ An tư vấn các chế độ, chính sách về lao động việc làm, giới thiệu lao động đến liên hệ, dự tuyển vào vị trí: 
+                <b><% Response.Write(this.NLDViTriCongViec); %></b></p>
             <p>Kết quả tuyển dụng cụ thể:</p>
             <br />
             <p><asp:CheckBox ID="ckbTrungTuyen" runat="server" /> Trúng tuyển</p>
