@@ -37,6 +37,9 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
              this.objTableNguoiLaoDong = this.objNguoiLaoDong.getDataById(int.Parse(this.objTableNldTuVan.Rows[0]["IDNguoiLaoDong"].ToString()));
              if (this.objTableNguoiLaoDong.Rows.Count > 0)
              {
+              
+
+
                  this.NLDHoten = this.objTableNguoiLaoDong.Rows[0]["HoVaTen"].ToString();
                  this.NLDNgaySinh = DateTime.Parse(this.objTableNguoiLaoDong.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
                  this.NLDGioiTinh = this.objTableNguoiLaoDong.Rows[0]["IDGioiTinh"].ToString().Replace("0","Nữ").Replace("1","Nam");

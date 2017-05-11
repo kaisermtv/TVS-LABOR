@@ -530,7 +530,9 @@
                     <button class="btn btn-primary" type="button" onclick="InPhieuKetQua()" id="btnPhieuKetQua">Phiếu kết quả</button>
                 </td>
                 <td>
-                    <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
+                    
+                   <td class="warning"> <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red"/></td>
+                    <td></td>
                 </td>
             </tr>
         </table>

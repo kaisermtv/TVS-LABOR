@@ -42,7 +42,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             Response.Redirect("../Login.aspx");
         }
         Session["TITLE"] = "TƯ VẤN NGƯỜI LAO ĐỘNG";
-
+        #region lay bien truy van
         try
         {
            foreach(DataRow row in new ViTri().getList().Rows)
@@ -78,6 +78,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
             this.IDNldDangKy = 0;
         }
+        #endregion
 
         #region Lay thong tin so luong tin tuyen dung
         this.strBtnViecLamTrongNuoc = "Việc trong nước [ "+this.objTuyenDung.getDataCount(false)+" ]";
@@ -103,11 +104,12 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlTinh_TT.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlTinh_TT.DataTextField = "Name";
             this.ddlTinh_TT.DataValueField = "Id";
+            this.ddlTinh_TT.SelectedIndex = 0;
             this.ddlTinh_TT.DataBind();
 
             if (this.ddlTinh_TT.Items.Count > 0)
             {
-                this.ddlTinh_TT.SelectedValue = "2";
+                this.ddlTinh_TT.SelectedValue = "0";
                 this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
                 this.ddlHuyen_TT.DataTextField = "Name";
                 this.ddlHuyen_TT.DataValueField = "Id";
@@ -147,6 +149,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlDanToc.DataSource = this.objDanToc.getDataCategoryToCombobox();
             this.ddlDanToc.DataTextField = "NameDanToc";
             this.ddlDanToc.DataValueField = "IDDanToc";
+            this.ddlDanToc.SelectedIndex = 0;
             this.ddlDanToc.DataBind();
 
             this.ddlTonGiao.DataSource = this.objTonGiao.getDataCategoryToCombobox();
@@ -362,11 +365,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                     }
                 }
                 //////////////////////////////////////////////////////
-
-                
-
-                
-
             }
         }
         
@@ -379,7 +377,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         this.lblMsg.Text = "";
-
 
         if (this.txtCMND.Text.Trim() == "")
         {
@@ -514,10 +511,66 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
         }
 
-        if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, this.txtHoVaTen.Text, TVSSystem.CVDate(this.txtNgaySinh.Value.ToString().Trim()), this.txtCMND.Text, this.txtNoiCap.Text, TVSSystem.CVDate(this.txtNgayCapCMND.Value.ToString().Trim()),
-            this.txtBHXH.Text, this.txtDienThoai.Text, this.txtEmail.Text, int.Parse(this.ddlDanToc.SelectedValue.ToString()), int.Parse(this.ddlTonGiao.SelectedValue.ToString()), this.txtSucKhoe.Text, double.Parse(this.txtChieuCao.Text), int.Parse(this.txtCanNang.Text),
-            int.Parse(this.ddlTrinhDoPhoThong.SelectedValue.ToString()), int.Parse(this.ddlNgoaiNgu.SelectedValue.ToString()), int.Parse(this.ddlTinHoc.SelectedValue.ToString()), this.txtTrinhDoDaoTao.Text, this.txtTrinhDoKyNangNghe.Text, this.txtKhaNangNoiTroi.Text,
-            this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, int.Parse(ddlTrinhDoTinHoc.SelectedValue), int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
+        /////////////////////////////////
+        // Nếu là lao động tự do , cần kiểm tra các thông tin như sau :
+        ////////////////////////////////
+        if (this.ddlIdLoaiLaoDong.SelectedValue == "0"){
+           if( this.ddlDanToc.SelectedValue == "0")
+           {
+                this.lblMsg.Text = " Chưa chọn dân tộc  ";
+                this.ddlDanToc.Focus();
+                return;
+           }
+            if( this.txtTrinhDoKyNangNghe.Text.Trim() == "")
+            {
+                this.lblMsg.Text = "Đối với LĐ Tự Do : Trình độ kỹ năng nghề cần được khai báo";
+                this.txtTrinhDoKyNangNghe.Focus();
+                return;
+            }
+            if(  this.ddlXa_DC.SelectedValue == "0" )
+            {
+                this.lblMsg.Text = "Đối với LĐ Tự Do : Tỉnh,Huyện,Xã cần được khai báo ";
+                this.ddlXa_DC.Focus();
+                return;
+            }
+        
+        {
+           
+        }
+            }
+
+        ////////////////////////////////
+
+        if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, 
+                                         this.txtHoVaTen.Text,                                                  // * bắt buộc
+                                         TVSSystem.CVDate(this.txtNgaySinh.Value.ToString().Trim()),            // * 
+                                         this.txtCMND.Text, 
+                                         this.txtNoiCap.Text, 
+                                         TVSSystem.CVDate(this.txtNgayCapCMND.Value.ToString().Trim()),
+                                         this.txtBHXH.Text,
+                                         this.txtDienThoai.Text,                                                // * 
+                                         this.txtEmail.Text,
+                                         int.Parse(this.ddlDanToc.SelectedValue.ToString()),                    // * 
+                                         int.Parse(this.ddlTonGiao.SelectedValue.ToString()),                             
+                                         this.txtSucKhoe.Text, 
+                                         double.Parse(this.txtChieuCao.Text), 
+                                         int.Parse(this.txtCanNang.Text),
+                                         int.Parse(this.ddlTrinhDoPhoThong.SelectedValue.ToString()), 
+                                         int.Parse(this.ddlNgoaiNgu.SelectedValue.ToString()),
+                                         int.Parse(this.ddlTinHoc.SelectedValue.ToString()), 
+                                         this.txtTrinhDoDaoTao.Text,
+                                         this.txtTrinhDoKyNangNghe.Text,                                         // *
+                                         this.txtKhaNangNoiTroi.Text,                                           
+                                         this.ddlTinh_TT.SelectedItem.Text,                                     // * 
+                                         this.ddlHuyen_TT.SelectedItem.Text,                                    // * 
+                                         this.ddlXa_TT.SelectedItem.Text,                                       // * 
+                                         this.txtXom_TT.Text, 
+                                         this.ddlTinh_DC.SelectedItem.Text,
+                                         this.ddlHuyen_DC.SelectedItem.Text, 
+                                         this.ddlXa_DC.SelectedItem.Text, 
+                                         this.txtXom_DC.Text,
+                                         int.Parse(ddlTrinhDoTinHoc.SelectedValue),
+                                         int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
         {
             #region Luu thong tin vao phieu tu van
             string buf = this.txtViTriCongViec.Text.ToString();
@@ -665,4 +718,16 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         txtSucKhoe.Focus();
     } 
     #endregion
+
+    #region method KiemTraDauVaoNeuLaNldTuDo
+    public int KiemTraDauVaoNeuLaNldTuDo(string _hoten, string _ngaysinh, string _dantoc, string _ttHonNhan, string _diachiThuongTru, string _dienthoaiLienLac, string _trinhDoChuyenMon)
+    {
+        if (_hoten.Trim() == "" || _ngaysinh.Trim() == "" || _dantoc.Trim() == "" || _diachiThuongTru.Trim() == "" || _dienthoaiLienLac.Trim() == "" || _trinhDoChuyenMon.Trim() == "")
+        {
+            return 0;
+        }
+        return 1;
+    }
+    #endregion
+
 }

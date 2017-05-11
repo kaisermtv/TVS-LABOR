@@ -248,10 +248,32 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
 
         try
         {
-            if (this.objTuyenDung.setData(ref this.itemId, int.Parse(this.txtIDDonVi.Value.ToString()), int.Parse(this.ddlNhomNganh.SelectedValue.ToString()), int.Parse(this.ddlIdVitri.SelectedValue.ToString()), int.Parse(this.ddlIDChucVu.SelectedValue.ToString()),
-            int.Parse(this.ddlNganhNghe.SelectedValue.ToString()), int.Parse(this.txtSoLuongTuyenDung.Text), int.Parse(this.ddlIDDoTuoi.SelectedValue.ToString()), int.Parse(this.ddlIDGioiTinh.SelectedValue.ToString()),
-            int.Parse(ddlIDTrinhDoChuyenMon.SelectedValue.ToString()), this.txtUuTien.Text, this.txtNoiDungKhac.Text, this.txtMoTa.Text, int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), this.txtDiaDiem.Text, int.Parse(this.ddlIDTinh.SelectedValue.ToString()), this.ckbNuocNgoai.Checked, this.txtQuyenLoi.Text,
-            TVSSystem.CVDate(this.txtNgayBatDau.Value.ToString()), TVSSystem.CVDate(this.txtNgayKetThuc.Value.ToString()), this.ckbState.Checked, int.Parse(ddlyeuCauTinHoc.SelectedValue), int.Parse(ddlyeuCauNgoaiNgu.SelectedValue), txtNamKinhNghiem.Text, int.Parse(ddlThoiGianLamViec.SelectedValue),int.Parse(this.ddlTinHoc.SelectedValue.ToString()),int.Parse(this.ddlTrinhDoNgoaiNgu.SelectedValue.ToString())) == 1)
+            if (this.objTuyenDung.setData(ref this.itemId,  
+                                        int.Parse(this.txtIDDonVi.Value.ToString()),                    
+                                        int.Parse(this.ddlNhomNganh.SelectedValue.ToString()),
+                                        int.Parse(this.ddlIdVitri.SelectedValue.ToString()), 
+                                        int.Parse(this.ddlIDChucVu.SelectedValue.ToString()),
+                                        int.Parse(this.ddlNganhNghe.SelectedValue.ToString()),
+                                        int.Parse(this.txtSoLuongTuyenDung.Text), 
+                                        int.Parse(this.ddlIDDoTuoi.SelectedValue.ToString()),
+                                        int.Parse(this.ddlIDGioiTinh.SelectedValue.ToString()),
+                                        int.Parse(ddlIDTrinhDoChuyenMon.SelectedValue.ToString()),
+                                        this.txtUuTien.Text,
+                                        this.txtNoiDungKhac.Text, 
+                                        this.txtMoTa.Text, 
+                                        int.Parse(this.ddlIDMucLuong.SelectedValue.ToString()), 
+                                        this.txtDiaDiem.Text,
+                                        int.Parse(this.ddlIDTinh.SelectedValue.ToString()), 
+                                        this.ckbNuocNgoai.Checked, this.txtQuyenLoi.Text,
+                                        TVSSystem.CVDate(this.txtNgayBatDau.Value.ToString()), 
+                                        TVSSystem.CVDate(this.txtNgayKetThuc.Value.ToString()),
+                                        this.ckbState.Checked, 
+                                        int.Parse(ddlyeuCauTinHoc.SelectedValue),
+                                        int.Parse(ddlyeuCauNgoaiNgu.SelectedValue),
+                                        txtNamKinhNghiem.Text,
+                                        int.Parse(ddlThoiGianLamViec.SelectedValue),
+                                        int.Parse(this.ddlTinHoc.SelectedValue.ToString()),
+                                        int.Parse(this.ddlTrinhDoNgoaiNgu.SelectedValue.ToString())) == 1)
             {
                 Session["TuyenDungMessage"] = "Lưu thông tin thành công";
 
@@ -305,4 +327,6 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
         this.ddlNganhNghe.SelectedValue = "0";
     } 
     #endregion
+
+  
 }
