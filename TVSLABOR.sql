@@ -15,3 +15,5 @@ ALTER TABLE dbo.TblNldTuVan ADD LanTuVan int default(0)
 
 --04/05/2017
 ALTER TABLE dbo.TblNldDaoTao ADD TruongHoc nvarchar(500)
+--09/05/2017
+ALTER TABLE dob.[TblNguoiLaoDong] ADD StateLapGiaDinh int  -- khong chọn kiểu bit vì nếu có thêm các trạng thái : ly hôn , ... 
