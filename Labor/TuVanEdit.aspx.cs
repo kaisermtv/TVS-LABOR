@@ -533,11 +533,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ddlXa_DC.Focus();
                 return;
             }
-        
-        {
-           
         }
-            }
 
         ////////////////////////////////
 
