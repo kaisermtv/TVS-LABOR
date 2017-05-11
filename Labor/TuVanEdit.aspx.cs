@@ -220,7 +220,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 // nội dung khác của vị trí 2 sẻ ko hoạt động
                 this.txtNoiDungKhac.Text = this.objTableNldTuVan.Rows[0]["NoiDungKhac"].ToString();
                 this.ddlIdLoaiLaoDong.SelectedValue = this.objTableNldTuVan.Rows[0]["IDLoaiLaoDong"].ToString();
-
+               
                 
 
                 if (this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString() != "0") this.txtMucLuongThapNhat2.Text = this.objTableNldTuVan.Rows[0]["MucLuongThapNhat2"].ToString();
@@ -270,7 +270,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
                 this.ddlTrinhDoTinHoc.SelectedValue = this.objTable.Rows[0]["IdTrinhDoTinHoc"].ToString();
                 this.ddlTrinhDoNgoaiNgu.SelectedValue = this.objTable.Rows[0]["IdTrinhDoNgoaiNgu"].ToString();
-
+                // chọn trạng thái gia đình
+                this.ckDocThan.Checked = (this.objTable.Rows[0]["StateLapGiaDinh"].ToString() == "0" ? true : false);
+                this.ckKetHon.Checked = (this.objTable.Rows[0]["StateLapGiaDinh"].ToString() == "1" ? true : false);
                 // ****************** chọn tỉnh ******************
                 for (int i = 0; i < this.ddlTinh_TT.Items.Count; i++)
                 {
@@ -527,15 +529,19 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.txtTrinhDoKyNangNghe.Focus();
                 return;
             }
-            if(  this.ddlXa_DC.SelectedValue == "0" )
+            if (this.ddlXa_TT.SelectedValue == "0")
             {
-                this.lblMsg.Text = "Đối với LĐ Tự Do : Tỉnh,Huyện,Xã cần được khai báo ";
-                this.ddlXa_DC.Focus();
+                this.lblMsg.Text = "Đối với LĐ Tự Do :Mục Tỉnh,Huyện,Xã thường trú cần được khai báo ";
+                this.ddlXa_TT.Focus();
                 return;
             }
         }
-
-        ////////////////////////////////
+         int TTGiaDinh = -1;    // trạng thái ko xác định
+         if(! (ckDocThan.Checked == false && ckKetHon.Checked == false))
+          {
+             TTGiaDinh = (ckDocThan.Checked ? 0 : 1); // 0 : độc thân , 1: Kết hôn
+          }
+        ///////////////////////////////////////////////////////////////////////////// 
 
         if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, 
                                          this.txtHoVaTen.Text,                                                  // * bắt buộc
@@ -566,7 +572,9 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                                          this.ddlXa_DC.SelectedItem.Text, 
                                          this.txtXom_DC.Text,
                                          int.Parse(ddlTrinhDoTinHoc.SelectedValue),
-                                         int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue), GioiTinhb) == 1)
+                                         int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue),
+                                         TTGiaDinh,
+                                         GioiTinhb) == 1)
         {
             #region Luu thong tin vao phieu tu van
             string buf = this.txtViTriCongViec.Text.ToString();
@@ -726,4 +734,14 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     }
     #endregion
 
+    #region checkbox tình trạng gia đình
+    protected void ckDocThan_CheckedChanged(object sender, EventArgs e)
+    {
+        ckKetHon.Checked = false;
+    }
+    protected void ckKetHon_CheckedChanged(object sender, EventArgs e)
+    {
+        ckDocThan.Checked = false;
+    }
+    #endregion
 }
