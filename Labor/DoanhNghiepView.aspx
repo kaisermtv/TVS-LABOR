@@ -36,7 +36,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>Điện thoại DN :</td>
+                    <td>Điện thoại  :</td>
                     <td>
                         <asp:Label ID="txtDienThoai" runat="server" Enabled="false"></asp:Label>
                     </td>

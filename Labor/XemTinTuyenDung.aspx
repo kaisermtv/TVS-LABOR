@@ -90,9 +90,9 @@
                             <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                             <td class="DataListTableTdItemJustify">
                                 <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
-                                &nbsp;<a href="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src="../Images/View.png" style="margin-top: -3px;"></a>
+                                &nbsp;<a href="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src="../Images/View.png" alt="Xem chi tiết" style="margin-top: -3px;"></a>
                             </td>
-                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href="#"><img onclick="XemThongTinTuyenDung('<%# Eval("IdTuyenDung") %>')" src="../Images/View.png" style="margin-top: -3px;"></a></td>
+                            <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href="#"><img onclick="XemThongTinTuyenDung('<%# Eval("IdTuyenDung") %>')" src="../Images/View.png" alt="Xem chi tiết" style="margin-top: -3px;"></a></td>
                             <td class="DataListTableTdItemRight" style ="padding-right:15px!important;">
                                 <%# Eval("SoLuongTuyenDung") %>
                                 &nbsp;<a href="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div>
@@ -147,7 +147,7 @@
               $(function () {
                   /* QUICK SEARCH - Tìm nhanh , tìm mọi thứ  */
                   $('#MainContent_dtlTuyenDung').searchable({       // lấy thẻ chứa ngoài cùng
-                      searchField: '#txtSearch',        // lấy sự kiện tại txtSearch
+                      searchField: '#txtSearch1',        // lấy sự kiện tại txtSearch
                       selector: 'tr',                               // từng dòng là các thẻ <tr>
                       childSelector: 'td',                          // tìm tất cả các thẻ td
                       show: function (elem) {

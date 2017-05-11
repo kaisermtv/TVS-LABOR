@@ -22,6 +22,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     public string sVitri = "", sMucluong = "", sDieukien = "", sDiadiem = "", sNuocNgoai = "";
     #endregion
 
+    string page = "";
+
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -79,6 +81,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             this.sNuocNgoai = "";
         }
+       
+
         #endregion
 
         if (!Page.IsPostBack)
@@ -99,13 +103,31 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
 
             this.txtSearch.Value = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "TblDoanhNghiep", "TenDonVi");
             this.getData();
+
+           
         }
+        if(txtSearch.Value ==""| txtSearch==null)
+        { 
+        try
+        {
+            this.page = Request.QueryString["Page"].ToString();
+            // nếu là CCPager request page
+               getSearchData();
+        }
+        catch
+        {
+            //   return;
+        }
+        }
+        
+      
     }
     #endregion
 
     #region getData()
     private void getData()
     {
+       
         this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()),"", this.sVitri, this.sMucluong, this.sDiadiem, this.sNuocNgoai);
         cpTuyenDung.MaxPages = 1000;
         cpTuyenDung.PageSize = 12;
@@ -126,10 +148,9 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     }
     #endregion
 
-    #region method btnSearch_Click
-    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    private void getSearchData()
     {
-        this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()), "", "", "", "",this.sNuocNgoai);
+        this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()), "", "", "", "", this.sNuocNgoai);
         cpTuyenDung.MaxPages = 1000;
         cpTuyenDung.PageSize = 12;
         cpTuyenDung.DataSource = this.objTable.DefaultView;
@@ -144,6 +165,12 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             this.tblABC.Visible = true;
         }
+    }
+
+    #region method btnSearch_Click
+    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    {
+        getSearchData();
 
         index = 1;
 
