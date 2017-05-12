@@ -78,6 +78,9 @@ public partial class Labor_PrintPhieuTuVan : System.Web.UI.Page
                     this.NLDTrinhDoKyNangNghe = this.objTableNguoiLaoDong.Rows[0]["TrinhDoKyNangNghe"].ToString();
                     this.NLDKhaNangNoiTroi = this.objTableNguoiLaoDong.Rows[0]["KhaNangNoiTroi"].ToString();
 
+                    chkDocThan.Checked = (this.objTableNguoiLaoDong.Rows[0]["StateLapGiaDinh"].ToString() == "0" ? true : false);
+                    chkKetHon.Checked = (this.objTableNguoiLaoDong.Rows[0]["StateLapGiaDinh"].ToString() == "1" ? true : false);
+
                     TrinhDoTinHoc objTDTinHoc = new TrinhDoTinHoc();
                     trinhDoTinHoc = objTDTinHoc.getNameById((int)this.objTableNguoiLaoDong.Rows[0]["IdTrinhDoTinHoc"]);
                     TrinhDoNgoaiNgu objTDNgoaiNgu = new TrinhDoNgoaiNgu();

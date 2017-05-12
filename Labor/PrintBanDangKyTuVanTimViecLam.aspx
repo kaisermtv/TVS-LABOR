@@ -87,12 +87,12 @@
                         </td>
                             <td>Độc thân </td>
                          <td style="float:left; align-items:center ">
-                            <asp:CheckBox ID="CheckBox3" runat="server" />
+                            <asp:CheckBox ID="chkDocThan" runat="server" />
                              &nbsp;&nbsp;&nbsp;&nbsp; 
                         </td>
                         <td  style="margin-left:20px">Kết hôn</td>
                          <td>
-                            <asp:CheckBox ID="CheckBox4" runat="server" />
+                            <asp:CheckBox ID="chkKetHon" runat="server" />
                         </td>
                         <td class="HoVaTen " style="width:40%">
                         </td>
