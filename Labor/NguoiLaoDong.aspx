@@ -21,13 +21,13 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Mã số
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 16%;">Họ và tên
+                <td class="DataListTableHeaderTdItemJustify" style="width: 25%;">Họ và tên
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 9%;">Số CMND
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 11%;">Điện thoại
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 35%;">Địa chỉ
+                <td class="DataListTableHeaderTdItemJustify" style="width: 20%;">Địa chỉ
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái
                 </td>
@@ -48,7 +48,7 @@
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("Ma") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 16%;">
+                    <td class="DataListTableTdItemJustify" style="width: 25%; overflow:hidden">
                         <%# Eval("HoVaTen") %> &nbsp;<div class="badge"><a href ="TuVan.aspx?n=<%# Eval("HoVaTen") %>"><%# Eval("CountItem") %></a></div>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 9%;">
@@ -57,7 +57,7 @@
                      <td class="DataListTableTdItemJustify" style="width: 11%;">
                         <%# Eval("DienThoai") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 35%;">
+                    <td class="DataListTableTdItemJustify" style="width: 20%;overflow:hidden">
                         <%# Eval("DiaChi") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
