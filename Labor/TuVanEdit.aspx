@@ -165,13 +165,14 @@
                 </asp:DropDownList>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tôn giáo:</td>
-            <td style="width: 20%;" colspan="1">
-                <asp:DropDownList ID="ddlTonGiao" CssClass="form-control" runat="server" Style="width: 30%;">
+            <td colspan="1">
+                <asp:DropDownList ID="ddlTonGiao" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
-            <td style="width: 40%;" colspan="3">
-                        Độc thân    <asp:CheckBox ID="ckDocThan" runat="server" TextAlign="Left" OnCheckedChanged="ckDocThan_CheckedChanged" AutoPostBack="true"/>   &nbsp;&nbsp;&nbsp;
-                        Kết hôn    <asp:CheckBox ID="ckKetHon" runat="server" TextAlign="Left"  OnCheckedChanged="ckKetHon_CheckedChanged"  AutoPostBack="true" /> 
+            <td ></td>
+            <td  colspan="2">
+                        <label for="MainContent_ckDocThan">Độc thân</label>&nbsp;&nbsp;<asp:RadioButton ID="ckDocThan" GroupName="kethon" runat="server" TextAlign="Left"/>   &nbsp;&nbsp;&nbsp;
+                        <label for="MainContent_ckKetHon">Kết hôn</label>&nbsp;&nbsp;<asp:RadioButton ID="ckKetHon" GroupName="kethon" runat="server" TextAlign="Left"/> 
             </td>
         </tr>
 
