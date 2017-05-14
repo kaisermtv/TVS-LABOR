@@ -26,7 +26,7 @@
         <tr>
             <td>
                 <div class ="ViecLam" style="width: 200px; height: 100px; background-color: #640f6c;">
-                    <a href="../Labor/TuVanXuatKhau.aspx">Xuất khẩu lao động <%Response.Write(this.strCountXuatKhauLaoDong); %></a>
+                    <a href="../Labor/TuVanXuatKhau.aspx">Xuất khẩu & Du học <%Response.Write(this.strCountXuatKhauLaoDong); %></a>
                 </div>
             </td>
             <td colspan="2">
