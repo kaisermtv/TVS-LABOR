@@ -17,7 +17,7 @@ public class NguoiLaoDong :DataClass
     #region method setData
     public int setData(ref int IDNguoiLaoDong, string Ma, string HoVaTen, DateTime NgaySinh, int IDGioiTinh, string NoiSinh, string QueQuan, string DienThoai, string Email, int IDDanToc, int IDTonGiao, string TruongTHPT, string TruongDiaChi, string NienKhoa, string SucKhoe,
         double ChieuCao, double CanNang, int IDTrinhDoPhoThong, int IDNgoaiNgu, int IDTinHoc, string CMND, DateTime NgayCapCMND, string NoiCap, string BHXH, string TaiKhoan, string NoiDungKhac, bool State,
-        string Tinh_TT, string Huyen_TT, string Xa_TT, string Xom_TT, string Tinh_DC, string Huyen_DC, string Xa_DC, string Xom_DC)
+        string Tinh_TT, string Huyen_TT, string Xa_TT, string Xom_TT, string Tinh_DC, string Huyen_DC, string Xa_DC, string Xom_DC, int StateLapGiaDinh )
     {
         int tmpValue = 0;
 
@@ -26,12 +26,12 @@ public class NguoiLaoDong :DataClass
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong) ";
-            sqlQuery += "BEGIN INSERT INTO TblNguoiLaoDong(Ma,HoVaTen,NgaySinh,IDGioiTinh,NoiSinh,QueQuan,DienThoai,Email,IDDanToc,IDTonGiao,TruongTHPT,TruongDiaChi,NienKhoa,SucKhoe,";
+            sqlQuery += "BEGIN INSERT INTO TblNguoiLaoDong(Ma,HoVaTen,NgaySinh,StateLapGiaDinh,IDGioiTinh,NoiSinh,QueQuan,DienThoai,Email,IDDanToc,IDTonGiao,TruongTHPT,TruongDiaChi,NienKhoa,SucKhoe,";
             sqlQuery += "ChieuCao,CanNang,IDTrinhDoPhoThong,IDNgoaiNgu,IDTinHoc,CMND,NgayCapCMND,NoiCap,BHXH,TaiKhoan,NoiDungKhac,State,Tinh_TT,Huyen_TT,Xa_TT,Xom_TT,Tinh_DC,Huyen_DC,Xa_DC,Xom_DC) ";
-            sqlQuery += " VALUES(@Ma,@HoVaTen,@NgaySinh,@IDGioiTinh,@NoiSinh,@QueQuan,@DienThoai,@Email,@IDDanToc,@IDTonGiao,@TruongTHPT,@TruongDiaChi,@NienKhoa,@SucKhoe,";
+            sqlQuery += " VALUES(@Ma,@HoVaTen,@NgaySinh,@StateLapGiaDinh,@IDGioiTinh,@NoiSinh,@QueQuan,@DienThoai,@Email,@IDDanToc,@IDTonGiao,@TruongTHPT,@TruongDiaChi,@NienKhoa,@SucKhoe,";
             sqlQuery += "@ChieuCao,@CanNang,@IDTrinhDoPhoThong,@IDNgoaiNgu,@IDTinHoc,@CMND,@NgayCapCMND,@NoiCap,@BHXH,@TaiKhoan,@NoiDungKhac,@State,@Tinh_TT,@Huyen_TT,@Xa_TT,@Xom_TT,@Tinh_DC,@Huyen_DC,@Xa_DC,@Xom_DC) END ";
             sqlQuery += "ELSE BEGIN UPDATE TblNguoiLaoDong SET Ma = @Ma,HoVaTen = @HoVaTen,NgaySinh = @NgaySinh,IDGioiTinh = @IDGioiTinh,NoiSinh = @NoiSinh,QueQuan = @QueQuan,DienThoai = @DienThoai,Email = @Email,IDDanToc = @IDDanToc,IDTonGiao = @IDTonGiao,TruongTHPT = @TruongTHPT,TruongDiaChi = @TruongDiaChi,NienKhoa = @NienKhoa,SucKhoe = @SucKhoe,";
-            sqlQuery += "ChieuCao = @ChieuCao,CanNang = @CanNang,IDTrinhDoPhoThong = @IDTrinhDoPhoThong,IDNgoaiNgu = @IDNgoaiNgu,IDTinHoc = @IDTinHoc,CMND = @CMND,NgayCapCMND = @NgayCapCMND, NoiCap = @NoiCap, BHXH = @BHXH,TaiKhoan = @TaiKhoan,NoiDungKhac = @NoiDungKhac, State = @State, Tinh_TT = @Tinh_TT,Huyen_TT = @Huyen_TT,Xa_TT = @Xa_TT,Xom_TT = @Xom_TT,Tinh_DC = @Tinh_DC,Huyen_DC = @Huyen_DC, Xa_DC = @Xa_DC,Xom_DC = @Xom_DC WHERE IDNguoiLaoDong = @IDNguoiLaoDong END ";
+            sqlQuery += "ChieuCao = @ChieuCao,CanNang = @CanNang,IDTrinhDoPhoThong = @IDTrinhDoPhoThong,IDNgoaiNgu = @IDNgoaiNgu,IDTinHoc = @IDTinHoc,CMND = @CMND,NgayCapCMND = @NgayCapCMND, NoiCap = @NoiCap, BHXH = @BHXH,TaiKhoan = @TaiKhoan,NoiDungKhac = @NoiDungKhac, State = @State, Tinh_TT = @Tinh_TT,Huyen_TT = @Huyen_TT,Xa_TT = @Xa_TT,Xom_TT = @Xom_TT,Tinh_DC = @Tinh_DC,Huyen_DC = @Huyen_DC, Xa_DC = @Xa_DC,Xom_DC = @Xom_DC,StateLapGiaDinh= @StateLapGiaDinh WHERE IDNguoiLaoDong = @IDNguoiLaoDong END ";
 
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -81,6 +81,7 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("Huyen_TT", SqlDbType.NVarChar).Value = Huyen_TT;
             Cmd.Parameters.Add("Xa_TT", SqlDbType.NVarChar).Value = Xa_TT;
             Cmd.Parameters.Add("Xom_TT", SqlDbType.NVarChar).Value = Xom_TT;
+            Cmd.Parameters.Add("StateLapGiaDinh", SqlDbType.Int).Value = StateLapGiaDinh;
 
             Cmd.ExecuteNonQuery();
 

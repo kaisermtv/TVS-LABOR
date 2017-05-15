@@ -27,7 +27,7 @@
                 <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ngày sinh:</td>
-            <td style="width: 20%;">
+            <td style="width: 20%;" colspan="2">
                 <div class='input-group date' id='datetimepicker1' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control" id="txtNgaySinh" runat="server" />
                     <span class="input-group-addon">
@@ -50,14 +50,20 @@
                 </asp:DropDownList>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi sinh:</td>
-            <td style="width: 70%;" colspan="3">
+            <td>
                 <asp:TextBox ID="txtNoiSinh" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+            <td></td>
+            <td colspan="2">
+                <label for="MainContent_ckDocThan">Độc thân</label>&nbsp;&nbsp;<asp:RadioButton ID="ckDocThan" GroupName="kethon" runat="server" TextAlign="Left"/>   &nbsp;&nbsp;&nbsp;
+                        <label for="MainContent_ckKetHon">Kết hôn</label>&nbsp;&nbsp;<asp:RadioButton ID="ckKetHon" GroupName="kethon" runat="server" TextAlign="Left"/> 
+            
             </td>
         </tr>
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Quê quán:</td>
-            <td style="width: 90%;" colspan="5">
+            <td style="width: 90%;" colspan="6">
                 <asp:TextBox ID="txtQueQuan" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
@@ -91,6 +97,9 @@
                     <td style="width: 20%;">
                         <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
+
+                    <td rowspan="2" style="text-align: right;">
+                        <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
                 </tr>
 
                 <tr style="height: 40px;">
@@ -130,7 +139,7 @@
                 <asp:TextBox ID="txtDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ email:</td>
-            <td colspan="3">
+            <td colspan="4">
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
@@ -142,7 +151,7 @@
                 </asp:DropDownList>
             </td>
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tôn giáo:</td>
-            <td style="width: 70%;" colspan="3">
+            <td style="width: 70%;" colspan="4">
                 <asp:DropDownList ID="ddlTonGiao" CssClass ="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </td>
@@ -150,7 +159,7 @@
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Trường THPT:</td>
-            <td colspan="5">
+            <td colspan="6">
                 <table border="0" style="width: 100%;">
                     <tr>
                         <td style="width: 38%;">
@@ -173,7 +182,7 @@
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Sức khỏe:</td>
-            <td colspan="5">
+            <td colspan="6">
                 <table border="0" style="width: 100%;">
                     <tr>
                         <td style="width: 38%;">
@@ -196,7 +205,7 @@
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ngoại ngữ:</td>
-            <td colspan="5">
+            <td colspan="6">
                 <table border="0" style="width: 100%;">
                     <tr>
                         <td style="width: 38%;">
@@ -222,7 +231,7 @@
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Số CMND:</td>
-            <td colspan="5">
+            <td colspan="6">
                 <table border="0" style="width: 100%;">
                     <tr>
                         <td style="width: 38%;">
@@ -256,7 +265,7 @@
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Số BHXH:</td>
-            <td colspan="5">
+            <td colspan="6">
                 <table border="0" style="width: 100%;">
                     <tr>
                         <td style="width: 38%;">
@@ -282,14 +291,14 @@
             <td style="width: 10%;">
                 <asp:CheckBox ID="ckbState" Checked="true" runat="server" Style="font-weight: normal;" />&nbsp;&nbsp;Kích hoạt
             </td>
-            <td colspan="4" style="padding-left: 10px;">
+            <td colspan="5" style="padding-left: 10px;">
                 <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
             </td>
         </tr>
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-            <td style="width: 90%;" colspan="5">
+            <td style="width: 90%;" colspan="6">
                 <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                 <button class="btn btn-success" type="button" onclick="OpenForm1()" id="btnQuaTrinhDaoTao" runat="server">Quá trình đào tạo</button>
                 <button class="btn btn-success" type="button" onclick="OpenForm2()" id="btnQuaTrinhCongTac" runat="server">Quá trình công tác</button>
