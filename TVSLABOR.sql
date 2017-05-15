@@ -34,3 +34,6 @@
 --ALTER TABLE dbo.TblTuyenDung ADD IdQuocGia int Default(0)
 --ALTER TABLE dbo.TblTuyenDung ADD NameQuocGia nvarchar(250)
 --UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
+--Thứ 15/05/2017
+ALTER TABLE dbo.[TblDoanhNghiep] ADD [ThuTuUuTien] [int] NULL  Default(0) ;
+UPDATE TblDoanhNghiep SET TblDoanhNghiep.ThuTuUuTien = 0

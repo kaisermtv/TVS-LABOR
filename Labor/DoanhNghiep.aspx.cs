@@ -15,6 +15,7 @@ public partial class Admin_DoanhNghiep : System.Web.UI.Page
     private SearchConfig objSearchConfig = new SearchConfig();
     private int currPage = 0;
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
+    private int itemId;
     #endregion
 
     #region method Page_Load
@@ -29,6 +30,15 @@ public partial class Admin_DoanhNghiep : System.Web.UI.Page
         //{
         //    Response.Redirect("NoPermission.aspx");
         //}
+        try
+        {
+            this.itemId = int.Parse(Request.QueryString["id"].ToString());
+            this.objDoanhNghiep.setThuTuUuTien(this.itemId);
+        }
+        catch
+        {
+            this.itemId = 0;
+        }
         if (!Page.IsPostBack)
         {
             this.txtSearch.Value = this.objSearchConfig.getData(Session["ACCOUNT"].ToString(), "TblDoanhNghiep", "TenDonVi");
