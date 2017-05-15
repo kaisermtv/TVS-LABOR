@@ -147,12 +147,12 @@
                 <table style="width: 100%">
                     <tr>
                         <td style="width: 45%">
-                           <asp:DropDownList ID="ddlTrinhDoNgoaiNgu" CssClass="form-control" runat="server" Style="width: 100%;">
+                            <asp:DropDownList ID="ddlTrinhDoNgoaiNgu" CssClass="form-control" runat="server" Style="width: 100%;">
                             </asp:DropDownList>
                         </td>
                         <td style="width: 20%; padding-right: 5px; text-align: right">YC.Tin Học:</td>
                         <td>
-                             <asp:DropDownList ID="ddlyeuCauTinHoc" runat="server" CssClass="form-control" Style="width: 100%;">
+                            <asp:DropDownList ID="ddlyeuCauTinHoc" runat="server" CssClass="form-control" Style="width: 100%;">
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -161,7 +161,7 @@
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tin học:</td>
             <td style="width: 20%;">
                 <asp:DropDownList ID="ddlTinHoc" CssClass="form-control" runat="server" Style="width: 100%;">
-                            </asp:DropDownList>
+                </asp:DropDownList>
             </td>
         </tr>
 
@@ -204,20 +204,20 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Tỉnh, thành phố:</td>
             <td style="width: 12%;">
-                 <asp:DropDownList ID="ddlIDTinh" runat="server" Style="width: 100%;" CssClass="form-control" OnSelectedIndexChanged="ddlIDTinh_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlIDTinh" runat="server" Style="width: 100%;" CssClass="form-control" OnSelectedIndexChanged="ddlIDTinh_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
             <td style="width: 8%; text-align: right; padding-right: 5px;">Mức lương:</td>
             <td style="width: 40%;">
-                <table style="width: 100%">
+                <table style="width: 100%" border="0">
                     <tr>
                         <td style="width: 45%">
-                           <asp:DropDownList ID="ddlIDMucLuong" runat="server" CssClass="form-control" Style="width: 100%;">
+                            <asp:DropDownList ID="ddlIDMucLuong" runat="server" CssClass="form-control" Style="width: 100%;">
                             </asp:DropDownList>
                         </td>
                         <td style="width: 20%; padding-right: 5px; text-align: right">TG làm việc:</td>
                         <td>
-                              <asp:DropDownList ID="ddlThoiGianLamViec" runat="server" CssClass="form-control" Style="width: 100%;">
+                            <asp:DropDownList ID="ddlThoiGianLamViec" runat="server" CssClass="form-control" Style="width: 100%;">
                                 <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
                                 <asp:ListItem Value="1"> Hành chính </asp:ListItem>
                                 <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
@@ -228,9 +228,21 @@
                     </tr>
                 </table>
             </td>
-            <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-            <td style="width: 20%;">
-                <asp:CheckBox ID="ckbNuocNgoai" runat="server" Style="font-weight: normal;" />&nbsp;&nbsp;Làm việc ở nước ngoài
+            <td style="width: 30%;" colspan="2">
+                <table border="0" style ="width:100%;">
+                    <tr>
+                        <td style ="padding-left:10px;">
+                            <asp:CheckBox ID="ckbNuocNgoai" runat="server" Style="font-weight: normal;" />&nbsp;Nước ngoài
+                        </td>
+                        <td style ="padding-right:10px;">
+                            <input type="hidden" name="txtIdQuocGia" id="txtIdQuocGia" runat="server" />
+                            <input ID="txtNameQuocGia" readonly="true" runat="server" class="form-control" style="width: 100% !important; float: left;"/>
+                        </td>
+                        <td style ="width:50px;">
+                            <button class="btn btn-primary" type="button" onclick="SelectNational()" style="height: 34px !important; line-height: 14px !important;">Chọn</button>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
 
@@ -266,8 +278,7 @@
                 </script>
 
             </td>
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Trạng thái:</td>
-            <td style="width: 20%;">
+            <td style="width: 30%; padding-left:10px;" colspan="2">
                 <asp:CheckBox ID="ckbState" Checked="true" runat="server" Style="font-weight: normal;" />&nbsp;&nbsp;Kích hoạt
             </td>
         </tr>
@@ -294,7 +305,7 @@
                 <td>
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label></td>
                 <td style="text-align: right; padding-right: 65px;">
-                    <a href="/Labor/DoanhNghiepEdit.aspx?id=<%=txtIDDonVi.Value %>" class="btn btn-danger" style ="color:#fff;">Thông tin doanh nghiệp</a>
+                    <a href="/Labor/DoanhNghiepEdit.aspx?id=<%=txtIDDonVi.Value %>" class="btn btn-danger" style="color: #fff;">Thông tin doanh nghiệp</a>
                     <a href="/Labor/TuyenDungEdit.aspx?did=<%=txtIDDonVi.Value %>&n=<%= HttpUtility.UrlEncode(txtTenDonVi.Text) %>" class="btn btn-default">Thêm mới</a>
                     <a href="/Labor/TuyenDung.aspx" class="btn btn-default">Thoát</a>
                 </td>
@@ -323,6 +334,32 @@
                 newWindow.focus();
             }
         }
+
+        function SelectNational() {
+
+            var ckbNuocNgoai = document.getElementById("MainContent_ckbNuocNgoai").checked;
+
+            if (ckbNuocNgoai) {
+
+                var w = 1000;
+                var h = 600;
+
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("ChonQuocGia.aspx", "CHỌN QUỐC GIA", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
+                }
+            }
+        }
+
     </script>
 
 </asp:Content>

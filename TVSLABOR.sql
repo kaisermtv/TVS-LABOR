@@ -16,4 +16,21 @@
 ----04/05/2017
 --ALTER TABLE dbo.TblNldDaoTao ADD TruongHoc nvarchar(500)
 ----09/05/2017
-ALTER TABLE dbo.[TblNguoiLaoDong] ADD StateLapGiaDinh int  -- khong chọn kiểu bit vì nếu có thêm các trạng thái : ly hôn , ... 
+--ALTER TABLE dbo.[TblNguoiLaoDong] ADD StateLapGiaDinh int  -- khong chọn kiểu bit vì nếu có thêm các trạng thái : ly hôn , ... 
+
+--14/05/2017
+--CREATE TABLE [dbo].[TblQuocGia](
+--	[IdQuocGia] [int] IDENTITY(1,1) NOT NULL,
+--	[CodeQuocGia] [nvarchar](50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+--	[NameQuocGia] [nvarchar](250) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+--	[Region] [nvarchar](250) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+--	[State] [bit] NULL CONSTRAINT [DF_TblQuocGia_State]  DEFAULT ((0)),
+-- CONSTRAINT [PK_TblQuocGia] PRIMARY KEY CLUSTERED 
+--(
+--	[IdQuocGia] ASC
+--)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+--) ON [PRIMARY]
+
+--ALTER TABLE dbo.TblTuyenDung ADD IdQuocGia int Default(0)
+--ALTER TABLE dbo.TblTuyenDung ADD NameQuocGia nvarchar(250)
+--UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL

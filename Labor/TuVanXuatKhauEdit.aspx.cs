@@ -77,10 +77,14 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
                 if (this.DuHoc)
                 {
                     this.strHtmlDuHoc = "Du học";
+                    this.linkThongTinPhuHuynh.Disabled = false;
+                    this.linkThongTinPhuHuynh.HRef = "#menu1";
                 }
                 else
                 {
                     this.strHtmlDuHoc = "Xuất khẩu lao động";
+                    this.linkThongTinPhuHuynh.Disabled = true;
+                    this.linkThongTinPhuHuynh.HRef = "#";
                 }
                 #endregion
 
@@ -89,7 +93,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
                 this.txtNameNldDangKy.Text = this.objTable.Rows[0]["HoVaTen"].ToString();
                 if (this.objTable.Rows[0]["NgaySinh"].ToString() != "")
                 {
-                    this.txtNgaySinh.Text = DateTime.Parse(this.objTable.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
+                    this.txtNgaySinh.Text = TVSSystem.CVDate(this.objTable.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
                 }
                 this.txtGioiTinh.Text = this.objTable.Rows[0]["IDGioiTinh"].ToString().Replace("1","Nam").Replace("2","Nữ");
                 this.txtNLDDiaChi.Text = this.objTable.Rows[0]["NLDDiaChi"].ToString();
@@ -138,7 +142,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
 
                 if (this.objTable.Rows[0]["NgayDangKyTuVan"].ToString() != "")
                 {
-                    this.txtNgayDangKyTuVan.Value = DateTime.Parse(this.objTable.Rows[0]["NgayDangKyTuVan"].ToString()).ToString();
+                    this.txtNgayDangKyTuVan.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayDangKyTuVan"].ToString()).ToString();
                 }
 
                 this.txtDiaDiem.Text = this.objTable.Rows[0]["DiaDiem"].ToString();
@@ -147,33 +151,33 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
                 this.txtNguoiXuLy.Text = this.objTable.Rows[0]["NguoiXuLy"].ToString();
                 if (this.objTable.Rows[0]["NgayCocTien"].ToString() != "")
                 {
-                    this.txtNgayCocTien.Value = DateTime.Parse(this.objTable.Rows[0]["NgayCocTien"].ToString()).ToString();
+                    this.txtNgayCocTien.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayCocTien"].ToString()).ToString();
                 }
                 this.ddlIDDaoTaoMonHoc.SelectedValue = this.objTable.Rows[0]["IDDaoTaoMonHoc"].ToString();
                 this.txtNoiDaoTao.Text = this.objTable.Rows[0]["NoiDaoTao"].ToString();
                 if (this.objTable.Rows[0]["NgayBatDau"].ToString() != "")
                 {
-                    this.txtNgayBatDau.Value = DateTime.Parse(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString();
+                    this.txtNgayBatDau.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString();
                 }
                 if (this.objTable.Rows[0]["NgayKetThuc"].ToString() != "")
                 {
-                    this.txtNgayKetThuc.Value = DateTime.Parse(this.objTable.Rows[0]["NgayKetThuc"].ToString()).ToString();
+                    this.txtNgayKetThuc.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayKetThuc"].ToString()).ToString();
                 }
                 if (this.objTable.Rows[0]["NgayXuatCanhDuKien"].ToString() != "")
                 {
-                    this.txtNgayXuatCanhDuKien.Value = DateTime.Parse(this.objTable.Rows[0]["NgayXuatCanhDuKien"].ToString()).ToString();
+                    this.txtNgayXuatCanhDuKien.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayXuatCanhDuKien"].ToString()).ToString();
                 }
                 if (this.objTable.Rows[0]["NgayViSa"].ToString() != "")
                 {
-                    this.txtNgayViSa.Value = DateTime.Parse(this.objTable.Rows[0]["NgayViSa"].ToString()).ToString();
+                    this.txtNgayViSa.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayViSa"].ToString()).ToString();
                 }
                 if (this.objTable.Rows[0]["NgayXuatCanh"].ToString() != "")
                 {
-                    this.txtNgayXuatCanh.Value = DateTime.Parse(this.objTable.Rows[0]["NgayXuatCanh"].ToString()).ToString();
+                    this.txtNgayXuatCanh.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayXuatCanh"].ToString()).ToString();
                 }
                 if (this.objTable.Rows[0]["NgayVe"].ToString() != "")
                 {
-                    this.txtNgayVe.Value = DateTime.Parse(this.objTable.Rows[0]["NgayVe"].ToString()).ToString();
+                    this.txtNgayVe.Value = TVSSystem.CVDate(this.objTable.Rows[0]["NgayVe"].ToString()).ToString();
                 }
                 this.txtNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
                 this.txtNguoiGioiThieu.Text = this.objTable.Rows[0]["NguoiGioiThieu"].ToString();
@@ -218,7 +222,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayDatCoc;
         try
         {
-            NgayDatCoc = DateTime.Parse(this.txtNgayCocTien.Value.Trim());
+            NgayDatCoc = TVSSystem.CVDate(this.txtNgayCocTien.Value.Trim());
         }
         catch
         {
@@ -228,7 +232,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayBatDau;
         try
         {
-            NgayBatDau = DateTime.Parse(this.txtNgayBatDau.Value.Trim());
+            NgayBatDau = TVSSystem.CVDate(this.txtNgayBatDau.Value.Trim());
         }
         catch
         {
@@ -238,7 +242,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayKetThuc;
         try
         {
-            NgayKetThuc = DateTime.Parse(this.txtNgayKetThuc.Value.Trim());
+            NgayKetThuc = TVSSystem.CVDate(this.txtNgayKetThuc.Value.Trim());
         }
         catch
         {
@@ -248,7 +252,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayXuatCanhDuKien;
         try
         {
-            NgayXuatCanhDuKien = DateTime.Parse(this.txtNgayXuatCanhDuKien.Value.Trim());
+            NgayXuatCanhDuKien = TVSSystem.CVDate(this.txtNgayXuatCanhDuKien.Value.Trim());
         }
         catch
         {
@@ -258,7 +262,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayViSa;
         try
         {
-            NgayViSa = DateTime.Parse(this.txtNgayViSa.Value.Trim());
+            NgayViSa = TVSSystem.CVDate(this.txtNgayViSa.Value.Trim());
         }
         catch
         {
@@ -268,7 +272,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayXuatCanh;
         try
         {
-            NgayXuatCanh = DateTime.Parse(this.txtNgayXuatCanh.Value.Trim());
+            NgayXuatCanh = TVSSystem.CVDate(this.txtNgayXuatCanh.Value.Trim());
         }
         catch
         {
@@ -278,14 +282,14 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         DateTime? NgayVe;
         try
         {
-            NgayVe = DateTime.Parse(this.txtNgayVe.Value.Trim());
+            NgayVe = TVSSystem.CVDate(this.txtNgayVe.Value.Trim());
         }
         catch
         {
             NgayVe = null;
         }
 
-        if (this.objXuatKhauLaoDong.setData(ref this.itemId, int.Parse(this.txtIDNldDangKy.Value.Trim()), int.Parse(this.txtIDDonViTuyenDung.Value.Trim()), this.txtNguoiDaiDien.Text, DateTime.Parse(this.txtNgayDangKyTuVan.Value.Trim()), this.txtDiaDiem.Text, int.Parse(this.ddlIDCanbo.SelectedValue.ToString()), int.Parse(this.ddlIDKetQuaTuVan.SelectedValue.ToString()), NgayDatCoc, 0, 0, this.txtNguoiXuLy.Text, int.Parse(this.ddlIDDaoTaoMonHoc.SelectedValue.ToString()), this.txtNoiDaoTao.Text, NgayBatDau, NgayKetThuc, "", NgayXuatCanhDuKien, NgayViSa, NgayXuatCanh, NgayVe, this.txtNguoiGioiThieu.Text, int.Parse(this.ddlIDKetQuaHoSo.SelectedValue.ToString()), this.txtNoiDungKhac.Text, int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
+        if (this.objXuatKhauLaoDong.setData(ref this.itemId, int.Parse(this.txtIDNldDangKy.Value.Trim()), int.Parse(this.txtIDDonViTuyenDung.Value.Trim()), this.txtNguoiDaiDien.Text, TVSSystem.CVDate(this.txtNgayDangKyTuVan.Value.Trim()), this.txtDiaDiem.Text, int.Parse(this.ddlIDCanbo.SelectedValue.ToString()), int.Parse(this.ddlIDKetQuaTuVan.SelectedValue.ToString()), NgayDatCoc, 0, 0, this.txtNguoiXuLy.Text, int.Parse(this.ddlIDDaoTaoMonHoc.SelectedValue.ToString()), this.txtNoiDaoTao.Text, NgayBatDau, NgayKetThuc, "", NgayXuatCanhDuKien, NgayViSa, NgayXuatCanh, NgayVe, this.txtNguoiGioiThieu.Text, int.Parse(this.ddlIDKetQuaHoSo.SelectedValue.ToString()), this.txtNoiDungKhac.Text, int.Parse(this.ddlState.SelectedValue.ToString())) == 1)
         {
             this.objTable = this.objXuatKhauLaoDong.getDataById(this.itemId);
             if (this.objTable.Rows.Count > 0)
@@ -305,7 +309,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
                 DateTime? NgaySinhBo;
                 try
                 {
-                    NgaySinhBo = DateTime.Parse(this.txtNgaySinhBo.Value.Trim());
+                    NgaySinhBo = TVSSystem.CVDate(this.txtNgaySinhBo.Value.Trim());
                 }
                 catch
                 {
@@ -315,7 +319,7 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
                 DateTime? NgaySinhMe;
                 try
                 {
-                    NgaySinhMe = DateTime.Parse(this.txtNgaySinhMe.Value.Trim());
+                    NgaySinhMe = TVSSystem.CVDate(this.txtNgaySinhMe.Value.Trim());
                 }
                 catch
                 {

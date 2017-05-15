@@ -206,6 +206,9 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
                 this.ddlyeuCauTinHoc.SelectedValue = this.objTable.Rows[0]["YCTinHoc"].ToString();
                 this.txtNamKinhNghiem.Text = this.objTable.Rows[0]["NamKinhNghiem"].ToString();
                 this.ddlThoiGianLamViec.SelectedValue = this.objTable.Rows[0]["ThoiGianLamViec"].ToString();
+
+                this.txtIdQuocGia.Value = this.objTable.Rows[0]["IdQuocGia"].ToString();
+                this.txtNameQuocGia.Value = this.objTable.Rows[0]["NameQuocGia"].ToString();
             }
         }
         
@@ -246,6 +249,31 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
             return;
         }
 
+        int IdQuocGia = 0;
+
+        try
+        {
+            if (this.txtIdQuocGia.Value.Trim() != "")
+            {
+                try
+                {
+                    IdQuocGia = int.Parse(this.txtIdQuocGia.Value.Trim());
+                }
+                catch
+                {
+                    IdQuocGia = 0;
+                }
+            }
+            else
+            {
+                IdQuocGia = 0;
+            }
+        }
+        catch
+        {
+            IdQuocGia = 0;
+        }
+
         try
         {
             if (this.objTuyenDung.setData(ref this.itemId,  
@@ -273,7 +301,7 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
                                         txtNamKinhNghiem.Text,
                                         int.Parse(ddlThoiGianLamViec.SelectedValue),
                                         int.Parse(this.ddlTinHoc.SelectedValue.ToString()),
-                                        int.Parse(this.ddlTrinhDoNgoaiNgu.SelectedValue.ToString())) == 1)
+                                        int.Parse(this.ddlTrinhDoNgoaiNgu.SelectedValue.ToString()),IdQuocGia,txtNameQuocGia.Value) == 1)
             {
                 Session["TuyenDungMessage"] = "Lưu thông tin thành công";
 

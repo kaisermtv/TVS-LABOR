@@ -107,7 +107,7 @@
 
                 <ul class="nav nav-tabs" style="margin-left: -15px; margin-top: 10px;">
                     <li class="active"><a data-toggle="tab" href="#home"><b>2. Thông tin người lao động</b></a></li>
-                    <li><a data-toggle="tab" href="#menu1">Thông tin phụ huynh</a></li>
+                    <li><a data-toggle="tab" href="#" id ="linkThongTinPhuHuynh" runat ="server">Thông tin phụ huynh</a></li>
                 </ul>
 
                 <div class="tab-content">

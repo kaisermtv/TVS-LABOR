@@ -29,11 +29,11 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 34%;">Đơn vị tuyển dụng
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Người xử lý
+                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Quốc gia đăng ký
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày tư vấn
+                <td class="DataListTableHeaderTdItemCenter" style="width: 10%;">Ngày tư vấn
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Trạng thái
+                <td class="DataListTableHeaderTdItemCenter" style="width: 12%;">Trạng thái
                 </td>
                 <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;
                 </td>
@@ -57,10 +57,10 @@
                     <td class="DataListTableTdItemJustify" style="width: 21%;">
                         <%# Eval("NguoiXuLy") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 10%;">
+                    <td class="DataListTableTdItemCenter" style="width: 10%;">
                         <%# Eval("NgayDangKyTuVan","{0:dd/MM/yyyy}") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 12%;">
+                    <td class="DataListTableTdItemCenter" style="width: 12%;">
                         <%# Eval("NameState") %>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 3%;">

@@ -14,7 +14,7 @@ public class TuyenDung :DataClass
     #endregion
 
     #region method setData
-    public int setData(ref int IDTuyenDung, int IDDonVi, int IDNhomNghanh, int IDViTri, int IDChucVu, int IDNganhNghe, int SoLuongTuyenDung, int IDDoTuoi, int IDGioiTinh, int IDTrinhDoChuyenMon, string UuTien, string NoiDungKhac, string MoTa, int IDMucLuong, string DiaDiem, int IDTinh, bool NuocNgoai, string QuyenLoi, DateTime NgayBatDau, DateTime NgayKetThuc, bool State, int YCTinHoc, int YCNgoaiNgu, String NamKinhNghiem, int ThoiGianLamviec, int IdTrinhDoTinHoc, int IdTrinhDoNgoaiNgu)
+    public int setData(ref int IDTuyenDung, int IDDonVi, int IDNhomNghanh, int IDViTri, int IDChucVu, int IDNganhNghe, int SoLuongTuyenDung, int IDDoTuoi, int IDGioiTinh, int IDTrinhDoChuyenMon, string UuTien, string NoiDungKhac, string MoTa, int IDMucLuong, string DiaDiem, int IDTinh, bool NuocNgoai, string QuyenLoi, DateTime NgayBatDau, DateTime NgayKetThuc, bool State, int YCTinHoc, int YCNgoaiNgu, String NamKinhNghiem, int ThoiGianLamviec, int IdTrinhDoTinHoc, int IdTrinhDoNgoaiNgu, int IdQuocGia, string NameQuocGia)
     {
         int tmpValue = 0;
 
@@ -23,8 +23,8 @@ public class TuyenDung :DataClass
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblTuyenDung WHERE IDTuyenDung = @IDTuyenDung) ";
-            sqlQuery += "BEGIN INSERT INTO TblTuyenDung(MaTuyenDung,IDDonVi,IDNhomNghanh,IdViTri,IDChucVu,IDNganhNghe,SoLuongTuyenDung,IDDoTuoi,IDGioiTinh,IDTrinhDoChuyenMon,UuTien,NoiDungKhac,MoTa,IDMucLuong,DiaDiem,IDTinh,NuocNgoai,QuyenLoi,NgayBatDau,NgayKetThuc,State,YCNgoaiNgu,YCTinHoc,NamKinhNghiem,ThoiGianLamViec,IdTrinhDoTinHoc,IdTrinhDoNgoaiNgu) OUTPUT INSERTED.IDTuyenDung VALUES(@MaTuyenDung,@IDDonVi,@IDNhomNghanh,@IdViTri,@IDChucVu,@IDNganhNghe,@SoLuongTuyenDung,@IDDoTuoi,@IDGioiTinh,@IDTrinhDoChuyenMon,@UuTien,@NoiDungKhac,@MoTa,@IDMucLuong,@DiaDiem,@IDTinh,@NuocNgoai,@QuyenLoi,@NgayBatDau,@NgayKetThuc,@State,@YCNgoaiNgu,@YCTinHoc,@NamKinhNghiem,@ThoiGianLamViec,@IdTrinhDoTinHoc,@IdTrinhDoNgoaiNgu) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblTuyenDung SET IDDonVi = @IDDonVi, IDNhomNghanh = @IDNhomNghanh,IdViTri = @IdViTri, IDChucVu = @IDChucVu,IDNganhNghe = @IDNganhNghe,SoLuongTuyenDung = @SoLuongTuyenDung,IDDoTuoi = @IDDoTuoi,IDGioiTinh = @IDGioiTinh,IDTrinhDoChuyenMon = @IDTrinhDoChuyenMon,UuTien = @UuTien,NoiDungKhac = @NoiDungKhac,MoTa = @MoTa,IDMucLuong = @IDMucLuong,DiaDiem = @DiaDiem, IDTinh = @IDTinh, NuocNgoai = @NuocNgoai,QuyenLoi = @QuyenLoi,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,State = @State,YCNgoaiNgu = @YCNgoaiNgu,YCTinHoc = @YCTinHoc,NamKinhNghiem = @NamKinhNghiem,ThoiGianLamViec = @ThoiGianLamViec, IdTrinhDoTinHoc = @IdTrinhDoTinHoc, IdTrinhDoNgoaiNgu = @IdTrinhDoNgoaiNgu OUTPUT INSERTED.IDTuyenDung WHERE IDTuyenDung = @IDTuyenDung END ";
+            sqlQuery += "BEGIN INSERT INTO TblTuyenDung(MaTuyenDung,IDDonVi,IDNhomNghanh,IdViTri,IDChucVu,IDNganhNghe,SoLuongTuyenDung,IDDoTuoi,IDGioiTinh,IDTrinhDoChuyenMon,UuTien,NoiDungKhac,MoTa,IDMucLuong,DiaDiem,IDTinh,NuocNgoai,QuyenLoi,NgayBatDau,NgayKetThuc,State,YCNgoaiNgu,YCTinHoc,NamKinhNghiem,ThoiGianLamViec,IdTrinhDoTinHoc,IdTrinhDoNgoaiNgu,IdQuocGia,NameQuocGia) OUTPUT INSERTED.IDTuyenDung VALUES(@MaTuyenDung,@IDDonVi,@IDNhomNghanh,@IdViTri,@IDChucVu,@IDNganhNghe,@SoLuongTuyenDung,@IDDoTuoi,@IDGioiTinh,@IDTrinhDoChuyenMon,@UuTien,@NoiDungKhac,@MoTa,@IDMucLuong,@DiaDiem,@IDTinh,@NuocNgoai,@QuyenLoi,@NgayBatDau,@NgayKetThuc,@State,@YCNgoaiNgu,@YCTinHoc,@NamKinhNghiem,@ThoiGianLamViec,@IdTrinhDoTinHoc,@IdTrinhDoNgoaiNgu,@IdQuocGia,@NameQuocGia) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblTuyenDung SET IDDonVi = @IDDonVi, IDNhomNghanh = @IDNhomNghanh,IdViTri = @IdViTri, IDChucVu = @IDChucVu,IDNganhNghe = @IDNganhNghe,SoLuongTuyenDung = @SoLuongTuyenDung,IDDoTuoi = @IDDoTuoi,IDGioiTinh = @IDGioiTinh,IDTrinhDoChuyenMon = @IDTrinhDoChuyenMon,UuTien = @UuTien,NoiDungKhac = @NoiDungKhac,MoTa = @MoTa,IDMucLuong = @IDMucLuong,DiaDiem = @DiaDiem, IDTinh = @IDTinh, NuocNgoai = @NuocNgoai,QuyenLoi = @QuyenLoi,NgayBatDau = @NgayBatDau,NgayKetThuc = @NgayKetThuc,State = @State,YCNgoaiNgu = @YCNgoaiNgu,YCTinHoc = @YCTinHoc,NamKinhNghiem = @NamKinhNghiem,ThoiGianLamViec = @ThoiGianLamViec, IdTrinhDoTinHoc = @IdTrinhDoTinHoc, IdTrinhDoNgoaiNgu = @IdTrinhDoNgoaiNgu, IdQuocGia = @IdQuocGia, NameQuocGia = @NameQuocGia OUTPUT INSERTED.IDTuyenDung WHERE IDTuyenDung = @IDTuyenDung END ";
             
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -71,6 +71,8 @@ public class TuyenDung :DataClass
 
             Cmd.Parameters.Add("IdTrinhDoTinHoc", SqlDbType.Int).Value = IdTrinhDoTinHoc;
             Cmd.Parameters.Add("IdTrinhDoNgoaiNgu", SqlDbType.Int).Value = IdTrinhDoNgoaiNgu;
+            Cmd.Parameters.Add("IdQuocGia", SqlDbType.Int).Value = IdQuocGia;
+            Cmd.Parameters.Add("NameQuocGia", SqlDbType.NVarChar).Value = NameQuocGia;
 
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
 
