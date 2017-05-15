@@ -114,10 +114,10 @@
 
         <ItemTemplate>
             <tr class="tableview" style="font-size: 15px; height: 30px;">
-                <td class="DataListTableTdItemTT" style="vertical-align: middle; text-align: center;  font-size: 15px;">
+                <td class="DataListTableTdItemTT" style="vertical-align: middle; text-align: center;  font-size: 15px;background-color:#fff;">
                     <span  class ="name" style=" " ><%# Eval("TT") %></span>
                 </td>
-                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; width:150px;height:30px; font-size: 15px;background-color:whitesmoke;">
+                <td style="vertical-align: middle; text-align: justify; padding-left: 10px!important; width:150px;height:30px; font-size: 15px;background-color:#fff;">
                     <a href="DaoTaoNgheEdit.aspx?id=<%# Eval("IDNldDaoTao") %>"><%# Eval("HoVaTen") %>
                 </td>
                 <td style="vertical-align: middle; text-align: center; background-color: #fff!important; font-size: 15px;"><%# Eval("NgaySinh","{0:dd/MM/yyyy}") %></td>
