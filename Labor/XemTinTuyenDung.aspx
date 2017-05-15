@@ -69,7 +69,7 @@
             </tr>
         </table>
 
-        <div id="MainContent_dtlTuyenDung" style="margin-top: -30px;">
+        <div id="MainContent_dtlTuyenDung" style="margin-top: -30px;min-height:600px">
             <div style="width: 100%; padding: 15px;">
                 <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
                     <HeaderTemplate>
@@ -124,7 +124,9 @@
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click chuột vào tên doanh nghiệp để chọn nhu cầu tuyển dụng của doanh nghiệp đó cho người lao động
             <br />
-            <footer style="height: 105px !important; margin-bottom: 0px; width: 100%; text-align: justify; background-color: #f0f0f0;">
+            
+        </div>
+        <footer style="height: 105px !important; margin-bottom: 0px; width: 100%; text-align: justify; background-color: #f0f0f0;">
 
                 <input type="hidden" id="txtIDTuyenDung" class="form-control" runat="server" />
                 <input type="text" id="txtTenDonVi" class="form-control" runat="server" style="width: 72%; float: left; margin-left: 15px; margin-right: 10px;" />
@@ -140,7 +142,6 @@
                 <input type="hidden" id="txtIDChucVu" runat="server" />
 
             </footer>
-        </div>
         <script src="../js/jquery-1.10.2.min.js"></script>      <!---Sử dụng jqerry để lấy tìm kiếm ---->
         <script  src="../js/TvsScript.js"></script>         <!--chứa qick search-->
           <script>
