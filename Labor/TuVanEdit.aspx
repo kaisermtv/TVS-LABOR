@@ -90,8 +90,6 @@
                         <td style="text-align: right; padding-right: 5px;">Giới tính: </td>
                         <td>
                             <asp:DropDownList ID="ddlGioiTinh" CssClass="form-control" runat="server" Style="width: 100%;">
-                                <asp:ListItem Value="1">Nam</asp:ListItem>
-                                <asp:ListItem Value="0">Nữ</asp:ListItem>
                             </asp:DropDownList>
                         </td>
                         <td style="text-align: right; padding-right: 5px;">Ngày sinh :</td>

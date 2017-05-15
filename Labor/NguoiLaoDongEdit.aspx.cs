@@ -176,28 +176,50 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
                 this.txtXom_TT.Text = this.objTable.Rows[0]["Xom_TT"].ToString();
                 this.txtXom_DC.Text = this.objTable.Rows[0]["Xom_DC"].ToString();
 
+                // ****************** chọn tỉnh ******************
+                for (int i = 0; i < this.ddlTinh_TT.Items.Count; i++)
+                {
+                    if (this.ddlTinh_TT.Items[i].Text == this.objTable.Rows[0]["Tinh_TT"].ToString())
+                    {
+                        this.ddlTinh_TT.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < this.ddlTinh_DC.Items.Count; i++)
+                {
+                    if (this.ddlTinh_DC.Items[i].Text == this.objTable.Rows[0]["Tinh_DC"].ToString())
+                    {
+                        this.ddlTinh_DC.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                //////////////////////////////////////////////////////
+
+                // ****************** chọn huyện ******************
+                if (this.ddlTinh_TT.Items.Count > 0)
+                {
+                    this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
+                    this.ddlHuyen_TT.DataTextField = "Name";
+                    this.ddlHuyen_TT.DataValueField = "Id";
+                    this.ddlHuyen_TT.DataBind();
+                }
+
+                if (this.ddlTinh_DC.Items.Count > 0)
+                {
+                    this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
+                    this.ddlHuyen_DC.DataTextField = "Name";
+                    this.ddlHuyen_DC.DataValueField = "Id";
+                    this.ddlHuyen_DC.DataBind();
+                }
+
+
                 for (int i = 0; i < this.ddlHuyen_TT.Items.Count; i++)
                 {
                     if (this.ddlHuyen_TT.Items[i].Text == this.objTable.Rows[0]["Huyen_TT"].ToString())
                     {
                         this.ddlHuyen_TT.SelectedIndex = i;
-                        break;
-                    }
-                }
-
-                if (this.ddlHuyen_TT.Items.Count > 0)
-                {
-                    this.ddlXa_TT.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString(), this.ddlHuyen_TT.SelectedValue.ToString());
-                    this.ddlXa_TT.DataTextField = "Name";
-                    this.ddlXa_TT.DataValueField = "Id";
-                    this.ddlXa_TT.DataBind();
-                }
-
-                for (int i = 0; i < this.ddlXa_TT.Items.Count; i++)
-                {
-                    if (this.ddlXa_TT.Items[i].Text == this.objTable.Rows[0]["Xa_TT"].ToString())
-                    {
-                        this.ddlXa_TT.SelectedIndex = i;
                         break;
                     }
                 }
@@ -210,6 +232,17 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
                         break;
                     }
                 }
+                //////////////////////////////////////////////////////
+
+
+                // ****************** chọn xã ******************
+                if (this.ddlHuyen_TT.Items.Count > 0)
+                {
+                    this.ddlXa_TT.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString(), this.ddlHuyen_TT.SelectedValue.ToString());
+                    this.ddlXa_TT.DataTextField = "Name";
+                    this.ddlXa_TT.DataValueField = "Id";
+                    this.ddlXa_TT.DataBind();
+                }
 
                 if (this.ddlHuyen_DC.Items.Count > 0)
                 {
@@ -217,6 +250,15 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
                     this.ddlXa_DC.DataTextField = "Name";
                     this.ddlXa_DC.DataValueField = "Id";
                     this.ddlXa_DC.DataBind();
+                }
+
+                for (int i = 0; i < this.ddlXa_TT.Items.Count; i++)
+                {
+                    if (this.ddlXa_TT.Items[i].Text == this.objTable.Rows[0]["Xa_TT"].ToString())
+                    {
+                        this.ddlXa_TT.SelectedIndex = i;
+                        break;
+                    }
                 }
 
                 for (int i = 0; i < this.ddlXa_DC.Items.Count; i++)
@@ -227,6 +269,8 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
                         break;
                     }
                 }
+                //////////////////////////////////////////////////////
+
             }
         }
         this.txtMa.Focus();

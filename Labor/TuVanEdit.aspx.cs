@@ -101,6 +101,11 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
+            this.ddlGioiTinh.DataSource = this.objGioiTinh.getDataCategoryToCombobox();
+            this.ddlGioiTinh.DataTextField = "NameGioiTinh";
+            this.ddlGioiTinh.DataValueField = "IDGioiTinh";
+            this.ddlGioiTinh.DataBind();
+
             this.ddlTinh_TT.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlTinh_TT.DataTextField = "Name";
             this.ddlTinh_TT.DataValueField = "Id";
