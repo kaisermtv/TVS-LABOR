@@ -170,6 +170,9 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
                 this.txtNoiCap.Text = this.objTable.Rows[0]["NoiCap"].ToString();
                 this.txtBHXH.Text = this.objTable.Rows[0]["BHXH"].ToString();
                 this.txtTaikhoan.Text = this.objTable.Rows[0]["Taikhoan"].ToString();
+                // chọn trạng thái gia đình
+                this.ckDocThan.Checked = (this.objTable.Rows[0]["StateLapGiaDinh"].ToString() == "0" ? true : false);
+                this.ckKetHon.Checked = (this.objTable.Rows[0]["StateLapGiaDinh"].ToString() == "1" ? true : false);
 
                 this.txtNoiDungKhac.Text = this.objTable.Rows[0]["NoiDungKhac"].ToString();
                 this.ckbState.Checked = bool.Parse(this.objTable.Rows[0]["State"].ToString());
@@ -344,11 +347,17 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
             return;
         }
 
+        int TTGiaDinh = -1;    // trạng thái ko xác định
+        if (!(ckDocThan.Checked == false && ckKetHon.Checked == false))
+        {
+            TTGiaDinh = (ckDocThan.Checked ? 0 : 1); // 0 : độc thân , 1: Kết hôn
+        }
+
         if (this.objNguoiLaoDong.setData(ref this.itemId, this.txtMa.Text, this.txtHoVaTen.Text, DateTime.Parse(this.txtNgaySinh.Value.ToString().Trim()),int.Parse(this.ddlGioiTinh.SelectedValue.ToString()),
             this.txtNoiSinh.Text,this.txtQueQuan.Text,this.txtDienThoai.Text,this.txtEmail.Text,int.Parse(this.ddlDanToc.SelectedValue.ToString()),
             int.Parse(this.ddlTonGiao.SelectedValue.ToString()),this.txtTruongTHPT.Text, this.txtTruongDiaChi.Text, this.txtNienKhoa.Text, this.txtSucKhoe.Text, double.Parse(this.txtChieuCao.Text), int.Parse(this.txtCanNang.Text),
             int.Parse(this.ddlTrinhDoPhoThong.SelectedValue.ToString()),int.Parse(this.ddlNgoaiNgu.SelectedValue.ToString()),int.Parse(this.ddlTinHoc.SelectedValue.ToString()),this.txtCMND.Text,
-            DateTime.Parse(this.txtNgayCapCMND.Value.ToString().Trim()), this.txtNoiCap.Text, this.txtBHXH.Text, this.txtTaikhoan.Text, this.txtNoiDungKhac.Text, this.ckbState.Checked, this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text) == 1)
+            DateTime.Parse(this.txtNgayCapCMND.Value.ToString().Trim()), this.txtNoiCap.Text, this.txtBHXH.Text, this.txtTaikhoan.Text, this.txtNoiDungKhac.Text, this.ckbState.Checked, this.ddlTinh_TT.SelectedItem.Text, this.ddlHuyen_TT.SelectedItem.Text, this.ddlXa_TT.SelectedItem.Text, this.txtXom_TT.Text, this.ddlTinh_DC.SelectedItem.Text, this.ddlHuyen_DC.SelectedItem.Text, this.ddlXa_DC.SelectedItem.Text, this.txtXom_DC.Text, TTGiaDinh) == 1)
         {
             Response.Redirect("NguoiLaoDongEdit.aspx?id="+this.itemId);
         }
@@ -405,4 +414,29 @@ public partial class Admin_NguoiLaoDongEdit : System.Web.UI.Page
         this.ddlXa_DC.DataBind();
     }
     #endregion
+
+
+    #region method btnCopy_Click
+    protected void btnCopy_Click(object sender, EventArgs e)
+    {
+        ddlTinh_DC.SelectedValue = ddlTinh_TT.SelectedValue;
+
+        this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
+        this.ddlHuyen_DC.DataTextField = "Name";
+        this.ddlHuyen_DC.DataValueField = "Id";
+        this.ddlHuyen_DC.DataBind();
+
+        ddlHuyen_DC.SelectedValue = ddlHuyen_TT.SelectedValue;
+        this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
+        this.ddlXa_DC.DataTextField = "Name";
+        this.ddlXa_DC.DataValueField = "Id";
+        this.ddlXa_DC.DataBind();
+
+        ddlXa_DC.SelectedValue = ddlXa_TT.SelectedValue;
+        txtXom_DC.Text = txtXom_TT.Text;
+
+        txtSucKhoe.Focus();
+    }
+    #endregion
+
 }
