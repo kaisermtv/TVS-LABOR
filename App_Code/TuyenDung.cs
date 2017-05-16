@@ -129,6 +129,13 @@ public class TuyenDung :DataClass
     {
         try
         {
+            //SqlCommand Cmd = this.getSQLConnect();
+            //Cmd.CommandText = "";
+            //DataTable objRet = findAll(Cmd);
+            //SQLClose();
+
+
+
             string sqlQueryViTri = "", sqlQueryMucLuong = "", sqlQueryDiaDiem = "", sqlQueryNuocNgoai = "";
             
             if (sVitri != "")
