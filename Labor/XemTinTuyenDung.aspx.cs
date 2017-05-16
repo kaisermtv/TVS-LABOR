@@ -24,6 +24,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
 
     string page = "";
 
+    
+
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,6 +33,7 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
+        txtSearch.Focus();
 
         #region Lay bien truy van
         try
@@ -118,6 +121,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             //   return;
         }
+       
+
         }
         
       
@@ -211,5 +216,12 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         this.objNguoiLaoDong.setDataNldGioiThieu(IDTuyenDung, IDNldDangKy, IDNguoiLaoDong, int.Parse(this.txtIDDonVi.Value), int.Parse(this.txtIDChucVu.Value), DateTime.Now, Session["ACCOUNT"].ToString());
         this.lblMsg.Text = "<span style = \"color:blue;\">Lưu dữ liệu thành công !</span>";
     } 
+    #endregion
+
+    #region ddl_SelectedIndexChanged
+    protected void ddl_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        getSearchData();
+    }
     #endregion
 }

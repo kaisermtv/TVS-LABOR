@@ -204,7 +204,7 @@ public class TuyenDung :DataClass
 
             if(searchKey != null && searchKey != "")
             {
-                Cmd.CommandText += "  and ( UPPER(RTRIM(LTRIM(B.[TenDonVi]))) LIKE N'%' + UPPER(RTRIM(LTRIM(@SearchKey)))  OR   UPPER(RTRIM(LTRIM(V.[NameVitri]))) LIKE N'%' + UPPER(RTRIM(LTRIM(@SearchKey))) )  ";
+                Cmd.CommandText += "  and ( UPPER(RTRIM(LTRIM(B.[TenDonVi]))) LIKE N'%' + UPPER(RTRIM(LTRIM(@SearchKey))) + '%'  OR   UPPER(RTRIM(LTRIM(V.[NameVitri]))) LIKE N'%' + UPPER(RTRIM(LTRIM(@SearchKey))) + '%' )  ";
                 Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
             }
 

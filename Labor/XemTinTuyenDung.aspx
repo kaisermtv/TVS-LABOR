@@ -58,10 +58,10 @@
                     <input type="text" id="txtSearch" placeholder="Tên công việc cần tìm kiếm" runat="server" class="form-control" />
                 </td>
                 <td style="width: 200px; padding-right: 0px;">
-                    <asp:DropDownList ID="ddlIDChucVu" runat="server" CssClass="form-control" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlIDChucVu" runat="server" CssClass="form-control" Style="width: 100%;" AutoPostBack="true" OnSelectedIndexChanged="ddl_SelectedIndexChanged">
                     </asp:DropDownList></td>
                 <td style="width: 250px; padding-right: 0px;">
-                    <asp:DropDownList ID="ddlMucLuong" runat="server" CssClass="form-control" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlMucLuong" runat="server" CssClass="form-control" Style="width: 100%;" AutoPostBack="true" OnSelectedIndexChanged="ddl_SelectedIndexChanged" >
                     </asp:DropDownList></td>
                 <td style="width: 40px !important; text-align: center;">
                     <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left: -15px;" OnClick="btnSearch_Click" />
