@@ -504,7 +504,7 @@
                     </td>
                 </tr>
 
-                <tr style="height: 40px;">
+                <tr style="height: 40px; display:none;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
                     <td style="width: 90%;" colspan="6">
                         <asp:TextBox ID="txtNoiDungKhac2" runat="server" CssClass="form-control"></asp:TextBox>
