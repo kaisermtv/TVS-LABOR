@@ -153,6 +153,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     }
     #endregion
 
+
+    #region thực thi tìm kiếm
     private void getSearchData()
     {
         this.objTable = this.objTuyenDung.getList(this.txtSearch.Value, int.Parse(this.ddlIDChucVu.SelectedValue.ToString()), int.Parse(this.ddlMucLuong.SelectedValue.ToString()), "", "", "", "", this.sNuocNgoai);
@@ -172,6 +174,8 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         }
     }
 
+    #endregion
+
     #region method btnSearch_Click
     protected void btnSearch_Click(object sender, ImageClickEventArgs e)
     {
@@ -189,9 +193,12 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         this.lblMsg.Text = "";
-        if (this.txtIDChucVu.Value.Trim() == "" || this.txtIDDonVi.Value.Trim() == "")
+        ///////////////////////////
+        // BỔ SUNG BẮT BUỘC NHẬP VÀO TRƯỜNG : NGÀY HẾT HIỆU LỰC ./
+
+        if (this.txtIDChucVu.Value.Trim() == "" || this.txtIDDonVi.Value.Trim() == "" || txtNgayHetHan.Value.Trim() == "")
         {
-            this.lblMsg.Text = "Bạn chưa chọn thông tin đầy đủ khi ghi nhận";
+            this.lblMsg.Text = "Vui lòng chọn thông tin đầy đủ trước khi ghi nhận";
             return;
         }
         int IDTuyenDung = 0;
@@ -213,7 +220,7 @@ public partial class Labor_XemTinTuyenDung : System.Web.UI.Page
         {
             IDNguoiLaoDong = int.Parse(objTmpNguoiLaoDong.Rows[0]["IDNguoiLaoDong"].ToString());
         }
-        this.objNguoiLaoDong.setDataNldGioiThieu(IDTuyenDung, IDNldDangKy, IDNguoiLaoDong, int.Parse(this.txtIDDonVi.Value), int.Parse(this.txtIDChucVu.Value), DateTime.Now, Session["ACCOUNT"].ToString());
+        this.objNguoiLaoDong.setDataNldGioiThieu(IDTuyenDung, IDNldDangKy, IDNguoiLaoDong, int.Parse(this.txtIDDonVi.Value), int.Parse(this.txtIDChucVu.Value), DateTime.Now, Session["ACCOUNT"].ToString(), TVSSystem.CVOnlyDate(this.txtNgayHetHan.Value.ToString()));
         this.lblMsg.Text = "<span style = \"color:blue;\">Lưu dữ liệu thành công !</span>";
     } 
     #endregion

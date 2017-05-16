@@ -54,6 +54,24 @@ public class TVSSystem
 
     }
     #endregion
+    #region method CVOnlyDate()
+    public static DateTime CVOnlyDate(String d)
+    {       
+        try
+        {
+            int year = int.Parse(d.Substring(6,4));
+            int day = int.Parse(d.Substring(3, 2));
+            int month = int.Parse(d.Substring(0, 2));
+
+            return new DateTime(year, month, day);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+    #endregion
 
     #region method CVDateTime1()
     public static DateTime CVDateTime1(String dt)
