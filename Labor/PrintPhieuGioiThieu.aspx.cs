@@ -14,7 +14,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
     private TrinhDoPhoThong objTrinhDoPhoThong = new TrinhDoPhoThong();
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public string NLDHoten = "", NLDNgaySinh = "", NLDGioiTinh = "", NLDCMND = "", NLDNgayCapCMND = "", NLNoiCap = "", NLDBHXH = "", NLDDienThoai = "", NLDEmail = "", NLDDanToc = "", NLDTonGiao = "", NLDMucLuongTN = "", NLDLyDoTN = "", NLDDNDaLienHe = "", CongViecTruocThatNghiep = "";
-    public string NLDNoiThuongTru = "", NLDTrinhDoPhoThong = "",NLDTrinhDoTayNghe="", NLDTrinhDoKyNangNghe = "", NLDViTriCongViec = "", DVTenDonVi = "", DVDiaChi = "", DVDienThoai = "", DVNgayGioiThieu = "";
+    public string NLDNoiThuongTru = "", NLDTrinhDoPhoThong = "",NLDTrinhDoTayNghe="", NLDTrinhDoKyNangNghe = "", NLDViTriCongViec = "", DVTenDonVi = "", DVDiaChi = "", DVDienThoai = "", DVNgayGioiThieu = "", DVNgayHetHan = "";
 
     private int IDNldTuVan = 0;
     #endregion
@@ -81,12 +81,15 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                      this.DVTenDonVi = objNldGioiThieu.Rows[0]["TenDonVi"].ToString();
                      this.DVDiaChi = objNldGioiThieu.Rows[0]["DiaChi"].ToString();
                      this.DVDienThoai = objNldGioiThieu.Rows[0]["DienThoaiDonVi"].ToString().Trim();
-
-                     if (DVDienThoai == null || DVDienThoai == "") DVDienThoai = "Phòng nhân sự";
+                      if (DVDienThoai == null || DVDienThoai == "") DVDienThoai = "Phòng nhân sự";
                      
                      if (objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString() != "")
                      {
                          this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
+                     }
+                     if (objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString() != "")
+                     {
+                         this.DVNgayHetHan = " Ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString()).ToString("yyyy");
                      }
                  }
 

@@ -59,7 +59,7 @@
             <p>Trình độ giáo dục phổ thông: <% Response.Write(this.NLDTrinhDoPhoThong); %> ; Trình độ CMKT/Tay nghề: <% Response.Write(this.NLDTrinhDoTayNghe); %></p>
             <p>Công việc trước khi thất nghiệp: <% Response.Write(this.CongViecTruocThatNghiep); %></p> 
             <p>Vị trí công việc dự tuyển: <% Response.Write(this.NLDViTriCongViec); %></p>
-            <p>Phiếu có giá trị đến ngày:</p>
+            <p>Phiếu có giá trị đến : <i><%= DVNgayHetHan %></i> </p>
             <p>Kính đề nghị Quý đơn vị phối hợp thông báo kết quả dự tuyển cho Trung tâm để tổng hợp theo dõi tình trạng việc làm của người lao động./.</p>
 
             <div class="LoiCamOn">Cảm ơn sự quan tâm phối hợp của Quý Công ty!</div>
