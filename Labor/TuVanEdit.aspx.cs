@@ -547,7 +547,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.txtTrinhDoKyNangNghe.Focus();
                 return;
             }
-            if (this.ddlXa_TT.SelectedValue == "0" || this.ddlTinh_TT.SelectedValue == "0" || this.ddlHuyen_TT.SelectedValue == "0" || this.txtXom_TT.Text.Trim() != "")
+            if (this.ddlXa_TT.SelectedValue == "0"  || this.txtXom_TT.Text.Trim() == "")
             {
                 this.lblMsg.Text = "LĐ Tự Do : Mục Tỉnh,Huyện,Xã thường trú cần được khai báo ";
                 this.ddlXa_TT.Focus();
