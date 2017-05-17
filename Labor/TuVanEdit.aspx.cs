@@ -28,6 +28,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
     private DataTable objTable = new DataTable();
     private DataTable objTableNldTuVan = new DataTable();
+    private DataTable objTablePermission = new DataTable();
+
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
     public string strBtnViecLamTrongNuoc = "", strBtnViecLamNgoai = "", strBtnDaoTaoNghe = "";
 
@@ -41,7 +43,25 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
+        
         Session["TITLE"] = "TƯ VẤN NGƯỜI LAO ĐỘNG";
+
+        #region Kiem tra quyen
+        this.objTablePermission = this.objAccount.getDataPermission(Session["ACCOUNT"].ToString(),10);
+        if (this.objTablePermission.Rows.Count == 0)
+        {
+            this.objTablePermission = this.objAccount.getDataPermission(Session["ACCOUNT"].ToString(), 11);
+            if (this.objTablePermission.Rows.Count > 0)
+            {
+                this.ckbTuVanViecLam.Enabled = true;
+            }
+            else
+            {
+                this.ckbTuVanViecLam.Enabled = false;
+            }
+        }
+        #endregion
+
         #region lay bien truy van
         try
         {
@@ -297,8 +317,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                     }
                 }
 
-                //////////////////////////////////////////////////////
-
                 // ****************** chọn huyện ******************
                 if (this.ddlTinh_TT.Items.Count > 0)
                 {
@@ -334,8 +352,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                         break;
                     }
                 }
-                //////////////////////////////////////////////////////
-
 
                 // ****************** chọn xã ******************
                 if (this.ddlHuyen_TT.Items.Count > 0)
