@@ -11,7 +11,7 @@
     <!-- Custom CSS -->
     <link href="../css/ThongBaoKetQua.css" rel="stylesheet" />
 </head>
-<body style="margin: 0px !important; height: 500px !important;">
+<body style="margin: 0px !important; height: 500px !important;"  onkeypress="ESC_Press(event)">
     <form id="form1" runat="server">
         <div class="KhungIn">
             <table>
@@ -68,5 +68,6 @@
             </table>
         </div>
     </form>
+       <script src="../js/TvsProcessPage.js"></script>
 </body>
 </html>

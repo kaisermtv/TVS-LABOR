@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <form style="margin: 0px !important; height: 500px !important;" runat="server">
+    <form style="margin: 0px !important; height: 500px !important;" runat="server"  onkeypress="ESC_Press(event)">
     <div>
      <div class="KhungIn">
             <div class="TieuDe1">
@@ -131,6 +131,7 @@
          <!---Hết--->
         </div>
     </div>
+           <script src="../js/TvsProcessPage.js"></script>
     </form>
 </body>
 </html>

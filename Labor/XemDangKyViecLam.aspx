@@ -18,7 +18,7 @@
     <!-- lined-icons -->
     <link rel="stylesheet" href="../css/icon-font.min.css" type='text/css' />
 </head>
-<body style="margin: 0px !important; height:600px!important;">
+<body style="margin: 0px !important; height:600px!important;"  onkeypress="ESC_Press(event)">
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server">
         </asp:ScriptManager>
@@ -92,5 +92,6 @@
         </tr>
     </table>
     </form>
+    <script src="../js/TvsProcessPage.js"></script>
 </body>
 </html>

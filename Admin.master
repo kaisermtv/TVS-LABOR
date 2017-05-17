@@ -129,11 +129,6 @@
                 <!-- header-starts -->
                 <div class="header-section">
 
-                    <!--toggle button start-->
-                   <%-- <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>--%>
-                    <!--toggle button end-->
-
-                    <!--notification menu start -->
                     <div class="profile_details_left">
                         <div style="margin-top: 10px; font-weight:bold; padding-left:30px;">
                             TVS LABOR - <% Response.Write(strHtmlTitle); %>
@@ -167,15 +162,7 @@
                                 </ul>
                             </div>
                             <div class="social_icons">
-                                <%-- <div class="col-md-4 social_icons-left">
-                                    <a href="#" class="yui"><i class="fa fa-facebook i1"></i><span>300<sup>+</sup> Likes</span></a>
-                                </div>
-                                <div class="col-md-4 social_icons-left pinterest">
-                                    <a href="#"><i class="fa fa-google-plus i1"></i><span>500<sup>+</sup> Shares</span></a>
-                                </div>
-                                <div class="col-md-4 social_icons-left twi">
-                                    <a href="#"><i class="fa fa-twitter i1"></i><span>500<sup>+</sup> Tweets</span></a>
-                                </div>--%>
+                            
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
@@ -192,11 +179,7 @@
                     </div>
                 </div>
             </div>
-            <!--footer section start-->
-          <%--  <footer style ="height:30px !important; line-height:6px;">
-                <p>&copy 2016 TVS Admin Panel</p>
-            </footer>--%>
-            <!--footer section end-->
+     
         </section>
         <script src="../js/jquery.nicescroll.js"></script>
         <script src="../js/scripts.js"></script>
@@ -210,7 +193,7 @@
              .nicescroll-rails div
             {
                 width:15px!important;
-                background-color:#b6ff00 !important;
+                background-color:#808080 !important;
                 border-radius:2px !important;
 
             }

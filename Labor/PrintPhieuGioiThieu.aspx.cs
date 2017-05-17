@@ -87,7 +87,7 @@ public partial class Labor_PrintPhieuGioiThieu : System.Web.UI.Page
                      {
                          this.DVNgayGioiThieu = "Nghệ An, ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayGioiThieu"].ToString()).ToString("yyyy");
                      }
-                     if (objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString() != "")
+                     if (objNldGioiThieu.Rows[0]["NgayHetHieuLuc"] == null || objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString() != "")
                      {
                          this.DVNgayHetHan = " Ngày " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString()).ToString("dd") + " tháng " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString()).ToString("MM") + " năm " + DateTime.Parse(objNldGioiThieu.Rows[0]["NgayHetHieuLuc"].ToString()).ToString("yyyy");
                      }
