@@ -52,7 +52,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="sticky-header left-side-collapsed" onload="initMap()">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server"  >
          <asp:ScriptManager ID="ScriptManagerAdmin" runat="server" EnablePartialRendering="true"  EnablePageMethods="true">
           
                
@@ -120,9 +120,9 @@
                 </div>
             </div>
             <!-- left side end-->
-
+            
             <!-- main content start-->
-            <div class="main-content main-content2 main-content2copy">
+            <div class="main-content"   >
                 <!-- header-starts -->
                 <div class="header-section">
 
@@ -182,7 +182,7 @@
                 </div>
                 <!-- //header-ends -->
 
-                <div id="page-wrapper">
+                <div id="page-wrapper"  >
                     <div class="graphs">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
@@ -197,6 +197,22 @@
         </section>
         <script src="../js/jquery.nicescroll.js"></script>
         <script src="../js/scripts.js"></script>
+        <style type="text/css">
+           /** đặt ngay sau nicescoll để đè lại ngay**/
+             .nicescroll-rails
+            {
+                width:15px!important;
+                background-color:white !important;
+            }
+             .nicescroll-rails div
+            {
+                width:15px!important;
+                background-color:#b6ff00 !important;
+                border-radius:2px !important;
+
+            }
+        </style>
+
         <!-- Bootstrap Core JavaScript -->
         <%--<script src="../js/bootstrap.min.js"></script>--%>
     </form>
