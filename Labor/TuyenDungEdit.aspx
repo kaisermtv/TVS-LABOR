@@ -166,16 +166,23 @@
         </tr>
 
         <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí mô tả:</td>
+            <td style="width: 90%;" colspan="5">
+                <asp:TextBox ID="txtNoiDungKhac" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
+
+        <%--<tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung:</td>
             <td style="width: 90%;" colspan="5">
                 <CKEditor:CKEditorControl ID="txtNoiDungKhac" CssClass="form-control" runat="server" Height="210" Width="100%" Style="resize: vertical;" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
             </td>
-        </tr>
+        </tr>--%>
 
         <tr style="height: 40px;">
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Mô tả:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Yêu cầu:</td>
             <td style="width: 90%;" colspan="5">
-                <asp:TextBox ID="txtMoTa" runat="server" CssClass="form-control"></asp:TextBox>
+                <CKEditor:CKEditorControl ID="txtMoTa" CssClass="form-control" runat="server" Height="210" Width="100%" Style="resize: vertical;" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
             </td>
         </tr>
 
@@ -183,14 +190,14 @@
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Ưu tiên:</td>
             <td colspan="5">
-                <asp:TextBox ID="txtUuTien" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtUuTien" runat="server" TextMode="MultiLine" style="resize:vertical" Rows="1" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Quyền lợi:</td>
             <td style="width: 90%;" colspan="5">
-                <asp:TextBox ID="txtQuyenLoi" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtQuyenLoi" runat="server" TextMode="MultiLine" style="resize:vertical"  Rows="1" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
 
@@ -236,7 +243,7 @@
                         </td>
                         <td style ="padding-right:10px;">
                             <input type="hidden" name="txtIdQuocGia" id="txtIdQuocGia" runat="server" />
-                            <input ID="txtNameQuocGia" readonly="true" runat="server" class="form-control" style="width: 100% !important; float: left;"/>
+                            <input id="txtNameQuocGia" readonly="true" runat="server" class="form-control" style="width: 100% !important; float: left;"/>
                         </td>
                         <td style ="width:50px;">
                             <button class="btn btn-primary" type="button" onclick="SelectNational()" style="height: 34px !important; line-height: 14px !important;">Chọn</button>

@@ -508,6 +508,62 @@ public class Account
     }
     #endregion
 
+    #region method getDataPermission
+    public DataTable getDataPermission(int GroupId, int FunctionId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblAccountGroupPer WHERE GroupId = @GroupId AND FunctionId = @FunctionId";
+            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = GroupId;
+            Cmd.Parameters.Add("FunctionId", SqlDbType.Int).Value = FunctionId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region method getDataPermission
+    public DataTable getDataPermission(string UserName, int FunctionId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblAccountGroupPer WHERE GroupId = (SELECT TOP 1 GroupId FROM TblAccount WHERE UserName = @UserName) AND FunctionId = @FunctionId";
+            Cmd.Parameters.Add("UserName", SqlDbType.NVarChar).Value = UserName;
+            Cmd.Parameters.Add("FunctionId", SqlDbType.Int).Value = FunctionId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
     #region method setDataPermission
     public int setDataPermission(int GroupId, int FunctionId, bool View, bool Add, bool Edit, bool Del, bool Orther)
     {

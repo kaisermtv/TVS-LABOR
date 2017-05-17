@@ -12,6 +12,7 @@ public partial class Admin_AddPermission : System.Web.UI.Page
     public int GroupId = 0, FunctionId = 0;
     private Account objAccount = new Account();
     private DataTable objTable = new DataTable();
+    private DataTable objTableDetail = new DataTable();
     //private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
     #endregion
 
@@ -56,6 +57,56 @@ public partial class Admin_AddPermission : System.Web.UI.Page
             if (this.objTable.Rows.Count > 0)
             {
                 this.txtName.Text = this.objTable.Rows[0]["Name"].ToString();
+                this.ddlFunctionId.SelectedValue = this.FunctionId.ToString();
+            }
+
+            this.objTableDetail = this.objAccount.getDataPermission(this.GroupId, this.FunctionId);
+            if (this.objTableDetail.Rows.Count > 0)
+            {
+                if (this.objTableDetail.Rows[0]["View"].ToString().ToUpper() == "TRUE")
+                {
+                    this.ckbView.Checked = true;
+                }
+                else
+                {
+                    this.ckbView.Checked = false;
+                }
+
+                if (this.objTableDetail.Rows[0]["Add"].ToString().ToUpper() == "TRUE")
+                {
+                    this.ckbAdd.Checked = true;
+                }
+                else
+                {
+                    this.ckbAdd.Checked = false;
+                }
+
+                if (this.objTableDetail.Rows[0]["Edit"].ToString().ToUpper() == "TRUE")
+                {
+                    this.ckbEdit.Checked = true;
+                }
+                else
+                {
+                    this.ckbEdit.Checked = false;
+                }
+
+                if (this.objTableDetail.Rows[0]["Del"].ToString().ToUpper() == "TRUE")
+                {
+                    this.ckbDel.Checked = true;
+                }
+                else
+                {
+                    this.ckbDel.Checked = false;
+                }
+
+                if (this.objTableDetail.Rows[0]["Orther"].ToString().ToUpper() == "TRUE")
+                {
+                    this.ckbOther.Checked = true;
+                }
+                else
+                {
+                    this.ckbOther.Checked = false;
+                }
             }
         }
 
