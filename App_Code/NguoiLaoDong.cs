@@ -1381,7 +1381,7 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region method setDataNldGioiThieu
-    public int setDataNldGioiThieu(int IDTuyenDung, int IDNldDangKy, int IDNguoiLaoDong, int IDDonVi, int IDChucVu, DateTime NgayGioiThieu, string NguoiGioiThieu)
+    public int setDataNldGioiThieu(int IDTuyenDung, int IDNldDangKy, int IDNguoiLaoDong, int IDDonVi, int IDChucVu, DateTime NgayGioiThieu, string NguoiGioiThieu, DateTime NgayHetHieuLuc)
     {
         int tmpValue = 0;
 
@@ -1390,8 +1390,8 @@ public class NguoiLaoDong :DataClass
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldGioiThieu WHERE IDNldDangKy = @IDNldDangKy AND IDNguoiLaoDong = @IDNguoiLaoDong) ";
-            sqlQuery += "BEGIN INSERT INTO TblNldGioiThieu(IDTuyenDung,IDNldDangKy,IDNguoiLaoDong,IDDonVi,IDChucVu,NgayGioiThieu,NguoiGioiThieu) VALUES(@IDTuyenDung,@IDNldDangKy,@IDNguoiLaoDong,@IDDonVi,@IDChucVu,@NgayGioiThieu,@NguoiGioiThieu) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblNldGioiThieu SET IDTuyenDung = @IDTuyenDung, IDNldDangKy = @IDNldDangKy, IDDonVi = @IDDonVi, IDChucVu = @IDChucVu WHERE  IDNldDangKy = @IDNldDangKy AND IDNguoiLaoDong = @IDNguoiLaoDong END ";
+            sqlQuery += "BEGIN INSERT INTO TblNldGioiThieu(IDTuyenDung,IDNldDangKy,IDNguoiLaoDong,IDDonVi,IDChucVu,NgayGioiThieu,NguoiGioiThieu,NgayHetHieuLuc) VALUES(@IDTuyenDung,@IDNldDangKy,@IDNguoiLaoDong,@IDDonVi,@IDChucVu,@NgayGioiThieu,@NguoiGioiThieu,@NgayHetHieuLuc) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldGioiThieu SET IDTuyenDung = @IDTuyenDung, IDNldDangKy = @IDNldDangKy, IDDonVi = @IDDonVi, IDChucVu = @IDChucVu , NgayHetHieuLuc=@NgayHetHieuLuc WHERE  IDNldDangKy = @IDNldDangKy AND IDNguoiLaoDong = @IDNguoiLaoDong  END ";
 
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -1406,7 +1406,7 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("IDChucVu", SqlDbType.Int).Value = IDChucVu;
             Cmd.Parameters.Add("NgayGioiThieu", SqlDbType.DateTime).Value = NgayGioiThieu;
             Cmd.Parameters.Add("NguoiGioiThieu", SqlDbType.NVarChar).Value = NguoiGioiThieu;
-
+            Cmd.Parameters.Add("NgayHetHieuLuc", SqlDbType.DateTime).Value = NgayHetHieuLuc;
             Cmd.ExecuteNonQuery();
 
             sqlCon.Close();

@@ -101,7 +101,7 @@ public class DoanhNghiep
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(State AS varchar),'1',N'Kích hoạt'),'0',N'Đóng') AS StateName, ISNULL((SELECT Count(*) FROM TblTuyenDung WHERE IdDonVi = TblDoanhNghiep.IdDonVi),'') AS CountItem FROM TblDoanhNghiep WHERE 1 = 1 " + sqlQuery;
+            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(State AS varchar),'1',N'Kích hoạt'),'0',N'Đóng') AS StateName, ISNULL((SELECT Count(*) FROM TblTuyenDung WHERE IdDonVi = TblDoanhNghiep.IdDonVi),'') AS CountItem FROM TblDoanhNghiep WHERE 1 = 1 " + sqlQuery + "   ORDER BY ThuTuUuTien DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -279,6 +279,28 @@ public class DoanhNghiep
 
         }
         return tmpMaNLD;
+    }
+    #endregion
+
+    #region method setThuTuUuTien
+    public void setThuTuUuTien(int IDDoanhNghiep)
+    {
+        try
+        {
+            string sqlQuery = "";
+            sqlQuery = "UPDATE TblDoanhNghiep SET ThuTuUuTien = (SELECT MAX(ISNULL(ThuTuUuTien,0)) FROM TblDoanhNghiep WHERE IDDonVi <> @IDDonVi) + 1 WHERE IDDonVi = @IDDonVi";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("IDDonVi", SqlDbType.Int).Value = IDDoanhNghiep;
+            Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+        }
     }
     #endregion
 }

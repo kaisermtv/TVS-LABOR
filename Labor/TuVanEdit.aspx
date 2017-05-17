@@ -190,7 +190,7 @@
                 <tr style="height: 40px;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi thường trú:</td>
                     <td style="width: 10%;">
-                        <asp:DropDownList ID="ddlTinh_TT" AutoPostBack="true" runat="server" CssClass="form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_TT_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlTinh_TT" AutoPostBack="true" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_TT_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
@@ -198,12 +198,12 @@
                         <table style="width: 100%;">
                             <tr>
                                 <td style="width: 35%;">
-                                    <asp:DropDownList ID="ddlHuyen_TT" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlHuyen_TT_SelectedIndexChanged" CssClass="form-control" Style="width: 100%;">
+                                    <asp:DropDownList ID="ddlHuyen_TT" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlHuyen_TT_SelectedIndexChanged" CssClass=" multiple-style form-control" Style="width: 100%;">
                                     </asp:DropDownList>
                                 </td>
                                 <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass="form-control" Style="width: 100%;">
+                                    <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
@@ -221,7 +221,7 @@
                 <tr style="height: 40px;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ:</td>
                     <td style="width: 10%;">
-                        <asp:DropDownList ID="ddlTinh_DC" AutoPostBack="true" runat="server" CssClass="form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_DC_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlTinh_DC" AutoPostBack="true" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_DC_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
@@ -229,12 +229,12 @@
                         <table style="width: 100%;">
                             <tr>
                                 <td style="width: 35%;">
-                                    <asp:DropDownList ID="ddlHuyen_DC" AutoPostBack="true" runat="server" CssClass="form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlHuyen_DC_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlHuyen_DC" AutoPostBack="true" runat="server" CssClass="multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlHuyen_DC_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass="form-control" Style="width: 100%;">
+                                    <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass=" multiple-style  form-control" Style="width: 100%;">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
@@ -514,7 +514,7 @@
                     </td>
                 </tr>
 
-                <tr style="height: 40px;">
+                <tr style="height: 40px; display:none;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Nội dung khác:</td>
                     <td style="width: 90%;" colspan="6">
                         <asp:TextBox ID="txtNoiDungKhac2" runat="server" CssClass="form-control"></asp:TextBox>
@@ -790,12 +790,16 @@
                         return str;
                    }
         function load()      // load dử liệu vào textbox
-                      {
-            document.getElementById('MainContent_txtViTriCongViec').value = getValue(0);
-            document.getElementById('MainContent_txtViTriCongViec2').value = getValue(1);
-                      }
+        {
+          
+            document.getElementById('MainContent_txtViTriCongViec').value = getValue(6);
+            document.getElementById('MainContent_txtViTriCongViec2').value = getValue(7);
+        }
+        // LƯU Ý : CẨN THẬN KHI SỬ DỤNG .multiple-style hoặc các hàm select()
         $(".js-example-basic-multiple").select2();
         $(".js-example-basic-multiple2").select2();
+        $(".multiple-style").select2();
+      
 
         $(document).ready(function () {
             $('#<%= btnSave.ClientID %>').click(function (e) {

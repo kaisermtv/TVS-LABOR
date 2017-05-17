@@ -480,7 +480,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.txtCanNang.Text = "0";
         }
 
-        if (this.txtNgayCapCMND.Value.Trim() == "")
+        if (this.txtCMND.Text.Trim() != "" && this.txtNgayCapCMND.Value.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập ngày cấp số CMND của người lao động";
             this.txtNgayCapCMND.Value = DateTime.Now.ToString("dd/MM/yyyy");
@@ -525,6 +525,13 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         {
         }
 
+        if (GioiTinhb == 0)
+        {
+            this.lblMsg.Text = "Bạn cần chọn giới tính cho người lao động.";
+            this.ddlGioiTinh.Focus();
+            return;
+        }
+
         float tmpMucLuongThapNhat2 = 0;
         try
         {
@@ -532,6 +539,12 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         }
         catch
         {
+        }
+
+        int TTGiaDinh = -1;    // trạng thái ko xác định
+        if (!(ckDocThan.Checked == false && ckKetHon.Checked == false))
+        {
+            TTGiaDinh = (ckDocThan.Checked ? 0 : 1); // 0 : độc thân , 1: Kết hôn
         }
 
         /////////////////////////////////
@@ -546,22 +559,20 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
            }
             if( this.txtTrinhDoKyNangNghe.Text.Trim() == "")
             {
-                this.lblMsg.Text = "Đối với LĐ Tự Do : Trình độ kỹ năng nghề cần được khai báo";
+                this.lblMsg.Text = "LĐ Tự Do : Trình độ kỹ năng nghề cần được khai báo";
                 this.txtTrinhDoKyNangNghe.Focus();
                 return;
             }
-            if (this.ddlXa_TT.SelectedValue == "0")
+            if (this.ddlXa_TT.SelectedValue == "0"  || this.txtXom_TT.Text.Trim() == "")
             {
-                this.lblMsg.Text = "Đối với LĐ Tự Do :Mục Tỉnh,Huyện,Xã thường trú cần được khai báo ";
+                this.lblMsg.Text = "LĐ Tự Do : Mục Tỉnh,Huyện,Xã thường trú cần được khai báo ";
                 this.ddlXa_TT.Focus();
                 return;
             }
+
+            
         }
-         int TTGiaDinh = -1;    // trạng thái ko xác định
-         if(! (ckDocThan.Checked == false && ckKetHon.Checked == false))
-          {
-             TTGiaDinh = (ckDocThan.Checked ? 0 : 1); // 0 : độc thân , 1: Kết hôn
-          }
+         
         ///////////////////////////////////////////////////////////////////////////// 
 
         if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, 
@@ -679,9 +690,12 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         this.ddlHuyen_TT.DataTextField = "Name";
         this.ddlHuyen_TT.DataValueField = "Id";
         this.ddlHuyen_TT.DataBind();
-      
+
+        ddlHuyen_TT_SelectedIndexChanged(sender, e);
+
         ddlHuyen_TT.Focus();
-      
+        
+
     }
     #endregion
 
@@ -704,6 +718,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         this.ddlHuyen_DC.DataTextField = "Name";
         this.ddlHuyen_DC.DataValueField = "Id";
         this.ddlHuyen_DC.DataBind();
+
+        ddlHuyen_DC_SelectedIndexChanged(sender, e);
 
         ddlHuyen_DC.Focus();
     } 

@@ -14,10 +14,14 @@
     <link href="../css/style.css" rel='stylesheet' type='text/css' />
     <!-- Graph CSS -->
     <link href="../css/font-awesome.css" rel="stylesheet" />
+   
+    <link href="../css/jquery-ui.css" rel="stylesheet" />
     <!-- jQuery -->
     <!-- lined-icons -->
     <link rel="stylesheet" href="../css/icon-font.min.css" type='text/css' />
-
+   <script src="../js/jquery-1.10.2.min.js"></script>      <!---Sử dụng jqerry để lấy tìm kiếm ---->
+    
+    <script src="../js/jquery-ui.js"></script>
     <style>
         .DataListTable td {
             padding-top: 5px;
@@ -47,6 +51,8 @@
         }
 
     </script>
+
+    
 </head>
 <body style="margin: 0px !important;">
     <form id="form1" runat="server">
@@ -58,10 +64,10 @@
                     <input type="text" id="txtSearch" placeholder="Tên công việc cần tìm kiếm" runat="server" class="form-control" />
                 </td>
                 <td style="width: 200px; padding-right: 0px;">
-                    <asp:DropDownList ID="ddlIDChucVu" runat="server" CssClass="form-control" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlIDChucVu" runat="server" CssClass="form-control" Style="width: 100%;" AutoPostBack="true" OnSelectedIndexChanged="ddl_SelectedIndexChanged">
                     </asp:DropDownList></td>
                 <td style="width: 250px; padding-right: 0px;">
-                    <asp:DropDownList ID="ddlMucLuong" runat="server" CssClass="form-control" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlMucLuong" runat="server" CssClass="form-control" Style="width: 100%;" AutoPostBack="true" OnSelectedIndexChanged="ddl_SelectedIndexChanged" >
                     </asp:DropDownList></td>
                 <td style="width: 40px !important; text-align: center;">
                     <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-bottom: -15px; margin-left: -15px;" OnClick="btnSearch_Click" />
@@ -122,19 +128,27 @@
                     </tr>
                 </table>
             </div>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click chuột vào tên doanh nghiệp để chọn nhu cầu tuyển dụng của doanh nghiệp đó cho người lao động
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click chuột vào tên doanh nghiệp để chọn nhu cầu tuyển dụng của doanh nghiệp đó cho người lao động 
+            
             <br />
             
         </div>
         <footer style="height: 105px !important; margin-bottom: 0px; width: 100%; text-align: justify; background-color: #f0f0f0;">
-
+           
                 <input type="hidden" id="txtIDTuyenDung" class="form-control" runat="server" />
-                <input type="text" id="txtTenDonVi" class="form-control" runat="server" style="width: 72%; float: left; margin-left: 15px; margin-right: 10px;" />
-                <input type="text" id="txtNameChucVu" class="form-control" runat="server" style="width: 24%; margin-left: 10px!important; margin-right: 15px;" />
-                <br />
+                <input type="text" id="txtTenDonVi" class="form-control" runat="server" style="width: 40%; float: left; margin-left: 15px; margin-right: 10px;" />
+                <input type="text" id="txtNameChucVu" class="form-control" runat="server" style="width: 24%; margin-left: 10px!important; margin-right: 0px;" />
+                 <input type="text" id="txtNgayHetHan" placeholder="Ngày hết hiệu lực" class="form-control" runat="server" style="width:24%;float:right; margin-top:-32px" />
+                 
+                    <script>
+                        $(function () {
+                            $("#txtNgayHetHan").datepicker();
+                        });
+                 </script>         
+                <hr />
                 <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" CssClass="btn btn-primary" Style="margin-left: 15px; margin-top: -10px; margin-bottom:10px;" OnClick="btnSave_Click" OnClientClick="javascript:window.close();" />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" CssClass="btn btn-primary" Style="margin-left: 25px; margin-top: -15px; margin-bottom:10px;" OnClick="btnSave_Click" OnClientClick="javascript:window.close();" />&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -142,7 +156,7 @@
                 <input type="hidden" id="txtIDChucVu" runat="server" />
 
             </footer>
-        <script src="../js/jquery-1.10.2.min.js"></script>      <!---Sử dụng jqerry để lấy tìm kiếm ---->
+       
         <script  src="../js/TvsScript.js"></script>         <!--chứa qick search-->
           <script>
               $(function () {

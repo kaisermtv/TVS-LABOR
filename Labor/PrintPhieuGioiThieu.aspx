@@ -59,7 +59,7 @@
             <p>Trình độ giáo dục phổ thông: <% Response.Write(this.NLDTrinhDoPhoThong); %> ; Trình độ CMKT/Tay nghề: <% Response.Write(this.NLDTrinhDoTayNghe); %></p>
             <p>Công việc trước khi thất nghiệp: <% Response.Write(this.CongViecTruocThatNghiep); %></p> 
             <p>Vị trí công việc dự tuyển: <% Response.Write(this.NLDViTriCongViec); %></p>
-            <p>Phiếu có giá trị đến ngày:</p>
+            <p>Phiếu có giá trị đến : <i><%= DVNgayHetHan %></i> </p>
             <p>Kính đề nghị Quý đơn vị phối hợp thông báo kết quả dự tuyển cho Trung tâm để tổng hợp theo dõi tình trạng việc làm của người lao động./.</p>
 
             <div class="LoiCamOn">Cảm ơn sự quan tâm phối hợp của Quý Công ty!</div>
@@ -92,12 +92,13 @@
 
             <div class="LuuYNhom">
                 <div class="LuuY">
-                    <b><u>Lưu ý:</u></b>
+                    <b><u>Ghi chú</u></b>
                 </div>
                 <b>
-                <small style="margin-left:40px;">- Theo nghị định số 28/2015/NĐ-CP ngày 12/03/2015 của Chính phủ quy định tại điểm đ - Khoản 1 - Điều 21 - Mục 3 - Chương IV "Sau 02 lần người lao động từ chối việc làm do Trung tâm dịch vụ việc làm nơi đang hưởng trợ cấp thất nghiệp giới thiệu mà không có lý do chính đáng <u>thì sẽ bị chấm dứt hưởng trợ cấp thất nghiệp</u>".</small><br />
-                <small style="margin-left:200px;">- Địa chỉ liên hệ: Phòng thông tin TTLĐ - Trung tâm dịch vụ việc làm Nghệ An</small><br />
-                <small style="margin-left:200px;">- Điện thoại: 0383 550 050, 0974232829 (A.Tuấn)</small>
+              
+                      <small style="margin-left:40px; "><i> Cơ hội tìm kiếm việc làm miễn phí tại Sàn giao dịch việc làm Nghệ An được tổ chức vào ngày 10 và 25 hàng tháng .</i></small><br />
+                    <small style="margin-left:40px;">- Địa chỉ liên hệ: Phòng thông tin TTLĐ - Trung tâm dịch vụ việc làm Nghệ An .</small><br />
+                <small style="margin-left:40px;">- Điện thoại: 02383 550 050 , 0974232829 (A.Tuấn), 0972 975 999 (A.Ngọc) .</small>
                 </b>
             </div>
         </div>
