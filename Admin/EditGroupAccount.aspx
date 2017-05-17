@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="AdminItem" style ="display:table;">
+    <div class="AdminItem" style ="display:table; margin-top:10px;">
         <div class="AdminLeftItem" style ="display:table;">
             &nbsp;&nbsp;Chức năng
         </div>

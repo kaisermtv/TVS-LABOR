@@ -22,6 +22,16 @@
             }
         }
     </script>
+
+    <script type ="text/javascript">
+        jQuery(function ($) {
+            $("#MainContent_txtNgaySinh").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            //$("#phone").mask("(999) 999-9999");
+            //$("#tin").mask("99-9999999");
+            //$("#ssn").mask("999-99-9999");
+        });
+    </script>
+
     <style>
         a {
             text-decoration: none;

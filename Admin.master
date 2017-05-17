@@ -47,6 +47,9 @@
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
 
 
+    <%--<script src="jquery.js" type="text/javascript"></script>--%>
+    <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
+
   
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
@@ -87,7 +90,6 @@
                         <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>Tiếp nhận hồ sơ</span></a>
                             <ul class="sub-menu-list">
                                 <li><a href="../Labor/NguoiLaoDong.aspx">Người lao động</a></li>
-                                <li><a href="../Labor/TuVan.aspx">Hồ sơ tư vấn</a></li>
                                 <li><a href="../Labor/DoanhNghiep.aspx">Doanh nghiệp</a></li>
                                 <li><a href="../Labor/TuyenDung.aspx">Tin tuyển dụng</a></li>
                                 <li><a href="../Labor/DtKhoaHocList.aspx">Thông tin đào tạo nghề</a></li>
@@ -95,9 +97,10 @@
                         </li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i><span style ="width:180px!important;">Quản lý công việc</span></a>
                             <ul class="sub-menu-list">
-                                <li style ="width:180px!important;"><a href="../Labor/DangKyViecLam.aspx">Hồ sơ đăng ký tìm việc</a></li>
-                                <li style ="width:180px!important;"><a href="../Labor/TuVanXuatKhau.aspx">Hồ sơ xuất khẩu, du học</a></li>
+                                <li><a href="../Labor/TuVan.aspx">Hồ sơ tư vấn</a></li>
+                                <li style ="width:180px!important;"><a href="../Labor/DangKyViecLam.aspx">Hồ sơ việc làm trong nước</a></li>
                                 <li style ="width:180px!important;"><a href="../Labor/DaoTaoNghe.aspx">Hồ sơ đào tạo nghề</a></li>
+                                <li style ="width:180px!important;"><a href="../Labor/TuVanXuatKhau.aspx">Hồ sơ xuất khẩu & du học</a></li>
                                 <li style ="width:180px!important;"><a href="../Labor/BaoHiemThatNghiep.aspx">Hồ sơ BHTN</a></li>
                             </ul>
                         </li>

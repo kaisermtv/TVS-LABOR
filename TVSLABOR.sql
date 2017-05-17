@@ -33,6 +33,20 @@
 
 --ALTER TABLE dbo.TblTuyenDung ADD IdQuocGia int Default(0)
 --ALTER TABLE dbo.TblTuyenDung ADD NameQuocGia nvarchar(250)
+<<<<<<< .mine
+--UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
+
+--16/05/2017
+--CREATE TABLE [dbo].[tblFunction](
+--	[Id] [int] NOT NULL,
+--	[Name] [nvarchar](250) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+--	[View] [bit] NULL,
+--	[Add] [bit] NULL,
+--	[Edit] [bit] NULL,
+--	[Del] [bit] NULL,
+--	[Other] [bit] NULL
+--) ON [PRIMARY]
+=======
 --UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
 --Thứ 2 15/05/2017
 ALTER TABLE dbo.[TblDoanhNghiep] ADD [ThuTuUuTien] [int] NULL  Default(0) ;
@@ -40,3 +54,9 @@ UPDATE TblDoanhNghiep SET TblDoanhNghiep.ThuTuUuTien = 0
 -- Thứ 3 Ngày 16/05/2017
   ALTER TABLE dbo.[TblNldGioiThieu] ADD [NgayHetHieuLuc] [datetime] NULL  Default(null) ;
   UPDATE [TblNldGioiThieu] SET [TblNldGioiThieu].[NgayHetHieuLuc] = NULL
+
+
+
+
+
+>>>>>>> .theirs
