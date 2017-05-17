@@ -10,6 +10,7 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
 {
 
     #region declare objects
+    private AboutUs objAboutUs = new AboutUs();
     private Account objAccount = new Account();
     private TuyenDung objTuyenDung = new TuyenDung();
     private NhomNganh objNhomNganh = new NhomNganh();
@@ -32,6 +33,8 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
     public String mota = "";
     public String quyenLoi = "";
     public String diaDiem = "";
+
+    public DataTable AboutUsData;
     #endregion
 
 
@@ -97,6 +100,9 @@ public partial class Labor_PrintTuyenDungLamViecTaiCtyABC : System.Web.UI.Page
 
                 //mota = objData.Rows[0]["MoTa"].ToString();
                 quyenLoi = objData.Rows[0]["QuyenLoi"].ToString();
+
+                this.AboutUsData = this.objAboutUs.getData();
+                
                 
             }
 
