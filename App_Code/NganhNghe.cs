@@ -136,7 +136,7 @@ public class NganhNghe
     #endregion
 
     #region method getDataCategoryToCombobox
-    public DataTable getDataCategoryToCombobox(string IdNhomNganh)
+    public DataTable getDataCategoryToCombobox(string IdNhomNganh = "")
     {
         DataTable objTable = new DataTable();
         try
@@ -144,8 +144,13 @@ public class NganhNghe
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT IDDTNganhNghe, NameDTNganhNghe FROM TblDTNganhNghe WHERE IdNhomNganh = @IdNhomNganh";
-            Cmd.Parameters.Add("IdNhomNganh", SqlDbType.Int).Value = IdNhomNganh;
+            Cmd.CommandText = "SELECT IDDTNganhNghe, NameDTNganhNghe FROM TblDTNganhNghe";
+
+            if (IdNhomNganh.Trim() != "" && IdNhomNganh.Trim() != "0")
+            {
+                Cmd.CommandText += " WHERE IdNhomNganh = @IdNhomNganh";
+                Cmd.Parameters.Add("IdNhomNganh", SqlDbType.Int).Value = IdNhomNganh;
+            }
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

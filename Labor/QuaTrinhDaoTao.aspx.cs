@@ -52,6 +52,9 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
             this.ddlNhomNganh.DataBind();
             this.ddlNhomNganh.SelectedValue = "0";
 
+            ddlNhomNganh_SelectedIndexChanged(null,null);
+            //this.ddlNganhNghe.SelectedValue = "0";
+
             this.ddlTrinhDoChuyenMon.DataSource = this.objTrinhDoChuyenMon.getDataCategoryToCombobox();
             this.ddlTrinhDoChuyenMon.DataTextField = "NameTrinhDoChuyenMon";
             this.ddlTrinhDoChuyenMon.DataValueField = "IDTrinhDoChuyenMon";
@@ -105,16 +108,20 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
         {
             this.lblMsg.Text = "";
 
-            if (this.ddlNhomNganh.SelectedValue == "0")
+            if (this.ddlNganhNghe.SelectedValue == "0")
             {
                 this.lblMsg.Text = "Bạn chưa chọn ngành nghề cho người lao động!";
                 return;
             }
 
-            if (this.ddlNganhNghe.SelectedValue == "0")
+            if (this.ddlNhomNganh.SelectedValue == "0" && this.ddlNganhNghe.SelectedValue != "0")
             {
-                this.lblMsg.Text = "Bạn chưa chọn ngành nghề cho người lao động!";
-                return;
+                DataTable objData = objNganhNghe.getDataById(int.Parse(this.ddlNganhNghe.SelectedValue));
+                if(objData.Rows.Count > 0)
+                {
+                    this.ddlNhomNganh.SelectedValue = objData.Rows[0]["IdNhomNganh"].ToString();
+                }
+
             }
 
             if (this.objNguoiLaoDong.setDataNldQuaTrinhDaoTao(this.IDNldQuaTrinhDaoTao, this.IDNguoiLaoDong, "", int.Parse(this.ddlTrinhDoChuyenMon.SelectedValue.ToString()), int.Parse(this.ddlNhomNganh.SelectedValue.ToString()), int.Parse(this.ddlNganhNghe.SelectedValue.ToString())) == 1)
@@ -150,7 +157,12 @@ public partial class Admin_QuaTrinhDaoTao : System.Web.UI.Page
         this.ddlNganhNghe.DataTextField = "NameDTNganhNghe";
         this.ddlNganhNghe.DataValueField = "IDDTNganhNghe";
         this.ddlNganhNghe.DataBind();
-        this.ddlNganhNghe.SelectedValue = "0";
+
+        //if (this.ddlNhomNganh.SelectedValue != "0")
+        //{
+            this.ddlNganhNghe.SelectedValue = "0";
+        //}
+        
     }
     #endregion
 }

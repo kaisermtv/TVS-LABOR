@@ -311,7 +311,7 @@ public partial class Admin_TuyenDungEdit : System.Web.UI.Page
             {
                 this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
             }
-        }catch (Exception ex){
+        }catch {
             this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
         }
         

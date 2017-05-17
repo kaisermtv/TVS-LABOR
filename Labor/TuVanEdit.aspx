@@ -147,7 +147,7 @@
 
             <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi cấp:</td>
             <td style="width: 40%;" colspan="2">
-                <asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control" Text="Nghệ An"></asp:TextBox>
             </td>
         </tr>
 

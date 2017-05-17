@@ -129,12 +129,13 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlTinh_TT.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlTinh_TT.DataTextField = "Name";
             this.ddlTinh_TT.DataValueField = "Id";
-            this.ddlTinh_TT.SelectedIndex = 0;
+            this.ddlTinh_TT.SelectedValue = "40";
             this.ddlTinh_TT.DataBind();
+
+            //ddlTinh_TT_SelectedIndexChanged(null,null);
 
             if (this.ddlTinh_TT.Items.Count > 0)
             {
-                this.ddlTinh_TT.SelectedValue = "0";
                 this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
                 this.ddlHuyen_TT.DataTextField = "Name";
                 this.ddlHuyen_TT.DataValueField = "Id";
@@ -146,17 +147,20 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ddlXa_TT.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString(), this.ddlHuyen_TT.SelectedValue.ToString());
                 this.ddlXa_TT.DataTextField = "Name";
                 this.ddlXa_TT.DataValueField = "Id";
+                ddlXa_TT.SelectedValue = "0";
                 this.ddlXa_TT.DataBind();
             }
 
             this.ddlTinh_DC.DataSource = this.objProvincer.getDataCategoryToCombobox();
             this.ddlTinh_DC.DataTextField = "Name";
             this.ddlTinh_DC.DataValueField = "Id";
+            this.ddlTinh_DC.SelectedValue = "40";
             this.ddlTinh_DC.DataBind();
 
+            //ddlTinh_DC_SelectedIndexChanged(null,null);
+
             if (this.ddlTinh_DC.Items.Count > 0)
-            {
-                this.ddlTinh_DC.SelectedValue = "2";
+            {   
                 this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
                 this.ddlHuyen_DC.DataTextField = "Name";
                 this.ddlHuyen_DC.DataValueField = "Id";
@@ -168,6 +172,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
                 this.ddlXa_DC.DataTextField = "Name";
                 this.ddlXa_DC.DataValueField = "Id";
+                ddlXa_DC.SelectedValue = "0";
                 this.ddlXa_DC.DataBind();
             }
 
@@ -185,6 +190,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlNgoaiNgu.DataSource = this.objNgoaiNgu.getDataCategoryToCombobox();
             this.ddlNgoaiNgu.DataTextField = "NameNgoaiNgu";
             this.ddlNgoaiNgu.DataValueField = "IDNgoaiNgu";
+            this.ddlNgoaiNgu.SelectedValue = "0";
             this.ddlNgoaiNgu.DataBind();
 
             this.ddlTrinhDoPhoThong.DataSource = this.objTrinhDoPhoThong.getDataCategoryToCombobox();
@@ -195,6 +201,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlTinHoc.DataSource = this.objTinHoc.getDataCategoryToCombobox();
             this.ddlTinHoc.DataTextField = "NameTinHoc";
             this.ddlTinHoc.DataValueField = "IDTinHoc";
+            this.ddlTinHoc.SelectedValue = "0";
             this.ddlTinHoc.DataBind();
 
             TrinhDoTinHoc objTrinhDoTinHoc = new TrinhDoTinHoc();
@@ -691,6 +698,8 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         this.ddlHuyen_TT.DataValueField = "Id";
         this.ddlHuyen_TT.DataBind();
 
+        ddlHuyen_TT.SelectedValue = "0";
+
         ddlHuyen_TT_SelectedIndexChanged(sender, e);
 
         ddlHuyen_TT.Focus();
@@ -706,6 +715,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         this.ddlXa_TT.DataTextField = "Name";
         this.ddlXa_TT.DataValueField = "Id";
         this.ddlXa_TT.DataBind();
+        ddlXa_TT.SelectedValue = "0";
 
         ddlXa_TT.Focus();
     } 
@@ -718,6 +728,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         this.ddlHuyen_DC.DataTextField = "Name";
         this.ddlHuyen_DC.DataValueField = "Id";
         this.ddlHuyen_DC.DataBind();
+        ddlHuyen_DC.SelectedValue = "0";
 
         ddlHuyen_DC_SelectedIndexChanged(sender, e);
 
@@ -732,6 +743,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         this.ddlXa_DC.DataTextField = "Name";
         this.ddlXa_DC.DataValueField = "Id";
         this.ddlXa_DC.DataBind();
+        ddlXa_DC.SelectedValue = "0";
 
         ddlXa_DC.Focus();
     } 
