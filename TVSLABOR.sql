@@ -34,7 +34,8 @@
 --ALTER TABLE dbo.TblTuyenDung ADD IdQuocGia int Default(0)
 --ALTER TABLE dbo.TblTuyenDung ADD NameQuocGia nvarchar(250)
 <<<<<<< .mine
---UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
+
+UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
 
 --16/05/2017
 --CREATE TABLE [dbo].[tblFunction](

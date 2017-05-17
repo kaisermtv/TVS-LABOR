@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <form style="margin: 0px !important;" runat="server">
+    <form style="margin: 0px !important;" runat="server"  onkeypress="ESC_Press(event)">
         <div class="KhungIn">
             <div class="TieuDe1">
                 <!---Phần tiêu đề của phiếu-->
@@ -125,6 +125,7 @@
             </div>
         </div>
     </form>
+       <script src="../js/TvsProcessPage.js"></script>
 </body>
 </html>
 
