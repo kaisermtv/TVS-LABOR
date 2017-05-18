@@ -60,10 +60,11 @@
                             <b>I. THÔNG TIN NGƯỜI LAO ĐỘNG</b>
                         </td>
                         <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
-                        <td>&nbsp;
+                        <td style="width: 5%; text-align: right; padding-right: 5px; ">
+                               <a  id="btnAddNew" href="TuyenDungEdit.aspx" title="Thêm mới" style=" border :solid 1px black" class="btn btn-info"  >Thêm mới</a>
                         </td>
-                        <td style="width: 20%; text-align: right;">
-                            <asp:Button ID="btnCancel" runat="server" Text="Thoát" CssClass="btn btn-default" OnClick="btnCancel_Click" />
+                        <td style="width: 1%; text-align: left;">
+                            <asp:Button ID="btnCancel" runat="server" Text="Thoát"  BorderStyle="Solid" BorderColor="Black" BorderWidth="1"   CssClass="btn btn-default" OnClick="btnCancel_Click" />
                         </td>
                     </tr>
                 </table>
