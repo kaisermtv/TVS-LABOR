@@ -186,6 +186,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlTonGiao.DataTextField = "NameTonGiao";
             this.ddlTonGiao.DataValueField = "IDTonGiao";
             this.ddlTonGiao.DataBind();
+            ddlTonGiao.SelectedValue = "0";
 
             this.ddlNgoaiNgu.DataSource = this.objNgoaiNgu.getDataCategoryToCombobox();
             this.ddlNgoaiNgu.DataTextField = "NameNgoaiNgu";

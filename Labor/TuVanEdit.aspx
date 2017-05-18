@@ -1,5 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
+    <style>
+        .checkboxuser input{
+            width:15px;
+            height:15px;
+        }
+    </style>
+
+    <script>
+        function MyNumberFormat(object) {
+            var txt = object.value.trim().replace(/,/g, '');
+
+            if (txt != "")
+            {
+                var outtxt = "";
+                var i = txt.length,a;
+                while (i > 0)
+                {
+                    a = i - 3;
+                    if (a < 0) a = 0;
+
+                    if (outtxt != "") outtxt = "," + outtxt;
+
+                    outtxt = txt.substring(a, i) + outtxt;
+
+                    i = a;
+                }
+                object.value = outtxt;
+            }
+        }
+    </script>
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <!-- Đặt ở đây không phải master - vì bị đè -->
     <script src="../Scripts/select2.min.js"></script>
@@ -26,6 +59,7 @@
     <script type ="text/javascript">
         jQuery(function ($) {
             $("#MainContent_txtNgaySinh").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            $("#MainContent_txtNgayCapCMND").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
             //$("#phone").mask("(999) 999-9999");
             //$("#tin").mask("99-9999999");
             //$("#ssn").mask("999-99-9999");
@@ -329,8 +363,8 @@
                             <asp:TextBox ID="txtKhaNangNoiTroi" runat="server" CssClass="form-control"></asp:TextBox>
                         </td>
                         <td style="width: 110px; text-align: right; padding-right: 5px;">Mức lương TN:</td>
-                        <td style="width: 10%;">
-                            <asp:TextBox ID="txtMucLuongTN" runat="server" Text="0" CssClass="form-control" Style="width: 100%;"></asp:TextBox>
+                        <td style="width: 10%;">    
+                            <asp:TextBox ID="txtMucLuongTN" runat="server" Text="0" onkeyup="MyNumberFormat(this)" CssClass="form-control" Style="width: 100%;" ></asp:TextBox>
                         </td>
                         <td style="width: 75px; text-align: right; padding-right: 5px;">Lý do TN:</td>
                         <td colspan="2">
@@ -380,11 +414,11 @@
 
                     <tr>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanPhapLuat" runat="server" />&nbsp;Chính sách, pháp luật lao động&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanPhapLuat" runat="server" CssClass="checkboxuser" />&nbsp;Chính sách, pháp luật lao động&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanViecLam" runat="server" />&nbsp;Việc làm trong nước&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanViecLam" runat="server" CssClass="checkboxuser" />&nbsp;Việc làm trong nước&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanBHTN" runat="server" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanBHTN" runat="server" CssClass="checkboxuser" />&nbsp;Bảo hiểm thất nghiệp&nbsp;&nbsp;&nbsp;</td>
                         <td>&nbsp;</td>
                         <td rowspan="2" style="text-align: right;">
                             <button class="btn btn-success" type="button" onclick="XemTinTuyenDung('0')"><% Response.Write(this.strBtnViecLamTrongNuoc); %></button>
@@ -395,13 +429,13 @@
 
                     <tr>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanXuatKhauLaoDong" runat="server" />&nbsp;Xuất khẩu lao động&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanXuatKhauLaoDong" runat="server" CssClass="checkboxuser" />&nbsp;Xuất khẩu lao động&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanDuHoc" runat="server" />&nbsp;Du học&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanDuHoc" runat="server" CssClass="checkboxuser" />&nbsp;Du học&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanHocNghe" runat="server" />&nbsp;Tư vấn đào tạo&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanHocNghe" runat="server" CssClass="checkboxuser" />&nbsp;Tư vấn đào tạo&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <asp:CheckBox ID="ckbTuVanKhac" runat="server" />&nbsp;Khác&nbsp;&nbsp;&nbsp;</td>
+                            <asp:CheckBox ID="ckbTuVanKhac" runat="server"  CssClass="checkboxuser" />&nbsp;Khác&nbsp;&nbsp;&nbsp;</td>
                     </tr>
 
                 </table>
@@ -445,7 +479,7 @@
                 <tr style="height: 40px;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Lương thấp nhất:</td>
                     <td style="width: 90%;" colspan="6">
-                        <asp:TextBox ID="txtMucLuongThapNhat" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtMucLuongThapNhat" onkeyup="MyNumberFormat(this)" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -496,7 +530,7 @@
                 <tr style="height: 40px;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Lương thấp nhất:</td>
                     <td style="width: 90%;" colspan="6">
-                        <asp:TextBox ID="txtMucLuongThapNhat2" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtMucLuongThapNhat2" onkeyup="MyNumberFormat(this)" runat="server" CssClass="form-control"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -542,10 +576,11 @@
 
                     <button class="btn btn-primary" type="button" onclick="InPhieuKetQua()" id="btnPhieuKetQua">Phiếu kết quả</button>
                 </td>
-                <td>
-                    
-                   <td class="warning"> <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red"/></td>
-                    <td></td>
+                <td class="warning">
+                    <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red"/>
+                </td>
+                <td style="width:150px">
+                    <a href="TuVanEdit.aspx" class="btn btn-default">Thêm mới</a>
                 </td>
             </tr>
         </table>

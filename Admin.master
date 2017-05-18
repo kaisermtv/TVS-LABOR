@@ -54,7 +54,7 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body class="sticky-header left-side-collapsed" onload="initMap()">
+<body class="sticky-header left-side-collapsed" >
     <form id="form1" runat="server"  >
          <asp:ScriptManager ID="ScriptManagerAdmin" runat="server" EnablePartialRendering="true"  EnablePageMethods="true">
           
