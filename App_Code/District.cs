@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 
-public class District
+public class District :DataClass
 {
     #region method District
     public District()
@@ -116,6 +116,29 @@ public class District
 
         }
         return objTable;
+    }
+    #endregion
+
+    #region method getNameById
+    public string getNameById(int Id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT Name FROM tblDistrict WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
+            String ret = (String)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
     }
     #endregion
 

@@ -1,12 +1,28 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
+﻿<%@ Page Title="" EnableEventValidation="false"  Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
-        .checkboxuser input{
-            width:15px;
-            height:15px;
+        .checkboxuser input {
+            width: 15px;
+            height: 15px;
         }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+            a:link {
+                text-decoration: none;
+                color: #000;
+            }
+
+            a:hover {
+                text-decoration: none;
+                color: #000;
+            }
     </style>
+
 
     <script>
         function MyNumberFormat(object) {
@@ -30,11 +46,71 @@
                 object.value = outtxt;
             }
         }
-    </script>
-</asp:Content>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <!-- Đặt ở đây không phải master - vì bị đè -->
+        function getQuanHuyen(id,selectid,phuongxaid)
+        {
+            $.get("/ajax/QuanHuyenOption.aspx?id=" + id, function (data, status) {
+                var selectout = document.getElementById("MainContent_" + selectid);
+                var phuongxaout = document.getElementById("MainContent_" + phuongxaid);
+
+                //selectout.innerHTML = "";
+
+                if (status == "success")
+                {
+                    selectout.innerHTML = data;
+                    //$("#" + selectid).html(data);
+                } else {
+                    selectout.innerHTML = "";
+                    //$("#MainContent_" + selectid).html("");
+                    alert("Mất kết nôi! Xin thử lại.");
+                }
+
+                getPhuongXa(selectout.options[selectout.selectedIndex].value, phuongxaid);
+
+                //selectout.
+            });
+        }
+
+        function getPhuongXa(id, selectid) {
+            $.get("/ajax/PhuongXaOption.aspx?id=" + id, function (data, status) {
+                var selectout = document.getElementById("MainContent_" + selectid);
+
+                if (status == "success") {
+                    selectout.innerHTML = data;
+                } else {
+                    selectout.innerHTML = "";
+                    alert("Mất kết nôi! Xin thử lại.");
+                }
+            });
+        }
+
+        function CopyTinhThanh()
+        {
+            var selectout1 = document.getElementById("MainContent_ddlTinh_TT");
+            var selectout2 = document.getElementById("MainContent_ddlHuyen_TT");
+            var selectout3 = document.getElementById("MainContent_ddlXa_TT");
+            var selectout4 = document.getElementById("MainContent_ddlTinh_DC");
+            var selectout5 = document.getElementById("MainContent_ddlHuyen_DC");
+            var selectout6 = document.getElementById("MainContent_ddlXa_DC");
+
+
+            var selectout7 = document.getElementById("MainContent_txtXom_TT");
+            var selectout8 = document.getElementById("MainContent_txtXom_DC");
+            
+
+            selectout4.selectedIndex = selectout1.selectedIndex;
+
+            selectout5.innerHTML = selectout2.innerHTML;
+            selectout5.selectedIndex = selectout2.selectedIndex;
+
+            selectout6.innerHTML = selectout3.innerHTML;
+            selectout6.selectedIndex = selectout3.selectedIndex;
+
+            selectout8.value = selectout7.value;
+
+        }
+    </script>
+
     <script src="../Scripts/select2.min.js"></script>
     <link href="../css/select2.min.css" rel="stylesheet" />
 
@@ -58,33 +134,16 @@
 
     <script type ="text/javascript">
         jQuery(function ($) {
-            $("#MainContent_txtNgaySinh").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
-            $("#MainContent_txtNgayCapCMND").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            $("#MainContent_txtNgaySinh").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
+            $("#MainContent_txtNgayCapCMND").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
             //$("#phone").mask("(999) 999-9999");
             //$("#tin").mask("99-9999999");
             //$("#ssn").mask("999-99-9999");
         });
     </script>
+</asp:Content>
 
-    <style>
-        a {
-            text-decoration: none;
-            color: #000;
-        }
-
-            a:link {
-                text-decoration: none;
-                color: #000;
-            }
-
-            a:hover {
-                text-decoration: none;
-                color: #000;
-            }
-    </style>
-
-    
-
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <table border="0" style="margin-top: -20px;">
         <tr style="height: 40px;">
             <td style="width: 90%;" colspan="7">
@@ -213,75 +272,71 @@
                 </asp:DropDownList>
             </td>
             <td ></td>
-            <td  colspan="2">
-                        <label for="MainContent_ckDocThan">Độc thân</label>&nbsp;&nbsp;<asp:RadioButton ID="ckDocThan" GroupName="kethon" runat="server" TextAlign="Left"/>   &nbsp;&nbsp;&nbsp;
-                        <label for="MainContent_ckKetHon">Kết hôn</label>&nbsp;&nbsp;<asp:RadioButton ID="ckKetHon" GroupName="kethon" runat="server" TextAlign="Left"/> 
+            <td colspan="2">
+                <label for="MainContent_ckDocThan">Độc thân</label>&nbsp;&nbsp;<asp:RadioButton ID="ckDocThan" GroupName="kethon" runat="server" TextAlign="Left" />
+                &nbsp;&nbsp;&nbsp;
+                        <label for="MainContent_ckKetHon">Kết hôn</label>&nbsp;&nbsp;<asp:RadioButton ID="ckKetHon" GroupName="kethon" runat="server" TextAlign="Left" />
+            </td>
+        </tr>
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi thường trú:</td>
+            <td style="width: 10%;">
+                <asp:DropDownList ID="ddlTinh_TT" onChange="getQuanHuyen(this.options[this.selectedIndex].value,'ddlHuyen_TT','ddlXa_TT')" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
+                </asp:DropDownList>
+            </td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
+            <td style="width: 40%;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 35%;">
+                            <asp:DropDownList ID="ddlHuyen_TT"  onChange="getPhuongXa(this.options[this.selectedIndex].value,'ddlXa_TT')" runat="server" CssClass="multiple-style form-control" Style="width: 100%;">
+                            </asp:DropDownList>
+                        </td>
+                        <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
+                        <td>
+                            <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
+            <td style="width: 20%;">
+                <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+
+            <td rowspan="2" style="text-align: right;">
+                <input type="button" value="&dArr;" style="height: 75px; margin-left: 3px" class="btn btn-primary" onclick="CopyTinhThanh()" />
             </td>
         </tr>
 
-        <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
-            <ContentTemplate>
-
-                <tr style="height: 40px;">
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi thường trú:</td>
-                    <td style="width: 10%;">
-                        <asp:DropDownList ID="ddlTinh_TT" AutoPostBack="true" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_TT_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
-                    <td style="width: 40%;">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 35%;">
-                                    <asp:DropDownList ID="ddlHuyen_TT" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlHuyen_TT_SelectedIndexChanged" CssClass=" multiple-style form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </td>
-                                <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
-                    <td style="width: 20%;">
-                        <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
-                    </td>
-
-                    <td rowspan="2" style="text-align: right;">
-                        <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
-                </tr>
-
-                <tr style="height: 40px;">
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ:</td>
-                    <td style="width: 10%;">
-                        <asp:DropDownList ID="ddlTinh_DC" AutoPostBack="true" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_DC_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
-                    <td style="width: 40%;">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 35%;">
-                                    <asp:DropDownList ID="ddlHuyen_DC" AutoPostBack="true" runat="server" CssClass="multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlHuyen_DC_SelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </td>
-                                <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass=" multiple-style  form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
-                    <td style="width: 20%;">
-                        <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
-                    </td>
-                </tr>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+        <tr style="height: 40px;">
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ:</td>
+            <td style="width: 10%;">
+                <asp:DropDownList ID="ddlTinh_DC" onChange="getQuanHuyen(this.options[this.selectedIndex].value,'ddlHuyen_DC','ddlXa_DC')" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;">
+                </asp:DropDownList>
+            </td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
+            <td style="width: 40%;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 35%;">
+                            <asp:DropDownList ID="ddlHuyen_DC" onChange="getPhuongXa(this.options[this.selectedIndex].value,'ddlXa_DC')" runat="server" CssClass="multiple-style form-control" Style="width: 100%;">
+                            </asp:DropDownList>
+                        </td>
+                        <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
+                        <td>
+                            <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass=" multiple-style  form-control" Style="width: 100%;">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
+            <td style="width: 20%;">
+                <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
+            </td>
+        </tr>
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Sức khỏe:</td>
@@ -580,9 +635,9 @@
                 <td class="warning">
                     <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red"/>
                 </td>
-                <td style="width:150px">
+                <%--<td style="width:150px">
                     <a href="TuVanEdit.aspx" class="btn btn-default">Thêm mới</a>
-                </td>
+                </td>--%>
             </tr>
         </table>
     </footer>

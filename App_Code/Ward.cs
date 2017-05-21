@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 
-public class Ward
+public class Ward :DataClass
 {
 	#region method Ward
     public Ward()
@@ -91,6 +91,29 @@ public class Ward
     }
     #endregion
 
+    #region getNameById
+    public String getNameById(int id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT Name FROM tblWard WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+
+            String ret = (String)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
+
     #region method getDataById
     public DataTable getDataById(int Id)
     {
@@ -129,6 +152,32 @@ public class Ward
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT Id, Name FROM tblWard WHERE ProvincerId = @ProvincerId AND DistrictId = @DistrictId";
             Cmd.Parameters.Add("ProvincerId", SqlDbType.Int).Value = ProvincerId;
+            Cmd.Parameters.Add("DistrictId", SqlDbType.Int).Value = DistrictId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+            objTable.Rows.Add(0, "Không chọn");
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+
+    public DataTable getDataCategoryToCombobox(string DistrictId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT Id, Name FROM tblWard WHERE DistrictId = @DistrictId";
             Cmd.Parameters.Add("DistrictId", SqlDbType.Int).Value = DistrictId;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;

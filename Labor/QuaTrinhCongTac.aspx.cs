@@ -64,8 +64,8 @@ public partial class Admin_QuaTrinhCongTac : System.Web.UI.Page
                 this.txtDonVi.Text = this.objTable.Rows[0]["DonVi"].ToString();
                 this.ddlChucVu.SelectedValue = this.objTable.Rows[0]["IDChucVu"].ToString();
                 this.ddlIDLinhVuc.SelectedValue = this.objTable.Rows[0]["IDLinhVuc"].ToString();
-                this.txtNgayBatDau.Value = DateTime.Parse(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString("dd/MM/yyyy");
-                this.txtNgayKetThuc.Value = DateTime.Parse(this.objTable.Rows[0]["NgayKetThuc"].ToString()).ToString("dd/MM/yyyy");
+                this.txtNgayBatDau.Value = DateTime.Parse(this.objTable.Rows[0]["NgayBatDau"].ToString()).ToString("MM/yyyy");
+                this.txtNgayKetThuc.Value = DateTime.Parse(this.objTable.Rows[0]["NgayKetThuc"].ToString()).ToString("MM/yyyy");
             }
 
             this.getData();
@@ -126,7 +126,7 @@ public partial class Admin_QuaTrinhCongTac : System.Web.UI.Page
                 return;
             }
 
-            if (this.objNguoiLaoDong.setDataNldQuatrinhCongTac(this.IDNldQuaTrinhCongTac, this.IDNguoiLaoDong, this.txtDonVi.Text, int.Parse(this.ddlIDLinhVuc.SelectedValue.ToString()), int.Parse(this.ddlChucVu.SelectedValue.ToString()), TVSSystem.CVDate(this.txtNgayBatDau.Value.Trim()), TVSSystem.CVDate(this.txtNgayKetThuc.Value.Trim())) == 1)
+            if (this.objNguoiLaoDong.setDataNldQuatrinhCongTac(this.IDNldQuaTrinhCongTac, this.IDNguoiLaoDong, this.txtDonVi.Text, int.Parse(this.ddlIDLinhVuc.SelectedValue.ToString()), int.Parse(this.ddlChucVu.SelectedValue.ToString()), TVSSystem.CVDate("01/" + this.txtNgayBatDau.Value.Trim()), TVSSystem.CVDate("01/" + this.txtNgayKetThuc.Value.Trim())) == 1)
             {
                 this.getData();
             }

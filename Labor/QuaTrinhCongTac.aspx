@@ -25,21 +25,33 @@
     <script src="../Scripts/moment-with-locales.js"></script>
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
     <!-- -->
+
+    <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
 </head>
 <body style="margin: 0px !important; height: 500px !important; padding:10px;">
      <script type="text/javascript">
          $(function () {
              $('#datetimepicker1').datetimepicker({
-                 format: 'DD/MM/YYYY'
+                 format: 'MM/YYYY'
              });
          });
 
          $(function () {
              $('#datetimepicker2').datetimepicker({
-                 format: 'DD/MM/YYYY'
+                 format: 'MM/YYYY'
              });
          });
 
+    </script>
+
+    <script type ="text/javascript">
+        jQuery(function ($) {
+            $("#MainContent_txtNgayBatDau").mask("99/9999", { placeholder: "MM/yyyy" });
+            $("#MainContent_txtNgayKetThuc").mask("99/9999", { placeholder: "MM/yyyy" });
+            //$("#phone").mask("(999) 999-9999");
+            //$("#tin").mask("99-9999999");
+            //$("#ssn").mask("999-99-9999");
+        });
     </script>
     <form id="form1" runat="server">
         <div style="width: 100%;">
@@ -81,7 +93,7 @@
 
                         <script type="text/javascript">
                             $(function () {
-                                $('#datetimepicker1').datetimepicker();
+                                $('#datetimepicker1').datetimepicker({format: 'MM/YYYY'});
                             });
                         </script>
                     </td>
@@ -95,7 +107,7 @@
 
                         <script type="text/javascript">
                             $(function () {
-                                $('#datetimepicker2').datetimepicker();
+                                $('#datetimepicker2').datetimepicker({ format: 'MM/YYYY' });
                             });
                         </script>
                     </td>
@@ -134,10 +146,10 @@
                             <%# Eval("NameChucVu") %>
                         </td>
                         <td class="DataListTableTdItemCenter" style="width: 17%;">
-                            <%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %>
+                            <%# ((DateTime)Eval("NgayBatDau")).ToString("MM/yyyy") %>
                         </td>
                         <td class="DataListTableTdItemCenter" style="width: 17%;">
-                            <%# ((DateTime)Eval("NgayKetThuc")).ToString("dd/MM/yyyy") %>
+                            <%# ((DateTime)Eval("NgayKetThuc")).ToString("MM/yyyy") %>
                         </td>
                     </tr>
                 </table>

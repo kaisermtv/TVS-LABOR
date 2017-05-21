@@ -126,12 +126,22 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             this.ddlGioiTinh.DataValueField = "IDGioiTinh";
             this.ddlGioiTinh.DataBind();
 
-            this.ddlTinh_TT.DataSource = this.objProvincer.getDataCategoryToCombobox();
+            // ******************* Tỉnh thành ****************************
+
+            DataTable objTinhThanhData = this.objProvincer.getDataCategoryToCombobox();
+            this.ddlTinh_TT.DataSource = objTinhThanhData.DefaultView;
             this.ddlTinh_TT.DataTextField = "Name";
             this.ddlTinh_TT.DataValueField = "Id";
             this.ddlTinh_TT.SelectedValue = "40";
             this.ddlTinh_TT.DataBind();
 
+            this.ddlTinh_DC.DataSource = objTinhThanhData.DefaultView;
+            this.ddlTinh_DC.DataTextField = "Name";
+            this.ddlTinh_DC.DataValueField = "Id";
+            this.ddlTinh_DC.SelectedValue = "40";
+            this.ddlTinh_DC.DataBind();
+
+            // ############################################################
             //ddlTinh_TT_SelectedIndexChanged(null,null);
 
             if (this.ddlTinh_TT.Items.Count > 0)
@@ -150,12 +160,6 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                 ddlXa_TT.SelectedValue = "0";
                 this.ddlXa_TT.DataBind();
             }
-
-            this.ddlTinh_DC.DataSource = this.objProvincer.getDataCategoryToCombobox();
-            this.ddlTinh_DC.DataTextField = "Name";
-            this.ddlTinh_DC.DataValueField = "Id";
-            this.ddlTinh_DC.SelectedValue = "40";
-            this.ddlTinh_DC.DataBind();
 
             //ddlTinh_DC_SelectedIndexChanged(null,null);
 
@@ -580,7 +584,21 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
 
             
         }
-         
+
+
+        string ddlHuyen_TT_Name = objDistrict.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlHuyen_TT"]));
+        string ddlHuyen_DC_Name = objDistrict.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlHuyen_DC"]));
+
+        string ddlXa_TT_Name = objWard.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlXa_TT"]));
+        string ddlXa_DC_Name = objWard.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlXa_DC"]));
+        //Request.Form[""];
+        //this.ddlHuyen_TT.SelectedItem.Text = objDistrict.getNameById(int.Parse(this.ddlHuyen_TT.SelectedValue));
+        //this.ddlHuyen_DC.SelectedItem.Text = objDistrict.getNameById(int.Parse(this.ddlHuyen_DC.SelectedValue));
+
+        //this.ddlXa_TT.SelectedItem.Text = objWard.getNameById(int.Parse(this.ddlXa_TT.SelectedValue));
+        //this.ddlXa_DC.SelectedItem.Text = objWard.getNameById(int.Parse(this.ddlXa_DC.SelectedValue));
+                                        
+
         ///////////////////////////////////////////////////////////////////////////// 
 
         if (this.objNguoiLaoDong.setData(ref this.IDNguoiLaoDong, 
@@ -604,12 +622,12 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
                                          this.txtTrinhDoKyNangNghe.Text,                                         // *
                                          this.txtKhaNangNoiTroi.Text,                                           
                                          this.ddlTinh_TT.SelectedItem.Text,                                     // * 
-                                         this.ddlHuyen_TT.SelectedItem.Text,                                    // * 
-                                         this.ddlXa_TT.SelectedItem.Text,                                       // * 
+                                         ddlHuyen_TT_Name,                                    // * 
+                                         ddlXa_TT_Name,                                       // * 
                                          this.txtXom_TT.Text, 
                                          this.ddlTinh_DC.SelectedItem.Text,
-                                         this.ddlHuyen_DC.SelectedItem.Text, 
-                                         this.ddlXa_DC.SelectedItem.Text, 
+                                         ddlHuyen_DC_Name,
+                                         ddlXa_DC_Name, 
                                          this.txtXom_DC.Text,
                                          int.Parse(ddlTrinhDoTinHoc.SelectedValue),
                                          int.Parse(ddlTrinhDoNgoaiNgu.SelectedValue),
@@ -691,86 +709,86 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
     #endregion
 
     #region method ddlTinh_TT_SelectedIndexChanged
-    protected void ddlTinh_TT_SelectedIndexChanged(object sender, EventArgs e)
-    {
+    //protected void ddlTinh_TT_SelectedIndexChanged(object sender, EventArgs e)
+    //{
         
-        this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
-        this.ddlHuyen_TT.DataTextField = "Name";
-        this.ddlHuyen_TT.DataValueField = "Id";
-        this.ddlHuyen_TT.DataBind();
+    //    this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
+    //    this.ddlHuyen_TT.DataTextField = "Name";
+    //    this.ddlHuyen_TT.DataValueField = "Id";
+    //    this.ddlHuyen_TT.DataBind();
 
-        ddlHuyen_TT.SelectedValue = "0";
+    //    ddlHuyen_TT.SelectedValue = "0";
 
-        ddlHuyen_TT_SelectedIndexChanged(sender, e);
+    //    ddlHuyen_TT_SelectedIndexChanged(sender, e);
 
-        ddlHuyen_TT.Focus();
+    //    ddlHuyen_TT.Focus();
         
 
-    }
+    //}
     #endregion
 
     #region method ddlHuyen_TT_SelectedIndexChanged
-    protected void ddlHuyen_TT_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        this.ddlXa_TT.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString(), this.ddlHuyen_TT.SelectedValue.ToString());
-        this.ddlXa_TT.DataTextField = "Name";
-        this.ddlXa_TT.DataValueField = "Id";
-        this.ddlXa_TT.DataBind();
-        ddlXa_TT.SelectedValue = "0";
+    //protected void ddlHuyen_TT_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    this.ddlXa_TT.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString(), this.ddlHuyen_TT.SelectedValue.ToString());
+    //    this.ddlXa_TT.DataTextField = "Name";
+    //    this.ddlXa_TT.DataValueField = "Id";
+    //    this.ddlXa_TT.DataBind();
+    //    ddlXa_TT.SelectedValue = "0";
 
-        ddlXa_TT.Focus();
-    } 
+    //    ddlXa_TT.Focus();
+    //} 
     #endregion
 
     #region method ddlTinh_DC_SelectedIndexChanged
-    protected void ddlTinh_DC_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
-        this.ddlHuyen_DC.DataTextField = "Name";
-        this.ddlHuyen_DC.DataValueField = "Id";
-        this.ddlHuyen_DC.DataBind();
-        ddlHuyen_DC.SelectedValue = "0";
+    //protected void ddlTinh_DC_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
+    //    this.ddlHuyen_DC.DataTextField = "Name";
+    //    this.ddlHuyen_DC.DataValueField = "Id";
+    //    this.ddlHuyen_DC.DataBind();
+    //    ddlHuyen_DC.SelectedValue = "0";
 
-        ddlHuyen_DC_SelectedIndexChanged(sender, e);
+    //    ddlHuyen_DC_SelectedIndexChanged(sender, e);
 
-        ddlHuyen_DC.Focus();
-    } 
+    //    ddlHuyen_DC.Focus();
+    //} 
     #endregion
 
     #region method ddlHuyen_DC_SelectedIndexChanged
     protected void ddlHuyen_DC_SelectedIndexChanged(object sender, EventArgs e)
     {
-        this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
-        this.ddlXa_DC.DataTextField = "Name";
-        this.ddlXa_DC.DataValueField = "Id";
-        this.ddlXa_DC.DataBind();
-        ddlXa_DC.SelectedValue = "0";
+        //this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
+        //this.ddlXa_DC.DataTextField = "Name";
+        //this.ddlXa_DC.DataValueField = "Id";
+        //this.ddlXa_DC.DataBind();
+        //ddlXa_DC.SelectedValue = "0";
 
-        ddlXa_DC.Focus();
+        //ddlXa_DC.Focus();
     } 
     #endregion
 
     #region method btnCopy_Click
-    protected void btnCopy_Click(object sender, EventArgs e)
-    {
-        ddlTinh_DC.SelectedValue = ddlTinh_TT.SelectedValue;
+    //protected void btnCopy_Click(object sender, EventArgs e)
+    //{
+    //    ddlTinh_DC.SelectedValue = ddlTinh_TT.SelectedValue;
 
-        this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
-        this.ddlHuyen_DC.DataTextField = "Name";
-        this.ddlHuyen_DC.DataValueField = "Id";
-        this.ddlHuyen_DC.DataBind();
+    //    this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
+    //    this.ddlHuyen_DC.DataTextField = "Name";
+    //    this.ddlHuyen_DC.DataValueField = "Id";
+    //    this.ddlHuyen_DC.DataBind();
 
-        ddlHuyen_DC.SelectedValue = ddlHuyen_TT.SelectedValue;
-        this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
-        this.ddlXa_DC.DataTextField = "Name";
-        this.ddlXa_DC.DataValueField = "Id";
-        this.ddlXa_DC.DataBind();
+    //    ddlHuyen_DC.SelectedValue = ddlHuyen_TT.SelectedValue;
+    //    this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
+    //    this.ddlXa_DC.DataTextField = "Name";
+    //    this.ddlXa_DC.DataValueField = "Id";
+    //    this.ddlXa_DC.DataBind();
 
-        ddlXa_DC.SelectedValue = ddlXa_TT.SelectedValue;
-        txtXom_DC.Text = txtXom_TT.Text;
+    //    ddlXa_DC.SelectedValue = ddlXa_TT.SelectedValue;
+    //    txtXom_DC.Text = txtXom_TT.Text;
 
-        txtSucKhoe.Focus();
-    } 
+    //    txtSucKhoe.Focus();
+    //} 
     #endregion
 
     #region method KiemTraDauVaoNeuLaNldTuDo
