@@ -22,6 +22,20 @@
             padding-top:8px;
         }
 
+        .labela{
+            width:16%;
+            float:left;
+            text-align:right;
+            font-size:15px;
+            padding-right:5px;
+            height:34px;    
+            padding-top:8px;
+        }
+
+        label{
+            font-size:15px;
+        }
+
         .chkLabel{
             width:20%;
             float:left;
@@ -44,6 +58,10 @@
             width: 25px;
             height: 25px;
         }
+        .checkboxuserinput {
+            width: 25px;
+            height: 25px;
+        }
 
         .checkboxuser label{
             height:34px;
@@ -52,6 +70,10 @@
 
         span.badge1{
             right:10px;
+        }
+
+        .warning{
+            color:red;
         }
     </style>
     <script>
@@ -62,6 +84,35 @@
 
             $(".dateinput").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
         });
+
+        function hidenDangkyTre(obj)
+        {
+            //inp = document.getElementsByName('MainContent_ddlDangKyTre');
+            //alert(obj.checked);
+            if (obj.checked) {
+                
+                $("#MainContent_ddlDangKyTre").show()
+                //inp.style.visibility = 'visible';
+            } else {
+                $("#MainContent_ddlDangKyTre").hide()
+                //inp.style.visibility = 'hidden';
+            }
+        }
+
+        function hidenXacNhanDangKy(obj) {
+            //inp = document.getElementsByName('MainContent_ddlDangKyTre');
+            //alert(obj.checked);
+            if (obj.checked) {
+
+                $("#MainContent_ddlNoiDKXacNhan").show()
+                //inp.style.visibility = 'visible';
+            } else {
+                $("#MainContent_ddlNoiDKXacNhan").hide()
+                //inp.style.visibility = 'hidden';
+            }
+        }
+
+        
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -149,14 +200,53 @@
             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
-    <div class="row headlabel" >
-        <b>II. Thông tin cá nhân bổ sung</b>
+    <div class="row headlabel">
+        <a class="pa_italic collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <b>II. Thông tin cá nhân bổ sung <span class="lnr lnr-chevron-down"></span><i class="lnr lnr-chevron-up"></i></b>
+        </a>
     </div>
+
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+        <div class="panel-body panel_text">
+            <div class="row line">
+                <div class="labela">
+                    Số tài khoản: 
+                </div>
+                <div style="width: 30%; float: left">
+                    <asp:TextBox ID="TextBox13" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="labela">
+                    Ngân hàng: 
+                </div>
+                <div style="width: 30%; float: left">
+                    <asp:DropDownList ID="DropDownList7" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+                </div>
+            </div>
+
+            <div class="row line">
+                <div class="labela">
+                    Mã số thuế: 
+                </div>
+                <div style="width: 30%; float: left">
+                    <asp:TextBox ID="TextBox15" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="labela">
+                    Email: 
+                </div>
+                <div style="width: 30%; float: left">
+                    <asp:TextBox ID="TextBox16" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row line">
         <div class="label1">
-            Số BHXH: 
+             Số BHXH: 
         </div>
-        <div style="width:20%;float:left">
+        <div style="width: 20%; float: left">
             <asp:TextBox ID="txtBHXH" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
@@ -239,8 +329,56 @@
         </div>
     </div>
     <div class="row headlabel" >
-        <b>III. Thông tin DN bổ sung</b>
+        <a class="pa_italic collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <b>III. Thông tin DN bổ sung <span class="lnr lnr-chevron-down"></span><i class="lnr lnr-chevron-up"></i></b>
+        </a>
     </div>
+
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+	    <div class="panel-body panel_text">
+		    <div class="row line">
+                <div class="labela">
+                    Số ĐKKD: 
+                </div>
+                <div style="width:30%;float:left">
+                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="labela">
+                    Loại hình DN: 
+                </div>
+                <div style="width:30%;float:left">
+                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+		    </div>
+
+            <div class="row line">
+                <div class="labela">
+                    Ngành nghề SX - KD: 
+                </div>
+                <div style="width:30%;float:left">
+                    <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="labela">
+                    Email: 
+                </div>
+                <div style="width:30%;float:left">
+                    <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+		    </div>
+
+            <div class="row line">
+                <div class="labela">
+                    Website:
+                </div>
+                <div style="width:30%;float:left">
+                    <asp:TextBox ID="TextBox12" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+		    </div>
+		</div>
+	</div>
     <div class="row line">
         <div class="label1">
             Ngày nghỉ việc: 
@@ -268,9 +406,13 @@
         <div class="label1">
             Nhu cầu: 
         </div>
-        <div style="width:84%;float:left">
-            <asp:CheckBox ID="CheckBox1" CssClass="checkboxuser" runat="server" Text="&nbsp;Tư vấn" TextAlign="Right" />&nbsp;&nbsp;&nbsp;
-            <asp:CheckBox ID="CheckBox2" CssClass="checkboxuser" runat="server" Text="&nbsp;Giới thiệu việc làm" TextAlign="Right" />&nbsp;&nbsp;&nbsp;   
+        <div style="width:15%;float:left">
+            <asp:CheckBox ID="CheckBox1" CssClass="checkboxuser" runat="server" Text="&nbsp;Tư vấn" TextAlign="Right" />
+        </div>
+        <div style="width:20%;float:left">
+            <asp:CheckBox ID="CheckBox2" CssClass="checkboxuser" runat="server" Text="&nbsp;Giới thiệu việc làm" TextAlign="Right" />
+        </div>
+        <div style="width:20%;float:left">
             <asp:CheckBox ID="CheckBox3" CssClass="checkboxuser" runat="server" Text="&nbsp;Học nghề" TextAlign="Right" />
         </div>
     </div>
@@ -289,17 +431,25 @@
         </div>
 
         <div class="label2">
-            <label for="MainContent_chkDangKyTre">Đăng ký trễ</label>
+            <label for="chkDangKyTre">Đăng ký trễ</label>
         </div>
         <div style="width:3%;float:left">
-            <asp:CheckBox ID="chkDangKyTre" CssClass="checkboxuser" runat="server" TextAlign="Left" />
+            <input type="checkbox" id="chkDangKyTre" onchange="hidenDangkyTre(this)" class="checkboxuserinput" />
+            <%--<asp:CheckBox ID="chkDangKyTre" onchange="hidenDangkyTre(this)" CssClass="checkboxuser" runat="server" TextAlign="Left" />--%>
         </div>
 
-        <div class="label2">
+        <%--<div class="label2">
             Lý do đăng ký trễ: 
-        </div>
-        <div style="width:38%;float:left">
-            <asp:TextBox ID="TextBox15" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>--%>
+        <div style="width:49%;float:left">
+            <asp:DropDownList ID="ddlDangKyTre" CssClass="form-control" runat="server" Style="width: 100%;display:none">
+                <asp:ListItem Value="0">--Chọn lý do đăng ký trễ--</asp:ListItem>
+                <asp:ListItem Value="0">Thiên tai dịch họa</asp:ListItem>
+                <asp:ListItem Value="0">Ốm đau thai sản</asp:ListItem>
+                <asp:ListItem Value="0">Tai nạn giao thông</asp:ListItem>
+                <asp:ListItem Value="0">Khác</asp:ListItem>
+            </asp:DropDownList>
+            <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
     <div class="row line">
@@ -353,7 +503,24 @@
             </asp:DropDownList>
         </div>
     </div>
-    <div class="row line"></div>
+    <div class="row line">
+        <div class="label1" style="width:50%">
+            <span class="warning">* Check chọn đã xác nhận chưa đăng ký nếu NLD có giấy xác nhận chưa ĐK</span>
+        </div>
+        <div style="width:3%;float:left">
+            <input type="checkbox" id="chkXacNhanDangKy" onchange="hidenXacNhanDangKy(this)" class="checkboxuserinput" /> 
+        </div>
+        <div class="label1" style="width:18%;text-align:left;">
+            <label for="chkXacNhanDangKy">Đã xác nhận đăng ký</label>
+        </div>
+        <div style="width:25%;float:left">
+            <asp:DropDownList ID="ddlNoiDKXacNhan" CssClass="form-control" runat="server" Style="width: 100%;display:none">
+                <asp:ListItem Value="0">--Chọn nơi xác nhận đăng ký--</asp:ListItem>
+            </asp:DropDownList>
+            <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
+        </div>
+    </div>
+
     <br />
     <br />
     <br />
@@ -363,6 +530,7 @@
             <div class="row">
                 Ngày đăng ký: <%= txtNgayDangKyTN.Value %><br />
                 Hạn hoàn thiện:<br />
+                Ngày hoàn thiện:<br />
                 Ngày trả QĐ: <br />
                 <br />
 
@@ -371,18 +539,28 @@
                     <a href="#" class="list-group-item"><span class="badge1">></span>Đăng ký TCTN</a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Đề nghị hưởng </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Giấy biên nhận ĐK </a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span></i>Phiếu hẹn trả KQ </a>
+                    <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu hẹn trả KQ </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Tải quyết định </a>     
                 </div>
+                <br />
+                <br />
+                <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                <br />
+                <br />
+                <a href="#" class="btn btn-danger" style="width:100%">Chuyển hồ sơ</a>
+                <br />
+                <br />
+                <br />
+                <a href="#" class="btn btn-default" style="width:100%">Thoát</a>
             </div>
         </div>
     </div>
-    <footer style="z-index:100;height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;padding-top:4px">
+    <%--<footer style="z-index:100;height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;padding-top:4px">
         <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 125px !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
         <a href="#" class="btn btn-default">Thoát</a>
         <div class="warning">
             <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red"/>
         </div>
-    </footer>
+    </footer>--%>
 </asp:Content>

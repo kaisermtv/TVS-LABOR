@@ -65,4 +65,10 @@ UPDATE TblDoanhNghiep SET TblDoanhNghiep.ThuTuUuTien = 0
 
 CREATE TABLE [dbo].tblBaoHiemThatghiep(
 
-)
+);
+
+CREATE TABLE [dbo].tblDNBoSung(
+	IdDnBoSung INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	IDNguoiLaoDong INT NOT NULL,
+
+);
