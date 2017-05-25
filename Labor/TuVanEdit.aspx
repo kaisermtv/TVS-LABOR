@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <!-- Đặt ở đây không phải master - vì bị đè -->
     <script src="../Scripts/select2.min.js"></script>
@@ -184,69 +183,66 @@
             </td>
         </tr>
 
-        <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
-            <ContentTemplate>
 
-                <tr style="height: 40px;">
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi thường trú:</td>
-                    <td style="width: 10%;">
-                        <asp:DropDownList ID="ddlTinh_TT" AutoPostBack="true" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_TT_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
-                    <td style="width: 40%;">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 35%;">
-                                    <asp:DropDownList ID="ddlHuyen_TT" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlHuyen_TT_SelectedIndexChanged" CssClass=" multiple-style form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </td>
-                                <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
-                    <td style="width: 20%;">
-                        <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
-                    </td>
+            <tr style="height: 40px;">
+                <td style="width: 10%; text-align: right; padding-right: 5px;">Nơi thường trú:</td>
+                <td style="width: 10%;">
+                    <asp:DropDownList ID="ddlTinh_TT" AutoPostBack="true" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_TT_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+                <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
+                <td style="width: 40%;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 35%;">
+                                <asp:DropDownList ID="ddlHuyen_TT" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlHuyen_TT_SelectedIndexChanged" CssClass=" multiple-style form-control" Style="width: 100%;">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
+                            <td>
+                                <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
+                <td style="width: 20%;">
+                    <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
+                </td>
 
-                    <td rowspan="2" style="text-align: right;">
-                        <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
-                </tr>
+                <td rowspan="2" style="text-align: right;">
+                    <asp:Button ID="btnCopy" runat="server" Text="&dArr;" Style="height: 75px; margin-left: 3px" CssClass="btn btn-primary" OnClick="btnCopy_Click" /></td>
+            </tr>
 
-                <tr style="height: 40px;">
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ:</td>
-                    <td style="width: 10%;">
-                        <asp:DropDownList ID="ddlTinh_DC" AutoPostBack="true" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_DC_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
-                    <td style="width: 40%;">
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 35%;">
-                                    <asp:DropDownList ID="ddlHuyen_DC" AutoPostBack="true" runat="server" CssClass="multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlHuyen_DC_SelectedIndexChanged">
-                                    </asp:DropDownList>
-                                </td>
-                                <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass=" multiple-style  form-control" Style="width: 100%;">
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
-                    <td style="width: 20%;">
-                        <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
-                    </td>
-                </tr>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+            <tr style="height: 40px;">
+                <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ:</td>
+                <td style="width: 10%;">
+                    <asp:DropDownList ID="ddlTinh_DC" AutoPostBack="true" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlTinh_DC_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </td>
+                <td style="width: 10%; text-align: right; padding-right: 5px;">Quận, huyện:</td>
+                <td style="width: 40%;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 35%;">
+                                <asp:DropDownList ID="ddlHuyen_DC" AutoPostBack="true" runat="server" CssClass="multiple-style form-control" Style="width: 100%;" OnSelectedIndexChanged="ddlHuyen_DC_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="text-align: right; width: 110px; padding-right: 5px;">Phường, xã:</td>
+                            <td>
+                                <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass=" multiple-style  form-control" Style="width: 100%;">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 10%; text-align: right; padding-right: 5px;">Khối, xóm:</td>
+                <td style="width: 20%;">
+                    <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
+                </td>
+            </tr>
+
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Sức khỏe:</td>
