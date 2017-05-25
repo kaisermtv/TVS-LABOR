@@ -51,20 +51,20 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
         try
         {
-            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDate(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDate(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDate(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text);
+            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text);
 
             if (ret != 0)
             {
-                Response.Redirect("BaoHiemThatNghepEdit.aspx?id=" + ret);
+                Response.Redirect("BaoHiemThatNghiepEdit.aspx?id=" + ret);
             }
             else
             {
-                //this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
+                this.lblMsg.InnerText = objNguoiLaoDong.Message;//"Lỗi xảy ra khi cập nhật thông tin.";
             }
         }
-        catch
+        catch (Exception ex)
         {
-            //this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
+            this.lblMsg.InnerText = ex.Message;
         }
     }
     #endregion

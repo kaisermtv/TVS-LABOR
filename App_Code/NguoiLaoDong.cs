@@ -207,28 +207,50 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region Method setData()
-    public int setData(int id, String HoVaTen, DateTime NgaySinh, int IDGioiTinh, String CMND, DateTime NgayCapCMND, int NoiCap, String DienThoai, String NoiThuongTru, String TaiKhoan, String Email, String BHXH,DateTime NgayCapBHXH,int NoiCapBHXH,int NoiDangKyKhamBenh,int TrinhDoChuyenMon,int LinhVucDaoTao,String CongViecDaLam)
+    public int setData(int id, String HoVaTen, DateTime? NgaySinh, int IDGioiTinh, String CMND, DateTime? NgayCapCMND, int NoiCap, String DienThoai, String NoiThuongTru, String TaiKhoan, String Email, String BHXH,DateTime? NgayCapBHXH,int NoiCapBHXH,int NoiDangKyKhamBenh,int TrinhDoChuyenMon,int LinhVucDaoTao,String CongViecDaLam)
     {
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong) ";
-            Cmd.CommandText += "BEGIN INSERT INTO TblNguoiLaoDong(HoVaTen,NgaySinh,IDGioiTinh,CMND,NgayCapCMND,NoiCap,DienThoai,NoiThuongTru,TaiKhoan,Email,BHXH,NgayCapBHXH,NoiCapBHXH,NoiDangKyKhamBenh,TrinhDoChuyenMon,LinhVucDaoTao,CongViecDaLam) OUTPUT INSERTED.IDNguoiLaoDong VALUES(@HoVaTen,@NgaySinh,@IDGioiTinh,@CMND,@NgayCapCMND,@NoiCap,@DienThoai,@NoiThuongTru,@TaiKhoan,@Email,@BHXH,@NgayCapBHXH,@NoiCapBHXH,@NoiDangKyKhamBenh,@TrinhDoChuyenMon,@LinhVucDaoTao,@CongViecDaLam) END ";
-            Cmd.CommandText += "ELSE BEGIN UPDATE HoVaTen = @HoVaTen,NgaySinh = @NgaySinh,IDGioiTinh = @IDGioiTinh,CMND = @CMND,NgayCapCMND = @NgayCapCMND,NoiCap = @NoiCap,DienThoai = @DienThoai,NoiThuongTru = @NoiThuongTru,TaiKhoan = @TaiKhoan,Email = @Email,BHXH = @BHXH,NgayCapBHXH = @NgayCapBHXH,NoiCapBHXH = @NoiCapBHXH,NoiDangKyKhamBenh = @NoiDangKyKhamBenh,TrinhDoChuyenMon = @TrinhDoChuyenMon,LinhVucDaoTao = @LinhVucDaoTao,CongViecDaLam = @CongViecDaLam OUTPUT INSERTED.IDNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
-            
+            Cmd.CommandText += "BEGIN INSERT INTO TblNguoiLaoDong(Ma,HoVaTen,NgaySinh,IDGioiTinh,CMND,NgayCapCMND,NoiCap,DienThoai,NoiThuongTru,TaiKhoan,Email,BHXH,NgayCapBHXH,NoiCapBHXH,NoiDangKyKhamBenh,TrinhDoChuyenMon,LinhVucDaoTao,CongViecDaLam) OUTPUT INSERTED.IDNguoiLaoDong VALUES(@Ma,@HoVaTen,@NgaySinh,@IDGioiTinh,@CMND,@NgayCapCMND,@NoiCap,@DienThoai,@NoiThuongTru,@TaiKhoan,@Email,@BHXH,@NgayCapBHXH,@NoiCapBHXH,@NoiDangKyKhamBenh,@TrinhDoChuyenMon,@LinhVucDaoTao,@CongViecDaLam) END ";
+            Cmd.CommandText += "ELSE BEGIN UPDATE TblNguoiLaoDong SET HoVaTen = @HoVaTen,NgaySinh = @NgaySinh,IDGioiTinh = @IDGioiTinh,CMND = @CMND,NgayCapCMND = @NgayCapCMND,NoiCap = @NoiCap,DienThoai = @DienThoai,NoiThuongTru = @NoiThuongTru,TaiKhoan = @TaiKhoan,Email = @Email,BHXH = @BHXH,NgayCapBHXH = @NgayCapBHXH,NoiCapBHXH = @NoiCapBHXH,NoiDangKyKhamBenh = @NoiDangKyKhamBenh,TrinhDoChuyenMon = @TrinhDoChuyenMon,LinhVucDaoTao = @LinhVucDaoTao,CongViecDaLam = @CongViecDaLam OUTPUT INSERTED.IDNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
+
+            Cmd.Parameters.Add("Ma", SqlDbType.NVarChar).Value = this.getNextMaNLD();
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
             Cmd.Parameters.Add("HoVaTen", SqlDbType.NVarChar).Value = HoVaTen;
-            Cmd.Parameters.Add("NgaySinh", SqlDbType.DateTime).Value = NgaySinh;
+            if (NgaySinh != null)
+            {
+                Cmd.Parameters.Add("NgaySinh", SqlDbType.DateTime).Value = NgaySinh;
+            }
+            else
+            {
+                Cmd.Parameters.Add("NgaySinh", SqlDbType.DateTime).Value = DBNull.Value;
+            }
             Cmd.Parameters.Add("IDGioiTinh", SqlDbType.Int).Value = IDGioiTinh;
             Cmd.Parameters.Add("CMND", SqlDbType.NVarChar).Value = CMND;
-            Cmd.Parameters.Add("NgayCapCMND", SqlDbType.DateTime).Value = NgayCapCMND;
+            if (NgayCapCMND != null)
+            {
+                Cmd.Parameters.Add("NgayCapCMND", SqlDbType.DateTime).Value = NgayCapCMND;
+            }
+            else
+            {
+                Cmd.Parameters.Add("NgayCapCMND", SqlDbType.DateTime).Value = DBNull.Value;
+            }
             Cmd.Parameters.Add("NoiCap", SqlDbType.Int).Value = NoiCap;
             Cmd.Parameters.Add("DienThoai", SqlDbType.NVarChar).Value = DienThoai;
             Cmd.Parameters.Add("NoiThuongTru", SqlDbType.NVarChar).Value = NoiThuongTru;
             Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = Email;
             Cmd.Parameters.Add("TaiKhoan", SqlDbType.NVarChar).Value = TaiKhoan;
             Cmd.Parameters.Add("BHXH", SqlDbType.NVarChar).Value = BHXH;
-            Cmd.Parameters.Add("NgayCapBHXH", SqlDbType.DateTime).Value = NgayCapBHXH;
+            if (NgayCapBHXH != null)
+            {
+                Cmd.Parameters.Add("NgayCapBHXH", SqlDbType.DateTime).Value = NgayCapBHXH;
+            }
+            else
+            {
+                Cmd.Parameters.Add("NgayCapBHXH", SqlDbType.DateTime).Value = DBNull.Value;
+            }
             Cmd.Parameters.Add("NoiCapBHXH", SqlDbType.Int).Value = NoiCapBHXH;
             Cmd.Parameters.Add("NoiDangKyKhamBenh", SqlDbType.Int).Value = NoiDangKyKhamBenh;
             Cmd.Parameters.Add("TrinhDoChuyenMon", SqlDbType.Int).Value = TrinhDoChuyenMon;

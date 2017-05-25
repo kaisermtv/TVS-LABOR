@@ -116,6 +116,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
+    <div class="row"  style="height:15px;">
+        <span id="lblMsg" runat="server" class="warning"></span>
+    </div>
     <div style="width:80%;float:left;">
     <div class="row headlabel" >
         <b>I. Thông tin người lao động</b>
@@ -181,7 +184,9 @@
             Nơi cấp: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="ddlNoiCap" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlNoiCap" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="0">Không chọn</asp:ListItem>
+            </asp:DropDownList>
             <%--<asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
@@ -220,7 +225,9 @@
                     Ngân hàng: 
                 </div>
                 <div style="width: 30%; float: left">
-                    <asp:DropDownList ID="DropDownList7" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+                    <asp:DropDownList ID="DropDownList7" CssClass="form-control" runat="server" Style="width: 100%;">
+                        <asp:ListItem Value="0">Không chọn</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
 
@@ -267,7 +274,9 @@
             Nơi cấp BHXH: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="ddlNoiCapBHXH" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlNoiCapBHXH" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="0">Không chọn</asp:ListItem>
+            </asp:DropDownList>
             <%--<asp:TextBox ID="txtNoiCapBHXH" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
@@ -276,7 +285,9 @@
             Nơi ĐK khám bệnh: 
         </div>
         <div style="width:81%;float:left">
-            <asp:DropDownList ID="ddlNoiKhamBenh" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlNoiKhamBenh" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="0">Không chọn</asp:ListItem>
+            </asp:DropDownList>
             <%--<asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
@@ -285,7 +296,9 @@
             Trình độ CMKT: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="ddlTDCM" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlTDCM" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="0">Không chọn</asp:ListItem>
+            </asp:DropDownList>
             <%--<asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
 
@@ -293,7 +306,9 @@
             Lĩnh vực đào tạo: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="ddlLinhVucDT" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlLinhVucDT" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="0">Không chọn</asp:ListItem>
+            </asp:DropDownList>
             <%--<asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
@@ -520,7 +535,7 @@
             <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
-
+    
     <br />
     <br />
     <br />
