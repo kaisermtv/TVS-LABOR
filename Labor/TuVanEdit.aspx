@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" EnableEventValidation="false"  Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="TuVanEdit.aspx.cs" Inherits="Admin_TuVanEdit" %>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .checkboxuser input {
@@ -337,6 +336,7 @@
                 <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
+
 
         <tr style="height: 40px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Sức khỏe:</td>

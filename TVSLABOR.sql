@@ -33,7 +33,7 @@
 
 --ALTER TABLE dbo.TblTuyenDung ADD IdQuocGia int Default(0)
 --ALTER TABLE dbo.TblTuyenDung ADD NameQuocGia nvarchar(250)
-<<<<<<< .mine
+
 
 UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
 
@@ -49,17 +49,58 @@ UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
 --) ON [PRIMARY]
 =======
 --UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
+
 --Thứ 2 15/05/2017
-ALTER TABLE dbo.[TblDoanhNghiep] ADD [ThuTuUuTien] [int] NULL  Default(0) ;
-UPDATE TblDoanhNghiep SET TblDoanhNghiep.ThuTuUuTien = 0
+--ALTER TABLE dbo.[TblDoanhNghiep] ADD [ThuTuUuTien] [int] NULL  Default(0) ;
+--UPDATE TblDoanhNghiep SET TblDoanhNghiep.ThuTuUuTien = 0
+
 -- Thứ 3 Ngày 16/05/2017
-  ALTER TABLE dbo.[TblNldGioiThieu] ADD [NgayHetHieuLuc] [datetime] NULL  Default(null) ;
-  UPDATE [TblNldGioiThieu] SET [TblNldGioiThieu].[NgayHetHieuLuc] = NULL
+--ALTER TABLE dbo.[TblNldGioiThieu] ADD [NgayHetHieuLuc] [datetime] NULL  Default(null) ;
+--UPDATE [TblNldGioiThieu] SET [TblNldGioiThieu].[NgayHetHieuLuc] = NULL
+
+--25/05/2017
+GO
+CREATE TABLE [dbo].[TblNLDTroCapThatNghiep](
+	[IdNLDTCTN] [int] IDENTITY(1,1) NOT NULL,
+	[IDNguoiLaoDong] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_IDNguoiLaoDong]  DEFAULT ((0)),
+	[NgayNghiViec] [datetime] NULL,
+	[SoThangBHTN] [float] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_SoThangBHTN]  DEFAULT ((0)),
+	[NhuCauTuVan] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NhuCauTuVan]  DEFAULT ((0)),
+	[NhuCauGTVL] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NhuCauGTVL]  DEFAULT ((0)),
+	[NhuCauHocNghe] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NhuCauHocNghe]  DEFAULT ((0)),
+	[NgayDangKyTN] [datetime] NULL,
+	[DangKyTre] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_DangKyTre]  DEFAULT ((0)),
+	[DangKyTreLyDo] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_DangKyTreLyDo]  DEFAULT ((0)),
+	[NoiTiepNhan] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NoiTiepNhan]  DEFAULT ((0)),
+	[NgayHoanThien] [datetime] NULL,
+	[NoiNhanBaoHiem] [int] NULL,
+	[HinhThucNhanTien] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_HinhThucNhanTien]  DEFAULT ((0)),
+	[NoiChotSoCuoi] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NoiChotSoCuoi]  DEFAULT ((0)),
+	[DaXacNhanChuaDangKy] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_DaXacNhanChuaDangKy]  DEFAULT ((0)),
+	[NoiXacNhanChuaDangKy] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NoiXacNhanChuaDangKy]  DEFAULT ((0)),
+ CONSTRAINT [PK_TblNLDTroCapThatNghiep] PRIMARY KEY CLUSTERED 
+(
+	[IdNLDTCTN] ASC
+)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+
+<<<<<<< .mine
 
 
 
 
 
+
+
+
+
+
+
+
+=======
 >>>>>>> .theirs
 
 
@@ -72,3 +113,4 @@ CREATE TABLE [dbo].tblDNBoSung(
 	IDNguoiLaoDong INT NOT NULL,
 
 );
+>>>>>>> .theirs
