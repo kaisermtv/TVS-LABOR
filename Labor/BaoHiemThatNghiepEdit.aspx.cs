@@ -8,6 +8,9 @@ using System.Web.UI.WebControls;
 public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 {
     #region declare
+    private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
+
+
     public int itemId = 0;
     #endregion
 
@@ -39,6 +42,30 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
 
+        int gioitinh = 0;
+        if(chkGioiTinhNam.Checked){
+            gioitinh = 1;
+        } else if(chkGioiTinhNu.Checked) {
+            gioitinh = 2;
+        }
+
+        try
+        {
+            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDate(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDate(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDate(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text);
+
+            if (ret != 0)
+            {
+                Response.Redirect("BaoHiemThatNghepEdit.aspx?id=" + ret);
+            }
+            else
+            {
+                //this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
+            }
+        }
+        catch
+        {
+            //this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
+        }
     }
     #endregion
 }

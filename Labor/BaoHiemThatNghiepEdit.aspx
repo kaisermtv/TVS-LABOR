@@ -145,9 +145,9 @@
             Giới tính: 
         </div>
         <div class="chkLabel">
-            <asp:RadioButton ID="RadioButton1" GroupName="GioiTinh" runat="server" Text="&nbsp;Nam" TextAlign="Right" />
+            <asp:RadioButton ID="chkGioiTinhNam" GroupName="GioiTinh" runat="server" Text="&nbsp;Nam" TextAlign="Right" />
             &nbsp;&nbsp;&nbsp;
-            <asp:RadioButton ID="RadioButton2" GroupName="GioiTinh" runat="server" Text="&nbsp;Nữ" TextAlign="Right" />
+            <asp:RadioButton ID="chkGioiTinhNu" GroupName="GioiTinh" runat="server" Text="&nbsp;Nữ" TextAlign="Right" />
 
 <%--            <asp:DropDownList ID="ddlGioiTinh" CssClass="form-control" runat="server" Style="width: 100%;">
                 <asp:ListItem Value="0">Không chọn</asp:ListItem>
@@ -161,7 +161,7 @@
             Số CMND/HC: 
         </div>
         <div style="width:20%;float:left">
-            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
         <div class="label2">
@@ -197,7 +197,7 @@
             Nơi cư trú: 
         </div>
         <div style="width:52%;float:left">
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtNoiThuongTru" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     <div class="row headlabel">
@@ -213,7 +213,7 @@
                     Số tài khoản: 
                 </div>
                 <div style="width: 30%; float: left">
-                    <asp:TextBox ID="TextBox13" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtSoTaiKhoan" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="labela">
@@ -236,7 +236,7 @@
                     Email: 
                 </div>
                 <div style="width: 30%; float: left">
-                    <asp:TextBox ID="TextBox16" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -276,7 +276,7 @@
             Nơi ĐK khám bệnh: 
         </div>
         <div style="width:81%;float:left">
-            <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlNoiKhamBenh" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
             <%--<asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
@@ -285,7 +285,7 @@
             Trình độ CMKT: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="DropDownList5" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlTDCM" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
             <%--<asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
 
@@ -293,7 +293,7 @@
             Lĩnh vực đào tạo: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="DropDownList6" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
+            <asp:DropDownList ID="ddlLinhVucDT" CssClass="form-control" runat="server" Style="width: 100%;"></asp:DropDownList>
             <%--<asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
@@ -302,7 +302,7 @@
             Công việc đã làm: 
         </div>
         <div style="width:84%;float:left">
-            <asp:TextBox ID="TextBox6" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtCongViecDaLam" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     <div class="row line">
