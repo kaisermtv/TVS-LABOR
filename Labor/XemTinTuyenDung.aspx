@@ -138,7 +138,7 @@
                 <input type="hidden" id="txtIDTuyenDung" class="form-control" runat="server" />
                 <input type="text" id="txtTenDonVi" class="form-control" runat="server" style="width: 40%; float: left; margin-left: 15px; margin-right: 10px;" />
                 <input type="text" id="txtNameChucVu" class="form-control" runat="server" style="width: 24%; margin-left: 10px!important; margin-right: 0px;" />
-                 <input type="text" id="txtNgayHetHan" placeholder="Ngày hết hiệu lực" class="form-control" runat="server" style="width:24%;float:right; margin-top:-32px" />
+                 <input type="text" id="txtNgayHetHan"  placeholder="Ngày hết hiệu lực" class="form-control" runat="server" style="width:24%;float:right; margin-top:-32px ; background-color:aqua" />
                  
                     <script>
                         $(function () {
@@ -192,6 +192,8 @@
 
                 var txtNameChucVu = document.getElementById("txtNameChucVu");
                 txtNameChucVu.value = NameChucVu;
+
+                txtNgayHetHan.focus();
             }
 
             function XemTinTuyenDung(value, count) {

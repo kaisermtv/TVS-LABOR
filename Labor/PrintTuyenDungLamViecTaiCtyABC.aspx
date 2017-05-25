@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <form style="margin: 0px !important;" runat="server">
+    <form style="margin: 0px !important;" runat="server"  onkeypress="ESC_Press(event)">
         <div class="KhungIn">
             <div class="TieuDe1">
                 <!---Phần tiêu đề của phiếu-->
@@ -72,23 +72,25 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <% if(counti == 1){ %>
-                            <b style="font-size: 17px">- <%# Eval("SoLuongTuyenDung") %> <%# (Eval("NameVitri") != null)?Eval("NameVitri"):"nhân viên" %>
+                            <b style="font-size: 17px">- <%# Eval("SoLuongTuyenDung") %> <%# (Eval("NoiDungKhac") != null && Eval("NoiDungKhac").ToString() != "")?Eval("NoiDungKhac"):((Eval("NameVitri") != null && Eval("NameVitri").ToString() != "")?Eval("NameVitri"):"nhân viên") %>
                             </b>
                             <br />
                             <b style="font-size: 16px">Yêu cầu :</b>
                             <div style="margin-left: 10%">
                                 <%# Eval("MoTa") %>
                             </div>
+                            <%# (Eval("UuTien") != null && Eval("UuTien").ToString() != "")?"<br /><b style=\"font-size: 16px\">Ưu tiên :</b><div style=\"margin-left: 10%\">" + Eval("UuTien").ToString() + "</div>":"" %>
                         <% } else { %>
                             <tr>
                                 <td style="vertical-align:central">
-                                    <span class="name"><%# Eval("NameVitri") %></span>
+                                    <span class="name"><%# (Eval("NoiDungKhac") != null && Eval("NoiDungKhac").ToString() != "")?Eval("NoiDungKhac"):((Eval("NameVitri") != null && Eval("NameVitri").ToString() != "")?Eval("NameVitri"):"nhân viên") %></span>
                                 </td>
                                 <td style="text-align: center;vertical-align:central">
                                     <%# Eval("SoLuongTuyenDung") %>
                                 </td>
                                 <td class="DataListTableTdItemJustify">
                                     <%# Eval("MoTa") %>
+                                    <%--<%# (Eval("UuTien") != null && Eval("UuTien").ToString() != "")?"<br />" + Eval("UuTien").ToString():"" %>--%>
                                 </td>
                             </tr>
                         <% } %>
@@ -118,11 +120,12 @@
             </div>
             <!--- dòng lưu ý cuối--->
             <div class="ChuBinhThuong">
-                <b>&nbsp;</b>  <b style="border-bottom: solid 1px;">Chi tiết liên hệ</b><b>: Phòng Thông tin TTLĐ — Trung tâm DVVL Nghệ An</b>
-              <div style="margin-left: 30px">Điện thoại : 02383 550 050 — Email : <span style="border-bottom: solid 1px;">sanvieclamnghean@gmail.com</span> </div>
+                <b>&nbsp;</b>  <b style="border-bottom: solid 1px;">Chi tiết liên hệ</b><b>: <%= AboutUsData.Rows[0]["Name"] %></b>
+              <div style="margin-left: 30px">Điện thoại : <%= AboutUsData.Rows[0]["Phone"] %> — Email : <span style="border-bottom: solid 1px;"><%= AboutUsData.Rows[0]["Email"] %></span> </div>
             </div>
         </div>
     </form>
+       <script src="../js/TvsProcessPage.js"></script>
 </body>
 </html>
 

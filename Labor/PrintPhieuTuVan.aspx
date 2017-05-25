@@ -14,7 +14,7 @@
     <link href="../css/PrintPhieuTuVan.css" rel="stylesheet" />
 
 </head>
-<body style="margin: 0px !important; height: 500px !important;">
+<body style="margin: 0px !important; height: 500px !important;" onkeypress="ESC_Press(event)">
     <form id="form1" runat="server">
 
         <div class="KhungIn">
@@ -408,6 +408,8 @@
 
         </div>
 
+
+        <script src="../js/TvsProcessPage.js"></script>
     </form>
 </body>
 </html>

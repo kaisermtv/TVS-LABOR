@@ -58,7 +58,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server"  onkeypress="ESC_Press(event)">
         <center class="KhungIn">
             <center>
                 <h2>SỞ LAO ĐỘNG - TB&XH NGHỆ AN</h2>
@@ -89,5 +89,6 @@
             <p>Điện thoại: <b>0383 550 050 - Email: sanvieclamnghean@gmail.com</b></p>
         </div>
     </form>
+       <script src="../js/TvsProcessPage.js"></script>
 </body>
 </html>
