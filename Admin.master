@@ -63,7 +63,7 @@
           
               <section>
             <!-- left side start-->
-            <div class="left-side sticky-left-side">
+            <div class="left-side sticky-left-side" style="z-index:100">
 
                 <!--logo and iconic logo start-->
                 <div class="logo">
@@ -172,7 +172,7 @@
                 </div>
                 <!-- //header-ends -->
 
-                <div id="page-wrapper"  >
+                <div id="page-wrapper" style="display:table;width:100%" >
                     <div class="graphs">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>

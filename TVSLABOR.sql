@@ -61,3 +61,8 @@ UPDATE TblDoanhNghiep SET TblDoanhNghiep.ThuTuUuTien = 0
 
 
 >>>>>>> .theirs
+
+
+CREATE TABLE [dbo].tblBaoHiemThatghiep(
+
+)
