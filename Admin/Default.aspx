@@ -31,7 +31,7 @@
             </td>
             <td colspan="2">
                 <div class ="BaoHiemThatNghiep" style="width: 100%; height: 100px; background-color: #f874a4;">
-                    <a href="#">Bảo hiểm thất nghiệp</a>
+                    <a href="../Labor/BaoHiemThatNghiep.aspx">Bảo hiểm thất nghiệp</a>
                 </div>
             </td>
         </tr>

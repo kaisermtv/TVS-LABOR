@@ -550,12 +550,12 @@ footer  p a:hover{
     height: 100%;
     overflow-y: auto;
     z-index: 100;
-	background: #000;
+	background: #248dc1;
 }
 
 .sticky-left-side .custom-nav {
     margin-top: 59px;
-	background: #000;
+	background: #248dc1;
 }
 
 .left-side-collapsed .sticky-left-side {
@@ -840,7 +840,7 @@ h5.left-nav-title {
 }
 
 .left-side-collapsed .custom-nav {
-    margin: 2px 0 20px 0;
+    margin: -7px 0 20px 0;
 }
 
 .left-side-collapsed .custom-nav li a {
@@ -855,10 +855,10 @@ h5.left-nav-title {
 
 .left-side-collapsed .custom-nav li a span {
     position: absolute;
-    background:#8BC34A;
-    padding: 11.7px;
+    background:#248dc1;
+    padding: 11.2px;
     left: 52px;
-    top: 1px;
+    top: 0px;
     min-width: 160px;
     text-align: left;
     z-index: 100;
@@ -898,7 +898,7 @@ h5.left-nav-title {
 
 .left-side-collapsed .custom-nav > li.nav-hover > a,
 .left-side-collapsed .custom-nav > li.nav-hover.active > a {
-    background:#353f4f;
+    background:#248dc1;
     color:#8BC34A;
 }
 
@@ -919,7 +919,7 @@ h5.left-nav-title {
     left: 52px;
     margin: 0;
     min-width: 160px;
-    background:#517626;
+    background:#58b1fc;
     z-index: 100;
     -moz-border-radius: 0 0 2px 0;
     -webkit-border-radius: 0 0 2px 0;
@@ -933,7 +933,7 @@ h5.left-nav-title {
 }
 
 .left-side-collapsed .custom-nav ul a:hover {
-    background:#6B9D31;
+    background:#74bdfa;
 }
 
 .left-side-collapsed .custom-nav li a i {
@@ -1048,7 +1048,7 @@ ul.nav li a span {
 }
 
 .sticky-header .main-content {
-    padding-top: 50px;
+    padding-top: 35px;
 }
 .sticky-header .menu-right {
     margin-right: 0;
@@ -1060,7 +1060,7 @@ ul.nav li a span {
     margin-right: 0;
 }
 .menu-right {
-    margin:6px 15px 0px 0;
+    margin:0px 0px 0px 0;
 }
 
 /* -----------------------
@@ -1256,7 +1256,7 @@ ul.dropdown-menu li {
 	text-decoration:none;
 }
 .profile_details_drop a {
-    padding: 0px 5px 5px !important;
+    padding: 0px 5px 0px !important;
 }
 i.fa.fa-envelope{
 	color:#ABABAB;
@@ -1750,8 +1750,9 @@ ul.dropdown-menu.drp-mnu li a i {
 .profile_img span{
 	float:left;
 	display:block;
-	width:40px;
-	height:40px;
+	margin-top:6px;
+	width:30px;
+	height:30px;
 	border-radius:3em;
 	-webkit-border-radius:3em;
 	-moz-border-radius:3em;
@@ -1777,15 +1778,16 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 .user-name p{
 	font-size:14px;
-	color:#F44336;
+	color:#fff;
 	line-height:1em;
 	font-weight:700;
 }
 .user-name p span{
 	font-size:10px;
 	font-style:italic;
-	color:#424f63;
+	color:#fff;
 	font-weight:normal;
+	margin-top:0px;
 }
 /**** icon dropdown ******/
 .wrapper-dropdown-4 i.dropdown-icon{
@@ -1837,7 +1839,7 @@ ul.dropdown-menu.drp-mnu li a i {
 }
 .main-content {
     margin-left: 300px;
-    background:#F8F8F8;
+    background:#f9f9f9;
     /*min-height: 1000px;*/
 }
 .main-content2{
@@ -7298,6 +7300,7 @@ a.yui {
 }
 .custom-nav .sub-menu-list > li > a {
     font-size: 12px;
+	margin-top:-2px!important;
 }
 .left-side-collapsed .custom-nav li.nav-hover ul {
     min-width: 105px;

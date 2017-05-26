@@ -6,10 +6,8 @@
 <head>
     <title>TVS LABOR</title>
 
-     
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../css/Adminstyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/Adminstyle.css" rel="stylesheet" type="text/css" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
@@ -46,24 +44,19 @@
     <script src="../Scripts/moment-with-locales.js"></script>
     <script src="../Scripts/bootstrap-datetimepicker.js"></script>
 
-
-    <%--<script src="jquery.js" type="text/javascript"></script>--%>
     <script src="../js/jquery.maskedinput.js" type="text/javascript"></script>
 
-  
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body class="sticky-header left-side-collapsed" >
-    <form id="form1" runat="server"  >
-         <asp:ScriptManager ID="ScriptManagerAdmin" runat="server" EnablePartialRendering="true"  EnablePageMethods="true">
-          
-               
+<body class="sticky-header left-side-collapsed">
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManagerAdmin" runat="server" EnablePartialRendering="true" EnablePageMethods="true">
         </asp:ScriptManager>
-          
-              <section>
+
+        <section>
             <!-- left side start-->
-            <div class="left-side sticky-left-side" style="z-index:100">
+            <div class="left-side sticky-left-side" style="z-index: 100">
 
                 <!--logo and iconic logo start-->
                 <div class="logo">
@@ -80,7 +73,7 @@
                         <li class="menu-list">
                             <a href="#"><i class="lnr lnr-cog"></i>
                                 <span>Hệ thống</span></a>
-                            <ul class="sub-menu-list">
+                            <ul class="sub-menu-list" style="margin-top: -3px!important;">
                                 <li><a href="../Admin/AboutUs.aspx">Thông tin đơn vị</a></li>
                                 <li><a href="../Admin/GroupAccount.aspx">Nhóm tài khoản</a></li>
                                 <li><a href="../Admin/Account.aspx">Tài khoản người dùng</a></li>
@@ -88,24 +81,24 @@
                             </ul>
                         </li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i><span>Tiếp nhận hồ sơ</span></a>
-                            <ul class="sub-menu-list">
+                            <ul class="sub-menu-list" style="margin-top: -3px!important;">
                                 <li><a href="../Labor/NguoiLaoDong.aspx">Người lao động</a></li>
                                 <li><a href="../Labor/DoanhNghiep.aspx">Doanh nghiệp</a></li>
                                 <li><a href="../Labor/TuyenDung.aspx">Tin tuyển dụng</a></li>
                                 <li><a href="../Labor/DtKhoaHocList.aspx">Thông tin đào tạo nghề</a></li>
                             </ul>
                         </li>
-                        <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i><span style ="width:180px!important;">Quản lý công việc</span></a>
-                            <ul class="sub-menu-list">
+                        <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i><span style="width: 180px!important;">Quản lý công việc</span></a>
+                            <ul class="sub-menu-list" style="margin-top: -3px!important;">
                                 <li><a href="../Labor/TuVan.aspx">Hồ sơ tư vấn</a></li>
-                                <li style ="width:180px!important;"><a href="../Labor/DangKyViecLam.aspx">Hồ sơ việc làm trong nước</a></li>
-                                <li style ="width:180px!important;"><a href="../Labor/DaoTaoNghe.aspx">Hồ sơ đào tạo nghề</a></li>
-                                <li style ="width:180px!important;"><a href="../Labor/TuVanXuatKhau.aspx">Hồ sơ xuất khẩu & du học</a></li>
-                                <li style ="width:180px!important;"><a href="../Labor/BaoHiemThatNghiep.aspx">Hồ sơ BHTN</a></li>
+                                <li style="width: 180px!important;"><a href="../Labor/DangKyViecLam.aspx">Hồ sơ việc làm trong nước</a></li>
+                                <li style="width: 180px!important;"><a href="../Labor/DaoTaoNghe.aspx">Hồ sơ đào tạo nghề</a></li>
+                                <li style="width: 180px!important;"><a href="../Labor/TuVanXuatKhau.aspx">Hồ sơ xuất khẩu & du học</a></li>
+                                <li style="width: 180px!important;"><a href="../Labor/BaoHiemThatNghiep.aspx">Hồ sơ BHTN</a></li>
                             </ul>
                         </li>
                         <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Danh mục</span></a>
-                            <ul class="sub-menu-list">
+                            <ul class="sub-menu-list" style="margin-top: -3px!important;">
                                 <li><a href="../Category/Provincer.aspx">Tỉnh, thành</a> </li>
                                 <li><a href="../Category/District.aspx">Quận, huyện</a> </li>
                                 <li><a href="../Category/Ward.aspx">Phường, xã</a> </li>
@@ -118,22 +111,29 @@
                                 <li><a href="../Category/ListCategory.aspx">Danh mục khác ...</a></li>
                             </ul>
                         </li>
+
+                        <li class="menu-list"><a href="#"><i class="lnr lnr-menu-circle"></i><span>Trợ giúp</span></a>
+                            <ul class="sub-menu-list" style="margin-top: -3px!important;">
+                                <li><a href="../Category/Provincer.aspx">Hướng dẫn sử dụng</a> </li>
+                            </ul>
+                        </li>
                     </ul>
                     <!--sidebar nav end-->
                 </div>
             </div>
             <!-- left side end-->
-            
+
             <!-- main content start-->
-            <div class="main-content"   >
+            <div class="main-content">
                 <!-- header-starts -->
-                <div class="header-section">
+                <div class="header-section" style="background-color: #58b1fc;">
 
                     <div class="profile_details_left">
-                        <div style="margin-top: 10px; font-weight:bold; padding-left:30px;">
+                        <div style="margin-top: 10px; font-weight: bold; padding-left: 30px; color: #fff;">
                             TVS LABOR - <% Response.Write(strHtmlTitle); %>
                         </div>
                     </div>
+
                     <div class="menu-right">
                         <div class="user-panel-top">
                             <div class="profile_details">
@@ -162,45 +162,41 @@
                                 </ul>
                             </div>
                             <div class="social_icons">
-                            
+
                                 <div class="clearfix"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <!--notification menu end -->
+
                 </div>
                 <!-- //header-ends -->
 
-                <div id="page-wrapper" style="display:table;width:100%" >
+                <div id="page-wrapper" style="display: table; width: 100%">
                     <div class="graphs">
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
             </div>
-     
+
         </section>
         <script src="../js/jquery.nicescroll.js"></script>
         <script src="../js/scripts.js"></script>
         <style type="text/css">
-           /** đặt ngay sau nicescoll để đè lại ngay**/
-             .nicescroll-rails
-            {
-                width:15px!important;
-                background-color:white !important;
+            /** đặt ngay sau nicescoll để đè lại ngay**/
+            .nicescroll-rails {
+                width: 15px !important;
+                background-color: white !important;
             }
-             .nicescroll-rails div
-            {
-                width:15px!important;
-                background-color:#808080 !important;
-                border-radius:2px !important;
 
-            }
+                .nicescroll-rails div {
+                    width: 15px !important;
+                    background-color: #808080 !important;
+                    border-radius: 2px !important;
+                }
         </style>
 
-        <!-- Bootstrap Core JavaScript -->
-        <%--<script src="../js/bootstrap.min.js"></script>--%>
     </form>
 </body>
 </html>
