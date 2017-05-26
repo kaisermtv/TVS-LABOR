@@ -60,8 +60,8 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             txtNoiThuongTru.Text = objDataRow["NoiThuongTru"].ToString();
 
             txtSoTaiKhoan.Text = objDataRow["TaiKhoan"].ToString();
-            //ddlNganHang.SelectedValue = objDataRow[""].ToString();
-            //txtMaSoThue.Text = objDataRow[""].ToString();
+            ddlNganHang.SelectedValue = objDataRow["IDNganHang"].ToString();
+            txtMaSoThue.Text = objDataRow["MaSoThue"].ToString();
             txtEmail.Text = objDataRow["Email"].ToString();
 
             txtBHXH.Text = objDataRow["BHXH"].ToString();
@@ -98,7 +98,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
         try
         {
-            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text);
+            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text,int.Parse(ddlNganHang.SelectedValue),txtMaSoThue.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text);
 
             if (ret != 0)
             {
