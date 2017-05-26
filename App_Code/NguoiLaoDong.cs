@@ -218,7 +218,7 @@ public class NguoiLaoDong :DataClass
 
             Cmd.Parameters.Add("Ma", SqlDbType.NVarChar).Value = this.getNextMaNLD();
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
-            Cmd.Parameters.Add("HoVaTen", SqlDbType.NVarChar).Value = HoVaTen;
+            Cmd.Parameters.Add("HoVaTen", SqlDbType.NVarChar).Value = HoVaTen.Trim();
             if (NgaySinh != null)
             {
                 Cmd.Parameters.Add("NgaySinh", SqlDbType.DateTime).Value = NgaySinh;
@@ -228,7 +228,7 @@ public class NguoiLaoDong :DataClass
                 Cmd.Parameters.Add("NgaySinh", SqlDbType.DateTime).Value = DBNull.Value;
             }
             Cmd.Parameters.Add("IDGioiTinh", SqlDbType.Int).Value = IDGioiTinh;
-            Cmd.Parameters.Add("CMND", SqlDbType.NVarChar).Value = CMND;
+            Cmd.Parameters.Add("CMND", SqlDbType.NVarChar).Value = CMND.Trim();
             if (NgayCapCMND != null)
             {
                 Cmd.Parameters.Add("NgayCapCMND", SqlDbType.DateTime).Value = NgayCapCMND;
@@ -238,13 +238,13 @@ public class NguoiLaoDong :DataClass
                 Cmd.Parameters.Add("NgayCapCMND", SqlDbType.DateTime).Value = DBNull.Value;
             }
             Cmd.Parameters.Add("NoiCap", SqlDbType.Int).Value = NoiCap;
-            Cmd.Parameters.Add("DienThoai", SqlDbType.NVarChar).Value = DienThoai;
-            Cmd.Parameters.Add("NoiThuongTru", SqlDbType.NVarChar).Value = NoiThuongTru;
-            Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = Email;
-            Cmd.Parameters.Add("TaiKhoan", SqlDbType.NVarChar).Value = TaiKhoan;
+            Cmd.Parameters.Add("DienThoai", SqlDbType.NVarChar).Value = DienThoai.Trim();
+            Cmd.Parameters.Add("NoiThuongTru", SqlDbType.NVarChar).Value = NoiThuongTru.Trim();
+            Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = Email.Trim();
+            Cmd.Parameters.Add("TaiKhoan", SqlDbType.NVarChar).Value = TaiKhoan.Trim();
             Cmd.Parameters.Add("IDNganHang", SqlDbType.Int).Value = IDNganHang;
-            Cmd.Parameters.Add("MaSoThue", SqlDbType.NVarChar).Value = MaSoThue;
-            Cmd.Parameters.Add("BHXH", SqlDbType.NVarChar).Value = BHXH;
+            Cmd.Parameters.Add("MaSoThue", SqlDbType.NVarChar).Value = MaSoThue.Trim();
+            Cmd.Parameters.Add("BHXH", SqlDbType.NVarChar).Value = BHXH.Trim();
             if (NgayCapBHXH != null)
             {
                 Cmd.Parameters.Add("NgayCapBHXH", SqlDbType.DateTime).Value = NgayCapBHXH;
@@ -257,7 +257,7 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("NoiDangKyKhamBenh", SqlDbType.Int).Value = NoiDangKyKhamBenh;
             Cmd.Parameters.Add("TrinhDoChuyenMon", SqlDbType.Int).Value = TrinhDoChuyenMon;
             Cmd.Parameters.Add("LinhVucDaoTao", SqlDbType.Int).Value = LinhVucDaoTao;
-            Cmd.Parameters.Add("CongViecDaLam", SqlDbType.NVarChar).Value = CongViecDaLam;
+            Cmd.Parameters.Add("CongViecDaLam", SqlDbType.NVarChar).Value = CongViecDaLam.Trim();
 
             int ret = (int)Cmd.ExecuteScalar();
 

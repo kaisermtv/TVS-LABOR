@@ -44,7 +44,7 @@ public class TVSSystem
     public static DateTime CVDate(String dt)
     {
         //if (dt == null || dt == "") return null;
-
+        dt = dt.Trim();
         try
         {
             return new DateTime(int.Parse(dt.Substring(6, 4)), int.Parse(dt.Substring(3, 2)),int.Parse( dt.Substring(0, 2)));

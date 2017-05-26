@@ -88,6 +88,13 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     #region Even btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if(txtHoVaTen.Text.Trim() == "")
+        {
+            this.lblMsg.InnerText = "Bạn cần nhập họ tên!";
+            return;
+        }
+
+        
 
         int gioitinh = 0;
         if(chkGioiTinhNam.Checked){
@@ -106,12 +113,12 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             }
             else
             {
-                this.lblMsg.InnerText = objNguoiLaoDong.Message;//"Lỗi xảy ra khi cập nhật thông tin.";
+                this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
             }
         }
-        catch (Exception ex)
+        catch 
         {
-            this.lblMsg.InnerText = ex.Message;
+            this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
         }
     }
     #endregion
