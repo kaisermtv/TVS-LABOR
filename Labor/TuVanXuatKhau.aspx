@@ -29,12 +29,11 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 34%;">Đơn vị tuyển dụng
                 </td>
-                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;">Quốc gia đăng ký
-                </td>
                 <td class="DataListTableHeaderTdItemCenter" style="width: 10%;">Ngày tư vấn
                 </td>
                 <td class="DataListTableHeaderTdItemCenter" style="width: 12%;">Trạng thái
                 </td>
+                <td class="DataListTableHeaderTdItemJustify" style="width: 21%;"></td>
                 <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;
                 </td>
             </tr>
@@ -54,14 +53,14 @@
                     <td class="DataListTableTdItemJustify" style="width: 34%;">
                         <%# Eval("TenDonVi") %>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="width: 21%;">
-                        <%# Eval("NguoiXuLy") %>
-                    </td>
                     <td class="DataListTableTdItemCenter" style="width: 10%;">
                         <%# Eval("NgayDangKyTuVan","{0:dd/MM/yyyy}") %>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 12%;">
                         <%# Eval("NameState") %>
+                    </td>
+                    <td class="DataListTableTdItemJustify" style="width: 21%;">
+                        <span style ="background-color:red; padding:3px; color:#fff; font-size:13px; font-weight:bold;"><%# Eval("NoiDungTrangThai") %></span>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 3%;">
                         <a href="TuVanXuatKhauEdit.aspx?id=<%# Eval("IDNldXuatKhau") %>">
@@ -95,8 +94,9 @@
                     <a href="TuVanXuatKhauEdit.aspx">
                         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
                 </td>
-                 <td style ="text-align:right;">
-                    <a href="../Admin/Default.aspx"><input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
+                <td style="text-align: right;">
+                    <a href="../Admin/Default.aspx">
+                        <input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
                 </td>
             </tr>
         </table>
