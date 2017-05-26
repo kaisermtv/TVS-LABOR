@@ -225,7 +225,7 @@
                     Ngân hàng: 
                 </div>
                 <div style="width: 30%; float: left">
-                    <asp:DropDownList ID="DropDownList7" CssClass="form-control" runat="server" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlNganHang" CssClass="form-control" runat="server" Style="width: 100%;">
                         <asp:ListItem Value="0">Không chọn</asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -236,7 +236,7 @@
                     Mã số thuế: 
                 </div>
                 <div style="width: 30%; float: left">
-                    <asp:TextBox ID="TextBox15" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtMaSoThue" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="labela">

@@ -98,4 +98,4 @@ ALTER TABLE dbo.[TblNguoiLaoDong] ADD NoiCapBHXH INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD NoiDangKyKhamBenh INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD TrinhDoChuyenMon INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD LinhVucDaoTao INT NULL ;
-ALTER TABLE dbo.[TblNguoiLaoDong] ADD CongViecDaLam INT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD CongViecDaLam NTEXT NULL ;

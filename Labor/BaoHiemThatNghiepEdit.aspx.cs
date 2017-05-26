@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,8 +31,54 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
+        if (!Page.IsPostBack && itemId != 0)
+        {
+            DataTable objData = objNguoiLaoDong.getDataById(itemId);
+            if (objData.Rows.Count == 0) Response.Redirect("BaoHiemThatNghiepEdit.aspx");
+            DataRow objDataRow = objData.Rows[0];
 
-        if (!Page.IsPostBack)
+            txtHoVaTen.Text = objDataRow["HoVaTen"].ToString();
+            try
+            {
+                txtNgaySinh.Value = ((DateTime)objDataRow["NgaySinh"]).ToString("dd/MM/yyyy");
+            }
+            catch { }
+
+            int gioitinh = (int)objDataRow["IDGioiTinh"];
+            if (gioitinh == 1) chkGioiTinhNam.Checked = true;
+            else if (gioitinh == 2) chkGioiTinhNu.Checked = true;
+
+            txtCMND.Text = objDataRow["CMND"].ToString();
+            try
+            {
+                txtNgayCap.Value = ((DateTime)objDataRow["NgayCapCMND"]).ToString("dd/MM/yyyy");
+            }
+            catch { }
+            ddlNoiCap.SelectedValue = objDataRow["NoiCap"].ToString();
+
+            txtSoDienThoai.Text = objDataRow["DienThoai"].ToString();
+            txtNoiThuongTru.Text = objDataRow["NoiThuongTru"].ToString();
+
+            txtSoTaiKhoan.Text = objDataRow["TaiKhoan"].ToString();
+            //ddlNganHang.SelectedValue = objDataRow[""].ToString();
+            //txtMaSoThue.Text = objDataRow[""].ToString();
+            txtEmail.Text = objDataRow["Email"].ToString();
+
+            txtBHXH.Text = objDataRow["BHXH"].ToString();
+            try
+            {
+                txtNgayCapBHXH.Value = ((DateTime)objDataRow["NgayCapBHXH"]).ToString("dd/MM/yyyy");
+            }
+            catch { }
+            ddlNoiCapBHXH.SelectedValue = objDataRow["NoiCapBHXH"].ToString();
+
+            ddlNoiKhamBenh.SelectedValue = objDataRow["NoiDangKyKhamBenh"].ToString();
+            ddlTDCM.SelectedValue = objDataRow["TrinhDoChuyenMon"].ToString();
+            ddlLinhVucDT.SelectedValue = objDataRow["LinhVucDaoTao"].ToString();
+
+            txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
+
+        } else if (!Page.IsPostBack)
         {
             txtNgayDangKyTN.Value = DateTime.Now.ToString("dd/MM/yyyy");
         }
