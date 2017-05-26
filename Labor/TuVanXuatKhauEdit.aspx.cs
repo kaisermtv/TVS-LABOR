@@ -38,6 +38,9 @@ public partial class Labor_TuVanXuatKhauEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
+
+        this.txtIDNldXuatKhau.Value = this.itemId.ToString();
+
         if (!Page.IsPostBack)
         {
             this.ddlIDCanbo.DataSource = this.objCanBo.getDataCategoryToCombobox();

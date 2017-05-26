@@ -201,7 +201,7 @@ public class XuatKhauLaoDong
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldXuatKhau.IDDonViTuyenDung) AS TenDonVi, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldXuatKhau.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNguoiLaoDong, TblNldXuatKhau WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldXuatKhau.IDNldDangKy " + sqlQuery + sqlQueryState + " ORDER BY TblNldXuatKhau.IDNldXuatKhau DESC";
+            Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldXuatKhau.IDDonViTuyenDung) AS TenDonVi, ISNULL((SELECT TOP 1 Note FROM TblNldXuatKhauNhatKy WHERE IDNldXuatKhau = TblNldXuatKhau.IDNldXuatKhau ORDER BY IDNldXuatKhauNhatKy DESC),'-:-') AS NoiDungTrangThai,  REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldXuatKhau.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNguoiLaoDong, TblNldXuatKhau WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldXuatKhau.IDNldDangKy " + sqlQuery + sqlQueryState + " ORDER BY TblNldXuatKhau.IDNldXuatKhau DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -272,4 +272,128 @@ public class XuatKhauLaoDong
         }
     }
     #endregion
+
+    #region Nhat ky xu ly TblNldXuatKhauNhatKy
+
+    #region method setDataNldXuatKhauNhatKy
+    public int setDataNldXuatKhauNhatKy(int IDNldXuatKhauNhatKy, int IDNldXuatKhau, DateTime NgayNhatKy, string Note)
+    {
+        int tmpValue = 0;
+
+        try
+        {
+            string sqlQuery = "";
+
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldXuatKhauNhatKy WHERE IDNldXuatKhauNhatKy = @IDNldXuatKhauNhatKy) ";
+            sqlQuery += "BEGIN INSERT INTO TblNldXuatKhauNhatKy(IDNldXuatKhau,NgayNhatKy,Note) VALUES(@IDNldXuatKhau,@NgayNhatKy,@Note) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldXuatKhauNhatKy SET @NgayNhatKy = @NgayNhatKy, Note = @Note WHERE IDNldXuatKhauNhatKy = @IDNldXuatKhauNhatKy END ";
+
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sqlQuery;
+
+            Cmd.Parameters.Add("IDNldXuatKhauNhatKy", SqlDbType.Int).Value = IDNldXuatKhauNhatKy;
+            Cmd.Parameters.Add("IDNldXuatKhau", SqlDbType.Int).Value = IDNldXuatKhau;
+            Cmd.Parameters.Add("NgayNhatKy", SqlDbType.DateTime).Value = NgayNhatKy;
+            Cmd.Parameters.Add("Note", SqlDbType.NVarChar).Value = Note;
+
+            Cmd.ExecuteNonQuery();
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+            tmpValue = 1;
+        }
+        catch
+        {
+            tmpValue = 0;
+        }
+        return tmpValue;
+    }
+    #endregion
+
+    #region method getDataNldXuatKhauNhatKy
+    public DataTable getDataNldXuatKhauNhatKy(int IDNldXuatKhau)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.Parameters.Add("IDNldXuatKhau", SqlDbType.Int).Value = IDNldXuatKhau;
+            Cmd.CommandText = "SELECT 0 AS TT, * FROM TblNldXuatKhauNhatKy WHERE IDNldXuatKhau = @IDNldXuatKhau";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region method getDataNldXuatKhauNhatKyById
+    public DataTable getDataNldXuatKhauNhatKyById(int IDNldXuatKhauNhatKy)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM TblNldXuatKhauNhatKy WHERE IDNldXuatKhauNhatKy = @IDNldXuatKhauNhatKy";
+            Cmd.Parameters.Add("IDNldXuatKhauNhatKy", SqlDbType.Int).Value = IDNldXuatKhauNhatKy;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region method delDataNldXuatKhauNhatKy
+    public void delDataNldXuatKhauNhatKy(int IDNldXuatKhauNhatKy)
+    {
+        try
+        {
+            string sqlQuery = "";
+            sqlQuery = "DELETE TblNldXuatKhauNhatKy WHERE IDNldXuatKhauNhatKy = @IDNldXuatKhauNhatKy ";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("IDNldXuatKhauNhatKy", SqlDbType.Int).Value = IDNldXuatKhauNhatKy;
+            Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+    }
+    #endregion
+
+    #endregion
+
 }

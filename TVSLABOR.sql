@@ -34,8 +34,7 @@
 --ALTER TABLE dbo.TblTuyenDung ADD IdQuocGia int Default(0)
 --ALTER TABLE dbo.TblTuyenDung ADD NameQuocGia nvarchar(250)
 
-
-UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
+--UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
 
 --16/05/2017
 --CREATE TABLE [dbo].[tblFunction](
@@ -86,6 +85,23 @@ CREATE TABLE [dbo].[TblNLDTroCapThatNghiep](
 
 
 
+<<<<<<< .mine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
 CREATE TABLE [dbo].tblDNBoSung(
 	IdDnBoSung INT PRIMARY KEY NOT NULL IDENTITY(1,1),
 	IDNguoiLaoDong INT NOT NULL,
@@ -101,3 +117,4 @@ ALTER TABLE dbo.[TblNguoiLaoDong] ADD LinhVucDaoTao INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD CongViecDaLam NTEXT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD IDNganHang INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD MaSoThue NVARCHAR(50) NULL ;
+>>>>>>> .theirs

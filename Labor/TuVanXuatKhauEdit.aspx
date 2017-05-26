@@ -487,8 +487,10 @@
                 </asp:DropDownList>
             </td>
         </tr>
-
     </table>
+     <br />
+    
+    <input type="hidden" id="txtIDNldXuatKhau" runat="server" />
 
     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
         <table border="0" style="width: 95%; margin-top: -8px;">
@@ -496,6 +498,7 @@
                 <td style ="width:10%">&nbsp;</td>
                 <td style ="padding-left:15px;">
                     <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                    <input id="btnHistory" value="Nhật ký xử lý" class="btn btn-success" style = "width:120px!important;" onclick="OpenNhatKy()" />
                 </td>
                 <td style="width: 300px; text-align: center;">
                     <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -545,6 +548,31 @@
 
             if (window.focus) {
                 newWindow.focus();
+            }
+        }
+
+        function OpenNhatKy() {
+
+            var IDNldXuatKhau = document.getElementById("MainContent_txtIDNldXuatKhau").value;
+
+            if (IDNldXuatKhau != 0) {
+
+                var w = 1100;
+                var h = 600;
+
+                var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+                var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+                var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+                var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+                var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+                var top = ((height / 2) - (h / 2)) + dualScreenTop;
+                var newWindow = window.open("TuVanXuatKhauNhatKy.aspx?idXK=" + IDNldXuatKhau, "NHẬT KÝ", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+                if (window.focus) {
+                    newWindow.focus();
+                }
             }
         }
 
