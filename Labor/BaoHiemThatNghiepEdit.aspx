@@ -112,7 +112,30 @@
             }
         }
 
-        
+        function SelectName() {
+
+            var w = 1000;
+            var h = 600;
+
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((height / 2) - (h / 2)) + dualScreenTop;
+            var newWindow = window.open("ChonDoanhNghiep2.aspx", "CHỌN DOANH NGHIỆP", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+            if (window.focus) {
+                newWindow.focus();
+            }
+        }
+
+        function donViChang(txtbox)
+        {
+            alert(id);
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
@@ -322,10 +345,22 @@
     </div>
     <div class="row line">
         <div class="label1">
+            Tên DN: 
+        </div>
+        <div style="width:84%;float:left;margin-right:-100px;padding-right:100px;">
+            <input type="hidden" name="txtIDDonVi" id="txtIDDonVi" runat="server" />
+            <asp:TextBox ID="txtTenDonVi" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        <div style="width:100px;float:right;">
+            <button class="btn btn-primary" type="button" onclick="SelectName()" style="width:80px; height: 34px !important; line-height: 14px !important;">Chọn</button>
+        </div>
+    </div>
+    <div class="row line">
+        <div class="label1">
             Địa chỉ DN: 
         </div>
         <div style="width:84%;float:left">
-            <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtDiaChiDN" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     <div class="row line">
@@ -333,14 +368,14 @@
             Điện thoại: 
         </div>
         <div style="width:20%;float:left">
-            <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
         <div class="label2">
             Fax: 
         </div>
         <div style="width:20%;float:left">
-            <asp:TextBox ID="TextBox9" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtFax" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     <div class="row headlabel" >
