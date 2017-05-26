@@ -46,7 +46,7 @@
 --	[Del] [bit] NULL,
 --	[Other] [bit] NULL
 --) ON [PRIMARY]
-=======
+
 --UPDATE TblTuyenDung SET IdQuocGia = 0 WHERE IdQuocGia IS NULL
 
 --Thứ 2 15/05/2017
@@ -85,5 +85,36 @@ CREATE TABLE [dbo].[TblNLDTroCapThatNghiep](
 
 
 
+<<<<<<< .mine
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+CREATE TABLE [dbo].tblDNBoSung(
+	IdDnBoSung INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	IDNguoiLaoDong INT NOT NULL,
+
+);
+
+
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD NgayCapBHXH DATETIME NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD NoiCapBHXH INT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD NoiDangKyKhamBenh INT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD TrinhDoChuyenMon INT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD LinhVucDaoTao INT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD CongViecDaLam NTEXT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD IDNganHang INT NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD MaSoThue NVARCHAR(50) NULL ;
+>>>>>>> .theirs

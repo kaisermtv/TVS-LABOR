@@ -43,6 +43,8 @@ public class TVSSystem
     #region method CVDate()
     public static DateTime CVDate(String dt)
     {
+        //if (dt == null || dt == "") return null;
+        dt = dt.Trim();
         try
         {
             return new DateTime(int.Parse(dt.Substring(6, 4)), int.Parse(dt.Substring(3, 2)),int.Parse( dt.Substring(0, 2)));
@@ -54,6 +56,24 @@ public class TVSSystem
 
     }
     #endregion
+
+    #region method CVDateNull()
+    public static DateTime? CVDateNull(String dt)
+    {
+        if (dt == null || dt == "") return null;
+
+        try
+        {
+            return new DateTime(int.Parse(dt.Substring(6, 4)), int.Parse(dt.Substring(3, 2)), int.Parse(dt.Substring(0, 2)));
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+    #endregion
+
     #region method CVOnlyDate()
     public static DateTime CVOnlyDate(String d)
     {       
