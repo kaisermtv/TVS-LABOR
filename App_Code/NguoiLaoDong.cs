@@ -207,14 +207,14 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region Method setData()
-    public int setData(int id, String HoVaTen, DateTime? NgaySinh, int IDGioiTinh, String CMND, DateTime? NgayCapCMND, int NoiCap, String DienThoai, String NoiThuongTru, String TaiKhoan, int IDNganHang, String MaSoThue, String Email, String BHXH, DateTime? NgayCapBHXH, int NoiCapBHXH, int NoiDangKyKhamBenh, int TrinhDoChuyenMon, int LinhVucDaoTao, String CongViecDaLam)
+    public int setData(int id, String HoVaTen, DateTime? NgaySinh, int IDGioiTinh, String CMND, DateTime? NgayCapCMND, int NoiCap, String DienThoai, String NoiThuongTru, String TaiKhoan, int IDNganHang, String MaSoThue, String Email, String BHXH, DateTime? NgayCapBHXH, int NoiCapBHXH, int NoiDangKyKhamBenh, int TrinhDoChuyenMon, int LinhVucDaoTao, String CongViecDaLam, int IdDoanhNghiep)
     {
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong) ";
-            Cmd.CommandText += "BEGIN INSERT INTO TblNguoiLaoDong(Ma,HoVaTen,NgaySinh,IDGioiTinh,CMND,NgayCapCMND,NoiCap,DienThoai,NoiThuongTru,TaiKhoan,IDNganHang,MaSoThue,Email,BHXH,NgayCapBHXH,NoiCapBHXH,NoiDangKyKhamBenh,TrinhDoChuyenMon,LinhVucDaoTao,CongViecDaLam) OUTPUT INSERTED.IDNguoiLaoDong VALUES(@Ma,@HoVaTen,@NgaySinh,@IDGioiTinh,@CMND,@NgayCapCMND,@NoiCap,@DienThoai,@NoiThuongTru,@TaiKhoan,@IDNganHang,@MaSoThue,@Email,@BHXH,@NgayCapBHXH,@NoiCapBHXH,@NoiDangKyKhamBenh,@TrinhDoChuyenMon,@LinhVucDaoTao,@CongViecDaLam) END ";
-            Cmd.CommandText += "ELSE BEGIN UPDATE TblNguoiLaoDong SET HoVaTen = @HoVaTen,NgaySinh = @NgaySinh,IDGioiTinh = @IDGioiTinh,CMND = @CMND,NgayCapCMND = @NgayCapCMND,NoiCap = @NoiCap,DienThoai = @DienThoai,NoiThuongTru = @NoiThuongTru,TaiKhoan = @TaiKhoan,IDNganHang = @IDNganHang,MaSoThue = @MaSoThue,Email = @Email,BHXH = @BHXH,NgayCapBHXH = @NgayCapBHXH,NoiCapBHXH = @NoiCapBHXH,NoiDangKyKhamBenh = @NoiDangKyKhamBenh,TrinhDoChuyenMon = @TrinhDoChuyenMon,LinhVucDaoTao = @LinhVucDaoTao,CongViecDaLam = @CongViecDaLam OUTPUT INSERTED.IDNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
+            Cmd.CommandText += "BEGIN INSERT INTO TblNguoiLaoDong(Ma,HoVaTen,NgaySinh,IDGioiTinh,CMND,NgayCapCMND,NoiCap,DienThoai,NoiThuongTru,TaiKhoan,IDNganHang,MaSoThue,Email,BHXH,NgayCapBHXH,NoiCapBHXH,NoiDangKyKhamBenh,TrinhDoChuyenMon,LinhVucDaoTao,CongViecDaLam,IdDoanhNghiep) OUTPUT INSERTED.IDNguoiLaoDong VALUES(@Ma,@HoVaTen,@NgaySinh,@IDGioiTinh,@CMND,@NgayCapCMND,@NoiCap,@DienThoai,@NoiThuongTru,@TaiKhoan,@IDNganHang,@MaSoThue,@Email,@BHXH,@NgayCapBHXH,@NoiCapBHXH,@NoiDangKyKhamBenh,@TrinhDoChuyenMon,@LinhVucDaoTao,@CongViecDaLam,@IdDoanhNghiep) END ";
+            Cmd.CommandText += "ELSE BEGIN UPDATE TblNguoiLaoDong SET HoVaTen = @HoVaTen,NgaySinh = @NgaySinh,IDGioiTinh = @IDGioiTinh,CMND = @CMND,NgayCapCMND = @NgayCapCMND,NoiCap = @NoiCap,DienThoai = @DienThoai,NoiThuongTru = @NoiThuongTru,TaiKhoan = @TaiKhoan,IDNganHang = @IDNganHang,MaSoThue = @MaSoThue,Email = @Email,BHXH = @BHXH,NgayCapBHXH = @NgayCapBHXH,NoiCapBHXH = @NoiCapBHXH,NoiDangKyKhamBenh = @NoiDangKyKhamBenh,TrinhDoChuyenMon = @TrinhDoChuyenMon,LinhVucDaoTao = @LinhVucDaoTao,CongViecDaLam = @CongViecDaLam,IdDoanhNghiep = @IdDoanhNghiep OUTPUT INSERTED.IDNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
 
             Cmd.Parameters.Add("Ma", SqlDbType.NVarChar).Value = this.getNextMaNLD();
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
@@ -258,6 +258,8 @@ public class NguoiLaoDong :DataClass
             Cmd.Parameters.Add("TrinhDoChuyenMon", SqlDbType.Int).Value = TrinhDoChuyenMon;
             Cmd.Parameters.Add("LinhVucDaoTao", SqlDbType.Int).Value = LinhVucDaoTao;
             Cmd.Parameters.Add("CongViecDaLam", SqlDbType.NVarChar).Value = CongViecDaLam.Trim();
+
+            Cmd.Parameters.Add("IdDoanhNghiep", SqlDbType.Int).Value = IdDoanhNghiep;
 
             int ret = (int)Cmd.ExecuteScalar();
 

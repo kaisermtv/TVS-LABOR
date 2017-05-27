@@ -101,9 +101,16 @@
                             window.opener.document.getElementById("MainContent_txtIDDonVi").value = data.IDDonVi;
                             window.opener.document.getElementById("MainContent_txtTenDonVi").value = data.TenDonVi;
                             window.opener.document.getElementById("MainContent_txtDiaChiDN").value = data.DiaChi;
-                            window.opener.document.getElementById("MainContent_txtPhone").value = data.DienThoaiDonVi;
-                            //window.opener.document.getElementById("MainContent_txtTenDonVi").value = data.TenDonVi;
+                            window.opener.document.getElementById("MainContent_txtPhoneDN").value = data.DienThoaiDonVi;
+                            window.opener.document.getElementById("MainContent_txtFaxDN").value = data.FaxDonVi;
+                            window.opener.document.getElementById("MainContent_txtSoDKKD").value = data.SoDKKD;
 
+                            window.opener.document.getElementById("MainContent_ddlLoaiHinhDN").selectedIndex = data.IdLoaiHinh;
+                            window.opener.document.getElementById("MainContent_ddlIdNganhNgheDN").selectedIndex = data.IDNganhNghe;
+                            window.opener.document.getElementById("MainContent_txtEmailDN").value = data.EmailDonVi;
+                            window.opener.document.getElementById("MainContent_txtWebsiteDN").value = data.Website;
+
+                            window.opener.document.getElementById("MainContent_btnXoaDonVi").disabled = "";
 
                             window.close();
                         },

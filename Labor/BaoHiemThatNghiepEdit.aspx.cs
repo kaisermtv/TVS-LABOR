@@ -10,7 +10,10 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 {
     #region declare
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
+    private DoanhNghiep objDoanhNghiep = new DoanhNghiep();
 
+    private LoaiHinh objLoaiHinh = new LoaiHinh();
+    private Business objBusiness = new Business();
 
     public int itemId = 0;
     #endregion
@@ -31,6 +34,22 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
+        if (!Page.IsPostBack)
+        {
+            this.ddlIdNganhNgheDN.DataSource = this.objBusiness.getDataCategoryToCombobox();
+            this.ddlIdNganhNgheDN.DataTextField = "Name";
+            this.ddlIdNganhNgheDN.DataValueField = "Id";
+            this.ddlIdNganhNgheDN.DataBind();
+            ddlIdNganhNgheDN.SelectedValue = "0";
+
+            this.ddlLoaiHinhDN.DataSource = this.objLoaiHinh.getDataCategoryToCombobox();
+            this.ddlLoaiHinhDN.DataTextField = "NameLoaiHinh";
+            this.ddlLoaiHinhDN.DataValueField = "IdLoaiHinh";
+            this.ddlLoaiHinhDN.DataBind();
+
+            ddlLoaiHinhDN.SelectedValue = "0";
+        }
+
         if (!Page.IsPostBack && itemId != 0)
         {
             DataTable objData = objNguoiLaoDong.getDataById(itemId);
@@ -78,6 +97,32 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
             txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
 
+            int idDonVi = (int)objDataRow["IdDoanhNghiep"];
+            if(idDonVi != 0)
+            {
+                DataTable objDataDN = objDoanhNghiep.getDataById(idDonVi);
+                if (objDataDN.Rows.Count > 0)
+                {
+                    DataRow objDataRowDN = objDataDN.Rows[0];
+
+                    txtIDDonVi.Value = objDataRowDN["IDDonVi"].ToString();
+                    txtTenDonVi.Text = objDataRowDN["TenDonVi"].ToString();
+                    txtDiaChiDN.Text = objDataRowDN["DiaChi"].ToString();
+                    txtPhoneDN.Text = objDataRowDN["DienThoaiDonVi"].ToString();
+                    txtFaxDN.Text = objDataRowDN["FaxDonVi"].ToString();
+                    txtSoDKKD.Text = objDataRowDN["SoDKKD"].ToString();
+                    ddlLoaiHinhDN.SelectedValue = objDataRowDN["IdLoaiHinh"].ToString();
+                    ddlIdNganhNgheDN.SelectedValue = objDataRowDN["IDNganhNghe"].ToString();
+                    txtEmailDN.Text = objDataRowDN["EmailDonVi"].ToString();
+                    txtWebsiteDN.Text = objDataRowDN["Website"].ToString();
+
+                    btnXoaDonVi.Disabled = false;
+
+                }
+            }
+
+
+
         } else if (!Page.IsPostBack)
         {
             txtNgayDangKyTN.Value = DateTime.Now.ToString("dd/MM/yyyy");
@@ -103,9 +148,25 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             gioitinh = 2;
         }
 
+        int idDonVi = 0;
         try
         {
-            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text,int.Parse(ddlNganHang.SelectedValue),txtMaSoThue.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text);
+            idDonVi = int.Parse(txtIDDonVi.Value.Trim());
+        }
+        catch { }
+
+        idDonVi = objDoanhNghiep.setData(idDonVi, txtTenDonVi.Text, txtDiaChiDN.Text, txtPhoneDN.Text, txtFaxDN.Text, txtSoDKKD.Text, int.Parse(ddlLoaiHinhDN.SelectedValue), int.Parse(ddlIdNganhNgheDN.SelectedValue), txtEmailDN.Text, txtWebsiteDN.Text);
+
+        if (idDonVi == 0)
+        {
+            this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
+            return;
+        }
+
+
+        try
+        {
+            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, int.Parse(ddlNganHang.SelectedValue), txtMaSoThue.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text, idDonVi);
 
             if (ret != 0)
             {

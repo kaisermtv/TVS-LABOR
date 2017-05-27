@@ -43,7 +43,11 @@ public partial class ajax_GetDoanhNghiep : System.Web.UI.Page
                 addData("DienThoaiDonVi");
                 addData("IdLoaiHinh");
                 addData("IDDonVi");
-                addData("IDDonVi");
+                addData("FaxDonVi");
+                addData("SoDKKD");
+                addData("IdLoaiHinh");
+                addData("EmailDonVi");
+                addData("Website");
 
                 data += "}";
 

@@ -132,9 +132,22 @@
             }
         }
 
-        function donViChang(txtbox)
+        function DeleteName()
         {
-            alert(id);
+            document.getElementById("MainContent_txtIDDonVi").value = "";
+            document.getElementById("MainContent_txtTenDonVi").value = "";
+            document.getElementById("MainContent_txtDiaChiDN").value = "";
+            document.getElementById("MainContent_txtPhoneDN").value = "";
+            document.getElementById("MainContent_txtFaxDN").value = "";
+            document.getElementById("MainContent_txtSoDKKD").value = "";
+
+            document.getElementById("MainContent_ddlLoaiHinhDN").selectedIndex = "0";
+            document.getElementById("MainContent_ddlIdNganhNgheDN").selectedIndex = "0";
+            document.getElementById("MainContent_txtEmailDN").value = "";
+            document.getElementById("MainContent_txtWebsiteDN").value = "";
+
+            document.getElementById("MainContent_btnXoaDonVi").disabled = "disabled";
+            
         }
     </script>
 </asp:Content>
@@ -347,12 +360,13 @@
         <div class="label1">
             Tên DN: 
         </div>
-        <div style="width:84%;float:left;margin-right:-100px;padding-right:100px;">
+        <div style="width:84%;float:left;margin-right:-200px;padding-right:200px;">
             <input type="hidden" name="txtIDDonVi" id="txtIDDonVi" runat="server" />
             <asp:TextBox ID="txtTenDonVi" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
-        <div style="width:100px;float:right;">
+        <div style="width:200px;float:right;">
             <button class="btn btn-primary" type="button" onclick="SelectName()" style="width:80px; height: 34px !important; line-height: 14px !important;">Chọn</button>
+            <button id="btnXoaDonVi" runat="server" class="btn btn-danger" type="button" onclick="DeleteName()" style="margin-left:10px;width:80px; height: 34px !important; line-height: 14px !important;" disabled="disabled">Xóa</button>
         </div>
     </div>
     <div class="row line">
@@ -368,14 +382,14 @@
             Điện thoại: 
         </div>
         <div style="width:20%;float:left">
-            <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtPhoneDN" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
         <div class="label2">
             Fax: 
         </div>
         <div style="width:20%;float:left">
-            <asp:TextBox ID="txtFax" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtFaxDN" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     <div class="row headlabel" >
@@ -391,30 +405,34 @@
                     Số ĐKKD: 
                 </div>
                 <div style="width:30%;float:left">
-                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtSoDKKD" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
                 <div class="labela">
                     Loại hình DN: 
                 </div>
-                <div style="width:30%;float:left">
-                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
+                <div style="width: 30%; float: left">
+                    <asp:DropDownList ID="ddlLoaiHinhDN" CssClass="form-control" runat="server" Style="width: 100%">
+                        <asp:ListItem Value="0">Không chọn</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
-		    </div>
+            </div>
 
             <div class="row line">
                 <div class="labela">
                     Ngành nghề SX - KD: 
                 </div>
-                <div style="width:30%;float:left">
-                    <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>
+                <div style="width: 30%; float: left">
+                    <asp:DropDownList ID="ddlIdNganhNgheDN" CssClass="form-control" runat="server" Style="width: 100%">
+                        <asp:ListItem Value="0">Không chọn</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
 
                 <div class="labela">
                     Email: 
                 </div>
                 <div style="width:30%;float:left">
-                    <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtEmailDN" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 		    </div>
 
@@ -423,7 +441,7 @@
                     Website:
                 </div>
                 <div style="width:30%;float:left">
-                    <asp:TextBox ID="TextBox12" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txtWebsiteDN" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
 
 		    </div>
@@ -494,10 +512,10 @@
         <div style="width:49%;float:left">
             <asp:DropDownList ID="ddlDangKyTre" CssClass="form-control" runat="server" Style="width: 100%;display:none">
                 <asp:ListItem Value="0">--Chọn lý do đăng ký trễ--</asp:ListItem>
-                <asp:ListItem Value="0">Thiên tai dịch họa</asp:ListItem>
-                <asp:ListItem Value="0">Ốm đau thai sản</asp:ListItem>
-                <asp:ListItem Value="0">Tai nạn giao thông</asp:ListItem>
-                <asp:ListItem Value="0">Khác</asp:ListItem>
+                <asp:ListItem Value="1">Thiên tai dịch họa</asp:ListItem>
+                <asp:ListItem Value="2">Ốm đau thai sản</asp:ListItem>
+                <asp:ListItem Value="3">Tai nạn giao thông</asp:ListItem>
+                <asp:ListItem Value="4">Khác</asp:ListItem>
             </asp:DropDownList>
             <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
