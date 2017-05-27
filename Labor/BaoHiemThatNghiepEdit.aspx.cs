@@ -11,6 +11,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     #region declare
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     private DoanhNghiep objDoanhNghiep = new DoanhNghiep();
+    private NLDTroCapThatNghiep objNLDTroCapThatNghiep = new NLDTroCapThatNghiep();
 
     private LoaiHinh objLoaiHinh = new LoaiHinh();
     private Business objBusiness = new Business();
@@ -163,24 +164,32 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             return;
         }
 
-
         try
         {
-            int ret = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, int.Parse(ddlNganHang.SelectedValue), txtMaSoThue.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text, idDonVi);
-
-            if (ret != 0)
-            {
-                Response.Redirect("BaoHiemThatNghiepEdit.aspx?id=" + ret);
-            }
-            else
-            {
-                this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
-            }
+            itemId = objNguoiLaoDong.setData(itemId, txtHoVaTen.Text, TVSSystem.CVDateNull(txtNgaySinh.Value), gioitinh, txtCMND.Text, TVSSystem.CVDateNull(txtNgayCap.Value), int.Parse(ddlNoiCap.SelectedValue), txtSoDienThoai.Text, txtNoiThuongTru.Text, txtSoTaiKhoan.Text, int.Parse(ddlNganHang.SelectedValue), txtMaSoThue.Text, txtEmail.Text, txtBHXH.Text, TVSSystem.CVDateNull(txtNgayCapBHXH.Value), int.Parse(ddlNoiCapBHXH.SelectedValue), int.Parse(ddlNoiKhamBenh.SelectedValue), int.Parse(ddlTDCM.SelectedValue), int.Parse(ddlLinhVucDT.SelectedValue), txtCongViecDaLam.Text, idDonVi);
         }
         catch 
         {
             this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
+            return;
         }
+
+        if (itemId == 0)
+        {
+            this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
+            return;
+        }
+
+        int HinhThucNhanTien = 0;
+
+        try
+        {
+            objNLDTroCapThatNghiep.setDataByNLD(itemId, TVSSystem.CVDateNull(txtNgayNghiViec.Value), float.Parse(txtSoThangDongBHXH.Text), chkTuVan.Checked, chkGioiThieu.Checked, chkHocNghe.Checked, TVSSystem.CVDateNull(txtNgayDangKyTN.Value), chkDangKyTre.Checked, int.Parse(ddlDangKyTre.SelectedValue), int.Parse(ddlNguoiTiepNhan.SelectedValue), TVSSystem.CVDateNull(txtNgayHoanThien.Value), int.Parse(ddlNoiNhanbaoHiem.SelectedValue), HinhThucNhanTien, int.Parse(ddlNoiChotSoCuoi.SelectedValue), chkXacNhanDangKy.Checked, int.Parse(ddlNoiDKXacNhan.SelectedValue));
+        }
+        catch { }
+
+
+        Response.Redirect("BaoHiemThatNghiepEdit.aspx?id=" + itemId);
     }
     #endregion
 }

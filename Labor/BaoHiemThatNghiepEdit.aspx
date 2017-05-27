@@ -464,7 +464,7 @@
             Số tháng đóng BHXH: 
         </div>
         <div style="width:20%;float:left">
-            <asp:TextBox ID="TextBox11" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
         
@@ -475,13 +475,13 @@
             Nhu cầu: 
         </div>
         <div style="width:15%;float:left">
-            <asp:CheckBox ID="CheckBox1" CssClass="checkboxuser" runat="server" Text="&nbsp;Tư vấn" TextAlign="Right" />
+            <asp:CheckBox ID="chkTuVan" CssClass="checkboxuser" runat="server" Text="&nbsp;Tư vấn" TextAlign="Right" />
         </div>
         <div style="width:20%;float:left">
-            <asp:CheckBox ID="CheckBox2" CssClass="checkboxuser" runat="server" Text="&nbsp;Giới thiệu việc làm" TextAlign="Right" />
+            <asp:CheckBox ID="chkGioiThieu" CssClass="checkboxuser" runat="server" Text="&nbsp;Giới thiệu việc làm" TextAlign="Right" />
         </div>
         <div style="width:20%;float:left">
-            <asp:CheckBox ID="CheckBox3" CssClass="checkboxuser" runat="server" Text="&nbsp;Học nghề" TextAlign="Right" />
+            <asp:CheckBox ID="chkHocNghe" CssClass="checkboxuser" runat="server" Text="&nbsp;Học nghề" TextAlign="Right" />
         </div>
     </div>
     <div class="row line">
@@ -502,7 +502,7 @@
             <label for="chkDangKyTre">Đăng ký trễ</label>
         </div>
         <div style="width:3%;float:left">
-            <input type="checkbox" id="chkDangKyTre" onchange="hidenDangkyTre(this)" class="checkboxuserinput" />
+            <input type="checkbox" id="chkDangKyTre" runat="server" onchange="hidenDangkyTre(this)" class="checkboxuserinput" />
             <%--<asp:CheckBox ID="chkDangKyTre" onchange="hidenDangkyTre(this)" CssClass="checkboxuser" runat="server" TextAlign="Left" />--%>
         </div>
 
@@ -525,7 +525,7 @@
             Người tiếp nhận ĐK: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" Style="width: 100%;">
+            <asp:DropDownList ID="ddlNguoiTiepNhan" CssClass="form-control" runat="server" Style="width: 100%;">
                 <asp:ListItem Value="0">Không chọn</asp:ListItem>
             </asp:DropDownList>
         </div>
@@ -548,7 +548,7 @@
             Nơi nhận bảo hiểm: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="DropDownList3" CssClass="form-control" runat="server" Style="width: 100%;">
+            <asp:DropDownList ID="ddlNoiNhanbaoHiem" CssClass="form-control" runat="server" Style="width: 100%;">
                 <asp:ListItem Value="0">Không chọn</asp:ListItem>
             </asp:DropDownList>
         </div>
@@ -566,7 +566,7 @@
             Nơi chốt sổ cuối: 
         </div>
         <div style="width:20%;float:left">
-            <asp:DropDownList ID="DropDownList4" CssClass="form-control" runat="server" Style="width: 100%;">
+            <asp:DropDownList ID="ddlNoiChotSoCuoi" CssClass="form-control" runat="server" Style="width: 100%;">
                 <asp:ListItem Value="0">Không chọn</asp:ListItem>
             </asp:DropDownList>
         </div>
@@ -576,7 +576,7 @@
             <span class="warning">* Check chọn đã xác nhận chưa đăng ký nếu NLD có giấy xác nhận chưa ĐK</span>
         </div>
         <div style="width:3%;float:left">
-            <input type="checkbox" id="chkXacNhanDangKy" onchange="hidenXacNhanDangKy(this)" class="checkboxuserinput" /> 
+            <input type="checkbox" id="chkXacNhanDangKy" runat="server" onchange="hidenXacNhanDangKy(this)" class="checkboxuserinput" /> 
         </div>
         <div class="label1" style="width:18%;text-align:left;">
             <label for="chkXacNhanDangKy">Đã xác nhận đăng ký</label>
