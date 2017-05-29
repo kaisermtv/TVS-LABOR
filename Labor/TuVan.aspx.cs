@@ -7,6 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using System.Text;
+using System.IO;
+using System.Net;
 
 public partial class Labor_TuVan : System.Web.UI.Page
 {
@@ -71,4 +75,35 @@ public partial class Labor_TuVan : System.Web.UI.Page
         this.getData();
     }
     #endregion
+
+    public void HtmlAnchor_Click(Object sender, EventArgs e)
+    {
+        HtmlAnchor objSender = (HtmlAnchor)sender;
+
+        //object filename = Server.MapPath("temp/Temp1.doc");
+        //Microsoft.Office.Interop.ApplicationClass mswordappcls = new Microsoft.Office.Interop.Word.ApplicationClass();
+        //Microsoft.Office.Interop.Word.Document msworddoc = new Microsoft.Office.Interop.Word.Document();
+        //object readOnly = false;
+        //object isVisible = true;
+        //object missing = System.Reflection.Missing.Value;
+        //msworddoc = mswordappcls.Documents.Open(ref filename, ref missing, ref readOnly, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref isVisible);
+        //string strContent = msworddoc.Content.Text;
+        //mswordappcls.Documents.Close();
+
+        string strBody = "<html>";
+        strBody += "<body>";
+        strBody += "<div>Your name is: <b>" + objSender.Name + "</b></div>";
+        strBody += "<table width=\"100%\" style=\"background-color:#cfcfcf;\"><tr><td>1st Cell body data</td><td>2nd cell body data</td></tr></table>";
+        strBody += "Ms Word document generated successfully.";
+        strBody += "</body>";
+        strBody += "</html>";
+
+        string fileName = "MsWordSample.doc";
+        Response.AppendHeader("Content-Type", "application/msword");
+        Response.AppendHeader("Content-disposition", "inline; filename=" + fileName);
+        Response.Write(strBody);
+
+        HttpContext.Current.Response.End();
+        HttpContext.Current.Response.Flush();
+    }
 }

@@ -50,8 +50,6 @@
             <td>&nbsp;</td>
         </tr>
     </table>
-    <%--<div class="panel-footer" style="bottom:1px">
-   <marquee><p style="font-family: Impact; font-size: 14pt">.</p></marquee>
-    </div>--%>
+
 </asp:Content>
 

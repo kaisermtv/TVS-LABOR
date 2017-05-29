@@ -173,10 +173,10 @@
                 <!-- //header-ends -->
 
                 <div id="page-wrapper" style="display: table; width: 100%">
-                    <div class="graphs">
+                   <%-- <div class="graphs">--%>
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
-                    </div>
+                    <%--</div>--%>
                 </div>
             </div>
 

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<!-- 
+  Visual Studio global web project settings.
+-->
+<VisualWebDeveloper>
+
+  <comReferences>
+    <reference Name="interop.microsoft.office.core" ID="{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}\2.7\0"/>
+    <reference Name="interop.lcc11" ID="{EDCD5812-6A06-43C3-AFAC-46EF5D14E22C}\1.0\0"/>
+  </comReferences>
+</VisualWebDeveloper>
