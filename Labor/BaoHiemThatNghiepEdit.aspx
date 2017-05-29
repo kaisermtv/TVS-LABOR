@@ -550,6 +550,81 @@
     </div>
     <div class="row line">
         <div class="label1">
+            6 tháng gần nhất 
+        </div>
+        <div style="width:84%;float:left">
+            <table style="border:1px solid;width:100%">
+                <tr>
+                    <th style="width:120px"></th>
+                    <th>Tháng đóng</th>
+                    <th>HS Lương</th>
+                    <th>HS phụ cấp</th>
+                    <th>Lương cơ bản</th>
+                    <th>Mức đóng</th>
+                </tr>
+                <tr>
+                    <th>Tháng thứ 6</th>
+                    <td><asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <th>Tháng thứ 5</th>
+                    <td><asp:TextBox ID="TextBox6" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox8" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox9" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <th>Tháng thứ 4</th>
+                    <td><asp:TextBox ID="TextBox11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox13" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox14" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox15" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <th>Tháng thứ 3</th>
+                    <td><asp:TextBox ID="TextBox16" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox17" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox18" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox19" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox20" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <th>Tháng thứ 2</th>
+                    <td><asp:TextBox ID="TextBox21" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox22" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox23" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox24" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox25" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <th>Tháng thứ 1</th>
+                    <td><asp:TextBox ID="TextBox26" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox27" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox28" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox29" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="TextBox30" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <th colspan="2" style="text-align:right">Lương trung bình(VND)</th>
+                    <td><asp:TextBox ID="TextBox31" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <th colspan="2" style="text-align:right">Mức hưởng(VND)</th>
+                    <td><asp:TextBox ID="TextBox32" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row line">
+        <div class="label1">
             Nơi nhận bảo hiểm: 
         </div>
         <div style="width:20%;float:left">

@@ -98,7 +98,13 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
             txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
 
-            int idDonVi = (int)objDataRow["IdDoanhNghiep"];
+            int idDonVi = 0;
+            try
+            {
+                idDonVi = (int)objDataRow["IdDoanhNghiep"];
+            }
+            catch { }
+            
             if(idDonVi != 0)
             {
                 DataTable objDataDN = objDoanhNghiep.getDataById(idDonVi);
