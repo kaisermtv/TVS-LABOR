@@ -85,23 +85,6 @@ CREATE TABLE [dbo].[TblNLDTroCapThatNghiep](
 
 
 
-<<<<<<< .mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 CREATE TABLE [dbo].tblDNBoSung(
 	IdDnBoSung INT PRIMARY KEY NOT NULL IDENTITY(1,1),
 	IDNguoiLaoDong INT NOT NULL,
@@ -117,4 +100,11 @@ ALTER TABLE dbo.[TblNguoiLaoDong] ADD LinhVucDaoTao INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD CongViecDaLam NTEXT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD IDNganHang INT NULL ;
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD MaSoThue NVARCHAR(50) NULL ;
->>>>>>> .theirs
+
+-- 27/05/2017
+
+ALTER TABLE dbo.TblDoanhNghiep ADD FaxDonVi NVARCHAR(50) NULL ;
+ALTER TABLE dbo.TblDoanhNghiep ADD SoDKKD NVARCHAR(50) NULL ;
+
+
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD IdDoanhNghiep Int NULL ;

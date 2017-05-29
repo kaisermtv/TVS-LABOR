@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-public class DoanhNghiep
+public class DoanhNghiep :DataClass
 {
     #region method DoanhNghiep
     public DoanhNghiep()
@@ -120,6 +120,49 @@ public class DoanhNghiep
         }
         return objTable;
     }
+    #endregion
+
+
+    #region Method setData()
+    public int setData(int IDDonVi, String TenDonVi, String Diachi, String DienThoaiDonVi, String Fax, String SoDKKD, int IdLoaiHinh, int IDNganhnghe, String EmailDonVi, String Website)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblDoanhNghiep WHERE IDDonVi = @IDDonVi) ";
+            Cmd.CommandText += "BEGIN INSERT INTO TblDoanhNghiep(MaDonVi,TenDonVi,Diachi,DienThoaiDonVi,FaxDonVi,SoDKKD,IdLoaiHinh,IDNganhnghe,EmailDonVi,Website,State) OUTPUT INSERTED.IDDonVi VALUES(@MaDonVi,@TenDonVi,@Diachi,@DienThoaiDonVi,@FaxDonVi,@SoDKKD,@IdLoaiHinh,@IDNganhnghe,@EmailDonVi,@Website,@State) END ";
+            Cmd.CommandText += "ELSE BEGIN UPDATE TblDoanhNghiep SET TenDonVi = @TenDonVi,Diachi = @Diachi,DienThoaiDonVi = @DienThoaiDonVi,FaxDonVi = @FaxDonVi,SoDKKD = @SoDKKD,IdLoaiHinh = @IdLoaiHinh,IDNganhnghe = @IDNganhnghe,EmailDonVi = @EmailDonVi,Website = @Website OUTPUT INSERTED.IDDonVi WHERE IDDonVi = @IDDonVi END ";
+
+            Cmd.Parameters.Add("IDDonVi", SqlDbType.Int).Value = IDDonVi;
+            Cmd.Parameters.Add("MaDonVi", SqlDbType.NVarChar).Value = this.getNextMaDN();
+            Cmd.Parameters.Add("FaxDonVi", SqlDbType.NVarChar).Value = Fax;
+            Cmd.Parameters.Add("SoDKKD", SqlDbType.NVarChar).Value = SoDKKD;
+            Cmd.Parameters.Add("TenDonVi", SqlDbType.NVarChar).Value = TenDonVi;
+            Cmd.Parameters.Add("IDNganhnghe", SqlDbType.Int).Value = IDNganhnghe;
+            Cmd.Parameters.Add("IdLoaiHinh", SqlDbType.Int).Value = IdLoaiHinh;
+
+            Cmd.Parameters.Add("Diachi", SqlDbType.NVarChar).Value = Diachi;
+            Cmd.Parameters.Add("DienThoaiDonVi", SqlDbType.NVarChar).Value = DienThoaiDonVi;
+            Cmd.Parameters.Add("EmailDonVi", SqlDbType.NVarChar).Value = EmailDonVi;
+
+            Cmd.Parameters.Add("Website", SqlDbType.NVarChar).Value = Website;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = 1;
+
+            int ret = (int)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return 0;
+        }
+
+    }
+
     #endregion
 
     #region method getDataById
