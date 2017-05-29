@@ -278,6 +278,28 @@ public class NguoiLaoDong :DataClass
 
     #endregion
 
+    #region Method getListBaoHiemThatNghiep
+    public DataTable getListBaoHiemThatNghiep()
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH] FROM TblNldTuVan AS P";
+
+            DataTable ret = this.findAll(Cmd);
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion 
+
     #region method getData
     public DataTable getData(string searchKey)
     {

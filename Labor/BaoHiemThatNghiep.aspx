@@ -1,5 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="BaoHiemThatNghiep.aspx.cs" Inherits="Labor_BaoHiemThatNghiep" %>
-
+<%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
+    <style>
+        .DataListTable td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
+   <script src="../js/TvsScript.js"></script>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 
     <table style="margin-top:-10px; margin-right:-15px!important; width:100%!important;padding:0px!important;" border ="0">
@@ -16,56 +25,28 @@
         </tr>
     </table>
 
-    <asp:Repeater ID="dtlTuyenDung" runat="server" EnableViewState="False">
+    <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
             <HeaderTemplate>
-                <table class="DataListTable" border="0">
+                <table class="DataListTable" border="0" style="width: 100%; margin-top: 20px;">
                     <tr style="height: 40px;" class="DataListTableHeader">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày bắt đầu</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 20%;">Tên doanh nghiệp</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 12%;">Vị trí tuyển</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">Số lượng</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Mức lương</td>
-                        <td class="DataListTableHeaderTdItemJustify">Địa điểm làm việc</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 8%;">Trạng thái</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 10%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemJustify" >Người lao động</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Số CMND</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Số BHXH</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Ngày đăng</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 5%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate >
                 <tr>
-                    <td class="DataListTableTdItemTT">
-                        <% if(IdDonVi != 0){ %>
-                            <input type="checkbox" id ="ckb<% =index++ %>" value ="ckb<%# Eval("IDTuyenDung") %>" />
-                        <% } else { %>
-                            <%= index++ %>
-                        <% } %>
-                    </td>
-                    <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
-                    <td class="DataListTableTdItemJustify">
-                        <%# Eval("TenDonVi") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify  ">
-                           <span class="name"> <%# Eval("NameVitri") %>
-                               </span>
-                        </td>
-                    <td class="DataListTableTdItemRight">
-                        <%# Eval("SoLuongTuyenDung") %>
-                        &nbsp;<a href="#"><div onclick="XemTinTuyenDung('<%# Eval("IdTuyenDung") %>','<%# Eval("CountItem") %>')" class="badge"><%# Eval("CountItem") %></div>
-                        </a>
-                    </td>
-                    <td class="DataListTableTdItemJustify">
-                        <%# Eval("NameMucLuong") %>
-                    </td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("DiaDiem") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("True","Kích hoạt").Replace("False","-/-") %></td>
+                    <td class="DataListTableTdItemTT"><%= index++ %></td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                     <td class="DataListTableTdItemCenter">
-                        <a href="#" onclick="XemTinTuyenDungLamViec('id=<%# Eval("IDTuyenDung") %>')"><img src="../Images/Print.png" /></a>
-                        <a href="TuyenDungEdit.aspx?id=<%# Eval("IDTuyenDung") %>">
+                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>">
                             <img src="../Images/Edit.png" alt=""></a>
-                        <a href="TuyenDung.aspx?id=<%# Eval("IDTuyenDung") %>">
-                            <img src="../Images/top.png" alt="" title="Thiết lập ưu tiên nhất" style="margin-left: 5px; margin-right: 5px;"></a>
-                        <a href="TuyenDungDel.aspx?id=<%# Eval("IDTuyenDung") %>">
-                            <img src="../Images/delete.png" alt=""></a>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -73,5 +54,17 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
+        id="tblABC" runat="server">
+        <tr>
+            <td style="padding-left: 6px;">
+                <cc1:CollectionPager ID="cpData" runat="server" BackText="" FirstText="Đầu"
+                    ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
+                    ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
+                    PageNumbersSeparator="&nbsp;">
+                </cc1:CollectionPager>
+            </td>
+        </tr>
+    </table>
 </asp:Content>
 
