@@ -24,7 +24,7 @@ public partial class Labor_BaoHiemThatNghiep : System.Web.UI.Page
 
         if(!Page.IsPostBack)
         {
-            DataTable objData = objNguoiLaoDong.getData("");
+            DataTable objData = objNguoiLaoDong.getListBaoHiemThatNghiep();
             if(objData.Rows.Count > 0)
             {
                 cpData.MaxPages = 1000;
