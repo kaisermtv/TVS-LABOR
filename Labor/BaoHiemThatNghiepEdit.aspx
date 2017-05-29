@@ -91,10 +91,10 @@
             //alert(obj.checked);
             if (obj.checked) {
                 
-                $("#MainContent_ddlDangKyTre").show()
+                $("#MainContent_ddlDangKyTre").show();
                 //inp.style.visibility = 'visible';
             } else {
-                $("#MainContent_ddlDangKyTre").hide()
+                $("#MainContent_ddlDangKyTre").hide();
                 //inp.style.visibility = 'hidden';
             }
         }
@@ -510,7 +510,7 @@
             Lý do đăng ký trễ: 
         </div>--%>
         <div style="width:49%;float:left">
-            <asp:DropDownList ID="ddlDangKyTre" CssClass="form-control" runat="server" Style="width: 100%;display:none">
+            <asp:DropDownList ID="ddlDangKyTre" CssClass="form-control" runat="server" Style="width: 100%;display:none;" >
                 <asp:ListItem Value="0">--Chọn lý do đăng ký trễ--</asp:ListItem>
                 <asp:ListItem Value="1">Thiên tai dịch họa</asp:ListItem>
                 <asp:ListItem Value="2">Ốm đau thai sản</asp:ListItem>
@@ -519,6 +519,11 @@
             </asp:DropDownList>
             <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
+        <% if(chkDangKyTre.Checked ){ %>
+        <script>
+            $("#MainContent_ddlDangKyTre").show();
+        </script>
+        <% } %>
     </div>
     <div class="row line">
         <div class="label1">
@@ -585,7 +590,11 @@
             <asp:DropDownList ID="ddlNoiDKXacNhan" CssClass="form-control" runat="server" Style="width: 100%;display:none">
                 <asp:ListItem Value="0">--Chọn nơi xác nhận đăng ký--</asp:ListItem>
             </asp:DropDownList>
-            <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
+            <% if (chkXacNhanDangKy.Checked){ %>
+                <script>
+                    $("#MainContent_ddlNoiDKXacNhan").show();
+                </script>
+            <% } %>
         </div>
     </div>
     

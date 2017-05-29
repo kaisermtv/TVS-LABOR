@@ -122,7 +122,47 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
                 }
             }
 
+            DataRow objDataTroCap = objNLDTroCapThatNghiep.getItemByNLD(itemId);
+            if(objDataTroCap != null)
+            {
+                try
+                {
+                    txtNgayNghiViec.Value = ((DateTime)objDataTroCap["NgayNghiViec"]).ToString("dd/MM/yyyy");
+                }catch {}
+                txtSoThangDongBHXH.Text = objDataTroCap["SoThangBHTN"].ToString();
 
+                chkTuVan.Checked = (bool)objDataTroCap["NhuCauTuVan"];
+                chkGioiThieu.Checked = (bool)objDataTroCap["NhuCauGTVL"];
+                chkHocNghe.Checked = (bool)objDataTroCap["NhuCauHocNghe"];
+                try
+                {
+                    txtNgayDangKyTN.Value = ((DateTime)objDataTroCap["NgayDangKyTN"]).ToString("dd/MM/yyyy");
+                }
+                catch { }
+                
+
+                chkDangKyTre.Checked = (bool)objDataTroCap["DangKyTre"];
+
+                ddlDangKyTre.SelectedValue = objDataTroCap["DangKyTreLyDo"].ToString();
+                ddlNguoiTiepNhan.SelectedValue = objDataTroCap["NoiTiepNhan"].ToString();
+                try
+                {
+                    txtNgayHoanThien.Value = ((DateTime)objDataTroCap["NgayHoanThien"]).ToString("dd/MM/yyyy");
+                }
+                catch { }
+                
+
+                ddlNoiNhanbaoHiem.SelectedValue = objDataTroCap["NoiNhanBaoHiem"].ToString();
+
+                int htnt = (int)objDataTroCap["HinhThucNhanTien"];
+                cbkATM.Checked = (htnt == 1);
+                cbkTienMat.Checked = (htnt == 2);
+
+                ddlNoiChotSoCuoi.SelectedValue = objDataTroCap["NoiChotSoCuoi"].ToString();
+
+                chkXacNhanDangKy.Checked = (bool)objDataTroCap["DaXacNhanChuaDangKy"];
+                ddlNoiDKXacNhan.SelectedValue = objDataTroCap["NoiXacNhanChuaDangKy"].ToString();
+            }
 
         } else if (!Page.IsPostBack)
         {
@@ -181,7 +221,8 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         }
 
         int HinhThucNhanTien = 0;
-
+        if (cbkATM.Checked) HinhThucNhanTien = 1;
+        else if (cbkTienMat.Checked) HinhThucNhanTien = 2;
         try
         {
             objNLDTroCapThatNghiep.setDataByNLD(itemId, TVSSystem.CVDateNull(txtNgayNghiViec.Value), float.Parse(txtSoThangDongBHXH.Text), chkTuVan.Checked, chkGioiThieu.Checked, chkHocNghe.Checked, TVSSystem.CVDateNull(txtNgayDangKyTN.Value), chkDangKyTre.Checked, int.Parse(ddlDangKyTre.SelectedValue), int.Parse(ddlNguoiTiepNhan.SelectedValue), TVSSystem.CVDateNull(txtNgayHoanThien.Value), int.Parse(ddlNoiNhanbaoHiem.SelectedValue), HinhThucNhanTien, int.Parse(ddlNoiChotSoCuoi.SelectedValue), chkXacNhanDangKy.Checked, int.Parse(ddlNoiDKXacNhan.SelectedValue));

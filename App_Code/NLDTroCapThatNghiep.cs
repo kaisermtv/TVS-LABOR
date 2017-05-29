@@ -33,6 +33,29 @@ public class NLDTroCapThatNghiep :DataClass
     }
     #endregion
 
+    #region method getItem
+    public DataRow getItemByNLD(int id)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT * FROM [TblNLDTroCapThatNghiep] WHERE [IDNguoiLaoDong] = @IDNguoiLaoDong";
+            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
+
+            DataRow ret = this.findFirst(Cmd);
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
+
     #region setData()
     public int setDataByNLD(int IDNguoiLaoDong, DateTime? NgayNghiViec, float SoThangBHTN, bool NhuCauTuVan, bool NhuCauGTVL, bool NhuCauHocNghe, DateTime? NgayDangKyTN, bool DangKyTre, int DangKyTreLyDo, int NoiTiepNhan, DateTime? NgayHoanThien, int NoiNhanBaoHiem, int HinhThucNhanTien, int NoiChotSoCuoi, bool DaXacNhanChuaDangKy, int NoiXacNhanChuaDangKy)
     {
