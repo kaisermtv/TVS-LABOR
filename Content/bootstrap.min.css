@@ -5608,7 +5608,7 @@ button.close {
 body.modal-open,
 .modal-open .navbar-fixed-top,
 .modal-open .navbar-fixed-bottom {
-  margin-right: 15px;
+  margin-right: 0px;
 }
 
 .modal {
@@ -5742,10 +5742,11 @@ body.modal-open,
 @media screen and (min-width: 768px) {
   .modal-dialog {
     right: auto;
-    left: 50%;
+    left: 0%;
     width: 600px;
     padding-top: 30px;
     padding-bottom: 30px;
+	overflow-x:hidden!important;
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);

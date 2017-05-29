@@ -595,6 +595,7 @@
                     $("#MainContent_ddlNoiDKXacNhan").show();
                 </script>
             <% } %>
+            <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
     </div>
     

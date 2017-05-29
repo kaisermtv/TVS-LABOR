@@ -5,8 +5,6 @@
 
     <script src="../js/TvsScript.js"></script>
 
-
-
     <table class="table" style="margin-top: -20px;">
         <tr>
             <td>
@@ -58,13 +56,13 @@
                         <%# Eval("Email") %>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
-                        <%# Eval("DienThoai") %>
+                        <a href ="#" runat ="server" onserverclick ="HtmlAnchor_Click" name ='<%# Eval("IDNldTuVan") %>'><%# Eval("DienThoai") %></a>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 27%;">
                         <%# Eval("DiaChi") %>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 8%;">
-                        <%# Eval("NgayTuVan","{0:dd/MM/yyyy}") %>
+                        <a href ="#" data-toggle="modal" data-target="#myModal<%# Eval("IDNldTuVan") %>"><%# Eval("NgayTuVan","{0:dd/MM/yyyy}") %></a>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 3%;">
                         <a href="TuVanEdit.aspx?id=<%# Eval("IDNldTuVan") %>&idNld=<%# Eval("IDNguoiLaoDong") %>">
@@ -76,6 +74,31 @@
                     </td>
                 </tr>
             </table>
+
+           <%-- <!-- Button dùng để gọi popup -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click để mở popup</button>--%>
+
+            <!-- popup -->
+            <div id="myModal<%# Eval("IDNldTuVan") %>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Popup Header<%# Eval("IDNldTuVan") %></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Nội dung popup.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </ItemTemplate>
     </asp:DataList>
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
@@ -91,15 +114,17 @@
         </tr>
     </table>
     <br />
-    
-     <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
+
+    <footer style="height: 43px !important; margin-bottom: 0px; margin-left: -30px; width: 100%; text-align: justify; background-color: #f0f0f0;">
         <table border="0" style="width: 95%; margin-top: -8px;">
             <tr>
                 <td style="width: 800px; padding-left: 15px;">
-                    <a href="TuVanEdit.aspx"><input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+                    <a href="TuVanEdit.aspx">
+                        <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
                 </td>
-                <td style ="text-align:right;">
-                    <a href="../Admin/Default.aspx"><input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
+                <td style="text-align: right;">
+                    <a href="../Admin/Default.aspx">
+                        <input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
                 </td>
             </tr>
         </table>
@@ -125,5 +150,9 @@
 
 
     <div id="divResult"></div>
+
+   
+    
+
 </asp:Content>
 
