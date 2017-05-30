@@ -107,4 +107,17 @@ ALTER TABLE dbo.TblDoanhNghiep ADD FaxDonVi NVARCHAR(50) NULL ;
 ALTER TABLE dbo.TblDoanhNghiep ADD SoDKKD NVARCHAR(50) NULL ;
 
 
-ALTER TABLE dbo.[TblNguoiLaoDong] ADD IdDoanhNghiep Int NULL ;
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD IdDoanhNghiep Int NULL 
+
+ALTER TABLE dbo.[TblNguoiLaoDong] ADD TrangThaiHS Int NULL ;
+
+CREATE TABLE dbo.tblTrangThaiHoSo(
+	id INT PRIMARY KEY NOT NULL,
+	name NVARCHAR(50) NULL
+)
+
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (1,N'Đăng ký');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (2,N'Hoàn thiện');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (3,N'Đã tính hưởng');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (4,N'Đã thẩm định');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (5,N'Đã ký quyết định');

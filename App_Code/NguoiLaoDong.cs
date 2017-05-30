@@ -284,8 +284,10 @@ public class NguoiLaoDong :DataClass
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayDangKyTN,TN.NgayNghiViec,TN.SoThangBHTN FROM TblNldTuVan AS P";
+            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayDangKyTN,TN.NgayNghiViec,TN.SoThangBHTN,TT.name AS TrangThai FROM TblNguoiLaoDong AS P";
             Cmd.CommandText += " LEFT JOIN TblNLDTroCapThatNghiep AS TN ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
+            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON P.TrangThaiHS = TT.id";
+            
 
             DataTable ret = this.findAll(Cmd);
 
