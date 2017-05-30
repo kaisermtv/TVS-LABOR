@@ -90,6 +90,15 @@ public partial class Labor_TuVan : System.Web.UI.Page
         //string strContent = msworddoc.Content.Text;
         //mswordappcls.Documents.Close();
 
+        List<string> lstInput = new List<string>();
+        lstInput.Add("TenLD");
+
+
+        List<string> lstOutput = new List<string>();
+        lstOutput.Add("Nguyễn Văn A");
+        ExportToWord objExportToWord = new ExportToWord();
+        string temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuDeNghiHuongTCTN.docx"), lstInput, lstOutput);
+
         string strBody = "<html>";
         strBody += "<body>";
         strBody += "<div>Your name is: <b>" + objSender.Name + "</b></div>";
@@ -98,10 +107,10 @@ public partial class Labor_TuVan : System.Web.UI.Page
         strBody += "</body>";
         strBody += "</html>";
 
-        string fileName = "MsWordSample.doc";
+        //string fileName = sẻ "MsWordSample.docx";
         Response.AppendHeader("Content-Type", "application/msword");
-        Response.AppendHeader("Content-disposition", "inline; filename=" + fileName);
-        Response.Write(strBody);
+        Response.AppendHeader("Content-disposition", "inline; filename=" + temp);
+        //Response.Write(strBody);
 
         HttpContext.Current.Response.End();
         HttpContext.Current.Response.Flush();
