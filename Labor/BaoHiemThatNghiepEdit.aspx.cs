@@ -239,4 +239,246 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         Response.Redirect("BaoHiemThatNghiepEdit.aspx?id=" + itemId);
     }
     #endregion
+
+    #region Even DeNghiHuong_Click
+    public void DeNghiHuong_Click(Object sender, EventArgs e)
+    {
+        if(itemId != 0)
+        {
+            List<string> lstInput = new List<string>();
+            List<string> lstOutput = new List<string>();
+
+            #region thông tin người lao động
+            DataTable objData = objNguoiLaoDong.getDataById(itemId);
+            if (objData.Rows.Count == 0) return;
+            DataRow objDataRow = objData.Rows[0];
+
+            lstInput.Add("[TenLD]");
+            lstOutput.Add(objDataRow["HoVaTen"].ToString());
+
+
+            try
+            {
+                lstOutput.Add(((DateTime)objDataRow["NgaySinh"]).ToString("dd/MM/yyyy"));
+                lstInput.Add("[NgaySinh]");
+            }
+            catch { }
+
+
+            int gioitinh = (int)objDataRow["IDGioiTinh"];
+            if (gioitinh == 1)
+            {
+                lstInput.Add("[Nam/Nu]");
+                lstOutput.Add("Nam");
+            }
+            else if (gioitinh == 2)
+            {
+                lstInput.Add("[Nam/Nu]");
+                lstOutput.Add("Nữ");
+            }
+
+            lstInput.Add("[CMTND]");
+            lstOutput.Add(objDataRow["CMND"].ToString());
+
+            try
+            {
+                lstOutput.Add(((DateTime)objDataRow["NgayCapCMND"]).ToString("dd/MM/yyyy"));
+                lstInput.Add("[NgayCapCMTND]");
+            }
+            catch { }
+
+            lstInput.Add("[NoiCapCMTND]");
+            lstOutput.Add(objDataRow["NoiCap"].ToString());
+
+            lstInput.Add("[SoBHXH]");
+            lstOutput.Add(objDataRow["BHXH"].ToString());
+
+            lstInput.Add("[DienThoai]");
+            lstOutput.Add(objDataRow["DienThoai"].ToString());
+
+            lstInput.Add("[Email]");
+            lstOutput.Add(objDataRow["Email"].ToString());
+
+            lstInput.Add("[DanToc]");
+            lstOutput.Add("");
+
+            lstInput.Add("[TonGiao]");
+            lstOutput.Add("");
+
+            lstInput.Add("[SoTaiKhoan]");
+            lstOutput.Add(objDataRow["TaiKhoan"].ToString());
+
+            lstInput.Add("[NganHang]");
+            lstOutput.Add("");
+
+            lstInput.Add("[TrinhDoDaoTao]");
+            lstOutput.Add("");
+
+            lstInput.Add("[NganhNgheDaoTao]");
+            lstOutput.Add("");
+
+            lstInput.Add("[DiaChiThuongTru]");
+            lstOutput.Add(objDataRow["NoiThuongTru"].ToString());
+
+            lstInput.Add("[DiaChiHienTai]");
+            lstOutput.Add(objDataRow["NoiThuongTru"].ToString());
+
+            #endregion
+
+            #region Doanh nghiệp
+            int idDonVi = 0;
+            try
+            {
+                idDonVi = (int)objDataRow["IdDoanhNghiep"];
+            }
+            catch { }
+
+            if (idDonVi != 0)
+            {
+                DataTable objDataDN = objDoanhNghiep.getDataById(idDonVi);
+                if (objDataDN.Rows.Count > 0)
+                {
+                    DataRow objDataRowDN = objDataDN.Rows[0];
+
+                    lstInput.Add("[TenDN]");
+                    lstOutput.Add(objDataRowDN["TenDonVi"].ToString());
+
+                    lstInput.Add("[DiaChiDoanhNghiep]");
+                    lstOutput.Add(objDataRowDN["DiaChi"].ToString());
+
+                }
+            }
+            #endregion
+
+            #region Thông tin bổ sung
+            DataRow objDataTroCap = objNLDTroCapThatNghiep.getItemByNLD(itemId);
+            if (objDataTroCap != null)
+            {
+                try
+                {
+                    lstOutput.Add(((DateTime)objDataTroCap["NgayNghiViec"]).ToString("dd/MM/yyyy"));
+                    lstInput.Add("[NgayNghiViec]");
+                }
+                catch { }
+
+                lstInput.Add("[LyDoChamDutHD]");
+                lstOutput.Add("");
+
+                lstInput.Add("[LoaiHopDong]");
+                lstOutput.Add("");
+
+                lstInput.Add("[SoThangDongBHTN]");
+                lstOutput.Add(objDataTroCap["SoThangBHTN"].ToString());
+
+                lstInput.Add("[NoiNhanTCTN]");
+                lstOutput.Add("");
+
+                lstInput.Add("[Giaytokemtheo]");
+                lstOutput.Add("");
+
+                try
+                {
+                    lstOutput.Add(((DateTime)objDataTroCap["NgayHoanThien"]).ToString("dd/MM/yyyy"));
+                    lstInput.Add("[NgayNopHS]");
+                }
+                catch { }
+
+
+            }
+            #endregion
+
+            ExportToWord objExportToWord = new ExportToWord();
+            byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuDeNghiHuongTCTN.docx"), lstInput, lstOutput);
+
+
+            Response.AppendHeader("Content-Type", "application/msword");
+            Response.AppendHeader("Content-disposition", "inline; filename=PhieuDeNghiHuong.docx");
+            Response.BinaryWrite(temp);
+            HttpContext.Current.Response.End();
+            HttpContext.Current.Response.Flush();
+        }
+    }
+    #endregion
+
+    #region Even GiayBienNhan_Click
+    public void GiayBienNhan_Click(Object sender, EventArgs e)
+    {
+        if (itemId != 0)
+        {
+            List<string> lstInput = new List<string>();
+            List<string> lstOutput = new List<string>();
+
+            lstInput.Add("[SDTTrungTam]");
+            lstOutput.Add("");
+
+            lstInput.Add("[NguoiTiepNhan]");
+            lstOutput.Add("");
+
+            DateTime bufDate = DateTime.Now;
+            lstInput.Add("[ngay]");
+            lstOutput.Add(bufDate.Day.ToString());
+            lstInput.Add("[thang]");
+            lstOutput.Add(bufDate.Month.ToString());
+            lstInput.Add("[nam]");
+            lstOutput.Add(bufDate.Year.ToString());
+
+            #region thông tin người lao động
+            DataTable objData = objNguoiLaoDong.getDataById(itemId);
+            if (objData.Rows.Count == 0) return;
+            DataRow objDataRow = objData.Rows[0];
+
+            lstInput.Add("[TenLD]");
+            lstOutput.Add(objDataRow["HoVaTen"].ToString());
+
+
+            try
+            {
+                lstOutput.Add(((DateTime)objDataRow["NgaySinh"]).ToString("dd/MM/yyyy"));
+                lstInput.Add("[NgaySinh]");
+            }
+            catch { }
+
+            lstInput.Add("[CMTND]");
+            lstOutput.Add(objDataRow["CMND"].ToString());
+
+            lstInput.Add("[SoBHXH]");
+            lstOutput.Add(objDataRow["BHXH"].ToString());
+
+            #endregion
+
+            #region Thông tin bổ sung
+            DataRow objDataTroCap = objNLDTroCapThatNghiep.getItemByNLD(itemId);
+            if (objDataTroCap != null)
+            {
+                try
+                {
+                    lstOutput.Add(((DateTime)objDataTroCap["NgayNghiViec"]).ToString("dd/MM/yyyy"));
+                    lstInput.Add("[NgayNghiViec]");
+                }
+                catch { }
+
+
+                try
+                {
+                    lstOutput.Add(((DateTime)objDataTroCap["NgayHoanThien"]).ToString("dd/MM/yyyy"));
+                    lstInput.Add("[NgayNopHoSo]");
+                }
+                catch { }
+
+
+            }
+            #endregion
+
+            ExportToWord objExportToWord = new ExportToWord();
+            byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuHenTraKetQua.docx"), lstInput, lstOutput);
+
+
+            Response.AppendHeader("Content-Type", "application/msword");
+            Response.AppendHeader("Content-disposition", "inline; filename=PhieuHenTraKetQua.docx");
+            Response.BinaryWrite(temp);
+            HttpContext.Current.Response.End();
+            HttpContext.Current.Response.Flush();
+        }
+    }
+    #endregion
 }

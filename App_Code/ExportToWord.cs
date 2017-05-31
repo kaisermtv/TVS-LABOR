@@ -17,11 +17,9 @@ public class ExportToWord
         return ServeMap + @"Temp\" + Filename;
     }
 
-    public string Export(string PathFile, List<string> lststr, List<string> lstReplace)
+    public byte[] Export(string PathFile, List<string> lststr, List<string> lstReplace)
     {
-        string PathNewFile = "";
-        if (lststr.Count < lstReplace.Count)
-            return "";
+        if (lststr.Count < lstReplace.Count) return null;
         byte[] byteArray = File.ReadAllBytes(PathFile);
         using (MemoryStream stream = new MemoryStream())
         {
@@ -89,10 +87,13 @@ public class ExportToWord
                 //}
                 #endregion
             }
-            DateTime MyDatetime = DateTime.Now;
-            PathNewFile = (Path.GetFullPath(PathFile).Substring(0, PathFile.LastIndexOf("\\"))).Replace("Temp", "Temp2\\") + "/Temp/" + Path.GetFileName(PathFile).Split('.')[0] + MyDatetime.Day + MyDatetime.Month + MyDatetime.Year + MyDatetime.Hour + MyDatetime.Minute + MyDatetime.Second + ".docx";
-            File.WriteAllBytes(PathNewFile, stream.ToArray());
+
+
+            return stream.ToArray();
+            //DateTime MyDatetime = DateTime.Now;
+            //PathNewFile = (Path.GetFullPath(PathFile).Substring(0, PathFile.LastIndexOf("\\"))).Replace("Temp", "Temp2\\") + "/Temp/" + Path.GetFileName(PathFile).Split('.')[0] + MyDatetime.Day + MyDatetime.Month + MyDatetime.Year + MyDatetime.Hour + MyDatetime.Minute + MyDatetime.Second + ".docx";
+            //File.WriteAllBytes(PathNewFile, stream.ToArray());
         }
-        return PathNewFile;
+        //return null;
     }
 }

@@ -690,8 +690,8 @@
                 <div class="list-group list-group-alternate">
                     <a href="#" class="list-group-item"><span class="badge1">></span>Thông tin đăng ký </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Đăng ký TCTN</a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span>Đề nghị hưởng </a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span>Giấy biên nhận ĐK </a>
+                    <a href="#" class="list-group-item" runat ="server" onserverclick ="DeNghiHuong_Click"><span class="badge1">></span>Đề nghị hưởng </a>
+                    <a href="#" class="list-group-item" runat ="server" onserverclick ="GiayBienNhan_Click"><span class="badge1">></span>Giấy biên nhận ĐK </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu hẹn trả KQ </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Tải quyết định </a>     

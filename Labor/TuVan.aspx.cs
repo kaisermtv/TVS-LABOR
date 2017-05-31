@@ -97,21 +97,22 @@ public partial class Labor_TuVan : System.Web.UI.Page
         List<string> lstOutput = new List<string>();
         lstOutput.Add("Nguyễn Văn A");
         ExportToWord objExportToWord = new ExportToWord();
-        string temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuDeNghiHuongTCTN.docx"), lstInput, lstOutput);
+        byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuDeNghiHuongTCTN.docx"), lstInput, lstOutput);
 
-        string strBody = "<html>";
-        strBody += "<body>";
-        strBody += "<div>Your name is: <b>" + objSender.Name + "</b></div>";
-        strBody += "<table width=\"100%\" style=\"background-color:#cfcfcf;\"><tr><td>1st Cell body data</td><td>2nd cell body data</td></tr></table>";
-        strBody += "Ms Word document generated successfully.";
-        strBody += "</body>";
-        strBody += "</html>";
+
+        //string strBody = "<html>";
+        //strBody += "<body>";
+        //strBody += "<div>Your name is: <b>" + objSender.Name + "</b></div>";
+        //strBody += "<table width=\"100%\" style=\"background-color:#cfcfcf;\"><tr><td>1st Cell body data</td><td>2nd cell body data</td></tr></table>";
+        //strBody += "Ms Word document generated successfully.";
+        //strBody += "</body>";
+        //strBody += "</html>";
 
         //string fileName = sẻ "MsWordSample.docx";
         Response.AppendHeader("Content-Type", "application/msword");
-        Response.AppendHeader("Content-disposition", "inline; filename=" + temp);
+        Response.AppendHeader("Content-disposition", "inline; filename=PhieuDeNghiHuong.docx");
         //Response.Write(strBody);
-
+        Response.BinaryWrite(temp);
         HttpContext.Current.Response.End();
         HttpContext.Current.Response.Flush();
     }
