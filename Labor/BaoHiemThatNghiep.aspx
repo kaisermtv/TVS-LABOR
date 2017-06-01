@@ -8,14 +8,6 @@
         }
     </style>
    <script src="../js/TvsScript.js"></script>
-    <script>
-         function delmodal(id, name) {
-             $("#MainContent_idDel").val(id);
-             $("#ttk").html(name);
-
-             $("#myModal").modal("show");
-         }
-    </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 
@@ -39,33 +31,22 @@
                     <tr style="height: 40px;" class="DataListTableHeader">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
                         <td class="DataListTableHeaderTdItemJustify" >Người lao động</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Tình trạng</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Số CMND</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Số BHXH</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Ngày đăng</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;" >Thông tin BH</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 10%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 5%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate >
                 <tr>
                     <td class="DataListTableTdItemTT"><%= index++ %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
-                    <td class="DataListTableTdItemJustify" style="color:red;"><%# Eval("TrangThai") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
-                    <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayDangKyTN").ToString() != "")?((DateTime)Eval("NgayDangKyTN")).ToString("dd/MM/yyyy"):"" %><br />
-                        <%# (Eval("NgayNghiViec").ToString() != "")?((DateTime)Eval("NgayNghiViec")).ToString("dd/MM/yyyy"):"" %>
-                    </td>
-                    <td>
-                        Đóng <%# Eval("SoThangBHTN").ToString() != ""? Eval("SoThangBHTN") :"0"%> tháng
-                    </td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                     <td class="DataListTableTdItemCenter">
-                        <a href="#myModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>,'<%# Eval("HoVaTen") %>')"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
+                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>">
+                            <img src="../Images/Edit.png" alt=""></a>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -85,27 +66,5 @@
             </td>
         </tr>
     </table>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <input id="idDel" type="hidden" runat="server" />
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Xóa tài khoản</h4>
-          </div>
-          <div class="modal-body">
-            <p>Bạn xác nhận xóa tài khoản <b id="ttk"></b></p>
-          </div>
-          <div class="modal-footer">
-            <%--<asp:Button ID="btnDel" runat ="server" CssClass="btn btn-primary" Text="Xác nhận xóa" OnClick="btnDel_Click" />--%>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
 </asp:Content>
 

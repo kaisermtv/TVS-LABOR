@@ -84,6 +84,14 @@
 
             $(".dateinput").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
         });
+        $(function () {
+            $('.date1').datetimepicker({
+                format: 'MM/YYYY'
+            });
+
+            $(".dateinput1").mask("99/9999", { placeholder: "MM/yyyy" });
+        });
+
 
         function hidenDangkyTre(obj)
         {
@@ -547,7 +555,19 @@
                 </div>
             <%--<asp:TextBox ID="TextBox16" runat="server" CssClass="form-control"></asp:TextBox>--%>
         </div>
+        <div class="label2">Nơi ĐBH cuối: </div>
+        <div style="width:20%;float:left">
+            <asp:DropDownList ID="ddlLuongToiThieu" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="3750000">Vùng I</asp:ListItem>
+                <asp:ListItem Value="3320000">Vùng II</asp:ListItem>
+                <asp:ListItem Value="2900000">Vùng III</asp:ListItem>
+                <asp:ListItem Value="2580000">Vùng IV</asp:ListItem>
+            </asp:DropDownList>       
     </div>
+        
+    </div>
+  
+    
     <div class="row line">
         <div class="label1">
             6 tháng gần nhất 
@@ -564,61 +584,119 @@
                 </tr>
                 <tr>
                     <th>Tháng thứ 6</th>
-                    <td><asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td>
+                     <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput1" id="txtThangThu6" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+                    </td>
+                    <td><asp:TextBox ID="txtHeSoLuongThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhuCapThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLuongCoBanThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtMucDongThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <th>Tháng thứ 5</th>
-                    <td><asp:TextBox ID="TextBox6" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox8" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox9" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td>
+                     <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput1" id="txtThangThu5" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div></td>
+                    <td><asp:TextBox ID="txtHeSoLuongThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhuCapThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLuongCoBanThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtMucDongThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <th>Tháng thứ 4</th>
-                    <td><asp:TextBox ID="TextBox11" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox12" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox13" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox14" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox15" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td>
+                     <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput1" id="txtThangThu4" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div></td>
+                    <td><asp:TextBox ID="txtHeSoLuongThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhuCapThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLuongCoBanThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtMucDongThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <th>Tháng thứ 3</th>
-                    <td><asp:TextBox ID="TextBox16" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox17" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox18" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox19" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox20" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td>
+                     <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput1" id="txtThangThu3" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div></td>
+                    <td><asp:TextBox ID="txtHeSoLuongThang3" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhuCapThang3" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLuongCoBanThang3" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtMucDongthang3" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <th>Tháng thứ 2</th>
-                    <td><asp:TextBox ID="TextBox21" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox22" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox23" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox24" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox25" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td>
+                    <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput1" id="txtThangThu2" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div></td>
+                    <td><asp:TextBox ID="txtHeSoluongThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhuCapThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLuongCoBanThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtMucDongThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <th>Tháng thứ 1</th>
-                    <td><asp:TextBox ID="TextBox26" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox27" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox28" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox29" runat="server" CssClass="form-control"></asp:TextBox></td>
-                    <td><asp:TextBox ID="TextBox30" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td>
+                    <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput1" id="txtThangThu1" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div></td>
+                    <td><asp:TextBox ID="txtHeSoLuongThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhuCapThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLuongCoBanThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtMucDongThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                </tr>
+                <tr>                    
+                    <th>Mức hưởng tối đa:</th>
+                    <td><asp:TextBox ID="txtMucHuongToiDa" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <th>Số tháng hưởng</th>
+                    <td><asp:TextBox ID="txtSoThangHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <th style="text-align:right">Lương trung bình(VND)</th>
+                    <td><asp:TextBox ID="txtLuongTrungBinh" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td colspan="3"></td>
-                    <th colspan="2" style="text-align:right">Lương trung bình(VND)</th>
-                    <td><asp:TextBox ID="TextBox31" runat="server" CssClass="form-control"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <th colspan="2" style="text-align:right">Mức hưởng(VND)</th>
-                    <td><asp:TextBox ID="TextBox32" runat="server" CssClass="form-control"></asp:TextBox></td>
+                    <th>Hưởng từ ngày:</th>
+                    <td>
+                    <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtHuongTuNgay" runat="server" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+                    </td>
+                    <th>Đến ngày:</th>
+                    <td>
+                    <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtHuongDenNgay" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+
+                    </td>
+                    <th style="text-align:right">Mức hưởng(VND)</th>
+                    <td><asp:TextBox ID="txtMucHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
                 </tr>
             </table>
         </div>
@@ -701,6 +779,9 @@
                 <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
                 <br />
                 <br />
+                  <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
+                <br />
+                <br />
                 <a href="#" class="btn btn-danger" style="width:100%">Chuyển hồ sơ</a>
                 <br />
                 <br />
@@ -716,4 +797,69 @@
             <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red"/>
         </div>
     </footer>--%>
+      <script type="text/javascript">  
+          $(document).ready(function () {
+              for (i = 6; i > 0; i--) {
+                  SetThang(i);
+              }
+          });
+          function SetThang(id) {
+              $("#MainContent_txtThangThu" + id).blur(function () {
+                  var ThangThu6 = $(this).val();
+                  if (ThangThu6.trim() != '') {
+                      var thang6, nam6;
+                      thang6 = ThangThu6.substring(0, 2);
+                      nam6 = ThangThu6.substring(3, 7);
+                      for (i = 1; i < id; i++) {
+                          var thang = thang6 - 1;
+                          var nam = nam6;
+                          if (thang < 1) {
+                              nam = nam - 1;
+                              thang = 12;
+                          }
+                          if (thang - 10 < 0) {
+                              thang = "0" + thang;
+                          }
+
+                          $("#MainContent_txtThangThu" + (id - i)).val(thang + "/" + nam);
+                          thang6 = thang;
+                          nam6 = nam;
+                      }
+                  }
+              });
+          }
+          $(document).ready(function () {
+              $("#MainContent_txtMucHuongToiDa").val($("#MainContent_ddlLuongToiThieu").val()*5);
+          });
+          $("#MainContent_ddlLuongToiThieu").change(function () {
+              $("#MainContent_txtMucHuongToiDa").val($(this).val()*5);
+          });
+          $("#MainContent_txtSoThangDongBHXH").blur(function () {      
+              var SoThangDong = $(this).val();
+              if (SoThangDong.trim() == "")
+              {
+                  $("#MainContent_txtSoThangHuong").val("");
+              }
+              var SoThangDuocHuong;         
+              if(SoThangDong>=12 && SoThangDong<=36)
+              {
+                  SoThangDuocHuong = 3;
+                  $("#MainContent_txtSoThangHuong").val(SoThangDuocHuong);
+              }
+              if(SoThangDong>36)
+              {
+                  SoThangDuocHuong = 3;
+                  SoThangDong = SoThangDong - 36;
+                  SoThangDong = Math.round((SoThangDong / 12));
+                  SoThangDuocHuong = SoThangDuocHuong + SoThangDong;
+                  $("#MainContent_txtSoThangHuong").val(SoThangDuocHuong);
+              }
+          });
+          var _msg = '<%=_msg%>';
+          if(_msg!='')
+          {
+              alert(_msg);
+          }
+         
+</script>
 </asp:Content>
