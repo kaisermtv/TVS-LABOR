@@ -48,6 +48,27 @@
                     <td class ="CategoryItem"><a href ="ViTri.aspx">Vị trí</a></td>
                 </tr>
             </tbody>
+            <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
+                <HeaderTemplate>
+                    <tbody>
+                        <tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <td class ="CategoryItem"><a href ="DanhMuc.aspx?id=<%# Eval("IdDanhMuc") %>"><%# Eval("NameDanhMuc") %></a></td>
+                </ItemTemplate>
+                <SeparatorTemplate>
+                    <% if(index++ % 5 == 0 ){ %>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                    <% } %>
+                </SeparatorTemplate>
+                <FooterTemplate>
+                        </tr>
+                    </tbody>
+                </FooterTemplate>
+            </asp:Repeater>
         </table>
     </div>
 </asp:Content>

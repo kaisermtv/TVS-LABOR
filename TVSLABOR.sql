@@ -121,3 +121,22 @@ INSERT INTO dbo.tblTrangThaiHoSo VALUES (2,N'Hoàn thiện');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (3,N'Đã tính hưởng');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (4,N'Đã thẩm định');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (5,N'Đã ký quyết định');
+
+-- 31/05/2017
+CREATE TABLE dbo.tblDanhMuc(
+	IdDanhMuc INT PRIMARY KEY IDENTITY(1,1),
+	DanhMucId INT NOT NULL DEFAULT(0),
+	NameDanhMuc NVARCHAR(256) NULL,
+	Note NTEXT NULL,
+
+	--Paren INT NULL, 
+	--MaDanhMuc NVARCHAR(256) NULL,
+	[State] BIT NOT NULL  DEFAULT(1),
+	CreateDate DATETIME NOT NULL DEFAULT(GETDATE())
+)
+
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp CMND');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp BHXH');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Lý do đăng ký trễ');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi nhận bảo hiểm');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');

@@ -7,6 +7,17 @@ using System.Web;
 
 public class TVSSystem
 {
+    #region static declare
+    public static int NoiCapCMND = 1;
+    public static int NoiChotSoCuoi = 8;
+    public static int NoiDangKyKhamBenh = 9;
+    public static int NoiNhanBaoHiem = 10;
+    public static int LyDoDangKytre = 3;
+
+
+    #endregion
+
+
     #region method TVSSystem
     public TVSSystem()
     {
