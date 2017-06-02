@@ -70,6 +70,7 @@
 
         span.badge1{
             right:10px;
+            left: 170px;
         }
 
         .warning{
@@ -771,12 +772,12 @@
                     <a href="#" class="list-group-item"><span class="badge1">></span>Đề nghị hưởng </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Giấy biên nhận ĐK </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu hẹn trả KQ </a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu tính hưởng </a>
+                    <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Tải quyết định </a>     
                 </div>
                 <br />
                 <br />
-                <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click " />
                 <br />
                 <br />
                   <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />

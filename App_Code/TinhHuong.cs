@@ -158,7 +158,7 @@ public class TinhHuong:DataClass
     }
     #endregion
     #region method getDataById
-    public DataTable getDataById(int IDTinhHuong)
+    public DataTable getDataById(int IDNguoiLaoDong)
     {
         DataTable objTable = new DataTable();
         try
@@ -166,8 +166,8 @@ public class TinhHuong:DataClass
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);         
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.Parameters.Add("IDTinhHuong", SqlDbType.Int).Value = IDTinhHuong;
-            Cmd.CommandText = "SELECT * FROM TblTinhHuong WHERE IDTinhHuong = @IDTinhHuong";
+            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
+            Cmd.CommandText = "SELECT * FROM TblTinhHuong WHERE IDNguoiLaoDong = @IDNguoiLaoDong";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

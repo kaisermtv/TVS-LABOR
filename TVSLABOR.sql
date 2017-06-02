@@ -140,3 +140,58 @@ INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp BHXH');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Lý do đăng ký trễ');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi nhận bảo hiểm');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
+
+-- 02/6/2017 The Linh Create tbltinhhuong
+CREATE TABLE [dbo].[TblTinhHuong](
+	[IDTinhHuong] [int] IDENTITY(1,1) NOT NULL,
+	[IDNguoiLaoDong] [int] NULL,
+	[IDNLDTCTN] [int] NULL,
+	[NgayTao] [datetime] NULL,
+	[IDVungLuongToiThieu] [int] NULL,
+	[LuongToiThieuVung] [decimal](18, 2) NULL,
+	[ThangDong1] [nvarchar](50) NULL,
+	[HeSoLuong1] [float] NULL,
+	[HeSoPhuCap1] [float] NULL,
+	[LuongCoBan1] [decimal](18, 2) NULL,
+	[MucDong1] [decimal](18, 2) NULL,
+	[ThangDong2] [nvarchar](50) NULL,
+	[HeSoLuong2] [float] NULL,
+	[HeSoPhuCap2] [float] NULL,
+	[LuongCoBan2] [decimal](18, 2) NULL,
+	[MucDong2] [decimal](18, 2) NULL,
+	[ThangDong3] [nvarchar](50) NULL,
+	[HeSoLuong3] [float] NULL,
+	[HeSoPhuCap3] [float] NULL,
+	[LuongCoBan3] [decimal](18, 2) NULL,
+	[MucDong3] [decimal](18, 2) NULL,
+	[ThangDong4] [nvarchar](50) NULL,
+	[HeSoLuong4] [float] NULL,
+	[HeSoPhuCap4] [float] NULL,
+	[LuongCoBan4] [decimal](18, 2) NULL,
+	[MucDong4] [decimal](18, 2) NULL,
+	[ThangDong5] [nvarchar](50) NULL,
+	[HeSoLuong5] [float] NULL,
+	[HeSoPhuCap5] [float] NULL,
+	[LuongCoBan5] [decimal](18, 2) NULL,
+	[MucDong5] [decimal](18, 2) NULL,
+	[ThangDong6] [nvarchar](50) NULL,
+	[HeSoLuong6] [float] NULL,
+	[HeSoPhuCap6] [float] NULL,
+	[LuongCoBan6] [decimal](18, 2) NULL,
+	[MucDong6] [decimal](18, 2) NULL,
+	[SoThangDongBHXH] [int] NULL,
+	[SoThangHuongBHXH] [int] NULL,
+	[MucHuongToiDa] [decimal](18, 2) NULL,
+	[LuongTrungBinh] [decimal](18, 2) NULL,
+	[MucHuong] [decimal](18, 2) NULL,
+	[HuongTuNgay] [datetime] NULL,
+	[IDNguoiTinh] [int] NULL,
+ CONSTRAINT [PK_TblTinhHuong] PRIMARY KEY CLUSTERED 
+(
+	[IDTinhHuong] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[TblTinhHuong] ON
+INSERT [dbo].[TblTinhHuong] ([IDTinhHuong], [IDNguoiLaoDong], [IDNLDTCTN], [NgayTao], [IDVungLuongToiThieu], [LuongToiThieuVung], [ThangDong1], [HeSoLuong1], [HeSoPhuCap1], [LuongCoBan1], [MucDong1], [ThangDong2], [HeSoLuong2], [HeSoPhuCap2], [LuongCoBan2], [MucDong2], [ThangDong3], [HeSoLuong3], [HeSoPhuCap3], [LuongCoBan3], [MucDong3], [ThangDong4], [HeSoLuong4], [HeSoPhuCap4], [LuongCoBan4], [MucDong4], [ThangDong5], [HeSoLuong5], [HeSoPhuCap5], [LuongCoBan5], [MucDong5], [ThangDong6], [HeSoLuong6], [HeSoPhuCap6], [LuongCoBan6], [MucDong6], [SoThangDongBHXH], [SoThangHuongBHXH], [MucHuongToiDa], [LuongTrungBinh], [MucHuong], [HuongTuNgay], [IDNguoiTinh]) VALUES (1, 9, 0, CAST(0x0000A7850100A624 AS DateTime), 0, CAST(3750000.00 AS Decimal(18, 2)), N'01/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'02/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'03/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'04/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'01/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'06/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), 48, 4, CAST(18750000.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), CAST(1200000.00 AS Decimal(18, 2)), CAST(0x0000A79B00000000 AS DateTime), 0)
+SET IDENTITY_INSERT [dbo].[TblTinhHuong] OFF

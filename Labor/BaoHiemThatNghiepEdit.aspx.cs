@@ -209,7 +209,67 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
                 chkXacNhanDangKy.Checked = (bool)objDataTroCap["DaXacNhanChuaDangKy"];
                 ddlNoiDKXacNhan.SelectedValue = objDataTroCap["NoiXacNhanChuaDangKy"].ToString();
+         
             }
+            #region code The Linh Load thong tin tinh huong
+            DataTable TblTinhHuong = new TinhHuong().getDataById(itemId);
+            if (TblTinhHuong.Rows.Count > 0)
+            {
+                ddlLuongToiThieu.SelectedValue = TblTinhHuong.Rows[0]["LuongToiThieuVung"].ToString();
+                txtThangThu1.Value = TblTinhHuong.Rows[0]["ThangDong1"].ToString();
+                txtHeSoLuongThang1.Text = TblTinhHuong.Rows[0]["HeSoLuong1"].ToString();
+                txtPhuCapThang1.Text = TblTinhHuong.Rows[0]["HeSoPhuCap1"].ToString();
+                txtLuongCoBanThang1.Text = TblTinhHuong.Rows[0]["LuongCoBan1"].ToString();
+                txtMucDongThang1.Text = TblTinhHuong.Rows[0]["MucDong1"].ToString();
+
+                txtThangThu2.Value = TblTinhHuong.Rows[0]["ThangDong2"].ToString();
+                txtHeSoluongThang2.Text = TblTinhHuong.Rows[0]["HeSoLuong2"].ToString();
+                txtPhuCapThang2.Text = TblTinhHuong.Rows[0]["HeSoPhuCap2"].ToString();
+                txtLuongCoBanThang2.Text = TblTinhHuong.Rows[0]["LuongCoBan2"].ToString();
+                txtMucDongThang2.Text = TblTinhHuong.Rows[0]["MucDong2"].ToString();
+
+                txtThangThu3.Value = TblTinhHuong.Rows[0]["ThangDong3"].ToString();
+                txtHeSoLuongThang3.Text = TblTinhHuong.Rows[0]["HeSoLuong3"].ToString();
+                txtPhuCapThang3.Text = TblTinhHuong.Rows[0]["HeSoPhuCap3"].ToString();
+                txtLuongCoBanThang3.Text = TblTinhHuong.Rows[0]["LuongCoBan3"].ToString();
+                txtMucDongthang3.Text = TblTinhHuong.Rows[0]["MucDong3"].ToString();
+
+                txtThangThu4.Value = TblTinhHuong.Rows[0]["ThangDong4"].ToString();
+                txtHeSoLuongThang4.Text = TblTinhHuong.Rows[0]["HeSoLuong4"].ToString();
+                txtPhuCapThang4.Text = TblTinhHuong.Rows[0]["HeSoPhuCap4"].ToString();
+                txtLuongCoBanThang4.Text = TblTinhHuong.Rows[0]["LuongCoBan4"].ToString();
+                txtMucDongThang4.Text = TblTinhHuong.Rows[0]["MucDong4"].ToString();
+
+                txtThangThu5.Value = TblTinhHuong.Rows[0]["ThangDong5"].ToString();
+                txtHeSoLuongThang5.Text = TblTinhHuong.Rows[0]["HeSoLuong5"].ToString();
+                txtPhuCapThang5.Text = TblTinhHuong.Rows[0]["HeSoPhuCap5"].ToString();
+                txtLuongCoBanThang5.Text = TblTinhHuong.Rows[0]["LuongCoBan5"].ToString();
+                txtMucDongThang5.Text = TblTinhHuong.Rows[0]["MucDong5"].ToString();
+
+                txtThangThu6.Value = TblTinhHuong.Rows[0]["ThangDong6"].ToString();
+                txtHeSoLuongThang6.Text = TblTinhHuong.Rows[0]["HeSoLuong6"].ToString();
+                txtPhuCapThang6.Text = TblTinhHuong.Rows[0]["HeSoPhuCap6"].ToString();
+                txtLuongCoBanThang6.Text = TblTinhHuong.Rows[0]["LuongCoBan6"].ToString();
+                txtMucDongThang6.Text = TblTinhHuong.Rows[0]["MucDong6"].ToString();
+
+                txtSoThangDongBHXH.Text = TblTinhHuong.Rows[0]["SoThangDongBHXH"].ToString();
+                int SoThangHuong = (int)TblTinhHuong.Rows[0]["SoThangHuongBHXH"];
+                txtSoThangHuong.Text = SoThangHuong.ToString();
+                txtMucHuongToiDa.Text = TblTinhHuong.Rows[0]["MucHuongToiDa"].ToString();
+                txtLuongTrungBinh.Text = TblTinhHuong.Rows[0]["LuongTrungBinh"].ToString();
+                txtMucHuong.Text = TblTinhHuong.Rows[0]["MucHuong"].ToString();
+                DateTime HuongTuNgay = ((DateTime)TblTinhHuong.Rows[0]["HuongTuNgay"]);
+                DateTime HuongDenNgay = HuongTuNgay;
+                for (int i = 0; i < SoThangHuong; i++)
+                {
+                    HuongDenNgay = HuongDenNgay.AddMonths(1);
+                }
+                txtHuongTuNgay.Value = ConvertDatetimeVn(HuongTuNgay);
+                txtHuongDenNgay.Value = ConvertDatetimeVn(HuongDenNgay.AddDays(-1));
+
+
+            }
+            #endregion
 
         } else if (!Page.IsPostBack)
         {
@@ -818,22 +878,69 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         }
     }
     #endregion
+    #region Even Phieu tinh huong
+    protected void Unnamed_ServerClick(object sender, EventArgs e)
+    {
+        if (itemId != 0)
+        {
+            DataTable TblTinhHuong = new TinhHuong().getDataById(itemId);
+            DataTable TblNguoiLaoDong=new NguoiLaoDong().getDataById(itemId);
+            if(TblNguoiLaoDong==null || TblNguoiLaoDong.Rows.Count ==0)
+            {
+                _msg="Người lao động chưa được khởi tạo";
+                return;
+            }
+            if (TblTinhHuong == null || TblTinhHuong.Rows.Count == 0)
+            {
+                _msg = "Chưa có bẳng tỉnh nào được cập nhật";
+                return;
+            }
+         
+            List<string> lstInput = new List<string>();
+            List<string> lstOutput = new List<string>();
+            lstInput.Add("[TenNLD]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+            lstInput.Add("[NgaySinh]");
+            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
+            lstInput.Add("[SoBHXH]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
+            lstInput.Add("[SoThangDong] ");
+            lstOutput.Add(TblTinhHuong.Rows[0]["SoThangDongBHXH"].ToString());
+            lstInput.Add("[DongTuThang]");
+            lstOutput.Add("../../....");
+            lstInput.Add("[DongDenThang]");
+            lstOutput.Add("../../....");
+            for (int i = 1; i <=6; i++)
+            {
+                lstInput.Add("[Thang" + i.ToString() + "]");
+                lstOutput.Add(i.ToString());
+                lstInput.Add("[TienThang" + i.ToString() + "]");
+                lstOutput.Add(TblTinhHuong.Rows[0]["MucDong"+i.ToString()].ToString());
+            }
 
+            lstInput.Add("[MucDongTB]");
+            lstOutput.Add(TblTinhHuong.Rows[0]["LuongTrungBinh"].ToString());
+            lstInput.Add("[MucHuong]");
+            lstOutput.Add(TblTinhHuong.Rows[0]["MucHuong"].ToString());        
+            lstInput.Add("[SoThangHuong]");
+            lstOutput.Add(TblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
+            lstInput.Add("[TongTienHuong]");
+            decimal MucHuong=0,SoThangHuong=0,TongTienHuong=0;
+            MucHuong = decimal.Parse( TblTinhHuong.Rows[0]["MucHuong"].ToString());
+            SoThangHuong = decimal.Parse( TblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
+            TongTienHuong=MucHuong *SoThangHuong;
+            lstOutput.Add(TongTienHuong.ToString());          
+            lstInput.Add("[NgayTinhHuong]");
+            lstOutput.Add(((DateTime)TblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
+            ExportToWord objExportToWord = new ExportToWord();
+            byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuTinhHuong.docx"), lstInput, lstOutput);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Response.AppendHeader("Content-Type", "application/msword");
+            Response.AppendHeader("Content-disposition", "inline; filename=PhieuTinhHuong.docx");
+            Response.BinaryWrite(temp);
+            HttpContext.Current.Response.End();
+            HttpContext.Current.Response.Flush();
+        }
+    }
+    #endregion
 }
