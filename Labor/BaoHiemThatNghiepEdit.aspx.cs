@@ -21,6 +21,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     private Business objBusiness = new Business();
 
     public int itemId = 0;
+    public int type = 0;
     public string _msg="";   
     #endregion
 
@@ -40,6 +41,31 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
+
+        try
+        {
+            this.type = int.Parse(Request["type"].ToString());
+        }
+        catch
+        {
+            this.type = 0;
+        }
+
+
+
+
+        if(type == 1)
+        {
+            if (itemId == 0)
+            {
+                Response.Redirect("/Labor/BaoHiemThatNghiep.aspx?type=1");
+                    return;
+            }
+
+            btnSave.Text = "Tính hưởng";
+        }
+        
+
 
         if (!Page.IsPostBack)
         {
@@ -94,7 +120,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
         }
 
-        if (!Page.IsPostBack && itemId != 0)
+        if (itemId != 0)
         {
             DataTable objData = objNguoiLaoDong.getDataById(itemId);
             if (objData.Rows.Count == 0) Response.Redirect("BaoHiemThatNghiepEdit.aspx");
@@ -223,6 +249,12 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     #region Even btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if(type == 1)
+        {
+            btnTinhHuong_Click(sender,e);
+            return;
+        }
+
         if(txtHoVaTen.Text.Trim() == "")
         {
             this.lblMsg.InnerText = "Bạn cần nhập họ tên!";

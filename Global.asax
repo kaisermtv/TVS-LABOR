@@ -9,8 +9,15 @@
     {
         RouteConfig.RegisterRoutes(RouteTable.Routes);
         BundleConfig.RegisterBundles(BundleTable.Bundles);
-        
-        
+
+
+        DanhMuc objDanhMuc = new DanhMuc();
+
+        TVSSystem.NoiCapCMND = objDanhMuc.getIdDanhMucByName("Nơi cấp CMND");
+        TVSSystem.NoiChotSoCuoi = objDanhMuc.getIdDanhMucByName("Nơi chốt sổ cuối");
+        TVSSystem.NoiDangKyKhamBenh = objDanhMuc.getIdDanhMucByName("Nơi đăng ký khám bệnh");
+        TVSSystem.NoiNhanBaoHiem = objDanhMuc.getIdDanhMucByName("Nơi nhận bảo hiểm");
+        TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Lý do đăng ký trễ");
         
         //Application[""]
     }
