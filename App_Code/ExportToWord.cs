@@ -35,7 +35,7 @@ public class ExportToWord
                     {
                         if (text.Text.Contains(lststr[i]))
                         {
-                            text.Text = text.Text.Replace(lststr[i], lstReplace[i]);
+                            text.Text = text.Text.Replace(lststr[i],lstReplace[i]);
                         }
                     }
                 }

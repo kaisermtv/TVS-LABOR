@@ -9,11 +9,26 @@
     </style>
    <script src="../js/TvsScript.js"></script>
     <script>
-         function delmodal(id, name) {
-             $("#MainContent_idDel").val(id);
-             $("#ttk").html(name);
+        function delmodal(id, name, idtrangthai) {
+            $("#MainContent_idNLD").val(id);
 
-             $("#myModal").modal("show");
+            if (idtrangthai == 0)
+            {
+                $("#dknld").html(name);
+
+                $("#DangKyModal").modal("show");
+            } else if (idtrangthai == 1)
+            {
+                $("#htnld").html(name);
+
+                $("#HoanThienModal").modal("show");
+            } else
+            {
+
+            }
+
+
+             
          }
     </script>
 </asp:Content>
@@ -25,7 +40,7 @@
                 <input type="text" id="txtSearch" placeholder="Nhập tên NLĐ, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
             </td>
             <td style="width: 180px;">
-                    <asp:DropDownList ID="ddlIDTrangThai" CssClass="form-control" runat="server" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlIDTrangThai" AutoPostBack="true" CssClass="form-control" runat="server" Style="width: 100%;">
                     </asp:DropDownList>
             </td>
             <td style="width: 40px !important; text-align: center;">
@@ -66,10 +81,10 @@
                         Đóng <%# Eval("SoThangBHTN").ToString() != ""? Eval("SoThangBHTN") :"0"%> tháng
                     </td>
                     <td class="DataListTableTdItemCenter">
-                        <a href="#myModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>,'<%# Eval("HoVaTen") %>')"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
+                        <a href="#myModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>,'<%# Eval("HoVaTen") %>',<%# Eval("TrangThaiHS").ToString() == ""?"0":Eval("TrangThaiHS") %>)"><img src="/Images/Edit.png" alt="Chuyển hồ sơ"></a>
+                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %><%# Eval("TrangThaiHS").ToString() == "1" ? "&type=1":"" %>"><img src="/Images/Edit.png" alt=""></a>
+                        <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
+                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>--%>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -84,27 +99,49 @@
                 <cc1:CollectionPager ID="cpData" runat="server" BackText="" FirstText="Đầu"
                     ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                     ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                    PageNumbersSeparator="&nbsp;">
+                    PageNumbersSeparator="&nbsp;" PagingMode="PostBack" >
                 </cc1:CollectionPager>
             </td>
         </tr>
     </table>
 
+    
+    <input id="idNLD" type="hidden" runat="server" />
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="HoanThienModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
-        <input id="idDel" type="hidden" runat="server" />
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Xóa tài khoản</h4>
+            <h4 class="modal-title">Xác nhận hoàn thiện hồ sơ</h4>
           </div>
           <div class="modal-body">
-            <p>Bạn xác nhận xóa tài khoản <b id="ttk"></b></p>
+            <p>Bạn xác nhận hoàn thiện hồ sơ đối với người lao động <b id="htnld"></b></p>
           </div>
           <div class="modal-footer">
-            <%--<asp:Button ID="btnDel" runat ="server" CssClass="btn btn-primary" Text="Xác nhận xóa" OnClick="btnDel_Click" />--%>
+            <asp:Button ID="btnHoanThienHoSo" runat ="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnHoanThienHoSo_Click" />
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="DangKyModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Xác nhận đăng ký</h4>
+          </div>
+          <div class="modal-body">
+            <p>Xác nhận đăng ký hồ sơ cho người lao động <b id="dknld"></b></p>
+          </div>
+          <div class="modal-footer">
+            <asp:Button ID="btnDangKyHoSo" runat ="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnDangKyHoSo_Click" />
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>

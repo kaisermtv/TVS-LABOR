@@ -279,16 +279,27 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region Method getListBaoHiemThatNghiep
-    public DataTable getListBaoHiemThatNghiep()
+    public DataTable getListBaoHiemThatNghiep(int idtraangthai, string searchKey = "")
     {
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayDangKyTN,TN.NgayNghiViec,TN.SoThangBHTN,TT.name AS TrangThai FROM TblNguoiLaoDong AS P";
+            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayDangKyTN,TN.NgayNghiViec,TN.SoThangBHTN,TT.name AS TrangThai,P.TrangThaiHS FROM TblNguoiLaoDong AS P";
             Cmd.CommandText += " LEFT JOIN TblNLDTroCapThatNghiep AS TN ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON P.TrangThaiHS = TT.id";
-            
+            Cmd.CommandText += " WHERE 1=1";
 
+            if (searchKey != "")
+            {
+                Cmd.CommandText += " AND UPPER(RTRIM(LTRIM(P.[HoVaTen]))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+                Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
+            }
+
+            if (idtraangthai != 0)
+            {
+                Cmd.CommandText += " AND P.TrangThaiHS = @IDTrangThai";
+                Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtraangthai;
+            }
             DataTable ret = this.findAll(Cmd);
 
             this.SQLClose();
@@ -302,6 +313,32 @@ public class NguoiLaoDong :DataClass
         }
     }
     #endregion 
+
+    #region method getDataTrangThaiToCombobox
+    public DataTable getDataTrangThaiToCombobox(String kctxt = "Không chọn")
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+
+            Cmd.CommandText = "SELECT id, name FROM tblTrangThaiHoSo";
+
+            DataTable ret = this.findAll(Cmd);
+
+            this.SQLClose();
+
+            if (kctxt != null && kctxt != "") ret.Rows.Add(0, kctxt);
+
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return new DataTable();
+        }
+    }
+    #endregion
 
     #region method getData
     public DataTable getData(string searchKey)
@@ -2311,4 +2348,32 @@ public class NguoiLaoDong :DataClass
         }
     }
     #endregion
+
+    #region chuyenTrangThai
+    public bool chuyenTrangThai(int IdNguoiLaoDong,int idTrangThai)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "UPDATE TblNguoiLaoDong SET TrangThaiHS = @TrangThaiHS WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
+
+            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IdNguoiLaoDong;
+            Cmd.Parameters.Add("TrangThaiHS", SqlDbType.NVarChar).Value = idTrangThai;
+            
+            Cmd.ExecuteScalar();
+
+            this.SQLClose();
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return false;
+        }
+    }
+
+    #endregion
+
 }
