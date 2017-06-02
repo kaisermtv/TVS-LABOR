@@ -773,7 +773,7 @@
                     <a href="#" class="list-group-item" runat ="server" onserverclick ="GiayBienNhan_Click"><span class="badge1">></span>Giấy biên nhận ĐK </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu hẹn trả KQ </a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1">></span>Phiếu tính hưởng </a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span>Tải quyết định </a>     
+                    <a href="#" class="list-group-item" runat="server"  onserverclick="InQuyetDinhHuongTroCap_ServerClick" ><span class="badge1">></span>Tải quyết định </a>     
                 </div>
                 <br />
                 <br />
@@ -860,7 +860,8 @@
           if(_msg!='')
           {
               alert(_msg);
-          }
-         
+          }         
 </script>
+
+    
 </asp:Content>
