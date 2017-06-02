@@ -46,7 +46,7 @@
         }
 
         .line {
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
         .headlabel {
@@ -161,9 +161,11 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width: 83%; float: left; margin-top:-15px!important;">
+
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
             <b>I. Thông tin người lao động</b>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Họ và tên: 
@@ -195,6 +197,7 @@
 
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Số CMND/HC: 
@@ -226,6 +229,7 @@
                 <%--<asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Số điện thoại: 
@@ -241,6 +245,7 @@
                 <asp:TextBox ID="txtNoiThuongTru" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
             <a class="pa_italic collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 <b>II. Thông tin cá nhân bổ sung <span class="lnr lnr-chevron-down"></span><i class="lnr lnr-chevron-up"></i></b>
@@ -316,6 +321,7 @@
                 <%--<asp:TextBox ID="txtNoiCapBHXH" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Nơi ĐK KCB: 
@@ -327,6 +333,7 @@
                 <%--<asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Trình độ CMKT: 
@@ -348,6 +355,7 @@
                 <%--<asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Công việc đã làm: 
@@ -356,6 +364,7 @@
                 <asp:TextBox ID="txtCongViecDaLam" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Tên DN: 
@@ -369,6 +378,7 @@
                 <button id="btnXoaDonVi" runat="server" class="btn btn-danger" type="button" onclick="DeleteName()" style="margin-left: 10px; width: 80px; height: 34px !important; line-height: 14px !important;" disabled="disabled">Xóa</button>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Địa chỉ DN: 
@@ -377,6 +387,7 @@
                 <asp:TextBox ID="txtDiaChiDN" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Điện thoại: 
@@ -392,7 +403,8 @@
                 <asp:TextBox ID="txtFaxDN" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
-       <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
+
+        <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
             <a class="pa_italic collapsed" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                 <b>III. Thông tin DN bổ sung <span class="lnr lnr-chevron-down"></span><i class="lnr lnr-chevron-up"></i></b>
             </a>
@@ -447,11 +459,12 @@
                 </div>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Ngày nghỉ việc: 
             </div>
-            <div style="width: 20%; float: left">
+            <div style="width: 17%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control dateinput" id="txtNgayNghiViec" runat="server" />
                     <span class="input-group-addon">
@@ -461,10 +474,10 @@
             </div>
 
             <div class="label2" style="width: 15%;">
-                Số tháng đóng BHXH: 
+                Số tháng đóng BHTN: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control" Style ="width:60px;"></asp:TextBox>
             </div>
 
 
@@ -477,13 +490,14 @@
             <div style="width: 15%; float: left">
                 <asp:CheckBox ID="chkTuVan" CssClass="checkboxuser" runat="server" Text="&nbsp;Tư vấn" TextAlign="Right" />
             </div>
-            <div style="width: 20%; float: left">
+            <div style="width: 17%; float: left">
                 <asp:CheckBox ID="chkGioiThieu" CssClass="checkboxuser" runat="server" Text="&nbsp;Giới thiệu việc làm" TextAlign="Right" />
             </div>
             <div style="width: 20%; float: left">
                 <asp:CheckBox ID="chkHocNghe" CssClass="checkboxuser" runat="server" Text="&nbsp;Học nghề" TextAlign="Right" />
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Ngày ĐK thất nghiệp: 
@@ -498,7 +512,7 @@
                 <%--<asp:TextBox ID="txtNgayDangKyTN" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
 
-            <div class="label2">
+            <div class="label2" style ="padding-top: 5px;">
                 <label for="chkDangKyTre">Đăng ký trễ</label>
             </div>
             <div style="width: 3%; float: left">
@@ -526,6 +540,7 @@
             </script>
             <% } %>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Người tiếp nhận ĐK: 
@@ -560,23 +575,22 @@
 
         </div>
 
-
-        <div class="row line" <%= type != 1?"style=\"display:none\"":"" %>>
-            <div class="label1">
-                6 tháng gần nhất 
+        <div class="row line" style ="border:solid 0px red; margin-right:10px; padding-right:-10px!important;" <%= type != 1?"style=\"display:none\"":"" %>>
+            <div class="label1" style ="background-color:#f0f0f0; height:320px; text-align:center;">
+                Thông tin<br />6 tháng gần nhất 
             </div>
-            <div style="width: 84%; float: left">
-                <table style="border: 1px solid; width: 100%">
+            <div style="width: 86%; float: left; background-color:#f5eaea;height:320px;">
+                <table style="border: 0px solid; width: 100%">
                     <tr>
-                        <th style="width: 120px"></th>
-                        <th>Tháng đóng</th>
-                        <th>HS Lương</th>
-                        <th>HS phụ cấp</th>
-                        <th>Lương cơ bản</th>
-                        <th>Mức đóng</th>
+                        <th style="width: 145px"></th>
+                        <th style="text-align:center; width:180px;">Tháng đóng</th>
+                        <th style="text-align:center;">HS Lương</th>
+                        <th style="text-align:center; width:150px;">HS phụ cấp</th>
+                        <th style="text-align:center;">Lương cơ bản</th>
+                        <th style="text-align:center;">Mức đóng</th>
                     </tr>
                     <tr>
-                        <th>Tháng thứ 6</th>
+                        <th style="text-align:right; padding-right:5px;">Tháng thứ 6:</th>
                         <td>
                             <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput1" id="txtThangThu6" runat="server" />
@@ -591,11 +605,11 @@
                             <asp:TextBox ID="txtPhuCapThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
                         <td>
                             <asp:TextBox ID="txtLuongCoBanThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <td>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucDongThang6" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Tháng thứ 5</th>
+                        <th style="text-align:right; padding-right:5px;">Tháng thứ 5:</th>
                         <td>
                             <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput1" id="txtThangThu5" runat="server" />
@@ -610,11 +624,11 @@
                             <asp:TextBox ID="txtPhuCapThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
                         <td>
                             <asp:TextBox ID="txtLuongCoBanThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <td>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucDongThang5" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Tháng thứ 4</th>
+                        <th style="text-align:right; padding-right:5px;">Tháng thứ 4:</th>
                         <td>
                             <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput1" id="txtThangThu4" runat="server" />
@@ -629,11 +643,11 @@
                             <asp:TextBox ID="txtPhuCapThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
                         <td>
                             <asp:TextBox ID="txtLuongCoBanThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <td>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucDongThang4" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Tháng thứ 3</th>
+                        <th style="text-align:right; padding-right:5px;">Tháng thứ 3:</th>
                         <td>
                             <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput1" id="txtThangThu3" runat="server" />
@@ -648,11 +662,11 @@
                             <asp:TextBox ID="txtPhuCapThang3" runat="server" CssClass="form-control"></asp:TextBox></td>
                         <td>
                             <asp:TextBox ID="txtLuongCoBanThang3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <td>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucDongthang3" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Tháng thứ 2</th>
+                        <th style="text-align:right; padding-right:5px;">Tháng thứ 2:</th>
                         <td>
                             <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput1" id="txtThangThu2" runat="server" />
@@ -667,11 +681,11 @@
                             <asp:TextBox ID="txtPhuCapThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
                         <td>
                             <asp:TextBox ID="txtLuongCoBanThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <td>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucDongThang2" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Tháng thứ 1</th>
+                        <th style="text-align:right; padding-right:5px;">Tháng thứ 1:</th>
                         <td>
                             <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput1" id="txtThangThu1" runat="server" />
@@ -686,22 +700,22 @@
                             <asp:TextBox ID="txtPhuCapThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
                         <td>
                             <asp:TextBox ID="txtLuongCoBanThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <td>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucDongThang1" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Mức hưởng tối đa:</th>
+                        <th style="text-align:right; padding-right:5px;">Mức hưởng tối đa:</th>
                         <td>
                             <asp:TextBox ID="txtMucHuongToiDa" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <th>Số tháng hưởng</th>
+                        <th style="text-align:right; padding-right:5px;">Số tháng hưởng:</th>
                         <td>
                             <asp:TextBox ID="txtSoThangHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
-                        <th style="text-align: right">Lương trung bình(VND)</th>
-                        <td>
+                        <th style="text-align: right; padding-right:5px;">Lương trung bình(VND):</th>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtLuongTrungBinh" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                     <tr>
-                        <th>Hưởng từ ngày:</th>
+                        <th style="text-align:right; padding-right:5px;">Hưởng từ ngày:</th>
                         <td>
                             <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput" id="txtHuongTuNgay" runat="server" />
@@ -710,7 +724,7 @@
                                 </span>
                             </div>
                         </td>
-                        <th>Đến ngày:</th>
+                        <th style="text-align:right; padding-right:5px;">Đến ngày:</th>
                         <td>
                             <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
                                 <input type='text' class="form-control dateinput" id="txtHuongDenNgay" runat="server" />
@@ -720,13 +734,14 @@
                             </div>
 
                         </td>
-                        <th style="text-align: right">Mức hưởng(VND)</th>
-                        <td>
+                        <th style="text-align: right; padding-right:5px;">Mức hưởng(VND):</th>
+                        <td style ="padding-right:8px;">
                             <asp:TextBox ID="txtMucHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
                     </tr>
                 </table>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Nơi nhận bảo hiểm: 
@@ -745,6 +760,7 @@
             <asp:RadioButton ID="cbkTienMat" GroupName="HinhThucNhanTien" runat="server" Text="&nbsp;Qua tiền mặt" TextAlign="Right" />
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Nơi chốt sổ cuối: 
@@ -755,17 +771,18 @@
                 </asp:DropDownList>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1" style="width: 50%">
                 <span class="warning">* Check chọn đã xác nhận chưa đăng ký nếu NLD có giấy xác nhận chưa ĐK</span>
             </div>
-            <div style="width: 3%; float: left">
+            <div style="width: 8%; float: left;padding-left:60px;">
                 <input type="checkbox" id="chkXacNhanDangKy" runat="server" onchange="hidenXacNhanDangKy(this)" class="checkboxuserinput" />
             </div>
-            <div class="label1" style="width: 18%; text-align: left;">
-                <label for="chkXacNhanDangKy">Đã xác nhận đăng ký</label>
+            <div class="label1" style="width: 15%; text-align: left;">
+                <label for="chkXacNhanDangKy" style ="margin-top:-  3px;">Đã xác nhận đăng ký</label>
             </div>
-            <div style="width: 25%; float: left">
+            <div style="width: 23%; float: left">
                 <asp:DropDownList ID="ddlNoiDKXacNhan" CssClass="form-control" runat="server" Style="width: 100%; display: none">
                     <asp:ListItem Value="0">--Chọn nơi xác nhận đăng ký--</asp:ListItem>
                 </asp:DropDownList>
@@ -778,15 +795,12 @@
                 <%--<asp:TextBox ID="txtLiDoDangKyTre" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
-
-        <br />
-        <br />
-        <br />
+       
     </div>
 
-    <div style="width: 16%; float: right; margin-top:-5px;">
+    <div style="width: 16%; float: right; margin-top:-5px; background-color:#fff; height:1180px; padding:5px;">
         <div style ="height:28px; background-color:red; line-height:28px; color:#fff; text-align:center; font-size:12PX; font-weight:bold;">Thông tin đóng hưởng</div>
-        <div class="panel-body1" style ="padding-top:10px; margin-top:2px;">
+        <div class="panel-body1" style ="padding:20px; padding-top:10px; margin-top:2px;">
             <div class="row">
                 Ngày đăng ký: <%= txtNgayDangKyTN.Value %><br />
                 Hạn hoàn thiện:<br />
@@ -815,12 +829,14 @@
             </div>
         </div>
     </div>
+
     <footer style="z-index: 100; height: 43px !important; margin-bottom: 0px; margin-left: -14px; width: 100%; text-align: justify; background-color: #f0f0f0; padding-top: 4px">
         <div class="warning">
             <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
         </div>
         <a href="BaoHiemThatNghiep.aspx<%= type == 1?"?type=1":""  %>" class="btn btn-default" style ="float:right; margin-right:52px;">Thoát</a>
     </footer>
+
     <script type="text/javascript">
         $(document).ready(function () {
             for (i = 6; i > 0; i--) {
@@ -882,6 +898,5 @@
         }
 
     </script>
-
-    
+        
 </asp:Content>
