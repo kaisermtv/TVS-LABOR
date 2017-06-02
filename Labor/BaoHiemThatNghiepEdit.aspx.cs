@@ -982,4 +982,81 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         }
     }
     #endregion
+    #region Quyet dinh huong tro cap that nghiep
+    protected void InQuyetDinhHuongTroCap_ServerClick(object sender, EventArgs e)
+    {
+        if (itemId != 0)
+        {
+            DataTable TblTinhHuong = new TinhHuong().getDataById(itemId);
+            DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById(itemId);
+            DataRow RowTroCapThatNghiep=new NLDTroCapThatNghiep().getItemByNLD(itemId);
+
+            if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
+            {
+                _msg = "Người lao động chưa được khởi tạo";
+                return;
+            }
+            if (TblTinhHuong == null || TblTinhHuong.Rows.Count == 0)
+            {
+                _msg = "Chưa có bẳng tỉnh nào được cập nhật";
+                return;
+            }
+            List<string> lstInput = new List<string>();
+            List<string> lstOutput = new List<string>();
+            lstInput.Add("[NgayKy]");           
+            try
+            {
+                 DateTime NgayDangKy = (DateTime)RowTroCapThatNghiep["NgayDangKyTN"];
+                 DateTime NgayQuyetDinh = new DateTime();
+                 NgayQuyetDinh=TinhNgayNghiLe(NgayDangKy,20);
+                 lstOutput.Add(NgayQuyetDinh.ToString("dd/MM/yyyy"));
+            }
+            catch
+            {
+                lstOutput.Add(".../.../.....");
+            }
+            lstInput.Add("[TenLD]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+            lstInput.Add("[NgaySinh]");
+            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
+            lstInput.Add("[CMTND]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["CMND"].ToString());
+            lstInput.Add("[NgayCapCMTND]");
+            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
+            lstInput.Add("[NoiCapCMTND]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
+            lstInput.Add("[SoBHXH]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
+            lstInput.Add("[DiaChiThuongTru]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString());
+            lstInput.Add("[DiaChiHienTai]");
+            lstOutput.Add(TblNguoiLaoDong.Rows[0]["DiaChi"].ToString());
+            lstInput.Add("[SoThangDong]");
+            lstOutput.Add(TblTinhHuong.Rows[0]["SoThangDongBHXH"].ToString());
+            lstInput.Add("[MucHuong]");
+            lstOutput.Add(TblTinhHuong.Rows[0]["MucHuong"].ToString());
+            lstInput.Add("[SoThangHuong]");
+            int SoThangHuong = (int)TblTinhHuong.Rows[0]["SoThangHuongBHXH"];
+            lstOutput.Add(SoThangHuong.ToString());
+            lstInput.Add("[HuongTuNgay]");
+            DateTime HuongTuNgay = (DateTime)TblTinhHuong.Rows[0]["HuongTuNgay"];
+            DateTime HuongDenNgay = TinhNgayNghiLe(HuongTuNgay, 16);
+            for (int i = 0; i < SoThangHuong; i++)
+            {
+                HuongDenNgay = HuongDenNgay.AddMonths(1);
+            }
+            lstOutput.Add(HuongTuNgay.ToString("dd/MM/yyyy"));
+            lstInput.Add("[HuongDenNgay]");
+            lstOutput.Add(HuongDenNgay.ToString("dd/MM/yyyy"));
+
+            ExportToWord objExportToWord = new ExportToWord();
+            byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/QuyetDinhHuongTCTN.docx"), lstInput, lstOutput);
+            Response.AppendHeader("Content-Type", "application/msword");
+            Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhHuongTCTN.docx");
+            Response.BinaryWrite(temp);
+            HttpContext.Current.Response.End();
+            HttpContext.Current.Response.Flush();
+        }
+    }
+    #endregion
 }
