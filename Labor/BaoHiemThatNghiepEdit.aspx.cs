@@ -325,11 +325,9 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
         if(txtHoVaTen.Text.Trim() == "")
         {
-            this.lblMsg.InnerText = "Bạn cần nhập họ tên!";
+            this.lblMsg.Text = "Bạn cần nhập họ tên!";
             return;
         }
-
-        
 
         int gioitinh = 0;
         if(chkGioiTinhNam.Checked){
@@ -349,7 +347,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
         if (idDonVi == 0)
         {
-            this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
+            this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
             return;
         }
 
@@ -359,13 +357,13 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         }
         catch 
         {
-            this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
+            this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
             return;
         }
 
         if (itemId == 0)
         {
-            this.lblMsg.InnerText = "Lỗi xảy ra khi cập nhật thông tin.";
+            this.lblMsg.Text = "Lỗi xảy ra khi cập nhật thông tin.";
             return;
         }
 

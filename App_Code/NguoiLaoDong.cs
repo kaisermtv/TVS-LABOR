@@ -315,7 +315,7 @@ public class NguoiLaoDong :DataClass
     #endregion 
 
     #region method getDataTrangThaiToCombobox
-    public DataTable getDataTrangThaiToCombobox(String kctxt = "Không chọn")
+    public DataTable getDataTrangThaiToCombobox(String kctxt = "-- Trạng thái hồ sơ --")
     {
         try
         {
