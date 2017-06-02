@@ -2355,23 +2355,23 @@ public class NguoiLaoDong :DataClass
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "UPDATE TblNguoiLaoDong SET TrangThaiHS = @TrangThaiHS WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
+            Cmd.CommandText = "UPDATE TblNguoiLaoDong SET TrangThaiHS = @TrangThaiHS OUTPUT INSERTED.IDNguoiLaoDong WHERE IDNguoiLaoDong = @IDNguoiLaoDong";
 
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IdNguoiLaoDong;
             Cmd.Parameters.Add("TrangThaiHS", SqlDbType.NVarChar).Value = idTrangThai;
             
-            Cmd.ExecuteScalar();
+            int ret = (int)Cmd.ExecuteScalar();
 
             this.SQLClose();
 
-            return true;
+            if(ret != 0) return true;
         }
         catch (Exception ex)
         {
             this.Message = ex.Message;
             this.ErrorCode = ex.HResult;
-            return false;
         }
+        return false;
     }
 
     #endregion

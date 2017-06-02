@@ -82,7 +82,7 @@
                     </td>
                     <td class="DataListTableTdItemCenter">
                         <a href="#myModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>,'<%# Eval("HoVaTen") %>',<%# Eval("TrangThaiHS").ToString() == ""?"0":Eval("TrangThaiHS") %>)"><img src="/Images/Edit.png" alt="Chuyển hồ sơ"></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %><%# Eval("TrangThaiHS").ToString() == "1" ? "&type=1":"" %>"><img src="/Images/Edit.png" alt=""></a>
+                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %><%# Eval("TrangThaiHS").ToString() == "2" ? "&type=1":"" %>"><img src="/Images/Edit.png" alt=""></a>
                         <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
                         <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>--%>
                     </td>
