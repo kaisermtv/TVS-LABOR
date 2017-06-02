@@ -77,8 +77,8 @@
                         <%# (Eval("NgayDangKyTN").ToString() != "")?((DateTime)Eval("NgayDangKyTN")).ToString("dd/MM/yyyy"):"" %><br />
                         <%# (Eval("NgayNghiViec").ToString() != "")?((DateTime)Eval("NgayNghiViec")).ToString("dd/MM/yyyy"):"" %>
                     </td>
-                    <td>
-                        Đóng <%# Eval("SoThangBHTN").ToString() != ""? Eval("SoThangBHTN") :"0"%> tháng
+                    <td class="DataListTableTdItemJustify">
+                        <%# Eval("SoThangBHTN").ToString() != ""? "Đóng " + Eval("SoThangBHTN").ToString() + " tháng" :""%>
                     </td>
                     <td class="DataListTableTdItemCenter">
                         <a href="#myModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>,'<%# Eval("HoVaTen") %>',<%# Eval("TrangThaiHS").ToString() == ""?"0":Eval("TrangThaiHS") %>)"><img src="/Images/Edit.png" alt="Chuyển hồ sơ"></a>
