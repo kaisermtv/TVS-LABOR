@@ -21,6 +21,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     private Business objBusiness = new Business();
 
     public int itemId = 0;
+    public int type = 0;
     public string _msg="";   
     #endregion
 
@@ -41,6 +42,31 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             this.itemId = 0;
         }
 
+        try
+        {
+            this.type = int.Parse(Request["type"].ToString());
+        }
+        catch
+        {
+            this.type = 0;
+        }
+
+
+
+
+        if(type == 1)
+        {
+            if (itemId == 0)
+            {
+                Response.Redirect("/Labor/BaoHiemThatNghiep.aspx");
+                    return;
+            }
+
+            btnSave.Text = "Tính hưởng";
+        }
+
+
+        #region Khởi tạo select
         if (!Page.IsPostBack)
         {
             this.ddlIdNganhNgheDN.DataSource = this.objBusiness.getDataCategoryToCombobox();
@@ -93,9 +119,11 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             ddlNoiNhanbaoHiem.SelectedValue = "0";
 
         }
+        #endregion
 
         if (!Page.IsPostBack && itemId != 0)
         {
+            #region thông tin NLD
             DataTable objData = objNguoiLaoDong.getDataById(itemId);
             if (objData.Rows.Count == 0) Response.Redirect("BaoHiemThatNghiepEdit.aspx");
             DataRow objDataRow = objData.Rows[0];       
@@ -138,7 +166,9 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
             ddlTDCM.SelectedValue = objDataRow["TrinhDoChuyenMon"].ToString();
             ddlLinhVucDT.SelectedValue = objDataRow["LinhVucDaoTao"].ToString();
             txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
+            #endregion
 
+            #region tải thông tin doanh nghiệp
             int idDonVi = 0;
             try
             {
@@ -166,7 +196,9 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
                 }
             }
+            #endregion
 
+            #region tải dữ liệu bảng rợ cấp
             DataRow objDataTroCap = objNLDTroCapThatNghiep.getItemByNLD(itemId);
             if(objDataTroCap != null)
             {
@@ -209,8 +241,10 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
 
                 chkXacNhanDangKy.Checked = (bool)objDataTroCap["DaXacNhanChuaDangKy"];
                 ddlNoiDKXacNhan.SelectedValue = objDataTroCap["NoiXacNhanChuaDangKy"].ToString();
-         
+
             }
+            #endregion 
+
             #region code The Linh Load thong tin tinh huong
             DataTable TblTinhHuong = new TinhHuong().getDataById(itemId);
             if (TblTinhHuong.Rows.Count > 0)
@@ -283,6 +317,12 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
     #region Even btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if(type == 1)
+        {
+            btnTinhHuong_Click(sender,e);
+            return;
+        }
+
         if(txtHoVaTen.Text.Trim() == "")
         {
             this.lblMsg.InnerText = "Bạn cần nhập họ tên!";
@@ -878,6 +918,7 @@ public partial class Labor_BaoHiemThatNghiepEdit : System.Web.UI.Page
         }
     }
     #endregion
+
     #region Even Phieu tinh huong
     protected void Unnamed_ServerClick(object sender, EventArgs e)
     {

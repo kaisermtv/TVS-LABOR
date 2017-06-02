@@ -139,6 +139,64 @@ INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp CMND');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp BHXH');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Lý do đăng ký trễ');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi nhận bảo hiểm');
+<<<<<<< .mine
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi đăng ký khám bệnh');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
 
 -- 02/6/2017 The Linh Create tbltinhhuong
@@ -195,3 +253,4 @@ GO
 SET IDENTITY_INSERT [dbo].[TblTinhHuong] ON
 INSERT [dbo].[TblTinhHuong] ([IDTinhHuong], [IDNguoiLaoDong], [IDNLDTCTN], [NgayTao], [IDVungLuongToiThieu], [LuongToiThieuVung], [ThangDong1], [HeSoLuong1], [HeSoPhuCap1], [LuongCoBan1], [MucDong1], [ThangDong2], [HeSoLuong2], [HeSoPhuCap2], [LuongCoBan2], [MucDong2], [ThangDong3], [HeSoLuong3], [HeSoPhuCap3], [LuongCoBan3], [MucDong3], [ThangDong4], [HeSoLuong4], [HeSoPhuCap4], [LuongCoBan4], [MucDong4], [ThangDong5], [HeSoLuong5], [HeSoPhuCap5], [LuongCoBan5], [MucDong5], [ThangDong6], [HeSoLuong6], [HeSoPhuCap6], [LuongCoBan6], [MucDong6], [SoThangDongBHXH], [SoThangHuongBHXH], [MucHuongToiDa], [LuongTrungBinh], [MucHuong], [HuongTuNgay], [IDNguoiTinh]) VALUES (1, 9, 0, CAST(0x0000A7850100A624 AS DateTime), 0, CAST(3750000.00 AS Decimal(18, 2)), N'01/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'02/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'03/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'04/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'01/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'06/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), 48, 4, CAST(18750000.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), CAST(1200000.00 AS Decimal(18, 2)), CAST(0x0000A79B00000000 AS DateTime), 0)
 SET IDENTITY_INSERT [dbo].[TblTinhHuong] OFF
+>>>>>>> .theirs

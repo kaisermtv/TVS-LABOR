@@ -569,7 +569,7 @@
     </div>
   
     
-    <div class="row line">
+    <div class="row line" <%= type != 1?"style=\"display:none\"":"" %>>
         <div class="label1">
             6 tháng gần nhất 
         </div>
@@ -769,8 +769,8 @@
                 <div class="list-group list-group-alternate">
                     <a href="#" class="list-group-item"><span class="badge1">></span>Thông tin đăng ký </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Đăng ký TCTN</a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span>Đề nghị hưởng </a>
-                    <a href="#" class="list-group-item"><span class="badge1">></span>Giấy biên nhận ĐK </a>
+                    <a href="#" class="list-group-item" runat ="server" onserverclick ="DeNghiHuong_Click"><span class="badge1">></span>Đề nghị hưởng </a>
+                    <a href="#" class="list-group-item" runat ="server" onserverclick ="GiayBienNhan_Click"><span class="badge1">></span>Giấy biên nhận ĐK </a>
                     <a href="#" class="list-group-item"><span class="badge1">></span>Phiếu hẹn trả KQ </a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item" runat="server"  onserverclick="InQuyetDinhHuongTroCap_ServerClick" ><span class="badge1">></span>Tải quyết định </a>     
@@ -778,16 +778,16 @@
                 <br />
                 <br />
                 <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click " />
+                <%--<br />
                 <br />
-                <br />
-                  <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
+                  <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />--%>
                 <br />
                 <br />
                 <a href="#" class="btn btn-danger" style="width:100%">Chuyển hồ sơ</a>
                 <br />
                 <br />
                 <br />
-                <a href="#" class="btn btn-default" style="width:100%">Thoát</a>
+                <a href="BaoHiemThatNghiep.aspx<%= type == 1?"?type=1":""  %>" class="btn btn-default" style="width:100%">Thoát</a>
             </div>
         </div>
     </div>
