@@ -59,31 +59,30 @@
 
 --25/05/2017
 GO
-CREATE TABLE [dbo].[TblNLDTroCapThatNghiep](
-	[IdNLDTCTN] [int] IDENTITY(1,1) NOT NULL,
-	[IDNguoiLaoDong] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_IDNguoiLaoDong]  DEFAULT ((0)),
-	[NgayNghiViec] [datetime] NULL,
-	[SoThangBHTN] [float] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_SoThangBHTN]  DEFAULT ((0)),
-	[NhuCauTuVan] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NhuCauTuVan]  DEFAULT ((0)),
-	[NhuCauGTVL] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NhuCauGTVL]  DEFAULT ((0)),
-	[NhuCauHocNghe] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NhuCauHocNghe]  DEFAULT ((0)),
-	[NgayDangKyTN] [datetime] NULL,
-	[DangKyTre] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_DangKyTre]  DEFAULT ((0)),
-	[DangKyTreLyDo] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_DangKyTreLyDo]  DEFAULT ((0)),
-	[NoiTiepNhan] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NoiTiepNhan]  DEFAULT ((0)),
-	[NgayHoanThien] [datetime] NULL,
-	[NoiNhanBaoHiem] [int] NULL,
-	[HinhThucNhanTien] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_HinhThucNhanTien]  DEFAULT ((0)),
-	[NoiChotSoCuoi] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NoiChotSoCuoi]  DEFAULT ((0)),
-	[DaXacNhanChuaDangKy] [bit] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_DaXacNhanChuaDangKy]  DEFAULT ((0)),
-	[NoiXacNhanChuaDangKy] [int] NULL CONSTRAINT [DF_TblNLDTroCapThatNghiep_NoiXacNhanChuaDangKy]  DEFAULT ((0)),
- CONSTRAINT [PK_TblNLDTroCapThatNghiep] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[TblNLDTroCapThatNghiep]
 (
-	[IdNLDTCTN] ASC
-)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+	[IdNLDTCTN] INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[IDNguoiLaoDong] INT NOT NULL,
+	IDNldTuVan INT NULL,
+	NgayNopHoSo DATETIME NULL DEFAULT(GETDATE()),
+	IdNguoiNhan INT NULL,
+	IdNoiNhan INT Null,
+	SoThangDongBHXH FLOAT NULL,
+	IdLoaiHopDong INT NOT NULL DEFAULT (0),
+	IdGiayTokemTheo INT NOT NULL DEFAULT (0),
+	NgayHoanThien DATETIME NULL,
+	HanHoanThien DATETIME NULL,
+	IdNoiNhanTCTN INT NOT NULL DEFAULT (0),
+	IdNoiChotSoCuoi INT NOT NULL DEFAULT (0),
+	IdHinhThucNhanTien INT NOT NULL DEFAULT (0),
+	IdTrangThai INT NULL,
+	IdQuaTrinhCongTacGanNhat INT NULL,
+	NgayNghiViec DATETIME NULL,
+	CongViecDaLam NTEXT NULL,
 
-
+	EditDay DATETIME NOT NULL DEFAULT (GETDATE()),
+	EditTrangThaiDate DATETIME NOT NULL DEFAULT (GETDATE())
+)
 
 CREATE TABLE [dbo].tblDNBoSung(
 	IdDnBoSung INT PRIMARY KEY NOT NULL IDENTITY(1,1),
@@ -109,7 +108,7 @@ ALTER TABLE dbo.TblDoanhNghiep ADD SoDKKD NVARCHAR(50) NULL ;
 
 ALTER TABLE dbo.[TblNguoiLaoDong] ADD IdDoanhNghiep Int NULL 
 
-ALTER TABLE dbo.[TblNguoiLaoDong] ADD TrangThaiHS Int NULL ;
+ALTER TABLE dbo.[TblNLDTroCapThatNghiep] ADD TrangThaiHS Int NULL ;
 
 CREATE TABLE dbo.tblTrangThaiHoSo(
 	id INT PRIMARY KEY NOT NULL,
@@ -121,6 +120,7 @@ INSERT INTO dbo.tblTrangThaiHoSo VALUES (2,N'Hoàn thiện');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (3,N'Đã tính hưởng');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (4,N'Đã thẩm định');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (5,N'Đã ký quyết định');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (6,N'Kết thúc hưởng');
 
 -- 31/05/2017
 CREATE TABLE dbo.tblDanhMuc(
@@ -139,12 +139,15 @@ INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp CMND');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi cấp BHXH');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Lý do đăng ký trễ');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi nhận bảo hiểm');
-<<<<<<< .mine
+
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi đăng ký khám bệnh');
 
 
 
+-- 03/06/2017
+
+ALTER TABLE dbo.[TblNLDTroCapThatNghiep] ADD TrangThaiHS Int NULL ;
 
 
 
@@ -189,14 +192,6 @@ INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi đăng ký khám bệnh');
 
 
 
-
-
-
-
-
-
-
-=======
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
 
 -- 02/6/2017 The Linh Create tbltinhhuong
@@ -253,4 +248,4 @@ GO
 SET IDENTITY_INSERT [dbo].[TblTinhHuong] ON
 INSERT [dbo].[TblTinhHuong] ([IDTinhHuong], [IDNguoiLaoDong], [IDNLDTCTN], [NgayTao], [IDVungLuongToiThieu], [LuongToiThieuVung], [ThangDong1], [HeSoLuong1], [HeSoPhuCap1], [LuongCoBan1], [MucDong1], [ThangDong2], [HeSoLuong2], [HeSoPhuCap2], [LuongCoBan2], [MucDong2], [ThangDong3], [HeSoLuong3], [HeSoPhuCap3], [LuongCoBan3], [MucDong3], [ThangDong4], [HeSoLuong4], [HeSoPhuCap4], [LuongCoBan4], [MucDong4], [ThangDong5], [HeSoLuong5], [HeSoPhuCap5], [LuongCoBan5], [MucDong5], [ThangDong6], [HeSoLuong6], [HeSoPhuCap6], [LuongCoBan6], [MucDong6], [SoThangDongBHXH], [SoThangHuongBHXH], [MucHuongToiDa], [LuongTrungBinh], [MucHuong], [HuongTuNgay], [IDNguoiTinh]) VALUES (1, 9, 0, CAST(0x0000A7850100A624 AS DateTime), 0, CAST(3750000.00 AS Decimal(18, 2)), N'01/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'02/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'03/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'04/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'01/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), N'06/2017', 0, 0, CAST(0.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), 48, 4, CAST(18750000.00 AS Decimal(18, 2)), CAST(2000000.00 AS Decimal(18, 2)), CAST(1200000.00 AS Decimal(18, 2)), CAST(0x0000A79B00000000 AS DateTime), 0)
 SET IDENTITY_INSERT [dbo].[TblTinhHuong] OFF
->>>>>>> .theirs
+

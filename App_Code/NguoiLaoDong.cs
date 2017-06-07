@@ -6,13 +6,128 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
-public class NguoiLaoDong :DataClass
+public class NguoiLaoDong :DataAbstract
 {
     #region method NguoiLaoDong
     public NguoiLaoDong()
     {
-    } 
+        keyTable = "IDNguoiLaoDong";
+        nameTable = "TblNguoiLaoDong";
+    }
     #endregion
+
+    #region setData Atribute
+    protected override SqlDbType? GetTypeAtribute(string name)
+    {
+        switch (name)
+        {
+            case "IDNguoiLaoDong":
+                return SqlDbType.Int;
+            case "HoVaTen":
+                return SqlDbType.NVarChar;
+            case "NgaySinh":
+                return SqlDbType.DateTime;
+            case "IDGioiTinh":
+                return SqlDbType.Int;
+            case "NoiSinh":
+                return SqlDbType.NVarChar;
+            case "QueQuan":
+                return SqlDbType.NVarChar;
+            case "Tinh_TT":
+                return SqlDbType.NVarChar;
+            case "Huyen_TT":
+                return SqlDbType.NVarChar;
+            case "Xa_TT":
+                return SqlDbType.NVarChar;
+            case "Xom_TT":
+                return SqlDbType.NVarChar;
+            case "Tinh_DC":
+                return SqlDbType.NVarChar;
+            case "Huyen_DC":
+                return SqlDbType.NVarChar;
+            case "Xa_DC":
+                return SqlDbType.NVarChar;
+            case "Xom_DC":
+                return SqlDbType.NVarChar;
+            case "NoiThuongTru":
+                return SqlDbType.NVarChar;
+            case "DiaChi":
+                return SqlDbType.NVarChar;
+            case "DienThoai":
+                return SqlDbType.NVarChar;
+            case "Email":
+                return SqlDbType.NVarChar;
+            case "IDDanToc":
+                return SqlDbType.Int;
+            case "IDTonGiao":
+                return SqlDbType.Int;
+            case "TruongTHPT":
+                return SqlDbType.NVarChar;
+            case "TruongDiaChi":
+                return SqlDbType.NVarChar;
+            case "NienKhoa":
+                return SqlDbType.NVarChar;
+            case "SucKhoe":
+                return SqlDbType.NVarChar;
+            case "ChieuCao":
+                return SqlDbType.Float;
+            case "CanNang":
+                return SqlDbType.Float;
+            case "IDTrinhDoPhoThong":
+                return SqlDbType.Int;
+            case "IDNgoaiNgu":
+                return SqlDbType.Int;
+            case "IDTinHoc":
+                return SqlDbType.Int;
+            case "CMND":
+                return SqlDbType.NVarChar;
+            case "NgayCapCMND":
+                return SqlDbType.DateTime;
+            case "NoiCap":
+                return SqlDbType.NVarChar;
+            case "BHXH":
+                return SqlDbType.NVarChar;
+            case "TaiKhoan":
+                return SqlDbType.NVarChar;
+            case "NoiDungKhac":
+                return SqlDbType.NVarChar;
+            case "TrinhDoDaoTao":
+                return SqlDbType.NVarChar;
+            case "TrinhDoKyNangNghe":
+                return SqlDbType.NVarChar;
+            case "KhaNangNoiTroi":
+                return SqlDbType.NVarChar;
+            case "State":
+                return SqlDbType.Bit;
+            case "IdTrinhDoTinHoc":
+                return SqlDbType.Int;
+            case "IdTrinhDoNgoaiNgu":
+                return SqlDbType.Int;
+            case "StateLapGiaDinh":
+                return SqlDbType.Int;
+            case "NgayCapBHXH":
+                return SqlDbType.DateTime;
+            case "NoiCapBHXH":
+                return SqlDbType.Int;
+            case "NoiDangKyKhamBenh":
+                return SqlDbType.Int;
+            case "TrinhDoChuyenMon":
+                return SqlDbType.Int;
+            case "LinhVucDaoTao":
+                return SqlDbType.Int;
+            case "CongViecDaLam":
+                return SqlDbType.NText;
+            case "IDNganHang":
+                return SqlDbType.Int;
+            case "MaSoThue":
+                return SqlDbType.NVarChar;
+        }
+
+        return null;
+    }
+    #endregion
+
+
 
     #region method setData
     public int setData(ref int IDNguoiLaoDong, string Ma, string HoVaTen, DateTime NgaySinh, int IDGioiTinh, string NoiSinh, string QueQuan, string DienThoai, string Email, int IDDanToc, int IDTonGiao, string TruongTHPT, string TruongDiaChi, string NienKhoa, string SucKhoe,
@@ -207,7 +322,8 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region Method setData()
-    public int setData(int id, String HoVaTen, DateTime? NgaySinh, int IDGioiTinh, String CMND, DateTime? NgayCapCMND, int NoiCap, String DienThoai, String NoiThuongTru, String TaiKhoan, int IDNganHang, String MaSoThue, String Email, String BHXH, DateTime? NgayCapBHXH, int NoiCapBHXH, int NoiDangKyKhamBenh, int TrinhDoChuyenMon, int LinhVucDaoTao, String CongViecDaLam, int IdDoanhNghiep)
+    /*
+    public int setData(int id, String HoVaTen, DateTime? NgaySinh, int IDGioiTinh, String CMND, DateTime? NgayCapCMND, int NoiCap, String DienThoai, int IdDanToc, int IdTonGiao, string SoBHXH, DateTime? NgayCapBHXH, int IdNoiCapBHXH, string SoTaiKhoan, int IdNganhang, string MaSoThue, string Email, string Tinh_TT, string Huyen_TT, string Xa_TT, string Xom_TT, string Tinh_DC, string Huyen_DC, string Xa_DC, string Xom_DC,int IdNoiDangKyKhambenh , string TrinhDoKyNangNghe, string TrinhDoDaoTao)
     {
         try
         {
@@ -239,6 +355,22 @@ public class NguoiLaoDong :DataClass
             }
             Cmd.Parameters.Add("NoiCap", SqlDbType.Int).Value = NoiCap;
             Cmd.Parameters.Add("DienThoai", SqlDbType.NVarChar).Value = DienThoai.Trim();
+
+            Cmd.Parameters.Add("IDDanToc", SqlDbType.Int).Value = IdDanToc;
+            Cmd.Parameters.Add("IDTonGiao", SqlDbType.Int).Value = IdTonGiao;
+
+
+            Cmd.Parameters.Add("Tinh_DC", SqlDbType.NVarChar).Value = Tinh_DC;
+            Cmd.Parameters.Add("Huyen_DC", SqlDbType.NVarChar).Value = Huyen_DC;
+            Cmd.Parameters.Add("Xa_DC", SqlDbType.NVarChar).Value = Xa_DC;
+            Cmd.Parameters.Add("Xom_DC", SqlDbType.NVarChar).Value = Xom_DC;
+
+            Cmd.Parameters.Add("Tinh_TT", SqlDbType.NVarChar).Value = Tinh_TT;
+            Cmd.Parameters.Add("Huyen_TT", SqlDbType.NVarChar).Value = Huyen_TT;
+            Cmd.Parameters.Add("Xa_TT", SqlDbType.NVarChar).Value = Xa_TT;
+            Cmd.Parameters.Add("Xom_TT", SqlDbType.NVarChar).Value = Xom_TT;
+
+
             Cmd.Parameters.Add("NoiThuongTru", SqlDbType.NVarChar).Value = NoiThuongTru.Trim();
             Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = Email.Trim();
             Cmd.Parameters.Add("TaiKhoan", SqlDbType.NVarChar).Value = TaiKhoan.Trim();
@@ -275,44 +407,10 @@ public class NguoiLaoDong :DataClass
         }
 
     }
-
+    // */
     #endregion
 
-    #region Method getListBaoHiemThatNghiep
-    public DataTable getListBaoHiemThatNghiep(int idtraangthai, string searchKey = "")
-    {
-        try
-        {
-            SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayDangKyTN,TN.NgayNghiViec,TN.SoThangBHTN,TT.name AS TrangThai,P.TrangThaiHS FROM TblNguoiLaoDong AS P";
-            Cmd.CommandText += " LEFT JOIN TblNLDTroCapThatNghiep AS TN ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
-            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON P.TrangThaiHS = TT.id";
-            Cmd.CommandText += " WHERE 1=1";
-
-            if (searchKey != "")
-            {
-                Cmd.CommandText += " AND UPPER(RTRIM(LTRIM(P.[HoVaTen]))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
-                Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-            }
-
-            if (idtraangthai != 0)
-            {
-                Cmd.CommandText += " AND P.TrangThaiHS = @IDTrangThai";
-                Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtraangthai;
-            }
-            DataTable ret = this.findAll(Cmd);
-
-            this.SQLClose();
-            return ret;
-        }
-        catch (Exception ex)
-        {
-            this.Message = ex.Message;
-            this.ErrorCode = ex.HResult;
-            return null;
-        }
-    }
-    #endregion 
+    
 
     #region method getDataTrangThaiToCombobox
     public DataTable getDataTrangThaiToCombobox(String kctxt = "-- Trạng thái hồ sơ --")
@@ -2375,5 +2473,9 @@ public class NguoiLaoDong :DataClass
     }
 
     #endregion
+
+
+    
+
 
 }

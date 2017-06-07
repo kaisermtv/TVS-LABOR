@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="BaoHiemThatNghiep.aspx.cs" Inherits="Labor_BaoHiemThatNghiep" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/BHTN.master" CodeFile="DangKyHoSo.aspx.cs" Inherits="BHTN_DangKyHoSo" %>
+
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
@@ -51,15 +52,16 @@
             <td style="width: 40px !important; text-align: center;">
                 <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
             </td>
-            <td style="width: 90px !important; text-align: center;">
-                <a href="BaoHiemThatNghiepEdit.aspx">
+            <%--<td style="width: 90px !important; text-align: center;">
+                <a href="NhapThongTinHoSo.aspx">
                     <input type="button" class="btn btn-primary" value="Tạo hồ sơ" /></a>
-            </td>
+            </td>--%>
         </tr>
     </table>
 
     <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
         <HeaderTemplate>
+            <div class="table-responsive">
             <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
                 <tr style="height: 40px;" class="DataListTableHeader">
                     <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
@@ -74,29 +76,34 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td class="DataListTableTdItemTT"><%= index++ %></td>
+                <td class="DataListTableTdItemTT">
+                    <input type="checkbox" id ="ckbSelect<% =index++ %>" value ="<%# Eval("IdNLDTCTN") %>" />
+                </td>
                 <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
                 <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Hoàn thiện","<span class = \"TrangThai\">Hoàn thiện</span>") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                 <td class="DataListTableTdItemJustify">
-                    <%# (Eval("NgayDangKyTN").ToString() != "")?((DateTime)Eval("NgayDangKyTN")).ToString("dd/MM/yyyy"):"" %><br />
+                    <%# (Eval("NgayNopHoSo").ToString() != "")?((DateTime)Eval("NgayNopHoSo")).ToString("dd/MM/yyyy"):"" %><br />
                     <%# (Eval("NgayNghiViec").ToString() != "")?((DateTime)Eval("NgayNghiViec")).ToString("dd/MM/yyyy"):"" %>
                 </td>
-                <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangBHTN").ToString() != ""? Eval("SoThangBHTN") :"0"%> tháng
+                <td class="DataListTableTdItemCenter">
+                    <%# Eval("SoThangDongBHXH").ToString() != ""? "Đóng " + Eval("SoThangDongBHXH") + " tháng" :""%>
                 </td>
                 <td class="DataListTableTdItemCenter">
-                    <a href="#myModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>,'<%# Eval("HoVaTen") %>',<%# Eval("TrangThaiHS").ToString() == ""?"0":Eval("TrangThaiHS") %>)">
-                        <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ"></a>
-                    <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %><%# Eval("TrangThaiHS").ToString() == "2" ? "&type=1":"" %>">
+                    <%--<a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>,'<%# Eval("HoVaTen") %>',<%# Eval("TrangThaiHS").ToString() == ""?"0":Eval("TrangThaiHS") %>)">
+                        <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ">
+                    </a>--%>
+                    <a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>">
                         <img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
-                    <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>
-                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IDNguoiLaoDong") %>"><img src="/Images/Edit.png" alt=""></a>--%>
+                    <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>
+                        <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>--%>
                 </td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>
             </table>
+            </div>
         </FooterTemplate>
     </asp:Repeater>
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
@@ -111,6 +118,52 @@
             </td>
         </tr>
     </table>
+
+    <div class="row col-sm-12">
+        <a class="btn btn-danger" onclick="CheckAll()">Check All</a>
+        <a class="btn btn-danger" onclick="UnCheckAll()">UnCheck All</a>
+
+        
+        <a class="btn btn-primary" style="float:right" onclick="ChuyenSelect()">Chuyển</a>
+    </div>
+
+    <script>
+        function ChuyenSelect()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null && objchk.checked == true)
+                {
+
+                }
+            }
+        }
+
+        function CheckAll()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null)
+                {
+                    objchk.checked = true;
+                }
+            }
+        }
+
+        function UnCheckAll()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null)
+                {
+                    objchk.checked = false;
+                }
+            }
+        }
+    </script>
 
 
     <input id="idNLD" type="hidden" runat="server" />

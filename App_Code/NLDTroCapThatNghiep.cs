@@ -8,8 +8,54 @@ using System.Web;
 /// <summary>
 /// Summary description for NLDTroCapThatNghiep
 /// </summary>
-public class NLDTroCapThatNghiep :DataClass
+public class NLDTroCapThatNghiep :DataAbstract
 {
+    #region method NLDTroCapThatNghiep
+    public NLDTroCapThatNghiep()
+    {
+        keyTable = "IdNLDTCTN";
+        nameTable = "TblNLDTroCapThatNghiep";
+    }
+    #endregion
+
+    #region setData Atribute
+    protected override SqlDbType? GetTypeAtribute(string name)
+    {
+        switch (name)
+        {
+            case "IdNLDTCTN":
+            case "IDNguoiLaoDong":
+            case "IdNguoiNhan":
+            case "IdNoiNhan":
+            case "IdLoaiHopDong":
+            case "IdGiayTokemTheo":
+            case "IdNoiNhanTCTN":
+            case "IdNoiChotSoCuoi":
+            case "IdHinhThucNhanTien":
+            case "IdTrangThai":
+            case "IdQuaTrinhCongTacGanNhat":
+                return SqlDbType.Int;
+            case "HoVaTen":
+                return SqlDbType.NVarChar;
+            case "NgayNopHoSo":
+            case "NgayHoanThien":
+            case "HanHoanThien":
+            case "NgayNghiViec":
+            case "EditDay":
+            case "EditTrangThaiDate":
+                return SqlDbType.DateTime;
+            case "SoThangDongBHXH":
+                return SqlDbType.Float;
+            case "CongViecDaLam":
+                return SqlDbType.NText;
+            
+        }
+
+        return null;
+    }
+    #endregion
+
+
     #region method getItem
     public DataRow getItem(int id)
     {
@@ -33,79 +79,49 @@ public class NLDTroCapThatNghiep :DataClass
     }
     #endregion
 
-    #region method getItem
-    public DataRow getItemByNLD(int id)
+    #region setData
+    public int setData(int IdNLDTCTN, int IDNguoiLaoDong, DateTime? NgayNopHoSo, int IdNguoiNhan, int idNoiNhan, int SoThangDongBH, int IdLoaiHopDong, int IdGiayTokemTheo, DateTime? HanHoanThien, int IdNoiNhanTCTN, int IdNoiChotSoCuoi, int IdHinhThucNhanTien, int IdQuaTrinhCongTacGanNhat)
     {
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT * FROM [TblNLDTroCapThatNghiep] WHERE [IDNguoiLaoDong] = @IDNguoiLaoDong";
-            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
+            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IdNLDTCTN = @IdNLDTCTN)";
+            Cmd.CommandText += "BEGIN INSERT INTO TblNLDTroCapThatNghiep(IDNguoiLaoDong,NgayNopHoSo,IdNguoiNhan,IdNoiNhan,SoThangDongBHXH,IdLoaiHopDong,IdGiayTokemTheo,HanHoanThien,IdNoiNhanTCTN,IdNoiChotSoCuoi,IdHinhThucNhanTien,IdQuaTrinhCongTacGanNhat) OUTPUT INSERTED.IdNLDTCTN VALUES(@IDNguoiLaoDong,@NgayNopHoSo,@IdNguoiNhan,@IdNoiNhan,@SoThangDongBHXH,@IdLoaiHopDong,@IdGiayTokemTheo,@HanHoanThien,@IdNoiNhanTCTN,@IdNoiChotSoCuoi,@IdHinhThucNhanTien,@IdQuaTrinhCongTacGanNhat) END ";
+            Cmd.CommandText += "ELSE BEGIN UPDATE TblNLDTroCapThatNghiep SET IDNguoiLaoDong = @IDNguoiLaoDong,NgayNopHoSo = @NgayNopHoSo,IdNguoiNhan = @IdNguoiNhan,IdNoiNhan = @IdNoiNhan,SoThangDongBHXH = @SoThangDongBHXH,IdLoaiHopDong = @IdLoaiHopDong,IdGiayTokemTheo = @IdGiayTokemTheo,HanHoanThien = @HanHoanThien,IdNoiNhanTCTN = @IdNoiNhanTCTN,IdNoiChotSoCuoi = @IdNoiChotSoCuoi,IdHinhThucNhanTien = @IdHinhThucNhanTien,IdQuaTrinhCongTacGanNhat = @IdQuaTrinhCongTacGanNhat OUTPUT INSERTED.IdNLDTCTN WHERE IdNLDTCTN = @IdNLDTCTN END";
 
-            DataRow ret = this.findFirst(Cmd);
 
-            this.SQLClose();
-            return ret;
-        }
-        catch (Exception ex)
-        {
-            this.Message = ex.Message;
-            this.ErrorCode = ex.HResult;
-            return null;
-        }
-    }
-    #endregion
-
-    #region setData()
-    public int setDataByNLD(int IDNguoiLaoDong, DateTime? NgayNghiViec, float SoThangBHTN, bool NhuCauTuVan, bool NhuCauGTVL, bool NhuCauHocNghe, DateTime? NgayDangKyTN, bool DangKyTre, int DangKyTreLyDo, int NoiTiepNhan, DateTime? NgayHoanThien, int NoiNhanBaoHiem, int HinhThucNhanTien, int NoiChotSoCuoi, bool DaXacNhanChuaDangKy, int NoiXacNhanChuaDangKy)
-    {
-        try
-        {
-            SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong)";
-            Cmd.CommandText += "BEGIN INSERT INTO TblNLDTroCapThatNghiep(IDNguoiLaoDong,NgayNghiViec,SoThangBHTN,NhuCauTuVan,NhuCauGTVL,NhuCauHocNghe,NgayDangKyTN,DangKyTre,DangKyTreLyDo,NoiTiepNhan,NgayHoanThien,NoiNhanBaoHiem,HinhThucNhanTien,NoiChotSoCuoi,DaXacNhanChuaDangKy,NoiXacNhanChuaDangKy) OUTPUT INSERTED.IdNLDTCTN VALUES(@IDNguoiLaoDong,@NgayNghiViec,@SoThangBHTN,@NhuCauTuVan,@NhuCauGTVL,@NhuCauHocNghe,@NgayDangKyTN,@DangKyTre,@DangKyTreLyDo,@NoiTiepNhan,@NgayHoanThien,@NoiNhanBaoHiem,@HinhThucNhanTien,@NoiChotSoCuoi,@DaXacNhanChuaDangKy,@NoiXacNhanChuaDangKy) END ";
-            Cmd.CommandText += "ELSE BEGIN UPDATE TblNLDTroCapThatNghiep SET NgayNghiViec = @NgayNghiViec,SoThangBHTN = @SoThangBHTN,NhuCauTuVan = @NhuCauTuVan,NhuCauGTVL = @NhuCauGTVL,NhuCauHocNghe = @NhuCauHocNghe,NgayDangKyTN = @NgayDangKyTN,DangKyTre = @DangKyTre,DangKyTreLyDo = @DangKyTreLyDo,NoiTiepNhan = @NoiTiepNhan,NgayHoanThien = @NgayHoanThien,NoiNhanBaoHiem = @NoiNhanBaoHiem,HinhThucNhanTien = @HinhThucNhanTien,NoiChotSoCuoi = @NoiChotSoCuoi,DaXacNhanChuaDangKy = @DaXacNhanChuaDangKy,NoiXacNhanChuaDangKy = @NoiXacNhanChuaDangKy OUTPUT INSERTED.IdNLDTCTN WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
-
+            Cmd.Parameters.Add("IdNLDTCTN", SqlDbType.Int).Value = IdNLDTCTN;
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
-            if (NgayNghiViec != null)
+            if (NgayNopHoSo != null)
             {
-                Cmd.Parameters.Add("NgayNghiViec", SqlDbType.DateTime).Value = NgayNghiViec;
+                Cmd.Parameters.Add("NgayNopHoSo", SqlDbType.DateTime).Value = NgayNopHoSo;
             }
             else
             {
-                Cmd.Parameters.Add("NgayNghiViec", SqlDbType.DateTime).Value = DBNull.Value;
+                Cmd.Parameters.Add("NgayNopHoSo", SqlDbType.DateTime).Value = DBNull.Value;
             }
-            //Cmd.Parameters.Add("NgayNghiViec", SqlDbType.DateTime).Value = NgayNghiViec;
-            Cmd.Parameters.Add("SoThangBHTN", SqlDbType.Float).Value = SoThangBHTN;
-            Cmd.Parameters.Add("NhuCauTuVan", SqlDbType.Bit).Value = NhuCauTuVan;
-            Cmd.Parameters.Add("NhuCauGTVL", SqlDbType.Bit).Value = NhuCauGTVL;
-            Cmd.Parameters.Add("NhuCauHocNghe", SqlDbType.Bit).Value = NhuCauHocNghe;
-            if (NgayDangKyTN != null)
+
+            Cmd.Parameters.Add("IdNguoiNhan", SqlDbType.Int).Value = IdNguoiNhan;
+            Cmd.Parameters.Add("IdNoiNhan", SqlDbType.Int).Value = idNoiNhan;
+
+            Cmd.Parameters.Add("SoThangDongBHXH", SqlDbType.Float).Value = SoThangDongBH;
+            Cmd.Parameters.Add("IdLoaiHopDong", SqlDbType.Int).Value = IdLoaiHopDong;
+            Cmd.Parameters.Add("IdGiayTokemTheo", SqlDbType.Int).Value = IdGiayTokemTheo;
+
+            if (HanHoanThien != null)
             {
-                Cmd.Parameters.Add("NgayDangKyTN", SqlDbType.DateTime).Value = NgayDangKyTN;
+                Cmd.Parameters.Add("HanHoanThien", SqlDbType.DateTime).Value = HanHoanThien;
             }
             else
             {
-                Cmd.Parameters.Add("NgayDangKyTN", SqlDbType.DateTime).Value = DBNull.Value;
+                Cmd.Parameters.Add("HanHoanThien", SqlDbType.DateTime).Value = DBNull.Value;
             }
-            //Cmd.Parameters.Add("NgayDangKyTN", SqlDbType.DateTime).Value = NgayDangKyTN;
-            Cmd.Parameters.Add("DangKyTre", SqlDbType.Bit).Value = DangKyTre;
-            Cmd.Parameters.Add("DangKyTreLyDo", SqlDbType.Int).Value = DangKyTreLyDo;
-            Cmd.Parameters.Add("NoiTiepNhan", SqlDbType.Int).Value = NoiTiepNhan;
-            if (NgayHoanThien != null)
-            {
-                Cmd.Parameters.Add("NgayHoanThien", SqlDbType.DateTime).Value = NgayHoanThien;
-            }
-            else
-            {
-                Cmd.Parameters.Add("NgayHoanThien", SqlDbType.DateTime).Value = DBNull.Value;
-            }
-            //Cmd.Parameters.Add("NgayHoanThien", SqlDbType.DateTime).Value = NgayHoanThien;
-            Cmd.Parameters.Add("NoiNhanBaoHiem", SqlDbType.Int).Value = NoiNhanBaoHiem;
-            Cmd.Parameters.Add("HinhThucNhanTien", SqlDbType.Int).Value = HinhThucNhanTien;
-            Cmd.Parameters.Add("NoiChotSoCuoi", SqlDbType.Int).Value = NoiChotSoCuoi;
-            Cmd.Parameters.Add("DaXacNhanChuaDangKy", SqlDbType.Bit).Value = DaXacNhanChuaDangKy;
-            Cmd.Parameters.Add("NoiXacNhanChuaDangKy", SqlDbType.Int).Value = NoiXacNhanChuaDangKy;
+
+            Cmd.Parameters.Add("IdNoiNhanTCTN", SqlDbType.Int).Value = IdNoiNhanTCTN;
+            Cmd.Parameters.Add("IdNoiChotSoCuoi", SqlDbType.Int).Value = IdNoiChotSoCuoi;
+            Cmd.Parameters.Add("IdHinhThucNhanTien", SqlDbType.Int).Value = IdHinhThucNhanTien;
+            Cmd.Parameters.Add("IdQuaTrinhCongTacGanNhat", SqlDbType.Int).Value = IdQuaTrinhCongTacGanNhat;
+            
 
             int ret = (int)Cmd.ExecuteScalar();
 
@@ -119,7 +135,34 @@ public class NLDTroCapThatNghiep :DataClass
             this.ErrorCode = ex.HResult;
             return 0;
         }
-
     }
+    // */
+    #endregion
+
+    #region addBHXH
+    public int addBHXH(int IdNguoiLaoDong, int IDNldTuVan)
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IdTrangThai != 6)";
+            Cmd.CommandText += " BEGIN INSERT INTO TblNLDTroCapThatNghiep(IDNguoiLaoDong,IDNldTuVan) OUTPUT INSERTED.IdNLDTCTN VALUES (@IDNguoiLaoDong,@IDNldTuVan) END ";
+            Cmd.CommandText += " ELSE BEGIN SELECT IdNLDTCTN FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IdTrangThai != 6 END";
+            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IdNguoiLaoDong;
+            Cmd.Parameters.Add("IDNldTuVan", SqlDbType.Int).Value = IDNldTuVan;
+
+            int ret = (int)Cmd.ExecuteScalar();
+
+            this.SQLClose();
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return 0;
+        }
+    }
+
     #endregion
 }

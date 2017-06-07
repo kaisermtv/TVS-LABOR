@@ -252,6 +252,33 @@ public class Account
     }
     #endregion
 
+    #region method getDataCategoryToCombobox
+    public DataTable getDataCategoryToCombobox()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT Id, FullName FROM TblAccount WHERE State = 1";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+            objTable.Rows.Add(0, "Không chọn");
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
     #region Method CryptographyMD5
     public string CryptographyMD5(string source)
     {
