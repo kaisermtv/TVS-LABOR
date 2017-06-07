@@ -46,7 +46,7 @@
         }
 
         .line {
-            margin-top: 10px;
+            margin-top: 6px;
         }
 
         .headlabel {
@@ -232,6 +232,7 @@
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
             <b>I. Thông tin người lao động</b>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Họ và tên: 
@@ -264,6 +265,7 @@
 
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Số CMND/HC: 
@@ -295,6 +297,7 @@
                 <%--<asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Số điện thoại: 
@@ -352,6 +355,7 @@
                 <%--<asp:TextBox ID="txtNoiCapBHXH" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
                     <div class="label1">
                         Số tài khoản: 
@@ -442,6 +446,7 @@
                 <%--<asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Trình độ CMKT: 
@@ -484,6 +489,7 @@
                 <asp:TextBox ID="txtCongViecDaLam" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Tên DN: 
@@ -497,6 +503,7 @@
                 <button id="btnXoaDonVi" runat="server" class="btn btn-danger" type="button" onclick="DeleteName()" style="margin-left: 10px; width: 80px; height: 34px !important; line-height: 14px !important;" disabled="disabled">Xóa</button>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Địa chỉ DN: 
@@ -505,6 +512,7 @@
                 <asp:TextBox ID="txtDiaChiDN" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
+
         <div class="row line">
             <div class="label1">
                 Điện thoại: 
@@ -569,10 +577,10 @@
 
         <div class="row line">
             <div class="label1" style="width: 15%;">
-                Số tháng đóng BHXH: 
+                Số tháng đóng BHTN: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control" Style ="width:60px;"></asp:TextBox>
             </div>
             <div class="label1" style="width: 15%;">
                 Loại hợp đồng:  
@@ -583,6 +591,7 @@
                 </asp:DropDownList>
             </div>
         </div>
+
         <div class="row line">
              <div class="label1" style="width: 15%;">
                 Giấy tờ kèm theo: 
@@ -618,6 +627,7 @@
             </div>
         </div>
 
+
         <div class="row line">
             <div class="label1" style="width: 15%;">
                 Nơi chốt sổ cuối: 
@@ -637,15 +647,12 @@
             <asp:RadioButton ID="cbkTienMat" GroupName="HinhThucNhanTien" runat="server" Text="&nbsp;Qua tiền mặt" TextAlign="Right" />
             </div>
         </div>
-
-        <br />
-        <br />
-        <br />
+       
     </div>
 
-    <div style="width: 16%; float: right; margin-top:-5px;">
+    <div style="width: 16%; float: right; margin-top:-5px; background-color:#fff; height:1180px; padding:5px;">
         <div style ="height:28px; background-color:red; line-height:28px; color:#fff; text-align:center; font-size:12PX; font-weight:bold;">Thông tin đóng hưởng</div>
-        <div class="panel-body1" style ="padding-top:10px; margin-top:2px;">
+        <div class="panel-body1" style ="padding:20px; padding-top:10px; margin-top:2px;">
             <div class="row">
                 Ngày đăng ký: <%= txtNgayNopHS.Value %><br />
                 Hạn hoàn thiện:<br />
@@ -671,6 +678,7 @@
             </div>
         </div>
     </div>
+
     <footer style="z-index: 100; height: 43px !important; margin-bottom: 0px; margin-left: -14px; width: 100%; text-align: justify; background-color: #f0f0f0; padding-top: 4px">
         <div class="warning">
             <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
