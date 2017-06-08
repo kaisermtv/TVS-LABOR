@@ -669,6 +669,12 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
             }
             #endregion
 
+            #region Lưu thông tin vào BHXH
+
+                BHTNClass objBHXH = new BHTNClass();
+                objBHXH.setBHXH(this.IDNldTuVan, this.IDNguoiLaoDong, ckbTuVanBHTN.Checked);
+            #endregion
+
             Response.Redirect("TuVanEdit.aspx?id=" + this.IDNldTuVan + "&idNld=" + this.IDNguoiLaoDong.ToString() + "&idNldDK="+this.IDNldDangKy.ToString());
         }
         else

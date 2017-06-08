@@ -85,6 +85,23 @@ public class TVSSystem
     }
     #endregion
 
+    #region method CVDateDbNull()
+    public static object CVDateDbNull(String dt)
+    {
+        if (dt == null || dt == "") return DBNull.Value;
+
+        try
+        {
+            return new DateTime(int.Parse(dt.Substring(6, 4)), int.Parse(dt.Substring(3, 2)), int.Parse(dt.Substring(0, 2)));
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+    #endregion
+
     #region method CVOnlyDate()
     public static DateTime CVOnlyDate(String d)
     {       

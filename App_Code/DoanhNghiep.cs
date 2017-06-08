@@ -5,12 +5,52 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-public class DoanhNghiep :DataClass
+public class DoanhNghiep :DataAbstract
 {
     #region method DoanhNghiep
     public DoanhNghiep()
     {
+        keyTable = "IDDonVi";
+        nameTable = "TblDoanhNghiep";
     } 
+    #endregion
+
+    #region setData Atribute
+    protected override SqlDbType? GetTypeAtribute(string name)
+    {
+        switch (name)
+        {
+            case "IDDonVi":
+            case "IDNganhNghe":
+            case "IDHuyen":
+            case "IDTinh":
+            case "IdLoaiHinh":
+            case "ThuTuUuTien":
+                return SqlDbType.Int;
+            case "MaDonVi":
+            case "TenDonVi":
+            case "DiaChi":
+            case "QuyMo":
+            case "DienThoaiDonVi":
+            case "EmailDonVi":
+            case "Website":
+            case "NguoiDaiDien":
+            case "DienThoai":
+            case "Email":
+            case "ChucVu":
+            case "FaxDonVi":
+            case "SoDKKD":
+                return SqlDbType.NVarChar;
+            case "NgayDangKy":
+                return SqlDbType.DateTime;
+            case "NuocNgoai":
+            case "State":
+                return SqlDbType.Bit;
+
+        }
+
+        return null;
+    }
     #endregion
 
     #region method setData
