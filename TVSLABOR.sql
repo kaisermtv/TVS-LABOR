@@ -120,7 +120,7 @@ INSERT INTO dbo.tblTrangThaiHoSo VALUES (2,N'Hoàn thiện');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (3,N'Đã tính hưởng');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (4,N'Đã thẩm định');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (5,N'Đã ký quyết định');
-INSERT INTO dbo.tblTrangThaiHoSo VALUES (6,N'Kết thúc hưởng');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (10,N'Kết thúc hưởng');
 
 -- 31/05/2017
 CREATE TABLE dbo.tblDanhMuc(

@@ -662,19 +662,17 @@
                 <br />
 
                 <div class="list-group list-group-alternate">
-                    <a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Thông tin đăng ký </a>
-                    <a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Đăng ký TCTN</a>
+                    <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Thông tin đăng ký </a>--%>
+                    <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Đăng ký TCTN</a>--%>
                     <a href="#" class="list-group-item" runat="server" onserverclick="DeNghiHuong_Click"><span class="badge1" style ="left:140px;">></span>Đề nghị hưởng </a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>
-                    <a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>
-                    <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
-                    <a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
+                    <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>--%>
                 </div>
                 <br />
                 <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click " />
                 <br />
                 <br />
-                <a href="#" class="btn btn-danger" style="width: 100%">Chuyển hồ sơ</a>
+                <button class="btn btn-danger" style="width: 100%" data-toggle="modal" data-target="#HoanThienModal">Chuyển hồ sơ</button>
             </div>
         </div>
     </div>
@@ -686,5 +684,32 @@
         <a href="DangKyHoSo.aspx" class="btn btn-default" style ="float:right; margin-right:52px;">Thoát</a>
     </footer>
 
-    
+    <div id="HoanThienModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Xác nhận hoàn thiện hồ sơ</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn xác nhận chuyển hồ sơ này</p>
+                </div>
+                <div class="modal-footer">
+                    <div style="width: 60%; float: left">
+                        <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                            <input type='text' class="form-control dateinput" id="txtNgayHoanThanh" runat="server" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <asp:Button ID="btnHoanThienHoSo" runat="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnHoanThienHoSo_Click" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </asp:Content>

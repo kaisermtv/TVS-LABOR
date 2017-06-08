@@ -66,6 +66,8 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         #region Khởi tạo select
         if (!Page.IsPostBack)
         {
+            txtNgayHoanThanh.Value = DateTime.Now.ToString("dd/MM/yyyy");
+
             ddlNguoiNhan.DataSource = objAccount.getDataCategoryToCombobox();
             ddlNguoiNhan.DataTextField = "FullName";
             ddlNguoiNhan.DataValueField = "Id";
@@ -593,13 +595,13 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     #region Even DeNghiHuong_Click
     public void DeNghiHuong_Click(Object sender, EventArgs e)
     {
-        if (itemId != 0)
+        if (objDataTroCap != null)
         {
             List<string> lstInput = new List<string>();
             List<string> lstOutput = new List<string>();
 
             #region thông tin người lao động
-            DataTable objData = objNguoiLaoDong.getDataById(itemId);
+            DataTable objData = objNguoiLaoDong.getDataById((int)this.objDataTroCap["IDNguoiLaoDong"]);
             if (objData.Rows.Count == 0) return;
             DataRow objDataRow = objData.Rows[0];
 
@@ -687,7 +689,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             int idDonVi = 0;
             try
             {
-                idDonVi = (int)objDataRow["IdDoanhNghiep"];
+                idDonVi = (int)this.objDataTroCap["IdQuaTrinhCongTacGanNhat"];
             }
             catch { }
 
@@ -710,7 +712,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
             #region Thông tin bổ sung
 
-            DataRow objDataTroCap = objNLDTroCapThatNghiep.getItem(itemId);
+            //objDataTroCap = objNLDTroCapThatNghiep.getItem(itemId);
             if (objDataTroCap != null)
             {
                 try
@@ -724,20 +726,20 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 lstOutput.Add("");
 
                 lstInput.Add("[LoaiHopDong]");
-                lstOutput.Add("");
+                lstOutput.Add(objDanhMuc.getNameById((int)objDataTroCap["IdLoaiHopDong"]));
 
                 lstInput.Add("[SoThangDongBHTN]");
-                lstOutput.Add(objDataTroCap["SoThangBHTN"].ToString());
+                lstOutput.Add(objDataTroCap["SoThangDongBHXH"].ToString());
 
                 lstInput.Add("[NoiNhanTCTN]");
-                lstOutput.Add("");
+                lstOutput.Add(objDanhMuc.getNameById((int)objDataTroCap["IdNoiNhanTCTN"]));
 
                 lstInput.Add("[Giaytokemtheo]");
-                lstOutput.Add("");
+                lstOutput.Add(objDanhMuc.getNameById((int)objDataTroCap["IdGiayTokemTheo"]));
 
                 try
                 {
-                    lstOutput.Add(((DateTime)objDataTroCap["NgayHoanThien"]).ToString("dd/MM/yyyy"));
+                    lstOutput.Add(((DateTime)objDataTroCap["NgayNopHoSo"]).ToString("dd/MM/yyyy"));
                     lstInput.Add("[NgayNopHS]");
                 }
                 catch { }
@@ -848,70 +850,19 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     }
     #endregion
 
-    #region Even Phieu tinh huong
-    protected void Unnamed_ServerClick(object sender, EventArgs e)
+    #region Even btnHoanThienHoSo_Click
+    protected void btnHoanThienHoSo_Click(object sender, EventArgs e)
     {
-        if (itemId != 0)
+        try
         {
-            DataTable TblTinhHuong = new TinhHuong().getDataById(itemId);
-            DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById(itemId);
-            if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
-            {
-                _msg = "Người lao động chưa được khởi tạo";
-                return;
-            }
-            if (TblTinhHuong == null || TblTinhHuong.Rows.Count == 0)
-            {
-                _msg = "Chưa có bẳng tỉnh nào được cập nhật";
-                return;
-            }
-
-            List<string> lstInput = new List<string>();
-            List<string> lstOutput = new List<string>();
-            lstInput.Add("[TenNLD]");
-            lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
-            lstInput.Add("[NgaySinh]");
-            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
-            lstInput.Add("[SoBHXH]");
-            lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
-            lstInput.Add("[SoThangDong] ");
-            lstOutput.Add(TblTinhHuong.Rows[0]["SoThangDongBHXH"].ToString());
-            lstInput.Add("[DongTuThang]");
-            lstOutput.Add("../../....");
-            lstInput.Add("[DongDenThang]");
-            lstOutput.Add("../../....");
-            for (int i = 1; i <= 6; i++)
-            {
-                lstInput.Add("[Thang" + i.ToString() + "]");
-                lstOutput.Add(i.ToString());
-                lstInput.Add("[TienThang" + i.ToString() + "]");
-                lstOutput.Add(TblTinhHuong.Rows[0]["MucDong" + i.ToString()].ToString());
-            }
-
-            lstInput.Add("[MucDongTB]");
-            lstOutput.Add(TblTinhHuong.Rows[0]["LuongTrungBinh"].ToString());
-            lstInput.Add("[MucHuong]");
-            lstOutput.Add(TblTinhHuong.Rows[0]["MucHuong"].ToString());
-            lstInput.Add("[SoThangHuong]");
-            lstOutput.Add(TblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
-            lstInput.Add("[TongTienHuong]");
-            decimal MucHuong = 0, SoThangHuong = 0, TongTienHuong = 0;
-            MucHuong = decimal.Parse(TblTinhHuong.Rows[0]["MucHuong"].ToString());
-            SoThangHuong = decimal.Parse(TblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
-            TongTienHuong = MucHuong * SoThangHuong;
-            lstOutput.Add(TongTienHuong.ToString());
-            lstInput.Add("[NgayTinhHuong]");
-            lstOutput.Add(((DateTime)TblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
-            ExportToWord objExportToWord = new ExportToWord();
-            byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/PhieuTinhHuong.docx"), lstInput, lstOutput);
-
-            Response.AppendHeader("Content-Type", "application/msword");
-            Response.AppendHeader("Content-disposition", "inline; filename=PhieuTinhHuong.docx");
-            Response.BinaryWrite(temp);
-            HttpContext.Current.Response.End();
-            HttpContext.Current.Response.Flush();
+            BHTNClass objBHXH = new BHTNClass();
+            objBHXH.setHoanThien(itemId, txtNgayHoanThanh.Value);
+            Response.Redirect("/BHTN/DangKyHoSo.aspx");
+        }
+        catch
+        {
+            lblMsg.Text = "Có lỗi xảy ra!";
         }
     }
     #endregion
-
 }
