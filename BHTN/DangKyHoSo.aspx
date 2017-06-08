@@ -57,6 +57,10 @@
                 <a href="NhapThongTinHoSo.aspx">
                     <input type="button" class="btn btn-primary" value="Tạo hồ sơ" /></a>
             </td>--%>
+            <td style="width: 90px !important; text-align: center;">
+                <a href="/BHTN/">
+                    <input type="button" class="btn btn-default" value="Trở lại" /></a>
+            </td>
         </tr>
     </table>
 
