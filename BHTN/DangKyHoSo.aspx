@@ -18,23 +18,24 @@
             color:#fff;
             font-size:12px;
         }
+
+        .modal-dialog{
+            display:table;
+        }
+
+        .warning {
+            color: red;
+            float:left;
+        }
     </style>
     <script src="../js/TvsScript.js"></script>
     <script>
         function delmodal(id, name, idtrangthai) {
             $("#MainContent_idNLD").val(id);
 
-            if (idtrangthai == 0) {
-                $("#dknld").html(name);
+            $("#htnld").html(name);
 
-                $("#DangKyModal").modal("show");
-            } else if (idtrangthai == 1) {
-                $("#htnld").html(name);
-
-                $("#HoanThienModal").modal("show");
-            } else {
-
-            }
+            $("#HoanThienModal").modal("show");
         }
     </script>
 </asp:Content>
@@ -91,9 +92,9 @@
                     <%# Eval("SoThangDongBHXH").ToString() != ""? "Đóng " + Eval("SoThangDongBHXH") + " tháng" :""%>
                 </td>
                 <td class="DataListTableTdItemCenter">
-                    <%--<a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>,'<%# Eval("HoVaTen") %>',<%# Eval("TrangThaiHS").ToString() == ""?"0":Eval("TrangThaiHS") %>)">
+                    <a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>,'<%# Eval("HoVaTen") %>')">
                         <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ">
-                    </a>--%>
+                    </a>
                     <a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>">
                         <img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
                     <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>
@@ -120,23 +121,42 @@
     </table>
 
     <div class="row col-sm-12">
-        <a class="btn btn-danger" onclick="CheckAll()">Check All</a>
-        <a class="btn btn-danger" onclick="UnCheckAll()">UnCheck All</a>
-
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="CheckAll()">Check All</a>
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="UnCheckAll()">UnCheck All</a>
+        <div class="warning">
+            <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
+        </div>
         
         <a class="btn btn-primary" style="float:right" onclick="ChuyenSelect()">Chuyển</a>
     </div>
 
     <script>
+        $(function () {
+            $('.date').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+
+            $(".dateinput").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
+        });
+
         function ChuyenSelect()
         {
+            var txt = "";
             for(i=1;i< <%= index %>;i++)
             {
                 var objchk = document.getElementById('ckbSelect' + i);
                 if(objchk != null && objchk.checked == true)
                 {
-
+                    if(txt != "") txt += ","
+                    txt += objchk.value;
                 }
+            }
+
+            if(txt != "")
+            {
+                $("#MainContent_idNLDList").val(txt);
+
+                $("#ListHoanThienModal").modal("show");
             }
         }
 
@@ -180,6 +200,15 @@
                     <p>Bạn xác nhận hoàn thiện hồ sơ đối với người lao động <b id="htnld"></b></p>
                 </div>
                 <div class="modal-footer">
+                    <div style="width: 60%; float: left">
+                        <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                            <input type='text' class="form-control dateinput" id="txtNgayHoanThanh" runat="server" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
                     <asp:Button ID="btnHoanThienHoSo" runat="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnHoanThienHoSo_Click" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -188,20 +217,30 @@
         </div>
     </div>
 
+    <input id="idNLDList" type="hidden" runat="server" />
     <!-- Modal -->
-    <div id="DangKyModal" class="modal fade" role="dialog">
+    <div id="ListHoanThienModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Xác nhận đăng ký</h4>
+                    <h4 class="modal-title">Xác nhận hoàn thiện hồ sơ</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Xác nhận đăng ký hồ sơ cho người lao động <b id="dknld"></b></p>
+                    <p>Xác nhận hoàn thiện hồ sơ cho các mục đã chọn</p>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnDangKyHoSo" runat="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnDangKyHoSo_Click" />
+                    <div style="width: 60%; float: left">
+                        <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                            <input type='text' class="form-control dateinput" id="txtNgayHoanThanh1" runat="server" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <asp:Button ID="btnListHoanThienHoSo" runat="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnListHoanThienHoSo_Click" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

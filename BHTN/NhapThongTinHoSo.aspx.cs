@@ -560,6 +560,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objNLDTroCapThatNghiep["CongViecDaLam"] = txtCongViecDaLam.Text;
             objNLDTroCapThatNghiep["IdQuaTrinhCongTacGanNhat"] = idDoanhNghiep;
             objNLDTroCapThatNghiep["IdTrangThai"] = 1;
+            objNLDTroCapThatNghiep["EditDay"] = DateTime.Now;
 
             int htnt = 0;
             if (cbkATM.Checked) htnt = 1;

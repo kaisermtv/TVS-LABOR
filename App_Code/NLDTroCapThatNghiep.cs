@@ -79,66 +79,6 @@ public class NLDTroCapThatNghiep :DataAbstract
     }
     #endregion
 
-    #region setData
-    public int setData(int IdNLDTCTN, int IDNguoiLaoDong, DateTime? NgayNopHoSo, int IdNguoiNhan, int idNoiNhan, int SoThangDongBH, int IdLoaiHopDong, int IdGiayTokemTheo, DateTime? HanHoanThien, int IdNoiNhanTCTN, int IdNoiChotSoCuoi, int IdHinhThucNhanTien, int IdQuaTrinhCongTacGanNhat)
-    {
-        try
-        {
-            SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IdNLDTCTN = @IdNLDTCTN)";
-            Cmd.CommandText += "BEGIN INSERT INTO TblNLDTroCapThatNghiep(IDNguoiLaoDong,NgayNopHoSo,IdNguoiNhan,IdNoiNhan,SoThangDongBHXH,IdLoaiHopDong,IdGiayTokemTheo,HanHoanThien,IdNoiNhanTCTN,IdNoiChotSoCuoi,IdHinhThucNhanTien,IdQuaTrinhCongTacGanNhat) OUTPUT INSERTED.IdNLDTCTN VALUES(@IDNguoiLaoDong,@NgayNopHoSo,@IdNguoiNhan,@IdNoiNhan,@SoThangDongBHXH,@IdLoaiHopDong,@IdGiayTokemTheo,@HanHoanThien,@IdNoiNhanTCTN,@IdNoiChotSoCuoi,@IdHinhThucNhanTien,@IdQuaTrinhCongTacGanNhat) END ";
-            Cmd.CommandText += "ELSE BEGIN UPDATE TblNLDTroCapThatNghiep SET IDNguoiLaoDong = @IDNguoiLaoDong,NgayNopHoSo = @NgayNopHoSo,IdNguoiNhan = @IdNguoiNhan,IdNoiNhan = @IdNoiNhan,SoThangDongBHXH = @SoThangDongBHXH,IdLoaiHopDong = @IdLoaiHopDong,IdGiayTokemTheo = @IdGiayTokemTheo,HanHoanThien = @HanHoanThien,IdNoiNhanTCTN = @IdNoiNhanTCTN,IdNoiChotSoCuoi = @IdNoiChotSoCuoi,IdHinhThucNhanTien = @IdHinhThucNhanTien,IdQuaTrinhCongTacGanNhat = @IdQuaTrinhCongTacGanNhat OUTPUT INSERTED.IdNLDTCTN WHERE IdNLDTCTN = @IdNLDTCTN END";
-
-
-            Cmd.Parameters.Add("IdNLDTCTN", SqlDbType.Int).Value = IdNLDTCTN;
-            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
-            if (NgayNopHoSo != null)
-            {
-                Cmd.Parameters.Add("NgayNopHoSo", SqlDbType.DateTime).Value = NgayNopHoSo;
-            }
-            else
-            {
-                Cmd.Parameters.Add("NgayNopHoSo", SqlDbType.DateTime).Value = DBNull.Value;
-            }
-
-            Cmd.Parameters.Add("IdNguoiNhan", SqlDbType.Int).Value = IdNguoiNhan;
-            Cmd.Parameters.Add("IdNoiNhan", SqlDbType.Int).Value = idNoiNhan;
-
-            Cmd.Parameters.Add("SoThangDongBHXH", SqlDbType.Float).Value = SoThangDongBH;
-            Cmd.Parameters.Add("IdLoaiHopDong", SqlDbType.Int).Value = IdLoaiHopDong;
-            Cmd.Parameters.Add("IdGiayTokemTheo", SqlDbType.Int).Value = IdGiayTokemTheo;
-
-            if (HanHoanThien != null)
-            {
-                Cmd.Parameters.Add("HanHoanThien", SqlDbType.DateTime).Value = HanHoanThien;
-            }
-            else
-            {
-                Cmd.Parameters.Add("HanHoanThien", SqlDbType.DateTime).Value = DBNull.Value;
-            }
-
-            Cmd.Parameters.Add("IdNoiNhanTCTN", SqlDbType.Int).Value = IdNoiNhanTCTN;
-            Cmd.Parameters.Add("IdNoiChotSoCuoi", SqlDbType.Int).Value = IdNoiChotSoCuoi;
-            Cmd.Parameters.Add("IdHinhThucNhanTien", SqlDbType.Int).Value = IdHinhThucNhanTien;
-            Cmd.Parameters.Add("IdQuaTrinhCongTacGanNhat", SqlDbType.Int).Value = IdQuaTrinhCongTacGanNhat;
-            
-
-            int ret = (int)Cmd.ExecuteScalar();
-
-            this.SQLClose();
-
-            return ret;
-        }
-        catch (Exception ex)
-        {
-            this.Message = ex.Message;
-            this.ErrorCode = ex.HResult;
-            return 0;
-        }
-    }
-    // */
-    #endregion
-
     #region addBHXH
     public int addBHXH(int IdNguoiLaoDong, int IDNldTuVan)
     {
@@ -147,7 +87,7 @@ public class NLDTroCapThatNghiep :DataAbstract
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IdTrangThai != 6)";
             Cmd.CommandText += " BEGIN INSERT INTO TblNLDTroCapThatNghiep(IDNguoiLaoDong,IDNldTuVan) OUTPUT INSERTED.IdNLDTCTN VALUES (@IDNguoiLaoDong,@IDNldTuVan) END ";
-            Cmd.CommandText += " ELSE BEGIN SELECT IdNLDTCTN FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IdTrangThai != 6 END";
+            Cmd.CommandText += " ELSE BEGIN UPDATE TblNLDTroCapThatNghiep SET EditDay = GETDATE() OUTPUT INSERTED.IdNLDTCTN WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IdTrangThai != 6 END";
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IdNguoiLaoDong;
             Cmd.Parameters.Add("IDNldTuVan", SqlDbType.Int).Value = IDNldTuVan;
 

@@ -19,7 +19,7 @@ public class BHTNClass :DataClass
             Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayNghiViec,TN.SoThangDongBHXH,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
-            Cmd.CommandText += " WHERE 1=1";
+            Cmd.CommandText += " WHERE TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1)";
 
             if (searchKey != "")
             {
@@ -33,7 +33,7 @@ public class BHTNClass :DataClass
                 Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
             }
 
-            Cmd.CommandText += " ORDER BY TN.EditDay ASC";
+            Cmd.CommandText += " ORDER BY TN.EditDay DESC";
 
             DataTable ret = this.findAll(Cmd);
 
@@ -61,5 +61,26 @@ public class BHTNClass :DataClass
         { 
         
         }
+    }
+
+    public void setHoanThien(int pidNLD, string ngayHoanThien)
+    {
+        try
+        {
+            NLDTroCapThatNghiep objTroCapTN = new NLDTroCapThatNghiep();
+
+            objTroCapTN["IdNLDTCTN"] = pidNLD;
+            objTroCapTN["NgayHoanThien"] = TVSSystem.CVDateDbNull(ngayHoanThien);
+            objTroCapTN["IdTrangThai"] = 2;
+
+            DateTime time = DateTime.Now;
+            objTroCapTN["EditDay"] = time;
+            objTroCapTN["EditTrangThaiDate"] = time;
+            objTroCapTN.setData();
+        }catch (Exception ex)
+        {
+            throw ex;
+        }
+        
     }
 }

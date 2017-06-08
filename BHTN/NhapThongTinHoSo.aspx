@@ -580,7 +580,7 @@
                 Số tháng đóng BHTN: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control" Style ="width:60px;"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control" Style ="width:100%;"></asp:TextBox>
             </div>
             <div class="label1" style="width: 15%;">
                 Loại hợp đồng:  

@@ -32,6 +32,9 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
             ddlIDTrangThai.DataBind();
             ddlIDTrangThai.SelectedValue = "0";
 
+            txtNgayHoanThanh.Value = DateTime.Now.ToString("dd/MM/yyyy");
+            txtNgayHoanThanh1.Value = DateTime.Now.ToString("dd/MM/yyyy");
+
         }
 
         DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value);
@@ -46,14 +49,34 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         index = 1;
         //}
     }
+    #region Even btnHoanThienHoSo_Click
     protected void btnHoanThienHoSo_Click(object sender, EventArgs e)
     {
-        objNguoiLaoDong.chuyenTrangThai(int.Parse(idNLD.Value), 2);
-        Response.Redirect(Request.Url.ToString());
+        try
+        {
+            objBHXH.setHoanThien(int.Parse(idNLD.Value), txtNgayHoanThanh.Value);
+            Response.Redirect(Request.Url.ToString());
+        }
+        catch
+        {
+            lblMsg.Text = "Có lỗi xảy ra!";
+        }
     }
-    protected void btnDangKyHoSo_Click(object sender, EventArgs e)
+    #endregion
+
+    #region Even btnListHoanThienHoSo_Click
+    protected void btnListHoanThienHoSo_Click(object sender, EventArgs e)
     {
-        bool ret = objNguoiLaoDong.chuyenTrangThai(int.Parse(idNLD.Value), 1);
+        string[] listid = idNLDList.Value.Split(',');
+        foreach (string item in listid)
+        {
+            try
+            {
+                objBHXH.setHoanThien(int.Parse(item), txtNgayHoanThanh1.Value);
+            }
+            catch { }
+        }
         Response.Redirect(Request.Url.ToString());
     }
+    #endregion
 }
