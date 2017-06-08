@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="TinhHuong.aspx.cs" Inherits="Labor_TinhHuong" %>
-<%@ Register src="../BHTN/uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThamDinh.aspx.cs" Inherits="Labor_ThamDinh" %>
+<%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .label1 {
@@ -122,9 +122,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    t<div style="width: 83%; float: left; margin-top:-15px!important;">
+    <div style="width: 83%; float: left; margin-top:-15px!important;">
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
-            ttt<b>Thông tin chi tiết</b>
+            <b>Thông tin chi tiết</b>
         </div>
         <div class="row line">
             <div class="label1">
@@ -419,7 +419,7 @@
                     </tr>
                 </table>
             </div>
-        </div>        
+            d</div>        
         <br />
         <br />
         <br />
@@ -443,11 +443,14 @@
                 </div>
                 <br />
                 <br />
-                <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
+                <asp:Button ID="btnDuyet" runat="server" Text="Lưu/Duyệt" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnDuyet_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />
-               
+                <asp:Button ID="btnTraThamDinh" runat="server" Text="Trả thẩm định" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTraThamDinh_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnTraTiepNhat" runat="server" Text="Trả tiếp nhận" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTraTiepNhat_Click" />
+              
             </div>
         </div>
     </div>
@@ -509,9 +512,9 @@
                 }
             });
         }
-        $(document).ready(function () {
-
-
+        $(document).ready(function () {           
+         
+        
         });
         $("#MainContent_ddlLuongToiThieu").change(function () {
             $("#MainContent_txtMucHuongToiDa").val($(this).val() * 5);
@@ -525,25 +528,28 @@
             var SoThangDuocHuong = 0, SoThangBaoLuu = 0, temp = 0;
             temp = SoThangDong;
             if (SoThangDong >= 12 && SoThangDong <= 36) {
-                SoThangDuocHuong = 3;
+                SoThangDuocHuong = 3;              
             }
             if (SoThangDong > 36) {
                 SoThangDuocHuong = 3;
-                SoThangDong = SoThangDong - 36;
+                SoThangDong = SoThangDong - 36;               
                 SoThangDong = Math.round((SoThangDong / 12));
                 SoThangDuocHuong = SoThangDuocHuong + SoThangDong;
-                if (SoThangDuocHuong > 12) {
+                if (SoThangDuocHuong > 12)
+                {
                     SoThangDuocHuong = 12;
-                }
-            }
+                }               
+            }          
 
             SoThangBaoLuu = temp - SoThangDuocHuong * 12;
-            if (SoThangBaoLuu < 0) {
+            if (SoThangBaoLuu < 0)
+            {
                 SoThangBaoLuu = 0;
             }
 
             $("#MainContent_txtSoThangHuong").val(SoThangDuocHuong);
             $("#MainContent_txtSoThangBaoLuu").val(SoThangBaoLuu);
+            
         });
         var _msg = '<%=_msg%>';
         if (_msg != '') {

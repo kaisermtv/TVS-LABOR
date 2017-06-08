@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="TinhHuong.aspx.cs" Inherits="Labor_TinhHuong" %>
-<%@ Register src="../BHTN/uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
+<%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .label1 {

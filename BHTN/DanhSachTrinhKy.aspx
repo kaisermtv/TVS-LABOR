@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachThamDinh.aspx.cs" Inherits="Labor_DanhSachThamDinh" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachTrinhKy.aspx.cs" Inherits="Labor_DanhSachTrinhKy" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
@@ -86,12 +86,12 @@
                 <td class="DataListTableTdItemJustify">
                     <%# (Eval("NgayHoanThien").ToString() != "")?((DateTime)Eval("NgayHoanThien")).ToString("dd/MM/yyyy"):"" %><br />                 
                 </td>
-                <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangBHTN").ToString() != ""? Eval("SoThangBHTN") :"0"%> tháng
+                <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
                 </td>
                 <td class="DataListTableTdItemCenter">
                     <a href="ThamDinh.aspx?id=<%#Eval("IDNLDTCTN")%>">
                         <img src="/Images/Forward.png" alt="Thẩm định" title ="Thẩm định"></a>  
-                     <a href="#TrinhKyModal" onclick="delmodal(<%# Eval("IDNguoiLaoDong") %>)"> <img src="/Images/Edit.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
+                     <a href="#TrinhKyModal" onclick="delmodal(<%# Eval("IDNLDTCTN") %>)"> <img src="/Images/Edit.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
                 </td>
             </tr>
         </ItemTemplate>

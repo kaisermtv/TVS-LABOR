@@ -80,7 +80,7 @@
                 <td class="DataListTableTdItemJustify">
                     <%# (Eval("NgayHoanThien").ToString() != "")?((DateTime)Eval("NgayHoanThien")).ToString("dd/MM/yyyy"):"" %><br />                 
                 </td>
-                <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangBHTN").ToString() != ""? Eval("SoThangBHTN") :"0"%> tháng
+                <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
                 </td>
                 <td class="DataListTableTdItemCenter">
                     <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>">

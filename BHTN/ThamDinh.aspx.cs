@@ -54,7 +54,7 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
                     txtSoDienThoai.Text = tblNguoiLaoDong.Rows[0]["DienThoai"].ToString();
                     txtNoiThuongTru.Text = tblNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString();
                     txtChoOHienTai.Text = tblNguoiLaoDong.Rows[0]["DiaChi"].ToString();
-                    txtSoThangDongBHXH.Text = rowTroCapThatNghiep["SoThangBHTN"].ToString();
+                    txtSoThangDongBHXH.Text = rowTroCapThatNghiep["SoThangDongBHXH"].ToString();
                     if (rowTroCapThatNghiep["NgayNghiViec"] != null && rowTroCapThatNghiep["NgayNghiViec"].ToString()!="")
                     {
                         txtNgayNghiViec.Value = ((DateTime)rowTroCapThatNghiep["NgayNghiViec"]).ToString();
@@ -63,7 +63,7 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
                     {
                         DateTime NgayHoanThien = (DateTime)rowTroCapThatNghiep["NgayHoanThien"];
                         txtNgayHoanThien.Value = NgayHoanThien.ToString("dd/MM/yyyy");
-                        lblNgayDangKy.Text = ((DateTime)rowTroCapThatNghiep["NgayDangKyTN"]).ToString("dd/MM/yyyy");
+                        lblNgayDangKy.Text = ((DateTime)rowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy");
                         lblNgayHoanThien.Text = NgayHoanThien.ToString("dd/MM/yyyy");
                         lblHanHoanThien.Text = new TinhHuong().TinhNgayNghiLe(NgayHoanThien, 15).ToString("dd/MM/yyyy");
                         lblNgayTraQD.Text = new TinhHuong().TinhNgayNghiLe(NgayHoanThien, 20).ToString("dd/MM/yyyy");
@@ -145,7 +145,7 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
             lstInput.Add("[SoBHXH]");
             lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
             lstInput.Add("[SoThangDong]");
-            lstOutput.Add(rowTroCapThatNghiep["SoThangBHTN"].ToString());
+            lstOutput.Add(rowTroCapThatNghiep["SoThangDongBHXH"].ToString());
             lstInput.Add("[DongTuThang]");
             lstOutput.Add(tblTinhHuong.Rows[0]["HuongTungay"].ToString());
             lstInput.Add("[DongDenThang]");
@@ -210,7 +210,7 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
             lstInput.Add("[NgayKy]");           
             try
             {
-                 DateTime NgayDangKy = (DateTime)RowTroCapThatNghiep["NgayDangKyTN"];
+                 DateTime NgayDangKy = (DateTime)RowTroCapThatNghiep["NgayNopHoSo"];
                  DateTime NgayQuyetDinh = new DateTime();
                  NgayQuyetDinh = objTinhHuong.TinhNgayNghiLe(NgayDangKy, 20);
                  lstOutput.Add(NgayQuyetDinh.ToString("dd/MM/yyyy"));
@@ -267,19 +267,19 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
     protected void btnDuyet_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
-        objTinhHuong.UpdateTrangThaiHS(int.Parse(hdIDNguoiLaoDong.Value), 7);
+        objTinhHuong.UpdateTrangThaiHS(itemId, 7);
         Response.Redirect("DanhSachThamDinh.aspx");
     }
     protected void btnTraThamDinh_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
-        objTinhHuong.UpdateTrangThaiHS(int.Parse(hdIDNguoiLaoDong.Value), 2);
+        objTinhHuong.UpdateTrangThaiHS(itemId, 2);
         Response.Redirect("DanhSachThamDinh.aspx");
     }
     protected void btnTraTiepNhat_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
-        objTinhHuong.UpdateTrangThaiHS(int.Parse(hdIDNguoiLaoDong.Value), 1);
+        objTinhHuong.UpdateTrangThaiHS(itemId, 1);
         Response.Redirect("DanhSachThamDinh.aspx");
     }
 }

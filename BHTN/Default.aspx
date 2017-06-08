@@ -19,11 +19,15 @@
     </div>
 
     <div class = "Tuvan menuitem" style="background-color: #00a8ec;">
-        <a href="DangKyHoSo.aspx">Tính hưởng</a>
+        <a href="Danhsachtinhhuong.aspx">Tính hưởng</a>
     </div>
 
     <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
-        <a href="DangKyHoSo.aspx">Thẩm định</a>
+        <a href="DanhSachThamDinh.aspx">Thẩm định</a>
+    </div>
+    
+      <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="Danhsachtrinhky.aspx">Trình ký - lấy số</a>
     </div>
 
 
