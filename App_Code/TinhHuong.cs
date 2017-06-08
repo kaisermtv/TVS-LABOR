@@ -43,12 +43,13 @@ public class TinhHuong:DataClass
     public float HeSoPhuCap6 { get; set; }
     public decimal LuongCoBan6 { get; set; }
     public decimal MucDong6 { get; set; }
-    public int SoThangDongBHXH { get; set; }
     public int SoThangHuongBHXH { get; set; }
+    public int SoThangBaoLuuBHXH { get; set; }
     public decimal MucHuongToiDa { get; set; }
     public decimal LuongTrungBinh { get; set; }
     public decimal MucHuong { get; set; }
     public DateTime HuongTuNgay { get; set; }
+    public DateTime HuongDenNgay { get; set; }
     public int IDNguoiTinh { get; set; }
     #endregion 
     public TinhHuong()
@@ -62,14 +63,14 @@ public class TinhHuong:DataClass
         , string ThangDong4, float HeSoLuong4, float HeSoPhuCap4, decimal LuongCoBan4, decimal MucDong4
         , string ThangDong5, float HeSoLuong5, float HeSoPhuCap5, decimal LuongCoBan5, decimal MucDong5
         , string ThangDong6, float HeSoLuong6, float HeSoPhuCap6, decimal LuongCoBan6, decimal MucDong6
-        , int SoThangDongBHXH,int SoThangHuongBHXH, decimal MucHuongToiDa,decimal LuongTrungBinh,decimal MucHuong,DateTime HuongTuNgay,int IDNguoiTinh 
+        ,int SoThangHuongBHXH,int SoThangBaoLuuBHXH, decimal MucHuongToiDa,decimal LuongTrungBinh,decimal MucHuong,DateTime HuongTuNgay, DateTime HuongDenNgay, int IDNguoiTinh 
      )
     {
         int tmpValue = 0;
         try
         {
             string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM TblTinhHuong WHERE IDNguoiLaoDong= @IDNguoiLaoDong) ";
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM TblTinhHuong WHERE IDNLDTCTN= @IDNLDTCTN) ";
             sqlQuery += "BEGIN INSERT INTO TblTinhHuong(IDNguoiLaoDong,IDNLDTCTN,NgayTao,IDVungLuongToiThieu,LuongToiThieuVung";
             sqlQuery += ",ThangDong1,HeSoLuong1,HeSoPhuCap1,LuongCoBan1,MucDong1";
             sqlQuery += ",ThangDong2,HeSoLuong2,HeSoPhuCap2,LuongCoBan2,MucDong2";
@@ -77,7 +78,7 @@ public class TinhHuong:DataClass
             sqlQuery += ",ThangDong4,HeSoLuong4,HeSoPhuCap4,LuongCoBan4,MucDong4";
             sqlQuery += ",ThangDong5,HeSoLuong5,HeSoPhuCap5,LuongCoBan5,MucDong5";
             sqlQuery += ",ThangDong6,HeSoLuong6,HeSoPhuCap6,LuongCoBan6,MucDong6";
-            sqlQuery += ",SoThangDongBHXH,SoThangHuongBHXH,MucHuongToiDa,LuongTrungBinh,MucHuong,HuongTuNgay,IDNguoiTinh";
+            sqlQuery += ",SoThangHuongBHXH,SoThangBaoLuuBHXH,MucHuongToiDa,LuongTrungBinh,MucHuong,HuongTuNgay,HuongDenNgay,IDNguoiTinh";
             sqlQuery += ")";
             sqlQuery += " VALUES(@IDNguoiLaoDong,@IDNLDTCTN,@NgayTao,@IDVungLuongToiThieu,@LuongToiThieuVung";
             sqlQuery += ",@ThangDong1,@HeSoLuong1,@HeSoPhuCap1,@LuongCoBan1,@MucDong1";
@@ -86,7 +87,7 @@ public class TinhHuong:DataClass
             sqlQuery += ",@ThangDong4,@HeSoLuong4,@HeSoPhuCap4,@LuongCoBan4,@MucDong4";
             sqlQuery += ",@ThangDong5,@HeSoLuong5,@HeSoPhuCap5,@LuongCoBan5,@MucDong5";
             sqlQuery += ",@ThangDong6,@HeSoLuong6,@HeSoPhuCap6,@LuongCoBan6,@MucDong6";
-            sqlQuery += ",@SoThangDongBHXH,@SoThangHuongBHXH,@MucHuongToiDa,@LuongTrungBinh,@MucHuong,@HuongTuNgay,@IDNguoiTinh";
+            sqlQuery += ",@SoThangHuongBHXH,@SoThangBaoLuuBHXH,@MucHuongToiDa,@LuongTrungBinh,@MucHuong,@HuongTuNgay,@HuongDenNgay,@IDNguoiTinh";
             sqlQuery += ") END ";
             sqlQuery += "ELSE BEGIN UPDATE TblTinhHuong SET NgayTao=@NgayTao,IDVungLuongToiThieu=@IDVungLuongToiThieu,LuongToiThieuVung=@LuongToiThieuVung";
             sqlQuery += ",ThangDong1=@ThangDong1,HeSoLuong1=@HeSoLuong1,HeSoPhuCap1=@HeSoPhuCap1,LuongCoBan1=@LuongCoBan1,MucDong1=@MucDong1";
@@ -95,8 +96,8 @@ public class TinhHuong:DataClass
             sqlQuery += ",ThangDong4=@ThangDong4,HeSoLuong4=@HeSoLuong4,HeSoPhuCap4=@HeSoPhuCap4,LuongCoBan4=@LuongCoBan4,MucDong4=@MucDong4";
             sqlQuery += ",ThangDong5=@ThangDong5,HeSoLuong5=@HeSoLuong5,HeSoPhuCap5=@HeSoPhuCap5,LuongCoBan5=@LuongCoBan5,MucDong5=@MucDong5";
             sqlQuery += ",ThangDong6=@ThangDong6,HeSoLuong6=@HeSoLuong6,HeSoPhuCap6=@HeSoPhuCap6,LuongCoBan6=@LuongCoBan6,MucDong6=@MucDong6";
-            sqlQuery += ",SoThangDongBHXH=@SoThangDongBHXH,SoThangHuongBHXH=@SoThangHuongBHXH,MucHuongToiDa=@MucHuongToiDa,LuongTrungBinh=@LuongTrungBinh,MucHuong=@MucHuong,HuongTuNgay=@HuongTuNgay,IDNguoiTinh=@IDNguoiTinh";
-            sqlQuery += " WHERE IDNguoiLaoDong = @IDNguoiLaoDong END";
+            sqlQuery += ",SoThangHuongBHXH=@SoThangHuongBHXH,SoThangBaoLuuBHXH=@SoThangBaoLuuBHXH,MucHuongToiDa=@MucHuongToiDa,LuongTrungBinh=@LuongTrungBinh,MucHuong=@MucHuong,HuongTuNgay=@HuongTuNgay,HuongDenNgay=@HuongDenNgay,IDNguoiTinh=@IDNguoiTinh";
+            sqlQuery += " WHERE IDNLDTCTN = @IDNLDTCTN END";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd =  sqlCon.CreateCommand();  
@@ -135,13 +136,14 @@ public class TinhHuong:DataClass
             Cmd.Parameters.Add("HeSoLuong6", SqlDbType.Float).Value = HeSoLuong6;
             Cmd.Parameters.Add("HeSophuCap6", SqlDbType.Float).Value = HeSoPhuCap6;
             Cmd.Parameters.Add("LuongCoBan6", SqlDbType.Decimal).Value = LuongCoBan6;
-            Cmd.Parameters.Add("MucDong6", SqlDbType.Decimal).Value = MucDong6;
-            Cmd.Parameters.Add("SoThangDongBHXH", SqlDbType.Int).Value = SoThangDongBHXH;
+            Cmd.Parameters.Add("MucDong6", SqlDbType.Decimal).Value = MucDong6;      
             Cmd.Parameters.Add("SoThangHuongBHXH", SqlDbType.Int).Value = SoThangHuongBHXH;
+            Cmd.Parameters.Add("SoThangBaoLuuBHXH", SqlDbType.Int).Value = SoThangBaoLuuBHXH;
             Cmd.Parameters.Add("MucHuongToiDa", SqlDbType.Decimal).Value = MucHuongToiDa;
             Cmd.Parameters.Add("LuongTrungBinh", SqlDbType.Decimal).Value = LuongTrungBinh;
             Cmd.Parameters.Add("MucHuong", SqlDbType.Decimal).Value = MucHuong;
             Cmd.Parameters.Add("HuongTuNgay", SqlDbType.DateTime).Value = HuongTuNgay;
+            Cmd.Parameters.Add("HuongDenNgay", SqlDbType.DateTime).Value = HuongDenNgay;
             Cmd.Parameters.Add("IDNguoiTinh", SqlDbType.Int).Value = IDNguoiTinh;
             Cmd.ExecuteNonQuery();
             sqlCon.Close();
@@ -158,7 +160,7 @@ public class TinhHuong:DataClass
     }
     #endregion
     #region method getDataById
-    public DataTable getDataById(int IDNguoiLaoDong)
+    public DataTable getDataById(int IDNLDTCTN)
     {
         DataTable objTable = new DataTable();
         try
@@ -166,8 +168,8 @@ public class TinhHuong:DataClass
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);         
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
-            Cmd.CommandText = "SELECT * FROM TblTinhHuong WHERE IDNguoiLaoDong = @IDNguoiLaoDong";
+            Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+            Cmd.CommandText = "SELECT * FROM TblTinhHuong WHERE IDNLDTCTN = @IDNLDTCTN";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -183,7 +185,7 @@ public class TinhHuong:DataClass
         return objTable;
     }
     #endregion
-
+    #region kiem tra su thong tai cua bang tinh huong
     public bool CheckExists(int IDNguoiLaoDong, int IDNLDTCTN)
     {
         bool Status=false;
@@ -202,7 +204,139 @@ public class TinhHuong:DataClass
         {
             Status = true;
         }
-        return Status;  
+        return Status;
     }
+    #endregion
+    #region tinh ngay nghi le
+    public DateTime TinhNgayNghiLe(DateTime NgayNop, int SoNgayThuLy)
+    {
+        for (int i = 0; i < SoNgayThuLy; i++)
+        {
+            NgayNop = NgayNop.AddDays(1);
+            NgayNop = KiemTraNgayNghi(NgayNop);
+            if (NgayNop.DayOfWeek == DayOfWeek.Saturday)
+            {
+                NgayNop = NgayNop.AddDays(1);
+            }
+            if (NgayNop.DayOfWeek == DayOfWeek.Sunday)
+            {
+                NgayNop = NgayNop.AddDays(1);
+            }         
+        }
+        // kiem tra lai sau khi da tru thu 7, cn co bi trung vao ngay nghi tiep khong
+        NgayNop = KiemTraNgayNghi(NgayNop);
+        return NgayNop;
+    }
+    private DateTime KiemTraNgayNghi(DateTime Datetime)
+    {
+        DataTable tblNgayNghiLe = GetDanhSachNgayNghiLe(Datetime.Year.ToString().Trim());    
+        if(tblNgayNghiLe ==null || tblNgayNghiLe.Rows.Count==0)
+        {
+            return Datetime;
+        }
+        for (int i = 0; i < tblNgayNghiLe.Rows.Count;i++ )
+        {         
+            if (Datetime.ToString("dd/MM/yyyy").Trim() == tblNgayNghiLe.Rows[i]["NameDanhMuc"].ToString().Trim())
+            {
+               Datetime= Datetime.AddDays(1);
+            }
+        }
+        return Datetime;
+    }
+    #endregion
+    #region DanhSachNgayNghiLe
+    public DataTable GetDanhSachNgayNghiLe(string NamHienTai)
+    {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd =  sqlCon.CreateCommand();  
+            Cmd.CommandText = "select *  from tbldanhmuc Where DanhMucid=24 And right(NameDanhMUc,4)=@NamHienTai";
+            Cmd.Parameters.Add("NamHienTai", SqlDbType.NVarChar).Value = NamHienTai;
+            SqlDataAdapter da = new SqlDataAdapter(Cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            return ds.Tables[0];
+    }
+    #endregion 
+    #region Danh sách hồ sơ chờ tính hưởng 
+    public DataTable getDanhSachHoSo(int TrangThaiHS,int TrangThaiHS2=0, string searchKey = "")
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.idNLDTCTN,TN.NgayDangKyTN,NgayHoanThien,TN.NgayNghiViec,TN.SoThangBHTN,TT.name AS TrangThai,P.TrangThaiHS FROM TblNguoiLaoDong AS P";
+            Cmd.CommandText += " LEFT JOIN TblNLDTroCapThatNghiep AS TN ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
+            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON P.TrangThaiHS = TT.id";
+            Cmd.CommandText += " WHERE (P.TrangThaiHS=@TrangThaiHS) Or (P.TrangThaiHS=@TrangThaiHS2)";
+            Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
+            Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = TrangThaiHS;
+            Cmd.Parameters.Add("TrangThaiHS2", SqlDbType.Int).Value = TrangThaiHS2;
+            Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
+            SqlDataAdapter da = new SqlDataAdapter(Cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            this.SQLClose();
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion 
+    #region LuongToiThieu
+    public DataTable GetLuongToiThieuByTienLuong(string TienLuong )
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT * FROM tblDanhMuc";
+            Cmd.CommandText += " WHERE DanhMucId = @DanhMucId And cast(Note as nvarchar)=@TienLuong";
+            Cmd.Parameters.Add("DanhMucId", SqlDbType.Int).Value = 19;
+            Cmd.Parameters.Add("TienLuong", SqlDbType.NVarChar).Value = TienLuong;
+            SqlDataAdapter da = new SqlDataAdapter(Cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            this.SQLClose();
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+    #endregion
+    #region Cap nhat trang thai ho so
+    public int UpdateTrangThaiHS(int IDNguoiLaoDong, int IDTrangThaiHS)
+    {
+        int rows = 0;
+        try
+        {            
+            string sql = "Update TblNguoiLaoDong Set TrangThaiHS=@TrangThaiHS Where IDNguoiLaoDong=@IDNguoiLaoDong";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sql;
+            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
+            Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = IDTrangThaiHS;
+            rows = Cmd.ExecuteNonQuery();        
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            rows = 0;
+        }
+        return rows;
+    }
+    #endregion 
 
 }

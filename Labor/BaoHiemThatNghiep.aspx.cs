@@ -34,16 +34,15 @@ public partial class Labor_BaoHiemThatNghiep : System.Web.UI.Page
         }
 
         DataTable objData = objNguoiLaoDong.getListBaoHiemThatNghiep(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value);
-        //if (objData.Rows.Count > 0)
-        //{
+        if (objData !=null &&  objData.Rows.Count > 0)
+        {
             cpData.MaxPages = 1000;
             cpData.PageSize = 12;
             cpData.DataSource = objData.DefaultView;
             cpData.BindToControl = dtlData;
             dtlData.DataSource = cpData.DataSourcePaged;
             dtlData.DataBind();
-
-        //}
+        }
     }
     protected void btnHoanThienHoSo_Click(object sender, EventArgs e)
     {
