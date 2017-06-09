@@ -46,7 +46,7 @@
         </div>
         <div style="float: left; width: 15%; margin: 10px">
             <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                <input type='text' class="form-control dateinput" id="Text1" runat="server" placeholder="Nộp từ ngày" />
+                <input type='text' class="form-control dateinput" id="txtTuNgay" runat="server" placeholder="Nộp từ ngày" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -54,7 +54,7 @@
         </div>
         <div style="float: left; width: 15%; margin: 10px">
             <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                <input type='text' class="form-control dateinput" id="Text2" runat="server" placeholder="Nộp đến ngày" />
+                <input type='text' class="form-control dateinput" id="txtDenNgay" runat="server" placeholder="Nộp đến ngày" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>

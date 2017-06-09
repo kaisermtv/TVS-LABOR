@@ -37,7 +37,7 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
 
         }
 
-        DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value);
+        DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value, TVSSystem.CVDateNull(txtTuNgay.Value),TVSSystem.CVDateNull(txtDenNgay.Value));
         //if (objData.Rows.Count > 0)
         //{
         cpData.MaxPages = 1000;

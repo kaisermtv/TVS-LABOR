@@ -11,7 +11,7 @@ using System.Web;
 public class BHTNClass :DataClass
 {
     #region Method getList
-    public DataTable getListDangKY(int idtrangthai, string searchKey = "")
+    public DataTable getListDangKY(int idtrangthai, string searchKey = "",DateTime? TuNgay = null,DateTime? DenNgay = null)
     {
         try
         {
@@ -32,6 +32,19 @@ public class BHTNClass :DataClass
                 Cmd.CommandText += " AND TN.IdTrangThai = @IDTrangThai";
                 Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
             }
+
+            if(TuNgay != null){
+                Cmd.CommandText += " AND TN.NgayNopHoSo >= @TuNgay";
+                Cmd.Parameters.Add("TuNgay", SqlDbType.DateTime).Value = TuNgay;
+            }
+
+            if (DenNgay != null)
+            {
+                DenNgay = ((DateTime)DenNgay).AddDays(1);
+                Cmd.CommandText += " AND TN.NgayNopHoSo < @DenNgay";
+                Cmd.Parameters.Add("DenNgay", SqlDbType.DateTime).Value = DenNgay;
+            }
+            
 
             Cmd.CommandText += " ORDER BY TN.EditDay DESC";
 
