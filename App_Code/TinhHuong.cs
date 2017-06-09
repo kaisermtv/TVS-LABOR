@@ -266,10 +266,10 @@ public class TinhHuong:DataClass
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT P.[IDNguoiLaoDong],P.[HoVaTen],P.[CMND],P.[BHXH],TN.idNLDTCTN,TN.NgayDangKyTN,NgayHoanThien,TN.NgayNghiViec,TN.SoThangBHTN,TT.name AS TrangThai,P.TrangThaiHS FROM TblNguoiLaoDong AS P";
-            Cmd.CommandText += " LEFT JOIN TblNLDTroCapThatNghiep AS TN ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
-            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON P.TrangThaiHS = TT.id";
-            Cmd.CommandText += " WHERE (P.TrangThaiHS=@TrangThaiHS) Or (P.TrangThaiHS=@TrangThaiHS2)";
+            Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
+            Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
+            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
+            Cmd.CommandText += " WHERE (TN.IdTrangThai=@TrangThaiHS) Or (TN.IdTrangThai=@TrangThaiHS2)";
             Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
             Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = TrangThaiHS;
             Cmd.Parameters.Add("TrangThaiHS2", SqlDbType.Int).Value = TrangThaiHS2;
@@ -313,17 +313,17 @@ public class TinhHuong:DataClass
     }
     #endregion
     #region Cap nhat trang thai ho so
-    public int UpdateTrangThaiHS(int IDNguoiLaoDong, int IDTrangThaiHS)
+    public int UpdateTrangThaiHS(int IDNLDTCTN, int IDTrangThaiHS)
     {
         int rows = 0;
         try
-        {            
-            string sql = "Update TblNguoiLaoDong Set TrangThaiHS=@TrangThaiHS Where IDNguoiLaoDong=@IDNguoiLaoDong";
+        {
+            string sql = "Update TblNLDTroCapThatNghiep Set IdTrangThai=@TrangThaiHS Where IDNLDTCTN=@IDNLDTCTN";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = sql;
-            Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
+            Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
             Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = IDTrangThaiHS;
             rows = Cmd.ExecuteNonQuery();        
             sqlCon.Close();

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThamDinh.aspx.cs" Inherits="Labor_ThamDinh" %>
-<%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
+<%@ Register src="../BHTN/uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .label1 {
@@ -419,7 +419,7 @@
                     </tr>
                 </table>
             </div>
-            d</div>        
+            </div>        
         <br />
         <br />
         <br />
