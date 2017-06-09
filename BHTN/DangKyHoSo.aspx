@@ -41,21 +41,37 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div  style="margin-top:-20px;width:100%">
-        <div style="float:left;width:50%;margin:10px">
+        <div style="float:left;width:35%;margin:10px">
             <input type="text" id="txtSearch" placeholder="Nhập tên NLĐ, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
         </div>
-        <div style="float:left;width:20%;margin:10px">
+        <div style="float: left; width: 15%; margin: 10px">
+            <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                <input type='text' class="form-control dateinput" id="Text1" runat="server" placeholder="Nộp từ ngày" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div style="float: left; width: 15%; margin: 10px">
+            <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                <input type='text' class="form-control dateinput" id="Text2" runat="server" placeholder="Nộp đến ngày" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div style="float:left;width:15%;margin:10px">
             <asp:DropDownList ID="ddlIDTrangThai" AutoPostBack="true" CssClass="form-control" runat="server" Style="width: 100%;">
             </asp:DropDownList>
         </div>
-        <div style="float:left;width:50px;margin:10px">
+        
+        <div style="float:left;width:40px;margin:10px">
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
         </div>
-        <div style="float:right;width:80px;margin:10px">
+        <div style="float:right;width:68px;margin:10px;text-align:right;">
             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
         </div>
     </div>
-
 
     <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
         <HeaderTemplate>
