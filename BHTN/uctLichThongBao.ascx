@@ -11,7 +11,7 @@
     }
 </style>
 <div class="row line"> 
-    t<table style="border: 0px solid; width: 100%">
+    <table style="border: 0px solid; width: 100%">
        <tr>
            <th>Họ tên:</th>
            <td>

@@ -354,7 +354,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
        , objLichThongBao.KhaiBaoThang10TuNgay, objLichThongBao.KhaiBaoThang10DenNgay
        , objLichThongBao.KhaiBaoThang11TuNgay, objLichThongBao.KhaiBaoThang11DenNgay
        , objLichThongBao.KhaiBaoThang12TuNgay, objLichThongBao.KhaiBaoThang12DenNgay);
-        objTinhHuong.UpdateTrangThaiHS(int.Parse(hdIDNguoiLaoDong.Value), 3);    
+        objTinhHuong.UpdateTrangThaiHS(itemId, 3);    
         _msg = "Cập nhật thành công. " + objTinhHuong.Message;
 
 
