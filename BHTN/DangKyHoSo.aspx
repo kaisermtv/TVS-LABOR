@@ -62,6 +62,9 @@
         </div>
         <div style="float:left;width:15%;margin:10px">
             <asp:DropDownList ID="ddlIDTrangThai" AutoPostBack="true" CssClass="form-control" runat="server" Style="width: 100%;">
+                <asp:ListItem Value="0">--Trạng thái hồ sơ--</asp:ListItem>
+                <asp:ListItem Value="1">Đang đăng ký</asp:ListItem>
+                <asp:ListItem Value="-1">Chờ đăng ký</asp:ListItem>
             </asp:DropDownList>
         </div>
         

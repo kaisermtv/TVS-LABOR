@@ -23,14 +23,21 @@ public class BHTNClass :DataClass
 
             if (searchKey != "")
             {
-                Cmd.CommandText += " AND UPPER(RTRIM(LTRIM(P.[HoVaTen]))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+                Cmd.CommandText += " AND (UPPER(RTRIM(LTRIM(P.[HoVaTen]))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' OR P.CMND = @SearchKey OR P.BHXH = @SearchKey )";
                 Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
             }
 
             if (idtrangthai != 0)
             {
-                Cmd.CommandText += " AND TN.IdTrangThai = @IDTrangThai";
-                Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
+                if (idtrangthai == -1)
+                {
+                    Cmd.CommandText += " AND TN.IdTrangThai IS NULL";
+                }
+                else
+                {
+                    Cmd.CommandText += " AND TN.IdTrangThai = @IDTrangThai";
+                    Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
+                }
             }
 
             if(TuNgay != null){

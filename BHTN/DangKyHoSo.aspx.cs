@@ -25,11 +25,11 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            DataTable objTrangthai = objNguoiLaoDong.getDataTrangThaiToCombobox();
-            ddlIDTrangThai.DataSource = objTrangthai.DefaultView;
-            ddlIDTrangThai.DataTextField = "name";
-            ddlIDTrangThai.DataValueField = "id";
-            ddlIDTrangThai.DataBind();
+            //DataTable objTrangthai = objNguoiLaoDong.getDataTrangThaiToCombobox();
+            //ddlIDTrangThai.DataSource = objTrangthai.DefaultView;
+            //ddlIDTrangThai.DataTextField = "name";
+            //ddlIDTrangThai.DataValueField = "id";
+            //ddlIDTrangThai.DataBind();
             ddlIDTrangThai.SelectedValue = "0";
 
             txtNgayHoanThanh.Value = DateTime.Now.ToString("dd/MM/yyyy");
