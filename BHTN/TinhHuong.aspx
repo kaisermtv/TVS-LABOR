@@ -200,7 +200,7 @@
             </div>
         </div>
         <div class="row line">
-  `         <div class="label1">
+         <div class="label1">
             Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
@@ -444,6 +444,9 @@
                 <br />
                 <br />
                 <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
+                <br />
+                <br />
+                 <asp:Button ID="btnChuyenTraHoSo" runat="server" Text="Chuyển trả hồ sơ" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenTraHoSo_Click" />
                 <br />
                 <br />
                 <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />

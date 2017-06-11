@@ -139,6 +139,11 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         }
         objTinhHuong.IDNguoiLaoDong = int.Parse(hdIDNguoiLaoDong.Value);
         // lay ID luong toi thieu
+        if (ddlLuongToiThieu.SelectedValue == null || ddlLuongToiThieu.SelectedValue.ToString().Trim() == "0")
+        {
+            _msg = "Bạn chưa chọn lương tối thiểu vùng";
+            return;
+        }
         DataTable tblLuongToiThieu = objTinhHuong.GetLuongToiThieuByTienLuong(ddlLuongToiThieu.SelectedValue.ToString().Trim());
         if (tblLuongToiThieu == null || tblLuongToiThieu.Rows.Count == 0)
         {
@@ -354,7 +359,8 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
        , objLichThongBao.KhaiBaoThang10TuNgay, objLichThongBao.KhaiBaoThang10DenNgay
        , objLichThongBao.KhaiBaoThang11TuNgay, objLichThongBao.KhaiBaoThang11DenNgay
        , objLichThongBao.KhaiBaoThang12TuNgay, objLichThongBao.KhaiBaoThang12DenNgay);
-        objTinhHuong.UpdateTrangThaiHS(itemId, 3);    
+        objTinhHuong.UpdateTrangThaiHS(itemId, 3);
+        Response.Redirect(Page.Request.Url.ToString(), true);
         _msg = "Cập nhật thành công. " + objTinhHuong.Message;
 
 
@@ -525,8 +531,11 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
 
 
     }
-    protected void btnLichThongBao_Click(object sender, EventArgs e)
+ 
+    protected void btnChuyenTraHoSo_Click(object sender, EventArgs e)
     {
-
+        TinhHuong objTinhHuong = new TinhHuong();
+        objTinhHuong.UpdateTrangThaiHS(itemId, 1);
+        Response.Redirect("DanhSachTinhHuong.aspx");
     }
 }

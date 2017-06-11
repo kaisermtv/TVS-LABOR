@@ -200,7 +200,7 @@
             </div>
         </div>
         <div class="row line">
-  `         <div class="label1">
+           <div class="label1">
             Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
