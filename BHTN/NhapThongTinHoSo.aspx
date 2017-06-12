@@ -412,7 +412,7 @@
                 </div>
                 <div class="line" style="display:table;width:100%">
                     <div class="label1">
-                        Nơi thường trú: 
+                        Địa chỉ: 
                     </div>
                     <div style="width: 15%; float: left;margin-right:10px">
                         <asp:DropDownList ID="ddlTinh_DC" onChange="getQuanHuyen(this.options[this.selectedIndex].value,'ddlHuyen_DC','ddlXa_DC')" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;">

@@ -39,14 +39,16 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             Response.Redirect("../Login.aspx");
         }
 
+        Session["TITLE"] = "Đăng ký hồ sơ".ToUpper();
+
         try
         {
             this.itemId = int.Parse(Request["id"].ToString());
         }
         catch
         {
-            //this.itemId = 0;
-            Response.Redirect("DangKyHoSo.aspx");
+            this.itemId = 0;
+            //Response.Redirect("DangKyHoSo.aspx");
         }
 
         if (itemId != 0)
@@ -111,6 +113,24 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             ddlNoiKhamBenh.DataValueField = "IdDanhMuc";
             ddlNoiKhamBenh.DataBind();
             ddlNoiKhamBenh.SelectedValue = "0";
+
+            ddlNoiNhanTCTN.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi nhận TCTN--", TVSSystem.NoiDangKyKhamBenh);
+            ddlNoiNhanTCTN.DataTextField = "NameDanhMuc";
+            ddlNoiNhanTCTN.DataValueField = "IdDanhMuc";
+            ddlNoiNhanTCTN.DataBind();
+            ddlNoiNhanTCTN.SelectedValue = "0";
+
+            ddlGiayToKemtheo.DataSource = objDanhMuc.getDataCategoryToCombobox("--Giấy tờ kèm theo--", TVSSystem.NoiDangKyKhamBenh);
+            ddlGiayToKemtheo.DataTextField = "NameDanhMuc";
+            ddlGiayToKemtheo.DataValueField = "IdDanhMuc";
+            ddlGiayToKemtheo.DataBind();
+            ddlGiayToKemtheo.SelectedValue = "0";
+
+            ddlLoaiHopDong.DataSource = objDanhMuc.getDataCategoryToCombobox("--Chọn loại hợp đồng--", TVSSystem.NoiDangKyKhamBenh);
+            ddlLoaiHopDong.DataTextField = "NameDanhMuc";
+            ddlLoaiHopDong.DataValueField = "IdDanhMuc";
+            ddlLoaiHopDong.DataBind();
+            ddlLoaiHopDong.SelectedValue = "0";
 
 
 

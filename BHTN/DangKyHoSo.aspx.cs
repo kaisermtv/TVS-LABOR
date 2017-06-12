@@ -37,6 +37,16 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
 
         }
 
+        if (ddlIDTrangThai.SelectedValue == "-2")
+        {
+            //txtTuNgay.pa
+               // txtDenNgay
+        }
+        else
+        {
+
+        }
+
         DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value, TVSSystem.CVDateNull(txtTuNgay.Value),TVSSystem.CVDateNull(txtDenNgay.Value));
         //if (objData.Rows.Count > 0)
         //{

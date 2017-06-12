@@ -41,7 +41,7 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div  style="margin-top:-20px;width:100%">
-        <div style="float:left;width:35%;margin:10px">
+        <div style="float:left;width:32%;margin:10px">
             <input type="text" id="txtSearch" placeholder="Nhập tên NLĐ, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
         </div>
         <div style="float: left; width: 15%; margin: 10px">
@@ -60,18 +60,20 @@
                 </span>
             </div>
         </div>
-        <div style="float:left;width:15%;margin:10px">
+        <div style="float:left;width:14%;margin:10px">
             <asp:DropDownList ID="ddlIDTrangThai" AutoPostBack="true" CssClass="form-control" runat="server" Style="width: 100%;">
                 <asp:ListItem Value="0">--Trạng thái hồ sơ--</asp:ListItem>
                 <asp:ListItem Value="1">Đang đăng ký</asp:ListItem>
                 <asp:ListItem Value="-1">Chờ đăng ký</asp:ListItem>
+                <asp:ListItem Value="-2">Đã chuyển</asp:ListItem>
             </asp:DropDownList>
         </div>
         
-        <div style="float:left;width:40px;margin:10px">
+        <div style="float:left;width:20px;margin:10px">
             <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
         </div>
-        <div style="float:right;width:68px;margin:10px;text-align:right;">
+        <div style="float:right;width:165px;margin:10px;text-align:right;">
+            <a href="/BHTN/NhapThongTinHoSo.aspx"><input type="button" class="btn btn-primary" value="Thêm mới" /></a>
             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
         </div>
     </div>
@@ -108,11 +110,13 @@
                     <%# Eval("SoThangDongBHXH").ToString() != ""? "Đóng " + Eval("SoThangDongBHXH") + " tháng" :""%>
                 </td>
                 <td class="DataListTableTdItemCenter">
+                    <% if(ddlIDTrangThai.SelectedValue != "-2"){ %>
                     <a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>,'<%# Eval("HoVaTen") %>')">
                         <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ">
                     </a>
                     <a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>">
                         <img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
+                    <% } %>
                     <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>
                         <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>--%>
                 </td>

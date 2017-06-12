@@ -19,7 +19,7 @@ public class BHTNClass :DataClass
             Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayNghiViec,TN.SoThangDongBHXH,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
-            Cmd.CommandText += " WHERE TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1)";
+            Cmd.CommandText += " WHERE 1=1";
 
             if (searchKey != "")
             {
@@ -27,17 +27,22 @@ public class BHTNClass :DataClass
                 Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
             }
 
-            if (idtrangthai != 0)
+            if(idtrangthai == 0)
             {
-                if (idtrangthai == -1)
-                {
-                    Cmd.CommandText += " AND TN.IdTrangThai IS NULL";
-                }
-                else
-                {
-                    Cmd.CommandText += " AND TN.IdTrangThai = @IDTrangThai";
-                    Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
-                }
+                Cmd.CommandText += " AND TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1)";
+            }
+            else if (idtrangthai == -1)
+            {
+                Cmd.CommandText += " AND TN.IdTrangThai IS NULL";
+            }
+            else if (idtrangthai == -2)
+            {
+                Cmd.CommandText += " AND TN.IdTrangThai NOT IN(0,1)";
+            }
+            else
+            {
+                Cmd.CommandText += " AND TN.IdTrangThai = @IDTrangThai";
+                Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
             }
 
             if(TuNgay != null){

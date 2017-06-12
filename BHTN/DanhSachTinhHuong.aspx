@@ -52,7 +52,8 @@
                 <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
             </td>
             <td style="width: 90px !important; text-align: center;">
-                &nbsp;</td>
+                <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+            </td>
         </tr>
     </table>
     

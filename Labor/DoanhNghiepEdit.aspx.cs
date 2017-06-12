@@ -42,6 +42,13 @@ public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
         }
         this.txtIDDoanhNghiep.Value = this.itemId.ToString();
 
+        try
+        {
+            lblMsg.Text = Session["lblMsg"].ToString();
+            Session["lblMsg"] = null;
+        }
+        catch { }
+        
 
         if (!Page.IsPostBack)
         {
@@ -137,6 +144,9 @@ public partial class Admin_DoanhNghiepEdit : System.Web.UI.Page
 
         if (this.objDoanhNghiep.setData(ref this.itemId,this.txtMaDonVi.Text,this.txtTenDonVi.Text,int.Parse(this.ddlIDNganhNghe.SelectedValue.ToString()), int.Parse(this.ddlIdLoaiHinh.SelectedValue.ToString()), this.txtQuyMo.Text, this.txtDiaChi.Text,int.Parse(this.ddlIDHuyen.SelectedValue.ToString()),int.Parse(this.ddlIDTinh.SelectedValue.ToString()),this.txtDienThoaiDonVi.Text,this.txtEmailDonVi.Text,this.txtWebsite.Text,this.txtNguoiDaiDien.Text, this.txtDienThoai.Text, this.txtEmail.Text, this.txtChucVu.Text, TVSSystem.CVDate(this.txtNgayDangKy.Value.ToString()),this.ckbNuocNgoai.Checked,this.ckbState.Checked) == 1)
         {
+            Session["lblMsg"] = "Cập nhật thông tin thành công!";
+
+
             Response.Redirect("DoanhNghiepEdit.aspx?id=" + this.itemId);
         }
         else
