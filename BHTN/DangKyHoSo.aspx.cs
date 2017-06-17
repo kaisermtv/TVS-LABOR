@@ -25,11 +25,11 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            DataTable objTrangthai = objNguoiLaoDong.getDataTrangThaiToCombobox();
-            ddlIDTrangThai.DataSource = objTrangthai.DefaultView;
-            ddlIDTrangThai.DataTextField = "name";
-            ddlIDTrangThai.DataValueField = "id";
-            ddlIDTrangThai.DataBind();
+            //DataTable objTrangthai = objNguoiLaoDong.getDataTrangThaiToCombobox();
+            //ddlIDTrangThai.DataSource = objTrangthai.DefaultView;
+            //ddlIDTrangThai.DataTextField = "name";
+            //ddlIDTrangThai.DataValueField = "id";
+            //ddlIDTrangThai.DataBind();
             ddlIDTrangThai.SelectedValue = "0";
 
             txtNgayHoanThanh.Value = DateTime.Now.ToString("dd/MM/yyyy");
@@ -37,7 +37,17 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
 
         }
 
-        DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value);
+        if (ddlIDTrangThai.SelectedValue == "-2")
+        {
+            //txtTuNgay.pa
+               // txtDenNgay
+        }
+        else
+        {
+
+        }
+
+        DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value, TVSSystem.CVDateNull(txtTuNgay.Value),TVSSystem.CVDateNull(txtDenNgay.Value));
         //if (objData.Rows.Count > 0)
         //{
         cpData.MaxPages = 1000;

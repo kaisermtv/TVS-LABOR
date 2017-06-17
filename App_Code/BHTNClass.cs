@@ -11,7 +11,7 @@ using System.Web;
 public class BHTNClass :DataClass
 {
     #region Method getList
-    public DataTable getListDangKY(int idtrangthai, string searchKey = "")
+    public DataTable getListDangKY(int idtrangthai, string searchKey = "",DateTime? TuNgay = null,DateTime? DenNgay = null)
     {
         try
         {
@@ -19,19 +19,44 @@ public class BHTNClass :DataClass
             Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayNghiViec,TN.SoThangDongBHXH,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
-            Cmd.CommandText += " WHERE TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1)";
+            Cmd.CommandText += " WHERE 1=1";
 
             if (searchKey != "")
             {
-                Cmd.CommandText += " AND UPPER(RTRIM(LTRIM(P.[HoVaTen]))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+                Cmd.CommandText += " AND (UPPER(RTRIM(LTRIM(P.[HoVaTen]))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' OR P.CMND = @SearchKey OR P.BHXH = @SearchKey )";
                 Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
             }
 
-            if (idtrangthai != 0)
+            if(idtrangthai == 0)
+            {
+                Cmd.CommandText += " AND TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1)";
+            }
+            else if (idtrangthai == -1)
+            {
+                Cmd.CommandText += " AND TN.IdTrangThai IS NULL";
+            }
+            else if (idtrangthai == -2)
+            {
+                Cmd.CommandText += " AND TN.IdTrangThai NOT IN(0,1)";
+            }
+            else
             {
                 Cmd.CommandText += " AND TN.IdTrangThai = @IDTrangThai";
                 Cmd.Parameters.Add("IDTrangThai", SqlDbType.Int).Value = idtrangthai;
             }
+
+            if(TuNgay != null){
+                Cmd.CommandText += " AND TN.NgayNopHoSo >= @TuNgay";
+                Cmd.Parameters.Add("TuNgay", SqlDbType.DateTime).Value = TuNgay;
+            }
+
+            if (DenNgay != null)
+            {
+                DenNgay = ((DateTime)DenNgay).AddDays(1);
+                Cmd.CommandText += " AND TN.NgayNopHoSo < @DenNgay";
+                Cmd.Parameters.Add("DenNgay", SqlDbType.DateTime).Value = DenNgay;
+            }
+            
 
             Cmd.CommandText += " ORDER BY TN.EditDay DESC";
 

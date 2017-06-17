@@ -142,6 +142,8 @@ INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi nhận bảo hiểm');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi đăng ký khám bệnh');
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Lương tối thiểu vùng');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Loại hợp đồng');
+INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Giấy tờ kèm theo');
 
 
 

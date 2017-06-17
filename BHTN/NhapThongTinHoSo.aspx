@@ -412,7 +412,7 @@
                 </div>
                 <div class="line" style="display:table;width:100%">
                     <div class="label1">
-                        Nơi thường trú: 
+                        Địa chỉ: 
                     </div>
                     <div style="width: 15%; float: left;margin-right:10px">
                         <asp:DropDownList ID="ddlTinh_DC" onChange="getQuanHuyen(this.options[this.selectedIndex].value,'ddlHuyen_DC','ddlXa_DC')" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;">
@@ -665,7 +665,7 @@
                     <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Thông tin đăng ký </a>--%>
                     <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Đăng ký TCTN</a>--%>
                     <a href="#" class="list-group-item" runat="server" onserverclick="DeNghiHuong_Click"><span class="badge1" style ="left:140px;">></span>Đề nghị hưởng </a>
-                    <a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>
+                    <%--<a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>--%>
                     <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>--%>
                 </div>
                 <br />
