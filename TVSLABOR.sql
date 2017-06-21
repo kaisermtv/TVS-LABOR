@@ -327,6 +327,12 @@ INSERT INTO dbo.tblTrangThaiHoSo VALUES (8,N'Đánh số - Trình ký');
 --19/06/2017
 ALTER TABLE dbo.TblCanBo ADD IDChucVu int 
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (12,N'Đã trả QĐ hưởng TCTN');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (13,N'Đề xuất hủy hưởng');
+--21/06/2017
+ALTER TABLE dbo.TblNLDTroCapThatNghiep ADD NgayHenTraKQ datetime 
+ALTER TABLE dbo.TblNLDTroCapThatNghiep ADD NgayKyQD datetime 
+ALTER TABLE dbo.TblNLDTroCapThatNghiep ADD IdNguoiKy int 
+
 
 
 
