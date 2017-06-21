@@ -29,7 +29,7 @@ public class BHTNClass :DataClass
 
             if(idtrangthai == 0)
             {
-                Cmd.CommandText += " AND TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1)";
+                Cmd.CommandText += " AND (TN.IdTrangThai IS NULL OR TN.IdTrangThai IN(0,1))";
             }
             else if (idtrangthai == -1)
             {

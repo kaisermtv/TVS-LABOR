@@ -36,8 +36,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
     #endregion
     private void Load_CauHinh()
     {
-        string MyDateTime = DateTime.Now.ToString("dd/MM/yyyy");
-       
+        string MyDateTime = DateTime.Now.ToString("dd/MM/yyyy");       
       
     }
     protected void btnDaKhaiBao_Click(object sender, EventArgs e)

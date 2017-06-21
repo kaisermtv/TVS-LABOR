@@ -21,6 +21,8 @@ public class NguoiLaoDong :DataAbstract
     {
         switch (name)
         {
+            case "Ma":
+                return SqlDbType.NVarChar;
             case "IDNguoiLaoDong":
                 return SqlDbType.Int;
             case "HoVaTen":
@@ -2402,13 +2404,19 @@ public class NguoiLaoDong :DataAbstract
     #endregion
 
     #region Method checkCMND()
-    public int checkCMND(String cmnd)
+    public int checkCMND(String cmnd,int id = 0)
     {
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT IDNguoiLaoDong FROM TblNguoiLaoDong WHERE CMND = @CMND";
+            Cmd.CommandText = "SELECT TOP 1 IDNguoiLaoDong FROM TblNguoiLaoDong WHERE CMND = @CMND";
             Cmd.Parameters.Add("CMND", SqlDbType.Int).Value = cmnd;
+
+            if(id != 0)
+            {
+                Cmd.CommandText += " AND IDNguoiLaoDong != @IDNguoiLaoDong";
+                Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
+            }
 
             int ret = (int)Cmd.ExecuteScalar();
 
@@ -2425,7 +2433,7 @@ public class NguoiLaoDong :DataAbstract
     #endregion
 
     #region Method checkBHXH()
-    public int checkBHXH(String BHXH)
+    public int checkBHXH(String BHXH,int id = 0)
     {
         try
         {
@@ -2434,6 +2442,12 @@ public class NguoiLaoDong :DataAbstract
             Cmd.Parameters.Add("BHXH", SqlDbType.Int).Value = BHXH;
 
             int ret = (int)Cmd.ExecuteScalar();
+
+            if (id != 0)
+            {
+                Cmd.CommandText += " AND IDNguoiLaoDong != @IDNguoiLaoDong";
+                Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = id;
+            }
 
             this.SQLClose();
             return ret;

@@ -211,7 +211,9 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 #endregion
 
 
+                LoadDataNLD((int)objDataTroCap["IDNguoiLaoDong"]);
                 #region thông tin NLD
+                /*
                 DataTable objData = objNguoiLaoDong.getDataById((int)objDataTroCap["IDNguoiLaoDong"]);
                 if (objData.Rows.Count > 0)
                 {
@@ -353,6 +355,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
 
                 }
+                // */
                 #endregion
 
                 #region tải thông tin doanh nghiệp
@@ -438,6 +441,173 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     }
     #endregion
 
+    #region Method LoadDataNLD
+    private void LoadDataNLD(int idNguoiLaoDong)
+    {
+
+        #region thông tin NLD
+        DataTable objData = objNguoiLaoDong.getDataById(idNguoiLaoDong);
+        if (objData.Rows.Count > 0)
+        {
+            DataRow objDataRow = objData.Rows[0];
+            txtHoVaTen.Text = objDataRow["HoVaTen"].ToString();
+            try
+            {
+                txtNgaySinh.Value = ((DateTime)objDataRow["NgaySinh"]).ToString("dd/MM/yyyy");
+            }
+            catch { }
+
+            int gioitinh = (int)objDataRow["IDGioiTinh"];
+            if (gioitinh == 1) chkGioiTinhNam.Checked = true;
+            else if (gioitinh == 2) chkGioiTinhNu.Checked = true;
+
+            txtCMND.Text = objDataRow["CMND"].ToString();
+            if (txtCMND.Text != "")
+            {
+                txtCMND.ReadOnly = true;
+            }
+            else
+            {
+                txtCMND.ReadOnly = false;
+            }
+            try
+            {
+                txtNgayCap.Value = ((DateTime)objDataRow["NgayCapCMND"]).ToString("dd/MM/yyyy");
+            }
+            catch { }
+            ddlNoiCap.SelectedValue = objDataRow["NoiCap"].ToString();
+
+            txtSoDienThoai.Text = objDataRow["DienThoai"].ToString();
+            //txtNoiThuongTru.Text = objDataRow["NoiThuongTru"].ToString();
+
+            txtSoTaiKhoan.Text = objDataRow["TaiKhoan"].ToString();
+            ddlNganHang.SelectedValue = objDataRow["IDNganHang"].ToString();
+            txtMaSoThue.Text = objDataRow["MaSoThue"].ToString();
+            txtEmail.Text = objDataRow["Email"].ToString();
+
+            txtBHXH.Text = objDataRow["BHXH"].ToString();
+            if (txtBHXH.Text != "")
+            {
+                txtBHXH.ReadOnly = true;
+            }
+            else
+            {
+                txtBHXH.ReadOnly = false;
+            }
+            try
+            {
+                txtNgayCapBHXH.Value = ((DateTime)objDataRow["NgayCapBHXH"]).ToString("dd/MM/yyyy");
+            }
+            catch { }
+            ddlNoiCapBHXH.SelectedValue = objDataRow["NoiCapBHXH"].ToString();
+
+            ddlNoiKhamBenh.SelectedValue = objDataRow["NoiDangKyKhamBenh"].ToString();
+            //ddlTDCM.SelectedValue = objDataRow["TrinhDoChuyenMon"].ToString();
+            //ddlLinhVucDT.SelectedValue = objDataRow["LinhVucDaoTao"].ToString();
+            txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
+
+            #region noi cu tru
+            this.txtXom_TT.Text = objDataRow["Xom_TT"].ToString();
+            this.txtXom_DC.Text = objDataRow["Xom_DC"].ToString();
+            // ****************** chọn tỉnh ******************
+            for (int i = 0; i < this.ddlTinh_TT.Items.Count; i++)
+            {
+                if (this.ddlTinh_TT.Items[i].Text == objDataRow["Tinh_TT"].ToString())
+                {
+                    this.ddlTinh_TT.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < this.ddlTinh_DC.Items.Count; i++)
+            {
+                if (this.ddlTinh_DC.Items[i].Text == objDataRow["Tinh_DC"].ToString())
+                {
+                    this.ddlTinh_DC.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            // ****************** chọn huyện ******************
+            if (this.ddlTinh_TT.Items.Count > 0)
+            {
+                this.ddlHuyen_TT.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString());
+                this.ddlHuyen_TT.DataTextField = "Name";
+                this.ddlHuyen_TT.DataValueField = "Id";
+                this.ddlHuyen_TT.DataBind();
+            }
+
+            if (this.ddlTinh_DC.Items.Count > 0)
+            {
+                this.ddlHuyen_DC.DataSource = this.objDistrict.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString());
+                this.ddlHuyen_DC.DataTextField = "Name";
+                this.ddlHuyen_DC.DataValueField = "Id";
+                this.ddlHuyen_DC.DataBind();
+            }
+
+
+            for (int i = 0; i < this.ddlHuyen_TT.Items.Count; i++)
+            {
+                if (this.ddlHuyen_TT.Items[i].Text == objDataRow["Huyen_TT"].ToString())
+                {
+                    this.ddlHuyen_TT.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < this.ddlHuyen_DC.Items.Count; i++)
+            {
+                if (this.ddlHuyen_DC.Items[i].Text == objDataRow["Huyen_DC"].ToString())
+                {
+                    this.ddlHuyen_DC.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            // ****************** chọn xã ******************
+            if (this.ddlHuyen_TT.Items.Count > 0)
+            {
+                this.ddlXa_TT.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_TT.SelectedValue.ToString(), this.ddlHuyen_TT.SelectedValue.ToString());
+                this.ddlXa_TT.DataTextField = "Name";
+                this.ddlXa_TT.DataValueField = "Id";
+                this.ddlXa_TT.DataBind();
+            }
+
+            if (this.ddlHuyen_DC.Items.Count > 0)
+            {
+                this.ddlXa_DC.DataSource = this.objWard.getDataCategoryToCombobox(this.ddlTinh_DC.SelectedValue.ToString(), this.ddlHuyen_DC.SelectedValue.ToString());
+                this.ddlXa_DC.DataTextField = "Name";
+                this.ddlXa_DC.DataValueField = "Id";
+                this.ddlXa_DC.DataBind();
+            }
+
+            for (int i = 0; i < this.ddlXa_TT.Items.Count; i++)
+            {
+                if (this.ddlXa_TT.Items[i].Text == objDataRow["Xa_TT"].ToString())
+                {
+                    this.ddlXa_TT.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < this.ddlXa_DC.Items.Count; i++)
+            {
+                if (this.ddlXa_DC.Items[i].Text == objDataRow["Xa_DC"].ToString())
+                {
+                    this.ddlXa_DC.SelectedIndex = i;
+                    break;
+                }
+            }
+            //////////////////////////////////////////////////////
+            #endregion
+
+
+        }
+        #endregion
+    }
+
+    #endregion
+
     #region Even btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
@@ -457,8 +627,58 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             catch { }
         }
 
-        #region Lưu thông tin người lao động
+        #region kiểm tra người lao động
+        if (this.txtCMND.Text.Trim() != "")
+        {
+            int retCMND = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim(), idNguoiLaoDong);
+            if (retCMND != 0)
+            {
+                if (idNguoiLaoDong != 0)
+                {
+                    this.lblMsg.Text = "Số CMND đã tồn tại!";
+                    return;
+                }
+                LoadDataNLD(retCMND);
+                IdNLD.Value = retCMND.ToString();
 
+                this.lblMsg.Text = "Người lao động đã tồn tại";
+                return;
+            }
+        }
+
+
+        if (txtBHXH.Text.Trim() != "")
+        {
+            int retBHXH = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim(), idNguoiLaoDong);
+            if (retBHXH != 0)
+            {
+                if (idNguoiLaoDong != 0)
+                {
+                    this.lblMsg.Text = "Số BHXH đã tồn tại!";
+                    return;
+                }
+
+                LoadDataNLD(retBHXH);
+                IdNLD.Value = retBHXH.ToString();
+
+                this.lblMsg.Text = "Mã BHXH đã tồn tại";
+                return;
+            }
+        }
+
+        if (itemId == 0)
+        {
+            int nld = objNLDTroCapThatNghiep.CheckBHTN(idNguoiLaoDong);
+            if(nld != 0)
+            {
+                this.lblMsg.Text = "Người lao động đã ở trong danh sách đăng ký hoặc trong quá trình hưởng TN";
+                return;
+            }
+        }
+        #endregion
+
+        #region Lưu thông tin người lao động
+        
         int gioitinh = 0;
         if(chkGioiTinhNam.Checked == true) gioitinh = 1;
         else if(chkGioiTinhNu.Checked == true) gioitinh = 2;
@@ -472,6 +692,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         string ddlXa_DC_Name = objWard.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlXa_DC"]));
         try{
             if (idNguoiLaoDong != 0) objNguoiLaoDong["IDNguoiLaoDong"] = idNguoiLaoDong;
+            else objNguoiLaoDong["Ma"] = objNguoiLaoDong.getNextMaNLD();
             
             objNguoiLaoDong["HoVaTen"] = txtHoVaTen.Text;
             objNguoiLaoDong["NgaySinh"] = TVSSystem.CVDateDbNull(txtNgaySinh.Value);

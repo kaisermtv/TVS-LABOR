@@ -67,11 +67,9 @@
                     <tr style="height: 40px;" class="DataListTableHeader">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
                         <td class="DataListTableHeaderTdItemJustify">Người lao động</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 13%;">Tình trạng</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày nộp HS</td>
+                        <td class="DataListTableHeaderTdItemJustify">Thông báo việc làm hàng tháng</td>                    
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>                        
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngay ký QĐ</td>
                         <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
@@ -80,18 +78,15 @@
                     <td class="DataListTableTdItemTT">
                         <input type="checkbox" id="ckbSelect<% =index++ %>" value="<%# Eval("IdNLDTCTN") %>" />
                     </td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
-                    <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
-                     <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayNopHoSo").ToString() != "")?((DateTime)Eval("NgayNopHoSo")).ToString("dd/MM/yyyy"):"" %><br />
+                    <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen")%></td>
+                    <td class="DataListTableTdItemJustify"><span class ="TrangThai">1</span> 
+                       <span class="TrangThai">2</span> 3 4 5
+
                     </td>
+                    <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
-                    </td>
-                    <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayKyQD").ToString() != "")?((DateTime)Eval("NgayKyQD")).ToString("dd/MM/yyyy"):"" %><br />
-                    </td>
+                    </td>                   
                     <td class="DataListTableTdItemCenter">
                      <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>">
                      <input type="button" class="btn btn-primary" value="TBVL"/></a>                    
