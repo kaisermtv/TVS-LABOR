@@ -243,11 +243,11 @@
             </div>
 
              <div class="label2">
-             Ngày hoàn thiện:
+             Ngày nộp hồ sơ:
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayHoanThien" runat="server" />
+                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayNopHoSo" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -430,9 +430,6 @@
         <div class="panel-body1" style ="padding-top:10px; margin-top:2px;">
             <div class="row">
                 Ngày đăng ký: <asp:Label ID="lblNgayDangKy" runat="server" Text="" style="color:red;float: right;"></asp:Label><br />
-                Ngày HT: <asp:Label ID="lblNgayHoanThien" runat="server" Text="" style="color:red;float: right;"></asp:Label><br />
-                Hạn hoàn thiện: <asp:Label ID="lblHanHoanThien" runat="server" Text="" style="color:red;float: right;"></asp:Label><br />
-                Ngày trả QĐ: <asp:Label ID="lblNgayTraQD" runat="server" Text="" style="color:red;float: right;"></asp:Label>
                 <br />
                 <br />
 

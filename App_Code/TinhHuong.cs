@@ -266,10 +266,10 @@ public class TinhHuong:DataClass
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
+            Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayHenTraKQ,TN.NgayKyQD,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
-            Cmd.CommandText += " WHERE (TN.IdTrangThai=@TrangThaiHS) Or (TN.IdTrangThai=@TrangThaiHS2) Or (TN.IdTrangThai=@TrangThaiHS3)";
+            Cmd.CommandText += " WHERE ((TN.IdTrangThai=@TrangThaiHS) Or (TN.IdTrangThai=@TrangThaiHS2) Or (TN.IdTrangThai=@TrangThaiHS3))";
             Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
             Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = TrangThaiHS;
             Cmd.Parameters.Add("TrangThaiHS2", SqlDbType.Int).Value = TrangThaiHS2;
@@ -338,6 +338,32 @@ public class TinhHuong:DataClass
         }
         return rows;
     }
+    public int UpdateNguoiKy(int IDNLDTCTN, DateTime NgayKyQD, int IDNguoiKy)
+    {
+        int rows = 0;
+        try
+        {
+            string sql = "Update TblNLDTroCapThatNghiep Set NgayKyQD=@NgayKyQD,IDNguoiKy=@IDNguoiKy Where IDNLDTCTN=@IDNLDTCTN";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sql;
+            Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+            Cmd.Parameters.Add("NgayKyQD", SqlDbType.DateTime).Value = NgayKyQD;
+            Cmd.Parameters.Add("IDNguoiKy", SqlDbType.Int).Value = IDNguoiKy;
+            rows = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            rows = 0;
+        }
+        return rows;
+    }
+    
     #endregion 
 
 }

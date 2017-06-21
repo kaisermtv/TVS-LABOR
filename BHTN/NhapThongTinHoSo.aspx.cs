@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -187,7 +188,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
                 try
                 {
-                    txtNgayNopHS.Value = ((DateTime)objDataTroCap["NgayNopHoSo"]).ToString("dd/MM/yyyy");
+                    txtNgayNopHS.Value = ((DateTime)objDataTroCap["NgayNopHoSo"]).ToString("dd/MM/yyyy");               
                 }
                 catch { }
 
@@ -388,7 +389,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             }
             else
             {
-                txtNgayNopHS.Value = DateTime.Now.ToString("dd/MM/yyyy");
+                txtNgayNopHS.Value = DateTime.Now.ToString("dd/MM/yyyy");           
 
                 #region quan Huyen
                 if (this.ddlTinh_TT.Items.Count > 0)
@@ -583,6 +584,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objNLDTroCapThatNghiep["IdQuaTrinhCongTacGanNhat"] = idDoanhNghiep;
             objNLDTroCapThatNghiep["IdTrangThai"] = 1;
             objNLDTroCapThatNghiep["EditDay"] = DateTime.Now;
+            objNLDTroCapThatNghiep["NgayHenTraKQ"] = new TinhHuong().TinhNgayNghiLe(Convert.ToDateTime(txtNgayNopHS.Value, new CultureInfo("vi-VN")), 20);
 
             int htnt = 0;
             if (cbkATM.Checked) htnt = 1;

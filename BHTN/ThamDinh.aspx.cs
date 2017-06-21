@@ -52,21 +52,29 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
                     txtNgayCap.Value = ((DateTime)tblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy");
                     txtSoBHXH.Text = tblNguoiLaoDong.Rows[0]["BHXH"].ToString();
                     txtSoDienThoai.Text = tblNguoiLaoDong.Rows[0]["DienThoai"].ToString();
-                    txtNoiThuongTru.Text = tblNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString();
-                    txtChoOHienTai.Text = tblNguoiLaoDong.Rows[0]["DiaChi"].ToString();
+                    // noi truong tru
+                    string thuongtru = "";
+                    thuongtru += tblNguoiLaoDong.Rows[0]["Xom_TT"].ToString() + ", ";
+                    thuongtru += tblNguoiLaoDong.Rows[0]["Xa_TT"].ToString() + ", ";
+                    thuongtru += tblNguoiLaoDong.Rows[0]["Huyen_TT"].ToString() + ", ";
+                    thuongtru += tblNguoiLaoDong.Rows[0]["Tinh_TT"].ToString();
+                    txtNoiThuongTru.Text = thuongtru;
+                    string choohientai = "";
+                    choohientai += tblNguoiLaoDong.Rows[0]["Xom_DC"].ToString() + ", ";
+                    choohientai += tblNguoiLaoDong.Rows[0]["Xa_DC"].ToString() + ", ";
+                    choohientai += tblNguoiLaoDong.Rows[0]["Huyen_DC"].ToString() + ", ";
+                    choohientai += tblNguoiLaoDong.Rows[0]["Tinh_DC"].ToString();
+                    txtChoOHienTai.Text = choohientai;
                     txtSoThangDongBHXH.Text = rowTroCapThatNghiep["SoThangDongBHXH"].ToString();
                     if (rowTroCapThatNghiep["NgayNghiViec"] != null && rowTroCapThatNghiep["NgayNghiViec"].ToString()!="")
                     {
-                        txtNgayNghiViec.Value = ((DateTime)rowTroCapThatNghiep["NgayNghiViec"]).ToString();
+                        txtNgayNghiViec.Value = ((DateTime)rowTroCapThatNghiep["NgayNghiViec"]).ToString("dd/MM/yyyy");
                     }
-                    if (rowTroCapThatNghiep["NgayHoanThien"] != null && rowTroCapThatNghiep["NgayHoanThien"].ToString() != "")
+                    if (rowTroCapThatNghiep["NgayNopHoSo"] != null && rowTroCapThatNghiep["NgayNopHoSo"].ToString() != "")
                     {
-                        DateTime NgayHoanThien = (DateTime)rowTroCapThatNghiep["NgayHoanThien"];
-                        txtNgayHoanThien.Value = NgayHoanThien.ToString("dd/MM/yyyy");
-                        lblNgayDangKy.Text = ((DateTime)rowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy");
-                        lblNgayHoanThien.Text = NgayHoanThien.ToString("dd/MM/yyyy");
-                        lblHanHoanThien.Text = new TinhHuong().TinhNgayNghiLe(NgayHoanThien, 15).ToString("dd/MM/yyyy");
-                        lblNgayTraQD.Text = new TinhHuong().TinhNgayNghiLe(NgayHoanThien, 20).ToString("dd/MM/yyyy");
+                        DateTime NgayHoanThien = (DateTime)rowTroCapThatNghiep["NgayNopHoSo"];
+                        txtNgayNopHoSo.Value = NgayHoanThien.ToString("dd/MM/yyyy");
+                        lblNgayDangKy.Text = ((DateTime)rowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy");                
 
                     }
                 }

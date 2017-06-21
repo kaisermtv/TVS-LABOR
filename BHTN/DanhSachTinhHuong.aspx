@@ -62,7 +62,7 @@
         </tr>
     </table>
     
-    <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
+    <asp:Repeater ID="dtlData" runat="server" >
         <HeaderTemplate>
             <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
                 <tr style="height: 40px;" class="DataListTableHeader">

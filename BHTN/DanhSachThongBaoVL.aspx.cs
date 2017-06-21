@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
+public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
 {
     #region declare
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
@@ -26,142 +25,30 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
          
         if(!Page.IsPostBack)
         {
-            Load_DanhSachHoSo();
             Load_CauHinh();
-            Load_DanhSachNguoiKy();
+            Load_DanhSachHoSo();
+   
         }
              
     }
-    public void Load_CauHinh()
-    {
-        txtNamQuyetDinh.Text = DateTime.Now.Year.ToString();
-        txtNamQD2.Text = DateTime.Now.Year.ToString();
-        txtNgayTrinhKy.Value = DateTime.Now.Day.ToString() + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
-        DataTable tblLoaiQuyetDinh = new DanhMuc().getList(29);       
-        ddlLoaiQuyetDinh.DataTextField = "NameDanhMuc";
-        ddlLoaiQuyetDinh.DataValueField = "IdDanhMuc";
-        ddlLoaiQuyetDinh.DataSource = tblLoaiQuyetDinh;
-        ddlLoaiQuyetDinh.DataBind();
-        ddlLoaiQuyetDinh2.DataTextField = "NameDanhMuc";
-        ddlLoaiQuyetDinh2.DataValueField = "IdDanhMuc";
-        ddlLoaiQuyetDinh2.DataSource = tblLoaiQuyetDinh;
-        ddlLoaiQuyetDinh2.DataBind();
-    }
-    public void Load_DanhSachNguoiKy()
-    {
-        ddlNguoiKy.DataValueField = "IDCanBo";
-        ddlNguoiKy.DataTextField = "NameCanBo";
-        ddlNguoiKy.DataSource = new CanBo().getDataByChucVuID(1);
-        ddlNguoiKy.DataBind();
-    }
     private void Load_DanhSachHoSo()
     {
-        DataTable objData = new TinhHuong().getDanhSachHoSo(8, 9, 10);
+        string str = txtSearch.Value.Trim();
+        DataTable objData = new TinhHuong().getDanhSachHoSo(12,0,0,str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
         cpData.BindToControl = dtlData;
         dtlData.DataSource = cpData.DataSourcePaged;
         dtlData.DataBind();
-    } 
-  
-    protected void btnDanhSo_Click(object sender, EventArgs e)
-    {      
-        if(txtNamQuyetDinh.Text.Trim()=="")
-        {
-            _msg = "Bạn chưa nhập năm quyết định";
-            return;
-        }      
-        if(txtSoHoSoChonDanh.Text.Trim()=="")
-        {
-            _msg = "Bạn chưa chọn hồ sơ để cấp số";
-            return;
-        }
-        if (txtSoBatDau.Text.Trim() == "")
-        {
-            _msg = "Bạn chưa chọn số banwts đầu";
-            return;
-        }
-        if(txtSoKetThuc.Text.Trim()=="")
-        {
-            _msg = "Bạn chưa chọn số kết thúc";
-            return;
-        }
-
-        if(hdlstChuyen.Value ==null || hdlstChuyen.Value.ToString().Trim()=="")
-        {
-            _msg = "Bạn chưa chọn hồ sơ để đánh số";
-            return;
-        }       
-        string[] strID = hdlstChuyen.Value.Split(',');
-        if (ddlLoaiQuyetDinh.SelectedValue == null || ddlLoaiQuyetDinh.SelectedValue.ToString().Trim() == "")
-        {
-            _msg = "Bạn chưa chọn loại quyết định";
-            return;
-        }
-        int IDLoaivanBan = int.Parse(ddlLoaiQuyetDinh.SelectedValue.ToString());
-        DateTime NgayCap = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        DataRow RowLoaiVanBan = new DanhMuc().getItem(IDLoaivanBan);
-        if(RowLoaiVanBan ==null)
-        {
-            _msg = "Bạn cần phải tạo loại văn bản ";
-            return;
-        }
-        int So= int.Parse(txtSoBatDau.Text);
-        for (int i = 0; i < strID.Length; i++)
-        {
-            string SoVanBan = So.ToString() + RowLoaiVanBan["Note"].ToString().Trim();
-            DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
-            if (new CapSo().CheckAutoNumber(NgayCap, IDLoaivanBan, So) == false && (int)rowTCTN["IdTrangThai"]==8)
-            {
-                new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
-                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 9);
-            }
-            So++;
-        }
-        Load_DanhSachHoSo();
     }
-    protected void btnTrinhKy_Click(object sender, EventArgs e)
+    private void Load_CauHinh()
     {
-        if(txtNamQD2.Text.Trim()=="")
-        {
-            _msg = "Bạn chưa nhập năm quyết định";
-            return;
-        }
-        if(ddlLoaiQuyetDinh2.SelectedValue ==null && ddlLoaiQuyetDinh2.SelectedValue.ToString().Trim()=="")
-        {
-            _msg = "Bạn chưa chọn loại quyết định";
-            return;
-        }
-        if(txtSoHoSoCanTrinh.Text.Trim()=="")
-        {
-            _msg = "Bạn chưa chọn hồ sơ trình ký";
-            return;
-        }
-        if (txtNgayTrinhKy.Value.Trim() == "")
-        {
-            _msg = "Bạn chưa chọn ngày trình ký";
-            return;
-        }
-        if(ddlNguoiKy.SelectedValue ==null || ddlNguoiKy.SelectedValue.ToString().Trim()=="")
-        {
-            _msg = "Bạn chưa chọn người ký";
-            return;
-        }
-        string[] strID = hdlstChuyen.Value.Split(',');
-        
-        for (int i = 0; i < strID.Length; i++)
-        {
-            DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
-             new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 10);
-            new TinhHuong().UpdateNguoiKy(int.Parse(strID[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
-      
-        }
-        Load_DanhSachHoSo();
-
+        DateTime myDatetime = DateTime.Now;
+        string MyDate = myDatetime.Day.ToString() + "/" + myDatetime.Month.ToString() + "/" + myDatetime.Year.ToString();
+        txtNgayTrinhKy.Value = MyDate;
     }
-
-    protected void btnTaiQuyetDinh_Click(object sender, EventArgs e)
+     protected void btnTaiQuyetDinh_Click(object sender, EventArgs e)
     {
         if (hdlstChuyen.Value == null || hdlstChuyen.Value.ToString().Trim() == "")
         {
@@ -313,10 +200,10 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         {
        
             DataRowView newRow = (DataRowView)e.Item.DataItem;
-            if(newRow["IdTrangThai"].ToString().Trim()!="10")
+            if((int)newRow["IdTrangThai"]<=10)
             {
                 Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
-                newButtom.Enabled = false;
+                newButtom.Visible = true;
             }
 
         }
@@ -327,17 +214,17 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         for (int i = 0; i < strID.Length; i++)
         {
             DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
-            if ((int)rowTCTN["IdTrangThai"] == 10)
+            if ((int)rowTCTN["IdTrangThai"] == 11)
             {
-                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 11);
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 12);
             }
-            else
-            {
-                _msg = "Hồ sơ chưa được trình ký";
-                return;
-            }
+          
         }
         Load_DanhSachHoSo();
 
+    }
+    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    {
+        Load_DanhSachHoSo();
     }
 }

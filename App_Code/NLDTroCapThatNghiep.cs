@@ -44,6 +44,8 @@ public class NLDTroCapThatNghiep :DataAbstract
             case "EditDay":
             case "EditTrangThaiDate":
                 return SqlDbType.DateTime;
+            case"NgayHenTraKQ":
+                return SqlDbType.DateTime;
             case "SoThangDongBHXH":
                 return SqlDbType.Float;
             case "CongViecDaLam":

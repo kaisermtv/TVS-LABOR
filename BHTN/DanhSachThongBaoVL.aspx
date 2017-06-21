@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachTrinhKy.aspx.cs" Inherits="Labor_DanhSachTrinhKy" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachThongBaoVL.aspx.cs" Inherits="Labor_DanhSachThongBaoVL" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -56,7 +56,7 @@
                     </div>
                 </td>
                 <td style="width: 40px !important; text-align: center;">
-                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
+                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
                 </td>
                 <td style="width: 90px !important; text-align: center;">&nbsp;</td>
             </tr>
@@ -69,10 +69,10 @@
                         <td class="DataListTableHeaderTdItemJustify">Người lao động</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 13%;">Tình trạng</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số BHXH</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày hoàn thiện</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Thông tin BH</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày nộp HS</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngay ký QĐ</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -81,15 +81,20 @@
                         <input type="checkbox" id="ckbSelect<% =index++ %>" value="<%# Eval("IdNLDTCTN") %>" />
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
-                    <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
+                    <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
-                    <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayHoanThien").ToString() != "")?((DateTime)Eval("NgayNopHoSo")).ToString("dd/MM/yyyy"):"" %><br />
+                     <td class="DataListTableTdItemJustify">
+                        <%# (Eval("NgayNopHoSo").ToString() != "")?((DateTime)Eval("NgayNopHoSo")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
-                    <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
+                    <td class="DataListTableTdItemJustify">
+                        <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
+                    </td>
+                    <td class="DataListTableTdItemJustify">
+                        <%# (Eval("NgayKyQD").ToString() != "")?((DateTime)Eval("NgayKyQD")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
                     <td class="DataListTableTdItemCenter">
+                     <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>">
+                     <input type="button" class="btn btn-primary" value="TBVL"/></a>                    
                      <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
                     </td>
                 </tr>
@@ -116,143 +121,8 @@
             <div class="warning">
                 <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
             </div>
-            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Chuyển Bộ phận Trả KQ</a>
-            <a class="btn btn-primary" style="float: right; display:none; " onclick="TaiQuyetDinhSelect()">Tải quyết định</a>
-            <a class="btn btn-primary" style="float: right; margin-right: 40px;"  onclick="ChuyenSelect('TrinhKyModal')">Trình ký</a>
-            <a class="btn btn-primary" style="float: right; margin-right: 40px;" onclick="ChuyenSelect('myModal')">Đánh số</a>
+            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Trả quyết định hưởng TCTN</a>         
             </div>
-        <!-- Modal danh so -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="display: table;">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Đánh số</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table>
-                            <tr>
-                                <td>Năm QĐ:</td>
-                                <td>
-                                    <asp:TextBox ID="txtNamQuyetDinh" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Loại quyết định:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlLoaiQuyetDinh" runat="server" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số hồ sơ chọn đánh số:</td>
-                                <td>
-                                    <asp:TextBox ID="txtSoHoSoChonDanh" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số bắt đầu:</td>
-                                <td>
-                                    <asp:TextBox ID="txtSoBatDau" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox></td>
-                            </tr>
-                            <tr>
-                                <td>Số kết thúc:</td>
-                                <td>
-                                    <asp:TextBox ID="txtSoKetThuc" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnDanhSo" runat="server" CssClass="btn btn-primary" Text="Đánh số" OnClick="btnDanhSo_Click" />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal trinh ky -->
-        <div id="TrinhKyModal" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="display: table;">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Đánh số</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table>
-                            <tr>
-                                <td>Năm QĐ:</td>
-                                <td>
-                                    <asp:TextBox ID="txtNamQD2" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Loại quyết định:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlLoaiQuyetDinh2" runat="server" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số hồ sơ cần trình:</td>
-                                <td>
-                                    <asp:TextBox ID="txtSoHoSoCanTrinh" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ngày trình ký:</td>
-                                <td>
-                                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: left;">
-                                <input type='text' class="form-control dateinput" id="txtNgayTrinhKy" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                                </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Người ký</td>
-                                <td>
-                                <asp:DropDownList ID="ddlNguoiKy" runat="server" CssClass="form-control" Style="width: 100%;"></asp:DropDownList>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnTrinhKy" runat="server" CssClass="btn btn-primary" Text="Trình ký" OnClick="btnTrinhKy_Click" />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal tai quyet dinh -->
-        <div id="TaiQuyetDinhModal" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="display: table;">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Tải quyết định</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table> 
-                            <tr>
-                                <td>Số quyết định chọn tải:</td>
-                                <td>
-                                    <asp:TextBox ID="txtSoQuyetDinhChonTai" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
-                                </td>
-                            </tr>                        
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnTaiQuyetDinh" runat="server" CssClass="btn btn-primary" Text="Tải quyết định" OnClick="btnTaiQuyetDinh_Click" />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Modal chuyen bo phan tra ket qua-->
         <div id="TraKetQuaDinhModal" class="modal fade" role="dialog">
             <div class="modal-dialog" style="display: table;">
@@ -260,7 +130,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Chuyển trả kết quả</h4>
+                        <h4 class="modal-title">Trả quyết định hưởng TCTN</h4>
                     </div>
                     <div class="modal-body">
                         <table> 
@@ -269,7 +139,20 @@
                                 <td>
                                     <asp:TextBox ID="txtSoHoSoDuocChon" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
                                 </td>
-                            </tr>                        
+                            </tr> 
+                             <tr>
+                                 <td>
+                                     Ngày trả kết quả:
+                                 </td>
+                                 <td>
+                                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: left;">
+                                <input type='text' class="form-control dateinput" id="txtNgayTrinhKy" runat="server" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                </div>
+                                 </td>
+                             </tr>                       
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -315,34 +198,9 @@
                     GetAutoNumber();
                     $("#"+NameModal).modal("show");                
                 }
-            }
-
-           
-            function TaiQuyetDinhSelect()
-            {              
-                var txt = "";
-                var index=0;
-                var SoBatDau;
-                for(i=1;i< <%= index %>;i++)
-                {
-                    var objchk = document.getElementById('ckbSelect' + i);
-                    if(objchk != null && objchk.checked == true)
-                    {
-                        if(txt != "") txt += ","
-                        txt += objchk.value;
-                        index ++;
-                    }
-                }
-
-                if(txt != "")
-                {   
-                    $("#MainContent_hdlstChuyen").val(txt);  
-                    $("#MainContent_txtSoQuyetDinhChonTai").val(index);
-                    $("#TaiQuyetDinhModal").modal("show"); 
-                }
-            }
-
-        function CheckAll()
+            }        
+       
+       function CheckAll()
         {
             for(i=1;i< <%= index %>;i++)
             {

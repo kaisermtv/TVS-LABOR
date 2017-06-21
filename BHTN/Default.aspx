@@ -29,7 +29,17 @@
       <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="Danhsachtrinhky.aspx">Trình ký - lấy số</a>
     </div>
-
-
+          <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachTraKetQua.aspx">Trả kêt quả</a>
+    </div>
+     </div>
+          <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachHuyHuong.aspx">Hồ sơ đề xuất hủy hưởng</a>
+    </div>
+    </div>
+        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachThongBaoVL.aspx">Thông báo tìm kiếm việc làm</a>
+    </div>
+    
 </asp:Content>
 

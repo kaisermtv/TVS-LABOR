@@ -243,11 +243,11 @@
             </div>
 
              <div class="label2">
-             Ngày hoàn thiện:
+             Ngày nộp HS:
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' readonly="true" class="form-control dateinput" id="txtNgayHoanThien" runat="server" />
+                    <input type='text' readonly="true" class="form-control dateinput" id="txtNgayNopHoSo" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -430,9 +430,6 @@
         <div class="panel-body1" style ="padding-top:10px; margin-top:2px;">
             <div class="row">
                 Ngày đăng ký: <asp:Label ID="lblNgayDangKy" runat="server" Text="" style="color:red;float: right;"></asp:Label><br />
-                Ngày HT: <asp:Label ID="lblNgayHoanThien" runat="server" Text="" style="color:red;float: right;"></asp:Label><br />
-                Hạn hoàn thiện: <asp:Label ID="lblHanHoanThien" runat="server" Text="" style="color:red;float: right;"></asp:Label><br />
-                Ngày trả QĐ: <asp:Label ID="lblNgayTraQD" runat="server" Text="" style="color:red;float: right;"></asp:Label>
                 <br />
                 <br />
 
@@ -441,15 +438,16 @@
                     <a href="#" class="list-group-item" data-toggle="modal" data-target="#lichthongbao" runat="server"><span class="badge1" style ="left:140px;">></span>Lịch thông báo</a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="InQuyetDinhHuongTroCap_ServerClick" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
                 </div>
-                <br />
-                <br />
-                <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
-                <br />
-                <br />
-                 <asp:Button ID="btnChuyenTraHoSo" runat="server" Text="Chuyển trả hồ sơ" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenTraHoSo_Click" />
-                <br />
-                <br />
-                <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />
+               
+                <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
+              
+                 <asp:Button ID="btnChuyenTraHoSo" runat="server" Text="Chuyển trả hồ sơ" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnChuyenTraHoSo_Click" />
+             
+                <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />
+               
+                <asp:Button ID="btnTraQuyetDinh" runat="server" Text="Trả quyết định" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraQuyetDinh_Click" />
+              
+                <asp:Button ID="btnHuyHuong" runat="server" Text="Hủy hưởng" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnHuyHuong_Click" />
                
             </div>
         </div>

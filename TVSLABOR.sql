@@ -324,8 +324,9 @@ SET IDENTITY_INSERT [dbo].[TblTinhHuong] OFF
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (7,N'Đã thẩm định');
 INSERT INTO dbo.tblTrangThaiHoSo VALUES (8,N'Đánh số - Trình ký');
 =======
-
-
+--19/06/2017
+ALTER TABLE dbo.TblCanBo ADD IDChucVu int 
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (12,N'Đã trả QĐ hưởng TCTN');
 
 
 
