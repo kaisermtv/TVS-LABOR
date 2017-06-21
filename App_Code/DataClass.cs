@@ -102,4 +102,11 @@ public class DataClass
     #endregion
 
     #endregion
+
+    #region destroy
+    ~DataClass()
+    {
+        //this.SQLClose();
+    }
+    #endregion
 }

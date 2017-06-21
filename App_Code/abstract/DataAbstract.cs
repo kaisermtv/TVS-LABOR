@@ -69,7 +69,7 @@ abstract public class DataAbstract
                             sql += "," + key + " = @" + key;
                         }
 
-                        Cmd.Parameters.Add(key, GetTypeAtribute(key)).Value = s.Value;
+                        Cmd.Parameters.Add(key, GetTypeAtribute(key)).Value = (s.Value != null) ? s.Value : DBNull.Value;
                     }
 
                     sql += " OUTPUT INSERTED." + keyTable + " WHERE " + keyTable + " = @" + keyTable;
@@ -96,7 +96,7 @@ abstract public class DataAbstract
                             sqlvl += ",@" + key;
                         }
 
-                        Cmd.Parameters.Add(key, GetTypeAtribute(key)).Value = s.Value;
+                        Cmd.Parameters.Add(key, GetTypeAtribute(key)).Value = (s.Value != null) ? s.Value : DBNull.Value;
                     }
 
                     Cmd.CommandText = sql + sqlvl + ")";
@@ -121,7 +121,7 @@ abstract public class DataAbstract
                         sqlvl += ",@" + key;
                     }
 
-                    Cmd.Parameters.Add(key, GetTypeAtribute(key)).Value = s.Value;
+                    Cmd.Parameters.Add(key, GetTypeAtribute(key)).Value = (s.Value != null) ? s.Value : DBNull.Value;
                 }
 
                 Cmd.CommandText = sql + sqlvl + ")";
@@ -235,5 +235,12 @@ abstract public class DataAbstract
     }
     #endregion
 
+    #endregion
+
+    #region destroy
+    ~DataAbstract()
+    {
+        //this.SQLClose();
+    }
     #endregion
 }

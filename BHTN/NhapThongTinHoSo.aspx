@@ -76,6 +76,7 @@
 
         .warning {
             color: red;
+            float:left;
         }
     </style>
     <script>

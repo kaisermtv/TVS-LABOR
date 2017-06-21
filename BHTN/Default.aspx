@@ -14,22 +14,28 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 
-    <div class = "DaoTao menuitem" style="background-color: #00a8ec;">
-        <a href="DangKyHoSo.aspx">Đăng ký hồ sơ</a>
-    </div>
+    <div class="row">
+        <div class = "DaoTao menuitem" style="background-color: #00a8ec;">
+            <a href="DangKyHoSo.aspx">Đăng ký hồ sơ</a>
+        </div>
 
-    <div class = "Tuvan menuitem" style="background-color: #00a8ec;">
-        <a href="Danhsachtinhhuong.aspx">Tính hưởng</a>
-    </div>
+        <div class = "Tuvan menuitem" style="background-color: #00a8ec;">
+            <a href="Danhsachtinhhuong.aspx">Tính hưởng</a>
+        </div>
 
-    <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
-        <a href="DanhSachThamDinh.aspx">Thẩm định</a>
-    </div>
+        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+            <a href="DanhSachThamDinh.aspx">Thẩm định</a>
+        </div>
     
-      <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
-        <a href="Danhsachtrinhky.aspx">Trình ký - lấy số</a>
+          <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+            <a href="Danhsachtrinhky.aspx">Trình ký - lấy số</a>
+        </div>
     </div>
-
+    <div class="row">
+        <div class = "DaoTao menuitem" style="background-color: #00a8ec;">
+            <a href="DaoTaoThatNghiep.aspx">Đào tạo</a>
+        </div>
+    </div>
 
 </asp:Content>
 
