@@ -184,4 +184,31 @@ public class CanBo
         }
     }
     #endregion
+
+    #region method getDataByChucVuID
+    public DataTable getDataByChucVuID(int IDChucVu)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.Parameters.Add("IDChucVu", SqlDbType.Int).Value = IDChucVu;
+            Cmd.CommandText = "SELECT * FROM TblCanBo WHERE IDChucVu = @IDChucVu";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
 }

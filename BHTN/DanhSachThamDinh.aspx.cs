@@ -36,16 +36,39 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
         }
              
     }
-    protected void btnHoanThienHoSo_Click(object sender, EventArgs e)
-    {
-        objNguoiLaoDong.chuyenTrangThai(int.Parse(idNLD.Value), 2);
-        Response.Redirect(Request.Url.ToString());
-    }
-
     protected void btnTrinhKy_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
-        objTinhHuong.UpdateTrangThaiHS(int.Parse(idNLD.Value), 8);
-        Response.Redirect("DanhSachThamDinh.aspx");
+        //kiem tra truong hop chuyen 1 hay nhieu
+        if (hdlstChuyen.Value != null && hdlstChuyen.Value.ToString().Trim() != "")
+        {
+            string[] lstIDTCTN = hdlstChuyen.Value.Split(',');
+            for (int i = 0; i < lstIDTCTN.Length; i++)
+            {
+                int ID = int.Parse(lstIDTCTN[i]);
+                DataRow rowThatNghiep = new NLDTroCapThatNghiep().getItem(ID);
+                int TrangThai = (int)rowThatNghiep["IdTrangThai"];
+                if (TrangThai == 7)
+                {
+                    objTinhHuong.UpdateTrangThaiHS(ID, 8);
+                }
+            }
+        }
+        else
+        {
+            if (hdlstChuyen.Value != null && hdChuyen.Value.ToString().Trim() != "")
+            {
+                int ID = int.Parse(hdChuyen.Value);
+                DataRow rowThatNghiep = new NLDTroCapThatNghiep().getItem(ID);
+                int TrangThai = (int)rowThatNghiep["IdTrangThai"];
+                if (TrangThai == 7)
+                {
+                    objTinhHuong.UpdateTrangThaiHS(ID, 8);
+                }
+            }
+
+        }
+        Response.Redirect(Request.Url.ToString());
+
     }
 }

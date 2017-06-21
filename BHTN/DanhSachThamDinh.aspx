@@ -7,7 +7,6 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
         .TrangThai
         {
             padding:3px;
@@ -23,9 +22,8 @@
     </style>
     <script>
         function delmodal(id, name, idtrangthai) {
-            $("#MainContent_idNLD").val(id);
-            $("#TrinhKyModal").modal("show");        
-          
+            $("#MainContent_hdChuyen").val(id);
+            $("#myModal").modal("show");          
         }
     </script>
     <script src="../js/TvsScript.js"></script>
@@ -42,7 +40,7 @@
                     <div class='input-group date' style="margin-left: 0px; width: 70% !important; float:left;">
                     <input type='text' class="form-control dateinput" id="txtNgaySinh" runat="server" />
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar" style="position:relative; z-index:9999;"></span>
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>          
              </td>
@@ -79,7 +77,9 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td class="DataListTableTdItemTT"><%= index++ %></td>
+                <td class="DataListTableTdItemTT">
+                <input type="checkbox" id ="ckbSelect<% =index++ %>" value ="<%# Eval("IdNLDTCTN") %>" />
+                </td>
                 <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
                 <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
@@ -91,8 +91,8 @@
                 </td>
                 <td class="DataListTableTdItemCenter">
                     <a href="ThamDinh.aspx?id=<%#Eval("IDNLDTCTN")%>">
-                        <img src="/Images/Forward.png" alt="Thẩm định" title ="Thẩm định"></a>  
-                     <a href="#TrinhKyModal" onclick="delmodal(<%# Eval("IDNLDTCTN") %>)"> <img src="/Images/Edit.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
+                        <img src="/Images/edit.png" alt="Thẩm định" title ="Thẩm định"></a>  
+                     <a href="#myModal" onclick="delmodal(<%# Eval("IDNLDTCTN") %>)"> <img src="/Images/Forward.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
                 </td>
             </tr>
         </ItemTemplate>
@@ -112,11 +112,16 @@
             </td>
         </tr>
     </table>
-
-
-    <input id="idNLD" type="hidden" runat="server" />
+        <div class="row col-sm-12">
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="CheckAll()">Check All</a>
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="UnCheckAll()">UnCheck All</a>
+        <div class="warning">
+            <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
+        </div>        
+        <a class="btn btn-primary" style="float:right" onclick="ChuyenSelect()">Chuyển</a>
+        </div>  
     <!-- Modal -->
-    <div id="TrinhKyModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog" style="display:table;">
             <!-- Modal content-->
             <div class="modal-content">
@@ -125,13 +130,7 @@
                     <h4 class="modal-title">Trình ký - đánh số</h4>
                 </div>
                 <div class="modal-body">           
-                    <label>Trình ký ngày: </label>
-                    <div class='input-group date' style="margin-left: 0px; width: 70% !important; float:left;">
-                    <input type='text' class="form-control dateinput" id="txtNgayTrinhKy" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar" style="position:relative; z-index:9999;"></span>
-                    </span>
-                </div>         
+                 
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnTrinhKy" runat="server" CssClass="btn btn-primary" Text="Trình ký" OnClick="btnTrinhKy_Click" />
@@ -149,7 +148,56 @@
 
             $(".dateinput").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
         });
+
+        function ChuyenSelect()
+        {
+            var txt = "";
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null && objchk.checked == true)
+                {
+                    if(txt != "") txt += ","
+                    txt += objchk.value;
+                }
+            }
+
+            if(txt != "")
+            {
+                $("#MainContent_hdlstChuyen").val(txt);
+
+                $("#myModal").modal("show");
+            }
+        }
+
+        function CheckAll()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null)
+                {
+                    objchk.checked = true;
+                }
+            }
+        }
+
+        function UnCheckAll()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null)
+                {
+                    objchk.checked = false;
+                }
+            }
+        }
+
+
     </script>
  </div>
+  <asp:HiddenField ID="hdlstChuyen" runat="server" />
+  <asp:HiddenField ID="hdChuyen" runat="server" />
 </asp:Content>
 

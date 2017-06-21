@@ -1,6 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/BHTN.master" CodeFile="DangKyHoSo.aspx.cs" Inherits="BHTN_DangKyHoSo" %>
-
-
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -204,7 +202,6 @@
             }
         }
     </script>
-
 
     <input id="idNLD" type="hidden" runat="server" />
     <!-- Modal -->

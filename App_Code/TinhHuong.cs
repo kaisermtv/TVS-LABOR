@@ -261,7 +261,7 @@ public class TinhHuong:DataClass
     }
     #endregion 
     #region Danh sách hồ sơ chờ tính hưởng 
-    public DataTable getDanhSachHoSo(int TrangThaiHS,int TrangThaiHS2=0, string searchKey = "")
+    public DataTable getDanhSachHoSo(int TrangThaiHS,int TrangThaiHS2=0,int TrangThaiHS3=0, string searchKey = "")
     {
         try
         {
@@ -269,10 +269,11 @@ public class TinhHuong:DataClass
             Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
-            Cmd.CommandText += " WHERE (TN.IdTrangThai=@TrangThaiHS) Or (TN.IdTrangThai=@TrangThaiHS2)";
+            Cmd.CommandText += " WHERE (TN.IdTrangThai=@TrangThaiHS) Or (TN.IdTrangThai=@TrangThaiHS2) Or (TN.IdTrangThai=@TrangThaiHS3)";
             Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
             Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = TrangThaiHS;
             Cmd.Parameters.Add("TrangThaiHS2", SqlDbType.Int).Value = TrangThaiHS2;
+            Cmd.Parameters.Add("TrangThaiHS3", SqlDbType.Int).Value = TrangThaiHS3;
             Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
             SqlDataAdapter da = new SqlDataAdapter(Cmd);
             DataSet ds = new DataSet();

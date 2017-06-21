@@ -270,7 +270,7 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
         objTinhHuong.UpdateTrangThaiHS(itemId, 7);
         Response.Redirect("DanhSachThamDinh.aspx");
     }
-    protected void btnTraThamDinh_Click(object sender, EventArgs e)
+    protected void btnTraTinhHuong_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 2);

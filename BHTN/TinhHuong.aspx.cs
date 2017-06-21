@@ -139,6 +139,11 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         }
         objTinhHuong.IDNguoiLaoDong = int.Parse(hdIDNguoiLaoDong.Value);
         // lay ID luong toi thieu
+        if (ddlLuongToiThieu.SelectedValue == null || ddlLuongToiThieu.SelectedValue.ToString().Trim() == "0")
+        {
+            _msg = "Bạn chưa chọn lương tối thiểu vùng";
+            return;
+        }
         DataTable tblLuongToiThieu = objTinhHuong.GetLuongToiThieuByTienLuong(ddlLuongToiThieu.SelectedValue.ToString().Trim());
         if (tblLuongToiThieu == null || tblLuongToiThieu.Rows.Count == 0)
         {
@@ -318,27 +323,27 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         objLichThongBao.IDTinhHuong = (int)tblTinhHuong.Rows[0]["IDTinhHuong"];     
         objLichThongBao.KhaiBaoThang1TuNgay = NgayTraKetQua;
         objLichThongBao.KhaiBaoThang1DenNgay = NgayTraKetQua;
-        objLichThongBao.KhaiBaoThang2TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[1].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang2TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[1].TuNgay, 1);
         objLichThongBao.KhaiBaoThang2DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang2TuNgay, 2);
-        objLichThongBao.KhaiBaoThang3TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[2].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang3TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[2].TuNgay, 1);
         objLichThongBao.KhaiBaoThang3DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang3TuNgay, 2);
-        objLichThongBao.KhaiBaoThang4TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[3].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang4TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[3].TuNgay, 1);
         objLichThongBao.KhaiBaoThang4DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang4TuNgay, 2);
-        objLichThongBao.KhaiBaoThang5TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[4].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang5TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[4].TuNgay, 1);
         objLichThongBao.KhaiBaoThang5DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang5TuNgay, 2);
-        objLichThongBao.KhaiBaoThang6TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[5].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang6TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[5].TuNgay, 1);
         objLichThongBao.KhaiBaoThang6DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang6TuNgay, 2);
-        objLichThongBao.KhaiBaoThang7TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[6].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang7TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[6].TuNgay, 1);
         objLichThongBao.KhaiBaoThang7DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang7TuNgay, 2);
-        objLichThongBao.KhaiBaoThang8TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[7].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang8TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[7].TuNgay, 1);
         objLichThongBao.KhaiBaoThang8DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang8TuNgay, 2);
-        objLichThongBao.KhaiBaoThang9TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[8].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang9TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[8].TuNgay, 1);
         objLichThongBao.KhaiBaoThang9DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang8TuNgay, 2);
-        objLichThongBao.KhaiBaoThang10TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[9].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang10TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[9].TuNgay, 1);
         objLichThongBao.KhaiBaoThang10DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang10TuNgay, 2);
-        objLichThongBao.KhaiBaoThang11TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[10].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang11TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[10].TuNgay, 1);
         objLichThongBao.KhaiBaoThang11DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang11TuNgay, 2);
-        objLichThongBao.KhaiBaoThang12TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[11].TuNgay, 0);
+        objLichThongBao.KhaiBaoThang12TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[11].TuNgay, 1);
         objLichThongBao.KhaiBaoThang12DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang12TuNgay, 2);
        
         objLichThongBao.setData(objLichThongBao.IDLichThongBao, objLichThongBao.IDNguoiLaoDong, objLichThongBao.IDTinhHuong
@@ -354,7 +359,8 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
        , objLichThongBao.KhaiBaoThang10TuNgay, objLichThongBao.KhaiBaoThang10DenNgay
        , objLichThongBao.KhaiBaoThang11TuNgay, objLichThongBao.KhaiBaoThang11DenNgay
        , objLichThongBao.KhaiBaoThang12TuNgay, objLichThongBao.KhaiBaoThang12DenNgay);
-        objTinhHuong.UpdateTrangThaiHS(int.Parse(hdIDNguoiLaoDong.Value), 3);    
+        objTinhHuong.UpdateTrangThaiHS(itemId, 3);
+        Response.Redirect(Page.Request.Url.ToString(), true);
         _msg = "Cập nhật thành công. " + objTinhHuong.Message;
 
 
@@ -518,15 +524,25 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
     #endregion
 
     protected void btnChuyenThamDinh_Click(object sender, EventArgs e)
-    {     
+    {   
+        // kiem tra xem da luu Id tinh huong chua
         TinhHuong objTinhHuong = new TinhHuong();
+        DataTable tblTinhHuong = new DataTable();
+        tblTinhHuong = objTinhHuong.getDataById(itemId);
+        if(tblTinhHuong.Rows.Count==0 )
+        {
+            _msg = "Bạn chưa lưu thông tin tính hưởng";
+            return;        
+        }
+      
         objTinhHuong.UpdateTrangThaiHS(itemId, 6);
         Response.Redirect("DanhSachTinhHuong.aspx");
-
-
     }
-    protected void btnLichThongBao_Click(object sender, EventArgs e)
+ 
+    protected void btnChuyenTraHoSo_Click(object sender, EventArgs e)
     {
-
+        TinhHuong objTinhHuong = new TinhHuong();
+        objTinhHuong.UpdateTrangThaiHS(itemId, 1);
+        Response.Redirect("DanhSachTinhHuong.aspx");
     }
 }

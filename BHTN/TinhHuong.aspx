@@ -122,16 +122,16 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    t<div style="width: 83%; float: left; margin-top:-15px!important;">
+    <div style="width: 83%; float: left; margin-top:-15px!important;">
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
-            ttt<b>Thông tin chi tiết</b>
+         <b>Thông tin chi tiết</b>
         </div>
         <div class="row line">
             <div class="label1">
                 Họ và tên: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -139,7 +139,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgaySinh" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgaySinh" readonly="true" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -161,7 +161,7 @@
                 Số CMND/HC: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -169,7 +169,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgayCap" runat="server" />
+                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayCap" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -180,7 +180,7 @@
                Nơi cấp:        
             </div>
             <div style="width: 20%; float: left">
-               <asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>          
+               <asp:TextBox ID="txtNoiCap" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>          
             </div>  
         </div>
 
@@ -189,22 +189,22 @@
                Số sổ BHXH:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
                 Số tháng đóng:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row line">
-  `         <div class="label1">
+         <div class="label1">
             Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoDienThoai" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
 
             
@@ -235,7 +235,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgayNghiViec" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgayNghiViec" readonly="true" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -247,7 +247,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgayHoanThien" runat="server" />
+                    <input type='text' readonly="true" class="form-control dateinput" id="txtNgayHoanThien" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -446,6 +446,9 @@
                 <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
                 <br />
                 <br />
+                 <asp:Button ID="btnChuyenTraHoSo" runat="server" Text="Chuyển trả hồ sơ" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenTraHoSo_Click" />
+                <br />
+                <br />
                 <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />
                
             </div>
@@ -512,6 +515,35 @@
         $(document).ready(function () {
 
 
+        });
+        $("#MainContent_txtMucDongThang6").blur(function () {
+            var SoThangDong = $("#MainContent_txtSoThangDongBHXH").val();
+            if (SoThangDong.trim() == "") {
+                $("#MainContent_txtSoThangHuong").val("");
+                $("#MainContent_txtSoThangBaoLuu").val("");
+            }
+            var SoThangDuocHuong = 0, SoThangBaoLuu = 0, temp = 0;
+            temp = SoThangDong;
+            if (SoThangDong >= 12 && SoThangDong <= 36) {
+                SoThangDuocHuong = 3;
+            }
+            if (SoThangDong > 36) {
+                SoThangDuocHuong = 3;
+                SoThangDong = SoThangDong - 36;
+                SoThangDong = Math.round((SoThangDong / 12));
+                SoThangDuocHuong = SoThangDuocHuong + SoThangDong;
+                if (SoThangDuocHuong > 12) {
+                    SoThangDuocHuong = 12;
+                }
+            }
+
+            SoThangBaoLuu = temp - SoThangDuocHuong * 12;
+            if (SoThangBaoLuu < 0) {
+                SoThangBaoLuu = 0;
+            }
+
+            $("#MainContent_txtSoThangHuong").val(SoThangDuocHuong);
+            $("#MainContent_txtSoThangBaoLuu").val(SoThangBaoLuu);
         });
         $("#MainContent_ddlLuongToiThieu").change(function () {
             $("#MainContent_txtMucHuongToiDa").val($(this).val() * 5);

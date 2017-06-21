@@ -17,6 +17,7 @@
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Lý do đăng ký trễ");
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Lương tối thiểu vùng");
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Danh sách ngày nghỉ lễ trong năm");
+        TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Loại quyết định");
         //Application[""]
     }
 

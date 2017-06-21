@@ -7,7 +7,6 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
         .TrangThai
         {
             padding:3px;
@@ -22,7 +21,13 @@
         }
     </style>
     <script src="../js/TvsScript.js"></script>
-</asp:Content>
+    <script>
+        function delmodal(id, name, idtrangthai) {
+            $("#MainContent_hdChuyen").val(id);
+           $("#myModal").modal("show");
+        }
+    </script>
+   </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width:auto; min-height:400px;">
     <table style="margin-top: -10px; margin-right: -15px!important; width: 100%!important; padding: 0px!important; " border="0">
@@ -35,7 +40,7 @@
                     <div class='input-group date' style="margin-left: 0px; width: 70% !important; float:left;">
                     <input type='text' class="form-control dateinput" id="txtNgaySinh" runat="server" />
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar" style="position:relative; z-index:9999;"></span>
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>          
              </td>
@@ -73,7 +78,9 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td class="DataListTableTdItemTT"><%= index++ %></td>
+                <td class="DataListTableTdItemTT">
+                <input type="checkbox" id ="ckbSelect<% =index++ %>" value ="<%# Eval("IdNLDTCTN") %>" />
+                </td>
                 <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
                 <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Hoàn thiện","<span class = \"TrangThai\">Hoàn thiện</span>") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
@@ -85,9 +92,9 @@
                 </td>
                 <td class="DataListTableTdItemCenter">
                     <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>">
-                        <img src="/Images/Forward.png" alt="Tính hưởng" title ="Tính hưởng"></a>
-                    <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>">
-                        <img src="/Images/Edit.png" alt="Sửa tính hưởng" title ="Sửa tính hưởng"></a>
+                        <img src="/Images/Edit.png" alt="Tính hưởng" title ="Tính hưởng"></a>
+                 <a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>)">
+                        <img src="/Images/Forward.png" alt="Chuyển thẩm định" title ="Chuyển thẩm định"></a>
                 </td>
             </tr>
         </ItemTemplate>
@@ -107,23 +114,28 @@
             </td>
         </tr>
     </table>
-
-
-    <input id="idNLD" type="hidden" runat="server" />
+        <div class="row col-sm-12">
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="CheckAll()">Check All</a>
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="UnCheckAll()">UnCheck All</a>
+        <div class="warning">
+            <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
+        </div>        
+        <a class="btn btn-primary" style="float:right" onclick="ChuyenSelect()">Chuyển</a>
+        </div>   
     <!-- Modal -->
-    <div id="HoanThienModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Xác nhận hoàn thiện hồ sơ</h4>
+                    <h4 class="modal-title">Xác nhận chuyển thẩm định</h4>
                 </div>
                 <div class="modal-body">
                     <p>Bạn xác nhận hoàn thiện hồ sơ đối với người lao động <b id="htnld"></b></p>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnHoanThienHoSo" runat="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnHoanThienHoSo_Click" />
+                    <asp:Button ID="btnChuyenHoSo" runat="server" CssClass="btn btn-primary" Text="Xác nhận" OnClick="btnChuyenHoSo_Click" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -138,7 +150,61 @@
 
             $(".dateinput").mask("99/99/9999", { placeholder: "dd/MM/yyyy" });
         });
+
+        function ChuyenSelect()
+        {
+            var txt = "";
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null && objchk.checked == true)
+                {
+                    if(txt != "") txt += ","
+                    txt += objchk.value;
+                }
+            }
+
+            if(txt != "")
+            {
+                $("#MainContent_hdlstChuyen").val(txt);
+
+                $("#myModal").modal("show");
+            }
+        }
+
+        function CheckAll()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null)
+                {
+                    objchk.checked = true;
+                }
+            }
+        }
+
+        function UnCheckAll()
+        {
+            for(i=1;i< <%= index %>;i++)
+            {
+                var objchk = document.getElementById('ckbSelect' + i);
+                if(objchk != null)
+                {
+                    objchk.checked = false;
+                }
+            }
+        }
+
+        var msg='<%=_msg%>';
+        if(msg!="")
+        {
+            alert(msg);
+        }
     </script>
  </div>
+  <input id="idNLD" type="hidden" runat="server" />
+  <asp:HiddenField ID="hdlstChuyen" runat="server" />
+  <asp:HiddenField ID="hdChuyen" runat="server" />
 </asp:Content>
 
