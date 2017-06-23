@@ -9,10 +9,8 @@ using System.Web.UI.WebControls;
 public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
 {
     #region declare
-    private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public int index = 1;
     public string _msg = "";
-
 
     #endregion
 
@@ -24,12 +22,10 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
         }
          
         if(!Page.IsPostBack)
-        {
+        {        
             Load_CauHinh();
             Load_DanhSachHoSo();
-   
-        }
-             
+        }             
     }
     private void Load_DanhSachHoSo()
     {

@@ -81,16 +81,16 @@
                     <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen")%></td>
                     <td class="DataListTableTdItemJustify"><span class ="TrangThai">1</span> 
                        <span class="TrangThai">2</span> 3 4 5
-
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>                   
                     <td class="DataListTableTdItemCenter">
-                     <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>">
+                     <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>&tg=1">
                      <input type="button" class="btn btn-primary" value="TBVL"/></a>                    
-                     <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
+                    <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
+                    
                     </td>
                 </tr>
             </ItemTemplate>

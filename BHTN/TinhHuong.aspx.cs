@@ -63,13 +63,13 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
                         chkGioiTinhNu.Checked = false;
                     }
                     txtCMND.Text = tblNguoiLaoDong.Rows[0]["CMND"].ToString();
-                    // Noi Cap CMND
-                    DataRow row= new DanhMuc().getItem(int.Parse(tblNguoiLaoDong.Rows[0]["NoiCap"].ToString()));
-                    if (row != null)
+                    // Noi Cap CMND   
+                    txtNoiCap.Text = tblNguoiLaoDong.Rows[0]["NoiCap"].ToString();
+               
+                    if (tblNguoiLaoDong.Rows[0]["NgayCapCMND"] != null && ((DateTime)tblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("yyyy") != "1900")
                     {
-                        txtNoiCap.Text = row["NameDanhMuc"].ToString();
+                        txtNgayCap.Value = ((DateTime)tblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy");
                     }
-                    txtNgayCap.Value = ((DateTime)tblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy");
                     txtSoBHXH.Text = tblNguoiLaoDong.Rows[0]["BHXH"].ToString();
                     txtSoDienThoai.Text = tblNguoiLaoDong.Rows[0]["DienThoai"].ToString();
                     // noi truong tru
