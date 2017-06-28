@@ -580,8 +580,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
     }
     private void Load_CauHinhTraKetQua(bool status)
     {
-        btnTraQuyetDinh.Visible = status;
-        btnHuyHuong.Visible = status;
+        btnTraQuyetDinh.Visible = status;    
     }
     protected void btnTraQuyetDinh_Click(object sender, EventArgs e)
     {

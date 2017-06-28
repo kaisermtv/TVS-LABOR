@@ -30,7 +30,7 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
     private void Load_DanhSachHoSo()
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(12,0,0,str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",12,",str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -194,13 +194,48 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-       
+            string str = "";
             DataRowView newRow = (DataRowView)e.Item.DataItem;
-            if((int)newRow["IdTrangThai"]<=10)
+            int IDTCTN = (int)newRow["IdNLDTCTN"];
+            DataTable tblTinhHuong = new TinhHuong().getDataById(IDTCTN);
+            if(tblTinhHuong.Rows.Count >0)
             {
-                Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
-                newButtom.Visible = true;
+                DataTable tblLichThongBao = new LichThongBao().GetDataByID((int)tblTinhHuong.Rows[0]["IDTinhHuong"]);
+                if(tblLichThongBao.Rows.Count>0)
+                {
+                   
+                    for(int i=1;i<=12;i++)
+                    {
+                        if (((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "TuNgay"]).ToString("yyyy") != "1900")
+                        {
+                           // kiem tra thang nang da khai bao chua
+                            DataTable tblThongBaoHangThang = new ThongBaoViecLamHangThang().GetByID(IDTCTN, i);
+
+                            if(tblThongBaoHangThang.Rows.Count>0 )
+                            {
+                                if (tblThongBaoHangThang.Rows[0]["TrangThaiThongBao"].ToString() == "14")
+                                {
+                                    str += "<span class='dakhaibao' alt='Đã khai báo' title ='Đã khai báo'>" + i.ToString() + "</span>";
+                                }
+                                if (tblThongBaoHangThang.Rows[0]["TrangThaiThongBao"].ToString() == "15")
+                                {
+                                    str += "<span class='khongkhaibao' alt='Không khai báo' title ='Không khai báo' >" + i.ToString() + "</span>";
+                                }
+                            }
+                            else
+                            {
+                                str += "<span class='chothongbao' alt='Chờ khai báo' title ='Chưa khai báo'>" + i.ToString() + "</span>";
+                            }                      
+                    
+                        }
+            
+                    }
+
+                }           
+
             }
+            Label lblThongBaoViecLam = (Label)e.Item.FindControl("lblKhaiBaoViecLam");
+            lblThongBaoViecLam.Text = str;
 
         }
     }

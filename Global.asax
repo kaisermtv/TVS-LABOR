@@ -18,6 +18,8 @@
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Lương tối thiểu vùng");
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Danh sách ngày nghỉ lễ trong năm");
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Loại quyết định");
+        TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Lý do không khai báo trực tiếp");
+        TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Tình trạng việc làm");
         //Application[""]
     }
 

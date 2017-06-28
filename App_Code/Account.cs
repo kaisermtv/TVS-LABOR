@@ -120,7 +120,30 @@ public class Account
         return objTable;
     }
     #endregion
+    public DataTable GetUserByGroupID(int GroupID)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblAccount WHERE GroupID = @IGroupID";
+            Cmd.Parameters.Add("IGroupID", SqlDbType.Int).Value = GroupID;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
 
+        }
+        return objTable;
+    }
     #region method getDataById
     public DataTable getDataById(int Id)
     {

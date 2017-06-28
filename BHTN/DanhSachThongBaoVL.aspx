@@ -7,13 +7,32 @@
             padding-bottom: 5px;
         }
 
-        .TrangThai {
+        .khongkhaibao {
             padding: 3px;
             padding-left: 8px;
             padding-right: 8px;
             background-color: #ff6a00;
             color: #fff;
             font-size: 12px;
+            margin-left:10px;
+        }
+        .dakhaibao {
+            padding: 3px;
+            padding-left: 8px;
+            padding-right: 8px;
+            background-color: #79CD53;
+            color: #fff;
+            font-size: 12px;
+            margin-left:10px;
+        }
+        .chothongbao {
+            padding: 3px;
+            padding-left: 8px;
+            padding-right: 8px;
+            background-color: #c0c0c0;
+            color: #fff;
+            font-size: 12px;
+            margin-left:10px;
         }
 
         label {
@@ -79,8 +98,8 @@
                         <input type="checkbox" id="ckbSelect<% =index++ %>" value="<%# Eval("IdNLDTCTN") %>" />
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen")%></td>
-                    <td class="DataListTableTdItemJustify"><span class ="TrangThai">1</span> 
-                       <span class="TrangThai">2</span> 3 4 5
+                    <td class="DataListTableTdItemJustify">
+                        <asp:Label ID="lblKhaiBaoViecLam" runat="server" Text=""></asp:Label>
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify">
@@ -88,9 +107,8 @@
                     </td>                   
                     <td class="DataListTableTdItemCenter">
                      <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>&tg=1">
-                     <input type="button" class="btn btn-primary" value="TBVL"/></a>                    
-                    <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
-                    
+                     <input type="button" class="btn btn-primary" value="TBVL"/></a>                  
+                  
                     </td>
                 </tr>
             </ItemTemplate>

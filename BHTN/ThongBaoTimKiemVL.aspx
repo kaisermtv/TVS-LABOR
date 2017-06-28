@@ -36,14 +36,14 @@
     <div style="width: 83%; float: left; margin-top:-15px!important;">
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
          <b>Khai báo thông tin việc làm</b>
-        </div>
+        </div>        
         <div  class="content-left">
             <asp:Repeater ID="rptLichThongBao" runat="server">
                 <HeaderTemplate>
                  <ul>               
                 </HeaderTemplate>
                 <ItemTemplate>
-                <li><a href="ThongBaoTimKiemVL.aspx?id=<%=itemId%>&tg=<%=_index++%>"><%# Eval("ThangThongBao") %></a></li>
+                <li><a href="ThongBaoTimKiemVL.aspx?id=<%=itemId%>&tg=<%=_index++%>" style="<%# (Eval("TrangThaiThongBao").ToString()=="0")?"color:#6d6d6d":"color:#8AC044" %>" ><%# Eval("GhiChu") %></a></li>
                 </ItemTemplate>
                 <FooterTemplate>
                  </ul>
@@ -51,7 +51,8 @@
             </asp:Repeater>          
         </div>
         <div class="content-top">
-            <h4>Bạn đang khai báo việc làm tháng: <%= (_tg.ToString()=="0")?"":_tg.ToString()%></h4>
+            <h4>
+                <asp:Label ID="lblThongBao" runat="server" Text=""></asp:Label></h4>
         </div>
         <div class="content-center">
         <div class="row line" style="margin-left:0 !important;">
@@ -60,7 +61,7 @@
                 <th>Ngày khai báo:</th>
                 <td>
                     <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: left;">
-                        <input type='text' class="form-control dateinput" id="txtTuNgay" runat="server" />
+                        <input type='text' class="form-control dateinput" id="txtNgayKhaiBao" runat="server" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -74,7 +75,7 @@
              <tr id="LyDo" style="display:none">
                  <th>Ly do:</th>
                  <td>
-                     <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control" Style="width: 100%;">
+                     <asp:DropDownList ID="ddlLyDo" runat="server" CssClass="form-control" Style="width: 100%;">
                     </asp:DropDownList>
 
                  </td>
@@ -84,13 +85,13 @@
               <tr>
                 <th>Người tiếp nhận:</th>
                 <td>
-                    <asp:DropDownList ID="ddlLuongToiThieu0" runat="server" CssClass="form-control" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlNguoiTiepNhan" runat="server" CssClass="form-control" Style="width: 100%;">
                     </asp:DropDownList>
                 </td>
                 <th>Tình trạng việc làm:</th>
                 <td>
                   
-                    <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" Style="width: 100%;">
+                    <asp:DropDownList ID="ddlTinhTrangViecLam" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
                   
                   </td>
@@ -98,7 +99,7 @@
               <tr>
                 <th>Số quầy KB:</th>
                 <td>
-                <asp:TextBox ID="txtLuongTrungBinh" runat="server" CssClass="form-control money"></asp:TextBox>
+                <asp:TextBox ID="txtSoQuay" runat="server" CssClass="form-control money"></asp:TextBox>
                 </td>
                 <th>Ghi chú:</th>
                 <td>
@@ -143,6 +144,7 @@
                 </div>               
                <asp:Button ID="btnDaKhaiBao" runat="server" Text="Đã khai báo" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnDaKhaiBao_Click" />
                <asp:Button ID="btnKhongKhaiBao" runat="server" Text="Không khai báo" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnKhongKhaiBao_Click" />
+               <asp:Button ID="btnThoat" runat="server" Text="Thoát" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnThoat_Click" />
             
             </div>
         </div>
@@ -165,9 +167,13 @@
             else
             {
                 $("#LyDo").css("display", "none");
-            }
-          
+            }          
            
         });
+        var msg = '<%=_msg%>';
+        if(msg!='')
+        {
+            alert(msg);           
+        }
     </script>
 </asp:Content>

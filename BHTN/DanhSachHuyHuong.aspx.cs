@@ -34,7 +34,7 @@ public partial class Labor_DanhSachHuyHuong : System.Web.UI.Page
     private void Load_DanhSachHoSo()
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(13,0,0,str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",13,",str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;

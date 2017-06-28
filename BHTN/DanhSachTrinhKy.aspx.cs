@@ -13,8 +13,6 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public int index = 1;
     public string _msg = "";
-
-
     #endregion
 
     protected void Page_Load(object sender, EventArgs e)
@@ -56,7 +54,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
     }
     private void Load_DanhSachHoSo()
     {
-        DataTable objData = new TinhHuong().getDanhSachHoSo(8, 9, 10);
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",8,9,10,");
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;

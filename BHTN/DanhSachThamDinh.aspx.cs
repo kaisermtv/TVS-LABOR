@@ -22,7 +22,7 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
   
         if(!Page.IsPostBack)
         {
-            DataTable objData = new TinhHuong().getDanhSachHoSo(6,7);
+            DataTable objData = new TinhHuong().getDanhSachHoSo(",6,7,");
             if (objData != null && objData.Rows.Count > 0)
             {
                 cpData.MaxPages = 1000;

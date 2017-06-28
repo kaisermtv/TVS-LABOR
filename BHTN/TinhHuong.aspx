@@ -446,9 +446,7 @@
                 <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />
                
                 <asp:Button ID="btnTraQuyetDinh" runat="server" Text="Trả quyết định" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraQuyetDinh_Click" />
-              
-                <asp:Button ID="btnHuyHuong" runat="server" Text="Hủy hưởng" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnHuyHuong_Click" />
-               
+            
             </div>
         </div>
     </div>

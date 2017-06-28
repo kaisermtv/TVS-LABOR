@@ -30,11 +30,15 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
    
         }
              
+    }    
+    private void DeXuatHuyHuongHoSo()
+    {
+      DataTable objData = new TinhHuong().getDanhSachHoSo(",11,");
     }
     private void Load_DanhSachHoSo()
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(11,0,0,str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",11,",str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
