@@ -34,6 +34,11 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     private void DeXuatHuyHuongHoSo()
     {
       DataTable objData = new TinhHuong().getDanhSachHoSo(",11,");
+     for(int i=0;i< objData.Rows.Count;i++)
+     {
+ 
+     }
+
     }
     private void Load_DanhSachHoSo()
     {

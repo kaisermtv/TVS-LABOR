@@ -332,7 +332,30 @@ INSERT INTO dbo.tblTrangThaiHoSo VALUES (13,N'Đề xuất hủy hưởng');
 ALTER TABLE dbo.TblNLDTroCapThatNghiep ADD NgayHenTraKQ datetime 
 ALTER TABLE dbo.TblNLDTroCapThatNghiep ADD NgayKyQD datetime 
 ALTER TABLE dbo.TblNLDTroCapThatNghiep ADD IdNguoiKy int 
+-- 28/06/2017
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (14,N'Đã khai báo');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (15,N'Không khai báo');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (16,N'Tạm dừng');
+INSERT INTO dbo.tblTrangThaiHoSo VALUES (17,,N'Tiếp tục');
+-- tao bang thong bao viec lam hang thang
+CREATE TABLE [dbo].[TblThongBaoViecLamHangThang](
+	[IDThongBaoViecLam] [int] IDENTITY(1,1) NOT NULL,
+	[IDNLDTCTN] [int] NULL,
+	[IDCanBoTiepNhan] [int] NULL,
+	[ThangThongBao] [int] NULL,
+	[NgayThongBao] [datetime] NULL,
+	[ThongBaoTrucTiep] [bit] NULL,
+	[LyDo] [int] NULL,
+	[BanTiepNhan] [nvarchar](50) NULL,
+	[GhiChu] [nvarchar](50) NULL,
+	[TrangThaiThongBao] [int] NULL,
+ CONSTRAINT [PK_TblThongBaoViecLamHangThang] PRIMARY KEY CLUSTERED 
+(
+	[IDThongBaoViecLam] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
+GO
 
 
 
