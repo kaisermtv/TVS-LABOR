@@ -11,7 +11,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
 {
     #region declare
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
-    public int index = 1;
+    public int index = 1, index2=1;   
     public string _msg = "";
     #endregion
 
@@ -27,6 +27,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             Load_DanhSachHoSo();
             Load_CauHinh();
             Load_DanhSachNguoiKy();
+            Load_TrangThai();
         }
              
     }
@@ -52,9 +53,10 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         ddlNguoiKy.DataSource = new CanBo().getDataByChucVuID(1);
         ddlNguoiKy.DataBind();
     }
-    private void Load_DanhSachHoSo()
+    private void Load_DanhSachHoSo(string Ids=",8,9,10,20,21,22,31,")
     {
-        DataTable objData = new TinhHuong().getDanhSachHoSo(",8,9,10,");
+        string str=txtSearch.Value.Trim();
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -62,7 +64,18 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         dtlData.DataSource = cpData.DataSourcePaged;
         dtlData.DataBind();
     } 
-  
+    private void Load_TrangThai()
+    {
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",8,9,10,20,21,22,31,");
+        DataRow row = tblTrangThai.NewRow();
+        row["ID"] = 0;
+        row["Name"] = "--Tất cả--";
+        tblTrangThai.Rows.InsertAt(row, 0);
+        ddlTrangThai.DataTextField = "Name";
+        ddlTrangThai.DataValueField = "ID";
+        ddlTrangThai.DataSource = tblTrangThai;
+        ddlTrangThai.DataBind();
+    }
     protected void btnDanhSo_Click(object sender, EventArgs e)
     {      
         if(txtNamQuyetDinh.Text.Trim()=="")
@@ -109,12 +122,20 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         for (int i = 0; i < strID.Length; i++)
         {
             string SoVanBan = So.ToString() + RowLoaiVanBan["Note"].ToString().Trim();
-            DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
-            if (new CapSo().CheckAutoNumber(NgayCap, IDLoaivanBan, So) == false && (int)rowTCTN["IdTrangThai"]==8)
+            DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));    
+            // trương hợp quyết định hưởng trợ cấp thất nghiệp
+            if (new CapSo().CheckAutoNumber(NgayCap, IDLoaivanBan, So) == false && (int)rowTCTN["IdTrangThai"]==8 &&  IDLoaivanBan==30)
             {
                 new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 9);
             }
+            // trương hợp quyết định hủy hưởng trợ cấp thất nghiệp
+            if (new CapSo().CheckAutoNumber(NgayCap, IDLoaivanBan, So) == false && (int)rowTCTN["IdTrangThai"] == 20 && IDLoaivanBan==49)
+            {
+                new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 21);
+            }
+
             So++;
         }
         Load_DanhSachHoSo();
@@ -147,13 +168,23 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             return;
         }
         string[] strID = hdlstChuyen.Value.Split(',');
-        
+        string[] strIDCapSo = hdlstIDCapSo.Value.Split(',');   
         for (int i = 0; i < strID.Length; i++)
         {
             DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
-             new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 10);
-            new TinhHuong().UpdateNguoiKy(int.Parse(strID[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
-      
+            // ky quyet dinh huong tro cap that nghiep
+            if ((int)rowTCTN["IdTrangThai"] == 9)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 10);
+                new TinhHuong().UpdateNguoiKy(int.Parse(strIDCapSo[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
+            }
+            // ky quyet dinh huy huong
+            if ((int)rowTCTN["IdTrangThai"] == 21)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 22);
+                new TinhHuong().UpdateNguoiKy(int.Parse(strIDCapSo[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
+            }
+        
         }
         Load_DanhSachHoSo();
 
@@ -184,114 +215,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
     #region Quyet dinh huong tro cap that nghiep
     private void TaiQuyetDinhTCTN(int IDNLDTCTN,string FileName)
     {
-        TinhHuong objTinhHuong = new TinhHuong();
-        DataTable tblTinhHuong = new TinhHuong().getDataById(IDNLDTCTN);
-        DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
-        DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
-        DataTable tblQuyetDinh = new CapSo().GetDataByIDTCTN(IDNLDTCTN);
-        DataTable tblLichThongBao=new LichThongBao().GetDataByID((int)tblTinhHuong.Rows[0]["IDTinhHuong"]);
-        if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
-        {
-            _msg = "Người lao động chưa được khởi tạo";
-            return;
-        }
-        if (tblTinhHuong == null || tblTinhHuong.Rows.Count == 0)
-        {
-            _msg = "Chưa có bẳng tỉnh nào được cập nhật";
-            return;
-        }
-        List<string> lstInput = new List<string>();
-        List<string> lstOutput = new List<string>();
-        lstInput.Add("[NgayKy]");
-        try
-        {
-            lstOutput.Add(".../.../.....");
-            //DateTime NgayDangKy = (DateTime)RowTroCapThatNghiep["NgayNopHoSo"];
-            //DateTime NgayQuyetDinh = new DateTime();
-            //NgayQuyetDinh = objTinhHuong.TinhNgayNghiLe(NgayDangKy, 20);
-            //lstOutput.Add(NgayQuyetDinh.ToString("dd/MM/yyyy"));
-        }
-        catch
-        {
-            lstOutput.Add(".../.../.....");
-        }
-        lstInput.Add("[SoQD]");
-        if(tblQuyetDinh.Rows.Count==0)
-        {
-            lstOutput.Add("......................");
-        }
-        else
-        {
-            lstOutput.Add(tblQuyetDinh.Rows[0]["SoVanBan"].ToString());
-        }
-        lstInput.Add("[TenLD]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
-        lstInput.Add("[NgaySinh]");
-        lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
-        lstInput.Add("[CMTND]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["CMND"].ToString());
-        lstInput.Add("[NgayCapCMTND]");
-        lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
-        lstInput.Add("[NoiCapCMTND]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
-        lstInput.Add("[SoBHXH]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
-        lstInput.Add("[DiaChiThuongTru]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString());
-        lstInput.Add("[DiaChiHienTai]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["DiaChi"].ToString());
-        lstInput.Add("[SoThangDong]");
-        lstOutput.Add(RowTroCapThatNghiep["SoThangDongBHXH"].ToString());
-        lstInput.Add("[MucHuong]");
-        lstOutput.Add(tblTinhHuong.Rows[0]["MucHuong"].ToString());
-        lstInput.Add("[SoThangHuong]");
-        int SoThangHuong = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"];
-        lstOutput.Add(SoThangHuong.ToString());
-        lstInput.Add("[SoThangBaoLuu]");
-        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString());
-        lstInput.Add("[HuongTuNgay]");
-        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
-        lstInput.Add("[HuongDenNgay]");
-        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy"));
-        //----- chen phan lich thong bao viec lam
-        if(tblLichThongBao.Rows.Count==0)
-        {
-            _msg = "Hồ sơ chưa có lịch thông báo";
-            return;
-        }
-        lstInput.Add("[Thang1]");
-        lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang1TuNgay"]).ToString("dd/MM/yyyy"));
-        for (int i = 2; i <= 12; i++)
-        {
-            lstInput.Add("[Thang"+i.ToString()+"Tu]");
-            if (((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang"+i.ToString()+"TuNgay"]).ToString("yyyy") != "1900")
-            {
-                lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "TuNgay"]).ToString("dd/MM/yyyy"));          
-            }
-            else
-            {
-                lstOutput.Add("../../....");
-            }
-            lstInput.Add("[Thang" + i.ToString() + "Den]");
-            if (((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "DenNgay"]).ToString("yyyy") != "1900")
-            {
-                lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "DenNgay"]).ToString("dd/MM/yyyy"));
-        
-            } 
-            else
-            {
-                lstOutput.Add("../../....");
-            }
-        }
- 
-        ExportToWord objExportToWord = new ExportToWord();
-        byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/QuyetDinhHuongTCTN.docx"), lstInput, lstOutput);
-        Response.AppendHeader("Content-Type", "application/msword");
-        Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhHuongTCTN" + FileName + ".docx");
-        Response.BinaryWrite(temp);
-        HttpContext.Current.Response.End();
-        HttpContext.Current.Response.Flush();
-     
+        new Common().TaiQuyetDinhTCTN(IDNLDTCTN, FileName);     
     }
     #endregion  
      
@@ -300,7 +224,16 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         if (e.CommandName == "TaiQuyetDinh")
         {
             int ID = int.Parse(e.CommandArgument.ToString());
-            TaiQuyetDinhTCTN(ID,"");
+            DataRow Row = new NLDTroCapThatNghiep().getItem(ID);
+            // la quyet dinh TCTN
+            if ((int)Row["IdTrangThai"] == 10)
+            {
+                new Common().TaiQuyetDinhTCTN(ID, "");
+            }
+            if ((int)Row["IdTrangThai"] == 22)
+            {
+                new Common().TaiQuyetDinhHuyHuong(ID, "");
+            }
         }
 
     }
@@ -311,7 +244,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         {
        
             DataRowView newRow = (DataRowView)e.Item.DataItem;
-            if(newRow["IdTrangThai"].ToString().Trim()!="10")
+            if(newRow["IdTrangThai"].ToString().Trim()!="10" || newRow["IdTrangThai"].ToString().Trim()!="22")
             {
                 Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
                 newButtom.Enabled = false;
@@ -325,17 +258,30 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         for (int i = 0; i < strID.Length; i++)
         {
             DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
+            // trả kết quả QĐ Hưởng TCTN
             if ((int)rowTCTN["IdTrangThai"] == 10)
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 11);
             }
-            else
+            // Trả kết quả QĐ hủy hưởng TCTN
+            if ((int)rowTCTN["IdTrangThai"] == 22)
             {
-                _msg = "Hồ sơ chưa được trình ký";
-                return;
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 23);
             }
+         
         }
         Load_DanhSachHoSo();
 
+    }
+    protected void ddlTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if(ddlTrangThai.SelectedValue.ToString()!=null && ddlTrangThai.SelectedValue.ToString()=="0")
+        {
+            Load_DanhSachHoSo();
+        }
+        else
+        {
+            Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue.ToString() + ",");
+        }
     }
 }

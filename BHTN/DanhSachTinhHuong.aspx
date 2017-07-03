@@ -30,7 +30,7 @@
    </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width:auto; min-height:400px;">
-    <table style="margin-top: -10px; margin-right: -15px!important; width: 100%!important; padding: 0px!important; " border="0">
+        <table style="margin-top: -10px; margin-right: -15px!important; width: 100%!important; padding: 0px!important; " border="0">
         <tr>
             <td>
                 <input type="text" id="txtSearch" placeholder="Nhập tên NLĐ, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
@@ -56,19 +56,20 @@
             <td style="width: 40px !important; text-align: center;">
                 <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
             </td>
-            <td style="width: 90px !important; text-align: center;">
-                <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+            <td style="width:250px;">
+                <label>Trạng thái</label>
+                 <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
+                </asp:DropDownList>
             </td>
         </tr>
     </table>
-    
-    <asp:Repeater ID="dtlData" runat="server" >
+    <asp:Repeater ID="dtlData" runat="server">
         <HeaderTemplate>
             <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
                 <tr style="height: 40px;" class="DataListTableHeader">
                     <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
                     <td class="DataListTableHeaderTdItemJustify">Người lao động</td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Tình trạng</td>
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 13%;">Tình trạng</td>
                     <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
                     <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số BHXH</td>
                     <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày hoàn thiện</td>
@@ -82,7 +83,7 @@
                 <input type="checkbox" id ="ckbSelect<% =index++ %>" value ="<%# Eval("IdNLDTCTN") %>" />
                 </td>
                 <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
-                <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Hoàn thiện","<span class = \"TrangThai\">Hoàn thiện</span>") %></td>
+                <td class="DataListTableTdItemJustify" style="color: red; text-align:left; "><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                 <td class="DataListTableTdItemJustify">
@@ -91,10 +92,9 @@
                 <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
                 </td>
                 <td class="DataListTableTdItemCenter">
-                    <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>">
-                        <img src="/Images/Edit.png" alt="Tính hưởng" title ="Tính hưởng"></a>
-                 <a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>)">
-                        <img src="/Images/Forward.png" alt="Chuyển thẩm định" title ="Chuyển thẩm định"></a>
+                    <a href="<%#SetLink((int)Eval("IDNLDTCTN"),(int) Eval("IdTrangThai"))%>">
+                        <img src="/Images/edit.png" alt="Tính hưởng" title ="Tính hưởng"></a>  
+                    <a href="#myModal" onclick="delmodal(<%# Eval("IDNLDTCTN") %>)" style="display:none"> <img src="/Images/Forward.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
                 </td>
             </tr>
         </ItemTemplate>

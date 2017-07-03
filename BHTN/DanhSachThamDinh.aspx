@@ -56,8 +56,10 @@
             <td style="width: 40px !important; text-align: center;">
                 <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
             </td>
-            <td style="width: 90px !important; text-align: center;">
-                <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+           <td style="width:250px;">
+                <label>Trạng thái</label>
+                 <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
+                </asp:DropDownList>
             </td>
         </tr>
     </table>
@@ -81,7 +83,7 @@
                 <input type="checkbox" id ="ckbSelect<% =index++ %>" value ="<%# Eval("IdNLDTCTN") %>" />
                 </td>
                 <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
-                <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
+                <td class="DataListTableTdItemJustify" style="color: red; text-align:left; "><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                 <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                 <td class="DataListTableTdItemJustify">
@@ -90,9 +92,9 @@
                 <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
                 </td>
                 <td class="DataListTableTdItemCenter">
-                    <a href="ThamDinh.aspx?id=<%#Eval("IDNLDTCTN")%>">
+                    <a href="<%#SetLink((int)Eval("IDNLDTCTN"),(int) Eval("IdTrangThai"))%>">
                         <img src="/Images/edit.png" alt="Thẩm định" title ="Thẩm định"></a>  
-                     <a href="#myModal" onclick="delmodal(<%# Eval("IDNLDTCTN") %>)"> <img src="/Images/Forward.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
+                    <a href="#myModal" onclick="delmodal(<%# Eval("IDNLDTCTN") %>)" style="display:none"> <img src="/Images/Forward.png" alt="Trình ký - đánh số" title ="Trình ký - đánh số"></a>               
                 </td>
             </tr>
         </ItemTemplate>
@@ -118,7 +120,7 @@
         <div class="warning">
             <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
         </div>        
-        <a class="btn btn-primary" style="float:right" onclick="ChuyenSelect()">Chuyển</a>
+        <a class="btn btn-primary" style="float:right" onclick="ChuyenSelect()">Trình ký - đanh số</a>
         </div>  
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -192,6 +194,12 @@
                     objchk.checked = false;
                 }
             }
+        }
+
+        var msg='<%=_msg%>';
+        if(msg!='')
+        {
+            alert(msg);
         }
 
 

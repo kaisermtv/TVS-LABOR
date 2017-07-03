@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThamDinh.aspx.cs" Inherits="Labor_ThamDinh" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="TinhHuongTamDung.aspx.cs" Inherits="Labor_TinhHuongTamDung" %>
 <%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -124,14 +124,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width: 83%; float: left; margin-top:-15px!important;">
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
-            <b>Thông tin chi tiết</b>
-        </div>
+            <b>Thông tin hủy hưởng</b></div>
         <div class="row line">
             <div class="label1">
                 Họ và tên: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtHoVaTen" runat="server"  ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -139,7 +138,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgaySinh" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgaySinh" readonly="true" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -196,7 +195,7 @@
                 Số tháng đóng:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row line">
@@ -204,7 +203,7 @@
             Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoDienThoai" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoDienThoai" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
 
             
@@ -216,7 +215,7 @@
             </div>
 
             <div style="width: 52%; float: left">
-                <asp:TextBox ID="txtNoiThuongTru" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNoiThuongTru" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
 
         </div>
@@ -225,201 +224,55 @@
                 Chỗ ở hiện tại: 
             </div>
             <div style="width: 52%; float: left">
-                <asp:TextBox ID="txtChoOHienTai" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <div class="row line">     
-       
-            <div class="label1">
-            Ngày nghỉ việc:
-            </div>
-            <div style="width: 20%; float: left">
-                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayNghiViec" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>           
-            </div>
-
-             <div class="label2">
-             Ngày nộp hồ sơ:
-            </div>
-            <div style="width: 20%; float: left">
-                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayNopHoSo" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>           
+                <asp:TextBox ID="txtChoOHienTai" runat="server"  ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row line">
-            <div class="label1">Nơi ĐBH cuối: </div>
+            <div class="label1">Số tháng hưởng TCTN: </div>
             <div style="width: 20%; float: left">
-                <asp:DropDownList ID="ddlLuongToiThieu" CssClass="form-control" runat="server" Style="width: 100%;">
-                </asp:DropDownList>
+                 <asp:TextBox ID="txtSoThangHuong" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="label2">Số tháng bảo lưu: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtSoThangBaoLuu" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>   
+        <div class="row line ">
+            <div class="label1">Số tháng đã hưởng: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtSoThangDaHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
+            </div>
+
+            <div class="label2">Ngày tính hưởng: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtNgayTinhHuong" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
         </div>
-        <div class="row line">            
-            <div class="label1">
-                6 tháng gần nhất 
+        <div class="row line">
+            <div class="label1">Ngày đề xuất: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtNgayDeXuat" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div style="width: 84%; float: left">
-                <table style="border: 1px solid; width: 100%">
-                    <tr>
-                        <th style="width: 120px"></th>
-                        <th>Tháng đóng</th>
-                        <th>Mức đóng</th>
-                        <th>&nbsp;</th>
-                        <th>&nbsp;</th>                       
-                    </tr>
-                    <tr>
-                        <th>Tháng thứ 6</th>
-                        <td>
-                            <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput1" id="txtThangThu6" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtMucDongThang6" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                        <th>
-                            Mức đóng trung bình:
-                        </th>
-                        <td>
-                            <asp:TextBox ID="txtLuongTrungBinh" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                   
-                    </tr>
-                    <tr>
-                        <th>Tháng thứ 5</th>
-                        <td>
-                            <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput1" id="txtThangThu5" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtMucDongThang5" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                        <th>
-                            Mức hưởng tối đa:
-
-                        </th>
-                        <td>
-                            <asp:TextBox ID="txtMucHuongToiDa" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                
-                    </tr>
-                    <tr>
-                        <th>Tháng thứ 4</th>
-                        <td>
-                            <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput1" id="txtThangThu4" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtMucDongThang4" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                        <th>
-                            Mức hưởng:
-                        </th>
-                        <td>
-                            <asp:TextBox ID="txtMucHuong" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                  
-                    </tr>
-                    <tr>
-                        <th>Tháng thứ 3</th>
-                        <td>
-                            <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput1" id="txtThangThu3" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtMucDongthang3" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                        <th>
-                            Số tháng hưởng TCTN:
-                        </th>
-                        <td>
-                            <asp:TextBox ID="txtSoThangHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
-                  
-                    </tr>
-                    <tr>
-                        <th>Tháng thứ 2</th>
-                        <td>
-                            <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput1" id="txtThangThu2" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtMucDongThang2" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                        <th>
-                            Số tháng bảo lưu:
-                        </th>
-                        <td>
-                            <asp:TextBox ID="txtSoThangBaoLuu" runat="server" CssClass="form-control"></asp:TextBox></td>
-                  
-                    </tr>
-                    <tr>
-                        <th>Tháng thứ 1</th>
-                        <td>
-                            <div class='input-group date1' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput1" id="txtThangThu1" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtMucDongThang1" runat="server" CssClass="form-control money"></asp:TextBox></td>
-                        <th>
-                            Hưởng từ ngày:
-
-                        </th>
-                        <td>
-                            <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput" id="txtHuongTuNgay" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-
-                        </td>
-                   
-                    </tr>                 
-                    <tr>
-                        <th>&nbsp;</th>
-                        <td>                            
-                        </td>
-                        <td>
-                        </td>
-                        <th>  
-                            Hưởng đến ngày:
-                        </th>
-                        <td>
-                            <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput" id="txtHuongDenNgay" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-
-                        </td>                     
-                    </tr>
-                </table>
+            <div class="label2">Ngày tạm dừng: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtNgayTamDung" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            </div>        
+        </div>   
+
+        <div class="row line">
+            <div class="label1">Số quyết định: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtSoQuyetDinh" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="label2">Ngày ký: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtNgayKy" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>   
+
+
+
         <br />
         <br />
         <br />
@@ -437,17 +290,12 @@
                     <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item" data-toggle="modal" data-target="#lichthongbao" runat="server"><span class="badge1" style ="left:140px;">></span>Lịch thông báo</a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="InQuyetDinhHuongTroCap_ServerClick" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
-                </div>
-                <br />
-                <br />
-                <asp:Button ID="btnDuyet" runat="server" Text="Lưu/Duyệt" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnDuyet_Click" />
-                <br />
-                <br />
-                <asp:Button ID="btnTraTinhHuong" runat="server" Text="Trả tính hưởng" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTraTinhHuong_Click" />
-                <br />
-                <br />
-                <asp:Button ID="btnTraTiepNhat" runat="server" Text="Trả tiếp nhận" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnTraTiepNhat_Click" />
-              
+                </div>          
+             
+                <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
+                 <a href="DanhSachTinhHuong.aspx">
+                 <input  type="button" style="width: 100% !important;margin-top:10px;"  class="btn btn-primary" value="Thoát" />  
+                 </a>
             </div>
         </div>
     </div>
@@ -558,4 +406,5 @@
 
     </script>  
     <asp:HiddenField ID="hdIDNguoiLaoDong" runat="server" />
+    <asp:HiddenField ID ="hdStatus" runat="server" />
 </asp:Content>

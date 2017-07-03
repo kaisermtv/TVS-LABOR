@@ -51,6 +51,7 @@ public class TinhHuong:DataClass
     public DateTime HuongTuNgay { get; set; }
     public DateTime HuongDenNgay { get; set; }
     public int IDNguoiTinh { get; set; }
+    public int SoThangDaHuongBHXH { get; set; }
     #endregion 
     public TinhHuong()
     {
@@ -64,7 +65,7 @@ public class TinhHuong:DataClass
         , string ThangDong5, float HeSoLuong5, float HeSoPhuCap5, decimal LuongCoBan5, decimal MucDong5
         , string ThangDong6, float HeSoLuong6, float HeSoPhuCap6, decimal LuongCoBan6, decimal MucDong6
         ,int SoThangHuongBHXH,int SoThangBaoLuuBHXH, decimal MucHuongToiDa,decimal LuongTrungBinh,decimal MucHuong,DateTime HuongTuNgay, DateTime HuongDenNgay, int IDNguoiTinh 
-     )
+        ,int SoThangDaHuongBHXH=0 )
     {
         int tmpValue = 0;
         try
@@ -78,7 +79,7 @@ public class TinhHuong:DataClass
             sqlQuery += ",ThangDong4,HeSoLuong4,HeSoPhuCap4,LuongCoBan4,MucDong4";
             sqlQuery += ",ThangDong5,HeSoLuong5,HeSoPhuCap5,LuongCoBan5,MucDong5";
             sqlQuery += ",ThangDong6,HeSoLuong6,HeSoPhuCap6,LuongCoBan6,MucDong6";
-            sqlQuery += ",SoThangHuongBHXH,SoThangBaoLuuBHXH,MucHuongToiDa,LuongTrungBinh,MucHuong,HuongTuNgay,HuongDenNgay,IDNguoiTinh";
+            sqlQuery += ",SoThangHuongBHXH,SoThangBaoLuuBHXH,MucHuongToiDa,LuongTrungBinh,MucHuong,HuongTuNgay,HuongDenNgay,IDNguoiTinh,SoThangDaHuongBHXH";
             sqlQuery += ")";
             sqlQuery += " VALUES(@IDNguoiLaoDong,@IDNLDTCTN,@NgayTao,@IDVungLuongToiThieu,@LuongToiThieuVung";
             sqlQuery += ",@ThangDong1,@HeSoLuong1,@HeSoPhuCap1,@LuongCoBan1,@MucDong1";
@@ -87,7 +88,7 @@ public class TinhHuong:DataClass
             sqlQuery += ",@ThangDong4,@HeSoLuong4,@HeSoPhuCap4,@LuongCoBan4,@MucDong4";
             sqlQuery += ",@ThangDong5,@HeSoLuong5,@HeSoPhuCap5,@LuongCoBan5,@MucDong5";
             sqlQuery += ",@ThangDong6,@HeSoLuong6,@HeSoPhuCap6,@LuongCoBan6,@MucDong6";
-            sqlQuery += ",@SoThangHuongBHXH,@SoThangBaoLuuBHXH,@MucHuongToiDa,@LuongTrungBinh,@MucHuong,@HuongTuNgay,@HuongDenNgay,@IDNguoiTinh";
+            sqlQuery += ",@SoThangHuongBHXH,@SoThangBaoLuuBHXH,@MucHuongToiDa,@LuongTrungBinh,@MucHuong,@HuongTuNgay,@HuongDenNgay,@IDNguoiTinh,@SoThangDaHuongBHXH";
             sqlQuery += ") END ";
             sqlQuery += "ELSE BEGIN UPDATE TblTinhHuong SET NgayTao=@NgayTao,IDVungLuongToiThieu=@IDVungLuongToiThieu,LuongToiThieuVung=@LuongToiThieuVung";
             sqlQuery += ",ThangDong1=@ThangDong1,HeSoLuong1=@HeSoLuong1,HeSoPhuCap1=@HeSoPhuCap1,LuongCoBan1=@LuongCoBan1,MucDong1=@MucDong1";
@@ -96,7 +97,8 @@ public class TinhHuong:DataClass
             sqlQuery += ",ThangDong4=@ThangDong4,HeSoLuong4=@HeSoLuong4,HeSoPhuCap4=@HeSoPhuCap4,LuongCoBan4=@LuongCoBan4,MucDong4=@MucDong4";
             sqlQuery += ",ThangDong5=@ThangDong5,HeSoLuong5=@HeSoLuong5,HeSoPhuCap5=@HeSoPhuCap5,LuongCoBan5=@LuongCoBan5,MucDong5=@MucDong5";
             sqlQuery += ",ThangDong6=@ThangDong6,HeSoLuong6=@HeSoLuong6,HeSoPhuCap6=@HeSoPhuCap6,LuongCoBan6=@LuongCoBan6,MucDong6=@MucDong6";
-            sqlQuery += ",SoThangHuongBHXH=@SoThangHuongBHXH,SoThangBaoLuuBHXH=@SoThangBaoLuuBHXH,MucHuongToiDa=@MucHuongToiDa,LuongTrungBinh=@LuongTrungBinh,MucHuong=@MucHuong,HuongTuNgay=@HuongTuNgay,HuongDenNgay=@HuongDenNgay,IDNguoiTinh=@IDNguoiTinh";
+            sqlQuery += ",SoThangHuongBHXH=@SoThangHuongBHXH,SoThangBaoLuuBHXH=@SoThangBaoLuuBHXH,MucHuongToiDa=@MucHuongToiDa,LuongTrungBinh=@LuongTrungBinh";
+            sqlQuery += ",MucHuong=@MucHuong,HuongTuNgay=@HuongTuNgay,HuongDenNgay=@HuongDenNgay,IDNguoiTinh=@IDNguoiTinh,SoThangDaHuongBHXH=@SoThangDaHuongBHXH";
             sqlQuery += " WHERE IDNLDTCTN = @IDNLDTCTN END";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -145,6 +147,7 @@ public class TinhHuong:DataClass
             Cmd.Parameters.Add("HuongTuNgay", SqlDbType.DateTime).Value = HuongTuNgay;
             Cmd.Parameters.Add("HuongDenNgay", SqlDbType.DateTime).Value = HuongDenNgay;
             Cmd.Parameters.Add("IDNguoiTinh", SqlDbType.Int).Value = IDNguoiTinh;
+            Cmd.Parameters.Add("SoThangDaHuongBHXH", SqlDbType.Int).Value = SoThangDaHuongBHXH;
             Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
@@ -266,11 +269,13 @@ public class TinhHuong:DataClass
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayHenTraKQ,TN.NgayKyQD,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
+            Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayHenTraKQ,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai,CS.IDCapSo,CS.SoVanBan,CS.NgayKy FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
+            Cmd.CommandText += " Left join TblCapSo cs on cs.IDNLDTCTN=tn.IdNLDTCTN";
             Cmd.CommandText += " WHERE TN.IdTrangThai In (Select distinct Item from dbo.Split(@IDTrangThais))";
             Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
+            Cmd.CommandText += " And  IDCapSo in (select max(IDCapSo) from TblCapSo Where IDNLDTCTN=TN.IdNLDTCTN ) Or IDCapSo is null";
             Cmd.Parameters.Add("IDTrangThais", SqlDbType.NVarChar).Value = IDTrangThais;      
             Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
             SqlDataAdapter da = new SqlDataAdapter(Cmd);
@@ -336,18 +341,18 @@ public class TinhHuong:DataClass
         }
         return rows;
     }
-    public int UpdateNguoiKy(int IDNLDTCTN, DateTime NgayKyQD, int IDNguoiKy)
+    public int UpdateNguoiKy(int IDCapSo, DateTime NgayKyQD, int IDNguoiKy)
     {
         int rows = 0;
         try
         {
-            string sql = "Update TblNLDTroCapThatNghiep Set NgayKyQD=@NgayKyQD,IDNguoiKy=@IDNguoiKy Where IDNLDTCTN=@IDNLDTCTN";
+            string sql = "Update TblCapSo Set NgayKy=@NgayKy,IDNguoiKy=@IDNguoiKy Where IDCapSo=@IDCapSo";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = sql;
-            Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
-            Cmd.Parameters.Add("NgayKyQD", SqlDbType.DateTime).Value = NgayKyQD;
+            Cmd.Parameters.Add("IDCapSo", SqlDbType.Int).Value = IDCapSo;
+            Cmd.Parameters.Add("NgayKy", SqlDbType.DateTime).Value = NgayKyQD;
             Cmd.Parameters.Add("IDNguoiKy", SqlDbType.Int).Value = IDNguoiKy;
             rows = Cmd.ExecuteNonQuery();
             sqlCon.Close();
@@ -362,6 +367,32 @@ public class TinhHuong:DataClass
         return rows;
     }
     
-    #endregion 
-
+    #endregion     
+    #region cap nhat so thang da huong
+    public int UpdateSoThangDaHuong(int IDNLDTCTN,int SoThangDaHuongBHXH)
+    {
+        int rows = 0;
+        try
+        {             
+            string sql = "Update TblTinhHuong Set SoThangDaHuongBHXH=@SoThangDaHuongBHXH Where IDNLDTCTN=@IDNLDTCTN";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sql;
+            Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+            Cmd.Parameters.Add("SoThangDaHuongBHXH", SqlDbType.Int).Value = SoThangDaHuongBHXH;
+            rows = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            rows = 0;
+        }
+        return rows;
+       
+    }
+    #endregion
 }

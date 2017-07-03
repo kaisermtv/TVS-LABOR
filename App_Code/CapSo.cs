@@ -102,14 +102,15 @@ public class CapSo:DataClass
         }
         return value;
     }
-    public DataTable GetDataByIDTCTN(int IDNLDTCTN)
+    public DataTable GetByID(int IDNLDTCTN,int IDLoaiVanBan)
     {        
-        string sql = "Select * From TblCapSo Where IDNLDTCTN=@IDNLDTCTN";
+        string sql = "Select * From TblCapSo Where IDNLDTCTN=@IDNLDTCTN And IDLoaiVanBan=@IDLoaiVanBan";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
         Cmd.CommandText = sql;
         Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+        Cmd.Parameters.Add("IDLoaiVanBan", SqlDbType.Int).Value = IDLoaiVanBan;
         SqlDataAdapter da = new SqlDataAdapter(Cmd);
         DataSet ds = new DataSet();
         da.Fill(ds);       

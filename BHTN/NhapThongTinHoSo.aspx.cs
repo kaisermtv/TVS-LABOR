@@ -699,7 +699,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objNguoiLaoDong["IDGioiTinh"] = gioitinh;
             objNguoiLaoDong["CMND"] = txtCMND.Text;
             objNguoiLaoDong["NgayCapCMND"] = TVSSystem.CVDateDbNull(txtNgayCap.Value);
-            objNguoiLaoDong["NoiCap"] = ddlNoiCap.SelectedValue;
+            objNguoiLaoDong["NoiCap"] = ddlNoiCap.SelectedItem.Text;
             objNguoiLaoDong["DienThoai"] = txtSoDienThoai.Text;
             objNguoiLaoDong["IDDanToc"] = int.Parse(ddlDanToc.SelectedValue);
             objNguoiLaoDong["IDTonGiao"] = int.Parse(ddlTonGiao.SelectedValue);

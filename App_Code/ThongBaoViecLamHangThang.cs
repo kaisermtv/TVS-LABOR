@@ -54,15 +54,16 @@ public class ThongBaoViecLamHangThang:DataClass
         }
         return value;
     }
-    public DataTable GetByID(int IDNLDTCTN, int ThangThongBao)
+    public DataTable GetByID(int IDNLDTCTN, int ThangThongBao,int TrangThaiThongBao=0)
     {
-        string sql = "Select * From TblThongBaoViecLamHangThang Where IDNLDTCTN=@IDNLDTCTN And ThangThongBao=@ThangThongBao";
+        string sql = "Select * From TblThongBaoViecLamHangThang Where IDNLDTCTN=@IDNLDTCTN And (ThangThongBao=@ThangThongBao  Or @ThangThongBao=0) And (TrangThaiThongBao=@TrangThaiThongBao Or @TrangThaiThongBao=0)";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
         Cmd.CommandText = sql;
         Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
         Cmd.Parameters.Add("ThangThongBao", SqlDbType.Int).Value = ThangThongBao;
+        Cmd.Parameters.Add("TrangThaiThongBao", SqlDbType.Int).Value = TrangThaiThongBao;
         DataSet ds = new DataSet();
         SqlDataAdapter da = new SqlDataAdapter(Cmd);
         da.Fill(ds);

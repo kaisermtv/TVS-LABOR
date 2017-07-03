@@ -58,7 +58,11 @@
                 <td style="width: 40px !important; text-align: center;">
                     <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
                 </td>
-                <td style="width: 90px !important; text-align: center;">&nbsp;</td>
+                <td style="width:250px;">
+                <label>Trạng thái</label>
+                 <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
+                </asp:DropDownList>
+                </td>
             </tr>
         </table>
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
@@ -90,12 +94,13 @@
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
                     <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayKyQD").ToString() != "")?((DateTime)Eval("NgayKyQD")).ToString("dd/MM/yyyy"):"" %><br />
+                        <%# (Eval("NgayKy").ToString() != "")?((DateTime)Eval("NgayKy")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
                     <td class="DataListTableTdItemCenter">
-                     <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>&status=3">
+                     <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>&status=3" style="display:none;">
                      <input type="button" class="btn btn-primary" value="Chi tiết"/></a>                    
                      <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
+                    
                     </td>
                 </tr>
             </ItemTemplate>
@@ -121,7 +126,7 @@
             <div class="warning">
                 <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
             </div>
-            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Trả quyết định hưởng TCTN</a>         
+            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Trả quyết định</a>         
             </div>
         <!-- Modal chuyen bo phan tra ket qua-->
         <div id="TraKetQuaDinhModal" class="modal fade" role="dialog">

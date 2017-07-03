@@ -38,14 +38,18 @@
         <div class = "DaoTao menuitem" style="background-color: #00a8ec;">
             <a href="DaoTaoThatNghiep.aspx">Đào tạo</a>
         </div>  
+         <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+            <a href="DanhSachHuyHuong.aspx">Hồ sơ đề xuất hủy hưởng</a>
+        </div>     
           <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="DanhSachThongBaoVL.aspx">Thông báo tìm kiếm việc làm</a>
-        </div> 
-        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
-            <a href="DanhSachHuyHuong.aspx">Hồ sơ đề xuất hủy hưởng</a>
-        </div>      
+        </div>         
     </div>
-
+    <div class="row">
+          <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachDeXuatTamDung.aspx">Hồ sơ đề xuất tạm dưng</a>
+        </div>         
+    </div>
 
 
 

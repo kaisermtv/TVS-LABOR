@@ -61,7 +61,7 @@
                 <td style="width: 90px !important; text-align: center;">&nbsp;</td>
             </tr>
         </table>
-        <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
+        <asp:Repeater ID="dtlData" runat="server">
             <HeaderTemplate>
                 <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
                     <tr style="height: 40px;" class="DataListTableHeader">
@@ -70,9 +70,8 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 13%;">Tình trạng</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số BHXH</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày hoàn thiện</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày hẹn trả KQ</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Thông tin BH</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -85,15 +84,11 @@
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                     <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayHoanThien").ToString() != "")?((DateTime)Eval("NgayHoanThien")).ToString("dd/MM/yyyy"):"" %><br />
+                        <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
                     <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
                     </td>
-                    <td class="DataListTableTdItemCenter">
-                     <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>&status=3">
-                     <input type="button" class="btn btn-primary" value="Chi tiết"/></a>                    
-                     <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
-                    </td>
+                   
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
@@ -118,16 +113,16 @@
             <div class="warning">
                 <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
             </div>
-            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Trả quyết định hưởng TCTN</a>         
+            <a class="btn btn-primary" style="float:right;"  onclick="ChuyenSelect('HuyHuongModal')">Hủy hưởng</a>         
             </div>
         <!-- Modal chuyen bo phan tra ket qua-->
-        <div id="TraKetQuaDinhModal" class="modal fade" role="dialog">
+        <div id="HuyHuongModal" class="modal fade" role="dialog">
             <div class="modal-dialog" style="display: table;">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Trả quyết định hưởng TCTN</h4>
+                        <h4 class="modal-title">Hủy hưởng</h4>
                     </div>
                     <div class="modal-body">
                         <table> 
@@ -137,23 +132,11 @@
                                     <asp:TextBox ID="txtSoHoSoDuocChon" CssClass="form-control" runat="server" Style="width: 100%;"></asp:TextBox>
                                 </td>
                             </tr> 
-                             <tr>
-                                 <td>
-                                     Ngày trả kết quả:
-                                 </td>
-                                 <td>
-                                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: left;">
-                                <input type='text' class="form-control dateinput" id="txtNgayTrinhKy" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                                </div>
-                                 </td>
-                             </tr>                       
+                                              
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <asp:Button ID="btnChuyenHoSo" runat="server" CssClass="btn btn-primary" Text="Trả kết quả" OnClick="btnChuyenHoSo_Click" />
+                        <asp:Button ID="btnHuyHuong" runat="server" CssClass="btn btn-primary" Text="Hủy hưởng" OnClick="btnHuyHuong_Click" />
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -187,12 +170,8 @@
 
                 if(txt != "")
                 {   
-                    $("#MainContent_hdlstChuyen").val(txt); 
-                    $("#MainContent_hdSoHoSoDaChon").val(index);
-                    $("#MainContent_txtSoHoSoChonDanh").val(index);    
-                    $("#MainContent_txtSoHoSoCanTrinh").val(index);
+                    $("#MainContent_hdlstChuyen").val(txt);            
                     $("#MainContent_txtSoHoSoDuocChon").val(index);
-                    GetAutoNumber();
                     $("#"+NameModal).modal("show");                
                 }
             }        
@@ -219,54 +198,15 @@
                     objchk.checked = false;
                 }
             }
-        }    
+        }   
          
-            $("#MainContent_txtSoBatDau").blur(function(){
-                DanhSoVanBan();
-            });
-            $("#MainContent_ddlLoaiQuyetDinh").change(function(){
-                GetAutoNumber();
-            });
-            function DanhSoVanBan()
-            {
-                var SoBatDau=0,SoHoSoDaChon=0,SoKetThu=0;
-                SoHoSoDaChon= $("#MainContent_hdSoHoSoDaChon").val();      
-                SoBatDau=$("#MainContent_txtSoBatDau").val();
-                SoKetThu= parseInt(SoBatDau) + parseInt(SoHoSoDaChon)-1;                 
-                $("#MainContent_txtSoKetThuc").val(SoKetThu);
-            }
-
             var msg='<%=_msg%>';
             if(msg!="")
             {
                 alert(msg);
-            }
+            }            
         </script>
-        <script type="text/javascript">
-            function GetAutoNumber() {
-                var IDLoaiVanBan=$("#MainContent_ddlLoaiQuyetDinh").val();
-                $.get("/ajax/DanhSoCongVan.aspx?id="+ IDLoaiVanBan, function (data, status) {         
-                    //selectout.innerHTML = "";
-                    if (status == "success")
-                    { 
-                        $("#MainContent_txtSoBatDau").val(data.toString());  
-                        var SoBatDau=0,SoHoSoDaChon=0,SoKetThu=0;
-                        SoHoSoDaChon= $("#MainContent_hdSoHoSoDaChon").val();      
-                        SoBatDau=data;
-                        SoKetThu= parseInt(SoBatDau) + parseInt(SoHoSoDaChon)-1;                 
-                        $("#MainContent_txtSoKetThuc").val(SoKetThu);
-                      
-                    } else {
-                        selectout.innerHTML = "";             
-                        alert("Mất kết nôi! Xin thử lại.");
-                    }      
-                    //selectout.
-                });
-            }
-        </script>       
     </div>
     <asp:HiddenField ID="hdlstChuyen" runat="server" />
-    <asp:HiddenField ID="hdChuyen" runat="server" />    
-    <asp:HiddenField ID="hdSoHoSoDaChon" runat="server" />
 </asp:Content>
 

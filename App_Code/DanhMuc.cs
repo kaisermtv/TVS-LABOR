@@ -66,6 +66,7 @@ public class DanhMuc : DataClass
             return null;
         }
     }
+    // code TheLinh 29/06/2017 
     #endregion
 
     #region method getList

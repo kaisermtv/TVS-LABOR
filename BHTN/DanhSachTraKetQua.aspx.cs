@@ -26,24 +26,47 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         if(!Page.IsPostBack)
         {
             Load_CauHinh();
+            DeXuatHuyHuongHoSo();  
             Load_DanhSachHoSo();
-   
+            Load_TrangThai();
+             
         }
              
-    }    
+    }
     private void DeXuatHuyHuongHoSo()
     {
-      DataTable objData = new TinhHuong().getDanhSachHoSo(",11,");
-     for(int i=0;i< objData.Rows.Count;i++)
-     {
- 
-     }
-
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",11,");
+        DateTime NgayQuaHan = new TinhHuong().TinhNgayNghiLe(DateTime.Now, 2);
+        NgayQuaHan = new DateTime(NgayQuaHan.Year, NgayQuaHan.Month, NgayQuaHan.Day);
+     
+        for (int i = 0; i < objData.Rows.Count; i++)
+        {
+            DateTime NgayHenTraKQ = (DateTime)objData.Rows[i]["NgayHenTraKQ"];
+            NgayHenTraKQ = new DateTime(NgayHenTraKQ.Year, NgayHenTraKQ.Month, NgayHenTraKQ.Day);
+            if (DateTime.Compare(NgayHenTraKQ, NgayQuaHan) > 0)
+            {
+                // neu  qua 2 ngay hen tra thì chuyen sang muc danh de de nghi huy
+                int IDNLDTCTN=(int)objData.Rows[i]["IDNLDTCTN"];
+                new TinhHuong().UpdateTrangThaiHS(IDNLDTCTN, 13);
+            }
+        }
     }
-    private void Load_DanhSachHoSo()
+    private void Load_TrangThai()
+    {
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,");
+        DataRow row = tblTrangThai.NewRow();
+        row["ID"] = 0;
+        row["Name"] = "--Tất cả--";
+        tblTrangThai.Rows.InsertAt(row, 0);
+        ddlTrangThai.DataTextField = "Name";
+        ddlTrangThai.DataValueField = "ID";
+        ddlTrangThai.DataSource = tblTrangThai;
+        ddlTrangThai.DataBind();
+    }
+    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,")
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(",11,",str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -82,114 +105,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     #region Quyet dinh huong tro cap that nghiep
     private void TaiQuyetDinhTCTN(int IDNLDTCTN,string FileName)
     {
-        TinhHuong objTinhHuong = new TinhHuong();
-        DataTable tblTinhHuong = new TinhHuong().getDataById(IDNLDTCTN);
-        DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
-        DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
-        DataTable tblQuyetDinh = new CapSo().GetDataByIDTCTN(IDNLDTCTN);
-        DataTable tblLichThongBao=new LichThongBao().GetDataByID((int)tblTinhHuong.Rows[0]["IDTinhHuong"]);
-        if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
-        {
-            _msg = "Người lao động chưa được khởi tạo";
-            return;
-        }
-        if (tblTinhHuong == null || tblTinhHuong.Rows.Count == 0)
-        {
-            _msg = "Chưa có bẳng tỉnh nào được cập nhật";
-            return;
-        }
-        List<string> lstInput = new List<string>();
-        List<string> lstOutput = new List<string>();
-        lstInput.Add("[NgayKy]");
-        try
-        {
-            lstOutput.Add(".../.../.....");
-            //DateTime NgayDangKy = (DateTime)RowTroCapThatNghiep["NgayNopHoSo"];
-            //DateTime NgayQuyetDinh = new DateTime();
-            //NgayQuyetDinh = objTinhHuong.TinhNgayNghiLe(NgayDangKy, 20);
-            //lstOutput.Add(NgayQuyetDinh.ToString("dd/MM/yyyy"));
-        }
-        catch
-        {
-            lstOutput.Add(".../.../.....");
-        }
-        lstInput.Add("[SoQD]");
-        if(tblQuyetDinh.Rows.Count==0)
-        {
-            lstOutput.Add("......................");
-        }
-        else
-        {
-            lstOutput.Add(tblQuyetDinh.Rows[0]["SoVanBan"].ToString());
-        }
-        lstInput.Add("[TenLD]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
-        lstInput.Add("[NgaySinh]");
-        lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
-        lstInput.Add("[CMTND]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["CMND"].ToString());
-        lstInput.Add("[NgayCapCMTND]");
-        lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
-        lstInput.Add("[NoiCapCMTND]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
-        lstInput.Add("[SoBHXH]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
-        lstInput.Add("[DiaChiThuongTru]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiThuongTru"].ToString());
-        lstInput.Add("[DiaChiHienTai]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["DiaChi"].ToString());
-        lstInput.Add("[SoThangDong]");
-        lstOutput.Add(RowTroCapThatNghiep["SoThangDongBHXH"].ToString());
-        lstInput.Add("[MucHuong]");
-        lstOutput.Add(tblTinhHuong.Rows[0]["MucHuong"].ToString());
-        lstInput.Add("[SoThangHuong]");
-        int SoThangHuong = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"];
-        lstOutput.Add(SoThangHuong.ToString());
-        lstInput.Add("[SoThangBaoLuu]");
-        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString());
-        lstInput.Add("[HuongTuNgay]");
-        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
-        lstInput.Add("[HuongDenNgay]");
-        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy"));
-        //----- chen phan lich thong bao viec lam
-        if(tblLichThongBao.Rows.Count==0)
-        {
-            _msg = "Hồ sơ chưa có lịch thông báo";
-            return;
-        }
-        lstInput.Add("[Thang1]");
-        lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang1TuNgay"]).ToString("dd/MM/yyyy"));
-        for (int i = 2; i <= 12; i++)
-        {
-            lstInput.Add("[Thang"+i.ToString()+"Tu]");
-            if (((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang"+i.ToString()+"TuNgay"]).ToString("yyyy") != "1900")
-            {
-                lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "TuNgay"]).ToString("dd/MM/yyyy"));          
-            }
-            else
-            {
-                lstOutput.Add("../../....");
-            }
-            lstInput.Add("[Thang" + i.ToString() + "Den]");
-            if (((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "DenNgay"]).ToString("yyyy") != "1900")
-            {
-                lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang" + i.ToString() + "DenNgay"]).ToString("dd/MM/yyyy"));
-        
-            } 
-            else
-            {
-                lstOutput.Add("../../....");
-            }
-        }
- 
-        ExportToWord objExportToWord = new ExportToWord();
-        byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/QuyetDinhHuongTCTN.docx"), lstInput, lstOutput);
-        Response.AppendHeader("Content-Type", "application/msword");
-        Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhHuongTCTN" + FileName + ".docx");
-        Response.BinaryWrite(temp);
-        HttpContext.Current.Response.End();
-        HttpContext.Current.Response.Flush();
-     
+        _msg = new Common().TaiQuyetDinhTCTN(IDNLDTCTN, FileName);     
     }
     #endregion  
      
@@ -198,7 +114,16 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         if (e.CommandName == "TaiQuyetDinh")
         {
             int ID = int.Parse(e.CommandArgument.ToString());
-            TaiQuyetDinhTCTN(ID,"");
+            DataRow rowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(ID);
+            // la quyet dinh TCTN
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 11)
+            {
+                new Common().TaiQuyetDinhTCTN(ID, "");
+            }
+            if((int)rowTroCapThatNghiep["IdTrangThai"] == 23)
+            {
+                new Common().TaiQuyetDinhHuyHuong(ID, "");
+            }
         }
 
     }
@@ -209,10 +134,10 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
        
             DataRowView newRow = (DataRowView)e.Item.DataItem;
-            if((int)newRow["IdTrangThai"]<=10)
+            if((int)newRow["IdTrangThai"]==13)
             {
                 Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
-                newButtom.Visible = true;
+                newButtom.Visible = false;
             }
 
         }
@@ -227,6 +152,10 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 12);
             }
+            if((int)rowTCTN["IdTrangThai"] == 23)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 24);
+            }
           
         }
         Load_DanhSachHoSo();
@@ -235,5 +164,16 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     protected void btnSearch_Click(object sender, ImageClickEventArgs e)
     {
         Load_DanhSachHoSo();
+    }
+    protected void ddlTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlTrangThai.SelectedValue.ToString() != null && ddlTrangThai.SelectedValue.ToString() == "0")
+        {
+            Load_DanhSachHoSo();
+        }
+        else
+        {
+            Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue.ToString() + ",");
+        }
     }
 }

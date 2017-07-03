@@ -192,6 +192,9 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         }
         objThongBaoVl.TrangThaiThongBao = 14;
         new ThongBaoViecLamHangThang().SetData(objThongBaoVl.IDNLDTCTN, objThongBaoVl.IDCanBoTiepNhan, objThongBaoVl.ThangThongBao, objThongBaoVl.NgayThongBao, objThongBaoVl.ThongBaoTrucTiep, objThongBaoVl.LyDo, objThongBaoVl.BanTiepNhan, objThongBaoVl.GhiChu, objThongBaoVl.TrangThaiThongBao);
+        //cap nhat so thang da huong
+        DataTable tblSoThangDaHuongBHXH = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 14);
+        new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
         _msg = "Cập nhật thành công";    
     }
     protected void btnKhongKhaiBao_Click(object sender, EventArgs e)

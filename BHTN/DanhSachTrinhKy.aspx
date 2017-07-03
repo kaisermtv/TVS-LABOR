@@ -15,7 +15,6 @@
             color: #fff;
             font-size: 12px;
         }
-
         label {
             float: left;
             padding: 6px 12px;
@@ -37,18 +36,18 @@
                 <td>
                     <input type="text" id="txtSearch" placeholder="Nhập tên NLĐ, số CMND, số BHXH, số điện thoại để tìm kiếm" runat="server" class="form-control" />
                 </td>
-                <td style="width: 280px;">
+                <td style="width: 250px;">
                     <label>Từ ngày</label>
-                    <div class='input-group date' style="margin-left: 0px; width: 70% !important; float: left;">
+                    <div class='input-group date' style="margin-left: 0px; width: 60% !important; float: left;">
                         <input type='text' class="form-control dateinput" id="txtTuNgay" runat="server" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
                 </td>
-                <td style="width: 280px;">
+                <td style="width: 250px;">
                     <label>Đến ngày</label>
-                    <div class='input-group date' style="margin-left: 0px; width: 70% !important; float: left;">
+                    <div class='input-group date' style="margin-left: 0px; width: 60% !important; float: left;">
                         <input type='text' class="form-control dateinput" id="Text1" runat="server" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -58,8 +57,13 @@
                 <td style="width: 40px !important; text-align: center;">
                     <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
                 </td>
-                <td style="width: 90px !important; text-align: center;">&nbsp;</td>
-            </tr>
+                <td style="width:250px;">
+                <label>Trạng thái</label>
+                 <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
+                </asp:DropDownList>
+                </td>
+              
+            </tr>           
         </table>
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
             <HeaderTemplate>
@@ -71,8 +75,9 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số BHXH</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày hoàn thiện</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Thông tin BH</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số QĐ</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;display:none">IDCapSo</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">Tải QĐ</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -81,13 +86,15 @@
                         <input type="checkbox" id="ckbSelect<% =index++ %>" value="<%# Eval("IdNLDTCTN") %>" />
                     </td>
                     <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
-                    <td class="DataListTableTdItemJustify" style="color: red;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
+                    <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# (Eval("NgayHoanThien").ToString() != "")?((DateTime)Eval("NgayNopHoSo")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
-                    <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
+                    <td class="DataListTableTdItemCenter"><%# Eval("SoVanBan") %>
+                    <td class="DataListTableTdItemCenter" style="display:none;">
+                    <input type="text" id="lblCapSo<% =index2++ %>" value="<%# Eval("IDCapSo")%>" />                     
                     </td>
                     <td class="DataListTableTdItemCenter">
                      <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
@@ -292,22 +299,31 @@
             function ChuyenSelect(NameModal)
             {              
                 var txt = "";
+                var lbl="";
                 var index=0;
                 var SoBatDau;
                 for(i=1;i< <%= index %>;i++)
                 {
                     var objchk = document.getElementById('ckbSelect' + i);
+                    var lblCapSo = document.getElementById('lblCapSo' + i);                   
                     if(objchk != null && objchk.checked == true)
                     {
-                        if(txt != "") txt += ","
-                        txt += objchk.value;
+                        if(txt != "") 
+                        {
+                            txt += "," ; 
+                            lbl +=",";
+                        }
+                        lbl += lblCapSo.value;  
+                        txt += objchk.value;                    
                         index ++;
+                     
                     }
                 }
 
                 if(txt != "")
                 {   
                     $("#MainContent_hdlstChuyen").val(txt); 
+                    $("#MainContent_hdlstIDCapSo").val(lbl); 
                     $("#MainContent_hdSoHoSoDaChon").val(index);
                     $("#MainContent_txtSoHoSoChonDanh").val(index);    
                     $("#MainContent_txtSoHoSoCanTrinh").val(index);
@@ -370,7 +386,9 @@
                 DanhSoVanBan();
             });
             $("#MainContent_ddlLoaiQuyetDinh").change(function(){
-                GetAutoNumber();
+                               
+                GetAutoNumber();               
+               
             });
             function DanhSoVanBan()
             {
@@ -379,17 +397,19 @@
                 SoBatDau=$("#MainContent_txtSoBatDau").val();
                 SoKetThu= parseInt(SoBatDau) + parseInt(SoHoSoDaChon)-1;                 
                 $("#MainContent_txtSoKetThuc").val(SoKetThu);
+               
             }
 
             var msg='<%=_msg%>';
             if(msg!="")
-            {
+            {              
                 alert(msg);
-            }
+            }      
+           
         </script>
         <script type="text/javascript">
             function GetAutoNumber() {
-                var IDLoaiVanBan=$("#MainContent_ddlLoaiQuyetDinh").val();
+                var IDLoaiVanBan=$("#MainContent_ddlLoaiQuyetDinh").val();             
                 $.get("/ajax/DanhSoCongVan.aspx?id="+ IDLoaiVanBan, function (data, status) {         
                     //selectout.innerHTML = "";
                     if (status == "success")
@@ -411,6 +431,7 @@
         </script>       
     </div>
     <asp:HiddenField ID="hdlstChuyen" runat="server" />
+    <asp:HiddenField ID="hdlstIDCapSo" runat="server" />
     <asp:HiddenField ID="hdChuyen" runat="server" />    
     <asp:HiddenField ID="hdSoHoSoDaChon" runat="server" />
 </asp:Content>

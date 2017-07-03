@@ -1,58 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-public partial class TaiQuyetDinh : System.Web.UI.Page
+public class Common
 {
-    int IDNLDTCTN = 0;
-    public int SoQuyetDinh = 0;
-    public DateTime MyDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-    public string _msg = "";
-    public int Index = 0;
-    protected void Page_Load(object sender, EventArgs e)
+    string _msg = "";
+    public string TaiQuyetDinhTCTN(int IDNLDTCTN, string FileName)
     {
-        if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString().Trim() != "")
-        {
-            IDNLDTCTN = int.Parse(Request.QueryString["id"].ToString());           
-        }
-        if (Request.QueryString["index"] != null && Request.QueryString["index"].ToString().Trim() != "")
-        {
-            Index = int.Parse(Request.QueryString["index"].ToString());
-        }
-        TaiQuyetDinhTCTN(IDNLDTCTN, Index.ToString());
-    }
-    private void TaiQuyetDinhTCTN(int IDNLDTCTN, string FileName)
-    {
+        string _msg = "";
         TinhHuong objTinhHuong = new TinhHuong();
         DataTable tblTinhHuong = new TinhHuong().getDataById(IDNLDTCTN);
         DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
         DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
-        DataTable tblQuyetDinh = new CapSo().GetByID(IDNLDTCTN,30);
+        DataTable tblQuyetDinh = new CapSo().GetByID(IDNLDTCTN, 30);
         DataTable tblLichThongBao = new LichThongBao().GetDataByID((int)tblTinhHuong.Rows[0]["IDTinhHuong"]);
         if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
         {
             _msg = "Người lao động chưa được khởi tạo";
-            return;
+            return _msg;
         }
         if (tblTinhHuong == null || tblTinhHuong.Rows.Count == 0)
         {
             _msg = "Chưa có bẳng tỉnh nào được cập nhật";
-            return;
+            return _msg;
         }
         List<string> lstInput = new List<string>();
         List<string> lstOutput = new List<string>();
         lstInput.Add("[NgayKy]");
         try
         {
-            lstOutput.Add(".../.../.....");
-            //DateTime NgayDangKy = (DateTime)RowTroCapThatNghiep["NgayNopHoSo"];
-            //DateTime NgayQuyetDinh = new DateTime();
-            //NgayQuyetDinh = objTinhHuong.TinhNgayNghiLe(NgayDangKy, 20);
-            //lstOutput.Add(NgayQuyetDinh.ToString("dd/MM/yyyy"));
+            lstOutput.Add(((DateTime)tblQuyetDinh.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
         }
         catch
         {
@@ -100,7 +78,7 @@ public partial class TaiQuyetDinh : System.Web.UI.Page
         if (tblLichThongBao.Rows.Count == 0)
         {
             _msg = "Hồ sơ chưa có lịch thông báo";
-            return;
+            return _msg;
         }
         lstInput.Add("[Thang1]");
         lstOutput.Add(((DateTime)tblLichThongBao.Rows[0]["KhaiBaoThang1TuNgay"]).ToString("dd/MM/yyyy"));
@@ -128,14 +106,72 @@ public partial class TaiQuyetDinh : System.Web.UI.Page
         }
 
         ExportToWord objExportToWord = new ExportToWord();
-        byte[] temp = objExportToWord.Export(Server.MapPath("../WordForm/QuyetDinhHuongTCTN.docx"), lstInput, lstOutput);
-        Response.AppendHeader("Content-Type", "application/msword");
-        Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhHuongTCTN" + FileName + ".docx");
-        Response.BinaryWrite(temp);
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/QuyetDinhHuongTCTN.docx"), lstInput, lstOutput);
+        HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhHuongTCTN" + FileName + ".docx");
+        HttpContext.Current.Response.BinaryWrite(temp);
         HttpContext.Current.Response.End();
         HttpContext.Current.Response.Flush();
+        return _msg;       
+    }
+    public string TaiQuyetDinhHuyHuong(int IDNLDTCTN, string FileName)
+    {
+        string _msg = "";
+        TinhHuong objTinhHuong = new TinhHuong();
+        DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
+        DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
+        DataTable tblQuyetDinhTCTN = new CapSo().GetByID(IDNLDTCTN, 30);
+        DataTable tblQuyetDinhHuyHuong= new CapSo().GetByID(IDNLDTCTN, 49);
+        if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
+        {
+            _msg = "Người lao động chưa được khởi tạo";
+            return _msg;
+        }
+        List<string> lstInput = new List<string>();
+        List<string> lstOutput = new List<string>();
+        lstInput.Add("[NgayKy]");
+        try
+        {        
+            lstOutput.Add(((DateTime)tblQuyetDinhHuyHuong.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add(".../.../.....");
+        }
+        lstInput.Add("[SoQD]");
+        if (tblQuyetDinhHuyHuong.Rows.Count == 0)
+        {
+            lstOutput.Add("......................");
+        }
+        else
+        {
+            lstOutput.Add(tblQuyetDinhHuyHuong.Rows[0]["SoVanBan"].ToString());
+        }
+        lstInput.Add("[SoQDTCTN]");
+        lstOutput.Add(tblQuyetDinhTCTN.Rows[0]["SoVanBan"].ToString());
+        lstInput.Add("[NgayKyTCTN]");
+        try
+        {          
+            lstOutput.Add(((DateTime)tblQuyetDinhHuyHuong.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add(".../.../.....");
+        }
+        lstInput.Add("[TenLD]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+        lstInput.Add("[Lydo]");
+        lstOutput.Add(".................");
+        lstInput.Add("[QDTCTN]");
+        lstOutput.Add(tblQuyetDinhTCTN.Rows[0]["SoVanBan"].ToString());
+        ExportToWord objExportToWord = new ExportToWord();
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/QuyetDinhHuyHuong.docx"), lstInput, lstOutput);
+        HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhHuyHuong" + FileName + ".docx");
+        HttpContext.Current.Response.BinaryWrite(temp);
+        HttpContext.Current.Response.End();
+        HttpContext.Current.Response.Flush();
+        return _msg;       
 
     }
-   
 }
- 

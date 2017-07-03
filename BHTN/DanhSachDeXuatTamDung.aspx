@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachThongBaoVL.aspx.cs" Inherits="Labor_DanhSachThongBaoVL" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachDeXuatTamDung.aspx.cs" Inherits="Labor_DanhSachDeXuatTamDung" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -118,11 +118,10 @@
                     <td class="DataListTableTdItemJustify">
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>                   
-                    <td class="DataListTableTdItemCenter">
-                     <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>&tg=1">
-                     <input type="button" class="btn btn-primary" style="font-size:12px; padding:3px;" value="TBVL"/></a>
-                      <asp:Button ID="btnDeXuatTamDung"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tạm dừng" CommandName="DeXuatTamDung" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
-                  
+                    <td class="DataListTableTdItemCenter">                              
+                      <asp:Button ID="btnChuyenTinhHuong"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="Chuyển TH"  CommandName="ChuyenTinhHuong" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
+                     <asp:Button ID="btnXoaDeXuat"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="Xóa đề xuất" CommandName="XoaDeXuat" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
+              
                     </td>
                 </tr>
             </ItemTemplate>

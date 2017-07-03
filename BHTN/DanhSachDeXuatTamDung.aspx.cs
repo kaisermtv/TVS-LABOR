@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
+public partial class Labor_DanhSachDeXuatTamDung : System.Web.UI.Page
 {
     #region declare
     public int index = 1;
@@ -23,12 +23,12 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
          
         if(!Page.IsPostBack)
         {        
-            Load_CauHinh();
-            Load_DanhSachHoSo();
+            Load_CauHinh();            
             Load_TrangThai();
+            Load_DanhSachHoSo();
         }             
     }
-    private void Load_DanhSachHoSo(string Ids = ",12,25,")
+    private void Load_DanhSachHoSo(string Ids = ",26,")
     {
         string str = txtSearch.Value.Trim();
         DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
@@ -48,15 +48,16 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
    
     protected void dtlData_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.CommandName == "TaiQuyetDinh")
+        if (e.CommandName == "ChuyenTinhHuong")
         {
-            int ID = int.Parse(e.CommandArgument.ToString());
-           new Common().TaiQuyetDinhTCTN(ID,"");
+            int ID = int.Parse(e.CommandArgument.ToString());        
+            new TinhHuong().UpdateTrangThaiHS(ID, 27);
+            Load_DanhSachHoSo();
         }
-        if(e.CommandName=="DeXuatTamDung")
+        if (e.CommandName == "XoaDeXuat")
         {
             int ID = int.Parse(e.CommandArgument.ToString());
-            new TinhHuong().UpdateTrangThaiHS(ID, 26);
+            new TinhHuong().UpdateTrangThaiHS(ID, 25);
             Load_DanhSachHoSo();
         }
 
@@ -110,7 +111,6 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
                                     {
                                         // cap nhat trang thai qua hạn
                                         str += "<span class='quahanthongbao' alt='Quá hạn' title ='Quá hạn (" + KhaiBaoTuNgay.ToString("dd/MM/yyyy") + "->" + KhaiBaoDenNgay.ToString("dd/MM/yyyy") + ")'>" + i.ToString() + "</span>";
-                                        new TinhHuong().UpdateTrangThaiHS(IDTCTN, 25);
                                     }
                                     else
                                     {
@@ -154,7 +154,7 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",12,25,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",26,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -168,9 +168,11 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
     {
         if(ddlTrangThai.SelectedValue !=null && ddlTrangThai.SelectedValue.ToString().Trim()!="0")
         {
-            Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue + ",");
-
+            Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue + ",");         
+        }     
+        else
+        {
+            Load_DanhSachHoSo();
         }
-
     }
 }

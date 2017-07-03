@@ -22,19 +22,37 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            DataTable objData = new TinhHuong().getDanhSachHoSo(",2,3,");
-            if (objData != null && objData.Rows.Count > 0)
-            {
-                cpData.MaxPages = 1000;
-                cpData.PageSize = 12;
-                cpData.DataSource = objData.DefaultView;
-                cpData.BindToControl = dtlData;
-                dtlData.DataSource = cpData.DataSourcePaged;
-                dtlData.DataBind();
-            }
+            Load_TrangThai();
+            Load_DanhSachHoSo();
 
         }
 
+    }
+
+
+
+    private void Load_DanhSachHoSo(string Ids = ",2,3,27,28,")
+    {
+        string str = txtSearch.Value.Trim();
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
+        cpData.MaxPages = 1000;
+        cpData.PageSize = 12;
+        cpData.DataSource = objData.DefaultView;
+        cpData.BindToControl = dtlData;
+        dtlData.DataSource = cpData.DataSourcePaged;
+        dtlData.DataBind();
+    }
+    private void Load_TrangThai()
+    {
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",2,3,27,28,");
+        DataRow row = tblTrangThai.NewRow();
+        row["ID"] = 0;
+        row["Name"] = "--Tất cả--";
+        tblTrangThai.Rows.InsertAt(row, 0);
+        ddlTrangThai.DataTextField = "Name";
+        ddlTrangThai.DataValueField = "ID";
+        ddlTrangThai.DataSource = tblTrangThai;
+        ddlTrangThai.DataBind();
     }
     protected void btnChuyenHoSo_Click(object sender, EventArgs e)
     {
@@ -51,7 +69,11 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
                 if(TrangThai ==3)
                 {
                     objTinhHuong.UpdateTrangThaiHS(ID, 6);
-                }           
+                }         
+                if(TrangThai==28)
+                {
+                    objTinhHuong.UpdateTrangThaiHS(ID, 29);
+                }
             }
         }
         else
@@ -70,5 +92,30 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
         }
         Response.Redirect(Request.Url.ToString());
 
+    }
+    protected void ddlTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlTrangThai.SelectedValue != null && ddlTrangThai.SelectedValue.ToString().Trim() != "0")
+        {
+            Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue + ",");
+        }
+        else
+        {
+            Load_DanhSachHoSo();
+        }
+
+    }
+    public string SetLink(int IdNLDTCTN, int IdTrangThai)
+    {
+        string link = "";
+        if (IdTrangThai == 2 || IdTrangThai == 3)
+        {
+            link = "tinhhuong?id=" + IdNLDTCTN;
+        }
+        if (IdTrangThai == 27 || IdTrangThai == 28)
+        {
+            link = "tinhhuongtamdung?id=" + IdNLDTCTN;
+        }
+        return link;
     }
 }
