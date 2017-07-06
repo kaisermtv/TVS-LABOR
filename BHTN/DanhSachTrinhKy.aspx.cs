@@ -53,7 +53,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         ddlNguoiKy.DataSource = new CanBo().getDataByChucVuID(1);
         ddlNguoiKy.DataBind();
     }
-    private void Load_DanhSachHoSo(string Ids=",8,9,10,20,21,22,31,")
+    private void Load_DanhSachHoSo(string Ids=",8,9,10,20,21,22,31,32,33,")
     {
         string str=txtSearch.Value.Trim();
         DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
@@ -66,7 +66,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
     } 
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",8,9,10,20,21,22,31,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",8,9,10,20,21,22,31,32,33,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -135,6 +135,12 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
                 new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 21);
             }
+            // trương hợp quyết định tạm dừng TCTN
+            if (new CapSo().CheckAutoNumber(NgayCap, IDLoaivanBan, So) == false && (int)rowTCTN["IdTrangThai"] == 31 && IDLoaivanBan == 50)
+            {
+                new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 32);
+            }
 
             So++;
         }
@@ -182,6 +188,12 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             if ((int)rowTCTN["IdTrangThai"] == 21)
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 22);
+                new TinhHuong().UpdateNguoiKy(int.Parse(strIDCapSo[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
+            }
+            // ky quyet dinh huy huong
+            if ((int)rowTCTN["IdTrangThai"] == 32)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 33);
                 new TinhHuong().UpdateNguoiKy(int.Parse(strIDCapSo[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
             }
         
@@ -234,6 +246,10 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             {
                 new Common().TaiQuyetDinhHuyHuong(ID, "");
             }
+            if ((int)Row["IdTrangThai"] == 33)
+            {
+                new Common().TaiQuyetDinhTamDung(ID, "");
+            }
         }
 
     }
@@ -244,10 +260,11 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         {
        
             DataRowView newRow = (DataRowView)e.Item.DataItem;
-            if(newRow["IdTrangThai"].ToString().Trim()!="10" || newRow["IdTrangThai"].ToString().Trim()!="22")
+            Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
+            newButtom.Enabled = false;
+            if(newRow["IdTrangThai"].ToString().Trim()=="10" || newRow["IdTrangThai"].ToString().Trim()=="22" || newRow["IdTrangThai"].ToString().Trim()=="33")
             {
-                Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
-                newButtom.Enabled = false;
+                newButtom.Enabled = true;
             }
 
         }
@@ -268,6 +285,12 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 23);
             }
+            // Trả kết quả QĐ tạm dừng hưởng
+            if ((int)rowTCTN["IdTrangThai"] == 33)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 34);
+            }
+
          
         }
         Load_DanhSachHoSo();

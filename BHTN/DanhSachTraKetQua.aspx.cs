@@ -53,7 +53,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,34,35,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -63,7 +63,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         ddlTrangThai.DataSource = tblTrangThai;
         ddlTrangThai.DataBind();
     }
-    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,")
+    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,34,35,")
     {
         string str = txtSearch.Value.Trim();
         DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
@@ -116,14 +116,21 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             int ID = int.Parse(e.CommandArgument.ToString());
             DataRow rowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(ID);
             // la quyet dinh TCTN
-            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 11)
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 11 || (int)rowTroCapThatNghiep["IdTrangThai"] == 12)
             {
                 new Common().TaiQuyetDinhTCTN(ID, "");
             }
-            if((int)rowTroCapThatNghiep["IdTrangThai"] == 23)
+            // la quyet dinh huy huong
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 23 || (int)rowTroCapThatNghiep["IdTrangThai"] == 24)
             {
                 new Common().TaiQuyetDinhHuyHuong(ID, "");
             }
+            // la quyet dinh tam dung
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 34 || (int)rowTroCapThatNghiep["IdTrangThai"] == 35)
+            {
+                new Common().TaiQuyetDinhTamDung(ID, "");
+            }
+
         }
 
     }
@@ -155,6 +162,10 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             if((int)rowTCTN["IdTrangThai"] == 23)
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 24);
+            }
+            if ((int)rowTCTN["IdTrangThai"] == 34)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 35);
             }
           
         }
