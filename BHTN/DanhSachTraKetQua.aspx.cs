@@ -43,7 +43,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
             DateTime NgayHenTraKQ = (DateTime)objData.Rows[i]["NgayHenTraKQ"];
             NgayHenTraKQ = new DateTime(NgayHenTraKQ.Year, NgayHenTraKQ.Month, NgayHenTraKQ.Day);
-            if (DateTime.Compare(NgayHenTraKQ, NgayQuaHan) > 0)
+            if (DateTime.Compare(NgayHenTraKQ, NgayQuaHan) < 0)
             {
                 // neu  qua 2 ngay hen tra thì chuyen sang muc danh de de nghi huy
                 int IDNLDTCTN=(int)objData.Rows[i]["IDNLDTCTN"];
@@ -53,7 +53,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,34,35,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,34,35,44,45,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -63,10 +63,10 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         ddlTrangThai.DataSource = tblTrangThai;
         ddlTrangThai.DataBind();
     }
-    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,34,35,")
+    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,34,35,44,45,")
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -96,9 +96,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
                 TaiQuyetDinhTCTN(int.Parse(strID[i]), i.ToString());
             }
         }
-
-        Load_DanhSachHoSo();
-    
+        Load_DanhSachHoSo();    
     }
 
  
@@ -166,6 +164,10 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             if ((int)rowTCTN["IdTrangThai"] == 34)
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 35);
+            }
+            if ((int)rowTCTN["IdTrangThai"] == 44)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 45);
             }
           
         }

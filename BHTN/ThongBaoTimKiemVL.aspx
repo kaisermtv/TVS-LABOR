@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThongBaoTimKiemVL.aspx.cs" Inherits="Labor_TinhHuong" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThongBaoTimKiemVL.aspx.cs" Inherits="Labor_ThongBaoTimKiemVL" %>
 <%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <link href="../css/thongbaovieclam.css" rel="stylesheet" />

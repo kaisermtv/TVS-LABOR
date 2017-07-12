@@ -48,6 +48,9 @@
     <div class="row">
           <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="DanhSachDeXuatTamDung.aspx">Hồ sơ đề xuất tạm dưng</a>
+        </div>        
+              <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachDeXuatTiepTuc.aspx">Hồ sơ đề xuất tiếp tục</a>
         </div>         
     </div>
 

@@ -72,5 +72,19 @@ public class ThongBaoViecLamHangThang:DataClass
         return ds.Tables[0];
        
     }
-
+    public DataTable GetMax(int IDNLDTCTN)
+    {
+        string sql = "Select top 1 * From TblThongBaoViecLamHangThang Where IDNLDTCTN=@IDNLDTCTN Order By IDThongBaoViecLam Desc";
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
+        Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+        DataSet ds = new DataSet();
+        SqlDataAdapter da = new SqlDataAdapter(Cmd);
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        return ds.Tables[0];
+    }
 }

@@ -29,7 +29,7 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
         }
              
     }
-    private void Load_DanhSachHoSo(string Ids = ",6,7,18,19,29,30,")
+    private void Load_DanhSachHoSo(string Ids = ",6,7,18,19,29,30,39,40,")
     {
         string str = txtSearch.Value.Trim();
         DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
@@ -42,7 +42,7 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",6,7,18,19,29,30,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",6,7,18,19,29,30,39,40,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -80,11 +80,17 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
                     objTinhHuong.UpdateTrangThaiHS(ID, 31);
                     dem++;
                 }
-                if(dem==0)
+                if(TrangThai==40)
                 {
-                    _msg = "Hồ sơ chưa được thẩm đinh";
-                    return;
+                    objTinhHuong.UpdateTrangThaiHS(ID, 41);
+                    dem++;
                 }
+               
+            }
+            if (dem == 0)
+            {
+                _msg = "Có hồ sơ chưa được thẩm định";
+                return;
             }
             Load_DanhSachHoSo();
         }
@@ -104,6 +110,10 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
        if (IdTrangThai == 29 || IdTrangThai == 30)
        {
            link = "thamdinhtamdung?id=" + IdNLDTCTN;
+       }
+       if (IdTrangThai == 39 || IdTrangThai == 40)
+       {
+           link = "thamdinhtieptuc?id=" + IdNLDTCTN;
        }
        return link;
     }

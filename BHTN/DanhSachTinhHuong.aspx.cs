@@ -31,7 +31,7 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
 
 
 
-    private void Load_DanhSachHoSo(string Ids = ",2,3,27,28,")
+    private void Load_DanhSachHoSo(string Ids = ",2,3,27,28,37,38,")
     {
         string str = txtSearch.Value.Trim();
         DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
@@ -44,7 +44,7 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",2,3,27,28,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",2,3,27,28,37,38,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -73,6 +73,10 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
                 if(TrangThai==28)
                 {
                     objTinhHuong.UpdateTrangThaiHS(ID, 29);
+                }
+                if(TrangThai==38)
+                {
+                    objTinhHuong.UpdateTrangThaiHS(ID, 39);
                 }
             }
         }
@@ -115,6 +119,10 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
         if (IdTrangThai == 27 || IdTrangThai == 28)
         {
             link = "tinhhuongtamdung?id=" + IdNLDTCTN;
+        }
+        if(IdTrangThai==37 || IdTrangThai ==38)
+        {
+            link = "TinhHuongTiepTuc?id=" + IdNLDTCTN;
         }
         return link;
     }
