@@ -319,6 +319,38 @@ public class TinhHuong:DataClass
         }
     }
 
+    public DataTable getDanhSachChuyenHuong(DateTime TuNgay, DateTime DenNgay, int IDTrangThai, string searchKey = "")
+    {
+        try
+        {
+            SqlCommand Cmd = this.getSQLConnect();
+            string sql = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayHenTraKQ,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien";
+            sql += " ,TT.name AS TrangThai,TN.IdTrangThai,CS.IDCapSo,CS.SoVanBan,CS.NgayKy FROM TblNLDTroCapThatNghiep AS TN";
+            sql += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
+            sql += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
+            sql += " Left join TblCapSo cs on cs.IDNLDTCTN=tn.IdNLDTCTN";
+            sql += " Where (cs.IDLoaiVanBan=30  Or cs.IDLoaiVanBan is null) And (tn.NgayHenTraKQ between @TuNgay And @DenNgay) ";
+            sql += " And (HoVaTen=@str Or CMND=@str Or BHXH=@str Or cast(cs.So as nvarchar)=@str Or SoVanBan=@str Or @str='')";
+            sql += " And (TN.IdTrangThai=@IDTrangThai Or @IDTrangThai=0)";
+            Cmd.CommandText = sql;
+            Cmd.Parameters.Add("TuNgay", SqlDbType.DateTime).Value = TuNgay;
+            Cmd.Parameters.Add("DenNgay", SqlDbType.DateTime).Value = DenNgay;
+            Cmd.Parameters.Add("IDTrangThai", SqlDbType.NVarChar).Value = IDTrangThai;
+            Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
+            SqlDataAdapter da = new SqlDataAdapter(Cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            this.SQLClose();
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return null;
+        }
+    }
+
     #endregion 
     #region LuongToiThieu
     public DataTable GetLuongToiThieuByTienLuong(string TienLuong )

@@ -243,7 +243,7 @@
                  <asp:TextBox ID="txtSoThangDuocHuongConLai"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
             </div>
 
-            <div class="label2">Ngày tính hưởng: </div>
+            <%--<div class="label2">Ngày tính hưởng: </div>
             <div style="width: 20%; float: left">
                  <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control dateinput" id="txtNgayTinhHuong" runat="server" />
@@ -251,10 +251,10 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>  
-            </div>
+            </div>--%>
 
         </div>
-        <div class="row line">
+        <div class="row line" style="display:none">
             <div class="label1">Ngày đề xuất: </div>
             <div style="width: 20%; float: left">
                   <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">

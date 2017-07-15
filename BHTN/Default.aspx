@@ -43,15 +43,18 @@
         </div>     
           <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="DanhSachThongBaoVL.aspx">Thông báo tìm kiếm việc làm</a>
-        </div>         
-    </div>
-    <div class="row">
-          <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        </div>       
+        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="DanhSachDeXuatTamDung.aspx">Hồ sơ đề xuất tạm dưng</a>
         </div>        
               <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="DanhSachDeXuatTiepTuc.aspx">Hồ sơ đề xuất tiếp tục</a>
-        </div>         
+        </div>           
+    </div>
+    <div class="row">
+       <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachChuyenHuong.aspx">Danh sách chuyển hưởng</a>
+        </div>    
     </div>
 
 

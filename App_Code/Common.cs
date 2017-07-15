@@ -440,4 +440,65 @@ public class Common
         return _msg;
 
     }
+    public string TaiPhieuHenTraKQ(int IDNLDTCTN, string FileName)
+    {
+        string _msg = "";
+        TinhHuong objTinhHuong = new TinhHuong();
+        DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
+        DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
+        
+        if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
+        {
+            _msg = "Người lao động chưa được khởi tạo";
+            return _msg;
+        }
+       
+        List<string> lstInput = new List<string>();
+        List<string> lstOutput = new List<string>();
+        lstInput.Add("[NgayNopHS]");
+        lstOutput.Add(((DateTime)RowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[TenLD]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+        lstInput.Add("[NgaySinh]");
+        try
+        {
+            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add("../../....");
+        }
+        lstInput.Add("[CMTND]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["CMND"].ToString());
+        lstInput.Add("[NgayCapCMTND]");
+        try
+        {
+            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add("../../....");
+        }
+
+        lstInput.Add("[NoiCapCMTND]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
+        lstInput.Add("[NgayHenTra]");
+        try
+        {
+            lstOutput.Add(((DateTime)RowTroCapThatNghiep["NgayHenTraKQ"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add("../../....");
+        }
+        ExportToWord objExportToWord = new ExportToWord();
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/PhieuHenTraTiepNhan.docx"), lstInput, lstOutput);
+        HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=PhieuHenTraTiepNhan" + FileName + ".docx");
+        HttpContext.Current.Response.BinaryWrite(temp);
+        HttpContext.Current.Response.End();
+        HttpContext.Current.Response.Flush();
+        return _msg;
+
+    }
 }

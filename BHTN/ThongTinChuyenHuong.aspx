@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="TinhHuongTamDung.aspx.cs" Inherits="Labor_TinhHuongTamDung" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThongTinChuyenHuong.aspx.cs" Inherits="Labor_ThongTinChuyenHuong" %>
 <%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -162,7 +162,6 @@
             <div style="width: 20%; float: left">
                 <asp:TextBox ID="txtCMND" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="label2">
                 Ngày cấp: 
             </div>
@@ -204,10 +203,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <asp:TextBox ID="txtSoDienThoai" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
-            </div>
-
-            
-
+            </div>    
         </div>
         <div class="row line">
             <div class="label1">
@@ -232,42 +228,65 @@
             <div style="width: 20%; float: left">
                  <asp:TextBox ID="txtSoThangHuong" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="label2">Số tháng bảo lưu: </div>
+            <div class="label2">Mức hưởng: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoThangBaoLuu" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtMucHuong" runat="server" ReadOnly="true" CssClass="form-control money" ></asp:TextBox>
             </div>
         </div>   
-        <div class="row line ">
-            <div class="label1">Số tháng đã hưởng: </div>
+        <div class="row line">
+            <div class="label1">Hưởng từ ngày: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoThangDaHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
+                 <asp:TextBox ID="txtHuongTuNgay" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
-
-          <%--  <div class="label2">Ngày tính hưởng:</div>
+            <div class="label2">Đến ngày: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtNgayTinhHuong" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>--%>
-
+                 <asp:TextBox ID="txtHuongDenNgay" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+            </div>
         </div>
-        <div class="row line" style="display:none">
-            <div class="label1">Ngày đề xuất: </div>
+     
+        <div class="row line ">
+            <div class="label1">Đã hưởng: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtNgayDeXuat" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtDaHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
             </div>
-            <div class="label2">Ngày tạm dừng: </div>
+            <div class="label2"> còn lại: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtNgayTamDung" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
+                 <asp:TextBox ID="txtConLai"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
+            </div> 
+        </div>
+        <div class="row line">
+         <div class="label1">Lý do chuyển: </div>
+            <div style="width: 52%; float: left">
+                 <asp:TextBox ID="TextBox2"  runat="server" CssClass="form-control"></asp:TextBox>
+            </div>    
+        </div>
+         <div class="row line">
+         <div class="label1">Nơi chuyển đến: </div>
+            <div style="width: 52%; float: left">
+            <asp:DropDownList ID="ddlNoiChuyenDen" runat="server" CssClass="form-control"></asp:DropDownList>
+            </div>    
+        </div>
+        <div class="row line">
+            <div class="label1">Ngày đề nghị: </div>
+            <div style="width: 20%; float: left">
+                  <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtNgayDeXuat" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>     
+            </div>         
         </div>   
+
 
         <div class="row line">
-            <div class="label1">Số quyết định: </div>
+            <div class="label1">Số giấy GT: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoQuyetDinh" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtSoGiayGioiThieu" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="label2">Ngày ký: </div>
+            <div class="label2">Số gửi BHXH: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtNgayKy" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtSoGuiBHXH" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>   
 

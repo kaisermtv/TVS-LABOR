@@ -58,13 +58,13 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
             if (objDataTroCap == null) Response.Redirect("DangKyHoSo.aspx");
             int tt = 0;
-            try {
+            try
+            {
                 tt = (int)objDataTroCap["IdTrangThai"];
             }
             catch { }
             if (tt != 0 && tt != 1) Response.Redirect("DangKyHoSo.aspx");
         }
-
 
         #region Khởi tạo select
         if (!Page.IsPostBack)
@@ -176,7 +176,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            if(objDataTroCap != null)
+            if (objDataTroCap != null)
             {
                 #region tải dữ liệu bảng rợ cấp
                 try
@@ -188,7 +188,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
                 try
                 {
-                    txtNgayNopHS.Value = ((DateTime)objDataTroCap["NgayNopHoSo"]).ToString("dd/MM/yyyy");               
+                    txtNgayNopHS.Value = ((DateTime)objDataTroCap["NgayNopHoSo"]).ToString("dd/MM/yyyy");
                 }
                 catch { }
 
@@ -209,8 +209,6 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
                 ddlNguoiNhan.SelectedValue = objDataTroCap["IdNguoiNhan"].ToString();
                 #endregion
-
-
                 LoadDataNLD((int)objDataTroCap["IDNguoiLaoDong"]);
                 #region thông tin NLD
                 /*
@@ -357,7 +355,6 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 }
                 // */
                 #endregion
-
                 #region tải thông tin doanh nghiệp
                 //*
                 int idDonVi = 0;
@@ -392,8 +389,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             }
             else
             {
-                txtNgayNopHS.Value = DateTime.Now.ToString("dd/MM/yyyy");           
-
+                txtNgayNopHS.Value = DateTime.Now.ToString("dd/MM/yyyy");
                 #region quan Huyen
                 if (this.ddlTinh_TT.Items.Count > 0)
                 {
@@ -433,11 +429,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 #endregion
             }
 
-
-
-
         }
-
     }
     #endregion
 
@@ -500,12 +492,10 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             }
             catch { }
             ddlNoiCapBHXH.SelectedValue = objDataRow["NoiCapBHXH"].ToString();
-
             ddlNoiKhamBenh.SelectedValue = objDataRow["NoiDangKyKhamBenh"].ToString();
             //ddlTDCM.SelectedValue = objDataRow["TrinhDoChuyenMon"].ToString();
             //ddlLinhVucDT.SelectedValue = objDataRow["LinhVucDaoTao"].ToString();
             txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
-
             #region noi cu tru
             this.txtXom_TT.Text = objDataRow["Xom_TT"].ToString();
             this.txtXom_DC.Text = objDataRow["Xom_DC"].ToString();
@@ -1108,4 +1098,8 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         }
     }
     #endregion
+    protected void PhieuHenTraKQ_ServerClick(object sender, EventArgs e)
+    {
+        new Common().TaiPhieuHenTraKQ(itemId, "");      
+    }
 }

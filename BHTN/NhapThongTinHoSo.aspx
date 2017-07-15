@@ -175,20 +175,13 @@
             var selectout4 = document.getElementById("MainContent_ddlTinh_DC");
             var selectout5 = document.getElementById("MainContent_ddlHuyen_DC");
             var selectout6 = document.getElementById("MainContent_ddlXa_DC");
-
-
             var selectout7 = document.getElementById("MainContent_txtXom_TT");
             var selectout8 = document.getElementById("MainContent_txtXom_DC");
-
-
             selectout4.selectedIndex = selectout1.selectedIndex;
-
             selectout5.innerHTML = selectout2.innerHTML;
             selectout5.selectedIndex = selectout2.selectedIndex;
-
             selectout6.innerHTML = selectout3.innerHTML;
             selectout6.selectedIndex = selectout3.selectedIndex;
-
             selectout8.value = selectout7.value;
 
         }
@@ -667,7 +660,7 @@
                     <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Đăng ký TCTN</a>--%>
                     <a href="#" class="list-group-item" runat="server" onserverclick="DeNghiHuong_Click"><span class="badge1" style ="left:140px;">></span>Đề nghị hưởng </a>
                     <%--<a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>--%>
-                    <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>--%>
+                    <a href="#" class="list-group-item" runat="server" onserverclick="PhieuHenTraKQ_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>
                 </div>
                 <br />
                 <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click " />
