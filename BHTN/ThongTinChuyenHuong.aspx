@@ -257,7 +257,7 @@
         <div class="row line">
          <div class="label1">Lý do chuyển: </div>
             <div style="width: 52%; float: left">
-                 <asp:TextBox ID="TextBox2"  runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtLyDoChuyen"  runat="server" CssClass="form-control"></asp:TextBox>
             </div>    
         </div>
          <div class="row line">
@@ -308,11 +308,12 @@
                 <div class="list-group list-group-alternate">
                     <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item" data-toggle="modal" data-target="#lichthongbao" runat="server"><span class="badge1" style ="left:140px;">></span>Lịch thông báo</a>
+                    <a href="#" class="list-group-item" runat="server" onserverclick="btnInGiayGioiThieu_ServerClick"><span class="badge1" style ="left:140px;">></span>Giấy giới thiệu</a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="InQuyetDinhHuongTroCap_ServerClick" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
                 </div>          
              
-                <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
-                 <a href="DanhSachTinhHuong.aspx">
+                <asp:Button ID="btnLuu" runat="server" Text="Lưu thông tin" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnLuu_Click" />
+                 <a href="DanhSachChuyenHuong.aspx">
                  <input  type="button" style="width: 100% !important;margin-top:10px;"  class="btn btn-primary" value="Thoát" />  
                  </a>
             </div>

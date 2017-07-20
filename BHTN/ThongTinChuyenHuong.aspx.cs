@@ -13,7 +13,6 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
     public int itemId = 0;
     public string _msg="";
     #endregion
-
     #region Even Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,6 +27,7 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
+            Load_NoiChuyenDen();
             txtNgayDeXuat.Value = DateTime.Now.ToString("dd/MM/yyyy");
             if (itemId > 0)
             {
@@ -86,19 +86,26 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
                     txtDaHuong.Text = tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString();
                     txtConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
                     txtHuongTuNgay.Text = ((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy");
-                    txtHuongDenNgay.Text = ((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy");
-                
+                    txtHuongDenNgay.Text = ((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy");                
                 }
-                      
+                // thong tin chuyen huong 
+                DataTable tblChuyenHuong = new ChuyenHuong().GetByMaxIDNLDTCTN(itemId);
+                if(tblChuyenHuong.Rows.Count>0)
+                {
+                    ddlNoiChuyenDen.SelectedValue = tblChuyenHuong.Rows[0]["IDNoiChuyen"].ToString();
+                    txtLyDoChuyen.Text = tblChuyenHuong.Rows[0]["LyDoChuyen"].ToString();
+                    txtNgayDeXuat.Value = ((DateTime)tblChuyenHuong.Rows[0]["NgayDeNghi"]).ToString("dd/MM/yyyy");
+                    txtSoGiayGioiThieu.Text = tblChuyenHuong.Rows[0]["SoGiayGioiThieu"].ToString();
+                    txtSoGuiBHXH.Text = tblChuyenHuong.Rows[0]["SoGuiBHXH"].ToString();
+
+                }
                 #endregion
             }
         }
      
     }
     #endregion
-    #region Load luong toi thieu vung
-   
-    #endregion 
+
     #region Even Phieu tinh huong
     protected void Unnamed_ServerClick(object sender, EventArgs e)
     {
@@ -245,6 +252,14 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
         }
     }
     #endregion  
+    public void Load_NoiChuyenDen()
+    {
+        ddlNoiChuyenDen.DataSource = new DanhMuc().getList(52);
+        ddlNoiChuyenDen.DataValueField = "IdDanhMuc";
+        ddlNoiChuyenDen.DataTextField = "NameDanhMuc";
+        ddlNoiChuyenDen.DataBind();
+
+    }
     protected void btnDuyet_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
@@ -257,9 +272,22 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
         objTinhHuong.UpdateTrangThaiHS(itemId, 13);
         Response.Redirect("DanhSachThamDinh.aspx");
     }
-
-    protected void btnTinhHuong_Click(object sender, EventArgs e)
+    protected void btnLuu_Click(object sender, EventArgs e)
     {
-      
+        ChuyenHuong objChuyenHuong = new ChuyenHuong();
+        if(hdStatus.Value.Trim()=="" || hdStatus.Value=="0")
+        {
+            //truong hop insert
+
+        }
+        else
+        {
+          // truong hop update
+        }
+    }
+    protected void btnInGiayGioiThieu_ServerClick(object sender, EventArgs e)
+    {
+
+
     }
 }

@@ -216,20 +216,32 @@ public class TinhHuong:DataClass
     public DateTime TinhNgayNghiLe(DateTime NgayNop, int SoNgayThuLy)
     {
         for (int i = 0; i < SoNgayThuLy; i++)
-        {
-            NgayNop = NgayNop.AddDays(1);
-            NgayNop = KiemTraNgayNghi(NgayNop);
+        {          
+            NgayNop = NgayNop.AddDays(1);                 
             if (NgayNop.DayOfWeek == DayOfWeek.Saturday)
-            {
-                NgayNop = NgayNop.AddDays(1);
+            {  
+               int dem=0;
+               if(CheckNgayLe(NgayNop)==true)
+               {
+                   dem++;
+               }
+               dem++;
+               NgayNop = NgayNop.AddDays(dem);
             }
             if (NgayNop.DayOfWeek == DayOfWeek.Sunday)
             {
-                NgayNop = NgayNop.AddDays(1);
-            }         
+                int dem = 0;
+                if (CheckNgayLe(NgayNop) == true)
+                {
+                    dem++;
+                }
+                dem++;
+                NgayNop = NgayNop.AddDays(dem);
+            }
+            NgayNop = KiemTraNgayNghi(NgayNop);  
         }
         // kiem tra lai sau khi da tru thu 7, cn co bi trung vao ngay nghi tiep khong
-        NgayNop = KiemTraNgayNghi(NgayNop);
+        //NgayNop = KiemTraNgayNghi(NgayNop);
         return NgayNop;
     }
     private DateTime KiemTraNgayNghi(DateTime Datetime)
@@ -240,13 +252,29 @@ public class TinhHuong:DataClass
             return Datetime;
         }
         for (int i = 0; i < tblNgayNghiLe.Rows.Count;i++ )
-        {         
-            if (Datetime.ToString("dd/MM/yyyy").Trim() == tblNgayNghiLe.Rows[i]["NameDanhMuc"].ToString().Trim())
+        {           
+            if (Datetime.ToString("dd/MM/yyyy").Trim() == tblNgayNghiLe.Rows[i]["NameDanhMuc"].ToString().Trim() )
             {
-               Datetime= Datetime.AddDays(1);
-            }
+                Datetime = Datetime.AddDays(1);
+            }          
         }
         return Datetime;
+    }
+    private bool CheckNgayLe(DateTime Datetime)
+    {
+        DataTable tblNgayNghiLe = GetDanhSachNgayNghiLe(Datetime.Year.ToString().Trim());
+        if (tblNgayNghiLe == null || tblNgayNghiLe.Rows.Count == 0)
+        {
+            return false;
+        }
+        for (int i = 0; i < tblNgayNghiLe.Rows.Count; i++)
+        { 
+            if (Datetime.ToString("dd/MM/yyyy").Trim() == tblNgayNghiLe.Rows[i]["NameDanhMuc"].ToString().Trim())
+            {
+                return true;
+            }
+        }
+        return false;
     }
     #endregion
     #region DanhSachNgayNghiLe
@@ -302,7 +330,7 @@ public class TinhHuong:DataClass
             Cmd.CommandText += " Left join TblCapSo cs on cs.IDNLDTCTN=tn.IdNLDTCTN";
             Cmd.CommandText += " WHERE TN.IdTrangThai In (Select distinct Item from dbo.Split(@IDTrangThais))";
             Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
-            Cmd.CommandText += " And  IDCapSo in (select max(IDCapSo) from TblCapSo Where IDNLDTCTN=TN.IdNLDTCTN ) Or IDCapSo is null";
+            Cmd.CommandText += " And  (IDCapSo in (select max(IDCapSo) from TblCapSo Where IDNLDTCTN=TN.IdNLDTCTN ) Or IDCapSo is null)";
             Cmd.Parameters.Add("IDTrangThais", SqlDbType.NVarChar).Value = IDTrangThais;
             Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
             SqlDataAdapter da = new SqlDataAdapter(Cmd);
