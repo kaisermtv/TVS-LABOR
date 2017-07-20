@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/BHTN.master"  CodeFile="NhapThongTinHoSo.aspx.cs" Inherits="BHTN_NhapThongTinHoSo" %>
+﻿<%@ Page Language="C#" EnableEventValidation="true" AutoEventWireup="true" MasterPageFile="~/BHTN.master"  CodeFile="NhapThongTinHoSo.aspx.cs" Inherits="BHTN_NhapThongTinHoSo" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
