@@ -620,6 +620,14 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         #region kiểm tra người lao động
         if (this.txtCMND.Text.Trim() != "")
         {
+            if (this.txtCMND.Text.Trim().Length != 9)
+            {
+                this.lblMsg.Text = "Bạn nhập số CMND không chính xác";
+                this.txtCMND.Focus();
+                return;
+            }
+
+
             int retCMND = objNguoiLaoDong.checkCMND(this.txtCMND.Text.Trim(), idNguoiLaoDong);
             if (retCMND != 0)
             {
@@ -639,6 +647,13 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
         if (txtBHXH.Text.Trim() != "")
         {
+            if (txtBHXH.Text.Trim().Length != 10)
+            {
+                this.lblMsg.Text = "Bạn nhập số BHXH không chính xác";
+                this.txtBHXH.Focus();
+                return;
+            }
+
             int retBHXH = objNguoiLaoDong.checkBHXH(this.txtBHXH.Text.Trim(), idNguoiLaoDong);
             if (retBHXH != 0)
             {

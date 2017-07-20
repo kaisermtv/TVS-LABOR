@@ -443,7 +443,7 @@ public partial class Admin_TuVanEdit : System.Web.UI.Page
         if (txtBHXH.Text.Trim() != "" && txtBHXH.Text.Trim().Length != 10)
         {
             this.lblMsg.Text = "Bạn nhập số BHXH không chính xác";
-            this.txtDienThoai.Focus();
+            this.txtBHXH.Focus();
             return;
         }
 
