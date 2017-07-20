@@ -6,6 +6,71 @@ using System.Web;
 public class Common
 {
     string _msg = "";
+    public string TaiPhieuTinhHuong(int INLDTCTN, string FileName)
+    {
+        string _msg = "";
+        DataTable tblTinhHuong = new TinhHuong().getDataById(INLDTCTN);
+        DataRow rowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(INLDTCTN);
+        DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)rowTroCapThatNghiep["IDNguoiLaoDong"]);
+      
+        if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
+        {
+            _msg = "Người lao động chưa được khởi tạo";
+            return _msg;
+        }
+        if (tblTinhHuong == null || tblTinhHuong.Rows.Count == 0)
+        {
+            _msg = "Chưa có bẳng tỉnh nào được cập nhật";
+            return _msg;
+        }
+
+        List<string> lstInput = new List<string>();
+        List<string> lstOutput = new List<string>();
+        lstInput.Add("[TenNLD]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+        lstInput.Add("[NgaySinh]");
+        lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[SoBHXH]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
+        lstInput.Add("[SoThangDong]");
+        lstOutput.Add(rowTroCapThatNghiep["SoThangDongBHXH"].ToString());
+        lstInput.Add("[DongTuThang]");
+        lstOutput.Add(tblTinhHuong.Rows[0]["HuongTungay"].ToString());
+        lstInput.Add("[DongDenThang]");
+        lstOutput.Add(tblTinhHuong.Rows[0]["HuongDenNgay"].ToString());
+        for (int i = 1; i <= 6; i++)
+        {
+            lstInput.Add("[Thang" + i.ToString() + "]");
+            lstOutput.Add(i.ToString());
+            lstInput.Add("[TienThang" + i.ToString() + "]");
+            lstOutput.Add(((decimal)tblTinhHuong.Rows[0]["MucDong" + i.ToString()]).ToString("0.##"));
+        }
+
+        lstInput.Add("[MucDongTB]");
+        lstOutput.Add(((decimal)tblTinhHuong.Rows[0]["LuongTrungBinh"]).ToString("0.##"));
+        lstInput.Add("[MucHuong]");
+        lstOutput.Add(((decimal)tblTinhHuong.Rows[0]["MucHuong"]).ToString("0.##"));
+        lstInput.Add("[SoThangHuong]");
+        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
+        lstInput.Add("[TongTienHuong]");
+        decimal MucHuong = 0, SoThangHuong = 0, TongTienHuong = 0;
+        MucHuong = decimal.Parse(tblTinhHuong.Rows[0]["MucHuong"].ToString());
+        SoThangHuong = decimal.Parse(tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
+        TongTienHuong = MucHuong * SoThangHuong;
+        lstOutput.Add(TongTienHuong.ToString("0.##"));
+        lstInput.Add("[SoThangBaoLuu]");
+        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString());
+        lstInput.Add("[NgayTinhHuong]");
+        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
+        ExportToWord objExportToWord = new ExportToWord();
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/PhieuTinhHuong.docx"), lstInput, lstOutput);
+        HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=PhieuTinhHuong.docx");
+        HttpContext.Current.Response.BinaryWrite(temp);
+        HttpContext.Current.Response.End();
+        HttpContext.Current.Response.Flush();
+        return _msg;
+    }
     public string TaiQuyetDinhTCTN(int IDNLDTCTN, string FileName)
     {
         string _msg = "";
@@ -64,7 +129,7 @@ public class Common
         lstInput.Add("[SoThangDong]");
         lstOutput.Add(RowTroCapThatNghiep["SoThangDongBHXH"].ToString());
         lstInput.Add("[MucHuong]");
-        lstOutput.Add(tblTinhHuong.Rows[0]["MucHuong"].ToString());
+        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["MucHuong"]).ToString("0.##"));
         lstInput.Add("[SoThangHuong]");
         int SoThangHuong = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"];
         lstOutput.Add(SoThangHuong.ToString());
@@ -505,57 +570,75 @@ public class Common
     {
         string _msg = "";
         TinhHuong objTinhHuong = new TinhHuong();
+        DataTable tblTinhHuong = new TinhHuong().getDataById(IDNLDTCTN);
         DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
         DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
-
+        DataTable tblQuyetDinhTCTN = new CapSo().GetByID(IDNLDTCTN, 30);
         if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
         {
             _msg = "Người lao động chưa được khởi tạo";
             return _msg;
         }
-
+        DataTable tblChuyenHuong = new ChuyenHuong().GetByMaxIDNLDTCTN(IDNLDTCTN);
+        if(tblChuyenHuong.Rows.Count==0)
+        {
+            _msg = "Chưa có thông tin chuyển hưởng";
+            return _msg;
+        }
         List<string> lstInput = new List<string>();
         List<string> lstOutput = new List<string>();
-        lstInput.Add("[NgayNopHS]");
-        lstOutput.Add(((DateTime)RowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[SoQD]");
+        lstOutput.Add(tblChuyenHuong.Rows[0]["SoGiayGioiThieu"].ToString());       
+        lstInput.Add("[NgayDeNghi]");
+        try
+        {
+            lstOutput.Add(((DateTime)tblChuyenHuong.Rows[0]["NgayDeNghi"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add("../../....");
+        }
+        lstInput.Add("[NoiChuyenDen]");
+        DataRow NoiChuyenDen = new DanhMuc().getItem(int.Parse(tblChuyenHuong.Rows[0]["IDNoiChuyen"].ToString()));
+        lstOutput.Add(NoiChuyenDen["NameDanhMuc"].ToString());
         lstInput.Add("[TenLD]");
         lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
-        lstInput.Add("[NgaySinh]");
+        lstInput.Add("[NgayDeNghi]");
         try
         {
-            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy"));
+            lstOutput.Add(((DateTime)tblChuyenHuong.Rows[0]["NgayDeNghi"]).ToString("dd/MM/yyyy"));
         }
         catch
         {
             lstOutput.Add("../../....");
         }
-        lstInput.Add("[CMTND]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["CMND"].ToString());
-        lstInput.Add("[NgayCapCMTND]");
+        lstInput.Add("[TenLD]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+        lstInput.Add("[SoQDTCTN]");
+        lstOutput.Add(tblQuyetDinhTCTN.Rows[0]["SoVanBan"].ToString());
+        lstInput.Add("[NgayKyTCTN]");
         try
         {
-            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
+            lstOutput.Add(((DateTime)tblQuyetDinhTCTN.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
         }
         catch
         {
             lstOutput.Add("../../....");
         }
-
-        lstInput.Add("[NoiCapCMTND]");
-        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
-        lstInput.Add("[NgayHenTra]");
-        try
-        {
-            lstOutput.Add(((DateTime)RowTroCapThatNghiep["NgayHenTraKQ"]).ToString("dd/MM/yyyy"));
-        }
-        catch
-        {
-            lstOutput.Add("../../....");
-        }
+        lstInput.Add("[SoThangDaHuong]");
+        int  SoThangDaHuong=0;
+        int.TryParse(tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString(), out SoThangDaHuong);
+        lstOutput.Add(SoThangDaHuong.ToString());
+        lstInput.Add("[HuongTuNgay]");
+        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[HuongDenNgay]");
+        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[MucHuong]");
+        lstOutput.Add(((decimal)tblTinhHuong.Rows[0]["MucHuong"]).ToString("0.##"));
         ExportToWord objExportToWord = new ExportToWord();
-        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/PhieuHenTraTiepNhan.docx"), lstInput, lstOutput);
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/GiayGioiThieuChuyenHuong.docx"), lstInput, lstOutput);
         HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
-        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=PhieuHenTraTiepNhan" + FileName + ".docx");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=GiayGioiThieuChuyenHuong" + FileName + ".docx");
         HttpContext.Current.Response.BinaryWrite(temp);
         HttpContext.Current.Response.End();
         HttpContext.Current.Response.Flush();
