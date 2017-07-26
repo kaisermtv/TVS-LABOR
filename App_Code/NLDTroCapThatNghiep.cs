@@ -57,6 +57,43 @@ public class NLDTroCapThatNghiep :DataAbstract
     }
     #endregion
 
+    public int Insert(int IDNguoiLaoDong, DateTime NgayNopHoSo, int SoThangDongBHXH)
+    {
+        int value = 0;
+        string sql = " Insert Into TblNLDTroCapThatNghiep (IDNguoiLaoDong,NgayNopHoSo,SoThangDongBHXH) Values (@IDNguoiLaoDong,@NgayNopHoSo,@SoThangDongBHXH)";
+        sql += " Select Max(IDNLDTCTN) From TblNLDTroCapThatNghiep Where IDNguoiLaoDong=@IDNguoiLaoDong";
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
+        Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
+        Cmd.Parameters.Add("NgayNopHoSo", SqlDbType.DateTime).Value = NgayNopHoSo;
+        Cmd.Parameters.Add("SoThangDongBHXH", SqlDbType.Int).Value = SoThangDongBHXH;
+        value = (int)Cmd.ExecuteScalar();
+        sqlCon.Close();
+        sqlCon.Dispose();
+        return value;    
+    }
+
+    public int Update(int IDNLDTCTN, int IDNguoiLaoDong, DateTime NgayNopHoSo, int SoThangDongBHXH)
+    {
+        int value = 0;
+        string sql = " Update TblNLDTroCapThatNghiep Set IDNguoiLaoDong= @IDNguoiLaoDong,NgayNopHoSo=@NgayNopHoSo,SoThangDongBHXH=@SoThangDongBHXH)";
+        sql += " Where IDNLDTCTN=@IDNLDTCTN";
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
+        Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+        Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IDNguoiLaoDong;
+        Cmd.Parameters.Add("NgayNopHoSo", SqlDbType.DateTime).Value = NgayNopHoSo;
+        Cmd.Parameters.Add("SoThangDongBHXH", SqlDbType.Int).Value = SoThangDongBHXH;
+        value = (int)Cmd.ExecuteScalar();
+        sqlCon.Close();
+        sqlCon.Dispose();
+        return value;
+    }
+
 
     #region method getItem
     public DataRow getItem(int id)

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_DanhSachChuyenHuong: System.Web.UI.Page
+public partial class Labor_DanhSachChuyenHuongDen: System.Web.UI.Page
 {
     #region declare
     public int index = 1;
@@ -44,7 +44,7 @@ public partial class Labor_DanhSachChuyenHuong: System.Web.UI.Page
         }
 
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachChuyenHuong(TuNgay, DenNgay, int.Parse(ddlTrangThai.SelectedValue.ToString()), str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo("," + ddlTrangThai.SelectedValue + ",", str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -94,11 +94,7 @@ public partial class Labor_DanhSachChuyenHuong: System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",46,");
-        DataRow row = tblTrangThai.NewRow();
-        row["ID"] = 0;
-        row["Name"] = "--Tất cả--";
-        tblTrangThai.Rows.InsertAt(row, 0);
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",47,");
         ddlTrangThai.DataTextField = "Name";
         ddlTrangThai.DataValueField = "ID";
         ddlTrangThai.DataSource = tblTrangThai;

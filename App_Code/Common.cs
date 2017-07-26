@@ -62,6 +62,7 @@ public class Common
         lstOutput.Add(tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString());
         lstInput.Add("[NgayTinhHuong]");
         lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
+        //lstInput.Add()
         ExportToWord objExportToWord = new ExportToWord();
         byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/PhieuTinhHuong.docx"), lstInput, lstOutput);
         HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
@@ -645,4 +646,127 @@ public class Common
         return _msg;
 
     }
+    private string replace_special_word(string chuoi)
+    {
+        chuoi = chuoi.Replace("không mươi không ", "");
+        chuoi = chuoi.Replace("không mươi", "lẻ");
+        chuoi = chuoi.Replace("i không", "i");
+        chuoi = chuoi.Replace("i năm", "i lăm");
+        chuoi = chuoi.Replace("một mươi", "mười");
+        chuoi = chuoi.Replace("mươi một", "mươi mốt");
+        chuoi = chuoi.Replace("lẻ lăm", "lẻ năm");
+
+        return chuoi;
+    }
+    public string ChuyenSo(string number)
+    {
+        string[] dv = { "", "mươi", "trăm", "nghìn", "triệu", "tỉ" };
+        string[] cs = { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín" };
+        string doc;
+        int i, j, k, n, len, found, ddv, rd;
+
+        len = number.Length;
+        number += "ss";
+        doc = "";
+        found = 0;
+        ddv = 0;
+        rd = 0;
+
+        i = 0;
+        while (i < len)
+        {
+            //So chu so o hang dang duyet
+            n = (len - i + 2) % 3 + 1;
+
+            //Kiem tra so 0
+            found = 0;
+            for (j = 0; j < n; j++)
+            {
+                if (number[i + j] != '0')
+                {
+                    found = 1;
+                    break;
+                }
+            }
+
+            //Duyet n chu so
+            if (found == 1)
+            {
+                rd = 1;
+                for (j = 0; j < n; j++)
+                {
+                    ddv = 1;
+                    switch (number[i + j])
+                    {
+                        case '0':
+                            if (n - j == 3) doc += cs[0] + " ";
+                            if (n - j == 2)
+                            {
+                                if (number[i + j + 1] != '0') doc += "lẻ ";
+                                ddv = 0;
+                            }
+                            break;
+                        case '1':
+                            if (n - j == 3) doc += cs[1] + " ";
+                            if (n - j == 2)
+                            {
+                                doc += "mười ";
+                                ddv = 0;
+                            }
+                            if (n - j == 1)
+                            {
+                                if (i + j == 0) k = 0;
+                                else k = i + j - 1;
+
+                                if (number[k] != '1' && number[k] != '0')
+                                    doc += "mốt ";
+                                else
+                                    doc += cs[1] + " ";
+                            }
+                            break;
+                        case '5':
+                            if (i + j == len - 1)
+                                doc += "lăm ";
+                            else
+                                doc += cs[5] + " ";
+                            break;
+                        default:
+                            doc += cs[(int)number[i + j] - 48] + " ";
+                            break;
+                    }
+
+                    //Doc don vi nho
+                    if (ddv == 1)
+                    {
+                        doc += dv[n - j - 1] + " ";
+                    }
+                }
+            }
+
+
+            //Doc don vi lon
+            if (len - i - n > 0)
+            {
+                if ((len - i - n) % 9 == 0)
+                {
+                    if (rd == 1)
+                        for (k = 0; k < (len - i - n) / 9; k++)
+                            doc += "tỉ ";
+                    rd = 0;
+                }
+                else
+                    if (found != 0) doc += dv[((len - i - n + 1) % 9) / 3 + 2] + " ";
+            }
+
+            i += n;
+        }
+
+        if (len == 1)
+            if (number[0] == '0' || number[0] == '5') return cs[(int)number[0] - 48];
+
+        string str1 = doc.Substring(0, 1).ToUpper();
+        string str2 = doc.Substring(1, doc.Length - 1);
+        string str = str1 + str2;
+        return replace_special_word(str) + "đồng";
+    } 
 }

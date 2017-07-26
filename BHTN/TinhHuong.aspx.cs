@@ -323,7 +323,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
             , objTinhHuong.ThangDong6, objTinhHuong.HeSoLuong6, objTinhHuong.HeSoPhuCap6, objTinhHuong.LuongCoBan6, objTinhHuong.MucDong6
            , objTinhHuong.SoThangHuongBHXH, objTinhHuong.SoThangBaoLuuBHXH, objTinhHuong.MucHuongToiDa, objTinhHuong.LuongTrungBinh, objTinhHuong.MucHuong
             , objTinhHuong.HuongTuNgay, objTinhHuong.HuongDenNgay, objTinhHuong.IDNguoiTinh);
-         //cap nhat trang thai da tinh huong
+        //cap nhat trang thai da tinh huong
         // insert du lieu thong bao viec lam
         LichThongBao objLichThongBao = new LichThongBao();
         List<TempThongBao> lstTemp = new List<TempThongBao>();      

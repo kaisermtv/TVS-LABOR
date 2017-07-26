@@ -37,8 +37,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     {
         DataTable objData = new TinhHuong().getDanhSachHoSo(",11,");
         DateTime NgayQuaHan = new TinhHuong().TinhNgayNghiLe(DateTime.Now, 2);
-        NgayQuaHan = new DateTime(NgayQuaHan.Year, NgayQuaHan.Month, NgayQuaHan.Day);
-     
+        NgayQuaHan = new DateTime(NgayQuaHan.Year, NgayQuaHan.Month, NgayQuaHan.Day);     
         for (int i = 0; i < objData.Rows.Count; i++)
         {
             DateTime NgayHenTraKQ = (DateTime)objData.Rows[i]["NgayHenTraKQ"];
@@ -128,7 +127,16 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             {
                 new Common().TaiQuyetDinhTamDung(ID, "");
             }
-
+        }
+        // de xuat huy huong
+        if(e.CommandName=="DeXuatHuyHuong")
+        {
+            int ID = int.Parse(e.CommandArgument.ToString());
+            DataRow rowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(ID);
+            if((int)rowTroCapThatNghiep["IdTrangThai"] == 11)
+            {
+                new TinhHuong().UpdateTrangThaiHS(ID, 13);
+            }
         }
 
     }
