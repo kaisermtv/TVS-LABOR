@@ -154,46 +154,6 @@ ALTER TABLE dbo.[TblNLDTroCapThatNghiep] ADD TrangThaiHS Int NULL ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 INSERT INTO dbo.tblDanhMuc(NameDanhMuc) VALUES(N'Nơi chốt sổ cuối');
 
 -- 02/6/2017 The Linh Create tbltinhhuong
@@ -358,7 +318,12 @@ CREATE TABLE [dbo].[TblThongBaoViecLamHangThang](
 GO
 
 
-
+CREATE TABLE dbo.TblNldXuatKhauNhatKy(
+	IDNldXuatKhauNhatKy INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	IDNldXuatKhau INT NOT NULL,
+	NgayNhatKy DATETIME DEFAULT(GETDATE()),
+	Note NVARCHAR(500) NULL
+)
 
 
 
