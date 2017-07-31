@@ -19,7 +19,10 @@ public partial class uctLichThongBao : System.Web.UI.UserControl
        if(!Page.IsPostBack)
        {
            if (_IDNLDTCTN <= 0)
-               Response.Redirect("danhsachtinhhuong");
+           {
+               _msg = "Bạn chưa tính hưởng";
+               return;
+           }
            DataTable  TblTinhHuong = new TinhHuong().getDataById(_IDNLDTCTN);
            if (TblTinhHuong == null || TblTinhHuong.Rows.Count == 0)
            {              

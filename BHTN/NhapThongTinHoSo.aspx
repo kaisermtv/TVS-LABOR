@@ -265,7 +265,7 @@
                 Số CMND/HC: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server"  MaxLength="13"  CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -297,7 +297,7 @@
                 Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoDienThoai" runat="server"  MaxLength="9" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -323,7 +323,7 @@
                 Số BHXH: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtBHXH" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBHXH" runat="server" MaxLength="10" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">

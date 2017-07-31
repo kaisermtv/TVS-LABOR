@@ -53,7 +53,10 @@
     </div>
     <div class="row">
        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
-        <a href="DanhSachChuyenHuong.aspx">Danh sách chuyển hưởng</a>
+        <a href="DanhSachChuyenHuong.aspx">DS chuyển hưởng</a>
+        </div>    
+         <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachChuyenHuongDen.aspx">DS chuyển hưởng đến</a>
         </div>    
     </div>
 

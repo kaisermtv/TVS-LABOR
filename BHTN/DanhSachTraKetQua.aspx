@@ -95,8 +95,8 @@
                     <td class="DataListTableTdItemCenter">
                      <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>&status=3" style="display:none;">
                      <input type="button" class="btn btn-primary" value="Chi tiết"/></a>                    
-                     <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
-                    
+                     <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
+                     <asp:Button ID="btnHuyHuong" class="btn btn-primary" runat ="server" CommandName="DeXuatHuyHuong" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="ĐX hủy hưởng" />                    
                     </td>
                 </tr>
             </ItemTemplate>

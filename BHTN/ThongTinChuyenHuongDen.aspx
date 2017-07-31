@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="TinhHuong.aspx.cs" Inherits="Labor_TinhHuong" %>
-<%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThongTinChuyenHuongDen.aspx.cs" Inherits="Labor_ThongTinChuyenHuongDen" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .label1 {
@@ -124,13 +123,32 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width: 83%; float: left; margin-top:-15px!important;">
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
-         <b>Thông tin tính hưởng</b></div>
+            <b>Thông tin chuyển hưởng đến</b></div>
+        <div class="row line">          
+            <div class="label1">
+                Số giấy giới thiệu: 
+            </div>
+            <div style="width: 20%; float: left">
+                <asp:TextBox ID="txtSoGiayGioiThieu" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+              <div class="label2">
+                Ngày tiếp nhận: 
+            </div>
+            <div style="width: 20%; float: left">
+                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtNgayTiepNhan" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>           
+            </div>
+        </div>
         <div class="row line">
             <div class="label1">
                 Họ và tên: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -138,7 +156,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgaySinh" readonly="true" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgaySinh" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -160,26 +178,26 @@
                 Số CMND/HC: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtCMND" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-
             <div class="label2">
                 Ngày cấp: 
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayCap" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgayCap" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>        
             </div>
+           
 
            <div class="label2">    
                Nơi cấp:        
             </div>
             <div style="width: 20%; float: left">
-               <asp:TextBox ID="txtNoiCap" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>          
+               <asp:TextBox ID="txtNoiCap" runat="server"  CssClass="form-control"></asp:TextBox>          
             </div>  
         </div>
 
@@ -188,78 +206,120 @@
                Số sổ BHXH:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoBHXH" runat="server"  CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
                 Số tháng đóng:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
-        <div class="row line">
-         <div class="label1">
-            Số điện thoại: 
+        <div  class="row line">
+             <div class="label1">
+              Tài khoản:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoDienThoai" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtTaiKhoan" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
-            
-
-        </div>
-        <div class="row line">
-            <div class="label1">
-             Nơi cư trú: 
+            <div class="label2">
+               Ngân hàng:
             </div>
-
-            <div style="width: 52%; float: left">
-                <asp:TextBox ID="txtNoiThuongTru" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-
-        </div>
-        <div class="row line">
-            <div class="label1">
-                Chỗ ở hiện tại: 
-            </div>
-            <div style="width: 52%; float: left">
-                <asp:TextBox ID="txtChoOHienTai" runat="server" CssClass="form-control"></asp:TextBox>
+            <div style="width: 20%; float: left">
+              <asp:DropDownList ID="ddlNganHang" runat="server" CssClass="form-control"></asp:DropDownList>            
             </div>
         </div>
-        <div class="row line">     
-       
+        <div class="row line">          
             <div class="label1">
-            Ngày nghỉ việc:
+                Số QĐ: 
+            </div>
+            <div style="width: 20%; float: left">
+                <asp:TextBox ID="txtSoQuyetDinh" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+              <div class="label2">
+                Ngày ký: 
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgayNghiViec" readonly="true" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>           
-            </div>
-
-             <div class="label2">
-             Ngày nộp HS:
-            </div>
-            <div style="width: 20%; float: left">
-                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' readonly="true" class="form-control dateinput" id="txtNgayNopHoSo" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgayKy" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>           
             </div>
         </div>
-        <div class="row line">
-            <div class="label1">Nơi ĐBH cuối: </div>
-            <div style="width: 20%; float: left">
-                <asp:DropDownList ID="ddlLuongToiThieu" CssClass="form-control" runat="server" Style="width: 100%;">
-                </asp:DropDownList>
+        <div class="row">
+            <div style="float:left;margin-right:-60px;width:100%">
+                <div class="line" style="display:table;width:100%">
+                    <div class="label1">
+                        Nơi thường trú: 
+                    </div>
+                    <div style="width: 15%; float: left;margin-right:10px">
+                        <asp:DropDownList ID="ddlTinh_TT" onChange="getQuanHuyen(this.options[this.selectedIndex].value,'ddlHuyen_TT','ddlXa_TT')" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
+                        </asp:DropDownList>
+                    </div>
+                    <div style="width: 15%; float: left;margin-right:10px">
+                        <asp:DropDownList ID="ddlHuyen_TT"  onChange="getPhuongXa(this.options[this.selectedIndex].value,'ddlXa_TT')" runat="server" CssClass="multiple-style form-control" Style="width: 100%;">
+                        </asp:DropDownList>
+                    </div>
+                    <div style="width: 15%; float: left;margin-right:10px">
+                        <asp:DropDownList ID="ddlXa_TT" runat="server" CssClass=" multiple-style form-control" Style="width: 100%;">
+                        </asp:DropDownList>
+                    </div>
+                    <div style="width: 32%; float: left">
+                        <asp:TextBox ID="txtXom_TT" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="line" style="display:table;width:100%">
+                    <div class="label1">
+                        Địa chỉ: 
+                    </div>
+                    <div style="width: 15%; float: left;margin-right:10px">
+                        <asp:DropDownList ID="ddlTinh_DC" onChange="getQuanHuyen(this.options[this.selectedIndex].value,'ddlHuyen_DC','ddlXa_DC')" runat="server" CssClass="multiple-style  form-control" Style="width: 100%;">
+                        </asp:DropDownList>
+                    </div>
+                    <div style="width: 15%; float: left;margin-right:10px">
+                        <asp:DropDownList ID="ddlHuyen_DC" onChange="getPhuongXa(this.options[this.selectedIndex].value,'ddlXa_DC')" runat="server" CssClass="multiple-style form-control" Style="width: 100%;">
+                        </asp:DropDownList>
+                    </div>
+                    <div style="width: 15%; float: left;margin-right:10px">
+                        <asp:DropDownList ID="ddlXa_DC" runat="server" CssClass=" multiple-style  form-control" Style="width: 100%;">
+                        </asp:DropDownList>
+                    </div>
+                    <div style="width: 32%; float: left">
+                        <asp:TextBox ID="txtXom_DC" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
             </div>
-
+            <div style="float:right;width:59px" class="line">
+                <input type="button" value="&dArr;" style="height: 78px; margin-left: 3px" class="btn btn-primary" onclick="CopyTinhThanh()" />
+            </div>
+        </div>        
+        <div class="row line">          
+            <div class="label1">
+                Hưởng từ ngày: 
+            </div>
+            <div style="width: 20%; float: left">
+               <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtHuongTuNgay" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>         
+            </div>
+              <div class="label2">
+                Ngày ký: 
+            </div>
+            <div style="width: 20%; float: left">
+                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtHuongDenNgay" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>           
+            </div>
         </div>
         <div class="row line">            
             <div class="label1">
@@ -306,11 +366,11 @@
                         <td>
                             <asp:TextBox ID="txtMucDongThang5" runat="server" CssClass="form-control money"></asp:TextBox></td>
                         <th>
-                            Mức hưởng tối đa:
+                            Mức hưởng:
 
                         </th>
                         <td>
-                            <asp:TextBox ID="txtMucHuongToiDa" runat="server" CssClass="form-control money"></asp:TextBox></td>
+                            <asp:TextBox ID="txtMucHuong" runat="server" CssClass="form-control money"></asp:TextBox></td>
                 
                     </tr>
                     <tr>
@@ -326,10 +386,10 @@
                         <td>
                             <asp:TextBox ID="txtMucDongThang4" runat="server" CssClass="form-control money"></asp:TextBox></td>
                         <th>
-                            Mức hưởng:
+                            Số tháng hưởng TCTN:
                         </th>
                         <td>
-                            <asp:TextBox ID="txtMucHuong" runat="server" CssClass="form-control money"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSoThangHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
                   
                     </tr>
                     <tr>
@@ -345,10 +405,9 @@
                         <td>
                             <asp:TextBox ID="txtMucDongthang3" runat="server" CssClass="form-control money"></asp:TextBox></td>
                         <th>
-                            Số tháng hưởng TCTN:
-                        </th>
+                            Số tháng đã hưởng:</th>
                         <td>
-                            <asp:TextBox ID="txtSoThangHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSoThangDaHuong" runat="server" CssClass="form-control"></asp:TextBox></td>
                   
                     </tr>
                     <tr>
@@ -364,10 +423,9 @@
                         <td>
                             <asp:TextBox ID="txtMucDongThang2" runat="server" CssClass="form-control money"></asp:TextBox></td>
                         <th>
-                            Số tháng bảo lưu:
-                        </th>
+                            Số tháng còn lại:</th>
                         <td>
-                            <asp:TextBox ID="txtSoThangBaoLuu" runat="server" CssClass="form-control"></asp:TextBox></td>
+                            <asp:TextBox ID="txtSoThangConLai" runat="server" CssClass="form-control"></asp:TextBox></td>
                   
                     </tr>
                     <tr>
@@ -383,42 +441,33 @@
                         <td>
                             <asp:TextBox ID="txtMucDongThang1" runat="server" CssClass="form-control money"></asp:TextBox></td>
                         <th>
-                            Hưởng từ ngày:
-
-                        </th>
+                            Số tháng bảo lưu:</th>
                         <td>
-                            <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput" id="txtHuongTuNgay" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
+                           
+
+                            <asp:TextBox ID="txtSoThangBaoLuu" runat="server" CssClass="form-control"></asp:TextBox>
+                           
 
                         </td>
                    
                     </tr>                 
                     <tr>
                         <th>&nbsp;</th>
-                        <td>                            
-                        </td>
                         <td>
-                        </td>
-                        <th>  
-                            Hưởng đến ngày:
-                        </th>
+                            &nbsp;</td>
                         <td>
-                            <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                                <input type='text' class="form-control dateinput" id="txtHuongDenNgay" runat="server" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
+                            &nbsp;</td>
+                        <th>
+                            &nbsp;</th>
+                        <td>
+                           
 
-                        </td>                     
-                    </tr>
-                </table>
+                            &nbsp;</td>
+                   
+                    </tr>                 
+                    </table>
             </div>
-        </div>        
+        </div>       
         <br />
         <br />
         <br />
@@ -432,20 +481,17 @@
                 <br />
                 <br />
 
-                <div class="list-group list-group-alternate">
-                    <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
+                <div class="list-group list-group-alternate" style="display:none;">
+                    <a href="#" class="list-group-item" runat="server"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item" data-toggle="modal" data-target="#lichthongbao" runat="server"><span class="badge1" style ="left:140px;">></span>Lịch thông báo</a>
-                    <a href="#" class="list-group-item" runat="server" onserverclick="InQuyetDinhHuongTroCap_ServerClick" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
-                </div>
-               
-                <asp:Button ID="btnTinhHuong" runat="server" Text="Tính hưởng" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTinhHuong_Click" />
-              
-                 <asp:Button ID="btnChuyenTraHoSo" runat="server" Text="Chuyển trả hồ sơ" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnChuyenTraHoSo_Click" />
+                    <a href="#" class="list-group-item" runat="server" onserverclick="btnInGiayGioiThieu_ServerClick"><span class="badge1" style ="left:140px;">></span>Giấy giới thiệu</a>
+                    <a href="#" class="list-group-item" runat="server" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
+                </div>          
              
-                <asp:Button ID="btnChuyenThamDinh" runat="server" Text="Chuyển thẩm định" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnChuyenThamDinh_Click" />
-               
-                <asp:Button ID="btnTraQuyetDinh" runat="server" Text="Trả quyết định" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraQuyetDinh_Click" />
-            
+                <asp:Button ID="btnLuu" runat="server" Text="Lưu thông tin" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnLuu_Click" />
+                 <a href="DanhSachChuyenHuong.aspx">
+                 <input  type="button" style="width: 100% !important;margin-top:10px;"  class="btn btn-primary" value="Thoát" />  
+                 </a>
             </div>
         </div>
     </div>
@@ -467,7 +513,7 @@
                     <h4 class="modal-title">Lịch thông báo</h4>
                 </div>
                 <div class="modal-body">
-                <uc1:uctLichThongBao ID="LichThongBao1" runat="server"  />
+            
                 </div>
                 <div class="modal-footer">                 
                 </div>
@@ -507,38 +553,9 @@
                 }
             });
         }
-        $(document).ready(function () {
-
-
-        });
-        $("#MainContent_txtMucDongThang6").blur(function () {
-            var SoThangDong = $("#MainContent_txtSoThangDongBHXH").val();
-            if (SoThangDong.trim() == "") {
-                $("#MainContent_txtSoThangHuong").val("");
-                $("#MainContent_txtSoThangBaoLuu").val("");
-            }
-            var SoThangDuocHuong = 0, SoThangBaoLuu = 0, temp = 0;
-            temp = SoThangDong;
-            if (SoThangDong >= 12 && SoThangDong <= 36) {
-                SoThangDuocHuong = 3;
-            }
-            if (SoThangDong > 36) {
-                SoThangDuocHuong = 3;
-                SoThangDong = SoThangDong - 36;
-                SoThangDong = Math.round((SoThangDong / 12));
-                SoThangDuocHuong = SoThangDuocHuong + SoThangDong;
-                if (SoThangDuocHuong > 12) {
-                    SoThangDuocHuong = 12;
-                }
-            }
-
-            SoThangBaoLuu = temp - SoThangDuocHuong * 12;
-            if (SoThangBaoLuu < 0) {
-                SoThangBaoLuu = 0;
-            }
-
-            $("#MainContent_txtSoThangHuong").val(SoThangDuocHuong);
-            $("#MainContent_txtSoThangBaoLuu").val(SoThangBaoLuu);
+        $(document).ready(function () {           
+         
+        
         });
         $("#MainContent_ddlLuongToiThieu").change(function () {
             $("#MainContent_txtMucHuongToiDa").val($(this).val() * 5);
@@ -552,25 +569,28 @@
             var SoThangDuocHuong = 0, SoThangBaoLuu = 0, temp = 0;
             temp = SoThangDong;
             if (SoThangDong >= 12 && SoThangDong <= 36) {
-                SoThangDuocHuong = 3;
+                SoThangDuocHuong = 3;              
             }
             if (SoThangDong > 36) {
                 SoThangDuocHuong = 3;
-                SoThangDong = SoThangDong - 36;
+                SoThangDong = SoThangDong - 36;               
                 SoThangDong = Math.round((SoThangDong / 12));
                 SoThangDuocHuong = SoThangDuocHuong + SoThangDong;
-                if (SoThangDuocHuong > 12) {
+                if (SoThangDuocHuong > 12)
+                {
                     SoThangDuocHuong = 12;
-                }
-            }
+                }               
+            }          
 
             SoThangBaoLuu = temp - SoThangDuocHuong * 12;
-            if (SoThangBaoLuu < 0) {
+            if (SoThangBaoLuu < 0)
+            {
                 SoThangBaoLuu = 0;
             }
 
             $("#MainContent_txtSoThangHuong").val(SoThangDuocHuong);
             $("#MainContent_txtSoThangBaoLuu").val(SoThangBaoLuu);
+            
         });
         var _msg = '<%=_msg%>';
         if (_msg != '') {
@@ -580,6 +600,64 @@
         (function (e) { if (typeof define === "function" && define.amd) { define(["jquery"], e) } else { e(window.jQuery || window.Zepto) } })(function (e) { "use strict"; var t = function (t, n, r) { var i = this, s; t = e(t); n = typeof n === "function" ? n(t.val(), undefined, t, r) : n; i.init = function () { r = r || {}; i.byPassKeys = [9, 16, 17, 18, 36, 37, 38, 39, 40, 91]; i.translation = { 0: { pattern: /\d/ }, 9: { pattern: /\d/, optional: true }, "#": { pattern: /\d/, recursive: true }, A: { pattern: /[a-zA-Z0-9]/ }, S: { pattern: /[a-zA-Z]/ } }; i.translation = e.extend({}, i.translation, r.translation); i = e.extend(true, {}, i, r); t.each(function () { if (r.maxlength !== false) { t.attr("maxlength", n.length) } if (r.placeholder) { t.attr("placeholder", r.placeholder) } t.attr("autocomplete", "off"); o.destroyEvents(); o.events(); var e = o.getCaret(); o.val(o.getMasked()); o.setCaret(e + o.getMaskCharactersBeforeCount(e, true)) }) }; var o = { getCaret: function () { var e, n = 0, r = t.get(0), i = document.selection, s = r.selectionStart; if (i && !~navigator.appVersion.indexOf("MSIE 10")) { e = i.createRange(); e.moveStart("character", t.is("input") ? -t.val().length : -t.text().length); n = e.text.length } else if (s || s === "0") { n = s } return n }, setCaret: function (e) { if (t.is(":focus")) { var n, r = t.get(0); if (r.setSelectionRange) { r.setSelectionRange(e, e) } else if (r.createTextRange) { n = r.createTextRange(); n.collapse(true); n.moveEnd("character", e); n.moveStart("character", e); n.select() } } }, events: function () { t.on("keydown.mask", function () { s = o.val() }); t.on("keyup.mask", o.behaviour); t.on("paste.mask drop.mask", function () { setTimeout(function () { t.keydown().keyup() }, 100) }); t.on("change.mask", function () { t.data("changeCalled", true) }); t.on("blur.mask", function (t) { var n = e(t.target); if (n.prop("defaultValue") !== n.val()) { n.prop("defaultValue", n.val()); if (!n.data("changeCalled")) { n.trigger("change") } } n.data("changeCalled", false) }); t.on("focusout.mask", function () { if (r.clearIfNotMatch && o.val().length < n.length) { o.val("") } }) }, destroyEvents: function () { t.off("keydown.mask keyup.mask paste.mask drop.mask change.mask blur.mask focusout.mask").removeData("changeCalled") }, val: function (e) { var n = t.is("input"); return arguments.length > 0 ? n ? t.val(e) : t.text(e) : n ? t.val() : t.text() }, getMaskCharactersBeforeCount: function (e, t) { for (var r = 0, s = 0, o = n.length; s < o && s < e; s++) { if (!i.translation[n.charAt(s)]) { e = t ? e + 1 : e; r++ } } return r }, determineCaretPos: function (e, t, r, s) { var u = i.translation[n.charAt(Math.min(e - 1, n.length - 1))]; return !u ? o.determineCaretPos(e + 1, t, r, s) : Math.min(e + r - t - s, r) }, behaviour: function (t) { t = t || window.event; var n = t.keyCode || t.which; if (e.inArray(n, i.byPassKeys) === -1) { var r = o.getCaret(), s = o.val(), u = s.length, a = r < u, f = o.getMasked(), l = f.length, c = o.getMaskCharactersBeforeCount(l - 1) - o.getMaskCharactersBeforeCount(u - 1); if (f !== s) { o.val(f) } if (a && !(n === 65 && t.ctrlKey)) { if (!(n === 8 || n === 46)) { r = o.determineCaretPos(r, u, l, c) } o.setCaret(r) } return o.callbacks(t) } }, getMasked: function (e) { var t = [], s = o.val(), u = 0, a = n.length, f = 0, l = s.length, c = 1, h = "push", d = -1, v, m; if (r.reverse) { h = "unshift"; c = -1; v = 0; u = a - 1; f = l - 1; m = function () { return u > -1 && f > -1 } } else { v = a - 1; m = function () { return u < a && f < l } } while (m()) { var g = n.charAt(u), y = s.charAt(f), b = i.translation[g]; if (b) { if (y.match(b.pattern)) { t[h](y); if (b.recursive) { if (d === -1) { d = u } else if (u === v) { u = d - c } if (v === d) { u -= c } } u += c } else if (b.optional) { u += c; f -= c } else if (b.defaults) { t[h](b.defaults); u += c; f -= c } f += c } else { if (!e) { t[h](g) } if (y === g) { f += c } u += c } } var w = n.charAt(v); if (a === l + 1 && !i.translation[w]) { t.push(w) } return t.join("") }, callbacks: function (e) { var i = o.val(), u = o.val() !== s; if (u === true) { if (typeof r.onChange === "function") { r.onChange(i, e, t, r) } } if (u === true && typeof r.onKeyPress === "function") { r.onKeyPress(i, e, t, r) } if (typeof r.onComplete === "function" && i.length === n.length) { r.onComplete(i, e, t, r) } } }; i.remove = function () { var e = o.getCaret(), t = o.getMaskCharactersBeforeCount(e); o.destroyEvents(); o.val(i.getCleanVal()).removeAttr("maxlength"); o.setCaret(e - t) }; i.getCleanVal = function () { return o.getMasked(true) }; i.init() }; e.fn.mask = function (n, r) { this.unmask(); return this.each(function () { e(this).data("mask", new t(this, n, r)) }) }; e.fn.unmask = function () { return this.each(function () { try { e(this).data("mask").remove() } catch (t) { } }) }; e.fn.cleanVal = function () { return e(this).data("mask").getCleanVal() }; e("*[data-mask]").each(function () { var t = e(this), n = {}, r = "data-mask-"; if (t.attr(r + "reverse") === "true") { n.reverse = true } if (t.attr(r + "maxlength") === "false") { n.maxlength = false } if (t.attr(r + "clearifnotmatch") === "true") { n.clearIfNotMatch = true } t.mask(t.attr("data-mask"), n) }) })
         $('.money').mask("#.##0", { reverse: true, maxlength: false });
 
+
+
+
+        function getQuanHuyen(id, selectid, phuongxaid) {
+            $.get("/ajax/QuanHuyenOption.aspx?id=" + id, function (data, status) {
+                var selectout = document.getElementById("MainContent_" + selectid);
+                var phuongxaout = document.getElementById("MainContent_" + phuongxaid);
+
+                //selectout.innerHTML = "";
+
+                if (status == "success") {
+                    selectout.innerHTML = data;
+                    //$("#" + selectid).html(data);
+                } else {
+                    selectout.innerHTML = "";
+                    //$("#MainContent_" + selectid).html("");
+                    alert("Mất kết nôi! Xin thử lại.");
+                }
+
+                getPhuongXa(selectout.options[selectout.selectedIndex].value, phuongxaid);
+
+                //selectout.
+            });
+        }
+
+        function getPhuongXa(id, selectid) {
+            $.get("/ajax/PhuongXaOption.aspx?id=" + id, function (data, status) {
+                var selectout = document.getElementById("MainContent_" + selectid);
+
+                if (status == "success") {
+                    selectout.innerHTML = data;
+                } else {
+                    selectout.innerHTML = "";
+                    alert("Mất kết nôi! Xin thử lại.");
+                }
+            });
+        }
+
+        function CopyTinhThanh() {
+            var selectout1 = document.getElementById("MainContent_ddlTinh_TT");
+            var selectout2 = document.getElementById("MainContent_ddlHuyen_TT");
+            var selectout3 = document.getElementById("MainContent_ddlXa_TT");
+            var selectout4 = document.getElementById("MainContent_ddlTinh_DC");
+            var selectout5 = document.getElementById("MainContent_ddlHuyen_DC");
+            var selectout6 = document.getElementById("MainContent_ddlXa_DC");
+            var selectout7 = document.getElementById("MainContent_txtXom_TT");
+            var selectout8 = document.getElementById("MainContent_txtXom_DC");
+            selectout4.selectedIndex = selectout1.selectedIndex;
+            selectout5.innerHTML = selectout2.innerHTML;
+            selectout5.selectedIndex = selectout2.selectedIndex;
+            selectout6.innerHTML = selectout3.innerHTML;
+            selectout6.selectedIndex = selectout3.selectedIndex;
+            selectout8.value = selectout7.value;
+
+        }
+
     </script>  
-    <asp:HiddenField ID="hdIDNguoiLaoDong" runat="server" />
+    <asp:HiddenField ID="hdIDNguoiLaoDong" runat="server"  Value="0"/>
+    <asp:HiddenField ID="hdIDNLDTCTN" runat="server" Value="0"/>
+    <asp:HiddenField ID ="hdStatus" runat="server" />
 </asp:Content>

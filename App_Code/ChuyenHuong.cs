@@ -52,14 +52,14 @@ public class ChuyenHuong: DataClass
         }
         return tmpValue;
     }
-    public int  InsertChuyenHuong(int IDNLDTCTN,int LyDoChuyen,int IDNoiChuyen, DateTime NgayDeNghi,string SoGiayGioiThieu, int SoGuiBHXH,int StatusID=0 )
+    public int  InsertChuyenHuong(int IDNLDTCTN,string LyDoChuyen,int IDNoiChuyen, DateTime NgayDeNghi,string SoGiayGioiThieu, string SoGuiBHXH,int StatusID=0 )
     {
         int value = 0;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         string sql = "Insert Into TblChuyenHuong(IDNLDTCTN,LyDoChuyen,IDNoiChuyen,NgayDeNghi,SoGiayGioiThieu,SoGuiBHXH,StatusID)";
         sql += " Values (@IDNLDTCTN,@LyDoChuyen,@IDNoiChuyen,@NgayDeNghi,@SoGiayGioiThieu,@SoGuiBHXH,@StatusID)";
-        sql += " Select Max(IDChuyenHuong) From Where IDNLDTCTN=@IDNLDTCTN";       
+        sql += " Select Max(IDChuyenHuong) From TblChuyenHuong Where IDNLDTCTN=@IDNLDTCTN";       
         SqlCommand Cmd = sqlCon.CreateCommand();
         Cmd.CommandText = sql;
         Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
@@ -78,7 +78,7 @@ public class ChuyenHuong: DataClass
     {
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
-        string sql = "Select Top 1 * From TblChuyenHuong Where IDNLDTCTN=@IDNLDTCTN";  
+        string sql = "Select Top 1 * From TblChuyenHuong Where IDNLDTCTN=@IDNLDTCTN Order By IDChuyenHuong Desc";  
         SqlCommand Cmd = sqlCon.CreateCommand();
         Cmd.CommandText = sql;
         Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
@@ -87,15 +87,16 @@ public class ChuyenHuong: DataClass
         da.Fill(ds);
         return ds.Tables[0];
     }
-    public int UpdateChuyenHuong(int IDChuyenHuong, int IDNLDTCTN, int LyDoChuyen, int IDNoiChuyen, DateTime NgayDeNghi, string SoGiayGioiThieu, int SoGuiBHXH, int StatusID = 0)
+    public int UpdateChuyenHuong(int IDChuyenHuong, int IDNLDTCTN, string LyDoChuyen, int IDNoiChuyen, DateTime NgayDeNghi, string SoGiayGioiThieu, string SoGuiBHXH, int StatusID = 0)
     {
         int value = 0;
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         string sql = "Update  TblChuyenHuong Set  IDNLDTCTN=@IDNLDTCTN,LyDoChuyen=@LyDoChuyen,IDNoiChuyen=@IDNoiChuyen,NgayDeNghi=@NgayDeNghi,SoGiayGioiThieu=@SoGiayGioiThieu,SoGuiBHXH=@SoGuiBHXH,StatusID=@StatusID";
         sql += " Where IDChuyenHuong=@IDChuyenHuong";
-        sql += " Select Max(IDChuyenHuong) From Where IDChuyenHuong=@IDChuyenHuong";
+        sql += " Select @IDChuyenHuong";
         SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
         Cmd.Parameters.Add("IDChuyenHuong", SqlDbType.Int).Value = IDChuyenHuong;
         Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
         Cmd.Parameters.Add("LyDoChuyen", SqlDbType.NVarChar).Value = LyDoChuyen;

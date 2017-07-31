@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachChuyenHuong.aspx.cs" Inherits="Labor_DanhSachChuyenHuong" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachChuyenHuongDen.aspx.cs" Inherits="Labor_DanhSachChuyenHuongDen" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -117,16 +117,16 @@
                     <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("SoVanBan") %></td>
+                    <td class="DataListTableTdItemJustify"></td>
                     <td class="DataListTableTdItemJustify">
-                    <%# (Eval("NgayKy").ToString() != "")?((DateTime)Eval("NgayKy")).ToString("dd/MM/yyyy"):"" %><br />
+                 
                     </td>
                     <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
+                     
                     </td>                   
                     <td class="DataListTableTdItemCenter">  
-                    <a href="ThongTinChuyenHuong?ID=<%# Eval("IDNLDTCTN")%>">
-                        <img src="/Images/edit.png" alt="Chuyển hưởng" title ="Chuyển hưởng"></a>                
+                    <a href="ThongTinChuyenHuongden?ID=<%# Eval("IDNLDTCTN")%>">
+                        <img src="/Images/edit.png" alt="Sửa" title ="Sửa"></a>                
                     </td>
                 </tr>
             </ItemTemplate>
@@ -152,7 +152,7 @@
             <div class="warning">
                 <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
             </div>
-            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Trả quyết định hưởng TCTN</a>         
+            <a class="btn btn-primary" style="float: right;" href="ThongTinChuyenHuongDen.aspx">Thêm mới</a>              
             </div>
         <!-- Modal chuyen bo phan tra ket qua-->
         <div id="TraKetQuaDinhModal" class="modal fade" role="dialog">
