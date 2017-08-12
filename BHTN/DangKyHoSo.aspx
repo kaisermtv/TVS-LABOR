@@ -68,7 +68,7 @@
         </div>
         
         <div style="float:left;width:20px;margin:10px">
-            <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
+            <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
         </div>
         <div style="float:right;width:165px;margin:10px;text-align:right;">
             <a href="/BHTN/NhapThongTinHoSo.aspx"><input type="button" class="btn btn-primary" value="Thêm mới" /></a>
@@ -112,8 +112,7 @@
                     <a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>,'<%# Eval("HoVaTen") %>')">
                         <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ">
                     </a>
-                    <a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>">
-                    <img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
+                    &nbsp;<a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>"><img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
                     <% } %>
                     <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>
                         <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>--%>
@@ -142,7 +141,7 @@
     </table>
 
     <div class="row col-sm-12">
-        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="CheckAll()">Check All</a>
+        <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="CheckAll()">Check AllAll()">Check All</a>
         <a class="btn btn-danger" style="float:left;margin-right:10px;" onclick="UnCheckAll()">UnCheck All</a>
         <div class="warning">
             <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
