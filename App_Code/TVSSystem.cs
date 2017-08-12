@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Web.UI.WebControls;
 
 public class TVSSystem
 {
@@ -149,13 +148,6 @@ public class TVSSystem
             throw ex;
         }
 
-    }
-    #endregion
-
-    #region method setCombobox
-    public static void setCombobox(DropDownList dropdown,DataTable data,string txtfield,string idfield,string selectValue = "0")
-    {
-        
     }
     #endregion
 }

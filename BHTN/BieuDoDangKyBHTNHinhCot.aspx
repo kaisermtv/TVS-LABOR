@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachThongBaoVL.aspx.cs" Inherits="Labor_DanhSachThongBaoVL" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="BieuDoDangKyBHTNHinhCot.aspx.cs" Inherits="Labor_BieuDoDangKyBHTNHinhCot" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .DataListTable td {
@@ -43,15 +44,7 @@
             font-size: 12px;
             margin-left:10px;
         }
-        .TrangThai
-        {
-            padding:3px;
-            padding-left:8px;
-            padding-right:8px;
-            background-color:#ff6a00;
-            color:#fff;
-            font-size:12px;
-        }
+
         label {
             float: left;
             padding: 6px 12px;
@@ -92,73 +85,42 @@
                     </div>
                 </td>
                 <td style="width: 40px !important; text-align: center;">
-                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
+                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px; height: 19px;" OnClick="btnSearch_Click" />
                 </td>
                 <td style="width:250px;">
                 <label>Trạng thái</label>
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
                 </td>
-                <td>
+              <td>
                       <div style="float:right;width:165px;margin:10px;text-align:right;">
              <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
              </div>
-                </td>
+              </td>
             </tr>
         </table>
-        <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
-            <HeaderTemplate>
-                <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
-                    <tr style="height: 40px;" class="DataListTableHeader">
-                        <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
-                        <td class="DataListTableHeaderTdItemJustify">Người lao động</td>
-                        <td class="DataListTableHeaderTdItemJustify">Thông báo việc làm hàng tháng</td>      
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái</td>                   
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>                        
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 21%;">&nbsp;</td>
-                    </tr>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td class="DataListTableTdItemTT">
-                        <input type="checkbox" id="ckbSelect<% =index++ %>" value="<%# Eval("IdNLDTCTN") %>" />
-                    </td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen")%></td>
-                    <td class="DataListTableTdItemJustify">
-                        <asp:Label ID="lblKhaiBaoViecLam" runat="server" Text=""></asp:Label>
-                    </td>
-                    <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Đã trả kết quả (TDH)","<span class = \"TrangThai\">Đã trả kết quả (TDH)</span>") %></td>
-                    <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
-                    <td class="DataListTableTdItemJustify">
-                        <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
-                    </td>                   
-                    <td class="DataListTableTdItemCenter">
-                     <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>&tg=1">
-                     <input type="button" class="btn btn-primary" style="font-size:12px; padding:3px;" value="TBVL"/></a>
-                      <asp:Button ID="btnDeXuatTamDung"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tạm dừng" CommandName="DeXuatTamDung" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
-                      <asp:Button ID="btnDeXuatTiepTuc"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tiếp tục" CommandName="DeXuatTiepTuc" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
-                      <asp:Button ID="btnChamDutHuong"   CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="CD hưởng" CommandName="ChamDutHuong" CommandArgument='<%#Eval("IdNLDTCTN") %>' /> 
-                    </td>
-                </tr>
-            </ItemTemplate>
-            <FooterTemplate>
-                </table>
-            </FooterTemplate>
-        </asp:Repeater>
+        <div>
+            <asp:Button ID="btnXuatExcel" CssClass="btn btn-primary" runat="server" Text="Xuất Excel" OnClick="btnXuatExcel_Click" />
+        </div>
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
             id="tblABC" runat="server">
             <tr>
-                <td style="padding-left: 6px;">
-                    <cc1:CollectionPager ID="cpData" runat="server" BackText="" FirstText="Đầu"
-                        ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
-                        ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                        PageNumbersSeparator="&nbsp;" PagingMode="PostBack">
-                    </cc1:CollectionPager>
-                </td>
+                <td style="padding-left: 6px;" align="center">
+                <br />
+                <asp:Chart ID="Chart1" runat="server" Width="1000px" Height="400px" Palette="SeaGreen">
+                    <Series>
+                        <asp:Series Name="Category" ChartArea="ChartArea1" ChartType="Line" YValuesPerPoint="2">
+                        </asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1">
+                        </asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
+            </td>            
             </tr>
-        </table> 
-        <div class="row col-sm-12"> 
+        </table>
+        <div class="row col-sm-12" style="display:none">
             <a class="btn btn-danger" style="float: left; margin-right: 10px;" onclick="CheckAll()">Check All</a>
             <a class="btn btn-danger" style="float: left; margin-right: 10px;" onclick="UnCheckAll()">UnCheck All</a>
             <div class="warning">
@@ -198,9 +160,7 @@
                              </tr>                       
                         </table>
                     </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnChuyenHoSo" runat="server" CssClass="btn btn-primary" Text="Trả kết quả" OnClick="btnChuyenHoSo_Click" />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="modal-footer">                      
                     </div>
                 </div>
             </div>
@@ -311,8 +271,5 @@
             }
         </script>       
     </div>
-    <asp:HiddenField ID="hdlstChuyen" runat="server" />
-    <asp:HiddenField ID="hdChuyen" runat="server" />    
-    <asp:HiddenField ID="hdSoHoSoDaChon" runat="server" />
-</asp:Content>
+    </asp:Content>
 

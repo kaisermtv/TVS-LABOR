@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
+public partial class Labor_TinhHuongChamDut : System.Web.UI.Page
 {
     #region declare  
     public int itemId = 0;
@@ -83,9 +83,10 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
                     txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
                     txtSoThangDuocHuongConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
-                    if (tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"] != null && tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"].ToString().Trim() != "")
+                    txtSoThangBaoLuuSauHuong.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuSauHuong"].ToString();
+                    if (tblTinhHuong.Rows[0]["NgayDeXuatChamDut"] != null && tblTinhHuong.Rows[0]["NgayDeXuatChamDut"].ToString().Trim() != "")
                     {
-                        txtNgayDeXuat.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"]).ToString("dd/MM/yyyy");
+                         txtNgayDeXuatChamDut.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatChamDut"]).ToString("dd/MM/yyyy");
                     }
                 }
                 DataTable tblCapSo = new CapSo().GetByID(itemId, 30);
@@ -274,14 +275,14 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
             _msg = "Bạn chưa cập nhật số tháng đã hưởng";
             return;
         }
-        if(txtNgayDeXuat.Value.Trim()=="")
+        if(txtNgayDeXuatChamDut.Value.Trim()=="")
         {
             _msg = "Bạn chưa chọn ngày đề xuất tiếp tục";
             return;
         }
-        DateTime NgayDeXuatTiepTuc = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
+        DateTime NgayDeXuatTiepTuc = Convert.ToDateTime(txtNgayDeXuatChamDut.Value, new CultureInfo("vi-VN"));
+        new TinhHuong().UpdateSoThangBaoLuuSauHuong(itemId, int.Parse(txtSoThangBaoLuuSauHuong.Text),NgayDeXuatTiepTuc);
+        new TinhHuong().UpdateTrangThaiHS(itemId, 51);
 
-        new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, int.Parse(txtSoThangDuocHuongConLai.Text),NgayDeXuatTiepTuc);
-        new TinhHuong().UpdateTrangThaiHS(itemId, 38);
     }
 }

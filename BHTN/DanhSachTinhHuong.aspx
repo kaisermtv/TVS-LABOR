@@ -38,7 +38,7 @@
              <td style="width: 280px;">
                 <label>Từ ngày</label>
                     <div class='input-group date' style="margin-left: 0px; width: 70% !important; float:left;">
-                    <input type='text' class="form-control dateinput" id="txtNgaySinh" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtTuNgay" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -47,19 +47,24 @@
             <td style="width: 280px;">
            <label>Đến ngày</label>
                    <div class='input-group date' style="margin-left: 0px; width: 70% !important; float:left;">
-                    <input type='text' class="form-control dateinput" id="Text1" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtDenNgay" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>          
             </td>
             <td style="width: 40px !important; text-align: center;">
-                <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" />
+                <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
             </td>
             <td style="width:250px;">
                 <label>Trạng thái</label>
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
+            </td>
+            <td>
+                  <div style="float:right;width:165px;margin:10px;text-align:right;">
+             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+             </div>
             </td>
         </tr>
     </table>

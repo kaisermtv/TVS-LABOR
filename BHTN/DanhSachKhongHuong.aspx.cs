@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
+public partial class Labor_DanhSachKhongHuong : System.Web.UI.Page
 {
     #region declare
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
@@ -53,7 +53,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         ddlNguoiKy.DataSource = new CanBo().getDataByChucVuID(1);
         ddlNguoiKy.DataBind();
     }
-    private void Load_DanhSachHoSo(string Ids=",8,9,10,20,21,22,31,32,33,41,42,43,54,55,56,")
+    private void Load_DanhSachHoSo(string Ids=",48,")
     {
         string str=txtSearch.Value.Trim();
         DateTime TuNgay = new DateTime(1900, 1, 1), DenNgay = new DateTime(9999, 1, 1);
@@ -76,7 +76,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
     } 
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",8,9,10,20,21,22,31,32,33,41,42,43,54,55,56,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",48,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -157,13 +157,6 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
                 new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 42);
             }
-            // Truong hop cham dut huong
-            if (new CapSo().CheckAutoNumber(NgayCap, IDLoaivanBan, So) == false && (int)rowTCTN["IdTrangThai"] == 54 && IDLoaivanBan == 81)
-            {
-                new CapSo().SetData(So, NgayCap, SoVanBan, int.Parse(strID[i]), IDLoaivanBan, txtNamQuyetDinh.Text.Trim());
-                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 55);
-            }
-          
             So++;
         }
         Load_DanhSachHoSo();
@@ -224,14 +217,10 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 43);
                 new TinhHuong().UpdateNguoiKy(int.Parse(strIDCapSo[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
             }
-            // ky quyet dinh cham dut
-            if ((int)rowTCTN["IdTrangThai"] == 55)
-            {
-                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 56);
-                new TinhHuong().UpdateNguoiKy(int.Parse(strIDCapSo[i]), Convert.ToDateTime(txtNgayTrinhKy.Value, new CultureInfo("vi-VN")), int.Parse(ddlNguoiKy.SelectedValue));
-            }        
+        
         }
         Load_DanhSachHoSo();
+
     }
 
     protected void btnTaiQuyetDinh_Click(object sender, EventArgs e)
@@ -269,26 +258,10 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
         {
             int ID = int.Parse(e.CommandArgument.ToString());
             DataRow Row = new NLDTroCapThatNghiep().getItem(ID);
-            // la quyet dinh TCTN
-            if ((int)Row["IdTrangThai"] == 10)
+            // la quyet dinh TCTN           
+            if ((int)Row["IdTrangThai"] == 48)
             {
-                new Common().TaiQuyetDinhTCTN(ID, "");
-            }
-            if ((int)Row["IdTrangThai"] == 22)
-            {
-                new Common().TaiQuyetDinhHuyHuong(ID, "");
-            }
-            if ((int)Row["IdTrangThai"] == 33)
-            {
-                new Common().TaiQuyetDinhTamDung(ID, "");
-            }
-            if ((int)Row["IdTrangThai"] == 43)
-            {
-                new Common().TaiQuyetDinhTiepTuc(ID, "");
-            }
-            if ((int)Row["IdTrangThai"] == 56)
-            {
-                new Common().TaiQuyetDinhChamDut(ID, "");
+                new Common().ThongBaoKhongHuong(ID, "");
             }
         }
 
@@ -302,7 +275,7 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             DataRowView newRow = (DataRowView)e.Item.DataItem;
             Button newButtom = (Button)e.Item.FindControl("btnTaiQD");
             newButtom.Enabled = false;
-            if (newRow["IdTrangThai"].ToString().Trim() == "10" || newRow["IdTrangThai"].ToString().Trim() == "22" || newRow["IdTrangThai"].ToString().Trim() == "33" || newRow["IdTrangThai"].ToString().Trim() == "43" || newRow["IdTrangThai"].ToString().Trim() == "56")
+            if (newRow["IdTrangThai"].ToString().Trim() == "48")
             {
                 newButtom.Enabled = true;
             }
@@ -334,11 +307,6 @@ public partial class Labor_DanhSachTrinhKy : System.Web.UI.Page
             if ((int)rowTCTN["IdTrangThai"] == 43)
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 44);
-            }
-            // Trả kết quả QĐ cham dut
-            if ((int)rowTCTN["IdTrangThai"] == 56)
-            {
-                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 57);
             }
 
          

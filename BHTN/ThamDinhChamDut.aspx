@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThongTinChuyenHuong.aspx.cs" Inherits="Labor_ThongTinChuyenHuong" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThamDinhChamDut.aspx.cs" Inherits="Labor_ThamDinhChamDut" %>
 <%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -130,7 +130,7 @@
                 Họ và tên: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="txtHoVaTen" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -138,7 +138,7 @@
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgaySinh" readonly="true" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgaySinh" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -160,14 +160,15 @@
                 Số CMND/HC: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtCMND" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+
             <div class="label2">
                 Ngày cấp: 
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" readonly="true" id="txtNgayCap" runat="server" />
+                    <input type='text' class="form-control dateinput" id="txtNgayCap" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -178,7 +179,7 @@
                Nơi cấp:        
             </div>
             <div style="width: 20%; float: left">
-               <asp:TextBox ID="txtNoiCap" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>          
+               <asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>          
             </div>  
         </div>
 
@@ -187,14 +188,14 @@
                Số sổ BHXH:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoBHXH" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
                 Số tháng đóng:
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoThangDongBHXH" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row line">
@@ -202,8 +203,11 @@
             Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoDienThoai" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
-            </div>    
+                <asp:TextBox ID="txtSoDienThoai" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            
+
         </div>
         <div class="row line">
             <div class="label1">
@@ -211,7 +215,7 @@
             </div>
 
             <div style="width: 52%; float: left">
-                <asp:TextBox ID="txtNoiThuongTru" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtNoiThuongTru" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
         </div>
@@ -220,72 +224,86 @@
                 Chỗ ở hiện tại: 
             </div>
             <div style="width: 52%; float: left">
-                <asp:TextBox ID="txtChoOHienTai" runat="server"  ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtChoOHienTai" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row line">
+         <div class="label1">
+            Ngày nghỉ việc:
+            </div>
+            <div style="width: 20%; float: left">
+                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput"  id="txtNgayNghiViec" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+             </div>           
+          </div>
+             <div class="label2">
+             Ngày nộp hồ sơ:
+            </div>
+            <div style="width: 20%; float: left">
+                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtNgayNopHoSo" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>           
+            </div>
+        </div>
+        <div class="row line">
+            <div class="label1">Nơi ĐBH cuối: </div>
+            <div style="width: 20%; float: left">
+                <asp:DropDownList ID="ddlLuongToiThieu" CssClass="form-control" runat="server" Style="width: 100%;">
+                </asp:DropDownList>
+            </div>
+            <div class="label2">
+                Ngày hẹn trả: 
+            </div>
+            <div style="width: 20%; float: left">
+                <asp:TextBox ID="txtNgayHenTra" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row line">
             <div class="label1">Số tháng hưởng TCTN: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoThangHuong" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtSoThangHuong" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="label2">Mức hưởng: </div>
+            <div class="label2">Số tháng đã hưởng: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtMucHuong" runat="server" ReadOnly="true" CssClass="form-control money" ></asp:TextBox>
+                 <asp:TextBox ID="txtSoThangDaHuong" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>   
+        <div class="row line">
+            <div class="label1">Số tháng bảo lưu sau hưởng: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtSoThangBaoLuuSauHuong" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="label2">Ngày đề xuất: </div>
+            <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtNgayDeXuatChamDut" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+        </div>
+
         <div class="row line">
             <div class="label1">Hưởng từ ngày: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtHuongTuNgay" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtHuongTuNgay" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="label2">Đến ngày: </div>
+            <div class="label2">Hưởng đến ngày: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtHuongDenNgay" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtHuongDenNgay" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-        </div>
-     
-        <div class="row line ">
-            <div class="label1">Đã hưởng: </div>
-            <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtDaHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
-            </div>
-            <div class="label2"> còn lại: </div>
-            <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtConLai"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
-            </div> 
-        </div>
-        <div class="row line">
-         <div class="label1">Lý do chuyển: </div>
-            <div style="width: 52%; float: left">
-                 <asp:TextBox ID="txtLyDoChuyen"  runat="server" CssClass="form-control"></asp:TextBox>
-            </div>    
-        </div>
-         <div class="row line">
-         <div class="label1">Nơi chuyển đến: </div>
-            <div style="width: 52%; float: left">
-            <asp:DropDownList ID="ddlNoiChuyenDen" runat="server" CssClass="form-control"></asp:DropDownList>
-            </div>    
-        </div>
-        <div class="row line">
-            <div class="label1">Ngày đề nghị: </div>
-            <div style="width: 20%; float: left">
-                  <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgayDeXuat" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>     
-            </div>         
         </div>   
 
-
         <div class="row line">
-            <div class="label1">Số giấy GT: </div>
+            <div class="label1">Số quyết định: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoGiayGioiThieu" runat="server" TextMode="Number" CssClass="form-control" style="width:80px; float:left; margin-right:10px;"></asp:TextBox>/ <asp:TextBox ID="txtKyHieu" runat="server" CssClass="form-control" style="width:120px;display:inline;" placeholder="/BHXH-GGT"></asp:TextBox>
+                 <asp:TextBox ID="txtSoQuyetDinh" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="label2">&nbsp;</div>
+            <div class="label2">Ngày ký: </div>
             <div style="width: 20%; float: left">
+                 <asp:TextBox ID="txtNgayKy" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>   
 
@@ -307,14 +325,12 @@
                 <div class="list-group list-group-alternate">
                     <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item" data-toggle="modal" data-target="#lichthongbao" runat="server"><span class="badge1" style ="left:140px;">></span>Lịch thông báo</a>
-                    <a href="#" class="list-group-item" runat="server" onserverclick="btnInGiayGioiThieu_ServerClick"><span class="badge1" style ="left:140px;">></span>Giấy giới thiệu</a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="InQuyetDinhHuongTroCap_ServerClick" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
-                </div>          
-             
-                <asp:Button ID="btnLuu" runat="server" Text="Lưu thông tin" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnLuu_Click" />
-                 <a href="DanhSachChuyenHuong.aspx">
-                 <input  type="button" style="width: 100% !important;margin-top:10px;"  class="btn btn-primary" value="Thoát" />  
-                 </a>
+                </div>            
+                <asp:Button ID="btnDuyet" runat="server" Text="Lưu/Duyệt" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnDuyet_Click" />
+                <asp:Button ID="btnTraTinhHuong" runat="server" Text="Trả tính hưởng" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraTinhHuong_Click" />
+                <asp:Button ID="btnTraDeXuat" runat="server" Text="Trả đề xuất" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraDeXuat_Click" />
+              
             </div>
         </div>
     </div>

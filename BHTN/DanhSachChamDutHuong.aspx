@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachThongBaoVL.aspx.cs" Inherits="Labor_DanhSachThongBaoVL" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachChamDutHuong.aspx.cs" Inherits="Labor_DanhSachChamDutHuong" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -43,15 +43,7 @@
             font-size: 12px;
             margin-left:10px;
         }
-        .TrangThai
-        {
-            padding:3px;
-            padding-left:8px;
-            padding-right:8px;
-            background-color:#ff6a00;
-            color:#fff;
-            font-size:12px;
-        }
+
         label {
             float: left;
             padding: 6px 12px;
@@ -99,11 +91,11 @@
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
                 </td>
-                <td>
+              <td>
                       <div style="float:right;width:165px;margin:10px;text-align:right;">
              <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
              </div>
-                </td>
+              </td>
             </tr>
         </table>
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
@@ -112,11 +104,10 @@
                     <tr style="height: 40px;" class="DataListTableHeader">
                         <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
                         <td class="DataListTableHeaderTdItemJustify">Người lao động</td>
-                        <td class="DataListTableHeaderTdItemJustify">Thông báo việc làm hàng tháng</td>      
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái</td>                   
+                        <td class="DataListTableHeaderTdItemJustify">Thông báo việc làm hàng tháng</td>                    
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>                        
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 21%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -128,18 +119,15 @@
                     <td class="DataListTableTdItemJustify">
                         <asp:Label ID="lblKhaiBaoViecLam" runat="server" Text=""></asp:Label>
                     </td>
-                    <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Đã trả kết quả (TDH)","<span class = \"TrangThai\">Đã trả kết quả (TDH)</span>") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
                     <td class="DataListTableTdItemJustify">
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>                   
-                    <td class="DataListTableTdItemCenter">
-                     <a href="ThongBaoTimKiemVL.aspx?id=<%#Eval("IDNLDTCTN")%>&tg=1">
-                     <input type="button" class="btn btn-primary" style="font-size:12px; padding:3px;" value="TBVL"/></a>
-                      <asp:Button ID="btnDeXuatTamDung"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tạm dừng" CommandName="DeXuatTamDung" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
-                      <asp:Button ID="btnDeXuatTiepTuc"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tiếp tục" CommandName="DeXuatTiepTuc" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
-                      <asp:Button ID="btnChamDutHuong"   CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="CD hưởng" CommandName="ChamDutHuong" CommandArgument='<%#Eval("IdNLDTCTN") %>' /> 
-                    </td>
+                    <td class="DataListTableTdItemCenter">                              
+                      <asp:Button ID="btnChuyenTinhHuong"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="Chuyển TH"  CommandName="ChuyenTinhHuong" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
+                     <asp:Button ID="btnXoaDeXuat"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px; display:none" runat="server" Text="Xóa đề xuất" CommandName="XoaDeXuat" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
+              
+                    </td>                  
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
@@ -157,8 +145,8 @@
                     </cc1:CollectionPager>
                 </td>
             </tr>
-        </table> 
-        <div class="row col-sm-12"> 
+        </table>
+        <div class="row col-sm-12">
             <a class="btn btn-danger" style="float: left; margin-right: 10px;" onclick="CheckAll()">Check All</a>
             <a class="btn btn-danger" style="float: left; margin-right: 10px;" onclick="UnCheckAll()">UnCheck All</a>
             <div class="warning">

@@ -93,8 +93,23 @@ public class NLDTroCapThatNghiep :DataAbstract
         sqlCon.Dispose();
         return value;
     }
-
-
+    public int UpdateKhongHuong(int IDNLDTCTN, DateTime NgayDeXuat, string LyDo)
+    {
+        int value = 0;
+        string sql = " Update TblNLDTroCapThatNghiep Set NgayDeXuatKhongHuong=@NgayDeXuatKhongHuong, LyDoKhongHuong=@LyDoKhongHuong";
+        sql += " Where IDNLDTCTN=@IDNLDTCTN";
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
+        Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+        Cmd.Parameters.Add("NgayDeXuatKhongHuong", SqlDbType.DateTime).Value = NgayDeXuat;
+        Cmd.Parameters.Add("LyDoKhongHuong", SqlDbType.NVarChar).Value = LyDo;
+        value = Cmd.ExecuteNonQuery();
+        sqlCon.Close();
+        sqlCon.Dispose();
+        return value;
+    }
     #region method getItem
     public DataRow getItem(int id)
     {

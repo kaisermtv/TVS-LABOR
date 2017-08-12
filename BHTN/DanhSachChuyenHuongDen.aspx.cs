@@ -44,7 +44,7 @@ public partial class Labor_DanhSachChuyenHuongDen: System.Web.UI.Page
         }
 
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo("," + ddlTrangThai.SelectedValue + ",", str);
+        DataTable objData = new TinhHuong().getDanhSachHoSo("," + ddlTrangThai.SelectedValue + ",",TuNgay,DenNgay, str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;

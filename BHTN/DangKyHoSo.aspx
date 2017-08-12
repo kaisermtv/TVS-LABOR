@@ -85,10 +85,10 @@
                     <td class="DataListTableHeaderTdItemJustify">Người lao động</td>
                     <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Tình trạng</td>
                     <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số BHXH</td>
-                    <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày đăng ký</td>
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 8%;">Số BHXH</td>
+                    <td class="DataListTableHeaderTdItemJustify" style="width: 8%;">Ngày đăng ký</td>
                     <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Thông tin BH</td>
-                    <td class="DataListTableHeaderTdItemCenter" style="width: 6%;">&nbsp;</td>
+                    <td class="DataListTableHeaderTdItemCenter" style="width: 15%;">&nbsp;</td>
                 </tr>
         </HeaderTemplate>
         <ItemTemplate>
@@ -102,7 +102,7 @@
                 <td class="DataListTableTdItemJustify"><%# Eval("BHXH") %></td>
                 <td class="DataListTableTdItemJustify">
                     <%# (Eval("NgayNopHoSo").ToString() != "")?((DateTime)Eval("NgayNopHoSo")).ToString("dd/MM/yyyy"):"" %><br />
-                    <%# (Eval("NgayNghiViec").ToString() != "")?((DateTime)Eval("NgayNghiViec")).ToString("dd/MM/yyyy"):"" %>
+                    <%--<%# (Eval("NgayNghiViec").ToString() != "")?((DateTime)Eval("NgayNghiViec")).ToString("dd/MM/yyyy"):"" %>--%>
                 </td>
                 <td class="DataListTableTdItemCenter">
                     <%# Eval("SoThangDongBHXH").ToString() != ""? "Đóng " + Eval("SoThangDongBHXH") + " tháng" :""%>
@@ -113,11 +113,14 @@
                         <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ">
                     </a>
                     <a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>">
-                        <img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
+                    <img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
                     <% } %>
                     <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>
                         <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>--%>
-                </td>
+               <a href="KhongHuong?id=<%#Eval("IdNLDTCTN")%>">
+               <input type="button" value="Không hưởng" Class ="btn btn-primary" style="font-size:12px; padding:3px;"/>
+                </a>                
+                </td>                
             </tr>
         </ItemTemplate>
         <FooterTemplate>

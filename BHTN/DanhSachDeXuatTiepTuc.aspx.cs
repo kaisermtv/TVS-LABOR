@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,7 +32,16 @@ public partial class Labor_DanhSachDeXuatTiepTuc : System.Web.UI.Page
     private void Load_DanhSachHoSo(string Ids = ",36,")
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,str);
+        DateTime TuNgay = new DateTime(1900, 1, 1), DenNgay = new DateTime(9999, 1, 1);
+        if(txtTuNgay.Value.Trim()!="")
+        {
+            TuNgay = Convert.ToDateTime(txtTuNgay.Value, new CultureInfo("vi-VN"));
+        }
+        if(txtDenNgay.Value.Trim()!="")
+        {
+            TuNgay =Convert.ToDateTime(txtDenNgay.Value, new CultureInfo ("vi-VN"));
+        }
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,TuNgay,DenNgay, str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;

@@ -97,43 +97,69 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             ddlNoiCap.DataBind();
             ddlNoiCap.SelectedValue = "0";
 
-            ddlNoiChotSoCuoi.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi chốt sổ cuối--", TVSSystem.NoiChotSoCuoi);
+           // ddlNoiChotSoCuoi.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi chốt sổ cuối--", TVSSystem.NoiChotSoCuoi);
+            //code The linh sua loi 31/7/2017
+            ddlNoiChotSoCuoi.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi chốt sổ cuối--",72);
             ddlNoiChotSoCuoi.DataTextField = "NameDanhMuc";
             ddlNoiChotSoCuoi.DataValueField = "IdDanhMuc";
             ddlNoiChotSoCuoi.DataBind();
             ddlNoiChotSoCuoi.SelectedValue = "0";
 
-            ddlNoiCapBHXH.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi Cấp BHXH--", TVSSystem.NoiChotSoCuoi);
+            //ddlNoiCapBHXH.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi Cấp BHXH--", TVSSystem.NoiChotSoCuoi);
+            // code The Linh sua loi 31/7/2017
+            ddlNoiCapBHXH.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi Cấp BHXH--", 11);
             ddlNoiCapBHXH.DataTextField = "NameDanhMuc";
             ddlNoiCapBHXH.DataValueField = "IdDanhMuc";
             ddlNoiCapBHXH.DataBind();
             ddlNoiCapBHXH.SelectedValue = "0";
 
-            ddlNoiKhamBenh.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi ĐK khám bệnh--", TVSSystem.NoiDangKyKhamBenh);
+            //ddlNoiKhamBenh.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi ĐK khám bệnh--", TVSSystem.NoiDangKyKhamBenh);
+            //code The linh sua loi 31/7/2017
+            ddlNoiKhamBenh.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi ĐK khám bệnh--",15);
             ddlNoiKhamBenh.DataTextField = "NameDanhMuc";
             ddlNoiKhamBenh.DataValueField = "IdDanhMuc";
             ddlNoiKhamBenh.DataBind();
             ddlNoiKhamBenh.SelectedValue = "0";
 
-            ddlNoiNhanTCTN.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi nhận TCTN--", TVSSystem.NoiDangKyKhamBenh);
+            //ddlNoiNhanTCTN.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi nhận TCTN--", TVSSystem.NoiDangKyKhamBenh);
+            //code The linh sua loi 31/7/2017
+            ddlNoiNhanTCTN.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi nhận TCTN--", 71);
             ddlNoiNhanTCTN.DataTextField = "NameDanhMuc";
             ddlNoiNhanTCTN.DataValueField = "IdDanhMuc";
             ddlNoiNhanTCTN.DataBind();
             ddlNoiNhanTCTN.SelectedValue = "0";
 
-            ddlGiayToKemtheo.DataSource = objDanhMuc.getDataCategoryToCombobox("--Giấy tờ kèm theo--", TVSSystem.NoiDangKyKhamBenh);
+            //ddlGiayToKemtheo.DataSource = objDanhMuc.getDataCategoryToCombobox("--Giấy tờ kèm theo--", TVSSystem.NoiDangKyKhamBenh);
+            //code The linh sua loi 31/7/2017
+            ddlGiayToKemtheo.DataSource = objDanhMuc.getDataCategoryToCombobox("--Giấy tờ kèm theo--",70);
             ddlGiayToKemtheo.DataTextField = "NameDanhMuc";
             ddlGiayToKemtheo.DataValueField = "IdDanhMuc";
             ddlGiayToKemtheo.DataBind();
             ddlGiayToKemtheo.SelectedValue = "0";
+            //code The linh sua loi 9/8/2017
+            ddlNganHang.DataSource = objDanhMuc.getDataCategoryToCombobox("--Ngân hàng--",82);
+            ddlNganHang.DataTextField = "NameDanhMuc";
+            ddlNganHang.DataValueField = "IdDanhMuc";
+            ddlNganHang.DataBind();
+            ddlNganHang.SelectedValue = "0";
+            //code The linh sua loi 11/8/2017 bổ sung nới nhận BHXH           
+            ddlNoiNhan.DataSource = objDanhMuc.getDataCategoryToCombobox("--Nơi nhận--", 13);
+            ddlNoiNhan.DataTextField = "NameDanhMuc";
+            ddlNoiNhan.DataValueField = "IdDanhMuc";
+            ddlNoiNhan.DataBind();
+            ddlNoiNhan.SelectedValue = "0";
 
-            ddlLoaiHopDong.DataSource = objDanhMuc.getDataCategoryToCombobox("--Chọn loại hợp đồng--", TVSSystem.NoiDangKyKhamBenh);
-            ddlLoaiHopDong.DataTextField = "NameDanhMuc";
-            ddlLoaiHopDong.DataValueField = "IdDanhMuc";
-            ddlLoaiHopDong.DataBind();
-            ddlLoaiHopDong.SelectedValue = "0";
-
-
+            //ddlLoaiHopDong.DataSource = objDanhMuc.getDataCategoryToCombobox("--Chọn loại hợp đồng--", TVSSystem.NoiDangKyKhamBenh);
+            //code The linh sua loi 31/7/2017
+            DataTable tblLoaiHopDong = new LoaiHopDong().getData("");
+            DataRow row = tblLoaiHopDong.NewRow();
+            row["NameLoaiHopDong"] = "--Loại hợp đồng--";
+            row["IdLoaiHopDong"] = 0;
+            tblLoaiHopDong.Rows.InsertAt(row, 0);
+            ddlLoaiHopDong.DataTextField = "NameLoaiHopDong";
+            ddlLoaiHopDong.DataValueField = "IdLoaiHopDong";
+            ddlLoaiHopDong.DataSource = tblLoaiHopDong;
+            ddlLoaiHopDong.DataBind();     
 
             this.ddlDanToc.DataSource = this.objDanToc.getDataCategoryToCombobox();
             this.ddlDanToc.DataTextField = "NameDanToc";
@@ -199,7 +225,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 catch { }
 
 
-                // ddlNoiNhanbaoHiem.SelectedValue = objDataTroCap["NoiNhanBaoHiem"].ToString();
+                //ddlNoiNhanbaoHiem.SelectedValue = objDataTroCap["NoiNhanBaoHiem"].ToString();
 
                 int htnt = (int)objDataTroCap["IdHinhThucNhanTien"];
                 cbkATM.Checked = (htnt == 1);
@@ -355,6 +381,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 }
                 // */
                 #endregion
+                LoadDataTCTN(itemId);
                 #region tải thông tin doanh nghiệp
                 //*
                 int idDonVi = 0;
@@ -386,6 +413,8 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 }
                 // */
                 #endregion
+
+               
             }
             else
             {
@@ -436,7 +465,6 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     #region Method LoadDataNLD
     private void LoadDataNLD(int idNguoiLaoDong)
     {
-
         #region thông tin NLD
         DataTable objData = objNguoiLaoDong.getDataById(idNguoiLaoDong);
         if (objData.Rows.Count > 0)
@@ -495,7 +523,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             ddlNoiKhamBenh.SelectedValue = objDataRow["NoiDangKyKhamBenh"].ToString();
             //ddlTDCM.SelectedValue = objDataRow["TrinhDoChuyenMon"].ToString();
             //ddlLinhVucDT.SelectedValue = objDataRow["LinhVucDaoTao"].ToString();
-            txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();
+            txtCongViecDaLam.Text = objDataRow["CongViecDaLam"].ToString();   
             #region noi cu tru
             this.txtXom_TT.Text = objDataRow["Xom_TT"].ToString();
             this.txtXom_DC.Text = objDataRow["Xom_DC"].ToString();
@@ -591,17 +619,26 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             //////////////////////////////////////////////////////
             #endregion
 
-
         }
         #endregion
     }
 
+    private void LoadDataTCTN(int IDTCTN)
+    {
+        DataRow row = new NLDTroCapThatNghiep().getItem(IDTCTN);
+        if (row != null)
+        {
+            ddlLoaiHopDong.SelectedValue = row["IDLoaiHopDong"].ToString();
+            ddlGiayToKemtheo.SelectedValue = row["idGiayToKemTheo"].ToString();
+            ddlNoiNhanTCTN.SelectedValue = row["IDNoiNhanTCTN"].ToString();
+            ddlNoiChotSoCuoi.SelectedValue = row["IDNoiChotSoCuoi"].ToString();
+        }
+    }
     #endregion
 
     #region Even btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-
         #region Save Người lao động
         int idNguoiLaoDong = 0;
         if(objDataTroCap != null)
@@ -790,8 +827,8 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objNLDTroCapThatNghiep["IDNguoiLaoDong"] = idNguoiLaoDong;
             objNLDTroCapThatNghiep["NgayNopHoSo"] = TVSSystem.CVDateDbNull(txtNgayNopHS.Value);
             objNLDTroCapThatNghiep["IdNguoiNhan"] = int.Parse(ddlNguoiNhan.SelectedValue);
-            objNLDTroCapThatNghiep["IdNoiNhan"] = int.Parse(ddlNoiNhan.SelectedValue);
-
+            objNLDTroCapThatNghiep["IdNoiNhan"] = int.Parse(ddlNoiNhan.SelectedValue);        
+         
             if (txtSoThangDongBHXH.Text != "")
             {
                 objNLDTroCapThatNghiep["SoThangDongBHXH"] = int.Parse(txtSoThangDongBHXH.Text);
@@ -799,13 +836,32 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             else
             {
                 objNLDTroCapThatNghiep["SoThangDongBHXH"] = DBNull.Value;
+                this.lblMsg.Text = "Bạn chưa nhập số tháng đóng BHXH";
+                // Code The Linh 31/7/2017 sua kiem tra dau vao
+                return;
             }
+
             objNLDTroCapThatNghiep["IdLoaiHopDong"] = int.Parse(ddlLoaiHopDong.SelectedValue);
             objNLDTroCapThatNghiep["IdGiayTokemTheo"] = int.Parse(ddlGiayToKemtheo.SelectedValue);
-            objNLDTroCapThatNghiep["HanHoanThien"] = TVSSystem.CVDateDbNull(txtHanHoanThien.Value);
+            //objNLDTroCapThatNghiep["HanHoanThien"] = TVSSystem.CVDateDbNull(txtHanHoanThien.Value);
+            // Code the linh Sửa lỗi 31/7/2017
+            objNLDTroCapThatNghiep["HanHoanThien"] = TVSSystem.CVDateDbNull(txtNgayNopHS.Value);
             objNLDTroCapThatNghiep["IdNoiNhanTCTN"] = int.Parse(ddlNoiNhanTCTN.SelectedValue);
             objNLDTroCapThatNghiep["IdNoiChotSoCuoi"] = int.Parse(ddlNoiChotSoCuoi.SelectedValue);
             objNLDTroCapThatNghiep["NgayNghiViec"] = TVSSystem.CVDateDbNull(txtNgayNghiViec.Value);
+            // Code the linh Sửa lỗi 31/7/2017
+            if(txtNgayNopHS.Value.Trim()!="" && txtNgayNghiViec.Value.Trim()!="")
+            {
+                DateTime NgayNopHoSo = Convert.ToDateTime(txtNgayNopHS.Value, new CultureInfo("vi-VN"));
+                DateTime NgayNghiViec = Convert.ToDateTime(txtNgayNghiViec.Value, new CultureInfo("vi-VN"));
+                NgayNghiViec = NgayNghiViec.AddMonths(3);
+               if(DateTime.Compare(NgayNghiViec,NgayNopHoSo)<0)
+               {
+                   lblMsg.Text = "Thời gian nộp hồ sơ của bạn đã quá 3 tháng tính từ khi nghỉ việc";
+                   return;
+               }
+
+            }
             objNLDTroCapThatNghiep["CongViecDaLam"] = txtCongViecDaLam.Text;
             objNLDTroCapThatNghiep["IdQuaTrinhCongTacGanNhat"] = idDoanhNghiep;
             objNLDTroCapThatNghiep["IdTrangThai"] = 1;
@@ -1117,4 +1173,5 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     {
         new Common().TaiPhieuHenTraKQ(itemId, "");      
     }
+   
 }

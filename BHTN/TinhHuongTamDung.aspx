@@ -249,15 +249,20 @@
             </div>--%>
 
         </div>
-        <div class="row line" style="display:none">
+        <div class="row line">
             <div class="label1">Ngày đề xuất: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtNgayDeXuat" runat="server" CssClass="form-control"></asp:TextBox>
+                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+                    <input type='text' class="form-control dateinput" id="txtNgayDeXuat" runat="server" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>        
             </div>
-            <div class="label2">Ngày tạm dừng: </div>
+         <%--   <div class="label2">Ngày tạm dừng: </div>
             <div style="width: 20%; float: left">
                  <asp:TextBox ID="txtNgayTamDung" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
+            </div>--%>
         </div>   
 
         <div class="row line">

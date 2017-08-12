@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachTrinhKy.aspx.cs" Inherits="Labor_DanhSachTrinhKy" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="DanhSachKhongHuong.aspx.cs" Inherits="Labor_DanhSachKhongHuong" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
@@ -127,10 +127,10 @@
             <div class="warning">
                 <asp:Label ID="lblMsg" runat="server" Text="" Font-Size="Larger" ForeColor="Red" />
             </div>
-            <a class="btn btn-primary" style="float: right;" onclick="ChuyenSelect('TraKetQuaDinhModal')">Chuyển Bộ phận Trả KQ</a>
+            <a class="btn btn-primary" style="float: right; display:none" onclick="ChuyenSelect('TraKetQuaDinhModal')">Chuyển Bộ phận Trả KQ</a>
             <a class="btn btn-primary" style="float: right; display:none; " onclick="TaiQuyetDinhSelect()">Tải quyết định</a>
-            <a class="btn btn-primary" style="float: right; margin-right: 40px;"  onclick="ChuyenSelect('TrinhKyModal')">Trình ký</a>
-            <a class="btn btn-primary" style="float: right; margin-right: 40px;" onclick="ChuyenSelect('myModal')">Đánh số</a>
+            <a class="btn btn-primary" style="float: right; margin-right: 40px; display:none"  onclick="ChuyenSelect('TrinhKyModal')">Trình ký</a>
+            <a class="btn btn-primary" style="float: right; margin-right: 40px; display:none" onclick="ChuyenSelect('myModal')">Đánh số</a>
             </div>
         <!-- Modal danh so -->
         <div id="myModal" class="modal fade" role="dialog">

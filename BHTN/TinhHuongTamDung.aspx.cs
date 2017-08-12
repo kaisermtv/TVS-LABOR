@@ -83,7 +83,11 @@ public partial class Labor_TinhHuongTamDung : System.Web.UI.Page
                     txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
                     txtSoThangDaHuong.Text = tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString();
-                
+                    try
+                    {
+                        txtNgayDeXuat.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatTamDung"]).ToString("dd/MM/yyyy");
+                    }
+                    catch { }                
                 }
                 DataTable tblCapSo = new CapSo().GetByID(itemId, 30);
                 if(tblCapSo.Rows.Count>0)
@@ -265,12 +269,19 @@ public partial class Labor_TinhHuongTamDung : System.Web.UI.Page
 
     protected void btnTinhHuong_Click(object sender, EventArgs e)
     {
+        if (itemId <= 0) { _msg = "Bạn chưa chọn hồ sơ cần tính hưởng tạm dừng"; return; }
         if(txtSoThangDaHuong.Text.Trim()=="")
         {
             _msg = "Bạn chưa cập nhật số tháng đã hưởng";
             return;
         }
-        new TinhHuong().UpdateSoThangDaHuong(itemId, int.Parse(txtSoThangDaHuong.Text));
+        if(txtNgayDeXuat.Value.Trim()=="")
+        {
+            _msg = "Bạn chưa nhập ngày đề xuất";
+            return;
+        }
+        DateTime NgayDeXuat = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
+        new TinhHuong().UpdateSoThangDaHuong(itemId, int.Parse(txtSoThangDaHuong.Text),NgayDeXuat);
         new TinhHuong().UpdateTrangThaiHS(itemId, 28);
     }
 }

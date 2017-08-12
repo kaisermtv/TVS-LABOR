@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -35,7 +36,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     }
     private void DeXuatHuyHuongHoSo()
     {
-        DataTable objData = new TinhHuong().getDanhSachHoSo(",11,");
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",11,",new DateTime(1900,1,1),new DateTime(9999,1,1),"");
         DateTime NgayQuaHan = new TinhHuong().TinhNgayNghiLe(DateTime.Now, 2);
         NgayQuaHan = new DateTime(NgayQuaHan.Year, NgayQuaHan.Month, NgayQuaHan.Day);     
         for (int i = 0; i < objData.Rows.Count; i++)
@@ -52,7 +53,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,34,35,44,45,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,34,35,44,45,57,58,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -62,10 +63,19 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         ddlTrangThai.DataSource = tblTrangThai;
         ddlTrangThai.DataBind();
     }
-    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,34,35,44,45,")
+    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,34,35,44,45,57,58,")
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
+        DateTime TuNgay = new DateTime(1900, 1, 1), DenNgay = new DateTime(9999, 1, 1);
+        if(txtTuNgay.Value.Trim()!="")
+        {
+            TuNgay = Convert.ToDateTime(txtTuNgay.Value, new CultureInfo("vi-VN"));
+        }
+        if(txtDenNgay.Value.Trim()!="")
+        {
+            DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
+        }
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,TuNgay,DenNgay, str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -126,6 +136,16 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             if ((int)rowTroCapThatNghiep["IdTrangThai"] == 34 || (int)rowTroCapThatNghiep["IdTrangThai"] == 35)
             {
                 new Common().TaiQuyetDinhTamDung(ID, "");
+            }
+            // la quyet dinh tiep tuc
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 44 || (int)rowTroCapThatNghiep["IdTrangThai"] == 45)
+            {
+                new Common().TaiQuyetDinhTiepTuc(ID, "");
+            }
+            // la quyet dinh cham dut
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 57 || (int)rowTroCapThatNghiep["IdTrangThai"] == 58)
+            {
+                new Common().TaiQuyetDinhChamDut(ID, "");
             }
         }
         // de xuat huy huong

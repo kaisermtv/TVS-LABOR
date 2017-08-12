@@ -41,11 +41,21 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
             Response.Redirect("DanhSachThongBaoVL.aspx");
         }
         DataTable tblThongBaoVL = new ThongBaoViecLamHangThang().GetByID(itemId, _tg);
-        if (tblThongBaoVL.Rows.Count != 0 && (tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString() == "14" || tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString()=="15"))
+        if (tblThongBaoVL.Rows.Count != 0 )
         {
-            lblThongBao.Text = "Bạn đã khai báo tháng: " + _tg.ToString();
-            _status = 3;
-            Load_CauHinhDaThongBao(false);
+            if (tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString() == "14")
+            {
+                lblThongBao.Text = "Đã khai báo tháng: " + _tg.ToString();
+                _status = 3;
+                Load_CauHinhDaThongBao(false);
+            }
+            if (tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString() == "15")
+            {
+                lblThongBao.Text = "Không khai báo tháng: " + _tg.ToString();
+                _status = 3;
+                Load_CauHinhDaThongBao(false);
+            }
+           
         }
         else
         {

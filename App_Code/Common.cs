@@ -6,6 +6,197 @@ using System.Web;
 public class Common
 {
     string _msg = "";
+    public string TaiQuyetDinhChamDut(int IDNLDTCTN, string FileName)
+    {
+        string _msg = "";
+        TinhHuong objTinhHuong = new TinhHuong();
+        DataTable tblTinhHuong = new TinhHuong().getDataById(IDNLDTCTN);
+        DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
+        DataTable tblQuyetDinhChamDut = new CapSo().GetByID(IDNLDTCTN, 81);
+        DataTable tblQuyetDinhTCTN = new CapSo().GetByID(IDNLDTCTN, 30);
+        DataTable tblNguoiLaoDong=new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
+        List<string> lstInput = new List<string>();
+        List<string> lstOutput = new List<string>();
+        lstInput.Add("[SoQD]");
+        lstOutput.Add(tblQuyetDinhChamDut.Rows[0]["SoVanBan"].ToString());
+        lstInput.Add("[NgayKy]");
+        lstOutput.Add(((DateTime)tblQuyetDinhChamDut.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[SoQDTCTN]");
+        lstOutput.Add(tblQuyetDinhTCTN.Rows[0]["SoVanBan"].ToString());
+        lstInput.Add("[NgayKyTCTN]");
+        lstOutput.Add(((DateTime)tblQuyetDinhTCTN.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[TenLD]");
+        lstOutput.Add(tblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+        lstInput.Add("[NgayChamDut]");
+        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatChamDut"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[NgaySinh]");
+        lstOutput.Add(tblNguoiLaoDong.Rows[0]["NgaySinh"].ToString());
+        lstInput.Add("[CMTND]");
+        lstOutput.Add(tblNguoiLaoDong.Rows[0]["CMND"].ToString());
+        lstInput.Add("[NgayCapCMTND]");
+        lstOutput.Add(((DateTime)tblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[NoiCapCMTND]");     
+        lstOutput.Add(tblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
+        lstInput.Add("[SoBHXH]");
+        lstOutput.Add(tblNguoiLaoDong.Rows[0]["BHXH"].ToString());
+        lstInput.Add("[DiaChiThuongTru]");
+        string diachithuongtru = "";
+        if (tblNguoiLaoDong.Rows[0]["Xom_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += tblNguoiLaoDong.Rows[0]["Xom_TT"].ToString().Trim();
+        }
+        if (tblNguoiLaoDong.Rows[0]["Xa_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += ", " + tblNguoiLaoDong.Rows[0]["Xa_TT"].ToString().Trim();
+        }
+        if (tblNguoiLaoDong.Rows[0]["Huyen_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += ", " + tblNguoiLaoDong.Rows[0]["Huyen_TT"].ToString().Trim();
+        }
+        if (tblNguoiLaoDong.Rows[0]["Tinh_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += ", " + tblNguoiLaoDong.Rows[0]["Tinh_TT"].ToString().Trim();
+        }
+        lstOutput.Add(diachithuongtru);
+        lstInput.Add("[DiaChiHienTai]");
+        string diachi = "";
+        if (tblNguoiLaoDong.Rows[0]["Xom_DC"].ToString().Trim() != "")
+        {
+            diachi += tblNguoiLaoDong.Rows[0]["Xom_DC"].ToString().Trim();
+        }
+        if (tblNguoiLaoDong.Rows[0]["Xa_DC"].ToString().Trim() != "")
+        {
+            diachi += ", " + tblNguoiLaoDong.Rows[0]["Xa_DC"].ToString().Trim();
+        }
+        if (tblNguoiLaoDong.Rows[0]["Huyen_DC"].ToString().Trim() != "")
+        {
+            diachi += ", " + tblNguoiLaoDong.Rows[0]["Huyen_DC"].ToString().Trim();
+        }
+        if (tblNguoiLaoDong.Rows[0]["Tinh_DC"].ToString().Trim() != "")
+        {
+            diachi += ", " + tblNguoiLaoDong.Rows[0]["Tinh_DC"].ToString().Trim();
+        }
+        lstOutput.Add(diachi);
+        lstInput.Add("[LyDoChamDut]");
+        lstOutput.Add("...........................");
+        lstInput.Add("[SoThangDong]");
+        lstOutput.Add(RowTroCapThatNghiep["SoThangDongBHXH"].ToString());
+        lstInput.Add("[SoThangHuong]");
+        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString());
+        lstInput.Add("[SoThangDaHuong]");
+        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString());
+        lstInput.Add("[SoThangBaoLuu]");       
+        lstOutput.Add(tblTinhHuong.Rows[0]["SoThangBaoLuuSauHuong"].ToString());
+        ExportToWord objExportToWord = new ExportToWord();
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/QuyetDinhChamDutHuong.docx"), lstInput, lstOutput);
+        HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=QuyetDinhChamDutHuong" + FileName + ".docx");
+        HttpContext.Current.Response.BinaryWrite(temp);
+        HttpContext.Current.Response.End();
+        HttpContext.Current.Response.Flush();
+        return _msg;
+    }
+    public string ThongBaoKhongHuong(int IDNLDTCTN, string FileName)
+    {
+        string _msg = "";
+        TinhHuong objTinhHuong = new TinhHuong();
+        DataRow RowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(IDNLDTCTN);
+        DataTable TblNguoiLaoDong = new NguoiLaoDong().getDataById((int)RowTroCapThatNghiep["IDNguoiLaoDong"]);
+        DataTable tblCapSo = new CapSo().GetByID(IDNLDTCTN, 80);
+        if(tblCapSo.Rows.Count<=0)
+        {
+            _msg = "Số quyết định không hưởng chưa được khởi tạo";
+            return _msg;
+        }
+        if (TblNguoiLaoDong == null || TblNguoiLaoDong.Rows.Count == 0)
+        {
+            _msg = "Người lao động chưa được khởi tạo";
+            return _msg;
+        }     
+        List<string> lstInput = new List<string>();
+        List<string> lstOutput = new List<string>();
+        lstInput.Add("[SoTB]");
+        lstOutput.Add(tblCapSo.Rows[0]["So"].ToString());
+        lstInput.Add("[NgayThongBao]");
+        lstOutput.Add(((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy"));
+        lstInput.Add("[TenLD]");
+        lstOutput.Add( TblNguoiLaoDong.Rows[0]["HoVaTen"].ToString());
+        lstInput.Add("[CMTND]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["CMND"].ToString());
+        lstInput.Add("[NgayCapCMTND]");
+        try
+        {
+            lstOutput.Add(((DateTime)TblNguoiLaoDong.Rows[0]["NgayCapCMND"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add("../../....");
+        }
+        lstInput.Add("[NoiCapCMTND]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["NoiCap"].ToString());
+        lstInput.Add("[SoBHXH]");
+        lstOutput.Add(TblNguoiLaoDong.Rows[0]["BHXH"].ToString());
+        lstInput.Add("[DiaChiThuongTru]");
+        string diachithuongtru = "";
+        if (TblNguoiLaoDong.Rows[0]["Xom_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += TblNguoiLaoDong.Rows[0]["Xom_TT"].ToString().Trim();
+        }
+        if (TblNguoiLaoDong.Rows[0]["Xa_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += ", " + TblNguoiLaoDong.Rows[0]["Xa_TT"].ToString().Trim();
+        }
+        if (TblNguoiLaoDong.Rows[0]["Huyen_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += ", " + TblNguoiLaoDong.Rows[0]["Huyen_TT"].ToString().Trim();
+        }
+        if (TblNguoiLaoDong.Rows[0]["Tinh_TT"].ToString().Trim() != "")
+        {
+            diachithuongtru += ", " + TblNguoiLaoDong.Rows[0]["Tinh_TT"].ToString().Trim();
+        }
+        lstOutput.Add(diachithuongtru);
+        lstInput.Add("[DiaChiHienTai]");
+        string diachi = "";
+        if (TblNguoiLaoDong.Rows[0]["Xom_DC"].ToString().Trim() != "")
+        {
+            diachi += TblNguoiLaoDong.Rows[0]["Xom_DC"].ToString().Trim();
+        }
+        if (TblNguoiLaoDong.Rows[0]["Xa_DC"].ToString().Trim() != "")
+        {
+            diachi += ", " + TblNguoiLaoDong.Rows[0]["Xa_DC"].ToString().Trim();
+        }
+        if (TblNguoiLaoDong.Rows[0]["Huyen_DC"].ToString().Trim() != "")
+        {
+            diachi += ", " + TblNguoiLaoDong.Rows[0]["Huyen_DC"].ToString().Trim();
+        }
+        if (TblNguoiLaoDong.Rows[0]["Tinh_DC"].ToString().Trim() != "")
+        {
+            diachi += ", " + TblNguoiLaoDong.Rows[0]["Tinh_DC"].ToString().Trim();
+        }
+        lstOutput.Add(diachi);
+
+        lstInput.Add("[NgayNopHS]");
+        try
+        {
+            lstOutput.Add(((DateTime)RowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy"));
+        }
+        catch
+        {
+            lstOutput.Add("../../....");
+        }
+        lstInput.Add("[LyDo]");
+        lstOutput.Add(RowTroCapThatNghiep["LyDoKhongHuong"].ToString());
+
+        ExportToWord objExportToWord = new ExportToWord();
+        byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/PhieuTBKhongDuocHuongTCTN.docx"), lstInput, lstOutput);
+        HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");
+        HttpContext.Current.Response.AppendHeader("Content-disposition", "inline; filename=PhieuTBKhongDuocHuongTCTN" + FileName + ".docx");
+        HttpContext.Current.Response.BinaryWrite(temp);
+        HttpContext.Current.Response.End();
+        HttpContext.Current.Response.Flush();
+        return _msg;
+
+    }
     public string TaiPhieuTinhHuong(int INLDTCTN, string FileName)
     {
         string _msg = "";

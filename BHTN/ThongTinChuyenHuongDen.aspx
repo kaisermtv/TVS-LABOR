@@ -310,7 +310,7 @@
                 </div>         
             </div>
               <div class="label2">
-                Ngày ký: 
+                  Hưởng đến ngày: 
             </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
@@ -489,7 +489,7 @@
                 </div>          
              
                 <asp:Button ID="btnLuu" runat="server" Text="Lưu thông tin" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnLuu_Click" />
-                 <a href="DanhSachChuyenHuong.aspx">
+                 <a href="DanhSachChuyenHuongDen.aspx">
                  <input  type="button" style="width: 100% !important;margin-top:10px;"  class="btn btn-primary" value="Thoát" />  
                  </a>
             </div>

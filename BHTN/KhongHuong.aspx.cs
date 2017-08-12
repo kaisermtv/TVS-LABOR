@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
+public partial class Labor_KhongHuong : System.Web.UI.Page
 {
     #region declare  
     public int itemId = 0;
@@ -27,7 +27,8 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
             itemId= int.Parse(Request["id"].ToString());
         }
         if (!Page.IsPostBack)
-        {
+        {   //Lay so quyet dinh
+            Load_CapSo();       
             if (itemId > 0)
             {
                 #region load thong tin tinh huong tam dung
@@ -76,34 +77,43 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
                         DateTime NgayHoanThien = (DateTime)rowTroCapThatNghiep["NgayNopHoSo"];                      
                         lblNgayDangKy.Text = ((DateTime)rowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy");
                     }
+                    if (rowTroCapThatNghiep["NgayDeXuatKhongHuong"] != null && rowTroCapThatNghiep["NgayDeXuatKhongHuong"].ToString() != "")
+                    {
+                        txtNgayDeXuat.Value = ((DateTime)rowTroCapThatNghiep["NgayDeXuatKhongHuong"]).ToString("dd/MM/yyyy");
+                    }
+                    txtLyDo.Text = rowTroCapThatNghiep["LyDoKhongHuong"].ToString();
                 }
                 DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
                 if(tblTinhHuong.Rows.Count>0)
-                {
-                    txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
-                    txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
-                    txtSoThangDuocHuongConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
-                    if (tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"] != null && tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"].ToString().Trim() != "")
+                {                              
+                    try
                     {
-                        txtNgayDeXuat.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"]).ToString("dd/MM/yyyy");
+                        txtNgayDeXuat.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatTamDung"]).ToString("dd/MM/yyyy");
                     }
+                    catch { }                
                 }
-                DataTable tblCapSo = new CapSo().GetByID(itemId, 30);
+                DataTable tblCapSo = new CapSo().GetByID(itemId, 80);
                 if(tblCapSo.Rows.Count>0)
                 {
-                    txtSoQuyetDinh.Text = tblCapSo.Rows[0]["SoVanBan"].ToString();
+                    txtSoQuyetDinh.Text = tblCapSo.Rows[0]["So"].ToString();
                     if (tblCapSo.Rows[0]["NgayKy"].ToString().Trim() != "" && ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy") != "1900")
                     {
-                        txtNgayKy.Text = ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy");
+                        txtNgayKy.Value = ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy");
                     }
-                }
-        
+                }        
                 #endregion
+            
+               
             }
         }
      
     }
     #endregion
+    private void Load_CapSo()
+    {       
+        DateTime NgayCapSo = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        txtSoQuyetDinh.Text = new CapSo().GetAutoNumber(NgayCapSo, 80).ToString();    
+    }
     #region Load luong toi thieu vung
    
     #endregion 
@@ -264,24 +274,32 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 13);
         Response.Redirect("DanhSachThamDinh.aspx");
-    }
-
-    protected void btnTinhHuong_Click(object sender, EventArgs e)
+    } 
+    protected void btnLuu_Click(object sender, EventArgs e)
     {
-        if (itemId <= 0) { _msg = "Bạn chưa chọn hồ sơ tính hưởng tiếp tục"; return; }
-        if(txtSoThangDuocHuongConLai.Text.Trim()=="")
-        {
-            _msg = "Bạn chưa cập nhật số tháng đã hưởng";
-            return;
-        }
         if(txtNgayDeXuat.Value.Trim()=="")
         {
-            _msg = "Bạn chưa chọn ngày đề xuất tiếp tục";
+            _msg = "Bạn chưa nhập ngày đề xuất";
             return;
         }
-        DateTime NgayDeXuatTiepTuc = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
+        if(txtSoQuyetDinh.Text.Trim()=="")
+        {
+            _msg = "Bạn chưa nhập số quyết định";
+            return;
+        }
+        if(txtNgayKy.Value.Trim()=="")
+        {
+            _msg = "Bạn chưa nhập ngày ký";
+            return;
+        }  
+        DateTime NgayDeXuat = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
+        DateTime NgayCap = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        DateTime NgayKy = Convert.ToDateTime(txtNgayKy.Value, new CultureInfo("vi-VN"));
+        int So= int.Parse(txtSoQuyetDinh.Text );
+        int IDCapSo= new CapSo().SetData(So, NgayCap, So.ToString(), itemId, 80, DateTime.Now.Year.ToString());
+        new NLDTroCapThatNghiep().UpdateKhongHuong(itemId, NgayDeXuat, txtLyDo.Text.Trim());
+        new TinhHuong().UpdateNguoiKy(IDCapSo, NgayKy, 0);
+        new TinhHuong().UpdateTrangThaiHS(itemId, 48);
 
-        new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, int.Parse(txtSoThangDuocHuongConLai.Text),NgayDeXuatTiepTuc);
-        new TinhHuong().UpdateTrangThaiHS(itemId, 38);
     }
 }
