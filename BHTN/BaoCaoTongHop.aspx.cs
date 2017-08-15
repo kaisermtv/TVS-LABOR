@@ -109,7 +109,6 @@ public partial class Labor_BaoCaoTongHop: System.Web.UI.Page
             DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
         }
         DataTable MyTB = new BaoCao().DanhSachLaoDongHuongTCTN(TuNgay, DenNgay);
-
         string data = "<table cellpadding='0' cellspacing='0'>";
         data += "<tr><td colspan='4'><div align='center' style='font-size:14px; font-family:Times New Roman'>SỞ LAO ĐỘNG TB&XH NGHỆ AN<br />";
         data += "<strong>TRUNG TÂM DỊCH VỤ VIỆC LÀM</strong> </div></td>";

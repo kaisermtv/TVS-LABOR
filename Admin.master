@@ -1,11 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin_Admin" %>
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>TVS LABOR</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../css/Adminstyle.css" rel="stylesheet" type="text/css" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -171,7 +168,6 @@
 
                 </div>
                 <!-- //header-ends -->
-
                 <div id="page-wrapper" style="display: table; width: 100%">
                     <%-- <div class="graphs">--%>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -189,14 +185,12 @@
                 width: 15px !important;
                 background-color: white !important;
             }
-
                 .nicescroll-rails div {
                     width: 15px !important;
                     background-color: #808080 !important;
                     border-radius: 2px !important;
                 }
         </style>
-
     </form>
 </body>
 </html>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -25,6 +26,8 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
+            //string filename = Path.GetFileName(Request.Path);
+            //txtSearch.Value = filename;
             //DataTable objTrangthai = objNguoiLaoDong.getDataTrangThaiToCombobox();
             //ddlIDTrangThai.DataSource = objTrangthai.DefaultView;
             //ddlIDTrangThai.DataTextField = "name";
@@ -88,4 +91,8 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         Response.Redirect(Request.Url.ToString());
     }
     #endregion
+    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
 }
