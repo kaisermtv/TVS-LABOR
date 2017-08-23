@@ -50,7 +50,6 @@ public partial class Admin_AddPermission : System.Web.UI.Page
             this.ddlFunctionId.DataTextField = "Name";
             this.ddlFunctionId.DataValueField = "Id";
             this.ddlFunctionId.DataBind();
-
             this.ddlFunctionId.SelectedValue = this.FunctionId.ToString();
 
             this.objTable = this.objAccount.getDataGroupAccountById(this.GroupId);
@@ -113,7 +112,6 @@ public partial class Admin_AddPermission : System.Web.UI.Page
         Session["TITLE"] = "CẬP NHẬT QUYỀN CỦA NHÓM";
     }
     #endregion
-
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {

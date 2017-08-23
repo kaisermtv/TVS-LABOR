@@ -71,16 +71,16 @@
         <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="BaoCaoTongHop.aspx">Báo cáo tổng hợp</a>
         </div>  
+        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="BieuDoDangKyBHTNDuongThang.aspx">BĐ Thống kê đăng ký BHTN</a>
+        </div>  
+        <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="BieuDoThongKeTheoDoTuoi.aspx">BĐ TK ĐKBHTN Theo tuổi</a>
+        </div>  
          <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
-        <a href="BieuDoDangKyBHTNHinhCot.aspx">BĐ Thống kê đăng ký BHTN</a>
+        <a href="BieuDoThongKeTheoVeTinh.aspx">BĐ TK Theo đơn vị</a>
         </div>  
     </div>
-
-
-
-
-
-
 
 </asp:Content>
 

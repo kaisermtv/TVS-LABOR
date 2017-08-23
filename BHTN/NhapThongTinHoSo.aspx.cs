@@ -28,8 +28,8 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
 
     public int itemId = 0;
     public string _msg = "";
-
     private DataRow objDataTroCap;
+    public DataRow _Permission;
     #endregion
 
     #region Even Page_Load
@@ -39,7 +39,15 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         Session["TITLE"] = "Đăng ký hồ sơ".ToUpper();
 
         try
@@ -657,7 +665,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         #region kiểm tra người lao động
         if (this.txtCMND.Text.Trim() != "")
         {
-            if (this.txtCMND.Text.Trim().Length != 9)
+            if (this.txtCMND.Text.Trim().Length < 9 || this.txtCMND.Text.Trim().Length>10)
             {
                 this.lblMsg.Text = "Bạn nhập số CMND không chính xác";
                 this.txtCMND.Focus();
@@ -827,6 +835,12 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objNLDTroCapThatNghiep["IDNguoiLaoDong"] = idNguoiLaoDong;
             objNLDTroCapThatNghiep["NgayNopHoSo"] = TVSSystem.CVDateDbNull(txtNgayNopHS.Value);
             objNLDTroCapThatNghiep["IdNguoiNhan"] = int.Parse(ddlNguoiNhan.SelectedValue);
+            if (ddlNoiNhan.SelectedValue == null || ddlNoiNhan.SelectedValue.ToString().Trim() == "")
+            {
+                lblMsg.Text = "Bạn chưa chọn nơi nhận";
+                ddlNoiNhan.Focus();
+                return;
+            }
             objNLDTroCapThatNghiep["IdNoiNhan"] = int.Parse(ddlNoiNhan.SelectedValue);        
          
             if (txtSoThangDongBHXH.Text != "")
@@ -846,7 +860,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             //objNLDTroCapThatNghiep["HanHoanThien"] = TVSSystem.CVDateDbNull(txtHanHoanThien.Value);
             // Code the linh Sửa lỗi 31/7/2017
             objNLDTroCapThatNghiep["HanHoanThien"] = TVSSystem.CVDateDbNull(txtNgayNopHS.Value);
-            objNLDTroCapThatNghiep["IdNoiNhanTCTN"] = int.Parse(ddlNoiNhanTCTN.SelectedValue);
+           objNLDTroCapThatNghiep["IdNoiNhanTCTN"] = int.Parse(ddlNoiNhanTCTN.SelectedValue);
             objNLDTroCapThatNghiep["IdNoiChotSoCuoi"] = int.Parse(ddlNoiChotSoCuoi.SelectedValue);
             objNLDTroCapThatNghiep["NgayNghiViec"] = TVSSystem.CVDateDbNull(txtNgayNghiViec.Value);
             // Code the linh Sửa lỗi 31/7/2017

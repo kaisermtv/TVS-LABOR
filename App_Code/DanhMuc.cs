@@ -76,15 +76,12 @@ public class DanhMuc : DataClass
         {
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "SELECT * FROM tblDanhMuc";
-
             if (danhmucid != 0)
             {
                 Cmd.CommandText += " WHERE DanhMucId = @DanhMucId";
                 Cmd.Parameters.Add("DanhMucId", SqlDbType.Int).Value = danhmucid;
             }
-
             DataTable ret = this.findAll(Cmd);
-
             this.SQLClose();
             return ret;
         }

@@ -12,6 +12,7 @@ public partial class Labor_ThamDinhChamDut: System.Web.UI.Page
     #region declare  
     public int itemId = 0;
     public string _msg="";
+    public DataRow _Permission;
     #endregion
 
     #region Even Page_Load
@@ -21,7 +22,15 @@ public partial class Labor_ThamDinhChamDut: System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString().Trim() != "")
         {
             itemId= int.Parse(Request["id"].ToString());

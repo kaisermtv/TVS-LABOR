@@ -15,14 +15,23 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
     public string _msg="";
     public int _tg = 0;
     public int _status = 0;//= 0 trang  thai them 3 trang thai da khai bao
+    public DataRow _Permission;
     #endregion
-
     #region Even Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
+        }
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString().Trim() != "")
         {
@@ -54,8 +63,7 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
                 lblThongBao.Text = "Không khai báo tháng: " + _tg.ToString();
                 _status = 3;
                 Load_CauHinhDaThongBao(false);
-            }
-           
+            }           
         }
         else
         {

@@ -13,7 +13,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public int index = 1;
     public string _msg = "";
-
+    public DataRow _Permission;
 
     #endregion
 
@@ -23,7 +23,15 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-         
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        } 
         if(!Page.IsPostBack)
         {
             Load_CauHinh();

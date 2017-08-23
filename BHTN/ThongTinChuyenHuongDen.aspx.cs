@@ -15,6 +15,7 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
     private Provincer objProvincer = new Provincer();
     private Ward objWard = new Ward();
     private District objDistrict = new District();
+    public DataRow  _Permission;
     #endregion
     #region Even Page_Load
     protected void Page_Load(object sender, EventArgs e)
@@ -22,6 +23,15 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
+        }
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
         if (Request.QueryString["ID"] != null && Request.QueryString["ID"].ToString().Trim() != "")
         {

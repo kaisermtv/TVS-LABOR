@@ -12,13 +12,22 @@ public partial class Labor_BieuDoThongKeTheoDoTuoi : System.Web.UI.Page
     #region declare
     public int index = 1;
     public string _msg = "";
-
+    public DataRow _Permission;
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
+        }
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
         if (!Page.IsPostBack)
         {
@@ -65,9 +74,8 @@ public partial class Labor_BieuDoThongKeTheoDoTuoi : System.Web.UI.Page
         //name x,y
         Chart1.ChartAreas["ChartArea1"].AxisX.Title = "Độ tuổi nộp hồ sơ";
         Chart1.ChartAreas["ChartArea1"].AxisY.Title = "Số hồ sơ nộp";
-    }
-   
-   
+    }  
+  
     private void Load_CauHinh()
     {
         DateTime myDatetime = DateTime.Now;
@@ -103,7 +111,8 @@ public partial class Labor_BieuDoThongKeTheoDoTuoi : System.Web.UI.Page
     }
     protected void btnXuatExcel_Click(object sender, EventArgs e)
     {
-        
+
+        txtSearch.Value = System.IO.Path.GetFileName(Request.PhysicalPath);
     }
     public string GetGoiTinh(int IDGioiTinh)
     {

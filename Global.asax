@@ -17,5 +17,4 @@
         TVSSystem.LyDoDangKytre = objDanhMuc.getIdDanhMucByName("Lý do đăng ký trễ");
         //Application[""]
     }
-
 </script>

@@ -60,7 +60,7 @@
                         <cc1:CollectionPager ID="cpGroupPermission" runat="server" BackText="" FirstText="Đầu"
                             ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                             ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                            PageNumbersSeparator="&nbsp;">
+                            PageNumbersSeparator="&nbsp;" MaxPages="20">
                         </cc1:CollectionPager>
                     </td>
                 </tr>

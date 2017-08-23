@@ -13,7 +13,7 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     private BHTNClass objBHXH = new BHTNClass();
     public int index = 1;
-
+    public DataRow _Permission;
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,7 +21,15 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         Session["TITLE"] = "BẢO HIỂM THẤT NGHIỆP";
 
         if (!Page.IsPostBack)
