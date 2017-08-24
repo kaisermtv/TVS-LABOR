@@ -218,7 +218,7 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
         // cap nhat so thang con lai       
         DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
-        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong)+1;
+        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
         new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
         _msg = "Cập nhật thành công";    
     }
@@ -261,7 +261,7 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
         // cap nhat so thang con lai       
         DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
-        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong)+1;
+        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
         new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
         _msg = "Cập nhật thành công";    
     }

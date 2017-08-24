@@ -279,9 +279,9 @@ public partial class Labor_TinhHuongChamDut : System.Web.UI.Page
     protected void btnTinhHuong_Click(object sender, EventArgs e)
     {
         if (itemId <= 0) { _msg = "Bạn chưa chọn hồ sơ tính hưởng tiếp tục"; return; }
-        if(txtSoThangDuocHuongConLai.Text.Trim()=="")
+        if( txtSoThangBaoLuuSauHuong.Text.Trim() =="")
         {
-            _msg = "Bạn chưa cập nhật số tháng đã hưởng";
+            _msg = "Bạn chưa cập nhật số tháng bảo lưu sau hưởng";
             return;
         }
         if(txtNgayDeXuatChamDut.Value.Trim()=="")
