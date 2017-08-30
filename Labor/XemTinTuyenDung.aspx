@@ -96,7 +96,7 @@
                             <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                             <td class="DataListTableTdItemJustify">
                                 <% if (sNuocNgoai == "1"){ %>
-                                    <%# Eval("NameQuocGia") %>
+                                   <%# Eval("NameQuocGia") %>
                                 <% } else { %>
                                 <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
                                 &nbsp;<a href="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src="../Images/View.png" alt="Xem chi tiết" style="margin-top: -3px;"></a>
