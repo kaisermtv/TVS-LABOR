@@ -48,7 +48,7 @@
                 <td style="width: 250px;">
                     <label>Đến ngày</label>
                     <div class='input-group date' style="margin-left: 0px; width: 60% !important; float: left;">
-                        <input type='text' class="form-control dateinput" id="Text1" runat="server" />
+                        <input type='text' class="form-control dateinput" id="txtDenNgay" runat="server" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -62,7 +62,11 @@
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
                 </td>
-              
+              <td>
+                    <div style="float:right;width:165px;margin:10px;text-align:right;">
+             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+             </div>
+              </td>
             </tr>           
         </table>
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">

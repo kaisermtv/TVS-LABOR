@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,12 +13,22 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public int index = 1;
     public string _msg = "";
+    public DataRow _Permission;
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
+        }
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
 
         if (!Page.IsPostBack)
@@ -31,10 +42,19 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
 
 
 
-    private void Load_DanhSachHoSo(string Ids = ",2,3,27,28,37,38,")
+    private void Load_DanhSachHoSo(string Ids = ",2,3,27,28,37,38,50,51,")
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
+        DateTime TuNgay=new DateTime(1900,1,1),DenNgay=new DateTime(9999,1,1);
+        if(txtTuNgay.Value.Trim()!="")
+        {
+            TuNgay = Convert.ToDateTime(txtTuNgay.Value, new CultureInfo("vi-VN"));
+        }
+        if(txtDenNgay.Value.Trim()!="")
+        {
+            DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
+        }
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,TuNgay,DenNgay,str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -44,7 +64,7 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",2,3,27,28,37,38,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",2,3,27,28,37,38,50,51,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -77,6 +97,10 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
                 if(TrangThai==38)
                 {
                     objTinhHuong.UpdateTrangThaiHS(ID, 39);
+                }
+                if(TrangThai==51)
+                {
+                    objTinhHuong.UpdateTrangThaiHS(ID, 52);
                 }
             }
         }
@@ -124,6 +148,14 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
         {
             link = "TinhHuongTiepTuc?id=" + IdNLDTCTN;
         }
+        if (IdTrangThai == 50 || IdTrangThai == 51)
+        {
+            link = "TinhHuongChamDut?id=" + IdNLDTCTN;
+        }
         return link;
+    }
+    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    {
+        Load_DanhSachHoSo();
     }
 }

@@ -91,6 +91,11 @@
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
                 </td>
+                <td>
+             <div style="float:right;width:165px;margin:10px;text-align:right;">
+             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+             </div>
+                </td>
             </tr>
         </table>
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">

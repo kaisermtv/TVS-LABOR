@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-public class XuatKhauLaoDong : DataClass
+public class XuatKhauLaoDong
 {
     #region method XuatKhauLaoDong
     public XuatKhauLaoDong()
@@ -156,8 +156,8 @@ public class XuatKhauLaoDong : DataClass
             string sqlQuery = "";
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM TblNldXuatKhau WHERE IDNldTuVan = @IDNldTuVan) ";
-            sqlQuery += "BEGIN INSERT INTO TblNldXuatKhau(IDNldTuVan,IDNldDangKy,DuHoc,State) VALUES(@IDNldTuVan,@IDNldDangKy,@DuHoc,1) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblNldXuatKhau SET DuHoc = @DuHoc, State = 1 WHERE IDNldTuVan = @IDNldTuVan END";
+            sqlQuery += "BEGIN INSERT INTO TblNldXuatKhau(IDNldTuVan,IDNldDangKy,DuHoc) VALUES(@IDNldTuVan,@IDNldDangKy,@DuHoc) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblNldXuatKhau SET DuHoc = @DuHoc WHERE IDNldTuVan = @IDNldTuVan END";
 
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
@@ -185,31 +185,6 @@ public class XuatKhauLaoDong : DataClass
     #region method getDataTuVanXuatKhau
     public DataTable getDataTuVanXuatKhau(string searchKey, int State)
     {
-        //try
-        //{
-        //    SqlCommand Cmd = getSQLConnect();
-        //    Cmd.CommandText = "SELECT 0 AS TT, *, TblNldXuatKhau AS P";
-        //    Cmd.CommandText += " INNER JOIN TblNguoiLaoDong AS L ON P.IDNldDangKy = L.IDNguoiLaoDong";
-        //    Cmd.CommandText += " LEFT JOIN TblDoanhNghiep AS D ON D.IDDonVi = P.IDDonViTuyenDung";
-        //    Cmd.CommandText += " LEFT JOIN TblDoanhNghiep AS D ON D.IDDonVi = P.IDDonViTuyenDung";
-        //    Cmd.CommandText += "";
-
-
-        //    Cmd.CommandText = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldXuatKhau.IDDonViTuyenDung) AS TenDonVi, ISNULL((SELECT TOP 1 Note FROM TblNldXuatKhauNhatKy WHERE IDNldXuatKhau = TblNldXuatKhau.IDNldXuatKhau ORDER BY IDNldXuatKhauNhatKy DESC),'-:-') AS NoiDungTrangThai,  REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldXuatKhau.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState FROM TblNguoiLaoDong, TblNldXuatKhau WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldXuatKhau.IDNldDangKy " + sqlQuery + sqlQueryState + " ORDER BY TblNldXuatKhau.IDNldXuatKhau DESC";
-            
-
-
-        //}catch (Exception ex)
-        //{
-        //    Message = ex.Message;
-        //    ErrorCode = ex.HResult;
-        //}
-
-
-
-
-
-
         string sqlQuery = "", sqlQueryState = "";
         if (searchKey.Trim() != "")
         {
@@ -239,7 +214,7 @@ public class XuatKhauLaoDong : DataClass
             sqlCon.Dispose();
             objTable = ds.Tables[0];
         }
-        catch(Exception ex)
+        catch
         {
 
         }

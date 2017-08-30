@@ -15,6 +15,7 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
     private Provincer objProvincer = new Provincer();
     private Ward objWard = new Ward();
     private District objDistrict = new District();
+    public DataRow  _Permission;
     #endregion
     #region Even Page_Load
     protected void Page_Load(object sender, EventArgs e)
@@ -22,6 +23,15 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
+        }
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
         if (Request.QueryString["ID"] != null && Request.QueryString["ID"].ToString().Trim() != "")
         {
@@ -90,10 +100,12 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             if (itemId > 0)
             {
                 DataRow rowNLDTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(itemId);
-                DataTable tblNguoiLaoDong = new NguoiLaoDong().getDataById((int)rowNLDTroCapThatNghiep["IdNLDTCTN"]);
+                DataTable tblNguoiLaoDong = new NguoiLaoDong().getDataById(int.Parse(rowNLDTroCapThatNghiep["IDNguoiLaoDong"].ToString()));
                 DataTable tblTinhHuong = new TinhHuong().getDataById((int)rowNLDTroCapThatNghiep["IdNLDTCTN"]);
-                if(tblNguoiLaoDong.Rows.Count==0)
+              
+                if(tblNguoiLaoDong.Rows.Count>0)
                 {
+                    //thong tin nguoi lao dong
                     txtHoVaTen.Text = tblNguoiLaoDong.Rows[0]["HoVaTen"].ToString();
                     txtNgaySinh.Value = ((DateTime)tblNguoiLaoDong.Rows[0]["NgaySinh"]).ToString("dd/MM/yyyy");
                     txtCMND.Text = tblNguoiLaoDong.Rows[0]["CMND"].ToString();
@@ -106,10 +118,60 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
                     if(GioiTinh==2)
                     { chkGioiTinhNu.Checked = true; }
                     txtSoBHXH.Text = tblNguoiLaoDong.Rows[0]["BHXH"].ToString();
-                    txtSoThangDongBHXH.Text = rowNLDTroCapThatNghiep["SoThangDongBHXH"].ToString();
-                    
+                    txtTaiKhoan.Text = tblNguoiLaoDong.Rows[0]["TaiKhoan"].ToString();
+                    if (tblNguoiLaoDong.Rows[0]["IDNganHang"] != null && tblNguoiLaoDong.Rows[0]["IDNganHang"].ToString()!="0")
+                    {
+                        ddlNganHang.SelectedValue = tblNguoiLaoDong.Rows[0]["IDNganHang"].ToString();
+                    }
+                    ddlTinh_TT.SelectedValue = tblNguoiLaoDong.Rows[0]["Tinh_TT"].ToString();
+                    ddlHuyen_TT.SelectedValue = tblNguoiLaoDong.Rows[0]["Huyen_TT"].ToString();
+                    ddlXa_TT.SelectedValue = tblNguoiLaoDong.Rows[0]["Xa_TT"].ToString();
+                    txtXom_TT.Text = tblNguoiLaoDong.Rows[0]["Xom_TT"].ToString();
 
-                   
+                    ddlTinh_DC.SelectedValue = tblNguoiLaoDong.Rows[0]["Tinh_DC"].ToString();
+                    ddlHuyen_DC.SelectedValue = tblNguoiLaoDong.Rows[0]["Huyen_DC"].ToString();
+                    ddlXa_DC.SelectedValue = tblNguoiLaoDong.Rows[0]["Xa_DC"].ToString();
+                    txtXom_DC.Text = tblNguoiLaoDong.Rows[0]["Xom_DC"].ToString(); 
+                    // thong tin tro cap that nghiep
+                    txtSoThangDongBHXH.Text = rowNLDTroCapThatNghiep["SoThangDongBHXH"].ToString();
+                    txtNgayTiepNhan.Value = ((DateTime)rowNLDTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy");
+                    // thong tin tinh huong
+                    txtHuongTuNgay.Value = ((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy");
+                    txtHuongDenNgay.Value = ((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy");
+                    txtThangThu1.Value = tblTinhHuong.Rows[0]["ThangDong1"].ToString();
+                    txtThangThu2.Value = tblTinhHuong.Rows[0]["ThangDong2"].ToString();
+                    txtThangThu3.Value = tblTinhHuong.Rows[0]["ThangDong3"].ToString();
+                    txtThangThu4.Value = tblTinhHuong.Rows[0]["ThangDong4"].ToString();
+                    txtThangThu5.Value = tblTinhHuong.Rows[0]["ThangDong5"].ToString();
+                    txtThangThu6.Value = tblTinhHuong.Rows[0]["ThangDong6"].ToString();
+
+                    txtMucDongThang1.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucDong1"], 0).ToString();
+                    txtMucDongThang2.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucDong2"], 0).ToString();
+                    txtMucDongthang3.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucDong3"], 0).ToString();
+                    txtMucDongThang4.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucDong4"], 0).ToString();
+                    txtMucDongThang5.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucDong5"], 0).ToString();
+                    txtMucDongThang6.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucDong6"], 0).ToString();
+
+                    txtLuongTrungBinh.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["LuongTrungBinh"], 0).ToString();
+                    txtMucHuong.Text = Math.Round((decimal)tblTinhHuong.Rows[0]["MucHuong"], 0).ToString();
+                    txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
+                    txtSoThangDaHuong.Text = tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString();
+                    txtSoThangConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
+                    txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SothangBaoLuuBHXH"].ToString();          
+                    // cap so
+                    DataTable tblCapSo = new CapSo().GetByID(itemId, 62);
+                    if(tblCapSo.Rows.Count>0)
+                    {
+                        txtSoGiayGioiThieu.Text = tblCapSo.Rows[0]["SoVanBan"].ToString();
+                    }
+                    //so quyet dinh
+                    DataTable tblSoQuyetDinh = new CapSo().GetByID(itemId, 30);
+                    if(tblSoQuyetDinh.Rows.Count>0)
+                    {
+                        txtSoQuyetDinh.Text = tblCapSo.Rows[0]["SoVanBan"].ToString();
+                        txtNgayKy.Value = ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy");
+                    }
+                    
                 }
             }
            
@@ -145,9 +207,10 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         if (txtNgaySinh.Value.Trim() == "")
         {
             _msg = "Bạn chưa nhập ngày sinh";
+            return;
         }
         DateTime NgaySinh = Convert.ToDateTime(txtNgaySinh.Value, new CultureInfo("vi-VN"));
-        int GioiTinh = 0; 
+        int GioiTinh = 0;
         if (chkGioiTinhNam.Checked == true)
         {
             GioiTinh = 1;
@@ -157,7 +220,7 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             if (chkGioiTinhNu.Checked == true)
             {
                 GioiTinh = 2;
-            }      
+            }
             else
             {
                 _msg = "Bạn chưa chọn giới tính";
@@ -172,46 +235,51 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         string Huyen_DC = ddlHuyen_DC.SelectedItem.Text.Trim();
         string Xa_DC = ddlXa_DC.SelectedItem.Text.Trim();
         string Xom_DC = txtXom_DC.Text.Trim();
-        if(txtCMND.Text.Trim()=="")
+        if (txtCMND.Text.Trim() == "")
         {
-            _msg="Bạn chưa nhập số CMND";
+            _msg = "Bạn chưa nhập số CMND";
             return;
         }
         string CMND = txtCMND.Text.Trim();
-        if(txtNgayCap.Value.Trim()=="")
+        if (txtNgayCap.Value.Trim() == "")
         {
             _msg = "Bạn chưa chọn ngày cấp";
             return;
         }
         DateTime NgayCap = Convert.ToDateTime(txtNgayCap.Value, new CultureInfo("vi-VN"));
-        if(txtNoiCap.Text.Trim()=="")
+        if (txtNoiCap.Text.Trim() == "")
         {
             _msg = "Bạn chưa chọn nơi cấp";
         }
         string NoiCap = txtNoiCap.Text.Trim();
-        if(txtSoBHXH.Text.Trim()=="")
+        if (txtSoBHXH.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập số sổ BHXH";
             return;
         }
         string SoSoBHXH = txtSoBHXH.Text.Trim();
         int IDNganHang = 0;
-        if(ddlNganHang.SelectedValue !=null && ddlNganHang.SelectedValue.ToString().Trim()!="")
+        string SoTaiKhoan = txtTaiKhoan.Text;
+        if (ddlNganHang.SelectedValue != null && ddlNganHang.SelectedValue.ToString().Trim() != "")
         {
             IDNganHang = int.Parse(ddlNganHang.SelectedValue.ToString());
         }
         #endregion
-
+        if (txtNgayKy.Value.Trim() == "")
+        {
+            _msg = "Bạn chưa nhập ngày ký";
+            return;
+        }
         #region thong tin bao hiem that nghiep
         int IDNguoiLaoDong = 0;
         IDNguoiLaoDong = int.Parse(hdIDNguoiLaoDong.Value);
-        if(txtNgayTiepNhan.Value.Trim()=="")
+        if (txtNgayTiepNhan.Value.Trim() == "")
         {
             _msg = "Bạn chưa nhập ngày tiếp nhận";
             return;
         }
         DateTime NgayNop = Convert.ToDateTime(txtNgayTiepNhan.Value, new CultureInfo("vi-VN"));
-        if(txtSoThangDongBHXH.Text.Trim()=="")
+        if (txtSoThangDongBHXH.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập số tháng đóng BHXH";
             return;
@@ -219,141 +287,160 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         int SoThangDongBHXH = int.Parse(txtSoThangDongBHXH.Text);
         #endregion
 
-        #region tinh huong 
-        TinhHuong objTinhHuong= new TinhHuong();
-        objTinhHuong.IDNguoiLaoDong = IDNguoiLaoDong;     
+        #region tinh huong
+        TinhHuong objTinhHuong = new TinhHuong();
+        objTinhHuong.IDNguoiLaoDong = IDNguoiLaoDong;
         objTinhHuong.IDNLDTCTN = int.Parse(hdIDNLDTCTN.Value);
-       
+
         objTinhHuong.NgayTao = DateTime.Now;
-        if(txtThangThu1.Value.Trim()=="")
+        if (txtThangThu1.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo tháng 1";
             return;
         }
         objTinhHuong.ThangDong1 = txtThangThu1.Value;
-        if(txtMucDongThang1.Text.Trim()=="")
+        if (txtMucDongThang1.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập mức đóng tháng 1";
             return;
         }
         objTinhHuong.MucDong1 = decimal.Parse(txtMucDongThang1.Text, new CultureInfo("vi-VN"));
-        if(txtThangThu2.Value.Trim()=="")
+        if (txtThangThu2.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo tháng thứ 2";
             return;
         }
         objTinhHuong.ThangDong2 = txtThangThu2.Value;
-        if(txtMucDongThang2.Text.Trim()=="")
+        if (txtMucDongThang2.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập mức đóng tháng 2";
             return;
-        }       
+        }
         objTinhHuong.MucDong2 = decimal.Parse(txtMucDongThang2.Text, new CultureInfo("vi-VN"));
-        if(txtThangThu3.Value.Trim()=="")
+        if (txtThangThu3.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo tháng thứ 3";
             return;
         }
-        objTinhHuong.ThangDong3 = txtThangThu3.Value;   
-        if(txtMucDongthang3.Text.Trim()=="")
+        objTinhHuong.ThangDong3 = txtThangThu3.Value;
+        if (txtMucDongthang3.Text.Trim() == "")
         {
             _msg = "Bạn chưa khai báo mức đóng tháng 3";
             return;
         }
         objTinhHuong.MucDong3 = decimal.Parse(txtMucDongthang3.Text, new CultureInfo("vi-VN"));
-        if(txtThangThu4.Value.Trim()=="")
+        if (txtThangThu4.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo tháng thứ 4";
             return;
         }
-        objTinhHuong.ThangDong4 = txtThangThu4.Value;       
-        if(txtMucDongThang4.Text.Trim()=="")
+        objTinhHuong.ThangDong4 = txtThangThu4.Value;
+        if (txtMucDongThang4.Text.Trim() == "")
         {
             _msg = "Bạn chưa khai báo mức đóng tháng 4";
             return;
         }
         objTinhHuong.MucDong4 = decimal.Parse(txtMucDongThang4.Text, new CultureInfo("vi-VN"));
-        if(txtThangThu5.Value.Trim()=="")
+        if (txtThangThu5.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo tháng thứ 5";
             return;
         }
-        objTinhHuong.ThangDong5 = txtThangThu5.Value;     
-        if(txtMucDongThang5.Text.Trim()=="")
+        objTinhHuong.ThangDong5 = txtThangThu5.Value;
+        if (txtMucDongThang5.Text.Trim() == "")
         {
             _msg = "Bạn chưa khai báo mức đóng tháng 5";
             return;
         }
         objTinhHuong.MucDong5 = decimal.Parse(txtMucDongThang5.Text, new CultureInfo("vi-VN"));
-        if (txtThangThu6.Value.Trim()=="")
+        if (txtThangThu6.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo tháng thứ 6";
             return;
         }
-        objTinhHuong.ThangDong6 = txtThangThu6.Value;      
-        if(txtMucDongThang6.Text.Trim()=="")
+        objTinhHuong.ThangDong6 = txtThangThu6.Value;
+        if (txtMucDongThang6.Text.Trim() == "")
         {
             _msg = "Bạn chưa khai báo mức đóng tháng 6";
             return;
         }
         objTinhHuong.MucDong6 = decimal.Parse(txtMucDongThang6.Text, new CultureInfo("vi-VN"));
-        if(txtLuongTrungBinh.Text.Trim()=="")
+        if (txtLuongTrungBinh.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập lương trung bình";
             return;
         }
         objTinhHuong.LuongTrungBinh = decimal.Parse(txtLuongTrungBinh.Text, new CultureInfo("vi-VN"));
-        if(txtMucHuong.Text.Trim()=="")
+        if (txtMucHuong.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập mức hưởng";
             return;
         }
         objTinhHuong.MucHuong = decimal.Parse(txtMucHuong.Text, new CultureInfo("vi-VN"));
-        if(txtSoThangHuong.Text.Trim()=="")
+        if (txtSoThangHuong.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập số tháng hưởng";
             return;
         }
         objTinhHuong.SoThangHuongBHXH = int.Parse(txtSoThangHuong.Text);
-        if(txtSoThangDaHuong.Text.Trim()=="")
+        if (txtSoThangDaHuong.Text.Trim() == "")
         {
             _msg = "Bạn nhập số tháng đã hưởng";
             return;
         }
         objTinhHuong.SoThangDaHuongBHXH = int.Parse(txtSoThangDaHuong.Text);
-        if(txtSoThangConLai.Text.Trim()=="")
+        if (txtSoThangConLai.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập số tháng được hưởng còn lại ";
             return;
         }
         objTinhHuong.SoThangDuocHuongConLaiBHXH = int.Parse(txtSoThangConLai.Text);
-        if(txtSoThangBaoLuu.Text.Trim()=="")
+        if (txtSoThangBaoLuu.Text.Trim() == "")
         {
             _msg = "Bạn chưa nhập số tháng bảo lưu";
             return;
         }
         objTinhHuong.SoThangBaoLuuBHXH = int.Parse(txtSoThangBaoLuu.Text);
-        if(txtHuongTuNgay.Value.Trim()=="")
+        if (txtHuongTuNgay.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo hưởng từ ngày";
             return;
         }
         objTinhHuong.HuongTuNgay = Convert.ToDateTime(txtHuongTuNgay.Value, new CultureInfo("vi-VN"));
-        if(txtHuongDenNgay.Value.Trim()=="")
+        if (txtHuongDenNgay.Value.Trim() == "")
         {
             _msg = "Bạn chưa khai báo hưởng đến ngày";
             return;
         }
         objTinhHuong.HuongDenNgay = Convert.ToDateTime(txtHuongDenNgay.Value, new CultureInfo("vi-VN"));
 
-        #endregion 
+        #endregion
         if (hdIDNLDTCTN.Value != null && hdIDNLDTCTN.Value.Trim() != "")
         {
-            //insert nguoi lao dong         
-            hdIDNLDTCTN.Value = new NguoiLaoDong().setData(ref IDNguoiLaoDong, HoTen, NgaySinh, CMND, NoiCap, NgayCap, SoSoBHXH, "", "", 0, 0, "", 0, 0, 0, 0, 0, "", "", "", Tinh_TT, Huyen_TT, Xa_TT, Xom_TT, Tinh_DC, Huyen_DC, Xa_DC, Xom_DC, 0, 0, 0, GioiTinh).ToString();
-            hdIDNguoiLaoDong.Value = IDNguoiLaoDong.ToString();
+            //insert nguoi lao dong      
+            NguoiLaoDong objNLD = new NguoiLaoDong();
+            objNLD["Ma"] = objNLD.getNextMaNLD();
+            objNLD["HoVaTen"] = HoTen;
+            objNLD["NgaySinh"] = NgaySinh;
+            objNLD["IDGioiTinh"] = GioiTinh;
+            objNLD["CMND"] = NgayCap;
+            objNLD["NgayCapCMND"] = NgayCap;
+            objNLD["NoiCap"] = NoiCap;
+            objNLD["BHXH"] = SoSoBHXH;
+            objNLD["TaiKhoan"] = SoTaiKhoan;
+            objNLD["IDNganHang"] = IDNganHang;
+            objNLD["Tinh_TT"] = Tinh_TT;
+            objNLD["Huyen_TT"] = Huyen_TT;
+            objNLD["Xa_TT"] = Xa_TT;
+            objNLD["Xom_TT"] = Xom_TT;
+            objNLD["Tinh_DC"] = Tinh_DC;
+            objNLD["Huyen_DC"] = Huyen_DC;
+            objNLD["Xa_DC"] = Xa_DC;
+            objNLD["Xom_DC"] = Xom_DC;
+            hdIDNguoiLaoDong.Value = objNLD.setData().ToString();
+
             //insert tro cap that nghiep 
-            hdIDNLDTCTN.Value = new NLDTroCapThatNghiep().Insert(IDNguoiLaoDong, NgayNop, SoThangDongBHXH).ToString();
+            hdIDNLDTCTN.Value = new NLDTroCapThatNghiep().Insert(int.Parse(hdIDNguoiLaoDong.Value), NgayNop, SoThangDongBHXH).ToString();
             // tinh huong
             objTinhHuong.setData(0, int.Parse(hdIDNguoiLaoDong.Value), int.Parse(hdIDNLDTCTN.Value), objTinhHuong.NgayTao, objTinhHuong.IDVungLuongToiThieu, objTinhHuong.LuongToiThieuVung
             , objTinhHuong.ThangDong1, objTinhHuong.HeSoLuong1, objTinhHuong.HeSoPhuCap1, objTinhHuong.LuongCoBan1, objTinhHuong.MucDong1
@@ -415,7 +502,7 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             objLichThongBao.KhaiBaoThang11DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang11TuNgay, 2);
             objLichThongBao.KhaiBaoThang12TuNgay = objTinhHuong.TinhNgayNghiLe(lstTemp[11].TuNgay, 1);
             objLichThongBao.KhaiBaoThang12DenNgay = objTinhHuong.TinhNgayNghiLe(objLichThongBao.KhaiBaoThang12TuNgay, 2);
-           
+
             objLichThongBao.setData(objLichThongBao.IDLichThongBao, objLichThongBao.IDNguoiLaoDong, objLichThongBao.IDTinhHuong
            , objLichThongBao.KhaiBaoThang1TuNgay, objLichThongBao.KhaiBaoThang1DenNgay
            , objLichThongBao.KhaiBaoThang2TuNgay, objLichThongBao.KhaiBaoThang2DenNgay
@@ -430,11 +517,40 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
            , objLichThongBao.KhaiBaoThang11TuNgay, objLichThongBao.KhaiBaoThang11DenNgay
            , objLichThongBao.KhaiBaoThang12TuNgay, objLichThongBao.KhaiBaoThang12DenNgay);
             objTinhHuong.UpdateTrangThaiHS(int.Parse(hdIDNLDTCTN.Value), 47);
-           // insert so quyet dinh
-
+            // Insert Giay gioi thieu
+            if (txtSoGiayGioiThieu.Text.Trim() == "")
+            {
+                _msg = "Bạn chưa nhập số giấy giới thiệu";
+                return;
+            }
+            CapSo objCapSo = new CapSo();
+            objCapSo.IDLoaiVanBan = 62;
+            objCapSo.NgayCap = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            objCapSo.SoVanBan = txtSoGiayGioiThieu.Text.Trim();
+            objCapSo.Nam = DateTime.Now.Year.ToString();
+            objCapSo.IDNLDTCTN = int.Parse(hdIDNLDTCTN.Value);
+            if( new CapSo().CheckAutoNumber(objCapSo.NgayCap,62,objCapSo.SoVanBan)==true)
+            {
+                _msg = "Số giấy giới thiệu đã có";
+                return;
+            }
+            objCapSo.SetData(objCapSo.NgayCap, objCapSo.SoVanBan, objCapSo.IDNLDTCTN, objCapSo.IDLoaiVanBan, objCapSo.Nam, DateTime.Now, 0);
+            // Insert quyet dinh huong
+            CapSo objQuyetDinhTCTN = new CapSo();
+            objQuyetDinhTCTN.IDLoaiVanBan = 30;
+            objQuyetDinhTCTN.NgayCap = Convert.ToDateTime(txtNgayKy.Value, new CultureInfo("vi-VN"));
+            objQuyetDinhTCTN.SoVanBan = txtSoQuyetDinh.Text.Trim();
+            objQuyetDinhTCTN.Nam = DateTime.Now.Year.ToString();
+            objQuyetDinhTCTN.IDNLDTCTN = int.Parse(hdIDNLDTCTN.Value);
+            DateTime NgayKy = Convert.ToDateTime(txtNgayKy.Value, new CultureInfo("vi-VN"));
+            if (new CapSo().CheckAutoNumber(objQuyetDinhTCTN.NgayCap, 30, objQuyetDinhTCTN.SoVanBan) == true)
+            {
+                _msg = "Số quyết định đã tồn tại";
+                return;
+            }
+            objQuyetDinhTCTN.SetData(objQuyetDinhTCTN.NgayCap, objQuyetDinhTCTN.SoVanBan, objQuyetDinhTCTN.IDNLDTCTN, objQuyetDinhTCTN.IDLoaiVanBan, objQuyetDinhTCTN.Nam, NgayKy, 0);
             Response.Redirect("DanhSachChuyenHuongDen.aspx");
         }
-        
     }
     
     protected void btnInGiayGioiThieu_ServerClick(object sender, EventArgs e)

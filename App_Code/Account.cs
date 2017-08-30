@@ -328,7 +328,6 @@ public class Account
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT * FROM tblAccount WHERE UserName = @UserName ";
             Cmd.Parameters.Add("UserName", SqlDbType.NVarChar).Value = UserName;
-
             SqlDataReader Rd = Cmd.ExecuteReader();
             while (Rd.Read())
             {
@@ -557,7 +556,40 @@ public class Account
         return objTable;
     }
     #endregion
-
+    public DataTable getDataPermissonByUserName(string UserName)
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        string sql = "Select ac.*,ag.Name,agp.GroupId,agp.FunctionId,agp.[View],agp.[Add],agp.Edit,agp.Orther,fc.Name,fc.NamePhysical from TblAccount ac";
+        sql += " Inner join TblAccountGroup ag on ac.GroupId=ag.Id";
+        sql += " Inner join TblAccountGroupPer agp on agp.GroupId=ag.Id";
+        sql += " Inner join tblFunction fc on fc.Id= agp.FunctionId Where ac.UserName=@UserName Order by  ac.Id Asc";
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
+        Cmd.Parameters.Add("UserName", SqlDbType.NVarChar).Value = UserName;
+        DataSet ds = new DataSet();
+        SqlDataAdapter da = new SqlDataAdapter(Cmd);
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        return ds.Tables[0];
+    }
+    public DataRow PermissionPage(DataTable Permission, string Page)
+    {
+        DataRow row = null;
+        if (Permission == null || Page.Trim() == "")
+        {
+            return row;
+        }
+        for (int i = 0; i < Permission.Rows.Count; i++)
+        {
+            if (Page.ToLower() == Permission.Rows[i]["NamePhysical"].ToString().ToLower().Trim())
+            {
+                row = Permission.Rows[i];
+            }
+        }
+        return row;
+    }
     #region method getDataPermission
     public DataTable getDataPermission(int GroupId, int FunctionId)
     {

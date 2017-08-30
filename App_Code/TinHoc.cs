@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 
-public class TinHoc : DataClass
+public class TinHoc
 {
 	#region method TinHoc
     public TinHoc()
@@ -140,26 +140,29 @@ public class TinHoc : DataClass
     #endregion
 
     #region method getDataCategoryToCombobox
-    public DataTable getDataCategoryToCombobox(String kctxt = "Không chọn")
+    public DataTable getDataCategoryToCombobox()
     {
+        DataTable objTable = new DataTable();
         try
         {
-            SqlCommand Cmd = this.getSQLConnect();
-
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT IDTinHoc, NameTinHoc FROM TblTinHoc";
-
-            DataTable ret = this.findAll(Cmd);
-
-            this.SQLClose();
-
-            if (kctxt != null && kctxt != "") ret.Rows.Add(0, kctxt);
-
-            return ret;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
+            objTable.Rows.Add(0, "Không chọn");
         }
         catch
         {
-            return new DataTable();
+
         }
+        return objTable;
     }
     #endregion
 

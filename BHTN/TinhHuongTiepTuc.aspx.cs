@@ -12,6 +12,7 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
     #region declare  
     public int itemId = 0;
     public string _msg="";
+    public DataRow _Permission;
     #endregion
 
     #region Even Page_Load
@@ -21,7 +22,15 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString().Trim() != "")
         {
             itemId= int.Parse(Request["id"].ToString());
@@ -83,8 +92,10 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
                     txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
                     txtSoThangDuocHuongConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
-               
-                
+                    if (tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"] != null && tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"].ToString().Trim() != "")
+                    {
+                        txtNgayDeXuat.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"]).ToString("dd/MM/yyyy");
+                    }
                 }
                 DataTable tblCapSo = new CapSo().GetByID(itemId, 30);
                 if(tblCapSo.Rows.Count>0)
@@ -266,12 +277,20 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
 
     protected void btnTinhHuong_Click(object sender, EventArgs e)
     {
+        if (itemId <= 0) { _msg = "Bạn chưa chọn hồ sơ tính hưởng tiếp tục"; return; }
         if(txtSoThangDuocHuongConLai.Text.Trim()=="")
         {
             _msg = "Bạn chưa cập nhật số tháng đã hưởng";
             return;
         }
-        new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, int.Parse(txtSoThangDuocHuongConLai.Text));
+        if(txtNgayDeXuat.Value.Trim()=="")
+        {
+            _msg = "Bạn chưa chọn ngày đề xuất tiếp tục";
+            return;
+        }
+        DateTime NgayDeXuatTiepTuc = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
+
+        new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, int.Parse(txtSoThangDuocHuongConLai.Text),NgayDeXuatTiepTuc);
         new TinhHuong().UpdateTrangThaiHS(itemId, 38);
     }
 }

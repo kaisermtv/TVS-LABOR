@@ -265,7 +265,7 @@
                 Số CMND/HC: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtCMND" runat="server"  MaxLength="13"  CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtCMND" runat="server"  MaxLength="11"  CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -297,7 +297,7 @@
                 Số điện thoại: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtSoDienThoai" runat="server"  MaxLength="9" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSoDienThoai" runat="server"  MaxLength="11" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
@@ -429,7 +429,7 @@
                 <input type="button" value="&dArr;" style="height: 78px; margin-left: 3px" class="btn btn-primary" onclick="CopyTinhThanh()" />
             </div>
         </div>
-        <div class="row line">
+        <div class="row line" style="display:none;">
             <div class="label1">
                 Nơi ĐK KB: 
             </div>
@@ -598,11 +598,11 @@
             </div>
         <div class="row line">
 
-            <div class="label1" style="width: 15%;">
+            <div class="label1" style="width: 15%; display:none;">
                 Hạn hoàn thiện: 
             </div>
-            <div style="width: 20%; float: left">
-                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
+            <div style="width: 20%; float: left;"">
+                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right; display:none;">
                     <input type='text' class="form-control dateinput" id="txtHanHoanThien" runat="server" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -623,10 +623,10 @@
 
 
         <div class="row line">
-            <div class="label1" style="width: 15%;">
+            <div class="label1" style="width: 15%; display:none;">
                 Nơi chốt sổ cuối: 
             </div>
-            <div style="width: 20%; float: left">
+            <div style="width: 20%; float: left; display:none;">
                 <asp:DropDownList ID="ddlNoiChotSoCuoi" CssClass="form-control" runat="server" Style="width: 100%;">
                     <asp:ListItem Value="0">Không chọn</asp:ListItem>
                 </asp:DropDownList>
@@ -667,6 +667,11 @@
                 <br />
                 <br />
                 <button class="btn btn-danger" style="width: 100%" data-toggle="modal" data-target="#HoanThienModal">Chuyển hồ sơ</button>
+                <br />
+                <br />
+                 <a href="DangKyHoSo.aspx">
+                <input type="button" class="btn btn-primary" style="width: 100%"  value="Thoát">            
+                </a>    
             </div>
         </div>
     </div>

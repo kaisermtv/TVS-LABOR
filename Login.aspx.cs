@@ -22,14 +22,12 @@ public partial class Admin_Login : System.Web.UI.Page
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         this.lblMsg.Text = "";
-
         if (this.txtUserName.Value.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập tên tài khoản!";
             this.txtUserName.Focus();
             return;
         }
-
         if (this.txtPassWord.Value.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập mật khẩu của tài khoản!";
@@ -41,6 +39,7 @@ public partial class Admin_Login : System.Web.UI.Page
         {
             Session["ACCOUNT"] = this.txtUserName.Value.Trim();
             Session["FULLNAME"] = FullName;
+            Session["Permission"] = new Account().getDataPermissonByUserName(txtUserName.Value.ToString().Trim());
             Response.Redirect("Admin");
         }
         else

@@ -85,7 +85,7 @@
                 <td style="width: 280px;">
                     <label>Đến ngày</label>
                     <div class='input-group date' style="margin-left: 0px; width: 70% !important; float: left;">
-                        <input type='text' class="form-control dateinput" id="Text1" runat="server" />
+                        <input type='text' class="form-control dateinput" id="txtDenNgay" runat="server" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -99,6 +99,11 @@
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
                 </td>
+                <td>
+                      <div style="float:right;width:165px;margin:10px;text-align:right;">
+             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+             </div>
+                </td>
             </tr>
         </table>
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
@@ -111,7 +116,7 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái</td>                   
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>                        
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>
-                        <td class="DataListTableHeaderTdItemCenter" style="width: 17%;">&nbsp;</td>
+                        <td class="DataListTableHeaderTdItemCenter" style="width: 21%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -133,6 +138,7 @@
                      <input type="button" class="btn btn-primary" style="font-size:12px; padding:3px;" value="TBVL"/></a>
                       <asp:Button ID="btnDeXuatTamDung"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tạm dừng" CommandName="DeXuatTamDung" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
                       <asp:Button ID="btnDeXuatTiepTuc"  CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="ĐX tiếp tục" CommandName="DeXuatTiepTuc" CommandArgument='<%#Eval("IdNLDTCTN") %>' />                  
+                      <asp:Button ID="btnChamDutHuong"   CssClass ="btn btn-primary" style="font-size:12px; padding:3px;" runat="server" Text="CD hưởng" CommandName="ChamDutHuong" CommandArgument='<%#Eval("IdNLDTCTN") %>' /> 
                     </td>
                 </tr>
             </ItemTemplate>
@@ -151,8 +157,8 @@
                     </cc1:CollectionPager>
                 </td>
             </tr>
-        </table>
-        <div class="row col-sm-12">
+        </table> 
+        <div class="row col-sm-12"> 
             <a class="btn btn-danger" style="float: left; margin-right: 10px;" onclick="CheckAll()">Check All</a>
             <a class="btn btn-danger" style="float: left; margin-right: 10px;" onclick="UnCheckAll()">UnCheck All</a>
             <div class="warning">

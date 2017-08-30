@@ -34,6 +34,11 @@
                     <a href="DaoTaoThatNghiepEdit.aspx?id=<%# Eval("IDNldDaoTao") %>"><img src="/Images/Edit.png" alt=""></a>
                     <%--<a href="DaoTaoThatNghiepDel.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>--%>
                 </td>
+                <td>
+                      <div style="float:right;width:165px;margin:10px;text-align:right;">
+             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+             </div>
+                </td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>

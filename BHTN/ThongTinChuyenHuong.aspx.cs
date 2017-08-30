@@ -12,6 +12,7 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
     #region declare  
     public int itemId = 0;
     public string _msg="";
+    public DataRow _Permission;
     #endregion
     #region Even Page_Load
     protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +21,15 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString().Trim() != "")
         {
             itemId= int.Parse(Request["id"].ToString());
@@ -28,6 +37,7 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             Load_NoiChuyenDen();
+            txtSoGiayGioiThieu.Text = new CapSo().GetAutoNumber(60).ToString();
             txtNgayDeXuat.Value = DateTime.Now.ToString("dd/MM/yyyy");
             if (itemId > 0)
             {
@@ -94,10 +104,12 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
                 {
                     ddlNoiChuyenDen.SelectedValue = tblChuyenHuong.Rows[0]["IDNoiChuyen"].ToString();
                     txtLyDoChuyen.Text = tblChuyenHuong.Rows[0]["LyDoChuyen"].ToString();
-                    txtNgayDeXuat.Value = ((DateTime)tblChuyenHuong.Rows[0]["NgayDeNghi"]).ToString("dd/MM/yyyy");
-                    txtSoGiayGioiThieu.Text = tblChuyenHuong.Rows[0]["SoGiayGioiThieu"].ToString();
-                    txtSoGuiBHXH.Text = tblChuyenHuong.Rows[0]["SoGuiBHXH"].ToString();
-
+                    txtNgayDeXuat.Value = ((DateTime)tblChuyenHuong.Rows[0]["NgayDeNghi"]).ToString("dd/MM/yyyy");  
+                }
+                DataTable tblCapSo = new CapSo().GetByID(itemId, 60);
+                if(tblCapSo.Rows.Count>0)
+                {
+                    txtSoGiayGioiThieu.Text = tblCapSo.Rows[0]["SoVanBan"].ToString();
                 }
                 #endregion
             }
@@ -224,21 +236,47 @@ public partial class Labor_ThongTinChuyenHuong : System.Web.UI.Page
             _msg = "Bạn chưa nhập ngày đề xuất";
             return;
         }
+        if(txtSoGiayGioiThieu.Text.Trim()=="")
+        {
+            _msg = "Bạn chưa nhập số giáy giới thiệu";
+            return;
+        }
+        if(txtKyHieu.Text.Trim()=="")
+        {
+            _msg = "Bạn chưa nhập số ký hiệu";
+            return;
+        }
         objChuyenHuong.NgayDeNghi = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
         objChuyenHuong.SoGiayGioiThieu = txtSoGiayGioiThieu.Text.Trim();
-        objChuyenHuong.SoGuiBHXH = txtSoGuiBHXH.Text.Trim();
         objChuyenHuong.StatusID = 0;
-        if(hdStatus.Value.Trim()=="" || hdStatus.Value=="0")
+        if(hdStatus.Value.Trim()=="" || hdStatus.Value=="0")        
         {
-            //truong hop insert         
-            hdStatus.Value = objChuyenHuong.InsertChuyenHuong(objChuyenHuong.IDNLDTCTN, objChuyenHuong.LyDoChuyen, objChuyenHuong.IDNoiChuyen, objChuyenHuong.NgayDeNghi, objChuyenHuong.SoGiayGioiThieu, objChuyenHuong.SoGuiBHXH, objChuyenHuong.StatusID).ToString();
+            // kiem tra so
+            DateTime NgayCap=new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
+            if(new CapSo().CheckAutoNumber(NgayCap,60,txtSoGiayGioiThieu.Text.Trim())==true)
+            {
+                _msg = "Số giấy giới thiệu đã tồn tại";
+                return;
+            }
+            CapSo objCapSo = new CapSo();
+            objCapSo.IDLoaiVanBan = 60;
+            objCapSo.IDNLDTCTN = itemId;
+            objCapSo.Nam = DateTime.Now.Year.ToString();
+            objCapSo.NgayCap = NgayCap;
+            objCapSo.So = int.Parse(txtSoGiayGioiThieu.Text);
+            objCapSo.SoVanBan = objCapSo.So.ToString() + txtKyHieu.Text.Trim();
+            objCapSo.SetData(objCapSo.So, objCapSo.NgayCap, objCapSo.SoVanBan, objCapSo.IDNLDTCTN, objCapSo.IDLoaiVanBan, objCapSo.Nam);
+             //truong hop insert         
+            hdStatus.Value = objChuyenHuong.InsertChuyenHuong(objChuyenHuong.IDNLDTCTN, objChuyenHuong.LyDoChuyen, objChuyenHuong.IDNoiChuyen, objChuyenHuong.NgayDeNghi, objChuyenHuong.SoGiayGioiThieu,"", objChuyenHuong.StatusID).ToString();
             _msg = "Cập nhật thành công";
             new TinhHuong().UpdateTrangThaiHS(itemId, 46);
+           
         }
         if(hdStatus.Value.Trim()!="" && int.Parse(hdStatus.Value)>0)
         {
+            txtSoGiayGioiThieu.ReadOnly = true;
             objChuyenHuong.IDChuyenHuong = int.Parse(hdStatus.Value);
-            objChuyenHuong.UpdateChuyenHuong( objChuyenHuong.IDChuyenHuong, objChuyenHuong.IDNLDTCTN, objChuyenHuong.LyDoChuyen, objChuyenHuong.IDNoiChuyen, objChuyenHuong.NgayDeNghi, objChuyenHuong.SoGiayGioiThieu, objChuyenHuong.SoGuiBHXH, objChuyenHuong.StatusID).ToString();
+            objChuyenHuong.UpdateChuyenHuong( objChuyenHuong.IDChuyenHuong, objChuyenHuong.IDNLDTCTN, objChuyenHuong.LyDoChuyen, objChuyenHuong.IDNoiChuyen, objChuyenHuong.NgayDeNghi, objChuyenHuong.SoGiayGioiThieu,"", objChuyenHuong.StatusID).ToString();
             _msg = "Cập nhật thành công";
         }
     }

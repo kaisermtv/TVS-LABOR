@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,7 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public int index = 1;
     public string _msg = "";
-
+    public DataRow _Permission;
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,7 +21,15 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-  
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         if(!Page.IsPostBack)
         {
             Load_TrangThai();
@@ -29,10 +38,20 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
         }
              
     }
-    private void Load_DanhSachHoSo(string Ids = ",6,7,18,19,29,30,39,40,")
+    private void Load_DanhSachHoSo(string Ids = ",6,7,18,19,29,30,39,40,52,53,")
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, str);
+        DateTime TuNgay = new DateTime(1900, 1, 1), DenNgay = new DateTime(9999, 1, 1);
+        if(txtTuNgay.Value.Trim()!="")
+        {
+            TuNgay = Convert.ToDateTime(txtTuNgay.Value, new CultureInfo("vi-VN"));
+        }
+        if(txtDenNgay.Value.Trim()!="")
+        {
+            DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
+        }
+        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids, TuNgay, DenNgay, str);
+
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -42,7 +61,7 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",6,7,18,19,29,30,39,40,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",6,7,18,19,29,30,39,40,52,53,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -85,6 +104,11 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
                     objTinhHuong.UpdateTrangThaiHS(ID, 41);
                     dem++;
                 }
+                if(TrangThai==53)
+                {
+                    objTinhHuong.UpdateTrangThaiHS(ID, 54);
+                    dem++;
+                }
                
             }
             if (dem == 0)
@@ -96,26 +120,30 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
         }
      
     }
-    public string SetLink(int IdNLDTCTN,int IdTrangThai)
+    public string SetLink(int IdNLDTCTN, int IdTrangThai)
     {
-       string link = "";
-       if(IdTrangThai==6 || IdTrangThai==7)
-       {
-           link = "thamdinh?id=" + IdNLDTCTN;
-       }
-       if (IdTrangThai == 18 || IdTrangThai == 19)
-       {
-           link = "ThamDinhHuyHuong?id=" + IdNLDTCTN;
-       }
-       if (IdTrangThai == 29 || IdTrangThai == 30)
-       {
-           link = "thamdinhtamdung?id=" + IdNLDTCTN;
-       }
-       if (IdTrangThai == 39 || IdTrangThai == 40)
-       {
-           link = "thamdinhtieptuc?id=" + IdNLDTCTN;
-       }
-       return link;
+        string link = "";
+        if (IdTrangThai == 6 || IdTrangThai == 7)
+        {
+            link = "thamdinh?id=" + IdNLDTCTN;
+        }
+        if (IdTrangThai == 18 || IdTrangThai == 19)
+        {
+            link = "ThamDinhHuyHuong?id=" + IdNLDTCTN;
+        }
+        if (IdTrangThai == 29 || IdTrangThai == 30)
+        {
+            link = "thamdinhtamdung?id=" + IdNLDTCTN;
+        }
+        if (IdTrangThai == 39 || IdTrangThai == 40)
+        {
+            link = "thamdinhtieptuc?id=" + IdNLDTCTN;
+        }
+        if (IdTrangThai == 52 || IdTrangThai == 53)
+        {
+            link = "thamdinhchamdut?id=" + IdNLDTCTN;
+        }
+        return link;
     }
     protected void ddlTrangThai_SelectedIndexChanged(object sender, EventArgs e)
     {

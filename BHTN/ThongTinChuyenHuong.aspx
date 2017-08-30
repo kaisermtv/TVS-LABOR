@@ -282,11 +282,10 @@
         <div class="row line">
             <div class="label1">Số giấy GT: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoGiayGioiThieu" runat="server" CssClass="form-control"></asp:TextBox>
+                 <asp:TextBox ID="txtSoGiayGioiThieu" runat="server" TextMode="Number" CssClass="form-control" style="width:80px; float:left; margin-right:10px;"></asp:TextBox>/ <asp:TextBox ID="txtKyHieu" runat="server" CssClass="form-control" style="width:120px;display:inline;" placeholder="/BHXH-GGT"></asp:TextBox>
             </div>
-            <div class="label2">Số gửi BHXH: </div>
+            <div class="label2">&nbsp;</div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoGuiBHXH" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>   
 

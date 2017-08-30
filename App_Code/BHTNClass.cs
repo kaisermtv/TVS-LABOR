@@ -87,7 +87,6 @@ public class BHTNClass :DataClass
         
         }
     }
-
     public void setHoanThien(int pidNLD, string ngayHoanThien)
     {
         try
@@ -97,15 +96,14 @@ public class BHTNClass :DataClass
             objTroCapTN["IdNLDTCTN"] = pidNLD;
             objTroCapTN["NgayHoanThien"] = TVSSystem.CVDateDbNull(ngayHoanThien);
             objTroCapTN["IdTrangThai"] = 2;
-
             DateTime time = DateTime.Now;
             objTroCapTN["EditDay"] = time;
             objTroCapTN["EditTrangThaiDate"] = time;
             objTroCapTN.setData();
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             throw ex;
         }
-        
     }
 }

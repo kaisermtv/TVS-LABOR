@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,7 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     private BHTNClass objBHXH = new BHTNClass();
     public int index = 1;
-
+    public DataRow _Permission;
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,18 +21,27 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         Session["TITLE"] = "BẢO HIỂM THẤT NGHIỆP";
 
         if (!Page.IsPostBack)
         {
+            //string filename = Path.GetFileName(Request.Path);
+            //txtSearch.Value = filename;
             //DataTable objTrangthai = objNguoiLaoDong.getDataTrangThaiToCombobox();
             //ddlIDTrangThai.DataSource = objTrangthai.DefaultView;
             //ddlIDTrangThai.DataTextField = "name";
             //ddlIDTrangThai.DataValueField = "id";
             //ddlIDTrangThai.DataBind();
             ddlIDTrangThai.SelectedValue = "0";
-
             txtNgayHoanThanh.Value = DateTime.Now.ToString("dd/MM/yyyy");
             txtNgayHoanThanh1.Value = DateTime.Now.ToString("dd/MM/yyyy");
 
@@ -89,4 +99,8 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         Response.Redirect(Request.Url.ToString());
     }
     #endregion
+    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    {
+
+    }
 }

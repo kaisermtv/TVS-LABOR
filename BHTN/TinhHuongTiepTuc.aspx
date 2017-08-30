@@ -254,7 +254,7 @@
             </div>--%>
 
         </div>
-        <div class="row line" style="display:none">
+        <div class="row line">
             <div class="label1">Ngày đề xuất: </div>
             <div style="width: 20%; float: left">
                   <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
@@ -264,7 +264,7 @@
                     </span>
                 </div>     
             </div>
-            <div class="label2">Ngày tiếp tục: </div>
+           <%-- <div class="label2">Ngày tiếp tục: </div>
             <div style="width: 20%; float: left">
                   <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control dateinput" id="txtNgayTamDung" runat="server" />
@@ -272,7 +272,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>     
-            </div>
+            </div>--%>
         </div>   
 
         <div class="row line">

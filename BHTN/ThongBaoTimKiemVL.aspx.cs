@@ -15,14 +15,23 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
     public string _msg="";
     public int _tg = 0;
     public int _status = 0;//= 0 trang  thai them 3 trang thai da khai bao
+    public DataRow _Permission;
     #endregion
-
     #region Even Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["ACCOUNT"] == null)
         {
             Response.Redirect("../Login.aspx");
+        }
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
         }
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString().Trim() != "")
         {
@@ -41,11 +50,20 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
             Response.Redirect("DanhSachThongBaoVL.aspx");
         }
         DataTable tblThongBaoVL = new ThongBaoViecLamHangThang().GetByID(itemId, _tg);
-        if (tblThongBaoVL.Rows.Count != 0 && (tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString() == "14" || tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString()=="15"))
+        if (tblThongBaoVL.Rows.Count != 0 )
         {
-            lblThongBao.Text = "Bạn đã khai báo tháng: " + _tg.ToString();
-            _status = 3;
-            Load_CauHinhDaThongBao(false);
+            if (tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString() == "14")
+            {
+                lblThongBao.Text = "Đã khai báo tháng: " + _tg.ToString();
+                _status = 3;
+                Load_CauHinhDaThongBao(false);
+            }
+            if (tblThongBaoVL.Rows[0]["TrangThaiThongBao"].ToString() == "15")
+            {
+                lblThongBao.Text = "Không khai báo tháng: " + _tg.ToString();
+                _status = 3;
+                Load_CauHinhDaThongBao(false);
+            }           
         }
         else
         {
@@ -200,7 +218,7 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
         // cap nhat so thang con lai       
         DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
-        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong)+1;
+        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
         new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
         _msg = "Cập nhật thành công";    
     }
@@ -243,7 +261,7 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
         // cap nhat so thang con lai       
         DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
-        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong)+1;
+        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
         new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
         _msg = "Cập nhật thành công";    
     }

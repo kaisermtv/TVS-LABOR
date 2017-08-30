@@ -49,7 +49,7 @@
                 <td style="width: 280px;">
                     <label>Đến ngày</label>
                     <div class='input-group date' style="margin-left: 0px; width: 70% !important; float: left;">
-                        <input type='text' class="form-control dateinput" id="Text1" runat="server" />
+                        <input type='text' class="form-control dateinput" id="txtDenNgay" runat="server" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -62,6 +62,11 @@
                 <label>Trạng thái</label>
                  <asp:DropDownList ID="ddlTrangThai" CssClass="form-control" runat="server" Style="width:150px" AutoPostBack="True" OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                 </asp:DropDownList>
+                </td>
+                <td>
+                         <div style="float:right;width:165px;margin:10px;text-align:right;">
+             <a href="/BHTN/"><input type="button" class="btn btn-default" value="Trở lại" /></a>
+             </div>
                 </td>
             </tr>
         </table>
@@ -97,6 +102,9 @@
                      <input type="button" class="btn btn-primary" value="Chi tiết"/></a>                    
                      <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
                      <asp:Button ID="btnHuyHuong" class="btn btn-primary" runat ="server" CommandName="DeXuatHuyHuong" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="ĐX hủy hưởng" />                    
+                    </td>
+                    <td>
+                     
                     </td>
                 </tr>
             </ItemTemplate>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,7 @@ public partial class Labor_DanhSachHuyHuong : System.Web.UI.Page
     private NguoiLaoDong objNguoiLaoDong = new NguoiLaoDong();
     public int index = 1;
     public string _msg = "";
-
+    public DataRow _Permission;
 
     #endregion
 
@@ -22,7 +23,15 @@ public partial class Labor_DanhSachHuyHuong : System.Web.UI.Page
         {
             Response.Redirect("../Login.aspx");
         }
-
+        else
+        {
+            DataTable tblPermission = (DataTable)Session["Permission"];
+            _Permission = new Account().PermissionPage(tblPermission, System.IO.Path.GetFileName(Request.PhysicalPath));
+             if (_Permission ==null || (bool)_Permission["View"] != true)
+            {
+                Response.Redirect("default.aspx");
+            }
+        }
         if (!Page.IsPostBack)
         {
             Load_CauHinh();
@@ -34,7 +43,17 @@ public partial class Labor_DanhSachHuyHuong : System.Web.UI.Page
     private void Load_DanhSachHoSo()
     {
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachHoSo(",13,", str);
+        DateTime TuNgay = new DateTime(1900, 1, 1),DenNgay=new DateTime(9999,1,1);
+        if(txtTuNgay.Value.Trim()!="")
+        {
+            TuNgay = Convert.ToDateTime(txtTuNgay, new CultureInfo("vi-VN"));
+        }
+        if(txtDenNgay.Value.Trim()!="")
+        {
+            DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
+
+        }
+        DataTable objData = new TinhHuong().getDanhSachHoSo(",13,",TuNgay,DenNgay,str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
