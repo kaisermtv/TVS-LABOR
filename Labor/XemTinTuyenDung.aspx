@@ -83,7 +83,7 @@
                             <tr style="height: 40px;" class="DataListTableHeader">
                                 <td class="DataListTableHeaderTdItemTT" style="width: 3%;">#</td>
                                 <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày bắt đầu</td>
-                                <td class="DataListTableHeaderTdItemJustify" style="width: 28%;">Tên doanh nghiệp</td>
+                                <td class="DataListTableHeaderTdItemJustify" style="width: 28%;"><%#(sNuocNgoai == "1")?"Đơn hàng":"Tên doanh nghiệp"  %></td>
                                 <td class="DataListTableHeaderTdItemJustify" style="width: 15%;">Vị trí tuyển</td>
                                 <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">Số lượng</td>
                                 <td class="DataListTableHeaderTdItemJustify" style="width: 17%;">Mức lương</td>
@@ -95,8 +95,12 @@
                             <td class="DataListTableTdItemTT"><%# this.index++ %></td>
                             <td class="DataListTableTdItemJustify"><%# ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy") %></td>
                             <td class="DataListTableTdItemJustify">
+                                <% if (sNuocNgoai == "1"){ %>
+                                    <%# Eval("NameQuocGia") %>
+                                <% } else { %>
                                 <a href="#" onclick="return ItemSelect('<%# Eval("IDTuyenDung") %>','<%# Eval("IDDonVi") %>','<%# Eval("IdViTri") %>','<%# Eval("TenDonVi") %>','<%# Eval("NameVitri") %>');"><%# Eval("TenDonVi") %></a>
                                 &nbsp;<a href="#"><img onclick="XemDoanhNghiep('<%# Eval("IDDonVi") %>')" src="../Images/View.png" alt="Xem chi tiết" style="margin-top: -3px;"></a>
+                                <% } %>
                             </td>
                             <td class="DataListTableTdItemJustify"><%# Eval("NameVitri") %>&nbsp;<a href="#"><img onclick="XemThongTinTuyenDung('<%# Eval("IdTuyenDung") %>')" src="../Images/View.png" alt="Xem chi tiết" style="margin-top: -3px;"></a></td>
                             <td class="DataListTableTdItemRight" style ="padding-right:15px!important;">

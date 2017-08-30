@@ -327,7 +327,15 @@ CREATE TABLE dbo.TblNldXuatKhauNhatKy(
 
 
 
+CREATE TABLE dbo.tblLog
+(
+	LogID INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+	LogAction INT NOT NULL,
+	LogMessage NTEXT,
 
+	LogParam NVARCHAR(256),
+	CreateDate DATETIME DEFAULT(GETDATE())
+)
 
 
 
