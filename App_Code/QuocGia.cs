@@ -10,7 +10,7 @@ using System.Web;
 /// </summary>
 public class QuocGia
 {
-    #region method CanBo
+    #region method QuocGia
     public QuocGia()
     {
         //
@@ -20,23 +20,23 @@ public class QuocGia
     #endregion
 
     #region method setData
-    public int setData(int IDCanBo, string CodeCanBo, string NameCanBo, string Note, bool State)
+    public int setData(int IdQuocGia, string CodeQuocGia, string NameQuocGia, string Region, bool State)
     {
         int tmpValue = 0;
         try
         {
             string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM TblQuocGia WHERE IDCanBo = @IDCanBo) ";
-            sqlQuery += "BEGIN INSERT INTO TblQuocGia(CodeCanBo,NameCanBo,Note,State) VALUES(@CodeCanBo,@NameCanBo,@Note,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE TblQuocGia SET CodeCanBo = @CodeCanBo, NameCanBo = @NameCanBo, Note = @Note, State = @State WHERE IDCanBo = @IDCanBo END";
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM TblQuocGia WHERE IdQuocGia = @IdQuocGia) ";
+            sqlQuery += "BEGIN INSERT INTO TblQuocGia(CodeQuocGia,NameQuocGia,Region,State) VALUES(@CodeQuocGia,@NameQuocGia,@Region,@State) END ";
+            sqlQuery += "ELSE BEGIN UPDATE TblQuocGia SET CodeQuocGia = @CodeQuocGia, NameQuocGia = @NameQuocGia, Region = @Region, State = @State WHERE IdQuocGia = @IdQuocGia END";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("IDCanBo", SqlDbType.Int).Value = IDCanBo;
-            Cmd.Parameters.Add("CodeCanBo", SqlDbType.NVarChar).Value = CodeCanBo;
-            Cmd.Parameters.Add("NameCanBo", SqlDbType.NVarChar).Value = NameCanBo;
-            Cmd.Parameters.Add("Note", SqlDbType.NVarChar).Value = Note;
+            Cmd.Parameters.Add("IdQuocGia", SqlDbType.Int).Value = IdQuocGia;
+            Cmd.Parameters.Add("CodeQuocGia", SqlDbType.NVarChar).Value = CodeQuocGia;
+            Cmd.Parameters.Add("NameQuocGia", SqlDbType.NVarChar).Value = NameQuocGia;
+            Cmd.Parameters.Add("Region", SqlDbType.NVarChar).Value = Region;
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
             Cmd.ExecuteNonQuery();
             sqlCon.Close();
@@ -84,7 +84,7 @@ public class QuocGia
     #endregion
 
     #region method getDataById
-    public DataTable getDataById(int IDCanBo)
+    public DataTable getDataById(int IdQuocGia)
     {
         DataTable objTable = new DataTable();
         try
@@ -92,8 +92,8 @@ public class QuocGia
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.Parameters.Add("IDCanBo", SqlDbType.Int).Value = IDCanBo;
-            Cmd.CommandText = "SELECT * FROM TblQuocGia WHERE IDCanBo = @IDCanBo";
+            Cmd.Parameters.Add("IdQuocGia", SqlDbType.Int).Value = IdQuocGia;
+            Cmd.CommandText = "SELECT * FROM TblQuocGia WHERE IdQuocGia = @IdQuocGia";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -119,7 +119,7 @@ public class QuocGia
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT IDCanBo, NameCanBo FROM TblCanBo";
+            Cmd.CommandText = "SELECT IdQuocGia, NameQuocGia FROM TblQuocGia";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -138,7 +138,7 @@ public class QuocGia
     #endregion
 
     #region method checkCode
-    public bool checkCode(string CodeCanBo)
+    public bool checkCode(string CodeQuocGia)
     {
         bool tmpValue = false;
         try
@@ -146,8 +146,8 @@ public class QuocGia
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM TblCanBo WHERE CodeCanBo = @CodeCanBo";
-            Cmd.Parameters.Add("CodeCanBo", SqlDbType.NVarChar).Value = CodeCanBo;
+            Cmd.CommandText = "SELECT * FROM TblQuocGia WHERE CodeQuocGia = @CodeQuocGia";
+            Cmd.Parameters.Add("CodeQuocGia", SqlDbType.NVarChar).Value = CodeQuocGia;
             SqlDataReader Rd = Cmd.ExecuteReader();
             while (Rd.Read())
             {
@@ -166,17 +166,17 @@ public class QuocGia
     #endregion
 
     #region method delData
-    public void delData(int IDCanBo)
+    public void delData(int IdQuocGia)
     {
         try
         {
             string sqlQuery = "";
-            sqlQuery = "DELETE TblCanBo WHERE IDCanBo = @IDCanBo ";
+            sqlQuery = "DELETE TblQuocGia WHERE IdQuocGia = @IdQuocGia ";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("IDCanBo", SqlDbType.Int).Value = IDCanBo;
+            Cmd.Parameters.Add("IdQuocGia", SqlDbType.Int).Value = IdQuocGia;
             Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();

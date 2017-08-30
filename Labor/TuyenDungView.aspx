@@ -134,6 +134,35 @@
 
             </tr>
 
+                            <tr>
+               <%-- <td>Tỉnh, thành phố:</td>
+                <td>
+                    <asp:DropDownList ID="ddlIDTinh" runat="server" Style="width: 100%;" CssClass="form-control">
+                </asp:DropDownList>
+                </td>--%>
+                <td>Mức lương </td>
+              
+                            <td>
+                             <asp:Label ID="lblIDMucLuong" ReadOnly="true" runat="server"></asp:Label>
+                                <asp:DropDownList ID="ddlIDMucLuong" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
+                                </asp:DropDownList>
+                            </td>
+                            
+                            <td>
+                    <asp:Label ID="lblThoiGianLamViec" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
+                                <asp:DropDownList ID="ddlThoiGianLamViec" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
+                                    <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
+                                    <asp:ListItem Value="1"> Hành chính </asp:ListItem>
+                                    <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
+                                    <asp:ListItem Value="3"> Theo ca </asp:ListItem>
+                                    <asp:ListItem Value="4"> Toàn thời gian </asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                       <td>
+                    <asp:CheckBox ID="ckbNuocNgoai" runat="server" Style="font-weight: normal;" Enabled="false" />&nbsp;&nbsp;Làm việc ở nước ngoài
+                </td>
+            </tr>
+
             <tr>
                 <td>Nội dung:</td>
                 <td style="width: 90%;" colspan="5">
@@ -170,34 +199,7 @@
                 </td>
             </tr>
 
-            <tr>
-               <%-- <td>Tỉnh, thành phố:</td>
-                <td>
-                    <asp:DropDownList ID="ddlIDTinh" runat="server" Style="width: 100%;" CssClass="form-control">
-                </asp:DropDownList>
-                </td>--%>
-                <td>Mức lương </td>
-              
-                            <td>
-                             <asp:Label ID="lblIDMucLuong" ReadOnly="true" runat="server"></asp:Label>
-                                <asp:DropDownList ID="ddlIDMucLuong" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
-                                </asp:DropDownList>
-                            </td>
-                            
-                            <td>
-                    <asp:Label ID="lblThoiGianLamViec" ReadOnly="true" runat="server" Style="width: 100% !important; float: left; margin-bottom: -25px;"></asp:Label>
-                                <asp:DropDownList ID="ddlThoiGianLamViec" Enabled="false" runat="server" Style="width: 100%; border: none; background-color: #fff; visibility: hidden;">
-                                    <asp:ListItem Value="5"> Thỏa thuận </asp:ListItem>
-                                    <asp:ListItem Value="1"> Hành chính </asp:ListItem>
-                                    <asp:ListItem Value="2"> Bán thời gian </asp:ListItem>
-                                    <asp:ListItem Value="3"> Theo ca </asp:ListItem>
-                                    <asp:ListItem Value="4"> Toàn thời gian </asp:ListItem>
-                                </asp:DropDownList>
-                            </td>
-                       <td>
-                    <asp:CheckBox ID="ckbNuocNgoai" runat="server" Style="font-weight: normal;" Enabled="false" />&nbsp;&nbsp;Làm việc ở nước ngoài
-                </td>
-            </tr>
+            
               <tr class="info alert-info">
                
                 <td >
