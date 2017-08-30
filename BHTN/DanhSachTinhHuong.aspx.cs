@@ -89,6 +89,18 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
                 if(TrangThai ==3)
                 {
                     objTinhHuong.UpdateTrangThaiHS(ID, 6);
+                    #region log he thong
+                    Log item = new Log();
+                    item.NgayTao = DateTime.Now;
+                    DataRow TCTN = new NLDTroCapThatNghiep().getItem(ID);
+                    item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+                    item.TroCapThatNghiepID = ID;
+                    item.UserID = (int)_Permission["Id"];
+                    item.UserName = _Permission["UserName"].ToString();
+                    item.Action = "Chuyển bộ phần thẩm định (TCTN)";
+                    item.GhiChu = "";
+                    new Log().Insert(item);
+                    #endregion
                 }         
                 if(TrangThai==28)
                 {
@@ -114,6 +126,18 @@ public partial class Labor_DanhSachTinhHuong : System.Web.UI.Page
                 if (TrangThai == 3)
                 {
                     objTinhHuong.UpdateTrangThaiHS(ID, 6);
+                    #region log he thong
+                    Log item = new Log();
+                    item.NgayTao = DateTime.Now;
+                    DataRow TCTN = new NLDTroCapThatNghiep().getItem(ID);
+                    item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+                    item.TroCapThatNghiepID = ID;
+                    item.UserID = (int)_Permission["Id"];
+                    item.UserName = _Permission["UserName"].ToString();
+                    item.Action = "Đánh số - trình kỳ (TCTN)";
+                    item.GhiChu = "";
+                    new Log().Insert(item);
+                    #endregion
                 }              
             }
 

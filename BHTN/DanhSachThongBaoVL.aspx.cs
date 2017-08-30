@@ -117,6 +117,7 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
             string str = "";
             DataRowView newRow = (DataRowView)e.Item.DataItem;
             int IDTCTN = (int)newRow["IdNLDTCTN"];
+            int IDTrangThai = (int)newRow["IdTrangThai"];
             DataTable tblTinhHuong = new TinhHuong().getDataById(IDTCTN);
             if(tblTinhHuong.Rows.Count >0)
             {
@@ -142,8 +143,7 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
                                 if (tblThongBaoHangThang.Rows[0]["TrangThaiThongBao"].ToString() == "15")
                                 {
                                     str += "<span class='khongkhaibao' alt='Không khai báo' title ='Không khai báo (" + KhaiBaoTuNgay.ToString("dd/MM/yyyy") + "->" + KhaiBaoDenNgay.ToString("dd/MM/yyyy") + ")'>" + i.ToString() + "</span>";
-                                }
-                   
+                                }                   
                             }
                             else
                             {                                
@@ -158,7 +158,11 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
                                     {
                                         // cap nhat trang thai qua hạn
                                         str += "<span class='quahanthongbao' alt='Quá hạn' title ='Quá hạn (" + KhaiBaoTuNgay.ToString("dd/MM/yyyy") + "->" + KhaiBaoDenNgay.ToString("dd/MM/yyyy") + ")'>" + i.ToString() + "</span>";
-                                        new TinhHuong().UpdateTrangThaiHS(IDTCTN, 25);
+                                        // kiem tra neu ho so do chuyen huong den thi khong cap nhat trang thai
+                                        if (IDTrangThai != 47)
+                                        {
+                                            new TinhHuong().UpdateTrangThaiHS(IDTCTN, 25);
+                                        }
                                     }
                                     else
                                     {

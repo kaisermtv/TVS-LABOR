@@ -321,7 +321,7 @@ public class Common
         lstInput.Add("[SoThangDong]");
         lstOutput.Add(RowTroCapThatNghiep["SoThangDongBHXH"].ToString());
         lstInput.Add("[MucHuong]");
-        lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["MucHuong"]).ToString("0.##"));
+        lstOutput.Add(((decimal)tblTinhHuong.Rows[0]["MucHuong"]).ToString("0.##"));
         lstInput.Add("[SoThangHuong]");
         int SoThangHuong = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"];
         lstOutput.Add(SoThangHuong.ToString());

@@ -220,7 +220,9 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
         int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
         new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
-        _msg = "Cập nhật thành công";    
+        _msg = "Cập nhật thành công";
+        Page.Response.Redirect(Page.Request.Url.ToString(), true);
+  
     }
     protected void btnKhongKhaiBao_Click(object sender, EventArgs e)
     {
@@ -263,7 +265,8 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
         int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
         new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
-        _msg = "Cập nhật thành công";    
+        _msg = "Cập nhật thành công";
+        Page.Response.Redirect(Page.Request.Url.ToString(), true);
     }
 
     protected void btnThoat_Click(object sender, EventArgs e)

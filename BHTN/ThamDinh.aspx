@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin.master" CodeFile="ThamDinh.aspx.cs" Inherits="Labor_ThamDinh" %>
 <%@ Register src="uctLichThongBao.ascx" tagname="uctLichThongBao" tagprefix="uc1" %>
+<%@ Register src="uctLog.ascx" tagname="uctLog" tagprefix="uc2" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .label1 {
@@ -436,6 +437,7 @@
                     <a href="#" class="list-group-item" runat="server" onserverclick="Unnamed_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu tính hưởng </a>
                     <a href="#" class="list-group-item" data-toggle="modal" data-target="#lichthongbao" runat="server"><span class="badge1" style ="left:140px;">></span>Lịch thông báo</a>
                     <a href="#" class="list-group-item" runat="server" onserverclick="InQuyetDinhHuongTroCap_ServerClick" visible="false"><span class="badge1" style ="left:140px;">></span>Tải quyết định </a>
+                    <a href="#" class="list-group-item" data-toggle="modal" data-target="#log" runat="server"><span class="badge1" style ="left:140px;">></span>Nhật ký</a>
                 </div>
             
                 <asp:Button ID="btnDuyet" runat="server" Text="Lưu/Duyệt" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnDuyet_Click" />
@@ -463,6 +465,24 @@
                 </div>
                 <div class="modal-body">
                 <uc1:uctLichThongBao ID="LichThongBao1" runat="server" />
+                </div>
+                <div class="modal-footer">                 
+                </div>
+            </div>
+
+        </div>
+    </div> 
+
+    <div id="log" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:80%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nhật ký</h4>
+                </div>
+                <div class="modal-body">
+                <uc2:uctLog ID="uctLog1" runat="server" />
                 </div>
                 <div class="modal-footer">                 
                 </div>

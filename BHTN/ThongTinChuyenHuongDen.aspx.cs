@@ -168,8 +168,8 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
                     DataTable tblSoQuyetDinh = new CapSo().GetByID(itemId, 30);
                     if(tblSoQuyetDinh.Rows.Count>0)
                     {
-                        txtSoQuyetDinh.Text = tblCapSo.Rows[0]["SoVanBan"].ToString();
-                        txtNgayKy.Value = ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy");
+                        txtSoQuyetDinh.Text = tblSoQuyetDinh.Rows[0]["SoVanBan"].ToString();
+                        txtNgayKy.Value = ((DateTime)tblSoQuyetDinh.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy");
                     }
                     
                 }
@@ -417,13 +417,18 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         #endregion
         if (hdIDNLDTCTN.Value != null && hdIDNLDTCTN.Value.Trim() != "")
         {
-            //insert nguoi lao dong      
+            //insert nguoi lao dong 
             NguoiLaoDong objNLD = new NguoiLaoDong();
+            if (itemId > 0)
+            {
+                DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+                objNLD["IDNguoiLaoDong"] = (int)TCTN["IdNguoiLaoDong"];
+            }
             objNLD["Ma"] = objNLD.getNextMaNLD();
             objNLD["HoVaTen"] = HoTen;
             objNLD["NgaySinh"] = NgaySinh;
             objNLD["IDGioiTinh"] = GioiTinh;
-            objNLD["CMND"] = NgayCap;
+            objNLD["CMND"] = CMND;
             objNLD["NgayCapCMND"] = NgayCap;
             objNLD["NoiCap"] = NoiCap;
             objNLD["BHXH"] = SoSoBHXH;
@@ -438,10 +443,17 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             objNLD["Xa_DC"] = Xa_DC;
             objNLD["Xom_DC"] = Xom_DC;
             hdIDNguoiLaoDong.Value = objNLD.setData().ToString();
-
             //insert tro cap that nghiep 
-            hdIDNLDTCTN.Value = new NLDTroCapThatNghiep().Insert(int.Parse(hdIDNguoiLaoDong.Value), NgayNop, SoThangDongBHXH).ToString();
-            // tinh huong
+            if (itemId > 0)
+            {
+                hdIDNLDTCTN.Value = itemId.ToString();
+                new NLDTroCapThatNghiep().Update(itemId,int.Parse(hdIDNguoiLaoDong.Value), NgayNop, SoThangDongBHXH).ToString();
+            }
+            else
+            {
+                hdIDNLDTCTN.Value = new NLDTroCapThatNghiep().Insert(int.Parse(hdIDNguoiLaoDong.Value), NgayNop, SoThangDongBHXH).ToString();
+            }
+                // tinh huong
             objTinhHuong.setData(0, int.Parse(hdIDNguoiLaoDong.Value), int.Parse(hdIDNLDTCTN.Value), objTinhHuong.NgayTao, objTinhHuong.IDVungLuongToiThieu, objTinhHuong.LuongToiThieuVung
             , objTinhHuong.ThangDong1, objTinhHuong.HeSoLuong1, objTinhHuong.HeSoPhuCap1, objTinhHuong.LuongCoBan1, objTinhHuong.MucDong1
             , objTinhHuong.ThangDong2, objTinhHuong.HeSoLuong2, objTinhHuong.HeSoPhuCap2, objTinhHuong.LuongCoBan2, objTinhHuong.MucDong2
@@ -527,9 +539,10 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             objCapSo.IDLoaiVanBan = 62;
             objCapSo.NgayCap = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             objCapSo.SoVanBan = txtSoGiayGioiThieu.Text.Trim();
+            objCapSo.So = 0;
             objCapSo.Nam = DateTime.Now.Year.ToString();
             objCapSo.IDNLDTCTN = int.Parse(hdIDNLDTCTN.Value);
-            if( new CapSo().CheckAutoNumber(objCapSo.NgayCap,62,objCapSo.SoVanBan)==true)
+            if (new CapSo().CheckAutoNumber(objCapSo.NgayCap, 62, objCapSo.SoVanBan) == true)
             {
                 _msg = "Số giấy giới thiệu đã có";
                 return;
@@ -540,6 +553,7 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             objQuyetDinhTCTN.IDLoaiVanBan = 30;
             objQuyetDinhTCTN.NgayCap = Convert.ToDateTime(txtNgayKy.Value, new CultureInfo("vi-VN"));
             objQuyetDinhTCTN.SoVanBan = txtSoQuyetDinh.Text.Trim();
+            objQuyetDinhTCTN.So = 0;
             objQuyetDinhTCTN.Nam = DateTime.Now.Year.ToString();
             objQuyetDinhTCTN.IDNLDTCTN = int.Parse(hdIDNLDTCTN.Value);
             DateTime NgayKy = Convert.ToDateTime(txtNgayKy.Value, new CultureInfo("vi-VN"));
@@ -552,7 +566,6 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
             Response.Redirect("DanhSachChuyenHuongDen.aspx");
         }
     }
-    
     protected void btnInGiayGioiThieu_ServerClick(object sender, EventArgs e)
     {
   

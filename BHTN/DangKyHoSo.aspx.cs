@@ -75,6 +75,18 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         try
         {
             objBHXH.setHoanThien(int.Parse(idNLD.Value), txtNgayHoanThanh.Value);
+            #region log he thong
+            Log item2 = new Log();
+            item2.NgayTao = DateTime.Now;
+            DataRow TCTN = new NLDTroCapThatNghiep().getItem(int.Parse(idNLD.Value));
+            item2.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+            item2.TroCapThatNghiepID = int.Parse(idNLD.Value);
+            item2.UserID = (int)_Permission["Id"];
+            item2.UserName = _Permission["UserName"].ToString();
+            item2.Action = "Chuyển tính hưởng";
+            item2.GhiChu = "";
+            new Log().Insert(item2);
+            #endregion
             Response.Redirect(Request.Url.ToString());
         }
         catch
@@ -93,6 +105,18 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
             try
             {
                 objBHXH.setHoanThien(int.Parse(item), txtNgayHoanThanh1.Value);
+                #region log he thong
+                Log item2 = new Log();
+                item2.NgayTao = DateTime.Now;
+                DataRow TCTN = new NLDTroCapThatNghiep().getItem(int.Parse(item));
+                item2.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+                item2.TroCapThatNghiepID = int.Parse(item);
+                item2.UserID = (int)_Permission["Id"];
+                item2.UserName = _Permission["UserName"].ToString();
+                item2.Action = "Chuyển tính hưởng";
+                item2.GhiChu = "";
+                new Log().Insert(item2);
+                #endregion
             }
             catch { }
         }
