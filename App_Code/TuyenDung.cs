@@ -200,13 +200,13 @@ public class TuyenDung :DataClass
                 sqlQueryDiaDiem = " AND UPPER(A.DiaDiem) LIKE N'%"+sDiaDiem.ToUpper()+"%'";
             }
 
-            string outqd = "";
+            //string outqd = "";
             if (NuocNgoai != "")//"" Tat ca, 1 Nuoc ngoai, 0 Trong nuoc
             {
                 if (NuocNgoai == "1")
                 {
                     sqlQueryNuocNgoai = " AND ISNULL(A.NuocNgoai,0) = 1";
-                    outqd = ",QD.NameQuocGia ";
+                    //outqd = " ";
                 }
                 else if (NuocNgoai == "0")
                 {
@@ -215,14 +215,14 @@ public class TuyenDung :DataClass
             }
 
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,A.NoiDungKhac,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem "+ outqd + " FROM TblTuyenDung AS A";
+            Cmd.CommandText = "SELECT A.IDTuyenDung,B.IDDonVi,A.IdViTri,A.NgayBatDau,B.TenDonVi,V.NameVitri,A.SoLuongTuyenDung,L.NameMucLuong,A.DiaDiem,A.State,A.NoiDungKhac,ISNULL((SELECT Count(*) FROM TblNldGioiThieu WHERE IDTuyenDung = A.IDTuyenDung),'') AS CountItem ,QD.NameQuocGia FROM TblTuyenDung AS A";
             Cmd.CommandText += " INNER JOIN TblDoanhNghiep AS B ON A.IDDonVi = B.IDDonVi";
             Cmd.CommandText += " LEFT JOIN tblViTri AS V ON A.IdViTri = V.ID";
             Cmd.CommandText += " LEFT JOIN TblMucLuong AS L ON A.IDMucLuong = L.IDMucLuong";
-            if(NuocNgoai == "1")
-            {
+            //if(NuocNgoai == "1")
+           // {
                 Cmd.CommandText += " LEFT JOIN TblQuocGia AS QD ON A.IdQuocGia = QD.IdQuocGia";
-            }
+            //}
             Cmd.CommandText += " WHERE ISNULL(A.State,0) = 1";
 
             if(searchKey != null && searchKey != "")
