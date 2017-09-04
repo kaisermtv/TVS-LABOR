@@ -52,7 +52,7 @@ public partial class Labor_DanhSachBaoLuu : System.Web.UI.Page
         }
 
         string str = txtSearch.Value.Trim();
-        DataTable objData = new TinhHuong().getDanhSachChuyenHuong(TuNgay, DenNgay, int.Parse(ddlTrangThai.SelectedValue.ToString()), str);
+        DataTable objData = new TinhHuong().getDanhSachBaoLuu(TuNgay, DenNgay, int.Parse(ddlTrangThai.SelectedValue.ToString()), str);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;

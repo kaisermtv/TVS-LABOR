@@ -402,7 +402,7 @@ public class TinhHuong:DataClass
             sql += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
             sql += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
             sql += " Left join TblCapSo cs on cs.IDNLDTCTN=tn.IdNLDTCTN";
-            sql += " Where (cs.IDLoaiVanBan=30  Or cs.IDLoaiVanBan is null) And (tn.NgayHenTraKQ between @TuNgay And @DenNgay) ";
+            sql += " Where (tn.NgayNopHoSo between @TuNgay And @DenNgay) ";
             sql += " And (HoVaTen=@str Or CMND=@str Or BHXH=@str Or cast(cs.So as nvarchar)=@str Or SoVanBan=@str Or @str='')";
             sql += " And (TN.IdTrangThai=@IDTrangThai Or @IDTrangThai=0)";
             Cmd.CommandText = sql;
