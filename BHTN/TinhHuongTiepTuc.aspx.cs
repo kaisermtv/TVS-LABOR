@@ -91,7 +91,9 @@ public partial class Labor_TinhHuongTiepTuc : System.Web.UI.Page
                 {
                     txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
-                    txtSoThangDuocHuongConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
+                    int SoThangDaHuong = (int)tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"];
+                    int SoThangKhongHuong = (int)tblTinhHuong.Rows[0]["SoThangKhongHuongBHXH"];
+                    txtSoThangDuocHuongConLai.Text = (SoThangDaHuong - SoThangKhongHuong).ToString();
                     if (tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"] != null && tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"].ToString().Trim() != "")
                     {
                         txtNgayDeXuat.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatTiepTuc"]).ToString("dd/MM/yyyy");

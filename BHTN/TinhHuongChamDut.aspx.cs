@@ -91,8 +91,22 @@ public partial class Labor_TinhHuongChamDut : System.Web.UI.Page
                 {
                     txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
-                    txtSoThangDuocHuongConLai.Text = tblTinhHuong.Rows[0]["SoThangDuocHuongConLaiBHXH"].ToString();
-                    txtSoThangBaoLuuSauHuong.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuSauHuong"].ToString();
+                    txtSoThangDaHuong.Text = tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString();
+                    int SoThangHuong = 0;
+                    int.TryParse(txtSoThangHuong.Text, out SoThangHuong);
+                    int SoThangBaoLuu = 0;
+                    int.TryParse(txtSoThangBaoLuu.Text, out SoThangBaoLuu);
+                    int SoThangDaHuong = 0;
+                    int.TryParse(txtSoThangDaHuong.Text, out SoThangDaHuong);
+                    // nếu là trang thai cho tinh huong thi tinh huong
+                    if ((int)rowTroCapThatNghiep["IdTrangThai"] == 50)
+                    {
+                        txtSoThangBaoLuuSauHuong.Text = (SoThangHuong - SoThangDaHuong + SoThangBaoLuu).ToString();
+                    }
+                    else
+                    {
+                        txtSoThangBaoLuuSauHuong.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuSauHuong"].ToString();
+                    }
                     if (tblTinhHuong.Rows[0]["NgayDeXuatChamDut"] != null && tblTinhHuong.Rows[0]["NgayDeXuatChamDut"].ToString().Trim() != "")
                     {
                          txtNgayDeXuatChamDut.Value = ((DateTime)tblTinhHuong.Rows[0]["NgayDeXuatChamDut"]).ToString("dd/MM/yyyy");

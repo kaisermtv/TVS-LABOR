@@ -237,18 +237,16 @@
                  <asp:TextBox ID="txtSoThangBaoLuu" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
             </div>
         </div>   
+
         <div class="row line ">
-            <div class="label1">Số tháng bảo lưu sau hưởng: </div>
+            <div class="label1">Số tháng đã hưởng: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoThangDuocHuongConLai"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
+                 <asp:TextBox ID="txtSoThangDaHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
             </div>
               <div class="label2">Số tháng bao lưu sau hưởng: </div>
             <div style="width: 20%; float: left">
                  <asp:TextBox ID="txtSoThangBaoLuuSauHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
             </div>
-
-          
-
         </div>
         <div class="row line">
             <div class="label1">Ngày đề xuất: </div>

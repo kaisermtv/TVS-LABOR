@@ -240,7 +240,7 @@
         <div class="row line ">
             <div class="label1">Số tháng đã hưởng: </div>
             <div style="width: 20%; float: left">
-                 <asp:TextBox ID="txtSoThangDaHuong"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
+                 <asp:TextBox ID="txtSoThangDaHuong"  runat="server" ReadOnly="true" CssClass="form-control"  TextMode="Number"></asp:TextBox>
             </div>
 
           <%--  <div class="label2">Ngày tính hưởng:</div>

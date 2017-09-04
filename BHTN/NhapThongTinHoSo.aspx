@@ -648,10 +648,7 @@
         <div style ="height:28px; background-color:red; line-height:28px; color:#fff; text-align:center; font-size:12PX; font-weight:bold;">Thông tin đóng hưởng</div>
         <div class="panel-body1" style ="padding:20px; padding-top:10px; margin-top:2px;">
             <div class="row">
-                Ngày đăng ký: <%= txtNgayNopHS.Value %><br />
-                Hạn hoàn thiện:<br />
-                Ngày hoàn thiện:<br />
-                Ngày trả QĐ:
+                Ngày nộp hồ sơ: <%= txtNgayNopHS.Value %><br />              
                 <br />
                 <br />
 
@@ -661,7 +658,11 @@
                     <a href="#" class="list-group-item" runat="server" onserverclick="DeNghiHuong_Click"><span class="badge1" style ="left:140px;">></span>Đề nghị hưởng </a>
                     <%--<a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>--%>
                     <a href="#" class="list-group-item" runat="server" onserverclick="PhieuHenTraKQ_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>
-                </div>
+                </div>               
+                <a href="NhapThongTinHoSo.aspx">
+                <input type="button" class="btn btn-primary" style="width: 100%"  value="Thêm mới">            
+                </a>    
+                <br />
                 <br />
                 <asp:Button ID="btnSave" runat="server" Text="Lưu thông tin" Style="width: 100% !important;" CssClass="btn btn-primary" OnClick="btnSave_Click " />
                 <br />

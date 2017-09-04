@@ -242,7 +242,6 @@
             <div style="width: 20%; float: left">
                  <asp:TextBox ID="txtSoThangDuocHuongConLai"  runat="server" CssClass="form-control"  TextMode="Number"></asp:TextBox>
             </div>
-
             <%--<div class="label2">Ngày tính hưởng: </div>
             <div style="width: 20%; float: left">
                  <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
