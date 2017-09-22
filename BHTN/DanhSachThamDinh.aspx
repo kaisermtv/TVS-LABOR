@@ -104,6 +104,9 @@
             </tr>
         </ItemTemplate>
         <FooterTemplate>
+          <tr>
+            <td colspan="8">
+               <b>Tổng số hồ sơ:<%= dtlData.Items.Count.ToString()%></b></tr>
             </table>
         </FooterTemplate>
     </asp:Repeater>

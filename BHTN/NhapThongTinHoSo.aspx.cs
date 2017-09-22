@@ -503,7 +503,10 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 txtNgayCap.Value = ((DateTime)objDataRow["NgayCapCMND"]).ToString("dd/MM/yyyy");
             }
             catch { }
-            ddlNoiCap.SelectedValue = objDataRow["NoiCap"].ToString();
+            if (objDataRow["NoiCap"] != null && objDataRow["NoiCap"].ToString().Trim() != "")
+            {
+                ddlNoiCap.SelectedItem.Text= objDataRow["NoiCap"].ToString();
+            }
 
             txtSoDienThoai.Text = objDataRow["DienThoai"].ToString();
             //txtNoiThuongTru.Text = objDataRow["NoiThuongTru"].ToString();
@@ -1207,5 +1210,5 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     {
         new Common().TaiPhieuHenTraKQ(itemId, "");      
     }
-   
+
 }

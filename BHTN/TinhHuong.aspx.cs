@@ -444,7 +444,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         TinhHuong objTinhHuong = new TinhHuong();
         DataTable tblTinhHuong = new DataTable();
         tblTinhHuong = objTinhHuong.getDataById(itemId);
-        if(tblTinhHuong.Rows.Count==0 )
+        if(tblTinhHuong.Rows.Count==0)
         {
             _msg = "Bạn chưa lưu thông tin tính hưởng";
             return;        

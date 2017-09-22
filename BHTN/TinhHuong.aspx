@@ -12,7 +12,6 @@
             height: 34px;
             padding-top: 8px;
         }
-
         .label2 {
             width: 12%;
             float: left;
@@ -22,7 +21,6 @@
             height: 34px;
             padding-top: 8px;
         }
-
         .labela {
             width: 16%;
             float: left;
@@ -36,7 +34,6 @@
         label {
             font-size: 15px;
         }
-
         .chkLabel {
             width: 20%;
             float: left;
@@ -54,7 +51,6 @@
             margin-top: 10px;
             font-size: 16px;
         }
-
         .checkboxuser input {
             width: 25px;
             height: 25px;

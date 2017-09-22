@@ -271,7 +271,7 @@
 
 
         <div class="row line">
-         <div class="label1">Lý do chuyển: </div>
+         <div class="label1">Lý do bảo lưu: </div>
             <div style="width: 52%; float: left">
                  <asp:TextBox ID="txtLyDoChuyen"  runat="server" CssClass="form-control"></asp:TextBox>
             </div>    
@@ -309,7 +309,7 @@
                 </div>          
              
                 <asp:Button ID="btnLuu" runat="server" Text="Lưu thông tin" Style="width: 100% !important;margin-top:10px;" CssClass="btn btn-primary" OnClick="btnLuu_Click" />
-                 <a href="DanhSachChuyenHuong.aspx">
+                 <a href="DanhSachBaoLuu.aspx">
                  <input  type="button" style="width: 100% !important;margin-top:10px;"  class="btn btn-primary" value="Thoát" />  
                  </a>
             </div>

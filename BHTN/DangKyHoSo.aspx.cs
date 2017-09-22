@@ -46,7 +46,6 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
             txtNgayHoanThanh1.Value = DateTime.Now.ToString("dd/MM/yyyy");
 
         }
-
         if (ddlIDTrangThai.SelectedValue == "-2")
         {
             //txtTuNgay.pa
@@ -56,8 +55,8 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         {
 
         }
-
         DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value, TVSSystem.CVDateNull(txtTuNgay.Value),TVSSystem.CVDateNull(txtDenNgay.Value));
+        
         //if (objData.Rows.Count > 0)
         //{
         cpData.MaxPages = 1000;
@@ -65,8 +64,9 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         cpData.DataSource = objData.DefaultView;
         cpData.BindToControl = dtlData;
         dtlData.DataSource = cpData.DataSourcePaged;
-        dtlData.DataBind();
+        dtlData.DataBind();        
         index = 1;
+      
         //}
     }
     #region Even btnHoanThienHoSo_Click

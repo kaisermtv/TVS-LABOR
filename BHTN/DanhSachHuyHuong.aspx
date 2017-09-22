@@ -6,7 +6,6 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
         .TrangThai {
             padding: 3px;
             padding-left: 8px;
@@ -55,7 +54,7 @@
                         </span>
                     </div>
                 </td>
-                <td style="width: 40px !important; text-align: center;">
+                <td style="width: 40px !important; text-align: center;">0
                     <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
                 </td>
                 <td >
@@ -96,6 +95,9 @@
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
+             <tr>
+            <td colspan="7">
+               <b>Tổng số hồ sơ:<%= dtlData.Items.Count.ToString()%></b></tr>
                 </table>
             </FooterTemplate>
         </asp:Repeater>

@@ -253,7 +253,9 @@ public class Common
         lstOutput.Add(tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString());
         lstInput.Add("[NgayTinhHuong]");
         lstOutput.Add(((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy"));
-        //lstInput.Add()
+        lstInput.Add("[TienBangChu]");
+        string SoTienChu = ChuyenSo(Math.Round(TongTienHuong, MidpointRounding.AwayFromZero).ToString());
+        lstOutput.Add(SoTienChu);
         ExportToWord objExportToWord = new ExportToWord();
         byte[] temp = objExportToWord.Export(HttpContext.Current.Server.MapPath("../WordForm/PhieuTinhHuong.docx"), lstInput, lstOutput);
         HttpContext.Current.Response.AppendHeader("Content-Type", "application/msword");

@@ -56,6 +56,9 @@ public class TinhHuong:DataClass
     public DateTime DeXuatTamDung { get; set; }
     public DateTime DeXuatTiepTuc { get; set; }
     public int SoThangKhongHuongBHXH { get; set; }
+    public int TongSoThangBaoLuuBHXH { get; set; }
+    public string LyDoBaoLuu { get; set; }
+    public DateTime NgayDeXuatBaoLuu { get; set; }
     #endregion 
     public TinhHuong()
     {
@@ -667,6 +670,22 @@ public class TinhHuong:DataClass
         return rows;
 
     }
-    
+    public int UpdateTongSoThangBaoLuu(int IDNLDTCTN, int TongSoThangBaoLuu, DateTime NgayDeXuat, string LyDo)
+    {
+        int rows = 0;
+        string sql = "Update TblTinhHuong Set TongSoThangBaoLuuBHXH=@TongSoThangBaoLuuBHXH,LyDoBaoLuu=@LyDoBaoLuu,NgayDeXuatBaoLuu=@NgayDeXuatBaoluu Where IDNLDTCTN=@IDNLDTCTN";
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = sql;
+        Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+        Cmd.Parameters.Add("TongSoThangBaoLuuBHXH", SqlDbType.Int).Value = TongSoThangBaoLuu;
+        Cmd.Parameters.Add("LyDoBaoLuu", SqlDbType.NVarChar).Value = LyDo;
+        Cmd.Parameters.Add("NgayDeXuatBaoLuu", SqlDbType.DateTime).Value = NgayDeXuat;
+        rows = Cmd.ExecuteNonQuery();
+        sqlCon.Close();
+        sqlCon.Dispose();
+        return rows;
+    }
     #endregion
 }

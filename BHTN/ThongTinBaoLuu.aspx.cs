@@ -89,13 +89,30 @@ public partial class Labor_ThongTinBaoLuu : System.Web.UI.Page
                 DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
                 if(tblTinhHuong.Rows.Count>0)
                 {
-                    txtSoThangHuong.Text = tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString();
+                    int SoThangHuong=0;
+                    int.TryParse(tblTinhHuong.Rows[0]["SoThangHuongBHXH"].ToString(), out SoThangHuong);
+                    txtSoThangHuong.Text = SoThangHuong.ToString();
                     txtThangLeBaoLuu.Text  =tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
                     txtDaHuong.Text = tblTinhHuong.Rows[0]["SoThangDaHuongBHXH"].ToString();
                     DataTable tblSoThangKhongHuong = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 15);
                     int SoThangKhongHuong = 0;
                     int.TryParse(tblSoThangKhongHuong.Rows.Count.ToString(), out SoThangKhongHuong);
                     txtThangDongBaoLuu.Text = SoThangKhongHuong.ToString();
+                    int SoThangDaHuong = 0;
+                    DataTable tblSoThangDaHuong = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 14);
+                    int.TryParse(tblSoThangDaHuong.Rows.Count.ToString(), out SoThangDaHuong);
+                    int SoThangHuongConLai=0;
+                    SoThangHuongConLai = (SoThangHuong - (SoThangDaHuong + SoThangKhongHuong));
+                    txtThangHuongBaoLuu.Text =SoThangHuongConLai.ToString();
+                    if (rowTroCapThatNghiep["IdTrangThai"].ToString() != "59")
+                    {
+                        txtTongThangBaoLuu.Text = ((SoThangHuongConLai + SoThangKhongHuong) * 12 + int.Parse(txtThangLeBaoLuu.Text)).ToString();
+                    }
+                    else
+                    {
+                        txtTongThangBaoLuu.Text = tblTinhHuong.Rows[0]["TongSoThangBaoLuuBHXH"].ToString();
+                        txtLyDoChuyen.Text = tblTinhHuong.Rows[0]["LyDoBaoLuu"].ToString();
+                    }
                     txtHuongTuNgay.Text = ((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy");
                     txtHuongDenNgay.Text = ((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy");                
                 }                         
@@ -203,28 +220,25 @@ public partial class Labor_ThongTinBaoLuu : System.Web.UI.Page
         Response.Redirect("DanhSachThamDinh.aspx");
     }
     protected void btnLuu_Click(object sender, EventArgs e)
-    {
-        ChuyenHuong objChuyenHuong = new ChuyenHuong();
-        objChuyenHuong.IDNLDTCTN = itemId;
-        objChuyenHuong.LyDoChuyen = txtLyDoChuyen.Text.Trim();       
+    {   
         if (txtNgayDeXuat.Value.Trim() == "")
         {
             _msg = "Bạn chưa nhập ngày đề xuất";
             return;
-        }       
-        objChuyenHuong.NgayDeNghi = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
-        objChuyenHuong.StatusID = 0;
-        if(hdStatus.Value.Trim()=="" || hdStatus.Value=="0")        
+        }
+        if (txtTongThangBaoLuu.Text.Trim() == "")
         {
-     
-           
+            _msg = "Bạn chưa nhập tổng số tháng bảo lưu";
+            return;
         }
-        if(hdStatus.Value.Trim()!="" && int.Parse(hdStatus.Value)>0)
-        {       
-            objChuyenHuong.IDChuyenHuong = int.Parse(hdStatus.Value);
-            objChuyenHuong.UpdateChuyenHuong( objChuyenHuong.IDChuyenHuong, objChuyenHuong.IDNLDTCTN, objChuyenHuong.LyDoChuyen, objChuyenHuong.IDNoiChuyen, objChuyenHuong.NgayDeNghi, objChuyenHuong.SoGiayGioiThieu,"", objChuyenHuong.StatusID).ToString();
-            _msg = "Cập nhật thành công";
-        }
+        TinhHuong objTinhHuong = new TinhHuong();
+        objTinhHuong.TongSoThangBaoLuuBHXH = int.Parse(txtTongThangBaoLuu.Text);
+        objTinhHuong.LyDoBaoLuu = txtLyDoChuyen.Text.Trim();
+        objTinhHuong.NgayDeXuatBaoLuu = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
+        objTinhHuong.UpdateTongSoThangBaoLuu(itemId, objTinhHuong.TongSoThangBaoLuuBHXH, objTinhHuong.NgayDeXuatBaoLuu, objTinhHuong.LyDoBaoLuu);
+        objTinhHuong.UpdateTrangThaiHS(itemId, 59);
+        
+
     }
     protected void btnInGiayGioiThieu_ServerClick(object sender, EventArgs e)
     {
