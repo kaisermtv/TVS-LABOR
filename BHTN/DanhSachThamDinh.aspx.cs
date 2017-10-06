@@ -87,6 +87,18 @@ public partial class Labor_DanhSachThamDinh : System.Web.UI.Page
                 if (TrangThai == 7)
                 {
                     objTinhHuong.UpdateTrangThaiHS(ID, 8);
+                    #region log he thong
+                    Log item = new Log();
+                    item.NgayTao = DateTime.Now;
+                    DataRow TCTN = new NLDTroCapThatNghiep().getItem(ID);
+                    item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+                    item.TroCapThatNghiepID = ID;
+                    item.UserID = (int)_Permission["Id"];
+                    item.UserName = _Permission["UserName"].ToString();
+                    item.Action = "Đánh số - Trình ký (TCTN)";
+                    item.GhiChu = "";
+                    new Log().Insert(item);
+                    #endregion
                     dem++;
                 }
                 if(TrangThai==19)

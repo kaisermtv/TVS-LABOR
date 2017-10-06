@@ -290,18 +290,54 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
     {
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 7);
+        #region log he thong
+        Log item = new Log();
+        item.NgayTao = DateTime.Now;
+        DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        item.TroCapThatNghiepID = itemId;
+        item.UserID = (int)_Permission["Id"];
+        item.UserName = _Permission["UserName"].ToString();
+        item.Action = "Thẩm định TCTN";
+        item.GhiChu = "";
+        new Log().Insert(item);
+        #endregion
         Response.Redirect("DanhSachThamDinh.aspx");
     }
     protected void btnTraTinhHuong_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 2);
+        #region log he thong
+        Log item = new Log();
+        item.NgayTao = DateTime.Now;
+        DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        item.TroCapThatNghiepID = itemId;
+        item.UserID = (int)_Permission["Id"];
+        item.UserName = _Permission["UserName"].ToString();
+        item.Action = "Trả bổ phận tính hưởng (TCTN)";
+        item.GhiChu = "";
+        new Log().Insert(item);
+        #endregion
         Response.Redirect("DanhSachThamDinh.aspx");
     }
     protected void btnTraTiepNhan_Click(object sender, EventArgs e)
     {
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 1);
+        #region log he thong
+        Log item = new Log();
+        item.NgayTao = DateTime.Now;
+        DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        item.TroCapThatNghiepID = itemId;
+        item.UserID = (int)_Permission["Id"];
+        item.UserName = _Permission["UserName"].ToString();
+        item.Action = "Trả bộ phận tiếp nhận (TCTN)";
+        item.GhiChu = "";
+        new Log().Insert(item);
+        #endregion
         Response.Redirect("DanhSachThamDinh.aspx");
     }
  

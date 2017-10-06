@@ -205,6 +205,10 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 45);
             }
+            if ((int)rowTCTN["IdTrangThai"] == 57)
+            {
+                new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 58);
+            }
           
         }
         Load_DanhSachHoSo();

@@ -65,6 +65,9 @@
            <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
         <a href="DanhSachChamDutHuong.aspx">DS chấm dứt hưởng</a>
         </div>  
+         <div class = "ViecLamTrongNuoc menuitem" style="background-color: #00a8ec;">
+        <a href="DanhSachBaoLuu.aspx">DS Bảo Lưu</a>
+        </div>  
     </div>
 
     <div class="row">       

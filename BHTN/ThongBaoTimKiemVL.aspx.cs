@@ -212,15 +212,10 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         new ThongBaoViecLamHangThang().SetData(objThongBaoVl.IDNLDTCTN, objThongBaoVl.IDCanBoTiepNhan, objThongBaoVl.ThangThongBao, objThongBaoVl.NgayThongBao, objThongBaoVl.ThongBaoTrucTiep, objThongBaoVl.LyDo, objThongBaoVl.BanTiepNhan, objThongBaoVl.GhiChu, objThongBaoVl.TrangThaiThongBao);
         //cap nhat so thang da huong
         DataTable tblSoThangDaHuongBHXH = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 14);
-        DataTable tblSoThangKhongHuong = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 15);
-        int SoThangDaHuong = tblSoThangDaHuongBHXH.Rows.Count;
-        int SoThangKhongHuong = tblSoThangKhongHuong.Rows.Count;       
         new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
-        // cap nhat so thang con lai       
-        DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
-        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
-        new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
-        _msg = "Cập nhật thành công";    
+        _msg = "Cập nhật thành công";
+        Page.Response.Redirect(Page.Request.Url.ToString(), true);
+  
     }
     protected void btnKhongKhaiBao_Click(object sender, EventArgs e)
     {
@@ -253,17 +248,11 @@ public partial class Labor_ThongBaoTimKiemVL : System.Web.UI.Page
         }
         objThongBaoVl.TrangThaiThongBao = 15;
         new ThongBaoViecLamHangThang().SetData(objThongBaoVl.IDNLDTCTN, objThongBaoVl.IDCanBoTiepNhan, objThongBaoVl.ThangThongBao, objThongBaoVl.NgayThongBao, objThongBaoVl.ThongBaoTrucTiep, objThongBaoVl.LyDo, objThongBaoVl.BanTiepNhan, objThongBaoVl.GhiChu, objThongBaoVl.TrangThaiThongBao);
-        //cap nhat so thang da huong
-        DataTable tblSoThangDaHuongBHXH = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 14);
+        //cap nhat so thang khong huong  
         DataTable tblSoThangKhongHuong = new ThongBaoViecLamHangThang().GetByID(itemId, 0, 15);
-        int SoThangDaHuong = tblSoThangDaHuongBHXH.Rows.Count;
-        int SoThangKhongHuong = tblSoThangKhongHuong.Rows.Count;
-        new TinhHuong().UpdateSoThangDaHuong(itemId, tblSoThangDaHuongBHXH.Rows.Count);
-        // cap nhat so thang con lai       
-        DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
-        int SoThangDuocHuongConLai = (int)tblTinhHuong.Rows[0]["SoThangHuongBHXH"] - (SoThangDaHuong + SoThangKhongHuong);
-        new TinhHuong().UpdateSoThangDuocHuongConLai(itemId, SoThangDuocHuongConLai);
-        _msg = "Cập nhật thành công";    
+        new TinhHuong().UpdateSoThangKhongHuong(itemId, tblSoThangKhongHuong.Rows.Count);
+        _msg = "Cập nhật thành công";
+        Page.Response.Redirect(Page.Request.Url.ToString(), true);
     }
 
     protected void btnThoat_Click(object sender, EventArgs e)

@@ -46,7 +46,6 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
             txtNgayHoanThanh1.Value = DateTime.Now.ToString("dd/MM/yyyy");
 
         }
-
         if (ddlIDTrangThai.SelectedValue == "-2")
         {
             //txtTuNgay.pa
@@ -56,8 +55,8 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         {
 
         }
-
         DataTable objData = objBHXH.getListDangKY(int.Parse(ddlIDTrangThai.SelectedValue), txtSearch.Value, TVSSystem.CVDateNull(txtTuNgay.Value),TVSSystem.CVDateNull(txtDenNgay.Value));
+        
         //if (objData.Rows.Count > 0)
         //{
         cpData.MaxPages = 1000;
@@ -65,8 +64,9 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         cpData.DataSource = objData.DefaultView;
         cpData.BindToControl = dtlData;
         dtlData.DataSource = cpData.DataSourcePaged;
-        dtlData.DataBind();
+        dtlData.DataBind();        
         index = 1;
+      
         //}
     }
     #region Even btnHoanThienHoSo_Click
@@ -75,6 +75,18 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
         try
         {
             objBHXH.setHoanThien(int.Parse(idNLD.Value), txtNgayHoanThanh.Value);
+            #region log he thong
+            Log item2 = new Log();
+            item2.NgayTao = DateTime.Now;
+            DataRow TCTN = new NLDTroCapThatNghiep().getItem(int.Parse(idNLD.Value));
+            item2.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+            item2.TroCapThatNghiepID = int.Parse(idNLD.Value);
+            item2.UserID = (int)_Permission["Id"];
+            item2.UserName = _Permission["UserName"].ToString();
+            item2.Action = "Chuyển tính hưởng";
+            item2.GhiChu = "";
+            new Log().Insert(item2);
+            #endregion
             Response.Redirect(Request.Url.ToString());
         }
         catch
@@ -93,6 +105,18 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
             try
             {
                 objBHXH.setHoanThien(int.Parse(item), txtNgayHoanThanh1.Value);
+                #region log he thong
+                Log item2 = new Log();
+                item2.NgayTao = DateTime.Now;
+                DataRow TCTN = new NLDTroCapThatNghiep().getItem(int.Parse(item));
+                item2.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+                item2.TroCapThatNghiepID = int.Parse(item);
+                item2.UserID = (int)_Permission["Id"];
+                item2.UserName = _Permission["UserName"].ToString();
+                item2.Action = "Chuyển tính hưởng";
+                item2.GhiChu = "";
+                new Log().Insert(item2);
+                #endregion
             }
             catch { }
         }

@@ -503,7 +503,10 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 txtNgayCap.Value = ((DateTime)objDataRow["NgayCapCMND"]).ToString("dd/MM/yyyy");
             }
             catch { }
-            ddlNoiCap.SelectedValue = objDataRow["NoiCap"].ToString();
+            if (objDataRow["NoiCap"] != null && objDataRow["NoiCap"].ToString().Trim() != "")
+            {
+                ddlNoiCap.SelectedItem.Text= objDataRow["NoiCap"].ToString();
+            }
 
             txtSoDienThoai.Text = objDataRow["DienThoai"].ToString();
             //txtNoiThuongTru.Text = objDataRow["NoiThuongTru"].ToString();
@@ -889,7 +892,17 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objNLDTroCapThatNghiep["IdHinhThucNhanTien"] = htnt;
 
             ret = (int)objNLDTroCapThatNghiep.setData();
-
+            #region log he thong
+            Log item = new Log();
+            item.NgayTao = DateTime.Now;
+            item.NguoiLaoDongID = idNguoiLaoDong;
+            item.TroCapThatNghiepID = ret;
+            item.UserID = (int)_Permission["Id"];
+            item.UserName = _Permission["UserName"].ToString();
+            item.Action = "Cập nhật hồ sơ hưởng TCTN";
+            item.GhiChu = "";
+            new Log().Insert(item);
+            #endregion
             Response.Redirect("NhapThongTinHoSo.aspx?id=" + ret);
            //x ret = objNLDTroCapThatNghiep.setData(itemId, idNguoiLaoDong,);
         }
@@ -904,9 +917,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             return;
         }
 
-        #endregion
-
-
+        #endregion 
     }
     #endregion
 
@@ -1174,7 +1185,19 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         try
         {
             BHTNClass objBHXH = new BHTNClass();
-            objBHXH.setHoanThien(itemId, txtNgayHoanThanh.Value);
+            objBHXH.setHoanThien(itemId, txtNgayHoanThanh.Value);           
+            #region log he thong
+            Log item = new Log();
+            item.NgayTao = DateTime.Now;
+            DataRow TCTN=new NLDTroCapThatNghiep().getItem(itemId);
+            item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+            item.TroCapThatNghiepID = itemId;
+            item.UserID = (int)_Permission["Id"];
+            item.UserName = _Permission["UserName"].ToString();
+            item.Action = "Chuyển tính hưởng";
+            item.GhiChu = "";
+            new Log().Insert(item);
+            #endregion
             Response.Redirect("/BHTN/DangKyHoSo.aspx");
         }
         catch
@@ -1187,5 +1210,5 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     {
         new Common().TaiPhieuHenTraKQ(itemId, "");      
     }
-   
+
 }

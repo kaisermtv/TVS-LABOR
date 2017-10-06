@@ -153,7 +153,7 @@
                         </td>
                         <td style="width: 10%; text-align: right; padding-right: 5px;">&nbsp;</td>
                         <td style="width: 5%; text-align: right; padding-right: 5px; ">
-                               <a  id="btnAddNew" href="TuyenDungEdit.aspx" title="Thêm mới" style=" border :solid 1px black" class="btn btn-info"  >Thêm mới</a>
+                               <a  id="btnAddNew" href="TuVanEdit.aspx" title="Thêm mới" style=" border :solid 1px black" class="btn btn-info"  >Thêm mới</a>
                         </td>
                         <td style="width: 1%; text-align: left;">
                             <asp:Button ID="btnCancel" runat="server" Text="Thoát"  BorderStyle="Solid" BorderColor="Black" BorderWidth="1"   CssClass="btn btn-default" OnClick="btnCancel_Click" />

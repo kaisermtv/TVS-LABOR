@@ -112,7 +112,7 @@
                     <a href="#myModal" onclick="delmodal(<%# Eval("IdNLDTCTN") %>,'<%# Eval("HoVaTen") %>')">
                         <img src="/Images/Forward.png" alt="Chuyển hồ sơ" title ="Chuyển hồ sơ">
                     </a>
-                    &nbsp;&nbsp;<a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>"><img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NhapThongTinHoSo.aspx?id=<%# Eval("IdNLDTCTN") %><%# Eval("IdTrangThai").ToString() == "2" ? "&type=1":"" %>"><img src="/Images/Edit.png" alt="Sửa hồ sơ" title ="Sửa hồ sơ"></a>
                     <% } %>
                     <%--<a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>
                         <a href="BaoHiemThatNghiepEdit.aspx?id=<%# Eval("IdNLDTCTN") %>"><img src="/Images/Edit.png" alt=""></a>--%>
@@ -123,6 +123,9 @@
             </tr>
         </ItemTemplate>
         <FooterTemplate>
+            <tr>
+            <td colspan="8">
+               <b>Tổng số hồ sơ:<%= dtlData.Items.Count.ToString()%></b></tr>
             </table>
             </div>
         </FooterTemplate>

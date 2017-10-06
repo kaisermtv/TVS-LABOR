@@ -136,6 +136,10 @@ public class CapSo:DataClass
     }
     public int SetData(int So, DateTime NgayCap, string SoVanBan, int IDNLDTCTN, int IDLoaiVanBan, string Nam)
     {
+        if (So == null)
+        {
+            So = 0;
+        }
         int value = 0;
         string sql = "If not exists(Select * From TblCapSo Where NgayCap=@NgayCap And So=@So And IDLoaiVanBan=@IDLoaiVanBan)";
         sql += " Insert Into TblCapSo(So,NgayCap,SoVanBan,IDNLDTCTN,IDLoaiVanBan,Nam) Values (@So,@NgayCap,@SoVanBan,@IDNLDTCTN,@IDLoaiVanBan,@Nam)";
@@ -164,11 +168,15 @@ public class CapSo:DataClass
     }
     public int SetData(DateTime NgayCap, string SoVanBan, int IDNLDTCTN, int IDLoaiVanBan, string Nam,DateTime NgayKy,int IDNguoiKy)
     {
+        if (So == null)
+        {
+            So = 0;
+        }
         int value = 0;
         string sql = "If not exists(Select * From TblCapSo Where NgayCap=@NgayCap And SoVanBan=@SoVanBan And IDLoaiVanBan=@IDLoaiVanBan)";
         sql += " Insert Into TblCapSo(NgayCap,SoVanBan,IDNLDTCTN,IDLoaiVanBan,Nam,NgayKy,IDNguoiKy) Values (@NgayCap,@SoVanBan,@IDNLDTCTN,@IDLoaiVanBan,@Nam,@NgayKy,@IDNguoiKy)";
         sql += " Else Update TblCapSo Set SoVanBan=@SoVanBan,NgayKy=@NgayKy,IDNguoiKy=@IDNguoiKy Where NgayCap=@NgayCap And IDNLDTCTN=@IDNLDTCTN And IDLoaiVanBan=@IDLoaiVanBan";
-        sql += " Select Max(IDCapSo) From tblCapSo Where NgayCap=@NgayCap And So=@So And IDLoaiVanBan=@IDLoaiVanBan";
+        sql += " Select Max(IDCapSo) From tblCapSo Where NgayCap=@NgayCap And SoVanBan=@SoVanBan And IDLoaiVanBan=@IDLoaiVanBan";
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);

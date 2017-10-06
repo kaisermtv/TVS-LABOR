@@ -397,6 +397,18 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
        , objLichThongBao.KhaiBaoThang11TuNgay, objLichThongBao.KhaiBaoThang11DenNgay
        , objLichThongBao.KhaiBaoThang12TuNgay, objLichThongBao.KhaiBaoThang12DenNgay);
         objTinhHuong.UpdateTrangThaiHS(itemId, 3);
+        #region log he thong
+        Log item = new Log();
+        item.NgayTao = DateTime.Now;
+        DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        item.TroCapThatNghiepID = itemId;
+        item.UserID = (int)_Permission["Id"];
+        item.UserName = _Permission["UserName"].ToString();
+        item.Action = "Tính hưởng TCTN";
+        item.GhiChu = "";
+        new Log().Insert(item);
+        #endregion
         Response.Redirect(Page.Request.Url.ToString(), true);
         _msg = "Cập nhật thành công. " + objTinhHuong.Message;
 
@@ -432,13 +444,24 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         TinhHuong objTinhHuong = new TinhHuong();
         DataTable tblTinhHuong = new DataTable();
         tblTinhHuong = objTinhHuong.getDataById(itemId);
-        if(tblTinhHuong.Rows.Count==0 )
+        if(tblTinhHuong.Rows.Count==0)
         {
             _msg = "Bạn chưa lưu thông tin tính hưởng";
             return;        
-        }
-      
+        }      
         objTinhHuong.UpdateTrangThaiHS(itemId, 6);
+        #region log he thong
+        Log item = new Log();
+        item.NgayTao = DateTime.Now;
+        DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        item.TroCapThatNghiepID = itemId;
+        item.UserID = (int)_Permission["Id"];
+        item.UserName = _Permission["UserName"].ToString();
+        item.Action = "Chuyển trả hồ sơ về bộ phận tiếp nhận";
+        item.GhiChu = "";
+        new Log().Insert(item);
+        #endregion
         Response.Redirect("DanhSachTinhHuong.aspx");
     }
  
@@ -446,6 +469,18 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
     {
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 1);
+        #region log he thong
+        Log item = new Log();
+        item.NgayTao = DateTime.Now;
+        DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        item.TroCapThatNghiepID = itemId;
+        item.UserID = (int)_Permission["Id"];
+        item.UserName = _Permission["UserName"].ToString();
+        item.Action = "Chuyển trả hồ sơ về bộ phận tiếp nhận";
+        item.GhiChu = "";
+        new Log().Insert(item);
+        #endregion
         Response.Redirect("DanhSachTinhHuong.aspx");
     }
     private void Load_CauHinhTinhHuong(bool status)
