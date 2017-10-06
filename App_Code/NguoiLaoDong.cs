@@ -1162,26 +1162,41 @@ public class NguoiLaoDong :DataAbstract
     #endregion
 
     #region method getDataTblNldTuVan1
-    public DataTable getDataTblNldTuVan1(string SearchKey, string HoVaTen)
+    public DataTable getDataTblNldTuVan1(string SearchKey, string HoVaTen,int idnld = 0)
     {
-        string sqlQuery = "", sqlQueryHoVaTen = "";
-        if (SearchKey.Trim() != "")
-        {
-            sqlQuery = " AND (UPPER(RTRIM(LTRIM(TblNguoiLaoDong.HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' OR (DienThoai = @SearchKey) OR (CMND = @SearchKey) OR (BHXH = @SearchKey))";
-        }
-        if (HoVaTen.Trim() != "")
-        {
-            sqlQueryHoVaTen = " AND HoVaTen = @HoVaTen";
-        }
         DataTable objTable = new DataTable();
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TblNldTuVan.IDNguoiLaoDong, IDNldTuVan, HoVaTen, ((Xom_DC)+', '+(Xa_DC)+', '+(Huyen_DC)+', '+(Tinh_DC)) As DiaChi, BHXH, CMND, Email, DienThoai, NgayTuVan FROM dbo.TblNldTuVan, dbo.TblNguoiLaoDong WHERE dbo.TblNldTuVan.IdNguoiLaoDong = dbo.TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + sqlQueryHoVaTen + " ORDER BY NgayTuVan DESC";
+            Cmd.CommandText = "SELECT TblNldTuVan.IDNguoiLaoDong, IDNldTuVan, HoVaTen, ((Xom_DC)+', '+(Xa_DC)+', '+(Huyen_DC)+', '+(Tinh_DC)) As DiaChi, BHXH, CMND, Email, DienThoai, NgayTuVan FROM dbo.TblNldTuVan, dbo.TblNguoiLaoDong WHERE dbo.TblNldTuVan.IdNguoiLaoDong = dbo.TblNguoiLaoDong.IdNguoiLaoDong ";
+
+            if (SearchKey.Trim() != "")
+            {
+                Cmd.CommandText += " AND (UPPER(RTRIM(LTRIM(TblNguoiLaoDong.HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' OR (DienThoai = @SearchKey) OR (CMND = @SearchKey) OR (BHXH = @SearchKey))";
+            }
+
+            if (HoVaTen.Trim() != "")
+            {
+                Cmd.CommandText += " AND HoVaTen = @HoVaTen";
+            }
+
+            if (idnld != 0)
+            {
+                Cmd.CommandText += " AND TblNguoiLaoDong.IdNguoiLaoDong = @IdNguoiLaoDong";
+                Cmd.Parameters.Add("IdNguoiLaoDong", SqlDbType.Int).Value = idnld;
+            }
+
+            Cmd.CommandText += " ORDER BY NgayTuVan DESC";
+
+
             Cmd.Parameters.Add("HoVaTen",SqlDbType.NVarChar).Value = HoVaTen;
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = SearchKey;
+
+            
+
+
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

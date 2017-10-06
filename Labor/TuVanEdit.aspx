@@ -520,14 +520,14 @@
                 <tr style="height: 40px;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
                     <td style="width: 90%;" colspan="6">
-                        <asp:TextBox ID="txtViTriCongViec" CssClass="form-control" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0" Style="margin-top: -10px; z-index: 10; visibility: hidden;"></asp:TextBox>
+                        <asp:TextBox ID="txtViTriCongViec" CssClass="form-control" Visible="true" runat="server" ></asp:TextBox>
                         <!---Tự động hoàn tất -->
-                        <select class="js-example-basic-multiple" id="ddlQickSelect" multiple="multiple" style="width: 100%">
+                        <%--<select class="js-example-basic-multiple" id="ddlQickSelect" multiple="multiple" style="width: 100%">
                             <%foreach (string i in lv_Vitri)
                               {%>
                             <option value="<%=i.ToString() %>"><%=i.ToString() %></option>
                             <%} %>
-                        </select>
+                        </select>--%>
 
                     </td>
                 </tr>
@@ -572,14 +572,14 @@
                 <tr style="height: 40px;">
                     <td style="width: 10%; text-align: right; padding-right: 5px;">Vị trí công việc:</td>
                     <td style="width: 90%;" colspan="6">
-                        <asp:TextBox ID="txtViTriCongViec2" CssClass="form-control" Visible="true" runat="server" Height="0" Width="0" BorderWidth="0" Style="margin-top: -10px; z-index: 10; visibility: hidden;"></asp:TextBox>
+                        <asp:TextBox ID="txtViTriCongViec2" CssClass="form-control" Visible="true" runat="server"></asp:TextBox>
                         <!---Tự động hoàn tất -->
-                        <select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
+                        <%--<select class="js-example-basic-multiple2" id="ddlQickSelect2" multiple="multiple" style="width: 100%">
                             <%foreach (string i in lv_Vitri)
                               {%>
                             <option class="op1" value="<%=i.ToString() %>"><%=i.ToString() %></option>
                             <%} %>
-                        </select>
+                        </select>--%>
                     </td>
                 </tr>
 

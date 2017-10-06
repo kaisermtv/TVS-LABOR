@@ -34,6 +34,8 @@
                 </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 8%;">Ngày tư vấn
                 </td>
+                <td class="DataListTableHeaderTdItemJustify" style="width: 3%;">&nbsp;
+                </td>
                 <td class="DataListTableHeaderTdItemJustify" style="width: 6%;">&nbsp;
                 </td>
             </tr>
@@ -45,7 +47,7 @@
             <table class="DataListTable" border="0">
                 <tr style="height: 40px;">
                     <td class="DataListTableTdItemJustify" style="width: 18%;">
-                        <span class="name"><%# Eval("HoVaTen") %></span>
+                        <a href="TuVan.aspx?iIDNLD=<%# Eval("IDNguoiLaoDong") %>"><span class="name"><%# Eval("HoVaTen") %></span></a>
                     </td>
                     <td class="DataListTableTdItemJustify" style="width: 10%;">
                         <%# Eval("BHXH") %>
@@ -64,6 +66,10 @@
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 8%;">
                         <a href ="#" data-toggle="modal" data-target="#myModal<%# Eval("IDNldTuVan") %>"><%# Eval("NgayTuVan","{0:dd/MM/yyyy}") %></a>
+                    </td>
+                    <td class="DataListTableTdItemCenter" style="width: 3%;">
+                        <a href="TuVanEdit.aspx?idNld=<%# Eval("IDNguoiLaoDong") %>">
+                            <img src="../Images/New.png" alt=""></a>
                     </td>
                     <td class="DataListTableTdItemCenter" style="width: 3%;">
                         <a href="TuVanEdit.aspx?id=<%# Eval("IDNldTuVan") %>&idNld=<%# Eval("IDNguoiLaoDong") %>">
@@ -122,8 +128,16 @@
                 <td style="width: 800px; padding-left: 15px;">
                     <a href="TuVanEdit.aspx">
                         <input type="text" value="Thêm mới" class="btn btn-primary" style="width: 90px !important;" /></a>
+                    <% if(IDNLD != 0){ %>
+                    <a href="TuVanEdit.aspx?idNld=<%= IDNLD %>">
+                        <input type="text" value="Thêm lần tư vấn cho NLD" class="btn btn-danger" style="width: 200px !important;" /></a>
+                    <% } %>
                 </td>
                 <td style="text-align: right;">
+                    <% if(IDNLD != 0){ %>
+                    <a href="/Labor/TuVan.aspx">
+                        <input type="text" value="Tất cả" class="btn btn-danger" style="width: 90px !important;" /></a>
+                    <% } %>
                     <a href="../Admin/Default.aspx">
                         <input type="text" value="Thoát" class="btn btn-default" style="width: 90px !important;" /></a>
                 </td>

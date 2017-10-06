@@ -21,6 +21,8 @@ public partial class Labor_TuVan : System.Web.UI.Page
     private SearchConfig objSearchConfig = new SearchConfig();
     private string hoVaTen = "";
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
+
+    public int IDNLD = 0;
     #endregion
 
     #region method Page_Load
@@ -31,6 +33,16 @@ public partial class Labor_TuVan : System.Web.UI.Page
             Response.Redirect("../Login.aspx");
         }
         Session["TITLE"] = "HỒ SƠ TƯ VẤN";
+
+        try
+        {
+            this.IDNLD = int.Parse(Request["iIDNLD"].ToString());
+        }
+        catch
+        {
+            this.IDNLD = 0;
+        }
+
         try
         {
             this.hoVaTen = Request.QueryString["n"].ToString();
@@ -50,7 +62,7 @@ public partial class Labor_TuVan : System.Web.UI.Page
     #region getData()
     private void getData()
     {
-        this.objTable = this.objNguoiLaoDong.getDataTblNldTuVan1(this.txtSearch.Value.ToString(), this.hoVaTen);
+        this.objTable = this.objNguoiLaoDong.getDataTblNldTuVan1(this.txtSearch.Value.ToString(), this.hoVaTen,this.IDNLD);
         cpTuVanViecLam.MaxPages = 2000;
         cpTuVanViecLam.PageSize = 10;
         cpTuVanViecLam.DataSource = this.objTable.DefaultView;
