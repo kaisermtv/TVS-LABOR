@@ -15,6 +15,9 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
     private SearchConfig objSearchConfig = new SearchConfig();
     private int currPage = 0;
     private bool View = false, Add = false, Edit = false, Del = false, Orther = false;
+
+
+    public int index = 0;
     #endregion
 
     #region method Page_Load
@@ -39,9 +42,9 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
         cpTuVanXuatKhau.MaxPages = 1000;
         cpTuVanXuatKhau.PageSize = 15;
         cpTuVanXuatKhau.DataSource = this.objTable.DefaultView;
-        cpTuVanXuatKhau.BindToControl = dtlTuVanXuatKhau;
-        dtlTuVanXuatKhau.DataSource = cpTuVanXuatKhau.DataSourcePaged;
-        dtlTuVanXuatKhau.DataBind();
+        cpTuVanXuatKhau.BindToControl = dtlData;
+        dtlData.DataSource = cpTuVanXuatKhau.DataSourcePaged;
+        dtlData.DataBind();
      
     }
     #endregion

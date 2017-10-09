@@ -55,7 +55,7 @@
             <p>Lý do: <% Response.Write(this.NldKq_LyDoKhongTrungTuyen); %>........................................................................................................................</p>
             <p>....................................................................................................................................</p>
 
-            <div class="LoiCamOn"><b>Cảm ơn sự quan tâm phối hợp của trung tâm dịch vụ và việc làm Nghệ An./.</b></div>
+            <div class="LoiCamOn"><b>Cảm ơn sự quan tâm phối hợp của trung tâm dịch vụ việc làm Nghệ An./.</b></div>
 
             <table>
                 <tr>

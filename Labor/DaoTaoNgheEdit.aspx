@@ -40,10 +40,14 @@
 
         <tr style="height: 36px;">
             <td style="width: 10%; text-align: right; padding-right: 5px;">Địa chỉ:</td>
-            <td colspan="3">
+            <td>
                 <asp:TextBox ID="txtDiaChi" runat="server" ReadOnly="true" Style="background-color: #fff;" CssClass="form-control"></asp:TextBox>
             </td>
-            <td style="width: 10%; text-align: right; padding-right: 5px;">Giới tính:</td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Số CMND:</td>
+            <td style="width: 15%;">
+                <asp:TextBox ID="txtCMND" runat="server" ReadOnly="true" Style="background-color: #fff;" CssClass="form-control"></asp:TextBox>
+            </td>
+            <td style="width: 10%; text-align: right; padding-right: 5px;">Số điện thoại:</td>
             <td style="width: 15%;">
                 <asp:TextBox ID="txtSoDienThoai" runat="server" ReadOnly="true" Style="background-color: #fff;" CssClass="form-control"></asp:TextBox>
             </td>

@@ -77,7 +77,50 @@
         </tr>
     </table>
 
-    <asp:Repeater ID="dtlTuVanXuatKhau" runat="server" EnableViewState="False">
+    <asp:Repeater ID="dtlData" runat="server" EnableViewState="False">
+        <HeaderTemplate><% this.index = 1; %>
+            <table class="DataListTable" style="height: 40px;">
+                <tr class="DataListTableHeader">
+                    <th class="DataListTableHeaderTdItemTT" style="width: 4%;">STT</th>
+                    <th class="DataListTableHeaderTdItemJustify">Họ Và Tên</th>
+                    <th class="DataListTableHeaderTdItemJustify"  style="width: 10%;">CMND</th>
+                    <th class="DataListTableHeaderTdItemJustify"  style="width: 10%;">Ngày sinh</th>
+                    <th class="DataListTableHeaderTdItemJustify"  style="width: 10%;">Loại khóa học</th>
+                    <th class="DataListTableHeaderTdItemJustify"  style="width: 20%;">Môn học</th>
+                    <th class="DataListTableHeaderTdItemJustify"  style="width: 10%;">Ngày bắt đầu</th>
+                    <th class="DataListTableHeaderTdItemJustify" style="width: 10%;">Trạng thái</th>
+                    <th class="DataListTableHeaderTdItemCenter" style="width: 3%;">Sửa</th>
+                    <th class="DataListTableHeaderTdItemCenter" style="width: 3%;">Xóa</th>
+                </tr>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <tr style="height: 36px;">
+                <td class="DataListTableTdItemTT"><%# this.index++ %></td>
+                <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
+                <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
+                <td class="DataListTableTdItemJustify"><%# (Eval("NgaySinh").ToString() != "")? ((DateTime)Eval("NgaySinh")).ToString("dd/MM/yyyy"):"" %></td>
+                <td class="DataListTableTdItemJustify"><%# Eval("LoaiKhoaHoc") %></td>
+                <td class="DataListTableTdItemJustify"><%# Eval("NameKhoaHoc") %></td>
+                <td class="DataListTableTdItemJustify"><%# (Eval("NgayBatDau").ToString() != "")? ((DateTime)Eval("NgayBatDau")).ToString("dd/MM/yyyy"):"" %></td>
+                <%--<td class="DataListTableTdItemJustify"><%# Eval("ACCT_EMAIL") %></td>--%>
+                <td class="DataListTableTdItemJustify"><%# Eval("State").ToString().Replace("0","Chưa xử lý").Replace("1","Đang xử lý").Replace("2","Đã xử lý") %></td>
+                <td class="DataListTableTdItemCenter">
+                    <a href="DaoTaoNgheEdit.aspx?id=<%# Eval("IDNldDaoTao") %>">
+                        <img src="/Images/Edit.png" alt=""></a>
+                </td>
+                <td class="DataListTableTdItemCenter">
+                    <a href="DaoTaoNgheDel.aspx?id=<%# Eval("IDNldDaoTao") %>">
+                        <img src="/Images/delete.png" alt=""></a>
+                </td>
+            </tr>
+        </ItemTemplate>
+        <FooterTemplate>
+            </table>
+        </FooterTemplate>
+    </asp:Repeater>
+
+
+<%--    <asp:Repeater ID="dtlTuVanXuatKhau" runat="server" EnableViewState="False">
         <HeaderTemplate>
             <div class="table-responsive2" style="margin-top: -10px; background-color: #fff;">
                 <table id="tableview" class="table table-bordered table-striped tableheader" border="0" style="background-color: #fff!important;">
@@ -144,7 +187,7 @@
           <br />
             </div>
         </FooterTemplate>
-    </asp:Repeater>
+    </asp:Repeater>--%>
 
     <cc1:CollectionPager ID="cpTuVanXuatKhau" runat="server" BackText="" FirstText="Đầu"
         ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"

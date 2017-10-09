@@ -49,14 +49,10 @@ public partial class Labor_DaoTaoNgheEdit : System.Web.UI.Page
                 {
                     this.txtNgaySinh.Text = DateTime.Parse(this.objTable.Rows[0]["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
                 }
-                if (this.objTable.Rows[0]["IDGioiTinh"].ToString() != "1")
-                {
-                    this.txtGioiTinh.Text = "Nam";
-                }
-                else
-                {
-                    this.txtGioiTinh.Text = "Nữ";
-                }
+
+                this.txtGioiTinh.Text = this.objTable.Rows[0]["IDGioiTinh"].ToString().Replace("0", "").Replace("1", "Nam").Replace("2", "Nữ");
+                this.txtCMND.Text = this.objTable.Rows[0]["CMND"].ToString();
+
                 this.txtDiaChi.Text = this.objTable.Rows[0]["DiaChi"].ToString();
                 this.txtSoDienThoai.Text = this.objTable.Rows[0]["DienThoai"].ToString();
 
