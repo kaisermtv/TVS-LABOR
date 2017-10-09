@@ -17,8 +17,10 @@ public class DataSQL
     #endregion
 
     #region Even DataSQL
-    public DataSQL(string tableName)
+    public DataSQL(string tableName, string ConnectKey = "TVSConn")
 	{
+        this.ConnectKey = ConnectKey;
+
         if (!ListTable.ContainsKey(tableName))
         {
             tableInfo = getTableInfo(tableName);
@@ -355,9 +357,14 @@ public class DataSQL
             Cmd.CommandText = "SELECT TOP 1 COLUMN_NAME FROM INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE WHERE TABLE_NAME = @TABLE_NAME AND CONSTRAINT_NAME LIKE 'PK%' ";
             Cmd.Parameters.Add("TABLE_NAME", SqlDbType.NVarChar).Value = tableName;
 
-            tableInfo.PrimaryKey = (string)Cmd.ExecuteScalar();
+            try
+            {
+                tableInfo.PrimaryKey = Cmd.ExecuteScalar().ToString();
 
-            ((ColumInfo)tableInfo.ListColums[tableInfo.PrimaryKey]).isPrimaryKy = true;
+                ((ColumInfo)tableInfo.ListColums[tableInfo.PrimaryKey]).isPrimaryKy = true;
+            }
+            catch { }
+            
 
             SQLClose();
         }
@@ -383,13 +390,17 @@ public class DataSQL
     #endregion
 
     #region method getSQLConnect
+
+    //public string ConnectString = "TVSConnect";
+    public string ConnectKey = "TVSConn";
+
     protected SqlCommand getSQLConnect()
     {
         try
         {
             if (this.sqlCon == null)
             {
-                this.sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+                this.sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings[ConnectKey].ConnectionString);
                 sqlCon.Open();
             }
         }
