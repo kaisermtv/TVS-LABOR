@@ -6,7 +6,6 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
         .khongkhaibao {
             padding: 3px;
             padding-left: 8px;

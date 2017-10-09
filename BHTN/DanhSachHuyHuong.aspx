@@ -54,8 +54,7 @@
                         </span>
                     </div>
                 </td>
-                <td style="width: 40px !important; text-align: center;">0
-                    <asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
+                <td style="width: 40px !important; text-align: center;">&nbsp;<asp:ImageButton ID="btnSearch" ImageUrl="../images/Search.png" runat="server" Style="margin-top: 5px;" OnClick="btnSearch_Click" />
                 </td>
                 <td >
                       <div style="float:right;width:165px;margin:10px;text-align:right;">
@@ -65,7 +64,7 @@
 
             </tr>
         </table>
-        <asp:Repeater ID="dtlData" runat="server">
+        <asp:Repeater ID="dtlData" runat="server" onitemcommand="dtlData_ItemCommand">
             <HeaderTemplate>
                 <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
                     <tr style="height: 40px;" class="DataListTableHeader">
@@ -76,6 +75,9 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số BHXH</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày hẹn trả KQ</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Thông tin BH</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 8%; text-align:left">Ngày ký </td> 
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 8%; text-align:left">Số văn bản</td> 
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 8%;">Hủy đề xuất</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -91,16 +93,26 @@
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
                     </td>
                     <td class="DataListTableTdItemCenter">Đóng <%# Eval("SoThangDongBHXH").ToString() != ""? Eval("SoThangDongBHXH") :"0"%> tháng
+                    </td>  
+                       <td class="DataListTableTdItemJustify">
+                        <%# (Eval("NgayKy").ToString() != "") ? ((DateTime)Eval("NgayKy")).ToString("dd/MM/yyyy") : ""%><br />
                     </td>                  
+                    <td class="DataListTableTdItemJustify">
+                        <%# Eval("SoVanBan")%><br />
+                    </td>  
+                    <td class="DataListTableTdItemCenter">
+                      <asp:Button ID="btnHuyDeXuat" class="btn btn-primary" runat ="server" CommandName="HuyDeXuat" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Hủy đề xuất" />
+                     </td>              
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
              <tr>
-            <td colspan="7">
+            <td colspan="8">
                <b>Tổng số hồ sơ:<%= dtlData.Items.Count.ToString()%></b></tr>
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
             id="tblABC" runat="server">
             <tr>

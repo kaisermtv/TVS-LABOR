@@ -250,7 +250,7 @@ public class TinhHuong:DataClass
         //NgayNop = KiemTraNgayNghi(NgayNop);
         return NgayNop;
     }
-    private DateTime KiemTraNgayNghi(DateTime Datetime)
+    public DateTime KiemTraNgayNghi(DateTime Datetime)
     {
         DataTable tblNgayNghiLe = GetDanhSachNgayNghiLe(Datetime.Year.ToString().Trim());    
         if(tblNgayNghiLe ==null || tblNgayNghiLe.Rows.Count==0)
@@ -266,7 +266,7 @@ public class TinhHuong:DataClass
         }
         return Datetime;
     }
-    private bool CheckNgayLe(DateTime Datetime)
+    public bool CheckNgayLe(DateTime Datetime)
     {
         DataTable tblNgayNghiLe = GetDanhSachNgayNghiLe(Datetime.Year.ToString().Trim());
         if (tblNgayNghiLe == null || tblNgayNghiLe.Rows.Count == 0)
@@ -314,11 +314,12 @@ public class TinhHuong:DataClass
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayHenTraKQ,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai FROM TblNLDTroCapThatNghiep AS TN";
+            Cmd.CommandText  = "SELECT TN.[IdNLDTCTN],P.[HoVaTen],P.[CMND],P.[BHXH],TN.NgayNopHoSo,TN.NgayHenTraKQ,TN.NgayNghiViec,TN.SoThangDongBHXH,TN.NgayHoanThien,TT.name AS TrangThai,TN.IdTrangThai,TN.DaKichHoat";
+            Cmd.CommandText += " FROM TblNLDTroCapThatNghiep AS TN";
             Cmd.CommandText += " LEFT JOIN TblNguoiLaoDong AS P ON TN.IDNguoiLaoDong = P.IDNguoiLaoDong";
-            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";     
+            Cmd.CommandText += " LEFT JOIN tblTrangThaiHoSo AS TT ON TN.IdTrangThai = TT.id";
             Cmd.CommandText += " WHERE TN.IdTrangThai In (Select distinct Item from dbo.Split(@IDTrangThais))";
-            Cmd.CommandText += " And (HoVaTen=@str Or @str='') And (TN.NgayNopHoSo between @TuNgay And @DenNgay)";
+            Cmd.CommandText += " And (HoVaTen=@str Or @str='' Or CMND =@str Or BHXH=@str) And (TN.NgayNopHoSo between @TuNgay And @DenNgay)";
             Cmd.Parameters.Add("IDTrangThais", SqlDbType.NVarChar).Value = IDTrangThais;      
             Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
             Cmd.Parameters.Add("TuNgay", SqlDbType.DateTime).Value = TuNgay;
@@ -336,8 +337,17 @@ public class TinhHuong:DataClass
             return null;
         }
     }
-    public DataTable getDanhSachHoSoAndQuyetDinh(string IDTrangThais, string searchKey = "")
+    public DataTable getDanhSachHoSoAndQuyetDinh(string IDTrangThais, string searchKey = "", DateTime? TuNgay=null ,DateTime? DenNgay=null)
     {
+        if (!TuNgay.HasValue)
+        {
+            TuNgay = new DateTime(1900, 1, 1);
+
+        }
+        if (!DenNgay.HasValue)
+        {
+            DenNgay = new DateTime(9999, 1, 1);
+        }
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
@@ -348,8 +358,11 @@ public class TinhHuong:DataClass
             Cmd.CommandText += " WHERE TN.IdTrangThai In (Select distinct Item from dbo.Split(@IDTrangThais))";
             Cmd.CommandText += " And (HoVaTen=@str Or @str='')";
             Cmd.CommandText += " And  (IDCapSo in (select max(IDCapSo) from TblCapSo Where IDNLDTCTN=TN.IdNLDTCTN ) Or IDCapSo is null)";
+            Cmd.CommandText += " And (TN.NgayNopHoSo between @TuNgay And @DenNgay)";
             Cmd.Parameters.Add("IDTrangThais", SqlDbType.NVarChar).Value = IDTrangThais;
             Cmd.Parameters.Add("str", SqlDbType.NVarChar).Value = searchKey;
+            Cmd.Parameters.Add("TuNgay", SqlDbType.DateTime).Value = TuNgay;
+            Cmd.Parameters.Add("DenNgay", SqlDbType.DateTime).Value = DenNgay;
             SqlDataAdapter da = new SqlDataAdapter(Cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -466,6 +479,31 @@ public class TinhHuong:DataClass
             Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
             Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = IDTrangThaiHS;
             rows = Cmd.ExecuteNonQuery();        
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch (Exception ex)
+        {
+            this.Message = ex.Message;
+            this.ErrorCode = ex.HResult;
+            rows = 0;
+        }
+        return rows;
+    }
+    public int UpdateTrangThaiHS(int IDNLDTCTN, int IDTrangThaiHS, bool DaKichHoat)
+    {
+        int rows = 0;
+        try
+        {
+            string sql = "Update TblNLDTroCapThatNghiep Set IdTrangThai=@TrangThaiHS, DaKichHoat=@DaKichHoat Where IDNLDTCTN=@IDNLDTCTN";
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = sql;
+            Cmd.Parameters.Add("IDNLDTCTN", SqlDbType.Int).Value = IDNLDTCTN;
+            Cmd.Parameters.Add("TrangThaiHS", SqlDbType.Int).Value = IDTrangThaiHS;
+            Cmd.Parameters.Add("DaKichHoat", SqlDbType.Bit).Value = DaKichHoat;
+            rows = Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
         }

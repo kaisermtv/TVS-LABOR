@@ -962,4 +962,5 @@ public class Common
         string str = str1 + str2;
         return replace_special_word(str) + "đồng";
     } 
+   
 }

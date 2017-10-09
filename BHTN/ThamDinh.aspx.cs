@@ -304,8 +304,13 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
         #endregion
         Response.Redirect("DanhSachThamDinh.aspx");
     }
-    protected void btnTraTinhHuong_Click(object sender, EventArgs e)
+    protected void btnLuuTraTinhHuong_Click(object sender, EventArgs e)
     {
+        if (txtLyDoTraTinhHuong.Text.Trim() == "")
+        {
+            _msg = "Bạn chưa nhập lý do chuyển tra";
+            return;
+        }
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 2);
         #region log he thong
@@ -317,13 +322,18 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
         item.UserID = (int)_Permission["Id"];
         item.UserName = _Permission["UserName"].ToString();
         item.Action = "Trả bổ phận tính hưởng (TCTN)";
-        item.GhiChu = "";
+        item.GhiChu =txtLyDoTraTinhHuong.Text.Trim();
         new Log().Insert(item);
         #endregion
         Response.Redirect("DanhSachThamDinh.aspx");
     }
-    protected void btnTraTiepNhan_Click(object sender, EventArgs e)
+    protected void btnLuuTraTiepNhan_Click(object sender, EventArgs e)
     {
+        if (txtLyDoTraTiepNhan.Text.Trim() == "")
+        {
+            _msg = "Bạn chưa nhập lý do chuyển tra";
+            return;
+        }
         TinhHuong objTinhHuong = new TinhHuong();
         objTinhHuong.UpdateTrangThaiHS(itemId, 1);
         #region log he thong

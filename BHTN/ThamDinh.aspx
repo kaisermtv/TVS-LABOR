@@ -441,8 +441,8 @@
                 </div>
             
                 <asp:Button ID="btnDuyet" runat="server" Text="Lưu/Duyệt" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnDuyet_Click" />
-                <asp:Button ID="btnTraTinhHuong" runat="server" Text="Trả tính hưởng" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraTinhHuong_Click" />
-                <asp:Button ID="btnTraTiepNhan" runat="server" Text="Trả tiếp nhận" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnTraTiepNhan_Click" />
+                <asp:Button ID="btnTraTinhHuong" runat="server" Text="Trả tính hưởng" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" data-toggle="modal" data-target="#LyDoTraTiepNhan"/>
+                <asp:Button ID="btnTraTiepNhan" runat="server" Text="Trả tiếp nhận" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" data-toggle="modal" data-target="#LyDoTraTinhHuong" />
               </div>
         </div>
     </div>
@@ -481,8 +481,50 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Nhật ký</h4>
                 </div>
-                <div class="modal-body">
+              <div class="modal-body" style=" overflow-x:auto; height:400px;">
                 <uc2:uctLog ID="uctLog1" runat="server" />
+                </div>
+                <div class="modal-footer">                 
+                </div>
+            </div>
+
+        </div>
+    </div> 
+
+      <div id="LyDoTraTiepNhan" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:60%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Lý do trả hồ sơ</h4>
+                </div>
+                <div class="modal-body">
+                <asp:TextBox ID="txtLyDoTraTiepNhan" runat="server" TextMode="MultiLine" Width="100%" Height="200px"></asp:TextBox>
+                <br />
+                <br />
+                <asp:Button ID="btnLuuTraTiepNhan" runat="server" OnClick="btnLuuTraTiepNhan_Click" CssClass="btn btn-primary" Text="Lưu" />
+                </div>
+                <div class="modal-footer">                 
+                </div>
+            </div>
+
+        </div>
+    </div> 
+
+    <div id="LyDoTraTinhHuong" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:60%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Lý do trả hồ sơ</h4>
+                </div>
+                <div class="modal-body">
+                <asp:TextBox ID="txtLyDoTraTinhHuong" runat="server" TextMode="MultiLine" Width="100%" Height="200px"></asp:TextBox>
+                <br />
+                <br />
+                <asp:Button ID="btnLuuTraTinhHuong" runat="server" OnClick="btnLuuTraTinhHuong_Click" CssClass="btn btn-primary" Text="Lưu" />
                 </div>
                 <div class="modal-footer">                 
                 </div>

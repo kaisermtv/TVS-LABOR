@@ -39,19 +39,17 @@ public partial class uctLog : System.Web.UI.UserControl
         }
        if(!Page.IsPostBack)
        {
-           if (_IDNLDTCTN >0)
+           if (_IDNLDTCTN > 0)
            {
                DataTable objData = new Log().GetByOptions(_IDNLDTCTN);
                cpData.MaxPages = 1000;
-               cpData.PageSize = 12;
+               cpData.PageSize = 1000;
                cpData.DataSource = objData.DefaultView;
                cpData.BindToControl = dtlData;
                dtlData.DataSource = cpData.DataSourcePaged;
                dtlData.DataBind();
            }
-
-        
-          
        }
+         
     }    
   }

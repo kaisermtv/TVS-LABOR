@@ -51,7 +51,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
             DateTime NgayHenTraKQ = (DateTime)objData.Rows[i]["NgayHenTraKQ"];
             NgayHenTraKQ = new DateTime(NgayHenTraKQ.Year, NgayHenTraKQ.Month, NgayHenTraKQ.Day);
-            if (DateTime.Compare(NgayHenTraKQ, NgayQuaHan) < 0)
+            if (DateTime.Compare(NgayHenTraKQ, NgayQuaHan) < 0 &&  (bool)objData.Rows[i]["DaKichHoat"]==false)
             {
                 // neu  qua 2 ngay hen tra thì chuyen sang muc danh de de nghi huy
                 int IDNLDTCTN=(int)objData.Rows[i]["IDNLDTCTN"];
@@ -61,7 +61,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
     }
     private void Load_TrangThai()
     {
-        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,13,34,35,44,45,57,58,");
+        DataTable tblTrangThai = new TrangThaiHoSo().GetByIds(",11,12,23,24,34,35,44,45,57,58,");
         DataRow row = tblTrangThai.NewRow();
         row["ID"] = 0;
         row["Name"] = "--Tất cả--";
@@ -71,7 +71,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         ddlTrangThai.DataSource = tblTrangThai;
         ddlTrangThai.DataBind();
     }
-    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,13,34,35,44,45,57,58,")
+    private void Load_DanhSachHoSo(string Ids=",11,12,23,24,34,35,44,45,57,58,")
     {
         string str = txtSearch.Value.Trim();
         DateTime TuNgay = new DateTime(1900, 1, 1), DenNgay = new DateTime(9999, 1, 1);
@@ -83,7 +83,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
             DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
         }
-        DataTable objData = new TinhHuong().getDanhSachHoSo(Ids,TuNgay,DenNgay, str);
+        DataTable objData = new TinhHuong().getDanhSachHoSoAndQuyetDinh(Ids,str, TuNgay, DenNgay);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -166,6 +166,7 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
                 new TinhHuong().UpdateTrangThaiHS(ID, 13);
             }
         }
+        Load_DanhSachHoSo();
 
     }
 
