@@ -6,8 +6,130 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
-public class NguoiLaoDong :DataClass
+public class NguoiLaoDong :DataAbstract
 {
+    #region method NguoiLaoDong
+    public NguoiLaoDong()
+    {
+        keyTable = "IDNguoiLaoDong";
+        nameTable = "TblNguoiLaoDong";
+    }
+    #endregion
+
+    #region setData Atribute
+    protected override SqlDbType? GetTypeAtribute(string name)
+    {
+        switch (name)
+        {
+            case "Ma":
+                return SqlDbType.NVarChar;
+            case "IDNguoiLaoDong":
+                return SqlDbType.Int;
+            case "HoVaTen":
+                return SqlDbType.NVarChar;
+            case "NgaySinh":
+                return SqlDbType.DateTime;
+            case "IDGioiTinh":
+                return SqlDbType.Int;
+            case "NoiSinh":
+                return SqlDbType.NVarChar;
+            case "QueQuan":
+                return SqlDbType.NVarChar;
+            case "Tinh_TT":
+                return SqlDbType.NVarChar;
+            case "Huyen_TT":
+                return SqlDbType.NVarChar;
+            case "Xa_TT":
+                return SqlDbType.NVarChar;
+            case "Xom_TT":
+                return SqlDbType.NVarChar;
+            case "Tinh_DC":
+                return SqlDbType.NVarChar;
+            case "Huyen_DC":
+                return SqlDbType.NVarChar;
+            case "Xa_DC":
+                return SqlDbType.NVarChar;
+            case "Xom_DC":
+                return SqlDbType.NVarChar;
+            case "NoiThuongTru":
+                return SqlDbType.NVarChar;
+            case "DiaChi":
+                return SqlDbType.NVarChar;
+            case "DienThoai":
+                return SqlDbType.NVarChar;
+            case "Email":
+                return SqlDbType.NVarChar;
+            case "IDDanToc":
+                return SqlDbType.Int;
+            case "IDTonGiao":
+                return SqlDbType.Int;
+            case "TruongTHPT":
+                return SqlDbType.NVarChar;
+            case "TruongDiaChi":
+                return SqlDbType.NVarChar;
+            case "NienKhoa":
+                return SqlDbType.NVarChar;
+            case "SucKhoe":
+                return SqlDbType.NVarChar;
+            case "ChieuCao":
+                return SqlDbType.Float;
+            case "CanNang":
+                return SqlDbType.Float;
+            case "IDTrinhDoPhoThong":
+                return SqlDbType.Int;
+            case "IDNgoaiNgu":
+                return SqlDbType.Int;
+            case "IDTinHoc":
+                return SqlDbType.Int;
+            case "CMND":
+                return SqlDbType.NVarChar;
+            case "NgayCapCMND":
+                return SqlDbType.DateTime;
+            case "NoiCap":
+                return SqlDbType.NVarChar;
+            case "BHXH":
+                return SqlDbType.NVarChar;
+            case "TaiKhoan":
+                return SqlDbType.NVarChar;
+            case "NoiDungKhac":
+                return SqlDbType.NVarChar;
+            case "TrinhDoDaoTao":
+                return SqlDbType.NVarChar;
+            case "TrinhDoKyNangNghe":
+                return SqlDbType.NVarChar;
+            case "KhaNangNoiTroi":
+                return SqlDbType.NVarChar;
+            case "State":
+                return SqlDbType.Bit;
+            case "IdTrinhDoTinHoc":
+                return SqlDbType.Int;
+            case "IdTrinhDoNgoaiNgu":
+                return SqlDbType.Int;
+            case "StateLapGiaDinh":
+                return SqlDbType.Int;
+            case "NgayCapBHXH":
+                return SqlDbType.DateTime;
+            case "NoiCapBHXH":
+                return SqlDbType.Int;
+            case "NoiDangKyKhamBenh":
+                return SqlDbType.Int;
+            case "TrinhDoChuyenMon":
+                return SqlDbType.Int;
+            case "LinhVucDaoTao":
+                return SqlDbType.Int;
+            case "CongViecDaLam":
+                return SqlDbType.NText;
+            case "IDNganHang":
+                return SqlDbType.Int;
+            case "MaSoThue":
+                return SqlDbType.NVarChar;
+        }
+
+        return null;
+    }
+    #endregion
+
+
 
     #region method setData
     public int setData(ref int IDNguoiLaoDong, string Ma, string HoVaTen, DateTime NgaySinh, int IDGioiTinh, string NoiSinh, string QueQuan, string DienThoai, string Email, int IDDanToc, int IDTonGiao, string TruongTHPT, string TruongDiaChi, string NienKhoa, string SucKhoe,
@@ -1040,41 +1162,26 @@ public class NguoiLaoDong :DataClass
     #endregion
 
     #region method getDataTblNldTuVan1
-    public DataTable getDataTblNldTuVan1(string SearchKey, string HoVaTen,int idnld = 0)
+    public DataTable getDataTblNldTuVan1(string SearchKey, string HoVaTen)
     {
+        string sqlQuery = "", sqlQueryHoVaTen = "";
+        if (SearchKey.Trim() != "")
+        {
+            sqlQuery = " AND (UPPER(RTRIM(LTRIM(TblNguoiLaoDong.HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' OR (DienThoai = @SearchKey) OR (CMND = @SearchKey) OR (BHXH = @SearchKey))";
+        }
+        if (HoVaTen.Trim() != "")
+        {
+            sqlQueryHoVaTen = " AND HoVaTen = @HoVaTen";
+        }
         DataTable objTable = new DataTable();
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TblNldTuVan.IDNguoiLaoDong, IDNldTuVan, HoVaTen, ((Xom_DC)+', '+(Xa_DC)+', '+(Huyen_DC)+', '+(Tinh_DC)) As DiaChi, BHXH, CMND, Email, DienThoai, NgayTuVan FROM dbo.TblNldTuVan, dbo.TblNguoiLaoDong WHERE dbo.TblNldTuVan.IdNguoiLaoDong = dbo.TblNguoiLaoDong.IdNguoiLaoDong ";
-
-            if (SearchKey.Trim() != "")
-            {
-                Cmd.CommandText += " AND (UPPER(RTRIM(LTRIM(TblNguoiLaoDong.HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' OR (DienThoai = @SearchKey) OR (CMND = @SearchKey) OR (BHXH = @SearchKey))";
-            }
-
-            if (HoVaTen.Trim() != "")
-            {
-                Cmd.CommandText += " AND HoVaTen = @HoVaTen";
-            }
-
-            if (idnld != 0)
-            {
-                Cmd.CommandText += " AND TblNguoiLaoDong.IdNguoiLaoDong = @IdNguoiLaoDong";
-                Cmd.Parameters.Add("IdNguoiLaoDong", SqlDbType.Int).Value = idnld;
-            }
-
-            Cmd.CommandText += " ORDER BY NgayTuVan DESC";
-
-
+            Cmd.CommandText = "SELECT TblNldTuVan.IDNguoiLaoDong, IDNldTuVan, HoVaTen, ((Xom_DC)+', '+(Xa_DC)+', '+(Huyen_DC)+', '+(Tinh_DC)) As DiaChi, BHXH, CMND, Email, DienThoai, NgayTuVan FROM dbo.TblNldTuVan, dbo.TblNguoiLaoDong WHERE dbo.TblNldTuVan.IdNguoiLaoDong = dbo.TblNguoiLaoDong.IdNguoiLaoDong " + sqlQuery + sqlQueryHoVaTen + " ORDER BY NgayTuVan DESC";
             Cmd.Parameters.Add("HoVaTen",SqlDbType.NVarChar).Value = HoVaTen;
             Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = SearchKey;
-
-            
-
-
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -2097,69 +2204,47 @@ public class NguoiLaoDong :DataClass
     #region method getDataNldDaoTao
     public DataTable getDataNldDaoTao(string searchKey, int State)
     {
+        string sqlQuery = "", sqlQueryState = "";
+        if (searchKey.Trim() != "")
+        {
+            sqlQuery += " AND UPPER(RTRIM(LTRIM(HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+        }
+        if (State != 3)
+        {
+            sqlQueryState = " AND ISNULL(TblNldDaoTao.State,0) = " + State.ToString();
+        }
+
+        DataTable objTable = new DataTable();
         try
         {
-            SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "SELECT DT.*,NLD.*,KH.* FROM TblNldDaoTao AS DT";
-            Cmd.CommandText += " INNER JOIN TblNguoiLaoDong AS NLD ON DT.IDNguoiLaoDong = NLD.IDNguoiLaoDong";
-            Cmd.CommandText += " LEFT JOIN TblDtKhoaHoc AS KH ON DT.IdDtKhoaHoc = KH.IdDtKhoaHoc";
-            
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
 
-            DataTable ret = this.findAll(Cmd);
+            string sqlQueryFull = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState ";
+            sqlQueryFull += ",TblDtKhoaHoc.MucHoTro AS MucHoTro1, TblDtKhoaHoc.ThoiGianHoc AS ThoiGianHoc1, TblDtKhoaHoc.NameKhoaHoc FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc ";
+            sqlQueryFull += " WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong " + sqlQuery + sqlQueryState + " ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
 
-            this.SQLClose();
-            return ret;
+            Cmd.CommandText = sqlQueryFull;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            sqlCon.Close();
+            sqlCon.Dispose();
+            objTable = ds.Tables[0];
         }
-        catch (Exception ex)
+        catch(Exception e)
         {
-            this.Message = ex.Message;
-            this.ErrorCode = ex.HResult;
-            return null;
+            Debug.WriteLine("[!!!] - getDataNldDaoTao  :" + e.GetBaseException());
         }
-        
-
-
-        //string sqlQuery = "", sqlQueryState = "";
-        //if (searchKey.Trim() != "")
-        //{
-        //    sqlQuery += " AND UPPER(RTRIM(LTRIM(HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
-        //}
-        //if (State != 3)
-        //{
-        //    sqlQueryState = " AND ISNULL(TblNldDaoTao.State,0) = " + State.ToString();
-        //}
-
-        
-        //try
-        //{
-        //    SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        //    sqlCon.Open();
-        //    SqlCommand Cmd = sqlCon.CreateCommand();
-        //    Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-
-        //    string sqlQueryFull = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState ";
-        //    sqlQueryFull += ",TblDtKhoaHoc.MucHoTro AS MucHoTro1, TblDtKhoaHoc.ThoiGianHoc AS ThoiGianHoc1, TblDtKhoaHoc.NameKhoaHoc FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc ";
-        //    sqlQueryFull += " WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong " + sqlQuery + sqlQueryState + " ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
-
-        //    Cmd.CommandText = sqlQueryFull;
-
-        //    SqlDataAdapter da = new SqlDataAdapter();
-        //    da.SelectCommand = Cmd;
-        //    DataSet ds = new DataSet();
-        //    da.Fill(ds);
-        //    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-        //    {
-        //        ds.Tables[0].Rows[i]["TT"] = (i + 1);
-        //    }
-        //    sqlCon.Close();
-        //    sqlCon.Dispose();
-        //    objTable = ds.Tables[0];
-        //}
-        //catch(Exception e)
-        //{
-        //    Debug.WriteLine("[!!!] - getDataNldDaoTao  :" + e.GetBaseException());
-        //}
-        //return objTable;
+        return objTable;
     }
     #endregion
 
@@ -2172,7 +2257,7 @@ public class NguoiLaoDong :DataClass
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TblNldDaoTao.*, dbo.TblNguoiLaoDong.HoVaTen,dbo.TblNguoiLaoDong.CMND, dbo.TblNguoiLaoDong.NgaySinh, TblNguoiLaoDong.IDGioiTinh, ((TblNguoiLaoDong.Xom_DC)+', '+(TblNguoiLaoDong.Xa_DC)+', '+(TblNguoiLaoDong.Huyen_DC)+', '+(TblNguoiLaoDong.Tinh_DC)) As DiaChi, TblNguoiLaoDong.DienThoai, TblDtKhoaHoc.NameKhoaHoc,TblDtKhoaHoc.ThoiGianHoc,TblDtKhoaHoc.MucHoTro AS MucHoTro1,TblDtKhoaHoc.LoaiKhoaHoc FROM TblNldDaoTao LEFT JOIN TblNguoiLaoDong ON TblNldDaoTao.IDNguoiLaoDong = TblNguoiLaoDong.IDNguoiLaoDong LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc WHERE TblNldDaoTao.IDNldDaoTao = @IDNldDaoTao";
+            Cmd.CommandText = "SELECT TblNldDaoTao.*, dbo.TblNguoiLaoDong.HoVaTen, dbo.TblNguoiLaoDong.NgaySinh, TblNguoiLaoDong.IDGioiTinh, ((TblNguoiLaoDong.Xom_DC)+', '+(TblNguoiLaoDong.Xa_DC)+', '+(TblNguoiLaoDong.Huyen_DC)+', '+(TblNguoiLaoDong.Tinh_DC)) As DiaChi, TblNguoiLaoDong.DienThoai, TblDtKhoaHoc.NameKhoaHoc,TblDtKhoaHoc.ThoiGianHoc,TblDtKhoaHoc.MucHoTro AS MucHoTro1,TblDtKhoaHoc.LoaiKhoaHoc FROM TblNldDaoTao LEFT JOIN TblNguoiLaoDong ON TblNldDaoTao.IDNguoiLaoDong = TblNguoiLaoDong.IDNguoiLaoDong LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc WHERE TblNldDaoTao.IDNldDaoTao = @IDNldDaoTao";
             Cmd.Parameters.Add("IDNldDaoTao", SqlDbType.Int).Value = IDNldDaoTao;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
