@@ -45,7 +45,8 @@ public class Log:DataClass
         }
         return index;
     }
-    public DataTable GetByOptions(int IDTCTN, int NguoiLaoDongID=0,int UserID=0)
+    public DataTable GetByOptions(int IDTCTN,
+        int NguoiLaoDongID=0,int UserID=0)
     {
         string sql = "Select * From tblLog Where TroCapThatNghiepID=@IDTCTN And (NguoiLaoDongID=@NguoiLaoDongID Or @NguoiLaoDongID=0) And (UserID=@UserID Or @UserID=0)";
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);

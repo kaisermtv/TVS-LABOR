@@ -260,6 +260,13 @@
                 <asp:DropDownList ID="ddlLuongToiThieu" CssClass="form-control" runat="server" Style="width: 100%;">
                 </asp:DropDownList>
             </div>
+            
+            <div class="label2">
+                Công ty làm việc:
+            </div>
+            <div style="width: 20%; float: left">
+                <asp:TextBox ID="txtTenCongTy" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
 
         </div>
         <div class="row line">            
