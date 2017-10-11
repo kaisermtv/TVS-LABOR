@@ -2202,12 +2202,40 @@ public class NguoiLaoDong :DataAbstract
     #endregion
 
     #region method getDataNldDaoTao
-    public DataTable getDataNldDaoTao(string searchKey, int State)
+    public DataTable getDataNldDaoTao(string searchKey = "", int State = 0,int loaikhoahoc = 0)
     {
         string sqlQuery = "", sqlQueryState = "";
         if (searchKey.Trim() != "")
         {
-            sqlQuery += " AND UPPER(RTRIM(LTRIM(HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+            SqlCommand Cmd = this.getSQLConnect();
+            Cmd.CommandText = "SELECT DT.*,NLD.*,KH.* FROM TblNldDaoTao AS DT";
+            Cmd.CommandText += " INNER JOIN TblNguoiLaoDong AS NLD ON DT.IDNguoiLaoDong = NLD.IDNguoiLaoDong";
+            Cmd.CommandText += " LEFT JOIN TblDtKhoaHoc AS KH ON DT.IdDtKhoaHoc = KH.IdDtKhoaHoc";
+            Cmd.CommandText += " WHERE 1=1";
+
+            if (searchKey != "")
+            {
+                Cmd.CommandText += " AND UPPER(RTRIM(LTRIM(NLD.HoVaTen))) LIKE N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%'";
+                Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
+            }
+
+            if (State != 3)
+            {
+                Cmd.CommandText += " AND ISNULL(DT.State,0) = @State";
+                Cmd.Parameters.Add("State", SqlDbType.Int).Value = State;
+            }
+
+            if (loaikhoahoc != 0)
+            {
+                Cmd.CommandText += " AND KH.LoaiKhoaHoc = @LoaiKhoaHoc";
+                Cmd.Parameters.Add("LoaiKhoaHoc", SqlDbType.Int).Value = loaikhoahoc;
+            }
+            
+
+            DataTable ret = this.findAll(Cmd);
+
+            this.SQLClose();
+            return ret;
         }
         if (State != 3)
         {

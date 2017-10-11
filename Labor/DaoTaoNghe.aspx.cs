@@ -38,7 +38,7 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
     #region getData()
     private void getData()
     {
-        this.objTable = this.objNguoiLaoDong.getDataNldDaoTao(this.txtSearch.Value.ToString(), int.Parse(this.ddlState.SelectedValue.ToString()));
+        this.objTable = this.objNguoiLaoDong.getDataNldDaoTao(this.txtSearch.Value.ToString(), int.Parse(this.ddlState.SelectedValue.ToString()),int.Parse(dtlLoaiKhoaHoc.Text));
         cpTuVanXuatKhau.MaxPages = 1000;
         cpTuVanXuatKhau.PageSize = 15;
         cpTuVanXuatKhau.DataSource = this.objTable.DefaultView;
