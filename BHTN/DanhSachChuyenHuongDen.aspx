@@ -109,7 +109,6 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 13%;">Tình trạng</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số QĐ</td>   
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày ký</td>                 
-                        <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>
                         <td class="DataListTableHeaderTdItemCenter" style="width: 8%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
@@ -124,9 +123,7 @@
                     <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("SoVanBan") %></td>
                     <td class="DataListTableTdItemJustify"><%# (Eval("NgayKy").ToString().Trim() == "") ? "" : ((DateTime)Eval("NgayKy")).ToString("dd/MM/yyyy") %> </td>
-                    <td class="DataListTableTdItemJustify">
-                     
-                    </td>                   
+                                  
                     <td class="DataListTableTdItemCenter">  
                     <a href="ThongTinChuyenHuongden?ID=<%# Eval("IDNLDTCTN")%>">
                         <img src="/Images/edit.png" alt="Sửa" title ="Sửa"></a>                

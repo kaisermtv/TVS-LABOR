@@ -77,7 +77,7 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
             int ID = int.Parse(e.CommandArgument.ToString());
             DataTable tblThongBaoViecLamHangThang = new ThongBaoViecLamHangThang().GetMax(ID);
             DataRow  tblTCTN = new NLDTroCapThatNghiep().getItem(ID);
-            if (tblThongBaoViecLamHangThang.Rows[0]["TrangThaiThongBao"].ToString().Trim() == "15" || tblThongBaoViecLamHangThang.Rows[0]["IdTrangthai"].ToString().Trim()=="25")
+            if (tblThongBaoViecLamHangThang.Rows[0]["TrangThaiThongBao"].ToString().Trim() == "15" || tblTCTN["IdTrangthai"].ToString().Trim() == "25")
             {
                 new TinhHuong().UpdateTrangThaiHS(ID, 26);
                 Load_DanhSachHoSo();
@@ -91,14 +91,15 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
         {
             int ID = int.Parse(e.CommandArgument.ToString());
             DataTable tblThongBaoViecLamHangThang = new ThongBaoViecLamHangThang().GetMax(ID);
-            if (tblThongBaoViecLamHangThang.Rows[0]["TrangThaiThongBao"].ToString() == "14")
+            DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(ID);
+            if (tblThongBaoViecLamHangThang.Rows[0]["TrangThaiThongBao"].ToString() == "14" && (int)rowTCTN["IDTrangThai"]==35 )
             {
                 new TinhHuong().UpdateTrangThaiHS(ID, 36);
                 Load_DanhSachHoSo();
             }
             else
             {
-                _msg = "Bạn phải cập nhật thông báo việc làm trước khi tiếp tục";
+                _msg = "Hồ sơ phải đăng ở trạng thái tạm dừng mới có thể tiếp tục";
             }
         }
         if (e.CommandName == "ChamDutHuong")
@@ -217,9 +218,13 @@ public partial class Labor_DanhSachThongBaoVL : System.Web.UI.Page
     }
     protected void ddlTrangThai_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if(ddlTrangThai.SelectedValue !=null && ddlTrangThai.SelectedValue.ToString().Trim()!="0")
+        if (ddlTrangThai.SelectedValue != null && ddlTrangThai.SelectedValue.ToString().Trim() != "0")
         {
             Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue + ",");
+        }
+        else
+        {
+            Load_DanhSachHoSo();
         }
 
     }

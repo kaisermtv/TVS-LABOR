@@ -118,13 +118,13 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
                     txtHuongTuNgay.Value = ((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy");
                     txtHuongDenNgay.Value = ((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy");
-                    //int IDDoanhNghiep = 0;
-                    //int.TryParse(tblNguoiLaoDong.Rows[0]["IDDoanhNghiep"].ToString(), out IDDoanhNghiep);
-                    //DataTable tblDoanhNghiep=new DoanhNghiep().getDataById(IDDoanhNghiep);
-                    //if(tblDoanhNghiep.Rows.Count>0)
-                    //{
-                    //    txtTenCongTy.Text = tblDoanhNghiep.Rows[0]["TenDonVi"].ToString();
-                    //}
+                    int IDDoanhNghiep = 0;
+                    int.TryParse(rowTroCapThatNghiep["IdQuaTrinhCongTacGanNhat"].ToString(), out IDDoanhNghiep);
+                    DataTable tblDoanhNghiep = new DoanhNghiep().getDataById(IDDoanhNghiep);
+                    if (tblDoanhNghiep.Rows.Count > 0)
+                    {
+                        txtTenCongTy.Text = tblDoanhNghiep.Rows[0]["TenDonVi"].ToString();
+                    }
                 }
                 #endregion
             }
@@ -351,7 +351,7 @@ public partial class Labor_ThamDinh: System.Web.UI.Page
         item.UserID = (int)_Permission["Id"];
         item.UserName = _Permission["UserName"].ToString();
         item.Action = "Trả bộ phận tiếp nhận (TCTN)";
-        item.GhiChu = "";
+        item.GhiChu = txtLyDoTraTiepNhan.Text.Trim();
         new Log().Insert(item);
         #endregion
         Response.Redirect("DanhSachThamDinh.aspx");

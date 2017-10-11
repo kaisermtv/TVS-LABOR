@@ -1,5 +1,5 @@
 ﻿<%@ Page EnableEventValidation="false" Language="C#"  AutoEventWireup="true" MasterPageFile="~/BHTN.master"  CodeFile="NhapThongTinHoSo.aspx.cs" Inherits="BHTN_NhapThongTinHoSo" %>
-
+<%@ Register src="uctLog.ascx" tagname="uctLog" tagprefix="uc2" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="HeadContent" runat="Server">
     <style>
         .label1 {
@@ -656,6 +656,7 @@
                     <a href="#" class="list-group-item" runat="server" onserverclick="DeNghiHuong_Click"><span class="badge1" style ="left:140px;">></span>Đề nghị hưởng </a>
                     <%--<a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>--%>
                     <a href="#" class="list-group-item" runat="server" onserverclick="PhieuHenTraKQ_ServerClick"><span class="badge1" style ="left:140px;">></span>Phiếu hẹn trả KQ </a>
+                    <a id="A1" href="#" class="list-group-item" data-toggle="modal" data-target="#log" runat="server"><span class="badge1" style ="left:140px;">></span>Nhật ký</a>
                 </div>               
                 <a href="NhapThongTinHoSo.aspx">
                 <input type="button" class="btn btn-primary" style="width: 100%"  value="Thêm mới">            
@@ -710,4 +711,23 @@
 
         </div>
     </div>
+
+
+       <div id="log" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:80%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nhật ký</h4>
+                </div>
+              <div class="modal-body" style=" overflow-x:auto; height:400px;">
+                <uc2:uctLog ID="uctLog1" runat="server" />
+                </div>
+                <div class="modal-footer">                 
+                </div>
+            </div>
+
+        </div>
+    </div> 
 </asp:Content>

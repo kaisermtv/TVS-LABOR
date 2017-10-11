@@ -191,8 +191,23 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
             DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
             if ((int)rowTCTN["IdTrangThai"] == 11)
-            {
+            {              
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 12);
+                ThongBaoViecLamHangThang objThongBaoVl = new ThongBaoViecLamHangThang();
+                objThongBaoVl.IDNLDTCTN = int.Parse(strID[i]);
+                objThongBaoVl.ThangThongBao = 1;
+                objThongBaoVl.NgayThongBao = DateTime.Now;
+                objThongBaoVl.BanTiepNhan = "";
+                objThongBaoVl.GhiChu = "";
+                objThongBaoVl.LyDo = 0;
+                objThongBaoVl.ThongBaoTrucTiep = true;
+                objThongBaoVl.IDCanBoTiepNhan = (int)_Permission["ID"];
+                objThongBaoVl.TrangThaiThongBao = 14;
+                new ThongBaoViecLamHangThang().SetData(objThongBaoVl.IDNLDTCTN, objThongBaoVl.IDCanBoTiepNhan, objThongBaoVl.ThangThongBao, objThongBaoVl.NgayThongBao, objThongBaoVl.ThongBaoTrucTiep, objThongBaoVl.LyDo, objThongBaoVl.BanTiepNhan, objThongBaoVl.GhiChu, objThongBaoVl.TrangThaiThongBao);
+                //cap nhat so thang da huong
+                DataTable tblSoThangDaHuongBHXH = new ThongBaoViecLamHangThang().GetByID(int.Parse(strID[i]), 0, 14);
+                new TinhHuong().UpdateSoThangDaHuong(int.Parse(strID[i]), tblSoThangDaHuongBHXH.Rows.Count);
+        
             }
             if((int)rowTCTN["IdTrangThai"] == 23)
             {

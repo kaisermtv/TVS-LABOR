@@ -448,8 +448,8 @@
                 </div>
             
                 <asp:Button ID="btnDuyet" runat="server" Text="Lưu/Duyệt" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" OnClick="btnDuyet_Click" />
-                <asp:Button ID="btnTraTinhHuong" runat="server" Text="Trả tính hưởng" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" data-toggle="modal" data-target="#LyDoTraTiepNhan"/>
-                <asp:Button ID="btnTraTiepNhan" runat="server" Text="Trả tiếp nhận" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" data-toggle="modal" data-target="#LyDoTraTinhHuong" />
+                <asp:Button ID="btnTraTinhHuong" runat="server" Text="Trả tính hưởng" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" data-toggle="modal" data-target="#LyDoTraTinhHuong"/>
+                <asp:Button ID="btnTraTiepNhan" runat="server" Text="Trả tiếp nhận" Style="width: 100% !important; margin-top:10px;" CssClass="btn btn-primary" data-toggle="modal" data-target="#LyDoTraTiepNhan" />
               </div>
         </div>
     </div>

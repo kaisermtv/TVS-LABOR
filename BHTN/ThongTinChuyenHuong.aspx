@@ -124,7 +124,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div style="width: 83%; float: left; margin-top:-15px!important;">
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
-            <b>Thông tin hủy hưởng</b></div>
+            <b>Thông tin chuyển hưởng</b></div>
         <div class="row line">
             <div class="label1">
                 Họ và tên: 

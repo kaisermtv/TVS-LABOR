@@ -815,7 +815,6 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             {
                 if (idDoanhNghiep != 0) objDoanhNghiep["IDDonVi"] = idDoanhNghiep;
                 else objDoanhNghiep["MaDonVi"] = objDoanhNghiep.getNextMaDN();
-
                 objDoanhNghiep["TenDonVi"] = txtTenDonVi.Text;
                 objDoanhNghiep["DiaChi"] = txtDiaChiDN.Text;
                 objDoanhNghiep["DienThoaiDonVi"] = txtPhoneDN.Text;
@@ -825,7 +824,6 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
                 objDoanhNghiep["IdLoaiHinh"] = int.Parse(ddlLoaiHinhDN.SelectedValue);
                 objDoanhNghiep["IDNganhNghe"] = int.Parse(ddlIdNganhNgheDN.SelectedValue);
                 objDoanhNghiep["Website"] = txtWebsiteDN.Text;
-
                 idDoanhNghiep = (int)objDoanhNghiep.setData();
             }
             catch {
