@@ -71,11 +71,18 @@
                 </asp:DropDownList>
             </td>
             <td style="width: 180px;">
+                <asp:DropDownList ID="ddlMonHoc" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0">-- Môn học --</asp:ListItem>
+                    <asp:ListItem Value="1">Học việc</asp:ListItem>
+                    <asp:ListItem Value="2">Học tiếng</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td style="width: 180px;">
                 <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
                     <asp:ListItem Value="0">Chưa xử lý</asp:ListItem>
                     <asp:ListItem Value="1">Đang xử lý</asp:ListItem>
                     <asp:ListItem Value="2">Đã xử lý</asp:ListItem>
-                    <asp:ListItem Value="3" Selected="True">Trạng thái</asp:ListItem>
+                    <asp:ListItem Value="3" Selected="True">-- Trạng thái --</asp:ListItem>
                 </asp:DropDownList>
             </td>
             <td style="width: 40px !important; text-align: center;">
