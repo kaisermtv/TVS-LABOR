@@ -789,8 +789,8 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             objSQL["Xom_DC"] = this.txtXom_DC.Text;
 
             objSQL["NoiDangKyKhamBenh"] = int.Parse(ddlNoiKhamBenh.SelectedValue);
-            objSQL["TrinhDoKyNangNghe"] = txtCMKT.Text;
-            objSQL["TrinhDoDaoTao"] = txtLinhVucDaotao.Text;
+            objSQL["TrinhDoKyNangNghe"] = txtKyNangNghe.Text.Trim();
+            objSQL["TrinhDoDaoTao"] = txtTrinhDoDaoTao.Text.Trim();
 
             idNguoiLaoDong = (int)objSQL.setData();
             IdNLD.Value = idNguoiLaoDong.ToString();
