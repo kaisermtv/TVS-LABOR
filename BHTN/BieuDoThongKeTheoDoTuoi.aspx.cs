@@ -37,7 +37,7 @@ public partial class Labor_BieuDoThongKeTheoDoTuoi : System.Web.UI.Page
     }
     private void Load_DanhSachHoSo(string Ids = ",26,")
     {
-        string str = "";
+        //string str = "";
         DateTime TuNgay = DateTime.Now, DenNgay = DateTime.Now;
         if(txtTuNgay.Value.Trim()=="")
         {

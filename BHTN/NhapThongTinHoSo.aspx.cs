@@ -744,41 +744,44 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         string ddlXa_TT_Name = objWard.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlXa_TT"]));
         string ddlXa_DC_Name = objWard.getNameById(int.Parse(Request.Form["ctl00$MainContent$ddlXa_DC"]));
         try{
-            if (idNguoiLaoDong != 0) objNguoiLaoDong["IDNguoiLaoDong"] = idNguoiLaoDong;
-            else objNguoiLaoDong["Ma"] = objNguoiLaoDong.getNextMaNLD();
-            
-            objNguoiLaoDong["HoVaTen"] = txtHoVaTen.Text;
-            objNguoiLaoDong["NgaySinh"] = TVSSystem.CVDateDbNull(txtNgaySinh.Value);
-            objNguoiLaoDong["IDGioiTinh"] = gioitinh;
-            objNguoiLaoDong["CMND"] = txtCMND.Text;
-            objNguoiLaoDong["NgayCapCMND"] = TVSSystem.CVDateDbNull(txtNgayCap.Value);
-            objNguoiLaoDong["NoiCap"] = ddlNoiCap.SelectedItem.Text;
-            objNguoiLaoDong["DienThoai"] = txtSoDienThoai.Text;
-            objNguoiLaoDong["IDDanToc"] = int.Parse(ddlDanToc.SelectedValue);
-            objNguoiLaoDong["IDTonGiao"] = int.Parse(ddlTonGiao.SelectedValue);
-            objNguoiLaoDong["BHXH"] = txtBHXH.Text;
-            objNguoiLaoDong["NgayCapBHXH"] = TVSSystem.CVDateDbNull(txtNgayCapBHXH.Value);
-            objNguoiLaoDong["NoiCapBHXH"] = int.Parse(ddlNoiCapBHXH.SelectedValue);
-            objNguoiLaoDong["TaiKhoan"] = txtSoTaiKhoan.Text;
-            objNguoiLaoDong["IDNganHang"] = int.Parse(ddlNganHang.SelectedValue);
-            objNguoiLaoDong["MaSoThue"] = txtMaSoThue.Text;
-            objNguoiLaoDong["Email"] = txtEmail.Text;
-            
-            objNguoiLaoDong["Tinh_TT"] = this.ddlTinh_TT.SelectedItem.Text;
-            objNguoiLaoDong["Huyen_TT"] = ddlHuyen_TT_Name;
-            objNguoiLaoDong["Xa_TT"] = ddlXa_TT_Name;
-            objNguoiLaoDong["Xom_TT"] = this.txtXom_TT.Text;
-            
-            objNguoiLaoDong["Tinh_DC"] = this.ddlTinh_DC.SelectedItem.Text;
-            objNguoiLaoDong["Huyen_DC"] = ddlHuyen_DC_Name;
-            objNguoiLaoDong["Xa_DC"] = ddlXa_DC_Name;
-            objNguoiLaoDong["Xom_DC"] = this.txtXom_DC.Text;
-            
-            objNguoiLaoDong["NoiDangKyKhamBenh"] = int.Parse(ddlNoiKhamBenh.SelectedValue);
-            objNguoiLaoDong["TrinhDoKyNangNghe"] = txtCMKT.Text;
-            objNguoiLaoDong["TrinhDoDaoTao"] = txtLinhVucDaotao.Text;
+            DataSQL objSQL = new DataSQL("TblNguoiLaoDong");
 
-            idNguoiLaoDong = (int)objNguoiLaoDong.setData();
+
+            if (idNguoiLaoDong != 0) objSQL["IDNguoiLaoDong"] = idNguoiLaoDong;
+            else objSQL["Ma"] = objNguoiLaoDong.getNextMaNLD();
+
+            objSQL["HoVaTen"] = txtHoVaTen.Text;
+            objSQL["NgaySinh"] = TVSSystem.CVDateDbNull(txtNgaySinh.Value);
+            objSQL["IDGioiTinh"] = gioitinh;
+            objSQL["CMND"] = txtCMND.Text;
+            objSQL["NgayCapCMND"] = TVSSystem.CVDateDbNull(txtNgayCap.Value);
+            objSQL["NoiCap"] = ddlNoiCap.SelectedItem.Text;
+            objSQL["DienThoai"] = txtSoDienThoai.Text;
+            objSQL["IDDanToc"] = int.Parse(ddlDanToc.SelectedValue);
+            objSQL["IDTonGiao"] = int.Parse(ddlTonGiao.SelectedValue);
+            objSQL["BHXH"] = txtBHXH.Text;
+            objSQL["NgayCapBHXH"] = TVSSystem.CVDateDbNull(txtNgayCapBHXH.Value);
+            objSQL["NoiCapBHXH"] = int.Parse(ddlNoiCapBHXH.SelectedValue);
+            objSQL["TaiKhoan"] = txtSoTaiKhoan.Text;
+            objSQL["IDNganHang"] = int.Parse(ddlNganHang.SelectedValue);
+            objSQL["MaSoThue"] = txtMaSoThue.Text;
+            objSQL["Email"] = txtEmail.Text;
+
+            objSQL["Tinh_TT"] = this.ddlTinh_TT.SelectedItem.Text;
+            objSQL["Huyen_TT"] = ddlHuyen_TT_Name;
+            objSQL["Xa_TT"] = ddlXa_TT_Name;
+            objSQL["Xom_TT"] = this.txtXom_TT.Text;
+
+            objSQL["Tinh_DC"] = this.ddlTinh_DC.SelectedItem.Text;
+            objSQL["Huyen_DC"] = ddlHuyen_DC_Name;
+            objSQL["Xa_DC"] = ddlXa_DC_Name;
+            objSQL["Xom_DC"] = this.txtXom_DC.Text;
+
+            objSQL["NoiDangKyKhamBenh"] = int.Parse(ddlNoiKhamBenh.SelectedValue);
+            objSQL["TrinhDoKyNangNghe"] = txtCMKT.Text;
+            objSQL["TrinhDoDaoTao"] = txtLinhVucDaotao.Text;
+
+            idNguoiLaoDong = (int)objSQL.setData();
             IdNLD.Value = idNguoiLaoDong.ToString();
         }catch{
             idNguoiLaoDong = 0;

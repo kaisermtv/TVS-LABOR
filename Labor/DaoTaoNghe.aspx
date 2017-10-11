@@ -64,6 +64,13 @@
                 <input type="text" id="txtSearch" placeholder="Nhập tên người lao động để tìm kiếm" runat="server" class="form-control" />
             </td>
             <td style="width: 180px;">
+                <asp:DropDownList ID="dtlLoaiKhoaHoc" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0">-- Loại khóa học --</asp:ListItem>
+                    <asp:ListItem Value="1">Học việc</asp:ListItem>
+                    <asp:ListItem Value="2">Học tiếng</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td style="width: 180px;">
                 <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
                     <asp:ListItem Value="0">Chưa xử lý</asp:ListItem>
                     <asp:ListItem Value="1">Đang xử lý</asp:ListItem>

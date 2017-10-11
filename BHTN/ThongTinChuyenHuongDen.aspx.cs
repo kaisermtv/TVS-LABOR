@@ -418,31 +418,32 @@ public partial class Labor_ThongTinChuyenHuongDen : System.Web.UI.Page
         if (hdIDNLDTCTN.Value != null && hdIDNLDTCTN.Value.Trim() != "")
         {
             //insert nguoi lao dong 
+            DataSQL objSQL = new DataSQL("TblNguoiLaoDong");
             NguoiLaoDong objNLD = new NguoiLaoDong();
             if (itemId > 0)
             {
                 DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
-                objNLD["IDNguoiLaoDong"] = (int)TCTN["IdNguoiLaoDong"];
+                objSQL["IDNguoiLaoDong"] = (int)TCTN["IdNguoiLaoDong"];
             }
-            objNLD["Ma"] = objNLD.getNextMaNLD();
-            objNLD["HoVaTen"] = HoTen;
-            objNLD["NgaySinh"] = NgaySinh;
-            objNLD["IDGioiTinh"] = GioiTinh;
-            objNLD["CMND"] = CMND;
-            objNLD["NgayCapCMND"] = NgayCap;
-            objNLD["NoiCap"] = NoiCap;
-            objNLD["BHXH"] = SoSoBHXH;
-            objNLD["TaiKhoan"] = SoTaiKhoan;
-            objNLD["IDNganHang"] = IDNganHang;
-            objNLD["Tinh_TT"] = Tinh_TT;
-            objNLD["Huyen_TT"] = Huyen_TT;
-            objNLD["Xa_TT"] = Xa_TT;
-            objNLD["Xom_TT"] = Xom_TT;
-            objNLD["Tinh_DC"] = Tinh_DC;
-            objNLD["Huyen_DC"] = Huyen_DC;
-            objNLD["Xa_DC"] = Xa_DC;
-            objNLD["Xom_DC"] = Xom_DC;
-            hdIDNguoiLaoDong.Value = objNLD.setData().ToString();
+            objSQL["Ma"] = objNLD.getNextMaNLD();
+            objSQL["HoVaTen"] = HoTen;
+            objSQL["NgaySinh"] = NgaySinh;
+            objSQL["IDGioiTinh"] = GioiTinh;
+            objSQL["CMND"] = CMND;
+            objSQL["NgayCapCMND"] = NgayCap;
+            objSQL["NoiCap"] = NoiCap;
+            objSQL["BHXH"] = SoSoBHXH;
+            objSQL["TaiKhoan"] = SoTaiKhoan;
+            objSQL["IDNganHang"] = IDNganHang;
+            objSQL["Tinh_TT"] = Tinh_TT;
+            objSQL["Huyen_TT"] = Huyen_TT;
+            objSQL["Xa_TT"] = Xa_TT;
+            objSQL["Xom_TT"] = Xom_TT;
+            objSQL["Tinh_DC"] = Tinh_DC;
+            objSQL["Huyen_DC"] = Huyen_DC;
+            objSQL["Xa_DC"] = Xa_DC;
+            objSQL["Xom_DC"] = Xom_DC;
+            hdIDNguoiLaoDong.Value = objSQL.setData().ToString();
             //insert tro cap that nghiep 
             if (itemId > 0)
             {
