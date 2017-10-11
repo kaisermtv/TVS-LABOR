@@ -53,7 +53,7 @@ public partial class Labor_DanhSachHuyHuong : System.Web.UI.Page
             DenNgay = Convert.ToDateTime(txtDenNgay.Value, new CultureInfo("vi-VN"));
 
         }
-        DataTable objData = new TinhHuong().getDanhSachHoSo(",13,",TuNgay,DenNgay,str);
+        DataTable objData = new TinhHuong().getDanhSachHoSoAndQuyetDinh(",13,",str,TuNgay,DenNgay);
         cpData.MaxPages = 1000;
         cpData.PageSize = 12;
         cpData.DataSource = objData.DefaultView;
@@ -81,8 +81,21 @@ public partial class Labor_DanhSachHuyHuong : System.Web.UI.Page
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 18);
             }
-
         }
         Load_DanhSachHoSo();
+    }
+    protected void dtlData_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "HuyDeXuat")
+        {
+            int ID = int.Parse(e.CommandArgument.ToString());
+            DataRow rowTroCapThatNghiep = new NLDTroCapThatNghiep().getItem(ID);
+            // la quyet dinh TCTN
+            if ((int)rowTroCapThatNghiep["IdTrangThai"] == 13)
+            {
+                new TinhHuong().UpdateTrangThaiHS(ID, 11,true);
+                Load_DanhSachHoSo();
+            }
+        }
     }
 }

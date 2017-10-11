@@ -50,20 +50,24 @@
     </style>
 <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
 <div class="row line"> 
-  <asp:Repeater ID="dtlData" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+      <asp:Repeater ID="dtlData" runat="server">
             <HeaderTemplate>
-                <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
+                <table class="DataListTable" border="0" style="width: 95%; margin-top: 10px; position:absolute">
                     <tr style="height: 40px;" class="DataListTableHeader">  
                         <td class="DataListTableHeaderTdItemJustify" style="text-align:center; width:5%">STT</td>                  
-                        <td class="DataListTableHeaderTdItemJustify" style="text-align:left; width:55%">Hành động</td>
-                        <td class="DataListTableHeaderTdItemJustify" style="text-align:center; width:20%">Người thực hiện</td>                    
-                        <td class="DataListTableHeaderTdItemJustify" style="text-align:center; width:20%">Ngày thực hiện</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="text-align:left; width:20%">Hành động</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="text-align:left;">Lý do</td>
+                        <td class="DataListTableHeaderTdItemJustify" style="text-align:center; width:10%">Người TH</td>                    
+                        <td class="DataListTableHeaderTdItemJustify" style="text-align:center; width:10%">Ngày</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>  
-                    <td class="DataListTableTdItemJustify" style="text-align:center; width:5%"><%= Index++ %></td>                   
-                    <td class="DataListTableTdItemJustify"><%# Eval("Action")%></td>                   
+                    <td class="DataListTableTdItemJustify" style="text-align:center; width:5%"><%#  Container.ItemIndex +1 %></td>                   
+                    <td class="DataListTableTdItemJustify"><%# Eval("Action")%></td>    
+                     <td class="DataListTableTdItemJustify"><%# Eval("GhiChu")%></td>                  
                     <td class="DataListTableTdItemJustify" style="text-align:center; width:20%"><%# Eval("UserName")%></td>
                     <td class="DataListTableTdItemJustify" style="text-align:center; width:20%"><%# ((DateTime)Eval("NgayTao")).ToString("dd/MM/yyyy")%></td>       
                 </tr>
@@ -79,11 +83,15 @@
                     <cc1:CollectionPager ID="cpData" runat="server" BackText="" FirstText="Đầu"
                         ControlCssClass="ProductPage" LabelText="" LastText="Cuối" NextText="" UseSlider="true"
                         ResultsFormat="" BackNextLinkSeparator="" ResultsLocation="None" BackNextLocation="None"
-                        PageNumbersSeparator="&nbsp;" PagingMode="PostBack">
+                        PageNumbersSeparator="&nbsp;" PagingMode="PostBack" ShowPageNumbers="True">
                     </cc1:CollectionPager>
                 </td>
             </tr>
         </table>
+    </ContentTemplate>
+    </asp:UpdatePanel>
+
+
 </div>
 <script>
     var _msg = '<%=_msg%>';

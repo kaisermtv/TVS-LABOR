@@ -72,8 +72,7 @@ public partial class Labor_BaoCaoTongHop: System.Web.UI.Page
             if ((int)rowTCTN["IdTrangThai"] == 11)
             {
                 new TinhHuong().UpdateTrangThaiHS(int.Parse(strID[i]), 12);
-            }
-          
+            }          
         }
         Load_DanhSachHoSo();
 
@@ -121,10 +120,10 @@ public partial class Labor_BaoCaoTongHop: System.Web.UI.Page
         string data = "<table cellpadding='0' cellspacing='0'>";
         data += "<tr><td colspan='4'><div align='center' style='font-size:14px; font-family:Times New Roman'>SỞ LAO ĐỘNG TB&XH NGHỆ AN<br />";
         data += "<strong>TRUNG TÂM DỊCH VỤ VIỆC LÀM</strong> </div></td>";
-        data += "<td colspan='4'><div align='center' style='font-size:14px; font-family:Times New Roman'>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<strong><br />";
+        data += "<td colspan='5'><div align='center' style='font-size:14px; font-family:Times New Roman'>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<strong><br />";
         data += "Độc lập - Tự do - Hạnh phúc</strong></div></td></tr>";
-        data += "<tr><td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:14px;padding:10pt;' colspan='8'>DANH SÁCH LAO ĐỘNG HOÀN THÀNH HỒ SƠ HƯỞNG CHẾ ĐỘ BHTN</td></tr>";
-        data += "<tr><td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:14px;padding:10pt;' colspan='8'>";
+        data += "<tr><td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:14px;padding:10pt;' colspan='9'>DANH SÁCH LAO ĐỘNG HOÀN THÀNH HỒ SƠ HƯỞNG CHẾ ĐỘ BHTN</td></tr>";
+        data += "<tr><td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:14px;padding:10pt;' colspan='9'>";
         if (txtTuNgay.Value != "" && txtDenNgay.Value != "")
         {
             data += "Từ ngày: " + txtTuNgay.Value + "     " + "Đến ngày: " + txtDenNgay.Value;
@@ -135,9 +134,10 @@ public partial class Labor_BaoCaoTongHop: System.Web.UI.Page
         data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Họ tên</td>";
         data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Ngày sinh</td>";
         data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Giới tính</td>";
-        data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Địa chỉ</td>";
+        data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Nơi ở hiện nay</td>";
         data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>CMND</td>";
-        data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Tình trạng việc làm mới</td></tr>";
+        data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Ngày tiếp nhận</td>";
+        data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>Tên công ty</td></tr>";
         for (int i = 0; i < MyTB.Rows.Count; i++)
         {
             data += "<tr><td style='text-align:left;font-family:Times New Roman;font-weight:normal;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>" + (i + 1).ToString();
@@ -147,9 +147,23 @@ public partial class Labor_BaoCaoTongHop: System.Web.UI.Page
             data += "</td><td style='text-align:center;font-family:Times New Roman;font-weight:normal;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>" + GetGoiTinh((int)MyTB.Rows[i]["IDGioiTinh"]);
             data += "</td><td style='text-align:center;font-family:Times New Roman;font-weight:normal;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>" + GetDiaChi(MyTB.Rows[i]["Tinh_DC"].ToString(), MyTB.Rows[i]["Huyen_DC"].ToString(), MyTB.Rows[i]["Xa_DC"].ToString(), MyTB.Rows[i]["Xom_DC"].ToString());
             data += "</td><td style='text-align:center;font-family:Times New Roman;font-weight:normal;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>" + MyTB.Rows[i]["CMND"].ToString();
-            data += "</td><td style='text-align:center;font-family:Times New Roman;font-weight:normal;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>";
+            data += "<td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>" + ((DateTime)MyTB.Rows[i]["NgayNopHoSo"]).ToString("dd/MM/yyyy");
+            string tencongty = "";
+            try
+            {
+                DataTable tblDoanhNghiep = new DoanhNghiep().getDataById((int)MyTB.Rows[i]["IdDoanhNghiep"]);
+                tencongty = tblDoanhNghiep.Rows[0]["TenDonVi"].ToString();
+            }
+            catch { 
+
+            }
+            data += "</td><td style='text-align:center;font-family:Times New Roman;font-weight:normal;font-size:12px;padding:10pt;border-bottom-width:thin;border-bottom-color:Black;border-bottom-style:solid;border-right-width:thin;border-right-color:Black;border-right-style:solid;border-top-width:thin;border-top-color:Black;border-top-style:solid;'>" + tencongty;
             data += "</td></tr>";
         }
+        data += "<tr><td style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:14px;padding:10pt;' colspan='9'>";
+        data += "<tr><td colspan='3'style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;'>NGƯỜI LẬP</td>";
+        data += "<td colspan='3'style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;'>TRƯỞNG PHÒNG BHTN</td>";
+        data += "<td colspan='3'style='text-align:center;font-family:Times New Roman;font-weight:bold;font-size:12px;padding:10pt;'>KT. GIÁM ĐỐC PHÓ GIÁM ĐỐC</td></tr>";
         data += "</table>";
         Response.Clear();
         Response.Buffer = true;

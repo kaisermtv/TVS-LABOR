@@ -80,6 +80,8 @@
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Số CMND</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%;">Ngày nộp HS</td>
                         <td class="DataListTableHeaderTdItemJustify" style="width: 10%; text-align:left">Ngày hẹn trả KQ</td>                       
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 8%; text-align:left">Ngày ký </td> 
+                        <td class="DataListTableHeaderTdItemJustify" style="width: 8%; text-align:left">Số văn bản</td> 
                         <td class="DataListTableHeaderTdItemCenter" style="width: 13%;">&nbsp;</td>
                     </tr>
             </HeaderTemplate>
@@ -96,7 +98,13 @@
                     </td>
                     <td class="DataListTableTdItemJustify">
                         <%# (Eval("NgayHenTraKQ").ToString() != "")?((DateTime)Eval("NgayHenTraKQ")).ToString("dd/MM/yyyy"):"" %><br />
-                    </td>                   
+                    </td>   
+                    <td class="DataListTableTdItemJustify">
+                        <%# (Eval("NgayKy").ToString() != "") ? ((DateTime)Eval("NgayKy")).ToString("dd/MM/yyyy") : ""%><br />
+                    </td>                  
+                    <td class="DataListTableTdItemJustify">
+                        <%# Eval("SoVanBan")%><br />
+                    </td>
                     <td class="DataListTableTdItemCenter">
                      <a href="TinhHuong.aspx?id=<%#Eval("IDNLDTCTN")%>&status=3" style="display:none;">
                      <input type="button" class="btn btn-primary" value="Chi tiết"/></a>                    

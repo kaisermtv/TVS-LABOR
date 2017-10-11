@@ -246,7 +246,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <%--<asp:TextBox ID="txtNgaySinh" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                <%--<asp:TextBox ID="TextBox16" runat="server" CssClass="form-control"></asp:TextBox>--%>
             </div>
 
             <div class="label2">
@@ -278,7 +278,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <%--<asp:TextBox ID="txtNgayCap" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                <%= txtNgayNopHS.Value %>
             </div>
 
             <div class="label2">
@@ -288,7 +288,7 @@
                 <asp:DropDownList ID="ddlNoiCap" CssClass="form-control" runat="server" Style="width: 100%;">
                     <asp:ListItem Value="0">Không chọn</asp:ListItem>
                 </asp:DropDownList>
-                <%--<asp:TextBox ID="txtNoiCap" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Thông tin đăng ký </a>--%>
             </div>
         </div>
 
@@ -336,7 +336,7 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-                <%--<asp:TextBox ID="txtNgayCapBHXH" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                <%--<a href="#" class="list-group-item"><span class="badge1" style ="left:140px;">></span>Đăng ký TCTN</a>--%>
             </div>
 
             <div class="label2">
@@ -346,7 +346,7 @@
                 <asp:DropDownList ID="ddlNoiCapBHXH" CssClass="form-control" runat="server" Style="width: 100%;">
                     <asp:ListItem Value="0">Không chọn</asp:ListItem>
                 </asp:DropDownList>
-                <%--<asp:TextBox ID="txtNoiCapBHXH" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                <%--<a href="#" class="list-group-item" runat="server" onserverclick="GiayBienNhan_Click"><span class="badge1" style ="left:140px;">></span>Giấy biên nhận ĐK </a>--%>
             </div>
         </div>
 
@@ -443,17 +443,17 @@
 
         <div class="row line">
             <div class="label1">
-                Trình độ CMKT: 
+                Trình độ đào tạo: 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtCMKT" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtTrinhDoDaoTao" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
             <div class="label2">
-                Lĩnh vực đào tạo: 
+                Kỹ năng nghề 
             </div>
             <div style="width: 20%; float: left">
-                <asp:TextBox ID="txtLinhVucDaotao" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtKyNangNghe" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
         <div class="row headlabel" style="padding:3px; padding-left: 15px; background-color: #00ffff; margin-right:6px!important;">
@@ -591,9 +591,7 @@
                 Giấy tờ kèm theo: 
             </div>
             <div style="width: 83%; float: left">
-                <asp:DropDownList ID="ddlGiayToKemtheo" CssClass="form-control" runat="server" Style="width: 100%;">
-                    <asp:ListItem Value="0">Không chọn</asp:ListItem>
-                </asp:DropDownList>
+                <asp:TextBox ID="txtGiayToKemTheo" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             </div>
         <div class="row line">

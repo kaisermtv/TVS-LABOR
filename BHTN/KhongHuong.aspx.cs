@@ -105,10 +105,7 @@ public partial class Labor_KhongHuong : System.Web.UI.Page
                 if(tblCapSo.Rows.Count>0)
                 {
                     txtSoQuyetDinh.Text = tblCapSo.Rows[0]["So"].ToString();
-                    if (tblCapSo.Rows[0]["NgayKy"].ToString().Trim() != "" && ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy") != "1900")
-                    {
-                        txtNgayKy.Value = ((DateTime)tblCapSo.Rows[0]["NgayKy"]).ToString("dd/MM/yyyy");
-                    }
+                
                 }        
                 #endregion
             
@@ -295,15 +292,10 @@ public partial class Labor_KhongHuong : System.Web.UI.Page
         {
             _msg = "Bạn chưa nhập số quyết định";
             return;
-        }
-        if(txtNgayKy.Value.Trim()=="")
-        {
-            _msg = "Bạn chưa nhập ngày ký";
-            return;
-        }  
+        }      
         DateTime NgayDeXuat = Convert.ToDateTime(txtNgayDeXuat.Value, new CultureInfo("vi-VN"));
         DateTime NgayCap = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        DateTime NgayKy = Convert.ToDateTime(txtNgayKy.Value, new CultureInfo("vi-VN"));
+        DateTime NgayKy = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy"), new CultureInfo("vi-VN"));
         int So= int.Parse(txtSoQuyetDinh.Text );
         int IDCapSo= new CapSo().SetData(So, NgayCap, So.ToString(), itemId, 80, DateTime.Now.Year.ToString());
         new NLDTroCapThatNghiep().UpdateKhongHuong(itemId, NgayDeXuat, txtLyDo.Text.Trim());

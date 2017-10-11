@@ -10,8 +10,7 @@
             padding-right: 5px;
             height: 34px;
             padding-top: 8px;
-        }
-
+        }   
         .label2 {
             width: 12%;
             float: left;
@@ -228,7 +227,7 @@
             </div>
         </div>
         <div class="row line">
-            <div class="label1">Ngày đề xuất: </div>
+            <div class="label1">Ngày hủy: </div>
             <div style="width: 20%; float: left">
                 <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
                     <input type='text' class="form-control dateinput" id="txtNgayDeXuat" runat="server" />
@@ -249,23 +248,11 @@
         </div>         
         </div>
         <div class="row line">
-            <div class="label1">Số quyết định: </div>
+            <div class="label1">Số thông báo: </div>
             <div style="width: 20%; float: left">
                  <asp:TextBox ID="txtSoQuyetDinh"  TextMode="Number" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-             <div class="label1">Ngày ký: </div>
-            <div style="width: 20%; float: left">
-                <div class='input-group date' style="margin-left: 0px; width: 100% !important; float: right;">
-                    <input type='text' class="form-control dateinput" id="txtNgayKy" runat="server" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>        
-            </div>
-        </div>   
-
-
-
+            </div>           
+        </div>
         <br />
         <br />
         <br />

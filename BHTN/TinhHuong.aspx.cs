@@ -106,6 +106,11 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
                         txtNgayNopHoSo.Value = NgayNopHoSo.ToString("dd/MM/yyyy");
                         lblNgayDangKy.Text = ((DateTime)rowTroCapThatNghiep["NgayNopHoSo"]).ToString("dd/MM/yyyy");               
                     }
+                    if (rowTroCapThatNghiep["IdNoiNhanTCTN"] != null && rowTroCapThatNghiep["IdNoiNhanTCTN"].ToString().Trim() != "0")
+                    {
+                        txtNoiNhanTCTN.Text = new DanhMuc().getNameById((int)rowTroCapThatNghiep["IdNoiNhanTCTN"]);
+
+                    }
                 }
                 DataTable tblTinhHuong = new TinhHuong().getDataById(itemId);
                 if(tblTinhHuong.Rows.Count>0)
@@ -131,7 +136,13 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
                     txtSoThangBaoLuu.Text = tblTinhHuong.Rows[0]["SoThangBaoLuuBHXH"].ToString();
                     txtHuongTuNgay.Value=  ((DateTime)tblTinhHuong.Rows[0]["HuongTuNgay"]).ToString("dd/MM/yyyy");
                     txtHuongDenNgay.Value = ((DateTime)tblTinhHuong.Rows[0]["HuongDenNgay"]).ToString("dd/MM/yyyy");
-                    //
+                    decimal MucHuong=(decimal)tblTinhHuong.Rows[0]["MucHuong"];
+                    if (MucHuong>0)
+                    {
+                        lblTienBangChu.Visible = true;
+                        lblTienBangChu.Text = new Common().ChuyenSo(Math.Round(MucHuong,MidpointRounding.AwayFromZero).ToString());
+                    }
+                  
                 }
 
             }         
@@ -397,6 +408,16 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
        , objLichThongBao.KhaiBaoThang11TuNgay, objLichThongBao.KhaiBaoThang11DenNgay
        , objLichThongBao.KhaiBaoThang12TuNgay, objLichThongBao.KhaiBaoThang12DenNgay);
         objTinhHuong.UpdateTrangThaiHS(itemId, 3);
+        if (objTinhHuong.MucHuong > 0)
+        {
+            lblTienBangChu.Visible = true;
+            lblTienBangChu.Text = new Common().ChuyenSo(objTinhHuong.MucHuong.ToString());
+        }
+        else
+        {
+            lblTienBangChu.Visible = false;
+            lblTienBangChu.Text = "";
+        }
         #region log he thong
         Log item = new Log();
         item.NgayTao = DateTime.Now;
@@ -458,7 +479,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         item.TroCapThatNghiepID = itemId;
         item.UserID = (int)_Permission["Id"];
         item.UserName = _Permission["UserName"].ToString();
-        item.Action = "Chuyển trả hồ sơ về bộ phận tiếp nhận";
+        item.Action = "Chuyển thẩm định (TCTN)";
         item.GhiChu = "";
         new Log().Insert(item);
         #endregion
@@ -467,7 +488,30 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
  
     protected void btnChuyenTraHoSo_Click(object sender, EventArgs e)
     {
+        //TinhHuong objTinhHuong = new TinhHuong();
+        //objTinhHuong.UpdateTrangThaiHS(itemId, 1);
+        //#region log he thong
+        //Log item = new Log();
+        //item.NgayTao = DateTime.Now;
+        //DataRow TCTN = new NLDTroCapThatNghiep().getItem(itemId);
+        //item.NguoiLaoDongID = (int)TCTN["IDNguoiLaoDong"];
+        //item.TroCapThatNghiepID = itemId;
+        //item.UserID = (int)_Permission["Id"];
+        //item.UserName = _Permission["UserName"].ToString();
+        //item.Action = "Chuyển trả hồ sơ về bộ phận tiếp nhận";
+        //item.GhiChu = "";
+        //new Log().Insert(item);
+        //#endregion
+        //Response.Redirect("DanhSachTinhHuong.aspx");
+    }
+    protected void btnLuuLog_Click(object sendger, EventArgs e)
+    {
         TinhHuong objTinhHuong = new TinhHuong();
+        if (txtLyDoTra.Text.Trim() == "")
+        {
+            _msg = "Bạn chưa nhập lý do trả hồ sơ";
+            return;
+        }
         objTinhHuong.UpdateTrangThaiHS(itemId, 1);
         #region log he thong
         Log item = new Log();
@@ -477,8 +521,8 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
         item.TroCapThatNghiepID = itemId;
         item.UserID = (int)_Permission["Id"];
         item.UserName = _Permission["UserName"].ToString();
-        item.Action = "Chuyển trả hồ sơ về bộ phận tiếp nhận";
-        item.GhiChu = "";
+        item.Action = "Trả phận tiếp nhận (TCTN)";
+        item.GhiChu = txtLyDoTra.Text.Trim();
         new Log().Insert(item);
         #endregion
         Response.Redirect("DanhSachTinhHuong.aspx");
@@ -487,7 +531,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
     {
         btnTinhHuong.Visible = status;
         btnChuyenThamDinh.Visible = status;
-        btnChuyenTraHoSo.Visible = status;
+       // btnChuyenTraHoSo.Visible = status;
     }
     private void Load_CauHinhTraKetQua(bool status)
     {
