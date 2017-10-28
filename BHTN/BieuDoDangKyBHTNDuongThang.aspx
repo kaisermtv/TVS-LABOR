@@ -46,7 +46,7 @@
         }
 
         label {
-            float: left;
+            float:left;
             padding: 6px 12px;
         }
     </style>

@@ -70,6 +70,8 @@
                 </td>
             </tr>
         </table>
+        <asp:Button ID="btnExport" runat="server" Text="Xuất File Excel" 
+        CssClass="btn btn-primary" onclick="btnExport_Click" />
         <asp:Repeater ID="dtlData" runat="server" OnItemCommand="dtlData_ItemCommand" OnItemDataBound="dtlData_ItemDataBound">
             <HeaderTemplate>
                 <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">
@@ -88,8 +90,7 @@
             <ItemTemplate>
                 <tr>
                     <td class="DataListTableTdItemTT">
-                        <input type="checkbox" id="ckbSelect<% =index++ %>" value="<%# Eval("IdNLDTCTN") %>" />
-                    </td>
+                    <input type="checkbox" id ="ckbSelect<%=index++ %>" value ="<%# Eval("IdNLDTCTN") %>" /></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("HoVaTen") %></td>
                     <td class="DataListTableTdItemJustify" style="color: red; text-align:left;"><%# Eval("TrangThai").ToString().Replace("Chuyển thẩm định","<span class = \"TrangThai\">Chuyển thẩm định</span>") %></td>
                     <td class="DataListTableTdItemJustify"><%# Eval("CMND") %></td>
@@ -111,8 +112,7 @@
                      <asp:Button ID="btnTaiQD" class="btn btn-primary" runat ="server" CommandName="TaiQuyetDinh" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="Tải QĐ" />
                      <asp:Button ID="btnHuyHuong" class="btn btn-primary" runat ="server" CommandName="DeXuatHuyHuong" style="font-size:12px; padding:3px;"  CommandArgument='<%# Eval("IdNLDTCTN") %>' Text="ĐX hủy hưởng" />                    
                     </td>
-                    <td>
-                     
+                    <td>                     
                     </td>
                 </tr>
             </ItemTemplate>

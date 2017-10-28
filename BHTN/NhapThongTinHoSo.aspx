@@ -22,7 +22,7 @@
             padding-top: 8px;
         }
 
-        .labela {
+        .label a {
             width: 16%;
             float: left;
             text-align: right;
@@ -32,8 +32,9 @@
             padding-top: 8px;
         }
 
-        label {
-            font-size: 15px;
+        label 
+        {        
+          font-size: 15px;
         }
 
         .chkLabel {
@@ -253,9 +254,9 @@
                 Giới tính: 
             </div>
             <div class="chkLabel">
-                <asp:RadioButton ID="chkGioiTinhNam" GroupName="GioiTinh" runat="server" Text="&nbsp;Nam" TextAlign="Right" />
+                <asp:RadioButton ID="chkGioiTinhNam" GroupName="GioiTinh" runat="server" Text="&nbsp;Nam" TextAlign="Right"  />
                 &nbsp;&nbsp;&nbsp;
-            <asp:RadioButton ID="chkGioiTinhNu" GroupName="GioiTinh" runat="server" Text="&nbsp;Nữ" TextAlign="Right" />
+            <asp:RadioButton ID="chkGioiTinhNu" GroupName="GioiTinh" runat="server" Text="&nbsp;Nữ" TextAlign="Right"  />
 
             </div>
         </div>

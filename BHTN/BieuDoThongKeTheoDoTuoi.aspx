@@ -45,8 +45,8 @@
             margin-left:10px;
         }
 
-        label {
-            float: left;
+         label {
+            float:left;
             padding: 6px 12px;
         }
     </style>

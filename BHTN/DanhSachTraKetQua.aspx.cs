@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
 {
@@ -97,24 +98,24 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         string MyDate = myDatetime.Day.ToString() + "/" + myDatetime.Month.ToString() + "/" + myDatetime.Year.ToString();
         txtNgayTrinhKy.Value = MyDate;
     }
-     protected void btnTaiQuyetDinh_Click(object sender, EventArgs e)
-    {
-        if (hdlstChuyen.Value == null || hdlstChuyen.Value.ToString().Trim() == "")
-        {
-            _msg = "Bạn chưa chọn quyết định cần tải";
-            return;
-        }
-        string[] strID = hdlstChuyen.Value.Split(',');
-        for (int i = 0; i < strID.Length; i++)
-        {
-            DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
-            if ((int)rowTCTN["IdTrangThai"] == 10)
-            {
-                TaiQuyetDinhTCTN(int.Parse(strID[i]), i.ToString());
-            }
-        }
-        Load_DanhSachHoSo();    
-    }
+    // protected void btnTaiQuyetDinh_Click(object sender, EventArgs e)
+    //{
+    //    if (hdlstChuyen.Value == null || hdlstChuyen.Value.ToString().Trim() == "")
+    //    {
+    //        _msg = "Bạn chưa chọn quyết định cần tải";
+    //        return;
+    //    }
+    //    string[] strID = hdlstChuyen.Value.Split(',');
+    //    for (int i = 0; i < strID.Length; i++)
+    //    {
+    //        DataRow rowTCTN = new NLDTroCapThatNghiep().getItem(int.Parse(strID[i]));
+    //        if ((int)rowTCTN["IdTrangThai"] == 10)
+    //        {
+    //            TaiQuyetDinhTCTN(int.Parse(strID[i]), i.ToString());
+    //        }
+    //    }
+    //    Load_DanhSachHoSo();    
+    //}
 
  
     #region Quyet dinh huong tro cap that nghiep
@@ -244,5 +245,20 @@ public partial class Labor_DanhSachTraKetQua : System.Web.UI.Page
         {
             Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue.ToString() + ",");
         }
+    }
+    protected void btnExport_Click(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.xls");
+        Response.Charset = "Utf-8";
+        Response.ContentType = "application/vnd.ms-excel";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+        dtlData.RenderControl(hw);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 public partial class Labor_DanhSachKhongHuong : System.Web.UI.Page
 {
@@ -334,5 +335,20 @@ public partial class Labor_DanhSachKhongHuong : System.Web.UI.Page
         {
             Load_DanhSachHoSo("," + ddlTrangThai.SelectedValue.ToString() + ",");
         }
+    }
+    protected void btnExport_Click(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.xls");
+        Response.Charset = "Utf-8";
+        Response.ContentType = "application/vnd.ms-excel";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+        dtlData.RenderControl(hw);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
     }
 }

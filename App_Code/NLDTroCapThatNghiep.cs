@@ -180,7 +180,7 @@ public class NLDTroCapThatNghiep :DataAbstract
         try
         {
             SqlCommand Cmd = this.getSQLConnect();
-            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND (IdTrangThai != 0 ) And (IdTrangThai !=null)";
+            Cmd.CommandText = "IF NOT EXISTS (SELECT * FROM TblNLDTroCapThatNghiep WHERE IDNguoiLaoDong = @IDNguoiLaoDong And IdTrangThai!=1)";
             Cmd.CommandText += " BEGIN INSERT INTO TblNLDTroCapThatNghiep(IDNguoiLaoDong,IDNldTuVan) OUTPUT INSERTED.IdNLDTCTN VALUES (@IDNguoiLaoDong,@IDNldTuVan) END ";
             Cmd.CommandText += " ELSE BEGIN UPDATE TblNLDTroCapThatNghiep SET EditDay = GETDATE() OUTPUT INSERTED.IdNLDTCTN WHERE IDNguoiLaoDong = @IDNguoiLaoDong AND IdTrangThai != 6 END";
             Cmd.Parameters.Add("IDNguoiLaoDong", SqlDbType.Int).Value = IdNguoiLaoDong;

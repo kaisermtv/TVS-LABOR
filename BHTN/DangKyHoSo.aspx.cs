@@ -127,4 +127,19 @@ public partial class BHTN_DangKyHoSo : System.Web.UI.Page
     {
 
     }
+    protected void btnExport_Click(object sender, EventArgs e)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.xls");
+        Response.Charset = "Utf-8";
+        Response.ContentType = "application/vnd.ms-excel";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        hw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+        dtlData.RenderControl(hw);
+        Response.Output.Write(sw.ToString());
+        Response.Flush();
+        Response.End();
+    }
 }
