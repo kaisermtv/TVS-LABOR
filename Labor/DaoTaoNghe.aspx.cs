@@ -30,6 +30,13 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
         Session["TITLE"] = "HỌC NGOẠI NGỮ VÀ ĐÀO TẠO NGHỀ";
         if (!Page.IsPostBack)
         {
+
+            ddlMonHoc.DataSource = new DtKhoaHoc().getDataCategoryToCombobox();
+            ddlMonHoc.DataValueField = "IdDtKhoaHoc";
+            ddlMonHoc.DataTextField = "NameKhoaHoc";
+            ddlMonHoc.DataBind();
+            ddlMonHoc.SelectedValue = "0";
+
             this.getData();
         }
     } 
@@ -38,7 +45,24 @@ public partial class Labor_DaoTaoNghe : System.Web.UI.Page
     #region getData()
     private void getData()
     {
-        this.objTable = this.objNguoiLaoDong.getDataNldDaoTao(this.txtSearch.Value.ToString(), int.Parse(this.ddlState.SelectedValue.ToString()),int.Parse(dtlLoaiKhoaHoc.Text));
+        DateTime? formDate = null;
+        DateTime? toDate = null;
+
+        try
+        {
+            formDate = DateTime.Parse(txtFromDate.Value);
+        }
+        catch { }
+
+        try
+        {
+            toDate = DateTime.Parse(txtToDate.Value);
+        }
+        catch { }
+
+
+
+        this.objTable = this.objNguoiLaoDong.getDataNldDaoTao(this.txtSearch.Value, int.Parse(this.ddlState.SelectedValue),int.Parse(ddlMonHoc.SelectedValue), formDate,toDate);
         cpTuVanXuatKhau.MaxPages = 1000;
         cpTuVanXuatKhau.PageSize = 15;
         cpTuVanXuatKhau.DataSource = this.objTable.DefaultView;

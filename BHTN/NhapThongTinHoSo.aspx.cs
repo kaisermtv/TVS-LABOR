@@ -757,7 +757,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
         try{
             DataSQL objSQL = new DataSQL("TblNguoiLaoDong");
 
-
+            
             if (idNguoiLaoDong != 0) objSQL["IDNguoiLaoDong"] = idNguoiLaoDong;
             else objSQL["Ma"] = objNguoiLaoDong.getNextMaNLD();
 
@@ -806,6 +806,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             return;
         }
         #endregion
+
         #region Save Doanh nghiệp
         int idDoanhNghiep = 0;
         try {
@@ -840,6 +841,7 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
             }
         }
         #endregion
+
         #region Save BHXH
         int ret = 0;
         try

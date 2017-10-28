@@ -2217,10 +2217,9 @@ public class NguoiLaoDong :DataAbstract
     #endregion
 
     #region method getDataNldDaoTao
-    public DataTable getDataNldDaoTao(string searchKey = "", int State = 0,int loaikhoahoc = 0)
+    public DataTable getDataNldDaoTao(string searchKey = "", int State = 3,int monhoc = 0,DateTime? fromdate = null, DateTime? todate = null)
     {
-        string sqlQuery = "", sqlQueryState = "";
-        if (searchKey.Trim() != "")
+        try
         {
             SqlCommand Cmd = this.getSQLConnect();
             Cmd.CommandText = "SELECT DT.*,NLD.*,KH.* FROM TblNldDaoTao AS DT";
@@ -2240,54 +2239,37 @@ public class NguoiLaoDong :DataAbstract
                 Cmd.Parameters.Add("State", SqlDbType.Int).Value = State;
             }
 
-            if (loaikhoahoc != 0)
+            if (monhoc != 0)
             {
-                Cmd.CommandText += " AND KH.LoaiKhoaHoc = @LoaiKhoaHoc";
-                Cmd.Parameters.Add("LoaiKhoaHoc", SqlDbType.Int).Value = loaikhoahoc;
+                Cmd.CommandText += " AND DT.IdDtKhoaHoc = @IdDtKhoaHoc";
+                Cmd.Parameters.Add("IdDtKhoaHoc", SqlDbType.Int).Value = monhoc;
             }
-            
+
+            if(fromdate != null)
+            {
+                Cmd.CommandText += " AND DT.NgayBatDau >= @NgayBatDau";
+                Cmd.Parameters.Add("NgayBatDau", SqlDbType.Date).Value = fromdate;
+            }
+
+            if (todate != null)
+            {
+                Cmd.CommandText += " AND DT.NgayBatDau <= @NgayBatDau1";
+                Cmd.Parameters.Add("NgayBatDau1", SqlDbType.Date).Value = todate;
+            }
+
+            Cmd.CommandText += " ORDER BY DT.NgayBatDau ASC";
 
             DataTable ret = this.findAll(Cmd);
 
             this.SQLClose();
             return ret;
         }
-        if (State != 3)
+        catch(Exception ex)
         {
-            sqlQueryState = " AND ISNULL(TblNldDaoTao.State,0) = " + State.ToString();
+            Message = ex.Message;
+            ErrorCode = ex.HResult;
+            return null;
         }
-
-        DataTable objTable = new DataTable();
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.Parameters.Add("SearchKey", SqlDbType.NVarChar).Value = searchKey;
-
-            string sqlQueryFull = "SELECT 0 AS TT, *, (SELECT TenDonVi FROM TblDoanhNghiep WHERE IDDonVi = TblNldDaoTao.IDDonVi) AS TenDonVi, REPLACE(REPLACE(REPLACE(CAST(ISNULL(TblNldDaoTao.State,0) AS nvarchar),'0',N'Chưa xử lý'),'1',N'Đang xử lý'),'2',N'Đã xử lý') AS NameState ";
-            sqlQueryFull += ",TblDtKhoaHoc.MucHoTro AS MucHoTro1, TblDtKhoaHoc.ThoiGianHoc AS ThoiGianHoc1, TblDtKhoaHoc.NameKhoaHoc FROM TblNguoiLaoDong INNER JOIN TblNgoaiNgu ON TblNguoiLaoDong.IDNgoaiNgu = TblNgoaiNgu.IDNgoaiNgu , TblNldDaoTao LEFT JOIN TblDtKhoaHoc ON TblNldDaoTao.IdDtKhoaHoc = TblDtKhoaHoc.IdDtKhoaHoc ";
-            sqlQueryFull += " WHERE TblNguoiLaoDong.IDNguoiLaoDong = TblNldDaoTao.IDNguoiLaoDong " + sqlQuery + sqlQueryState + " ORDER BY TblNldDaoTao.IDNldDaoTao DESC";
-
-            Cmd.CommandText = sqlQueryFull;
-
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                ds.Tables[0].Rows[i]["TT"] = (i + 1);
-            }
-            sqlCon.Close();
-            sqlCon.Dispose();
-            objTable = ds.Tables[0];
-        }
-        catch(Exception e)
-        {
-            Debug.WriteLine("[!!!] - getDataNldDaoTao  :" + e.GetBaseException());
-        }
-        return objTable;
     }
     #endregion
 
