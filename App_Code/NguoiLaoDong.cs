@@ -2217,7 +2217,7 @@ public class NguoiLaoDong :DataAbstract
     #endregion
 
     #region method getDataNldDaoTao
-    public DataTable getDataNldDaoTao(string searchKey = "", int State = 3,int loaikhoahoc = 0)
+    public DataTable getDataNldDaoTao(string searchKey = "", int State = 3,int monhoc = 0,DateTime? fromdate = null, DateTime? todate = null)
     {
         try
         {
@@ -2239,12 +2239,25 @@ public class NguoiLaoDong :DataAbstract
                 Cmd.Parameters.Add("State", SqlDbType.Int).Value = State;
             }
 
-            if (loaikhoahoc != 0)
+            if (monhoc != 0)
             {
-                Cmd.CommandText += " AND KH.LoaiKhoaHoc = @LoaiKhoaHoc";
-                Cmd.Parameters.Add("LoaiKhoaHoc", SqlDbType.Int).Value = loaikhoahoc;
+                Cmd.CommandText += " AND DT.IdDtKhoaHoc = @IdDtKhoaHoc";
+                Cmd.Parameters.Add("IdDtKhoaHoc", SqlDbType.Int).Value = monhoc;
             }
-            
+
+            if(fromdate != null)
+            {
+                Cmd.CommandText += " AND DT.NgayBatDau >= @NgayBatDau";
+                Cmd.Parameters.Add("NgayBatDau", SqlDbType.Date).Value = fromdate;
+            }
+
+            if (todate != null)
+            {
+                Cmd.CommandText += " AND DT.NgayBatDau <= @NgayBatDau1";
+                Cmd.Parameters.Add("NgayBatDau1", SqlDbType.Date).Value = todate;
+            }
+
+            Cmd.CommandText += " ORDER BY DT.NgayBatDau ASC";
 
             DataTable ret = this.findAll(Cmd);
 
