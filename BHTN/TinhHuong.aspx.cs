@@ -355,7 +355,7 @@ public partial class Labor_TinhHuong : System.Web.UI.Page
             lstTemp.Add(objtemp);
         }
         lstTemp[0].TuNgay = objTinhHuong.HuongTuNgay;
-        lstTemp[0].DenNgay = lstTemp[0].TuNgay.AddMonths(1).AddDays(-1); 
+        lstTemp[0].DenNgay = lstTemp[0].TuNgay.AddMonths(1);
         //Tinh khoang thoi gian huong tung thang
         for (int i = 1; i < SoThangHuong; i++)
         {
