@@ -221,16 +221,34 @@ public class TinhHuong:DataClass
     #region tinh ngay nghi le
     public DateTime TinhNgayNghiLe(DateTime NgayNop, int SoNgayThuLy)
     {
-
-        int days=0;
-        for (DateTime i = NgayNop; i <= NgayNop.AddDays(SoNgayThuLy); i = i.AddDays(1))
-        {
-            if (i.DayOfWeek == DayOfWeek.Saturday || i.DayOfWeek == DayOfWeek.Sunday) days++;
+        for (int i = 0; i < SoNgayThuLy; i++)
+        {          
+            NgayNop = NgayNop.AddDays(1);                 
+            if (NgayNop.DayOfWeek == DayOfWeek.Saturday)
+            {  
+               int dem=0;
+               if(CheckNgayLe(NgayNop)==true)
+               {
+                   dem++;
+               }
+               dem++;
+               NgayNop = NgayNop.AddDays(dem);
+            }
+            if (NgayNop.DayOfWeek == DayOfWeek.Sunday)
+            {
+                int dem = 0;
+                if (CheckNgayLe(NgayNop) == true)
+                {
+                    dem++;
+                }
+                dem++;
+                NgayNop = NgayNop.AddDays(dem);
+            }
+            NgayNop = KiemTraNgayNghi(NgayNop);  
         }
-
         // kiem tra lai sau khi da tru thu 7, cn co bi trung vao ngay nghi tiep khong
         //NgayNop = KiemTraNgayNghi(NgayNop);
-        return NgayNop.AddDays(days);
+        return NgayNop;
     }
     public DateTime KiemTraNgayNghi(DateTime Datetime)
     {
