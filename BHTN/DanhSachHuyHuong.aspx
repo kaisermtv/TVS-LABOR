@@ -65,7 +65,7 @@
             </tr>
         </table>
         <asp:Button ID="btnExport" runat="server" Text="Xuất File Excel" 
-        CssClass="btn btn-primary" onclick="btnExport_Click" />
+        CssClass="btn btn-primary" onclick="btnExport_Click" Visible="False" />
         <asp:Repeater ID="dtlData" runat="server" onitemcommand="dtlData_ItemCommand">
             <HeaderTemplate>
                 <table class="DataListTable" border="0" style="width: 100%; margin-top: 10px;">

@@ -101,7 +101,7 @@
         </table>
         <div>
             <asp:Button ID="btnXuatExcel" CssClass="btn btn-primary" runat="server" 
-                Text="Xuất Excel" OnClick="btnXuatExcel_Click" Visible="False" />
+                Text="Xuất Excel" OnClick="btnXuatExcel_Click" />
         </div>
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; height: 26px;"
             id="tblABC" runat="server">

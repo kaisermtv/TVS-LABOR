@@ -653,12 +653,16 @@ public partial class BHTN_NhapThongTinHoSo : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         #region Kiem tra neu ngay le va ngay nghi thi ko cho nhap
-        DateTime MyDate = DateTime.Now;
-        if (MyDate.DayOfWeek == DayOfWeek.Saturday || MyDate.DayOfWeek == DayOfWeek.Sunday || new TinhHuong().CheckNgayLe(MyDate)==true)
+        if (txtNgayNopHS.Value.ToString().Trim() != "")
         {
-            lblMsg.Text = "Bạn không thể nhập dữ liệu vào ngày nghỉ, hoặc ngày lễ";
-            return;
-        }
+            DateTime MyDate = Convert.ToDateTime(txtNgayNopHS.Value, new CultureInfo("vi-VN"));
+            if (MyDate.DayOfWeek == DayOfWeek.Saturday || MyDate.DayOfWeek == DayOfWeek.Sunday || new TinhHuong().CheckNgayLe(MyDate) == true)
+            {
+                lblMsg.Text = "Bạn không thể nhập dữ liệu vào ngày nghỉ, hoặc ngày lễ";
+                return;
+            }
+        } 
+      
         #endregion 
 
         #region Save Người lao động
